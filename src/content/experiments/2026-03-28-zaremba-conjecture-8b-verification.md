@@ -30,8 +30,7 @@ tags:
 results:
   conjecture: "Zaremba's Conjecture (1972)"
   bound: 5
-  verified_range: [1, 8000000000]
-  failures: 0
+  status: "IN PROGRESS — 8B target, v2 kernel running on all 8 GPUs"
   llm_proofs: 19/20
   models_used: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
 

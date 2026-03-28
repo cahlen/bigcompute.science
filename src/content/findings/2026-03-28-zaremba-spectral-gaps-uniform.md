@@ -9,16 +9,18 @@ significance: high
 domain: [number-theory, spectral-theory, continued-fractions]
 related_experiment: /experiments/zaremba-conjecture-8b-verification/
 
-summary: "The spectral gap of the congruence transfer operator L_{δ,m} for Zaremba's semigroup Γ_{1,...,5} shows no decay for square-free m up to 38. Gaps range from 0.27 to 0.43 — property (τ) holds computationally. This is the condition Bourgain-Kontorovich need to extend their density-1 result."
+summary: "The spectral gap of the congruence transfer operator L_{δ,m} for Zaremba's semigroup Γ_{1,...,5} shows no decay for ALL 608 square-free m up to 998. Gaps range from 0.27 to 0.99 — property (τ) holds computationally at unprecedented scale. The minimum gap of 0.271 occurs only at m=34 and its multiples."
 
 data:
   hausdorff_dimension: 0.836829443681208
   two_delta: 1.673658887362417
-  spectral_gap_range: [0.271, 0.426]
-  moduli_tested: "all square-free m ≤ 38"
+  spectral_gap_range: [0.271, 0.991]
+  moduli_tested: "all 608 square-free m ≤ 998"
+  min_gap_modulus: 34
   decay_exponent_beta: "≈ 0 (no measurable decay)"
   bk_threshold: 0.672
   threshold_met: true
+  computation_time: "256 seconds on 8× NVIDIA B200"
 ---
 
 # Congruence Spectral Gaps for Zaremba's Semigroup Are Uniform

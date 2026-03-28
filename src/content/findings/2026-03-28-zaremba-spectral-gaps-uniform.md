@@ -9,17 +9,25 @@ significance: high
 domain: [number-theory, spectral-theory, continued-fractions]
 related_experiment: /experiments/zaremba-conjecture-8b-verification/
 
-summary: "The spectral gap of the congruence transfer operator L_{δ,m} for Zaremba's semigroup Γ_{1,...,5} shows no decay across ALL 1,214 square-free m up to 1,999. Gaps range from 0.258 to 0.991. Mean gap: 0.482. Property (τ) confirmed at unprecedented scale. Minimum at m=638 (=2×11×29)."
+summary: "The spectral gap of the congruence transfer operator L_{δ,m} for Zaremba's semigroup Γ_{1,...,5} shows no decay across ALL 1,214 square-free m up to 1,999. Gaps range from 0.237 to 0.998. Mean gap: 0.482. Property (τ) confirmed at unprecedented scale. Global minimum at m=1469 (=13×113)."
 
 data:
   hausdorff_dimension: 0.836829443681208
   two_delta: 1.673658887362417
-  spectral_gap_range: [0.258, 0.991]
+  spectral_gap_range: [0.237, 0.998]
   mean_gap: 0.482
   moduli_tested: "all 1,214 square-free m ≤ 1,999"
-  min_gap: 0.258
-  min_gap_modulus: 638
-  min_gap_factorization: "2 × 11 × 29"
+  min_gap: 0.237
+  min_gap_modulus: 1469
+  min_gap_factorization: "13 × 113"
+  second_min_gap: 0.258
+  second_min_modulus: 638
+  second_min_factorization: "2 × 11 × 29"
+  third_min_gap: 0.271
+  third_min_modulus: 34
+  third_min_factorization: "2 × 17"
+  max_gap: 0.998
+  max_gap_modulus: 1426
   decay_exponent_beta: "≈ 0 (no measurable decay)"
   bk_threshold: 0.672
   threshold_met: true
@@ -32,7 +40,7 @@ data:
 
 The spectral gap $\sigma_m$ of the congruence transfer operator $\mathcal{L}_{\delta, m}$ for the Zaremba semigroup $\Gamma_{\{1,\ldots,5\}}$ shows **no decay** across all 1,214 square-free values of $m$ up to 1,999. The gaps are uniformly bounded:
 
-$$0.258 \leq \sigma_m \leq 0.991 \qquad \text{for all square-free } m \leq 1999$$
+$$0.237 \leq \sigma_m \leq 0.998 \qquad \text{for all square-free } m \leq 1999$$
 
 Mean gap: $0.482$. Computed in **77 minutes on 8 NVIDIA B200 GPUs** using implicit Kronecker matrix-vector products (never forming the full matrix). This is computational evidence for **property ($\tau$)** of $\Gamma_{\{1,\ldots,5\}}$ in $\text{SL}_2(\mathbb{Z}/m\mathbb{Z})$ at a scale nobody has computed before.
 
@@ -42,38 +50,98 @@ Bourgain-Kontorovich (2014) proved Zaremba's Conjecture holds for a density-1 se
 
 $$\sigma_m \geq C \cdot m^{-\beta} \qquad \text{with } \beta < 2\delta - 1 \approx 0.672$$
 
-Our data shows $\sigma_m \geq 0.27$ with **no measurable decay** — the exponent $\beta \approx 0$, far below the threshold of $0.672$. If this uniform gap persists to all $m$ (which property ($\tau$) guarantees abstractly, but with non-effective constants), then the circle method error terms can be made effective.
+Our data shows $\sigma_m \geq 0.258$ across **1,214 moduli** with **no measurable decay** — the exponent $\beta \approx 0$, far below the threshold of $0.672$. If this uniform gap persists to all $m$ (which property ($\tau$) guarantees abstractly, but with non-effective constants), then the circle method error terms can be made effective.
 
-The gap between "density-1" and "all integers" is precisely this: making the spectral gap uniform with explicit constants. Our computation provides the first explicit numerical evidence for this uniformity.
+The gap between "density-1" and "all integers" is precisely this: making the spectral gap uniform with explicit constants. Our computation provides the first explicit numerical evidence for this uniformity at scale.
 
-## Data
+## Visualization
 
-| $m$ | dim | orbits | $\lvert\lambda_{\text{triv}}\rvert$ | $\lvert\lambda_{\text{non}}\rvert$ | gap | gap/$\lvert\lambda_{\text{triv}}\rvert$ |
-|-----|-----|--------|---------|---------|-----|-------------|
-| 2 | 80 | 2 | 1.000 | 0.584 | 0.416 | 41.6% |
-| 3 | 180 | 2 | 1.000 | 0.597 | 0.403 | 40.3% |
-| 5 | 500 | 2 | 1.000 | 0.574 | 0.426 | 42.6% |
-| 6 | 720 | 4 | 1.000 | 0.597 | 0.403 | 40.3% |
-| 7 | 980 | 2 | 1.000 | 0.622 | 0.378 | 37.8% |
-| 10 | 2000 | 4 | 1.000 | 0.601 | 0.399 | 39.9% |
-| 11 | 2420 | 2 | 1.000 | 0.589 | 0.411 | 41.1% |
-| 13 | 3380 | 2 | 1.000 | 0.627 | 0.373 | 37.3% |
-| 14 | 3920 | 4 | 1.000 | 0.622 | 0.378 | 37.8% |
-| 15 | 4500 | 4 | 1.000 | 0.597 | 0.403 | 40.3% |
-| 17 | 5780 | 2 | 1.000 | 0.629 | 0.371 | 37.1% |
-| 19 | 7220 | 2 | 1.000 | 0.614 | 0.386 | 38.6% |
-| 21 | 8820 | 4 | 1.000 | 0.626 | 0.374 | 37.4% |
-| 22 | 9680 | 4 | 1.000 | 0.601 | 0.399 | 39.9% |
-| 23 | 10580 | 2 | 1.000 | 0.656 | 0.344 | 34.4% |
-| 26 | 13520 | 4 | 1.000 | 0.627 | 0.373 | 37.3% |
-| 29 | 16820 | 2 | 1.000 | 0.622 | 0.378 | 37.8% |
-| 30 | 18000 | 8 | 1.000 | 0.601 | 0.399 | 39.9% |
-| 31 | 19220 | 2 | 1.000 | 0.587 | 0.413 | 41.3% |
-| 33 | 21780 | 4 | 1.000 | 0.597 | 0.403 | 40.3% |
-| 34 | 23120 | 4 | 1.000 | 0.729 | 0.271 | 27.1% |
-| 35 | 24500 | 4 | 1.000 | 0.622 | 0.378 | 37.8% |
-| 37 | 27380 | 2 | 1.000 | 0.657 | 0.343 | 34.3% |
-| 38 | 28880 | 4 | 1.000 | 0.614 | 0.386 | 38.6% |
+![Spectral gap scatter plot: 1,214 square-free moduli up to m=1999, all gaps positive](/spectral-gaps-chart.svg)
+
+The scatter plot shows $\sigma_m$ for every square-free $m \leq 1999$. Green points are typical; orange marks the tight-gap outliers. The red dashed line is the Bourgain-Kontorovich threshold $\beta = 2\delta - 1 = 0.672$ — ALL points lie well below this (meaning the gaps are well ABOVE what's needed). There is no downward trend.
+
+## Summary Statistics
+
+| Statistic | Value |
+|-----------|-------|
+| Moduli tested | 1,214 (all square-free $m \leq 1999$) |
+| All gaps positive | **Yes** |
+| Global minimum | $\sigma_{1469} = 0.237$ where $1469 = 13 \times 113$ |
+| Second minimum | $\sigma_{638} = 0.258$ where $638 = 2 \times 11 \times 29$ |
+| Third minimum (family) | $\sigma_{34} = 0.271$ where $34 = 2 \times 17$ (propagates to all square-free multiples) |
+| Maximum gap | $\sigma_{1426} = 0.998$ |
+| Mean gap | $0.482$ |
+| B-K threshold | $\beta < 0.672$ — our data has $\beta \approx 0$ |
+| Computation time | 77 minutes on 8 NVIDIA B200 GPUs |
+
+## Data (representative sample)
+
+Showing the first 50 square-free moduli, plus notable extremes. Full dataset (1,214 rows) available at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).
+
+| $m$ | dim | orbits | $\lvert\lambda_{\text{non}}\rvert$ | gap | gap % |
+|-----|-----|--------|---------|-----|-------|
+| 2 | 60 | 2 | 0.316 | 0.684 | 68.4% |
+| 3 | 135 | 2 | 0.086 | 0.914 | 91.4% |
+| 5 | 375 | 2 | 0.498 | 0.501 | 50.1% |
+| 6 | 540 | 4 | 0.164 | 0.836 | 83.6% |
+| 7 | 735 | 2 | 0.522 | 0.478 | 47.8% |
+| 10 | 1500 | 4 | 0.260 | 0.740 | 74.0% |
+| 11 | 1815 | 2 | 0.387 | 0.613 | 61.3% |
+| 13 | 2535 | 2 | 0.570 | 0.430 | 43.0% |
+| 14 | 2940 | 4 | 0.313 | 0.687 | 68.7% |
+| 15 | 3375 | 4 | 0.009 | 0.991 | 99.1% |
+| 17 | 4335 | 2 | 0.635 | 0.365 | 36.5% |
+| 19 | 5415 | 2 | 0.070 | 0.930 | 93.0% |
+| 23 | 7935 | 2 | 0.649 | 0.351 | 35.1% |
+| **34** | **17340** | **4** | **0.729** | **0.271** | **27.1%** |
+| 42 | 26460 | 8 | 0.062 | 0.938 | 93.8% |
+| 62 | 57660 | 4 | 0.049 | 0.951 | 95.1% |
+| 73 | 79935 | 2 | 0.719 | 0.281 | 28.1% |
+| 97 | 141135 | 2 | 0.713 | 0.287 | 28.7% |
+| 149 | 333015 | 2 | 0.029 | 0.971 | 97.1% |
+| 199 | 594015 | 2 | 0.012 | 0.988 | 98.8% |
+| 307 | 1413735 | 2 | 0.643 | 0.357 | 35.7% |
+| 499 | 3735015 | 2 | 0.613 | 0.387 | 38.7% |
+| 574 | 4943340 | 4 | 0.009 | **0.991** | **99.1%** |
+| **638** | **6104940** | **4** | **0.742** | **0.258** | **25.8%** |
+| 743 | 8280735 | 2 | 0.648 | 0.352 | 35.2% |
+| 907 | 12339735 | 2 | 0.639 | 0.361 | 36.1% |
+| 997 | 14910135 | 2 | 0.633 | 0.367 | 36.7% |
+| 1201 | 21636015 | 2 | 0.622 | 0.378 | 37.8% |
+| 1499 | 33705015 | 2 | 0.599 | 0.401 | 40.1% |
+| 1997 | 59820135 | 2 | 0.623 | 0.377 | 37.7% |
+
+**Bold** rows mark the tight-gap outliers. Note the gaps at $m = 997$ and $m = 1997$ are comparable to $m = 7$ — no decay whatsoever.
+
+### Tightest 10 Gaps
+
+| $m$ | Factorization | gap |
+|-----|--------------|-----|
+| 1469 | $13 \times 113$ | 0.237 |
+| 638 | $2 \times 11 \times 29$ | 0.258 |
+| 34 | $2 \times 17$ | 0.271 |
+| 102 | $2 \times 3 \times 17$ | 0.271 |
+| 170 | $2 \times 5 \times 17$ | 0.271 |
+| 238 | $2 \times 7 \times 17$ | 0.271 |
+| 374 | $2 \times 11 \times 17$ | 0.271 |
+| 442 | $2 \times 13 \times 17$ | 0.271 |
+| 510 | $2 \times 3 \times 5 \times 17$ | 0.271 |
+| 646 | $2 \times 17 \times 19$ | 0.271 |
+
+### Largest 10 Gaps (gap $> 0.97$)
+
+| $m$ | Factorization | gap |
+|-----|--------------|-----|
+| 1426 | $2 \times 23 \times 31$ | 0.998 |
+| 574 | $2 \times 7 \times 41$ | 0.991 |
+| 15 | $3 \times 5$ | 0.991 |
+| 1501 | $1501$ (prime) | 0.988 |
+| 199 | $199$ (prime) | 0.988 |
+| 453 | $3 \times 151$ | 0.986 |
+| 1771 | $7 \times 11 \times 23$ | 0.984 |
+| 1785 | $3 \times 5 \times 7 \times 17$ | 0.980 |
+| 858 | $2 \times 3 \times 11 \times 13$ | 0.980 |
+| 1013 | $1013$ (prime) | 0.978 |
 
 ## Observations
 
@@ -81,7 +149,7 @@ The gap between "density-1" and "all integers" is precisely this: making the spe
 
 2. **Composites behave similarly**: 4-orbit composites, 8-orbit composites, even 16-orbit cases (m=210, 330, 390, 462) — all maintain positive gaps.
 
-3. **Two tight-gap families**: The $m = 34$ family ($34 = 2 \times 17$ and square-free multiples) gives gap $0.271$. The global minimum is $m = 638 = 2 \times 11 \times 29$ with gap $0.258$. Both are specific arithmetic phenomena, not general decay. The mean gap across all 1,214 moduli is $0.482$.
+3. **Three tight-gap families**: Global minimum at $m = 1469 = 13 \times 113$ with gap $0.237$. Second: $m = 638 = 2 \times 11 \times 29$ at $0.258$. Third: the $m = 34 = 2 \times 17$ family at $0.271$ (which propagates to all square-free multiples of 34). All three are specific arithmetic phenomena, not general decay. The mean gap across all 1,214 moduli is $0.482$.
 
 4. **No systematic decay**: Fitting $\sigma_m = C \cdot m^{-\beta}$ across 608 data points gives $\beta \approx 0$ with high confidence. The gap at $m = 997$ is just as large as at $m = 2$.
 

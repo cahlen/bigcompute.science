@@ -1,10 +1,10 @@
 ---
-title: "Zaremba's Conjecture: 8 Billion Values Verified on Values on 8× NVIDIA B200"
+title: "Zaremba's Conjecture: Verifying 8 Billion Values on 8× NVIDIA B200"
 slug: zaremba-conjecture-8b-verification
 date: 2026-03-28
 author: cahlen
 author_github: https://github.com/cahlen
-status: complete
+status: in-progress
 
 hardware:
   name: NVIDIA DGX B200
@@ -39,7 +39,7 @@ code: https://github.com/cahlen/idontknow
 data: /data/zaremba-8b/
 ---
 
-# Zaremba's Conjecture: 8 Billion Values Verified on Values on 8× NVIDIA B200
+# Zaremba's Conjecture: Verifying 8 Billion Values on 8× NVIDIA B200
 
 ## Abstract
 

@@ -38,9 +38,10 @@ We publish results from computations that require significant hardware and custo
 5. `/experiments/class-numbers-real-quadratic/` — Class numbers of real quadratic fields to 10^13 (planned)
 6. `/experiments/kronecker-coefficients-gpu/` — Kronecker coefficients to n=120 (planned)
 
-### Findings (2)
+### Findings (3)
 1. `/findings/zaremba-spectral-gaps-uniform/` — Congruence spectral gaps for Zaremba's semigroup are uniform across 1,214 square-free moduli up to m=1999 (high significance)
-2. `/findings/zaremba-witness-golden-ratio/` — Zaremba witnesses concentrate at a/d ≈ 0.171, connected to golden ratio (medium significance)
+2. `/findings/zaremba-transitivity-all-primes/` — Semigroup acts transitively on (Z/pZ)² for ALL 1,229 primes up to 10,000 — no local obstructions (high significance)
+3. `/findings/zaremba-witness-golden-ratio/` — Zaremba witnesses concentrate at a/d ≈ 0.171, connected to golden ratio (medium significance)
 
 ## Key results (machine-readable summary)
 
@@ -60,6 +61,13 @@ zaremba_conjecture:
     mean_gap: 0.482
     decay_exponent_beta: 0
     computation_time: "77 min on 8× B200"
+  transitivity:
+    primes_tested: 1229
+    max_prime: 10000
+    non_transitive: 0
+    orbit_structure: "2 orbits for all primes (trivial + nonzero)"
+    local_obstructions: "none found"
+    partial_extension: "2000 more primes to p=17389, also zero exceptions"
   brute_force_verification:
     max_d_verified: 10000000
     failures: 0

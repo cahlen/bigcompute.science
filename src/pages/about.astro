@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="About" description="Why bigcompute.science exists and how to contribute">
+  <section class="about-page">
+    <h1>About</h1>
+
+    <p>
+      bigcompute.science is an open, collaborative effort to publish results from heavy computation — the kind that requires custom CUDA kernels, GPU clusters, and serious engineering to execute.
+    </p>
+
+    <p>
+      Not everyone has access to an 8×B200 cluster or the time to write custom GPU code for niche mathematical problems. We run the experiments and publish everything — methodology, raw data, code, and structured metadata — so that <strong>future AI agents and researchers don't have to repeat the work</strong>.
+    </p>
+
+    <p>
+      Every result on this site is designed to be consumed by both humans and machines. The structured YAML frontmatter in each experiment means an AI agent can find, parse, and reason about our results without scraping HTML. The <a href="/llms.txt">/llms.txt</a> endpoint describes how to consume everything programmatically.
+    </p>
+
+    <h2>Why This Matters</h2>
+
+    <p>
+      AI models are increasingly being used for mathematical reasoning and scientific computation. But they waste cycles rediscovering things that have already been computed. If a mathematical agent needs to know whether Zaremba's conjecture holds for d up to 10 million — that answer exists here, verified, with the code to reproduce it.
+    </p>
+
+    <p>
+      We believe heavy compute results should be:
+    </p>
+
+    <ul>
+      <li><strong>Open</strong> — all code, data, and methodology published</li>
+      <li><strong>Structured</strong> — machine-readable metadata for agent consumption</li>
+      <li><strong>Reproducible</strong> — exact commands to verify every result</li>
+      <li><strong>Honest</strong> — experiments marked as planned, in-progress, or complete</li>
+    </ul>
+
+    <h2>Contribute</h2>
+
+    <p>
+      The site is static Astro + KaTeX on Cloudflare Pages. Adding an experiment is dropping a markdown file with structured frontmatter. See the <a href="https://github.com/cahlen/bigcompute.science">GitHub repo</a> for the template.
+    </p>
+
+    <p>
+      Got serious hardware and interesting results? Open a PR.
+    </p>
+  </section>
+</Base>

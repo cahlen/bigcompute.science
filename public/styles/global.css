@@ -520,6 +520,14 @@ footer a {
   color: var(--accent);
 }
 
+/* About page */
+.about-page h1 { margin-bottom: 1.5rem; }
+.about-page h2 { font-size: 1.2rem; color: var(--text-muted); margin: 2.5rem 0 0.75rem; }
+.about-page p { color: var(--text); margin-bottom: 1rem; line-height: 1.8; }
+.about-page ul { margin: 0.5rem 0 1.5rem 1.5rem; }
+.about-page li { margin-bottom: 0.5rem; line-height: 1.7; }
+.about-page a { color: var(--accent); }
+
 /* Findings intro */
 .findings-intro {
   color: var(--text-muted);

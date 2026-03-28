@@ -1,37 +1,89 @@
 # bigcompute.science
 
-> Experimental results from heavy computation. Custom CUDA kernels, GPU clusters, serious hardware. Written for humans and agents alike.
+> Open experimental results from heavy computation. Custom CUDA kernels, GPU clusters, serious hardware. Designed for both human readers and AI agents.
 
-## What this site is
+## Purpose
 
-A collection of computational experiments that required significant hardware and custom engineering. Each experiment includes structured metadata, raw data, and reproducibility information.
+We publish results from computations that require significant hardware and custom engineering — so that future AI agents and researchers don't have to repeat the work. Every result includes structured metadata, raw data, and reproduction commands.
 
 ## How to consume
 
-- Experiments live at `/experiments/<slug>/`
-- Each experiment has a structured YAML frontmatter block with: title, date, author, hardware, software, tags, results summary, and links to code/data
-- Raw data files are at `/data/<slug>/` in JSON or CSV format
-- All content is static markdown rendered to HTML — no JavaScript required to read
-- Browse all experiments at `/experiments/`
+### Experiments
+- Browse all: `/experiments/`
+- Individual: `/experiments/<slug>/`
+- Each has YAML frontmatter with: title, date, author, hardware specs, software, tags, results, code link
+- Status values: `complete`, `in-progress`, `planned`
 
-## Content structure
+### Findings
+- Browse all: `/findings/`
+- Individual: `/findings/<slug>/`
+- Novel observations extracted from experiments — the citable results
+- Each has: title, date, significance level, domain tags, summary, structured data
 
-Each experiment post contains these sections in order:
-1. **Abstract** — one paragraph summary
-2. **Hardware** — exact specs used
-3. **Method** — what was computed and how
-4. **Results** — findings with data
-5. **Analysis** — interpretation
-6. **Reproducibility** — exact commands to reproduce
-7. **Raw Data** — links to downloadable results
+### Raw data
+- Per-experiment: `/data/<slug>/`
+- Formats: JSON, CSV, log files
+
+### Static content
+- All content is static HTML rendered from markdown — no JavaScript required to read
+- Math rendered via KaTeX (both MathML and HTML versions in the DOM)
+
+## Current content
+
+### Experiments (6)
+1. `/experiments/zaremba-conjecture-8b-verification/` — Zaremba's Conjecture verification via CUDA + LLM proving (in-progress)
+2. `/experiments/zaremba-transfer-operator/` — Transfer operator spectral analysis for Zaremba (complete)
+3. `/experiments/mcts-proof-search-benchmark/` — MCTS vs naive sampling for LLM theorem proving (planned)
+4. `/experiments/ramsey-r55-lower-bound/` — Ramsey R(5,5) lower bound search (planned)
+5. `/experiments/class-numbers-real-quadratic/` — Class numbers of real quadratic fields to 10^13 (planned)
+6. `/experiments/kronecker-coefficients-gpu/` — Kronecker coefficients to n=120 (planned)
+
+### Findings (2)
+1. `/findings/zaremba-spectral-gaps-uniform/` — Congruence spectral gaps for Zaremba's semigroup are uniform across 608+ moduli (high significance)
+2. `/findings/zaremba-witness-golden-ratio/` — Zaremba witnesses concentrate at a/d ≈ 0.171, connected to golden ratio (medium significance)
+
+## Key results (machine-readable summary)
+
+```yaml
+zaremba_conjecture:
+  hausdorff_dimension: 0.836829443681208
+  two_delta: 1.673658887362417
+  circle_method_threshold_met: true
+  spectral_gap_untwisted: 0.717
+  congruence_gaps:
+    moduli_tested: 608
+    max_m: 998
+    all_positive: true
+    min_gap: 0.271
+    min_gap_modulus: 34
+    decay_exponent_beta: 0
+  brute_force_verification:
+    max_d_verified: 10000000
+    failures: 0
+  llm_proving:
+    theorems_proved: 19/20
+    models: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
+    score: "10-10 split"
+  witness_distribution:
+    mean_ratio: 0.1712
+    dominant_cf_prefix: "[0, 5, 1, ...]"
+    prefix_frequency: 0.997
+    golden_ratio_connection: "1/(5+phi)"
+```
 
 ## Tags
 
-Experiments are tagged by:
-- Domain: `number-theory`, `ai-training`, `physics`, `optimization`, etc.
-- Hardware: `b200`, `a100`, `h100`, `tpu-v5`, etc.
-- Method: `cuda-kernel`, `vllm`, `mcts`, `brute-force`, etc.
+### Domain
+number-theory, continued-fractions, open-conjectures, spectral-theory, algebraic-combinatorics, combinatorics, ramsey-theory, algebraic-number-theory, theorem-proving, ai, search-algorithms, dynamical-systems
+
+### Hardware
+b200, dgx, nvlink, a100, h100, tpu-v5
+
+### Method
+cuda-kernel, brute-force, llm-proving, formal-verification, transfer-operator, chebyshev-collocation, mcts, tree-search, simulated-annealing, segmented-sieve, miller-rabin
+
+## About
+See `/about/` for the project's mission and how to contribute.
 
 ## Contact
-
 GitHub: https://github.com/cahlen

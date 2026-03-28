@@ -527,6 +527,9 @@ footer a {
 .about-page ul { margin: 0.5rem 0 1.5rem 1.5rem; }
 .about-page li { margin-bottom: 0.5rem; line-height: 1.7; }
 .about-page a { color: var(--accent); }
+.who-section { display: flex; gap: 1.5rem; align-items: flex-start; }
+.profile-pic { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; }
+@media (max-width: 640px) { .who-section { flex-direction: column; align-items: center; text-align: center; } }
 
 /* Findings intro */
 .findings-intro {

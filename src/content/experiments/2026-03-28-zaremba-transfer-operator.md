@@ -32,11 +32,13 @@ results:
   circle_method_threshold: "MET (2delta > 1)"
   spectral_gap: 0.717
   eigenvalue_ratio: 0.283
-  phase2_status: "complete — 608 moduli, all gaps positive"
-  phase2_moduli: 608
-  phase2_max_m: 998
-  phase2_min_gap: 0.271
-  phase2_time: "256s on 8× B200"
+  phase2_status: "complete — 1,214 moduli, all gaps positive"
+  phase2_moduli: 1214
+  phase2_max_m: 1999
+  phase2_min_gap: 0.258
+  phase2_min_gap_modulus: 638
+  phase2_mean_gap: 0.482
+  phase2_time: "77 min on 8× B200"
 
 code: https://github.com/cahlen/idontknow
 ---
@@ -139,11 +141,11 @@ For all $A \geq 2$, $2\delta > 1$, so the circle method threshold is met. The co
 
 ### Phase 2 Results: Congruence Spectral Gaps (Complete)
 
-We computed the spectral gap $\sigma_m$ of the congruence transfer operator $\mathcal{L}_{\delta, m}$ for all 608 square-free moduli $m \leq 998$ in 256 seconds on 8 B200 GPUs. **Every gap is positive:**
+We computed the spectral gap $\sigma_m$ of the congruence transfer operator $\mathcal{L}_{\delta, m}$ for all 1,214 square-free moduli $m \leq 1999$ in 77 minutes on 8 B200 GPUs. **Every gap is positive:**
 
-$$0.271 \leq \sigma_m \leq 0.991 \qquad \text{for all square-free } m \leq 998$$
+$$0.258 \leq \sigma_m \leq 0.991, \qquad \text{mean } = 0.482 \qquad \text{for all square-free } m \leq 1999$$
 
-The minimum gap of $0.271$ occurs only at $m = 34$ and its multiples. There is **no decay trend** — gaps at $m = 997$ are just as large as at $m = 2$. This confirms **property ($\tau$)** of the Zaremba semigroup at unprecedented scale.
+The minimum gap of $0.258$ occurs at $m = 638 = 2 \times 11 \times 29$. There is **no decay trend** — gaps at $m = 1997$ are just as large as at $m = 2$. This confirms **property ($\tau$)** of the Zaremba semigroup at unprecedented scale.
 
 This is precisely the condition Bourgain-Kontorovich need: a uniform spectral gap with decay exponent $\beta \approx 0$, far below their threshold of $\beta < 2\delta - 1 \approx 0.672$.
 

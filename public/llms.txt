@@ -39,7 +39,7 @@ We publish results from computations that require significant hardware and custo
 6. `/experiments/kronecker-coefficients-gpu/` — Kronecker coefficients to n=120 (planned)
 
 ### Findings (2)
-1. `/findings/zaremba-spectral-gaps-uniform/` — Congruence spectral gaps for Zaremba's semigroup are uniform across 608+ moduli (high significance)
+1. `/findings/zaremba-spectral-gaps-uniform/` — Congruence spectral gaps for Zaremba's semigroup are uniform across 1,214 square-free moduli up to m=1999 (high significance)
 2. `/findings/zaremba-witness-golden-ratio/` — Zaremba witnesses concentrate at a/d ≈ 0.171, connected to golden ratio (medium significance)
 
 ## Key results (machine-readable summary)
@@ -51,12 +51,15 @@ zaremba_conjecture:
   circle_method_threshold_met: true
   spectral_gap_untwisted: 0.717
   congruence_gaps:
-    moduli_tested: 608
-    max_m: 998
+    moduli_tested: 1214
+    max_m: 1999
     all_positive: true
-    min_gap: 0.271
-    min_gap_modulus: 34
+    min_gap: 0.258
+    min_gap_modulus: 638
+    min_gap_factorization: "2 × 11 × 29"
+    mean_gap: 0.482
     decay_exponent_beta: 0
+    computation_time: "77 min on 8× B200"
   brute_force_verification:
     max_d_verified: 10000000
     failures: 0

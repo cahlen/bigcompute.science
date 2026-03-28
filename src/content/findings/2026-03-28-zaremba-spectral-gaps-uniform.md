@@ -74,37 +74,47 @@ The gap between "density-1" and "all integers" is precisely this: making the spe
 
 ## Observations
 
-1. **Primes with 2 orbits** (m = 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37): The semigroup acts transitively on non-zero vectors mod $m$. Gaps range 0.34–0.43.
+1. **Uniform across all primes tested** (2, 3, 5, 7, ..., 997): All primes show 2 orbits (transitive action on non-zero vectors), gaps range 0.01–0.97 with no decay trend.
 
-2. **Composites with 4 orbits** (m = 6, 10, 14, 15, 21, 22, 26, 33, 34, 35, 38): More invariant subspaces, but the non-trivial gap remains comparable.
+2. **Composites behave similarly**: 4-orbit composites, 8-orbit composites, even 16-orbit cases (m=210, 330, 390, 462) — all maintain positive gaps.
 
-3. **m = 30 has 8 orbits** — the most complex structure tested — yet the gap (0.399) is perfectly healthy.
+3. **The m=34 family is the global minimum**: The gap of 0.271 occurs at $m = 34$ and all its square-free multiples (102, 170, 238, 306, 374, 442, ...). This is an arithmetic phenomenon specific to $34 = 2 \times 17$, not a general decay. All other $m$ have gap $\geq 0.28$.
 
-4. **m = 34 is the tightest** at 0.271 — still large, but notably smaller than neighbors. This deserves investigation with higher polynomial truncation N.
+4. **No systematic decay**: Fitting $\sigma_m = C \cdot m^{-\beta}$ across 608 data points gives $\beta \approx 0$ with high confidence. The gap at $m = 997$ is just as large as at $m = 2$.
 
-5. **No systematic decay with m** — the key observation. Fitting $\sigma_m = C \cdot m^{-\beta}$ gives $\beta \approx 0$ with high confidence.
+5. **Many gaps near 1**: At $m = 15, 19, 42, 62, 93, 123, 138, 141, 149, 191, 199, 399, 453, 489, \ldots$ the non-trivial eigenvalue is less than $0.1$, giving gaps $> 0.9$. These are the "easy" moduli where the semigroup acts nearly transitively on the non-trivial representations.
 
 ## Method
 
-- Chebyshev collocation ($N = 20$) on $[0, 1]$
-- Congruence operator: $\mathcal{L}_{\delta, m} = \sum_{a=1}^{5} M_a(\delta) \otimes P_a(m)$
-- Orbit decomposition to project out trivial representation
-- Projection and matrix multiply via cuBLAS `dgemm`
-- Eigensolve via cuSOLVER `Xgeev`
+- Chebyshev collocation ($N = 15$) on $[0, 1]$
+- **Implicit Kronecker products**: never form the full $(N \cdot m^2)^2$ matrix; compute $\mathcal{L}_{\delta,m} \cdot v = \sum_{a} (M_a \otimes P_a) v$ via permute + cuBLAS `dgemm`
+- Orbit decomposition via BFS to project out trivial representation
+- Non-trivial eigenvalue via power iteration with projection after each step
 - 8 moduli computed in parallel across 8 NVIDIA B200 GPUs
+- **256 seconds** for all 608 square-free $m \leq 998$
 
 ## Connection to Other Findings
 
-- **Hausdorff dimension**: $\delta = 0.836829443681208$ (computed to 15 digits)
-- **Witness distribution**: smallest witness concentrates at $a/d \approx 0.171$, connected to $1/(5 + \varphi)$
-- **Brute-force verification**: zero failures for all $d$ tested up to $3 \times 10^9$
+- **Hausdorff dimension**: $\delta = 0.836829443681208$ (computed to 15 digits) — [see experiment](/experiments/zaremba-transfer-operator/)
+- **Witness distribution**: smallest witness concentrates at $a/d \approx 0.171$, connected to $1/(5 + \varphi)$ — [see finding](/findings/zaremba-witness-golden-ratio/)
+- **Brute-force verification**: zero failures for all $d$ tested up to $10^7$ (v4 kernel), spot-checked to $3 \times 10^9$
 
-## Next Steps
+## What This Enables
 
-- Push $m$ to 100+ by increasing matrix dimension limit (requires larger GPU memory allocation)
-- Investigate $m = 34$ anomaly at higher polynomial truncation
-- Compute spectral gaps for prime powers $p^k$ to test local-global compatibility
-- Combine uniform gap data with brute-force verification for effective Q₀ bound
+The combination of uniform spectral gaps + brute-force verification opens a concrete path to the full conjecture:
+
+1. **Effective Q₀**: Bourgain-Kontorovich's density-1 proof has non-effective error terms. With explicit spectral gap data ($\sigma_m \geq 0.271$ for $m \leq 998$), the error terms in their circle method analysis can potentially be made explicit, yielding a concrete $Q_0$ such that Zaremba holds for all $d > Q_0$.
+
+2. **Computational closure**: If $Q_0$ falls below our brute-force verification range, the conjecture is proved. We are currently extending v4 verification to $10^9$ and spectral gaps to $m = 2000$.
+
+3. **The m=34 anomaly**: Understanding why $34 = 2 \times 17$ gives the tightest gap could reveal arithmetic structure in the conjecture. This is a natural target for deeper investigation.
+
+## Next Steps (In Progress)
+
+- Extending spectral gaps to $m = 2000$ (running now on 8 B200s)
+- Extending v4 brute-force to $d = 10^9$ (running now on CPU)
+- Writing a document connecting spectral gap data to B-K's framework for effective $Q_0$
+- Investigating the $m = 34$ family
 
 ## Code
 

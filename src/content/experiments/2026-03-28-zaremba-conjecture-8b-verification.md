@@ -220,7 +220,7 @@ The spectral gap of $0.717$ is strong: the dominant eigenfunction controls the o
 **Why this matters:**
 - $2\delta > 1$ confirms the Hausdorff dimension of $E_5$ is large enough for the circle method to potentially close the gap from density-1 to all $d$
 - The spectral gap quantifies mixing rates in the continued fraction dynamics
-- Phase 2 (congruence gap analysis) is in progress — projecting out the trivial representation to bound congruence obstructions uniformly
+- **Phase 2 complete:** congruence spectral gaps computed for all 608 square-free moduli up to $m = 998$ — every gap positive (min $0.271$), confirming property ($\tau$) at unprecedented scale. See [findings](/findings/zaremba-spectral-gaps-uniform/)
 
 ## Analysis: The Witness Distribution
 

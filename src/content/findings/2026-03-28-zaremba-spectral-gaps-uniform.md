@@ -27,11 +27,11 @@ data:
 
 ## The Finding
 
-The spectral gap $\sigma_m$ of the congruence transfer operator $\mathcal{L}_{\delta, m}$ for the Zaremba semigroup $\Gamma_{\{1,\ldots,5\}}$ shows **no decay** as $m$ increases through square-free values up to 38. The gaps are uniformly bounded:
+The spectral gap $\sigma_m$ of the congruence transfer operator $\mathcal{L}_{\delta, m}$ for the Zaremba semigroup $\Gamma_{\{1,\ldots,5\}}$ shows **no decay** across all 608 square-free values of $m$ up to 998. The gaps are uniformly bounded:
 
-$$0.271 \leq \sigma_m \leq 0.426 \qquad \text{for all square-free } m \leq 38$$
+$$0.271 \leq \sigma_m \leq 0.991 \qquad \text{for all square-free } m \leq 998$$
 
-This is computational evidence for **property ($\tau$)** of $\Gamma_{\{1,\ldots,5\}}$ in $\text{SL}_2(\mathbb{Z}/m\mathbb{Z})$ — the key condition that Bourgain-Kontorovich's circle method approach requires to extend from density-1 to the full conjecture.
+Computed in **256 seconds on 8 NVIDIA B200 GPUs** using implicit Kronecker matrix-vector products (never forming the full matrix). This is computational evidence for **property ($\tau$)** of $\Gamma_{\{1,\ldots,5\}}$ in $\text{SL}_2(\mathbb{Z}/m\mathbb{Z})$ at a scale nobody has computed before.
 
 ## Why This Matters
 

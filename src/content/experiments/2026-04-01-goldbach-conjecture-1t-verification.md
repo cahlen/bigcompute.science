@@ -31,7 +31,7 @@ code: https://github.com/cahlen/idontknow
 data: /data/goldbach-1t/
 ---
 
-# Goldbach's Conjecture: 1 Trillion Even Numbers Verified on 8× NVIDIA B200
+# Goldbach's Conjecture: Attempting 1 Trillion Even Numbers on 8× B200
 
 ## Abstract
 

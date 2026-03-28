@@ -37,7 +37,7 @@ code: https://github.com/cahlen/idontknow
 data: /data/collatz-1t/
 ---
 
-# Collatz Conjecture: 1 Trillion Values Verified on 8× NVIDIA B200
+# Collatz Conjecture: Attempting 1 Trillion Values on 8× B200
 
 ## Abstract
 

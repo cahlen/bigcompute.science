@@ -32,7 +32,7 @@ code: https://github.com/cahlen/idontknow
 data: /data/mandelbrot-deep/
 ---
 
-# Mandelbrot Set at $10^{15}$ Zoom: 8K Renders with Double-Double Arithmetic
+# Mandelbrot Deep Zoom: Planned 8K Renders to $10^{15}$ with Double-Double Arithmetic
 
 ## Abstract
 

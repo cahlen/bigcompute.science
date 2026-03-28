@@ -31,7 +31,7 @@ code: https://github.com/cahlen/idontknow
 data: /data/riemann-zeros/
 ---
 
-# Riemann Hypothesis: Verifying Zeta Zeros on 8× NVIDIA B200
+# Riemann Hypothesis: Planned Verification of Zeta Zeros on 8× B200
 
 ## Abstract
 

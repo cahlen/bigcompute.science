@@ -31,7 +31,7 @@ code: https://github.com/cahlen/idontknow
 data: /data/twin-primes-1t/
 ---
 
-# Twin Prime Counting to $10^{12}$: GPU Sieve vs. Hardy-Littlewood
+# Twin Prime Counting to $10^{12}$: Planned GPU Sieve vs. Hardy-Littlewood
 
 ## Abstract
 

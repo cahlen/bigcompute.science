@@ -31,7 +31,7 @@ code: https://github.com/cahlen/idontknow
 data: /data/mersenne-sieve/
 ---
 
-# Mersenne Prime Sieve: Trial Factoring $M_p$ for $p$ up to 10 Million
+# Mersenne Prime Sieve: Planned Trial Factoring of $M_p$ to $p = 10^7$
 
 ## Abstract
 

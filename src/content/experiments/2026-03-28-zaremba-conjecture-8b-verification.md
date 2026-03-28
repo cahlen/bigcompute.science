@@ -39,7 +39,7 @@ code: https://github.com/cahlen/idontknow
 data: /data/zaremba-8b/
 ---
 
-# Zaremba's Conjecture: 8 Billion Values Verified on 8× NVIDIA B200
+# Zaremba's Conjecture: Verifying 8 Billion Values on 8× NVIDIA B200
 
 ## Abstract
 

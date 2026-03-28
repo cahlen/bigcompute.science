@@ -4,7 +4,7 @@ slug: mcts-proof-search-benchmark
 date: 2026-03-30
 author: cahlen
 author_github: https://github.com/cahlen
-status: in-progress
+status: planned
 
 hardware:
   name: NVIDIA DGX B200

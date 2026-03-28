@@ -30,7 +30,7 @@ tags:
 results:
   conjecture: "Zaremba's Conjecture (1972)"
   bound: 5
-  status: "IN PROGRESS — v4 kernel running, transfer operator analysis underway"
+  status: "IN PROGRESS — v4 verification to 1B running, spectral gaps to m=2000 running"
   llm_proofs: 19/20
   models_used: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
 

@@ -4,7 +4,7 @@ slug: class-numbers-real-quadratic
 date: 2026-04-02
 author: cahlen
 author_github: https://github.com/cahlen
-status: in-progress
+status: planned
 
 hardware:
   name: NVIDIA DGX B200

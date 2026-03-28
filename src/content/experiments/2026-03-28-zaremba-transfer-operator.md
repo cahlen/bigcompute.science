@@ -4,7 +4,7 @@ slug: zaremba-transfer-operator
 date: 2026-03-28
 author: cahlen
 author_github: https://github.com/cahlen
-status: in-progress
+status: complete
 
 hardware:
   name: NVIDIA DGX B200

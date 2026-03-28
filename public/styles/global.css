@@ -212,6 +212,7 @@ main {
 
 .status-in-progress { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
 .status-complete { background: rgba(74, 222, 128, 0.2); color: var(--accent); }
+.status-planned { background: rgba(148, 163, 184, 0.2); color: #94a3b8; }
 
 /* Experiment detail */
 .experiment-meta {

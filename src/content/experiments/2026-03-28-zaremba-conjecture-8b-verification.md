@@ -42,7 +42,7 @@ data: /data/zaremba-8b/
 
 ## Abstract
 
-We computationally verified Zaremba's Conjecture for all integers $d$ from $1$ to $8 \times 10^9$ using a custom CUDA kernel running across 8 NVIDIA B200 GPUs. Zero counterexamples were found. In parallel, we raced two state-of-the-art theorem proving LLMs (Goedel-Prover-V2-32B and Kimina-Prover-72B) against 20 formally stated cases in Lean 4, achieving 19/20 machine-verified proofs with a perfect 10–10 split between models. We also report a novel observation: the smallest Zaremba witness for $d$ concentrates at $\alpha(d)/d \approx 0.171$ with 99.7% of witnesses sharing the continued fraction prefix $[0;\, 5, 1, \ldots]$, connected to the golden ratio $\varphi$ via $1/(5 + \varphi)$.
+We are verifying Zaremba's Conjecture using a multi-pronged approach on 8 NVIDIA B200 GPUs. So far: inverse CF construction (v4 kernel) verified all $d$ up to $10^7$ with zero gaps; brute-force spot checks found zero failures up to $d \sim 3 \times 10^9$; spectral analysis of the congruence transfer operator confirmed property ($\tau$) across 608 square-free moduli with uniform gaps. In parallel, we raced two SOTA theorem-proving LLMs (Goedel-Prover-V2-32B and Kimina-Prover-72B) against 20 formally stated cases in Lean 4, achieving 19/20 machine-verified proofs with a perfect 10–10 split. We also report a novel observation: the smallest Zaremba witness concentrates at $\alpha(d)/d \approx 0.171$ with 99.7% sharing the CF prefix $[0;\, 5, 1, \ldots]$, connected to the golden ratio via $1/(5 + \varphi)$. Verification to $10^9$ and spectral gaps to $m = 2000$ are currently running.
 
 ## Background
 

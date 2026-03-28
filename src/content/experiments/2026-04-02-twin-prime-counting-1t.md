@@ -1,5 +1,5 @@
 ---
-title: "Twin Prime Counting to 10^12: GPU Sieve vs. Hardy-Littlewood Prediction"
+title: "Twin Prime Counting to 10^12: Planned GPU Sieve vs. Hardy-Littlewood"
 slug: twin-prime-counting-1t
 date: 2026-04-02
 author: cahlen

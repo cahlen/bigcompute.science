@@ -1,5 +1,5 @@
 ---
-title: "MCTS vs. Naive Sampling for LLM Theorem Proving: A Scaling Benchmark"
+title: "MCTS vs. Naive Sampling for LLM Theorem Proving: Planned Benchmark"
 slug: mcts-proof-search-benchmark
 date: 2026-03-30
 author: cahlen

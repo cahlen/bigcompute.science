@@ -1,5 +1,5 @@
 ---
-title: "Mandelbrot Set at 10^15 Zoom: 8K Renders with Double-Double Arithmetic on B200"
+title: "Mandelbrot Deep Zoom: Planned 8K Renders to 10^15 with Double-Double Arithmetic"
 slug: mandelbrot-deep-zoom-8k
 date: 2026-04-03
 author: cahlen

@@ -1,5 +1,5 @@
 ---
-title: "Collatz Conjecture: 1 Trillion Values Verified on 8× NVIDIA B200"
+title: "Collatz Conjecture: Attempting 1 Trillion Values on 8× B200"
 slug: collatz-conjecture-1t-verification
 date: 2026-03-29
 author: cahlen

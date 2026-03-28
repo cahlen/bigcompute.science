@@ -1,5 +1,5 @@
 ---
-title: "Mersenne Prime Sieve: Trial Factoring M_p for p up to 10 Million on B200"
+title: "Mersenne Prime Sieve: Planned Trial Factoring of M_p to p = 10^7 on B200"
 slug: mersenne-prime-sieve-gpu
 date: 2026-04-04
 author: cahlen

@@ -1,5 +1,5 @@
 ---
-title: "Goldbach's Conjecture: 1 Trillion Even Numbers Verified on 8× NVIDIA B200"
+title: "Goldbach's Conjecture: Attempting 1 Trillion Even Numbers on 8× B200"
 slug: goldbach-conjecture-1t-verification
 date: 2026-04-01
 author: cahlen

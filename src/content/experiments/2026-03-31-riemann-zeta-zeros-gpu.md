@@ -1,5 +1,5 @@
 ---
-title: "Riemann Hypothesis: Verifying 10 Million Zeta Zeros on 8× NVIDIA B200"
+title: "Riemann Hypothesis: Planned Verification of 10M Zeta Zeros on 8× B200"
 slug: riemann-zeta-zeros-gpu
 date: 2026-03-31
 author: cahlen

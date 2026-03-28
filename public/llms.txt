@@ -1,0 +1,37 @@
+# bigcompute.science
+
+> Experimental results from heavy computation. Custom CUDA kernels, GPU clusters, serious hardware. Written for humans and agents alike.
+
+## What this site is
+
+A collection of computational experiments that required significant hardware and custom engineering. Each experiment includes structured metadata, raw data, and reproducibility information.
+
+## How to consume
+
+- Experiments live at `/experiments/<slug>/`
+- Each experiment has a structured YAML frontmatter block with: title, date, author, hardware, software, tags, results summary, and links to code/data
+- Raw data files are at `/data/<slug>/` in JSON or CSV format
+- All content is static markdown rendered to HTML — no JavaScript required to read
+- Browse all experiments at `/experiments/`
+
+## Content structure
+
+Each experiment post contains these sections in order:
+1. **Abstract** — one paragraph summary
+2. **Hardware** — exact specs used
+3. **Method** — what was computed and how
+4. **Results** — findings with data
+5. **Analysis** — interpretation
+6. **Reproducibility** — exact commands to reproduce
+7. **Raw Data** — links to downloadable results
+
+## Tags
+
+Experiments are tagged by:
+- Domain: `number-theory`, `ai-training`, `physics`, `optimization`, etc.
+- Hardware: `b200`, `a100`, `h100`, `tpu-v5`, etc.
+- Method: `cuda-kernel`, `vllm`, `mcts`, `brute-force`, etc.
+
+## Contact
+
+GitHub: https://github.com/cahlen

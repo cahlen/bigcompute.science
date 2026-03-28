@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Agent-friendly: all content is accessible
+# Structured data in frontmatter of each experiment
+# See /llms.txt for consumption guide

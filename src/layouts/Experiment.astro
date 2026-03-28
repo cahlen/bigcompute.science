@@ -1,0 +1,59 @@
+---
+import Base from './Base.astro';
+
+const { frontmatter } = Astro.props;
+const { title, date, author, status, hardware, tags, results } = frontmatter;
+---
+
+<Base title={title}>
+  <article class="experiment">
+    <div class="experiment-meta">
+      <div class="meta-row">
+        <time datetime={date}>{new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+        <span class="author">by <a href={frontmatter.author_github}>{author}</a></span>
+        {status && <span class={`status status-${status}`}>{status}</span>}
+      </div>
+
+      {hardware && (
+        <div class="hardware-block">
+          <h4>Hardware</h4>
+          <div class="hardware-specs">
+            <span class="spec">{hardware.gpus}</span>
+            <span class="spec">{hardware.cpus}</span>
+            <span class="spec">{hardware.ram} RAM</span>
+          </div>
+        </div>
+      )}
+
+      {tags && (
+        <div class="tags">
+          {tags.domain?.map((t: string) => <span class="tag tag-domain">{t}</span>)}
+          {tags.hardware?.map((t: string) => <span class="tag tag-hw">{t}</span>)}
+          {tags.method?.map((t: string) => <span class="tag tag-method">{t}</span>)}
+        </div>
+      )}
+
+      {results && (
+        <div class="results-summary">
+          <h4>Key Results</h4>
+          <dl>
+            {results.conjecture && <><dt>Conjecture</dt><dd>{results.conjecture}</dd></>}
+            {results.verified_range && <><dt>Verified Range</dt><dd>d = {results.verified_range[0].toLocaleString()} to {results.verified_range[1].toLocaleString()}</dd></>}
+            {results.failures !== undefined && <><dt>Failures</dt><dd class={results.failures === 0 ? 'result-pass' : 'result-fail'}>{results.failures}</dd></>}
+            {results.llm_proofs && <><dt>LLM Proofs</dt><dd>{results.llm_proofs}</dd></>}
+          </dl>
+        </div>
+      )}
+    </div>
+
+    <div class="experiment-content">
+      <slot />
+    </div>
+
+    {frontmatter.code && (
+      <div class="experiment-footer">
+        <a href={frontmatter.code} class="code-link" target="_blank">View Code on GitHub</a>
+      </div>
+    )}
+  </article>
+</Base>

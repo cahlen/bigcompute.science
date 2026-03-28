@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+
+const experiments = await Astro.glob('../content/experiments/*.md');
+const sorted = experiments.sort((a, b) =>
+  new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
+);
+---
+
+<Base title="Home" description="Experimental results from heavy computation. Custom CUDA kernels, GPU clusters, serious hardware.">
+  <section class="hero">
+    <h1>bigcompute<span>.science</span></h1>
+    <p class="tagline">Experimental results from heavy computation.</p>
+    <p class="subtitle">Custom CUDA kernels. GPU clusters. Serious hardware. Open results.</p>
+    <p class="subtitle agent-callout">Human-readable. <a href="/llms.txt">Agent-consumable</a>.</p>
+  </section>
+
+  <section class="experiments-list">
+    <h2>Experiments</h2>
+    {sorted.map((exp) => (
+      <a href={`/experiments/${exp.frontmatter.slug}/`} class="experiment-card">
+        <div class="card-header">
+          <time datetime={exp.frontmatter.date}>
+            {new Date(exp.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+          </time>
+          {exp.frontmatter.status && (
+            <span class={`status status-${exp.frontmatter.status}`}>{exp.frontmatter.status}</span>
+          )}
+        </div>
+        <h3>{exp.frontmatter.title}</h3>
+        <div class="card-meta">
+          <span class="hw-summary">{exp.frontmatter.hardware?.gpus}</span>
+        </div>
+        <div class="card-tags">
+          {exp.frontmatter.tags?.domain?.map((t: string) => <span class="tag tag-domain">{t}</span>)}
+          {exp.frontmatter.tags?.method?.map((t: string) => <span class="tag tag-method">{t}</span>)}
+        </div>
+        {exp.frontmatter.results?.failures !== undefined && (
+          <div class="card-result">
+            <strong>{exp.frontmatter.results.failures === 0 ? 'PASS' : 'FAIL'}</strong>
+            {exp.frontmatter.results.verified_range && (
+              <span>— verified {exp.frontmatter.results.verified_range[1].toLocaleString()} values</span>
+            )}
+          </div>
+        )}
+      </a>
+    ))}
+  </section>
+
+  <section class="about">
+    <h2>What is this?</h2>
+    <p>
+      A collection of computational experiments that required significant hardware and custom engineering to execute. Not papers. Not tweets. Structured results with math, data, and reproducibility information.
+    </p>
+    <p>
+      Every experiment includes exact hardware specs, method, raw data, and commands to reproduce. Content is designed for both human readers and AI agents — see <a href="/llms.txt">/llms.txt</a>.
+    </p>
+  </section>
+</Base>

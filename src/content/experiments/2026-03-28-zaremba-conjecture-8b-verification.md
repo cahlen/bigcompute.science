@@ -20,7 +20,7 @@ software:
   lean: "4.29.0-rc8"
   vllm: "0.18.0"
   python: "3.12"
-  custom_kernel: scripts/zaremba_verify.cu
+  custom_kernel: scripts/zaremba_verify_v2.cu
 
 tags:
   domain: [number-theory, continued-fractions, open-conjectures]
@@ -103,21 +103,39 @@ where `WITNESS` is a concrete integer and `native_decide` compiles the verificat
 
 ### Part 2: CUDA-Accelerated Exhaustive Verification
 
-We wrote a custom CUDA kernel (`zaremba_verify.cu`) where each CUDA thread handles one value of $d$:
+We wrote a custom CUDA kernel (`zaremba_verify_v2.cu`) where each CUDA thread handles one value of $d$. The kernel went through two iterations:
+
+**v1** searched $[d/7, d/3]$ linearly — this worked for small $d$ but hit a scaling wall at $d > 10^9$ (199 d/sec at $d = 3 \times 10^9$, projected weeks for the full range).
+
+**v2** uses our witness distribution discovery ($\alpha(d)/d \approx 0.170$) to dramatically narrow the search:
 
 ```c
-__device__ uint64_t find_witness(uint64_t d) {
-    // Phase 1: search [d/7, d/3] where 99.9% of witnesses live
-    for (uint64_t a = d/7; a <= d/3; a++) {
-        if (dev_gcd(a, d) == 1 && cf_bounded(a, d))
-            return a;
+__device__ uint64_t find_witness_v2(uint64_t d) {
+    // Phase 1: Spiral outward from 0.170*d in [0.165d, 0.185d]
+    uint64_t center = (uint64_t)(0.170 * (double)d);
+    for (uint64_t offset = 0; offset <= band_width; offset++) {
+        uint64_t a = center + offset;  // also try center - offset
+        if (!quick_coprime(a, d)) continue;  // skip obvious non-coprimes
+        if (dev_gcd(a, d) != 1) continue;
+        if (cf_bounded(a, d)) return a;
     }
-    // Phase 2: full search for rare cases
+    // Phase 2-3: wider search, then full search (rarely needed)
     ...
 }
 ```
 
-The kernel was optimized based on our witness distribution analysis (see below) to start searching in the interval $[d/7,\, d/3]$ rather than from $a = 1$.
+Key optimizations in v2:
+1. **Targeted search:** Start at $a = \lfloor 0.170d \rfloor$ and spiral outward — hits the witness in a band of width $\sim 0.4\%$ of $d$ for 99% of cases
+2. **Coprimality sieve:** Skip candidates sharing small factors (2, 3, 5, 7, 11, 13) with $d$ before computing the full gcd
+3. **CF prefix filter:** Check if $\lfloor d/a \rfloor \leq 5$ before running the full CF expansion
+
+**Benchmark (100K values at $d \approx 3 \times 10^9$, single GPU):**
+
+| Kernel | Rate | Time |
+|--------|------|------|
+| v1 | 199 d/sec | 503s |
+| v2 | 2,612 d/sec | 38s |
+| **Speedup** | **13×** | |
 
 We launched 8 parallel instances, one per GPU:
 

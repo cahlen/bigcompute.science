@@ -1,0 +1,5 @@
+Zaremba Verification: d=1000000001 to 2000000000 (1000000000 values)
+GPUs available: 1
+[GPU 0] d=1000000001..1010000000 done (1.0%, 1235 d/sec, 8095.9s elapsed)
+[GPU 0] d=1010000001..1020000000 done (2.0%, 1229 d/sec, 16275.9s elapsed)
+[GPU 0] d=1020000001..1030000000 done (3.0%, 1223 d/sec, 24539.2s elapsed)

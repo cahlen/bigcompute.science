@@ -25,11 +25,7 @@ tags:
 
 results:
   conjecture: "Riemann Hypothesis"
-  zeros_verified: "PENDING"
-  all_on_critical_line: "PENDING"
-  max_t_reached: "PENDING"
-  zero_count_vs_expected: "PENDING"
-  total_time: "PENDING"
+  status: "NOT YET RUN"
 
 code: https://github.com/cahlen/idontknow
 data: /data/riemann-zeros/

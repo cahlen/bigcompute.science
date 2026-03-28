@@ -17,9 +17,12 @@ const { title, description = "Experimental results from heavy computation." } = 
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
-      integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66gy8it"
       crossorigin="anonymous"
     />
+    <style>
+      /* Fallback: ensure MathML layer is always hidden even if KaTeX CSS fails to load */
+      .katex-mathml { position: absolute; clip: rect(1px, 1px, 1px, 1px); padding: 0; border: 0; height: 1px; width: 1px; overflow: hidden; }
+    </style>
     <link rel="stylesheet" href="/styles/global.css" />
   </head>
   <body>

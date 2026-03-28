@@ -27,11 +27,7 @@ tags:
 
 results:
   benchmark: "MCTS vs naive sampling for Lean 4 proof search"
-  models_tested: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
-  test_suite: "Zaremba's Conjecture d=1..50"
-  naive_success_rate: "PENDING"
-  mcts_success_rate: "PENDING"
-  speedup: "PENDING"
+  status: "NOT YET RUN"
 
 code: https://github.com/cahlen/idontknow
 data: /data/mcts-benchmark/

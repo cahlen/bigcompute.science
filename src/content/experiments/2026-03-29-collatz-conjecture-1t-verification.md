@@ -25,8 +25,7 @@ tags:
 
 results:
   conjecture: "Collatz Conjecture (1937)"
-  verified_range: [1, 1000000000000]
-  failures: 0
+  status: "NOT YET RUN"
   max_stopping_time_steps: "PENDING"
   max_stopping_time_n: "PENDING"
   max_trajectory_height: "PENDING"

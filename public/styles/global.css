@@ -519,6 +519,14 @@ footer a {
   color: var(--accent);
 }
 
+/* Findings intro */
+.findings-intro {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
 /* Responsive — mobile first */
 @media (max-width: 768px) {
   html { font-size: 16px; }

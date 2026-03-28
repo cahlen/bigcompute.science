@@ -1,0 +1,18 @@
+---
+import Experiment from '../../layouts/Experiment.astro';
+
+export async function getStaticPaths() {
+  const findings = await Astro.glob('../../content/findings/*.md');
+  return findings.map((f) => ({
+    params: { slug: f.frontmatter.slug },
+    props: { finding: f },
+  }));
+}
+
+const { finding } = Astro.props;
+const { Content, frontmatter } = finding;
+---
+
+<Experiment frontmatter={frontmatter}>
+  <Content />
+</Experiment>

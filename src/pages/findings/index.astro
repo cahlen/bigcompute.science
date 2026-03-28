@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const findings = await Astro.glob('../../content/findings/*.md');
+const sorted = findings.sort((a, b) =>
+  new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
+);
+---
+
+<Base title="Findings" description="Novel observations and discoveries from heavy computation">
+  <h1>Findings</h1>
+  <p class="findings-intro">
+    Novel observations extracted from our experiments. These are the citable results —
+    things we computed that weren't known before.
+  </p>
+
+  <div class="experiments-list">
+    {sorted.map((f) => (
+      <a href={`/findings/${f.frontmatter.slug}/`} class="experiment-card">
+        <div class="card-header">
+          <time datetime={f.frontmatter.date}>
+            {new Date(f.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+          </time>
+          {f.frontmatter.significance && (
+            <span class={`status status-${f.frontmatter.significance === 'high' ? 'complete' : 'in-progress'}`}>
+              {f.frontmatter.significance} significance
+            </span>
+          )}
+        </div>
+        <h3>{f.frontmatter.title}</h3>
+        <p class="card-meta">{f.frontmatter.summary}</p>
+        <div class="card-tags">
+          {f.frontmatter.domain?.map((t: string) => <span class="tag tag-domain">{t}</span>)}
+        </div>
+      </a>
+    ))}
+  </div>
+</Base>

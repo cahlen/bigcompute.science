@@ -26,7 +26,6 @@ tags:
   method: [transfer-operator, chebyshev-collocation, eigenvalue-computation, spectral-gap]
 
 results:
-  conjecture_year: 1972
   hausdorff_dimension: 0.836829443681208
   precision_digits: 15
   two_delta: 1.674

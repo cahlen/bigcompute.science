@@ -6,17 +6,22 @@
   'use strict';
 
   // Utility: setup a canvas with proper DPR handling
-  // Returns { ctx, W, H } where W, H are CSS pixels
+  // Stores original dimensions on first call, reuses thereafter
   function setupCanvas(canvas) {
     var dpr = window.devicePixelRatio || 1;
-    var W = parseInt(canvas.getAttribute('width'));
-    var H = parseInt(canvas.getAttribute('height'));
+    // Store original dimensions on first call
+    if (!canvas._origW) {
+      canvas._origW = parseInt(canvas.getAttribute('width')) || 740;
+      canvas._origH = parseInt(canvas.getAttribute('height')) || 400;
+    }
+    var W = canvas._origW;
+    var H = canvas._origH;
     canvas.width = W * dpr;
     canvas.height = H * dpr;
     canvas.style.width = W + 'px';
     canvas.style.height = H + 'px';
     var ctx = canvas.getContext('2d');
-    ctx.scale(dpr, dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     return { ctx: ctx, W: W, H: H };
   }
 

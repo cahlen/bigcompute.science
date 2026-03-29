@@ -55,9 +55,9 @@ zaremba_conjecture:
     moduli_tested: 1214
     max_m: 1999
     all_positive: true
-    min_gap: 0.258
-    min_gap_modulus: 638
-    min_gap_factorization: "2 × 11 × 29"
+    min_gap: 0.237
+    min_gap_modulus: 1469
+    min_gap_factorization: "13 × 113"
     mean_gap: 0.482
     decay_exponent_beta: 0
     computation_time: "77 min on 8× B200"

@@ -30,7 +30,7 @@ tags:
 results:
   conjecture: "Zaremba's Conjecture (1972)"
   bound: 5
-  status: "IN PROGRESS — v4 verification to 1B running, spectral gaps to m=2000 running"
+  status: "IN PROGRESS — v4 verification to 1B running on 8 GPUs. Spectral gaps to m=2000 complete. Transitivity proved for ALL primes."
   llm_proofs: 19/20
   models_used: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
 
@@ -188,7 +188,7 @@ Three bugs were discovered and fixed during the proving run:
 
 ### Exhaustive Verification: 0 Failures
 
-**Zaremba's Conjecture holds for every integer $d$ from $1$ to $8 \times 10^9$ with $A = 5$.**
+**Verified so far:** v4 kernel confirmed zero gaps for all $d \leq 10^7$. Brute-force spot checks found zero failures up to $d \sim 3 \times 10^9$. Verification to $10^9$ via v4 is currently running on 8 GPUs.
 
 Performance comparison:
 
@@ -220,7 +220,8 @@ The spectral gap of $0.717$ is strong: the dominant eigenfunction controls the o
 **Why this matters:**
 - $2\delta > 1$ confirms the Hausdorff dimension of $E_5$ is large enough for the circle method to potentially close the gap from density-1 to all $d$
 - The spectral gap quantifies mixing rates in the continued fraction dynamics
-- **Phase 2 complete:** congruence spectral gaps computed for all 608 square-free moduli up to $m = 998$ — every gap positive (min $0.271$), confirming property ($\tau$) at unprecedented scale. See [findings](/findings/zaremba-spectral-gaps-uniform/)
+- **Phase 2 complete:** congruence spectral gaps computed for all 1,214 square-free moduli up to $m = 1999$ — every gap positive (min $0.237$), confirming property ($\tau$) at unprecedented scale. See [findings](/findings/zaremba-spectral-gaps-uniform/)
+- **Transitivity proved:** algebraic proof that $\Gamma_{\{1,\ldots,5\}}$ generates $\text{SL}_2(\mathbb{Z}/p\mathbb{Z})$ for every prime $p$ — no local obstructions exist. See [findings](/findings/zaremba-transitivity-all-primes/)
 
 ## Analysis: The Witness Distribution
 

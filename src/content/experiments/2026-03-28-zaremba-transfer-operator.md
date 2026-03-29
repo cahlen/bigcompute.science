@@ -35,8 +35,9 @@ results:
   phase2_status: "complete — 1,214 moduli, all gaps positive"
   phase2_moduli: 1214
   phase2_max_m: 1999
-  phase2_min_gap: 0.258
-  phase2_min_gap_modulus: 638
+  phase2_min_gap: 0.237
+  phase2_min_gap_modulus: 1469
+  phase2_min_gap_factorization: "13 × 113"
   phase2_mean_gap: 0.482
   phase2_time: "77 min on 8× B200"
 
@@ -47,7 +48,7 @@ code: https://github.com/cahlen/idontknow
 
 ## Abstract
 
-We computed the Hausdorff dimension of the set $E_5$ (reals whose continued fraction has all partial quotients $\leq 5$) to 15 digits of precision using a GPU-accelerated spectral method. The result $\delta = 0.836829443681208$ confirms $2\delta = 1.674 > 1$, meeting the circle method threshold required by Bourgain-Kontorovich's approach to Zaremba's Conjecture. The spectral gap of $0.717$ quantifies the mixing rate of the underlying continued fraction dynamics. Phase 2 (congruence gap analysis) computed spectral gaps for all 608 square-free moduli up to $m = 998$ in 256 seconds — every gap positive, minimum $0.271$, confirming property ($\tau$) at unprecedented scale.
+We computed the Hausdorff dimension of the set $E_5$ (reals whose continued fraction has all partial quotients $\leq 5$) to 15 digits of precision using a GPU-accelerated spectral method. The result $\delta = 0.836829443681208$ confirms $2\delta = 1.674 > 1$, meeting the circle method threshold required by Bourgain-Kontorovich's approach to Zaremba's Conjecture. The spectral gap of $0.717$ quantifies the mixing rate of the underlying continued fraction dynamics. Phase 2 (congruence gap analysis) computed spectral gaps for all 1,214 square-free moduli up to $m = 1999$ in 77 minutes — every gap positive, minimum $0.237$ at $m = 1469$, confirming property ($\tau$) at unprecedented scale.
 
 ## Background
 
@@ -143,9 +144,9 @@ For all $A \geq 2$, $2\delta > 1$, so the circle method threshold is met. The co
 
 We computed the spectral gap $\sigma_m$ of the congruence transfer operator $\mathcal{L}_{\delta, m}$ for all 1,214 square-free moduli $m \leq 1999$ in 77 minutes on 8 B200 GPUs. **Every gap is positive:**
 
-$$0.258 \leq \sigma_m \leq 0.991, \qquad \text{mean } = 0.482 \qquad \text{for all square-free } m \leq 1999$$
+$$0.237 \leq \sigma_m \leq 0.998, \qquad \text{mean } = 0.482 \qquad \text{for all square-free } m \leq 1999$$
 
-The minimum gap of $0.258$ occurs at $m = 638 = 2 \times 11 \times 29$. There is **no decay trend** — gaps at $m = 1997$ are just as large as at $m = 2$. This confirms **property ($\tau$)** of the Zaremba semigroup at unprecedented scale.
+The minimum gap of $0.237$ occurs at $m = 1469 = 13 \times 113$. There is **no decay trend** — gaps at $m = 1997$ are just as large as at $m = 2$. This confirms **property ($\tau$)** of the Zaremba semigroup at unprecedented scale.
 
 This is precisely the condition Bourgain-Kontorovich need: a uniform spectral gap with decay exponent $\beta \approx 0$, far below their threshold of $\beta < 2\delta - 1 \approx 0.672$.
 
@@ -173,7 +174,8 @@ cd idontknow
 
 # The transfer operator computation
 # (requires CUDA + cuSOLVER)
-python scripts/transfer_operator.py --bound 5 --chebyshev-n 40
+nvcc -O3 -arch=sm_100a -o transfer_op scripts/experiments/zaremba-transfer-operator/transfer_operator.cu -lcublas -lm -lpthread
+./transfer_op 40 3 2000
 ```
 
 ---

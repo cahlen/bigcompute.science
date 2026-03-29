@@ -482,23 +482,132 @@ main {
 }
 
 /* ============================================================
-   KaTeX math — generous, editorial spacing
+   KaTeX math — editorial, warm panels, distinctive
    ============================================================ */
 
+/* Display math — warm paper-like panel */
 .katex-display {
-  margin: 3rem 0;
-  padding: 1.75rem 0;
+  margin: 2.75rem -1.5rem;
+  padding: 2rem 2rem;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  border-top: 1px solid color-mix(in srgb, var(--rule) 50%, transparent);
-  border-bottom: 1px solid color-mix(in srgb, var(--rule) 50%, transparent);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent) 3%, var(--surface)),
+    color-mix(in srgb, var(--tag-method) 2%, var(--surface))
+  );
+  border-left: 3px solid color-mix(in srgb, var(--accent) 50%, var(--rule));
+  border-radius: 0 14px 14px 0;
+  position: relative;
+}
+
+/* Subtle glow on the left accent */
+.katex-display::before {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  filter: blur(4px);
+  opacity: 0.4;
 }
 
 .katex-display > .katex { text-align: center; }
-.katex { font-size: 1.15em; }
-.katex:not(.katex-display .katex) { padding: 0 0.1em; }
+
+.katex {
+  font-size: 1.18em;
+  color: var(--ink);
+}
+
+/* Inline math — subtle warm highlight */
+.katex:not(.katex-display .katex) {
+  padding: 0.05em 0.2em;
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+  border-radius: 4px;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 15%, transparent);
+}
+
 .katex .mfrac { padding: 0.15em 0; }
-.katex-mathml { position: absolute; clip: rect(1px,1px,1px,1px); padding: 0; border: 0; height: 1px; width: 1px; overflow: hidden; }
+
+/* Hide MathML accessibility layer */
+.katex-mathml {
+  position: absolute;
+  clip: rect(1px,1px,1px,1px);
+  padding: 0; border: 0;
+  height: 1px; width: 1px;
+  overflow: hidden;
+}
+
+/* ============================================================
+   Theorem/proof environments — editorial boxing
+   Targets content patterns like "**Theorem:**" or "**Proof:**"
+   ============================================================ */
+
+/* Any paragraph starting with bold "Theorem", "Lemma", "Corollary", "Proof" */
+.experiment-content p:has(> strong:first-child) {
+  /* We can't easily detect theorem starts in pure CSS,
+     but we CAN style the bold openers distinctively */
+}
+
+/* Blockquotes used as theorem statements get special treatment */
+.experiment-content blockquote:has(.katex-display),
+.experiment-content blockquote:has(.katex) {
+  border-left-color: color-mix(in srgb, var(--tag-domain) 70%, var(--accent));
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--tag-domain) 4%, var(--surface)),
+    color-mix(in srgb, var(--accent) 2%, var(--surface))
+  );
+  border-radius: 0 16px 16px 0;
+  padding: 1.75rem 2rem;
+  font-style: normal;
+}
+
+/* ============================================================
+   Data tables with math — warm alternating rows
+   ============================================================ */
+
+.experiment-content table:has(.katex) td {
+  vertical-align: middle;
+}
+
+.experiment-content table:has(.katex) tr:nth-child(even) {
+  background: color-mix(in srgb, var(--surface) 80%, var(--panel) 20%);
+}
+
+/* ============================================================
+   Math + text flow — equations between paragraphs
+   ============================================================ */
+
+/* When display math follows a paragraph, tighten the gap */
+.experiment-content p + .katex-display {
+  margin-top: 1.5rem;
+}
+
+/* When a paragraph follows display math, maintain breathing room */
+.experiment-content .katex-display + p {
+  margin-top: 1.5rem;
+}
+
+/* Multiple display equations in sequence — tighter grouping */
+.experiment-content .katex-display + .katex-display {
+  margin-top: -0.5rem;
+  border-top: none;
+  border-radius: 0 0 14px 0;
+}
+
+/* First in a sequence of equations */
+.experiment-content .katex-display:has(+ .katex-display) {
+  margin-bottom: 0;
+  border-radius: 0 14px 0 0;
+}
+
+/* Summary statistics tables — highlight key results */
+.experiment-content table strong {
+  color: var(--accent);
+}
 
 /* ============================================================
    Blockquotes — left accent, warm

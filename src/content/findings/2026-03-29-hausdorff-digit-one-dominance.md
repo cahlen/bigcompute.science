@@ -1,0 +1,114 @@
+---
+title: "Digit 1 Dominance: Five Digits With 1 Beat Fourteen Digits Without"
+slug: hausdorff-digit-one-dominance
+date: 2026-03-29
+author: cahlen
+author_github: https://github.com/cahlen
+significance: high
+
+domain: [continued-fractions, fractal-geometry, spectral-theory, diophantine-approximation]
+related_experiment: /experiments/zaremba-transfer-operator/
+
+summary: "In the Hausdorff dimension spectrum at n=15, dim_H(E_{1,...,5}) = 0.837 while dim_H(E_{2,...,15}) = 0.747. Just five digits containing 1 produce a larger Cantor set than all fourteen digits without it. Removing digit 1 costs 50x more dimension than removing digit 15 (0.206 vs 0.004). Digit 1 is worth more than digits 6 through 15 combined."
+
+data:
+  n: 15
+  dim_with_1_to_5: 0.837
+  dim_with_2_to_15: 0.747
+  dimension_cost_removing_1: 0.206
+  dimension_cost_removing_15: 0.004
+  cost_ratio_1_vs_15: "50×"
+  empirical_fit: "dim_H(E_{1,...,n}) ≈ 1 - 0.58/n^0.88"
+  correlation_metric: "Σ 1/a² over digits a in subset"
+  correlation_type: "near-perfect rank correlation"
+  hardware: "NVIDIA RTX 5090"
+  method: "transfer-operator, Chebyshev collocation"
+  status: "pending confirmation at n=20"
+---
+
+# Digit 1 Dominance: Five Digits With 1 Beat Fourteen Digits Without
+
+## The Finding
+
+For the restricted continued fraction Cantor sets $E_A = \{x \in [0,1] : \text{all partial quotients of } x \text{ lie in } A\}$, the Hausdorff dimension spectrum at $n = 15$ reveals an extreme asymmetry:
+
+$$\dim_H(E_{\{1,\ldots,5\}}) = 0.837 \quad > \quad \dim_H(E_{\{2,\ldots,15\}}) = 0.747$$
+
+Five digits containing digit 1 produce a **larger** Cantor set than fourteen digits without it. Digit 1 alone is worth more than digits 6 through 15 combined.
+
+## Why This Matters
+
+The Gauss measure assigns weight proportional to $\log(1 + 1/(a(a+2)))$ to digit $a$, which for small $a$ concentrates dramatically on $a = 1$. This is well-known qualitatively — the continued fraction expansion of a typical real number has $a_n = 1$ about 41.5% of the time. But our computation makes the asymmetry **quantitative** at the level of Hausdorff dimension:
+
+- **Removing digit 1** from $\{1, \ldots, 15\}$ costs dimension $0.206$
+- **Removing digit 15** from $\{1, \ldots, 15\}$ costs dimension $0.004$
+- The ratio is approximately **50:1**
+
+This is not merely a curiosity. The dimension of $E_A$ governs the metric theory of Diophantine approximation restricted to digit set $A$: Jarník-type theorems, Khintchine-type dichotomies, and the distribution of rationals with bounded partial quotients all depend on $\dim_H(E_A)$. The extreme dominance of small digits — particularly digit 1 — means that for most applications, **the first few digits carry nearly all the information**.
+
+## Key Results
+
+### Five digits with 1 beat fourteen without
+
+| Digit set | Cardinality | $\dim_H(E_A)$ |
+|-----------|-------------|----------------|
+| $\{1, 2, 3, 4, 5\}$ | 5 | **0.837** |
+| $\{2, 3, \ldots, 15\}$ | 14 | **0.747** |
+| $\{1, 2, \ldots, 15\}$ | 15 | 0.953 |
+
+### Dimension cost of removing each digit from $\{1, \ldots, 15\}$
+
+| Digit removed | $\dim_H(E_{\{1,\ldots,15\} \setminus \{a\}})$ | Cost $\Delta$ |
+|---------------|------------------------------------------------|---------------|
+| 1 | 0.747 | **0.206** |
+| 2 | 0.907 | 0.046 |
+| 3 | 0.932 | 0.021 |
+| 4 | 0.941 | 0.012 |
+| 5 | 0.945 | 0.008 |
+| 10 | 0.951 | 0.002 |
+| 15 | 0.949 | **0.004** |
+
+### Subsets containing 1 dominate at every cardinality
+
+For **every** cardinality $k$ from 1 to 14, subsets of $\{1, \ldots, 15\}$ that contain digit 1 have substantially higher average Hausdorff dimension than subsets that do not. The highest-dimension subset of any given size is always the set of lowest consecutive digits starting from 1: $\{1, 2, \ldots, k\}$.
+
+### Gauss measure predicts dimension ranking
+
+The Hausdorff dimension $\dim_H(E_A)$ is almost perfectly rank-correlated with the sum
+
+$$S(A) = \sum_{a \in A} \frac{1}{a^2}$$
+
+over digits $a$ in the subset $A$. Since $1/1^2 = 1$ while $1/15^2 \approx 0.004$, this explains why digit 1 contributes so disproportionately: the Gauss measure weight $1/a^2$ drops by a factor of 225 from $a = 1$ to $a = 15$.
+
+### Empirical growth law
+
+The dimension of consecutive-digit sets follows the empirical fit:
+
+$$\dim_H(E_{\{1,\ldots,n\}}) \approx 1 - \frac{0.58}{n^{0.88}}$$
+
+This captures the approach to $\dim_H = 1$ (the full interval) as $n \to \infty$, with a power-law correction whose exponent $0.88$ reflects the harmonic-like decay of digit contributions.
+
+## Method
+
+- **Transfer operator**: $\mathcal{L}_s f(x) = \sum_{a \in A} \frac{1}{(a + x)^{2s}} f\!\left(\frac{1}{a + x}\right)$
+- **Chebyshev collocation** at $N = 15$ nodes on $[0, 1]$
+- **Hausdorff dimension** computed as the unique $s > 0$ where $\lambda_1(\mathcal{L}_s) = 1$
+- All $2^{15} - 1 = 32{,}767$ non-empty subsets of $\{1, \ldots, 15\}$ enumerated
+- Hardware: **NVIDIA RTX 5090**
+
+## Status
+
+Pending confirmation at $n = 20$ (computation currently running). The $n = 20$ run will enumerate all $2^{20} - 1 \approx 10^6$ subsets and verify that the dominance pattern persists at larger alphabet size.
+
+## Connection to Other Findings
+
+- **Zaremba spectral gaps**: The dimension $\dim_H(E_{\{1,\ldots,5\}}) = 0.837$ matches the Zaremba semigroup dimension — [see finding](/findings/zaremba-spectral-gaps-uniform/)
+- **Transfer operator machinery**: Same Chebyshev collocation code used for both dimension computation and spectral gap analysis — [see experiment](/experiments/zaremba-transfer-operator/)
+
+## Code
+
+- Transfer operator: [`scripts/experiments/zaremba-transfer-operator/transfer_operator.cu`](https://github.com/cahlen/idontknow)
+
+---
+
+*Computed on NVIDIA RTX 5090. All eigenvalue problems solved on GPU via cuSOLVER.*

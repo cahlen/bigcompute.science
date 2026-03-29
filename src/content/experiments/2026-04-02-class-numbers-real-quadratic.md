@@ -25,6 +25,7 @@ tags:
 
 results:
   problem: "Class number distribution for real quadratic fields"
+  conjecture_year: 1984
   current_frontier: "d up to ~10^11 (Jacobson et al.)"
   target: "d up to 10^13 (100× extension)"
   status: "NOT YET RUN"

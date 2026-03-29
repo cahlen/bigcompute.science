@@ -25,6 +25,7 @@ tags:
 
 results:
   problem: "Kronecker coefficients of the symmetric group"
+  conjecture_year: 1938
   current_frontier: "Systematic computation to n ~ 60-80"
   target: "n = 120 for GCT-relevant triples"
   status: "NOT YET RUN"

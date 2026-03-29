@@ -6,6 +6,7 @@ author: cahlen
 author_github: https://github.com/cahlen
 significance: medium
 
+conjecture_year: 1972
 domain: [number-theory, continued-fractions, dynamical-systems]
 related_experiment: /experiments/zaremba-conjecture-8b-verification/
 

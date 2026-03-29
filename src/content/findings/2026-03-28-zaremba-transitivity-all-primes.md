@@ -6,6 +6,7 @@ author: cahlen
 author_github: https://github.com/cahlen
 significance: critical
 
+conjecture_year: 1972
 domain: [number-theory, group-theory, continued-fractions]
 related_experiment: /experiments/zaremba-transfer-operator/
 

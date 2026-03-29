@@ -29,6 +29,7 @@ tags:
 
 results:
   conjecture: "Zaremba's Conjecture (1972)"
+  conjecture_year: 1972
   bound: 5
   status: "IN PROGRESS — v4 verification to 1B running on 8 GPUs. Spectral gaps to m=2000 complete. Transitivity proved for ALL primes."
   llm_proofs: 19/20

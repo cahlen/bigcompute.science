@@ -27,6 +27,7 @@ tags:
 
 results:
   benchmark: "MCTS vs naive sampling for Lean 4 proof search"
+  conjecture_year: 1972
   status: "NOT YET RUN"
 
 code: https://github.com/cahlen/idontknow

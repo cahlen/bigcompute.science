@@ -25,6 +25,8 @@ tags:
 
 results:
   problem: "Ramsey number R(5,5)"
+  conjecture_year: 1930
+  last_lower_bound_improvement: 1989
   known_bounds: "43 ≤ R(5,5) ≤ 48"
   status: "NOT YET RUN"
 

@@ -17,9 +17,12 @@ const sorted = findings.sort((a, b) =>
           <time datetime={f.frontmatter.date}>
             {new Date(f.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
           </time>
+          {f.frontmatter.conjecture_year && (
+            <span class="conjecture-age">Open for {2026 - f.frontmatter.conjecture_year} years</span>
+          )}
           {f.frontmatter.significance && (
-            <span class={`status status-${f.frontmatter.significance === 'high' ? 'complete' : 'in-progress'}`}>
-              {f.frontmatter.significance} significance
+            <span class={`status status-${f.frontmatter.significance === 'critical' ? 'critical' : f.frontmatter.significance === 'high' ? 'complete' : 'in-progress'}`}>
+              {f.frontmatter.significance}
             </span>
           )}
         </div>

@@ -30,6 +30,9 @@ const sorted = experiments.sort((a, b) =>
         <h3>{exp.frontmatter.title}</h3>
         <div class="card-meta">
           <span class="hw-summary">{exp.frontmatter.hardware?.gpus}</span>
+          {(exp.frontmatter.results?.conjecture_year || exp.frontmatter.conjecture_year) && (
+            <span class="conjecture-age">Open for {2026 - (exp.frontmatter.results?.conjecture_year || exp.frontmatter.conjecture_year)} years</span>
+          )}
         </div>
         <div class="card-tags">
           {exp.frontmatter.tags?.domain?.map((t: string) => <span class="tag tag-domain">{t}</span>)}

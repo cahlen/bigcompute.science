@@ -6,6 +6,7 @@ author: cahlen
 author_github: https://github.com/cahlen
 significance: high
 
+conjecture_year: 1972
 domain: [number-theory, spectral-theory, continued-fractions]
 related_experiment: /experiments/zaremba-conjecture-8b-verification/
 

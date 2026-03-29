@@ -1,5 +1,5 @@
 ---
-title: "Zaremba's Semigroup Acts Transitively on (Z/pZ)² for All Primes up to 10,000"
+title: "Zaremba's Semigroup Acts Transitively on (Z/pZ)² for ALL Primes (Proved)"
 slug: zaremba-transitivity-all-primes
 date: 2026-03-28
 author: cahlen

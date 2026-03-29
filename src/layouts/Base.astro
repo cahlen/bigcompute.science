@@ -49,5 +49,12 @@ const { title, description = "Experimental results from heavy computation." } = 
       <p>bigcompute.science — serious hardware, open results</p>
       <p class="agent-note">Agent-friendly: see <a href="/llms.txt">/llms.txt</a> for structured consumption</p>
     </footer>
+  <script is:inline>
+    if (document.getElementById('load-interactive')) {
+      var s = document.createElement('script');
+      s.src = '/js/interactive.js';
+      document.body.appendChild(s);
+    }
+  </script>
   </body>
 </html>

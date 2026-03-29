@@ -28,7 +28,10 @@ results:
   conjecture_year: 1930
   last_lower_bound_improvement: 1989
   known_bounds: "43 ≤ R(5,5) ≤ 48"
-  status: "NOT YET RUN"
+  n43: "VALIDATED — hundreds of colorings found in 1.7s"
+  n44: "NO coloring found — 50 billion edge flips, 100K walkers, 19 min"
+  n45: "NO coloring found — 2.5 billion edge flips, 50K walkers, 128s"
+  lower_bound_improved: false
 
 code: https://github.com/cahlen/idontknow
 data: /data/ramsey-r55/

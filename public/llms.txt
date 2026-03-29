@@ -73,8 +73,10 @@ zaremba_conjecture:
     local_obstructions: "none found"
     partial_extension: "2000 more primes to p=17389, also zero exceptions"
   brute_force_verification:
-    max_d_verified: 10000000
+    max_d_verified: 100000000
     failures: 0
+    verification_time: "7.5 seconds on single B200"
+    kernel: "v5 GPU matrix enumeration (fused expand+mark+compact)"
   llm_proving:
     theorems_proved: 19/20
     models: [Goedel-Prover-V2-32B, Kimina-Prover-72B]

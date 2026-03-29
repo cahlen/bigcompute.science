@@ -1,31 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
-  <!-- Background circle -->
-  <circle cx="256" cy="256" r="240" fill="#0a0a0a" stroke="#222" stroke-width="4"/>
-
-  <!-- GPU grid pattern — 4×4 compute blocks -->
+  <circle cx="256" cy="256" r="240" fill="#0b0d10" stroke="#2a2e35" stroke-width="3"/>
   <g transform="translate(108, 108)">
-    <!-- Row 1 -->
-    <rect x="0"   y="0"   width="60" height="60" rx="6" fill="#4ade80" opacity="0.9"/>
-    <rect x="76"  y="0"   width="60" height="60" rx="6" fill="#4ade80" opacity="0.7"/>
-    <rect x="152" y="0"   width="60" height="60" rx="6" fill="#4ade80" opacity="0.5"/>
-    <rect x="228" y="0"   width="60" height="60" rx="6" fill="#4ade80" opacity="0.3"/>
-    <!-- Row 2 -->
-    <rect x="0"   y="76"  width="60" height="60" rx="6" fill="#4ade80" opacity="0.7"/>
-    <rect x="76"  y="76"  width="60" height="60" rx="6" fill="#4ade80" opacity="1.0"/>
-    <rect x="152" y="76"  width="60" height="60" rx="6" fill="#4ade80" opacity="0.8"/>
-    <rect x="228" y="76"  width="60" height="60" rx="6" fill="#4ade80" opacity="0.5"/>
-    <!-- Row 3 -->
-    <rect x="0"   y="152" width="60" height="60" rx="6" fill="#4ade80" opacity="0.5"/>
-    <rect x="76"  y="152" width="60" height="60" rx="6" fill="#4ade80" opacity="0.8"/>
-    <rect x="152" y="152" width="60" height="60" rx="6" fill="#4ade80" opacity="1.0"/>
-    <rect x="228" y="152" width="60" height="60" rx="6" fill="#4ade80" opacity="0.7"/>
-    <!-- Row 4 -->
-    <rect x="0"   y="228" width="60" height="60" rx="6" fill="#4ade80" opacity="0.3"/>
-    <rect x="76"  y="228" width="60" height="60" rx="6" fill="#4ade80" opacity="0.5"/>
-    <rect x="152" y="228" width="60" height="60" rx="6" fill="#4ade80" opacity="0.7"/>
-    <rect x="228" y="228" width="60" height="60" rx="6" fill="#4ade80" opacity="0.9"/>
+    <rect x="0"   y="0"   width="60" height="60" rx="4" fill="#5eead4" opacity="0.9"/>
+    <rect x="76"  y="0"   width="60" height="60" rx="4" fill="#5eead4" opacity="0.65"/>
+    <rect x="152" y="0"   width="60" height="60" rx="4" fill="#5eead4" opacity="0.4"/>
+    <rect x="228" y="0"   width="60" height="60" rx="4" fill="#5eead4" opacity="0.2"/>
+    <rect x="0"   y="76"  width="60" height="60" rx="4" fill="#5eead4" opacity="0.65"/>
+    <rect x="76"  y="76"  width="60" height="60" rx="4" fill="#5eead4" opacity="1.0"/>
+    <rect x="152" y="76"  width="60" height="60" rx="4" fill="#5eead4" opacity="0.75"/>
+    <rect x="228" y="76"  width="60" height="60" rx="4" fill="#5eead4" opacity="0.4"/>
+    <rect x="0"   y="152" width="60" height="60" rx="4" fill="#5eead4" opacity="0.4"/>
+    <rect x="76"  y="152" width="60" height="60" rx="4" fill="#5eead4" opacity="0.75"/>
+    <rect x="152" y="152" width="60" height="60" rx="4" fill="#5eead4" opacity="1.0"/>
+    <rect x="228" y="152" width="60" height="60" rx="4" fill="#5eead4" opacity="0.65"/>
+    <rect x="0"   y="228" width="60" height="60" rx="4" fill="#5eead4" opacity="0.2"/>
+    <rect x="76"  y="228" width="60" height="60" rx="4" fill="#5eead4" opacity="0.4"/>
+    <rect x="152" y="228" width="60" height="60" rx="4" fill="#5eead4" opacity="0.65"/>
+    <rect x="228" y="228" width="60" height="60" rx="4" fill="#5eead4" opacity="0.9"/>
   </g>
-
-  <!-- Sigma overlay — science symbol -->
-  <text x="256" y="290" text-anchor="middle" font-family="serif" font-size="200" font-weight="bold" fill="#0a0a0a" opacity="0.6">Σ</text>
+  <text x="256" y="290" text-anchor="middle" font-family="serif" font-size="200" font-weight="bold" fill="#0b0d10" opacity="0.5">Σ</text>
 </svg>

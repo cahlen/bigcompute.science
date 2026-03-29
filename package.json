@@ -8,10 +8,11 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^5.7.0",
     "@astrojs/mdx": "^4.2.0",
+    "@chenglou/pretext": "github:chenglou/pretext",
+    "astro": "^5.7.0",
+    "katex": "^0.16.0",
     "rehype-katex": "^7.0.0",
-    "remark-math": "^6.0.0",
-    "katex": "^0.16.0"
+    "remark-math": "^6.0.0"
   }
 }

@@ -1,5 +1,5 @@
 ---
-title: "Zaremba's Conjecture: 100M Verified in 7.5s on NVIDIA B200"
+title: "Zaremba's Conjecture: 10B Verified in 3 Minutes on 8× NVIDIA B200"
 slug: zaremba-conjecture-verification
 date: 2026-03-28
 author: cahlen
@@ -31,11 +31,11 @@ results:
   conjecture: "Zaremba's Conjecture (1972)"
   conjecture_year: 1972
   bound: 5
-  status: "100M VERIFIED (zero gaps, 7.5s on single B200). Spectral gaps to m=2000 complete. Transitivity proved for ALL primes."
-  verified_range: [1, 100000000]
+  status: "10B VERIFIED (zero gaps, 179s on 8× B200). Spectral gaps to m=2000 complete. Transitivity proved for ALL primes."
+  verified_range: [1, 10000000000]
   failures: 0
-  verification_time: "7.5 seconds"
-  verification_kernel: "v5 GPU matrix enumeration"
+  verification_time: "179 seconds on 8× B200"
+  verification_kernel: "v6 multi-pass GPU matrix enumeration"
   llm_proofs: 19/20
   models_used: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
 
@@ -47,7 +47,7 @@ data: /data/zaremba-8b/
 
 ## Abstract
 
-We are verifying Zaremba's Conjecture using a multi-pronged approach on 8 NVIDIA B200 GPUs. So far: inverse CF construction (v4 kernel) verified all $d$ up to $10^7$ with zero gaps; brute-force spot checks found zero failures up to $d \sim 3 \times 10^9$; spectral analysis of the congruence transfer operator confirmed property ($\tau$) across 1,214 square-free moduli with uniform gaps. In parallel, we raced two SOTA theorem-proving LLMs (Goedel-Prover-V2-32B and Kimina-Prover-72B) against 20 formally stated cases in Lean 4, achieving 19/20 machine-verified proofs with a perfect 10–10 split. We also report a novel observation: the smallest Zaremba witness concentrates at $\alpha(d)/d \approx 0.171$ with 99.7% sharing the CF prefix $[0;\, 5, 1, \ldots]$, connected to the golden ratio via $1/(5 + \varphi)$. Verification to $10^9$ and spectral gaps to $m = 2000$ are currently running.
+We verify Zaremba's Conjecture for all $d$ from 1 to **10 billion** using GPU-accelerated continued fraction tree enumeration across 8 NVIDIA B200 GPUs. The v6 multi-pass kernel completes in **179 seconds** with zero failures. Combined with spectral analysis (congruence transfer operator gaps uniform $\geq 0.237$ across 1,214 square-free moduli), an algebraic transitivity proof (Γ generates SL₂ for ALL primes via Dickson's classification), Cayley graph diameters (diam(p) ≤ 2·log(p) for 669 primes), and 19/20 machine-verified Lean 4 proofs from a dual-model LLM race, this is the most comprehensive computational attack on Zaremba's Conjecture to date.
 
 ## Background
 

@@ -21,7 +21,7 @@ software:
   python: "3.12"
 
 tags:
-  domain: [number-theory, continued-fractions, spectral-theory, open-conjectures]
+  domain: [number-theory, continued-fractions, spectral-theory]
   hardware: [b200, dgx]
   method: [transfer-operator, chebyshev-collocation, eigenvalue-computation, spectral-gap]
 

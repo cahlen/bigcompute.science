@@ -510,6 +510,22 @@ footer {
   font-size: 0.85rem;
 }
 
+footer .disclaimer {
+  max-width: var(--max-width);
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: rgba(245, 158, 11, 0.05);
+}
+
+footer .disclaimer p {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
 footer .agent-note {
   margin-top: 0.25rem;
   font-family: var(--font-mono);

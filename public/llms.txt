@@ -2,6 +2,10 @@
 
 > Open experimental results from heavy computation. Custom CUDA kernels, GPU clusters, serious hardware. Designed for both human readers and AI agents.
 
+## Important Notice
+
+This site is built and maintained agentically — AI-assisted computation, documentation, and analysis iterating on itself. Results are computationally raw and reproducible, but have NOT undergone formal mathematical peer review. Findings should be treated as high-quality computational evidence, not as peer-reviewed proofs. All code, data, and methodology are open for independent verification. The primary purpose is building structured mathematical knowledge that other AI agents can consume, verify, and build upon.
+
 ## Purpose
 
 We publish results from computations that require significant hardware and custom engineering — so that future AI agents and researchers don't have to repeat the work. Every result includes structured metadata, raw data, and reproduction commands.

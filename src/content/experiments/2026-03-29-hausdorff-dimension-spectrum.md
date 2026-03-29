@@ -81,26 +81,41 @@ Each subset is encoded as a bitmask and processed independently on one GPU threa
 | 5 | 31 | 1.8s | 17/s |
 | 10 | 1,023 | 3.8s | 269/s |
 | 15 | 32,767 | 126.1s | 260/s |
-| 20 | 1,048,575 | ~67 min (est.) | ~260/s |
+| 20 | 1,048,575 | 4,343s (72 min) | 242/s |
 
-## Preliminary Results (n=15)
+## Results (n=20, complete)
 
 ### Dimension by Cardinality
 
-| $|A|$ | Count | Min $\dim_H$ | Mean $\dim_H$ | Max $\dim_H$ |
-|---|---|---|---|---|
-| 1 | 15 | 0.000 | 0.000 | 0.000 |
-| 2 | 105 | 0.129 | 0.205 | 0.531 |
-| 3 | 455 | 0.208 | 0.328 | 0.706 |
-| 5 | 3,003 | 0.314 | 0.497 | 0.837 |
-| 10 | 3,003 | 0.505 | 0.766 | 0.926 |
-| 15 | 1 | 0.953 | 0.953 | 0.953 |
+| $\|A\|$ | Count | Min $\dim_H$ | Mean $\dim_H$ | Max $\dim_H$ |
+|------:|-------:|-------------:|-------------:|-------------:|
+| 1 | 20 | 0.0000 | 0.0000 | 0.0000 |
+| 2 | 190 | 0.1166 | 0.1809 | 0.5313 |
+| 3 | 1,140 | 0.1865 | 0.2893 | 0.7057 |
+| 4 | 4,845 | 0.2375 | 0.3709 | 0.7889 |
+| 5 | 15,504 | 0.2786 | 0.4377 | 0.8368 |
+| 6 | 38,760 | 0.3135 | 0.4951 | 0.8676 |
+| 7 | 77,520 | 0.3444 | 0.5458 | 0.8890 |
+| 8 | 125,970 | 0.3727 | 0.5915 | 0.9046 |
+| 9 | 167,960 | 0.3991 | 0.6334 | 0.9164 |
+| 10 | 184,756 | 0.4245 | 0.6722 | 0.9257 |
+| 11 | 167,960 | 0.4493 | 0.7085 | 0.9332 |
+| 12 | 125,970 | 0.4741 | 0.7426 | 0.9394 |
+| 13 | 77,520 | 0.4996 | 0.7748 | 0.9445 |
+| 14 | 38,760 | 0.5264 | 0.8055 | 0.9489 |
+| 15 | 15,504 | 0.5556 | 0.8348 | 0.9526 |
+| 16 | 4,845 | 0.5888 | 0.8629 | 0.9559 |
+| 17 | 1,140 | 0.6290 | 0.8899 | 0.9587 |
+| 18 | 190 | 0.6828 | 0.9159 | 0.9612 |
+| 19 | 20 | 0.7683 | 0.9411 | 0.9634 |
+| 20 | 1 | 0.9654 | 0.9654 | 0.9654 |
 
 Key observations:
 - **Singletons all have dimension 0** — $E_{\{a\}}$ is a single point for any digit $a$
-- **Dimension grows with cardinality** — more allowed digits means a larger Cantor set
-- **Low digits dominate** — $E_{\{1,2\}}$ (dim 0.531) is much larger than $E_{\{9,10\}}$ (dim 0.153)
-- **$\dim_H(E_{\{1,\ldots,n\}}) \to 1$** as $n \to \infty$ — consistent with $E_{\{1,2,3,\ldots\}} = (0,1) \setminus \mathbb{Q}$
+- **Dimension grows monotonically with cardinality** — more allowed digits means a larger Cantor set
+- **Low digits dominate** — $E_{\{1,2\}}$ (dim 0.531) is much larger than $E_{\{19,20\}}$ (dim 0.117)
+- **Binomial distribution of counts** — $\binom{20}{10} = 184{,}756$ subsets of size 10 is the largest stratum
+- **$\dim_H(E_{\{1,\ldots,20\}}) = 0.9654$** — approaching 1, consistent with $E_{\{1,2,3,\ldots\}} = (0,1) \setminus \mathbb{Q}$
 
 ### Validation
 

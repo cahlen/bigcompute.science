@@ -1,5 +1,5 @@
 ---
-title: "Zaremba's Conjecture: Verifying 8 Billion Values on 8× NVIDIA B200"
+title: "Zaremba's Conjecture: 100M Verified in 7.5s on NVIDIA B200"
 slug: zaremba-conjecture-8b-verification
 date: 2026-03-28
 author: cahlen

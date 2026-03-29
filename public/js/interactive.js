@@ -5,17 +5,13 @@
 (function() {
   'use strict';
 
-  // Utility: setup a canvas with proper DPR handling
-  // Stores original dimensions on first call, reuses thereafter
-  function setupCanvas(canvas) {
+  // Utility: setup a canvas fitting its container
+  function setupCanvas(canvas, aspectRatio) {
     var dpr = window.devicePixelRatio || 1;
-    // Store original dimensions on first call
-    if (!canvas._origW) {
-      canvas._origW = parseInt(canvas.getAttribute('width')) || 740;
-      canvas._origH = parseInt(canvas.getAttribute('height')) || 400;
-    }
-    var W = canvas._origW;
-    var H = canvas._origH;
+    var container = canvas.parentElement;
+    var W = Math.floor(container.clientWidth - 48); // account for padding
+    if (W < 300) W = 300;
+    var H = Math.floor(W * (aspectRatio || 0.54));
     canvas.width = W * dpr;
     canvas.height = H * dpr;
     canvas.style.width = W + 'px';
@@ -69,7 +65,7 @@
 
   if (witnessCanvas && wSlider) {
     function drawWitness() {
-      var c = setupCanvas(witnessCanvas);
+      var c = setupCanvas(witnessCanvas, 0.54);
       var ctx = c.ctx, W = c.W, H = c.H;
       var maxD = parseInt(wSlider.value);
       wLabel.textContent = maxD;
@@ -164,7 +160,7 @@
 
   if (specCanvas) {
     function drawSpectral() {
-      var c = setupCanvas(specCanvas);
+      var c = setupCanvas(specCanvas, 0.57);
       var ctx = c.ctx, W = c.W, H = c.H;
 
       ctx.fillStyle = '#0b0d10';
@@ -315,8 +311,10 @@
   var tAnimate = document.getElementById('tree-animate');
 
   if (treeCanvas && tSlider) {
+    var MAX_NODES = 50000; // prevent browser lockup
+
     function drawTree(maxDepth, animateUpTo) {
-      var c = setupCanvas(treeCanvas);
+      var c = setupCanvas(treeCanvas, 0.67);
       var ctx = c.ctx, W = c.W, H = c.H;
 
       ctx.fillStyle = '#0b0d10';
@@ -326,33 +324,49 @@
       var denominators = {};
       var denomCount = 0;
       var nodeCount = 0;
+      var capped = false;
 
       function drawNode(x, y, qPrev, q, d, spreadX, spreadY) {
         if (d > depth) return;
+        if (nodeCount >= MAX_NODES) { capped = true; return; }
         if (!denominators[q]) { denominators[q] = true; denomCount++; }
         nodeCount++;
 
+        // Skip drawing nodes that are off-screen
+        if (x < -10 || x > W + 10 || y < -10 || y > H + 10) return;
+
         var hue = (d / maxDepth) * 120 + 160;
-        var alpha = Math.max(0.3, 1 - d / (maxDepth + 2));
+        var alpha = Math.max(0.15, 1 - d / (maxDepth + 1));
         ctx.fillStyle = 'hsla(' + hue + ', 60%, 65%, ' + alpha + ')';
-        var r = Math.max(1.5, 4 - d * 0.3);
+        var r = Math.max(1, 4 - d * 0.35);
         ctx.beginPath();
         ctx.arc(x, y, r, 0, Math.PI * 2);
         ctx.fill();
 
-        for (var a = 1; a <= 5; a++) {
-          var qNew = a * q + qPrev;
-          var childX = x + (a - 3) * spreadX;
-          var childY = y + spreadY;
+        // Only draw edges for first few levels (they overlap too much deeper)
+        if (d < 6) {
+          for (var a = 1; a <= 5; a++) {
+            var qNew = a * q + qPrev;
+            var childX = x + (a - 3) * spreadX;
+            var childY = y + spreadY;
 
-          ctx.strokeStyle = 'hsla(' + hue + ', 40%, 50%, ' + (alpha * 0.3) + ')';
-          ctx.lineWidth = 0.5;
-          ctx.beginPath();
-          ctx.moveTo(x, y);
-          ctx.lineTo(childX, childY);
-          ctx.stroke();
+            ctx.strokeStyle = 'hsla(' + hue + ', 40%, 50%, ' + (alpha * 0.2) + ')';
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(childX, childY);
+            ctx.stroke();
 
-          drawNode(childX, childY, q, qNew, d + 1, spreadX * 0.45, spreadY);
+            drawNode(childX, childY, q, qNew, d + 1, spreadX * 0.45, spreadY);
+          }
+        } else {
+          // Deep levels: just nodes, no edges (faster + cleaner)
+          for (var a = 1; a <= 5; a++) {
+            var qNew = a * q + qPrev;
+            var childX = x + (a - 3) * spreadX;
+            var childY = y + spreadY;
+            drawNode(childX, childY, q, qNew, d + 1, spreadX * 0.45, spreadY);
+          }
         }
       }
 
@@ -364,7 +378,9 @@
       ctx.fillStyle = '#8a8580';
       ctx.font = '11px monospace';
       ctx.textAlign = 'left';
-      ctx.fillText('depth: ' + depth + '  nodes: ' + nodeCount + '  unique denominators: ' + denomCount, 10, H - 10);
+      var stats = 'depth: ' + depth + '  nodes: ' + nodeCount + '  denominators: ' + denomCount;
+      if (capped) stats += '  (capped at ' + MAX_NODES + ')';
+      ctx.fillText(stats, 10, H - 10);
     }
 
     tSlider.addEventListener('input', function() {
@@ -387,7 +403,7 @@
       step();
     });
 
-    drawTree(6);
+    drawTree(5);
   }
 
 })();

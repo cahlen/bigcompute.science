@@ -18,7 +18,7 @@ import Base from '../layouts/Base.astro';
       CF length, colored by max partial quotient.
     </p>
     <div class="viz-container" id="witness-viz">
-      <canvas id="witness-canvas" width="740" height="400"></canvas>
+      <canvas id="witness-canvas"></canvas>
       <div class="viz-controls">
         <label>
           <span>Max d:</span>
@@ -37,7 +37,7 @@ import Base from '../layouts/Base.astro';
       and gap value. The red dashed line marks the Bourgain-Kontorovich threshold.
     </p>
     <div class="viz-container" id="spectral-viz">
-      <canvas id="spectral-canvas" width="740" height="420"></canvas>
+      <canvas id="spectral-canvas"></canvas>
       <div id="spectral-tooltip" class="tooltip"></div>
     </div>
   </section>
@@ -50,11 +50,11 @@ import Base from '../layouts/Base.astro';
       tree grow and see how quickly it covers the integers.
     </p>
     <div class="viz-container" id="tree-viz">
-      <canvas id="tree-canvas" width="740" height="500"></canvas>
+      <canvas id="tree-canvas"></canvas>
       <div class="viz-controls">
         <label>
           <span>Depth:</span>
-          <input type="range" id="tree-depth" min="1" max="12" value="6">
+          <input type="range" id="tree-depth" min="1" max="9" value="5">
           <span id="tree-depth-label" class="mono">6</span>
         </label>
         <button id="tree-animate" class="viz-btn">Animate Growth</button>

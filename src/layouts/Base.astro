@@ -59,6 +59,12 @@ const { title, description = "Experimental results from heavy computation." } = 
     var ef = document.createElement('script');
     ef.src = '/js/effects.js';
     document.body.appendChild(ef);
+    // Hero particle mosaic (only on pages with .hero)
+    if (document.querySelector('.hero')) {
+      var hp = document.createElement('script');
+      hp.src = '/js/hero-particles.js';
+      document.body.appendChild(hp);
+    }
   </script>
   </body>
 </html>

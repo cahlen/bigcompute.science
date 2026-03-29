@@ -43,7 +43,7 @@ code: https://github.com/cahlen/idontknow
 data: /data/zaremba-8b/
 ---
 
-# Zaremba's Conjecture: Verifying 8 Billion Values on 8× NVIDIA B200
+# Zaremba's Conjecture: 100 Billion Verified on 8× NVIDIA B200
 
 ## Abstract
 
@@ -191,23 +191,23 @@ Three bugs were discovered and fixed during the proving run:
 
 3. **`decide` vs `native_decide`:** Models generate `by decide` for all proof obligations. The kernel evaluator times out on CF computation; `native_decide` compiles to native code and runs instantly. Fixed with post-processing.
 
-### Exhaustive Verification: 0 Failures
+### Exhaustive Verification: 0 Failures to $10^{11}$
 
-**Verified:** GPU matrix enumeration (v5 kernel) confirmed zero gaps for all $d \leq 10^8$ in 7.5 seconds on a single NVIDIA B200. This is a complete proof that Zaremba's Conjecture holds for every integer up to 100 million. The v5 kernel performs the entire CF tree walk on GPU via batched 2×2 matrix multiplication with fused expand+mark+compact — 175× faster than the previous v4 approach. Additional spot checks to $d \sim 10^9$ also show zero counterexamples (with 1.1M artifacts from buffer truncation, not real failures).
+**Verified:** The v6 multi-pass GPU matrix enumeration kernel confirmed **zero gaps for all $d \leq 10^{11}$** (100 billion) in **29 minutes** on 8× NVIDIA B200. This is a complete computational proof that Zaremba's Conjecture holds for every integer up to 100 billion.
 
-Performance comparison:
+The kernel performs the entire CF tree walk on GPU via batched 2×2 matrix multiplication with fused expand+mark+compact. Phase A builds the tree to depth 12 on one GPU, Phase B distributes 244M matrices across all 8 GPUs in 64 rounds, each expanding to depth 62.
 
 | Method | Hardware | Range | Time | Rate |
 |--------|----------|-------|------|------|
 | Python (multiprocessing) | 112 CPU cores | $d = 1$ to $10^6$ | 751.7 s | 1,330 d/s |
-| CUDA kernel | 1× B200 | $d = 1$ to $10^6$ | 1.9 s | 534,000 d/s |
-| CUDA kernel | 8× B200 | $d = 1$ to $8 \times 10^9$ | *in progress* | — |
+| v5 kernel | 1× B200 | $d = 1$ to $10^8$ | 7.5 s | 13.3M d/s |
+| v6 multi-pass | 8× B200 | $d = 1$ to $10^9$ | 21.8 s | 45.9M d/s |
+| v6 multi-pass | 8× B200 | $d = 1$ to $10^{10}$ | 179 s | 55.9M d/s |
+| **v6 multi-pass** | **8× B200** | **$d = 1$ to $10^{11}$** | **1,746 s** | **57.3M d/s** |
 
-Speedup: **~400× per GPU over 112 CPU cores.**
+Speedup from Python baseline: **~43,000× on 8 GPUs.**
 
-**v4 kernel (inverse CF construction):** Rather than searching for witnesses, v4 constructs them by working backwards from valid CF sequences. Given a target $d$, it enumerates CF sequences $[0, 5, 1, \ldots]$ with all quotients $\leq 5$ and checks which produce a coprime $a/d$ pair. Result: **10M values verified with zero gaps.**
-
-Zero failures across ALL tested ranges, including spot checks up to $d \sim 3 \times 10^9$.
+The v5 kernel (single GPU) reformulated CF tree enumeration as batched 2×2 matrix multiplication — a 175× speedup over v4. The v6 kernel extended this with multi-pass chunking to eliminate buffer overflow at scale, enabling verification beyond $10^{10}$.
 
 ### Transfer Operator: Hausdorff Dimension to 15 Digits
 
@@ -289,28 +289,29 @@ The CF length of $\alpha(d)/d$ peaks at $k = 13$ and grows as $O(\log d)$:
 git clone https://github.com/cahlen/idontknow
 cd idontknow
 
-# Compile CUDA verifier
-nvcc -O3 -arch=sm_100a -o zaremba_verify scripts/zaremba_verify.cu
+# Compile v6 multi-pass kernel
+nvcc -O3 -arch=sm_100a -o matrix_v6 \
+    scripts/experiments/zaremba-effective-bound/matrix_enum_multipass.cu -lpthread
 
-# Verify d=1 to 1M (any NVIDIA GPU)
-./zaremba_verify 1 1000000
+# Verify d=1 to 1B (any multi-GPU NVIDIA system)
+./matrix_v6 1000000000
 
-# Run the LLM prover (requires vLLM + model weights)
-./scripts/run-zaremba.sh
+# Verify d=1 to 100B (requires 8× B200 or similar, ~29 min)
+./matrix_v6 100000000000
 ```
 
-**Lean 4 verification:**
+**Single-GPU quick check (v5 kernel):**
 ```bash
-# Install Lean 4.29.0-rc8 via elan
-lean lean4-proving/conjectures/zaremba_proved_race.lean
-# Expected: 3 sorry warnings (d=9, full conjecture, B-K), 0 errors
+nvcc -O3 -arch=sm_100a -o matrix_enum \
+    scripts/experiments/zaremba-effective-bound/matrix_enum.cu
+./matrix_enum 100000000  # 100M in ~7.5s on one B200
 ```
 
 ## Raw Data
 
-- Witness table for $d = 1$ to $100{,}000$: [`/data/zaremba-8b/witnesses_100k.json`](/data/zaremba-8b/witnesses_100k.json)
-- LLM proving race log: [`/data/zaremba-8b/race-results.log`](/data/zaremba-8b/race-results.log)
-- CUDA verification logs: [`/data/zaremba-8b/gpu_logs/`](/data/zaremba-8b/gpu_logs/)
+- v6 verification log (100B): [`run_100B_v2.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/run_100B_v2.log)
+- v6 verification log (10B): [`run_10B_v3.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/run_10B_v3.log)
+- Spectral gap data (1,214 moduli): [`/data/spectral-gaps.json`](/data/spectral-gaps.json)
 
 ## References
 

@@ -4,7 +4,7 @@ slug: hausdorff-dimension-spectrum
 date: 2026-03-29
 author: cahlen
 author_github: https://github.com/cahlen
-status: in-progress
+status: complete
 
 hardware:
   name: NVIDIA GeForce RTX 5090
@@ -29,7 +29,8 @@ results:
   chebyshev_order: 40
   bisection_steps: 55
   precision_digits: 15
-  status: "IN PROGRESS — n=15 complete (32,767 subsets in 126s), n=20 running"
+  status: "COMPLETE — 1,048,575 subsets computed in 4,322s on RTX 5090"
+  scaling_n20: "1,048,575 subsets in 4,322s"
   validation_e12: "0.531280506277205 (exact match to Jenkinson-Pollicott)"
   validation_e12345: "0.836829443681209 (diff 6.66e-16 from Zaremba transfer operator)"
   validation_monotonicity: "PASS"

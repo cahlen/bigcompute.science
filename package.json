@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.0",
+    "@astrojs/rss": "^4.0.18",
     "@chenglou/pretext": "github:chenglou/pretext",
     "astro": "^5.7.0",
     "katex": "^0.16.0",

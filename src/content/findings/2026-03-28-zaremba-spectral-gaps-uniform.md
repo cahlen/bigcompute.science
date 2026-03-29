@@ -30,7 +30,7 @@ data:
   max_gap: 0.998
   max_gap_modulus: 1426
   decay_exponent_beta: "≈ 0 (no measurable decay)"
-  bk_threshold: 0.672
+  bk_threshold: 0.674
   threshold_met: true
   computation_time: "4,595 seconds (77 min) on 8× NVIDIA B200"
 ---
@@ -49,9 +49,9 @@ Mean gap: $0.482$. Computed in **77 minutes on 8 NVIDIA B200 GPUs** using implic
 
 Bourgain-Kontorovich (2014) proved Zaremba's Conjecture holds for a density-1 set of integers. Their proof requires:
 
-$$\sigma_m \geq C \cdot m^{-\beta} \qquad \text{with } \beta < 2\delta - 1 \approx 0.672$$
+$$\sigma_m \geq C \cdot m^{-\beta} \qquad \text{with } \beta < 2\delta - 1 \approx 0.674$$
 
-Our data shows $\sigma_m \geq 0.258$ across **1,214 moduli** with **no measurable decay** — the exponent $\beta \approx 0$, far below the threshold of $0.672$. If this uniform gap persists to all $m$ (which property ($\tau$) guarantees abstractly, but with non-effective constants), then the circle method error terms can be made effective.
+Our data shows $\sigma_m \geq 0.258$ across **1,214 moduli** with **no measurable decay** — the exponent $\beta \approx 0$, far below the threshold of $0.674$. If this uniform gap persists to all $m$ (which property ($\tau$) guarantees abstractly, but with non-effective constants), then the circle method error terms can be made effective.
 
 The gap between "density-1" and "all integers" is precisely this: making the spectral gap uniform with explicit constants. Our computation provides the first explicit numerical evidence for this uniformity at scale.
 
@@ -59,7 +59,7 @@ The gap between "density-1" and "all integers" is precisely this: making the spe
 
 ![Spectral gap scatter plot: 1,214 square-free moduli up to m=1999, all gaps positive](/spectral-gaps-chart.svg)
 
-The scatter plot shows $\sigma_m$ for every square-free $m \leq 1999$. Green points are typical; orange marks the tight-gap outliers. The red dashed line is the Bourgain-Kontorovich threshold $\beta = 2\delta - 1 = 0.672$ — ALL points lie well below this (meaning the gaps are well ABOVE what's needed). There is no downward trend.
+The scatter plot shows $\sigma_m$ for every square-free $m \leq 1999$. Green points are typical; orange marks the tight-gap outliers. The red dashed line is the Bourgain-Kontorovich threshold $\beta = 2\delta - 1 = 0.674$ — ALL points lie well below this (meaning the gaps are well ABOVE what's needed). There is no downward trend.
 
 ## Summary Statistics
 
@@ -72,7 +72,7 @@ The scatter plot shows $\sigma_m$ for every square-free $m \leq 1999$. Green poi
 | Third minimum (family) | $\sigma_{34} = 0.271$ where $34 = 2 \times 17$ (propagates to all square-free multiples) |
 | Maximum gap | $\sigma_{1426} = 0.998$ |
 | Mean gap | $0.482$ |
-| B-K threshold | $\beta < 0.672$ — our data has $\beta \approx 0$ |
+| B-K threshold | $\beta < 0.674$ — our data has $\beta \approx 0$ |
 | Computation time | 77 minutes on 8 NVIDIA B200 GPUs |
 
 ## Data (representative sample)

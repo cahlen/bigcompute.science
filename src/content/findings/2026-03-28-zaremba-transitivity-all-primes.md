@@ -4,7 +4,7 @@ slug: zaremba-transitivity-all-primes
 date: 2026-03-28
 author: cahlen
 author_github: https://github.com/cahlen
-significance: critical
+significance: high
 
 conjecture_year: 1972
 domain: [number-theory, group-theory, continued-fractions]

@@ -46,7 +46,8 @@
   var MATH_CHARS = '\u03B4\u03BB\u03C3\u03B5\u222B\u2211\u220F\u221E\u221A\u2202\u2207\u2208\u2200\u2203\u03C0\u03C6\u03B6\u03930123456789';
 
   function resize() {
-    var containerW = Math.min(heroEl.clientWidth - 32, 900);
+    var containerW = heroEl.clientWidth - 16;
+    if (containerW < 300) containerW = 300;
     W = containerW;
     H = Math.floor(W * 0.32);
     if (H < 120) H = 120;
@@ -72,10 +73,14 @@
     var dotText = '.science';
     var fullText = titleText + dotText;
 
-    // Font size to fill width nicely
-    fontSize = Math.floor(W / 7.5);
+    // Size font to actually fit the text within the canvas width
+    var testSize = 80;
+    offCtx.font = '800 ' + (testSize * scale) + 'px "JetBrains Mono", "Fira Code", "Courier New", monospace';
+    var measuredW = offCtx.measureText(fullText).width / scale;
+    // Scale font so text uses 90% of canvas width
+    fontSize = Math.floor(testSize * (W * 0.9) / measuredW);
     if (fontSize > 80) fontSize = 80;
-    if (fontSize < 20) fontSize = 20;
+    if (fontSize < 16) fontSize = 16;
 
     var scaledFont = fontSize * scale;
     offCtx.fillStyle = '#ffffff';

@@ -1,34 +1,38 @@
 /* ============================================================
-   bigcompute.science — Pretext-inspired editorial design
-   Warm earth tones, serif/sans hierarchy, generous whitespace,
-   soft shadows, fluid responsive, print-quality typography
+   bigcompute.science — Dark Academic Mathematical Journal
+
+   Design philosophy: dark background, but structured like a
+   mathematics journal. Theorem/proof/lemma environments,
+   numbered definitions, serif body text, proper mathematical
+   typesetting conventions. When you read this site, it should
+   feel like reading Annals of Mathematics — at midnight.
    ============================================================ */
 
 :root {
-  /* Warm editorial palette */
-  --page: #0c0a09;
-  --surface: #1c1917;
-  --panel: #292524;
-  --ink: #fafaf9;
-  --ink-secondary: #d6d3d1;
-  --muted: #a8a29e;
-  --rule: #44403c;
-  --accent: #4ade80;
-  --accent-dim: #166534;
-  --accent-warm: #a3e635;
-  --tag-domain: #60a5fa;
-  --tag-hw: #fbbf24;
-  --tag-method: #c084fc;
-  --shadow-color: 0 0% 5%;
+  /* Dark academic palette */
+  --page: #0b0d10;
+  --surface: #12151a;
+  --panel: #1a1e25;
+  --ink: #e8e6e3;
+  --ink-secondary: #c4c1bc;
+  --muted: #8a8580;
+  --rule: #2a2e35;
+  --accent: #5eead4;
+  --accent-blue: #7dd3fc;
+  --accent-gold: #fcd34d;
+  --accent-rose: #fda4af;
+  --theorem-bg: #111520;
+  --proof-bg: #10130e;
+  --definition-bg: #14110e;
 
-  /* Typography */
-  --font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Cascadia Code', monospace;
+  /* Academic typography */
+  --font-serif: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
 
-  /* Layout */
-  --max-width: 780px;
-  --page-padding: max(24px, calc((100vw - var(--max-width)) / 2));
+  /* Layout — journal column width */
+  --max-width: 740px;
+  --wide-width: 920px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -43,131 +47,132 @@ body {
   font-family: var(--font-serif);
   background: var(--page);
   color: var(--ink);
-  line-height: 1.75;
+  line-height: 1.8;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--ink);
 }
 
 /* ============================================================
-   Navigation — minimal, warm
+   Navigation — understated, journal header
    ============================================================ */
 
 header {
-  border-bottom: 1px solid var(--rule);
-  padding: 1.25rem 0;
+  border-bottom: 2px solid var(--rule);
+  padding: 1rem 0;
 }
 
 nav {
-  width: min(var(--max-width), calc(100vw - 48px));
+  width: min(var(--wide-width), calc(100vw - 48px));
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
 }
 
 .logo {
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--ink);
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   transition: opacity 160ms ease;
 }
 
-.logo:hover { opacity: 0.8; }
+.logo:hover { opacity: 0.7; }
 .logo span { color: var(--accent); }
-.logo-icon { width: 22px; height: 22px; }
+.logo-icon { width: 20px; height: 20px; }
 
-.nav-links {
-  display: flex;
-  gap: 1.75rem;
-}
+.nav-links { display: flex; gap: 2rem; }
 
 .nav-links a {
   font-family: var(--font-sans);
   color: var(--muted);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 500;
-  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   transition: color 160ms ease;
 }
 
 .nav-links a:hover { color: var(--ink); }
 
 /* ============================================================
-   Main content area
+   Main
    ============================================================ */
 
 main {
   width: min(var(--max-width), calc(100vw - 48px));
   margin: 0 auto;
-  padding: 3rem 0 4rem;
+  padding: 2.5rem 0 5rem;
 }
 
 /* ============================================================
-   Hero — editorial, centered
+   Hero — journal title page
    ============================================================ */
 
 .hero {
   padding: 5rem 0 4rem;
   text-align: center;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 3rem;
 }
 
 .hero h1 {
   font-family: var(--font-mono);
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   font-weight: 700;
   color: var(--ink);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   letter-spacing: -0.03em;
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
 .hero h1 span { color: var(--accent); }
 
 .tagline {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: var(--muted);
-  margin-bottom: 0.25rem;
   font-style: italic;
+  margin-bottom: 0.3rem;
 }
 
 .subtitle {
   font-family: var(--font-sans);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   color: var(--muted);
+  letter-spacing: 0.02em;
 }
 
 .agent-callout a {
   color: var(--accent);
   text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  transition: border-color 160ms ease;
+  border-bottom: 1px dotted var(--accent);
 }
-.agent-callout a:hover { border-color: var(--accent); }
 
 /* ============================================================
-   Experiment & finding cards — soft, elevated
+   Cards — journal article listings
    ============================================================ */
 
-.experiments-list {
-  margin: 2.5rem 0;
-}
+.experiments-list { margin: 2rem 0; }
 
 .experiments-list h2 {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
-  margin-bottom: 1.25rem;
+  font-size: 0.72rem;
+  margin-bottom: 1.5rem;
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   font-weight: 600;
 }
 
@@ -175,28 +180,26 @@ main {
   display: block;
   background: var(--surface);
   border: 1px solid var(--rule);
-  border-radius: 16px;
-  padding: 1.75rem;
-  margin-bottom: 1rem;
+  border-left: 3px solid var(--rule);
+  border-radius: 2px 8px 8px 2px;
+  padding: 1.5rem 1.75rem 1.5rem 1.5rem;
+  margin-bottom: 0.75rem;
   text-decoration: none;
   color: var(--ink);
-  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
-  box-shadow: 0 2px 8px hsl(var(--shadow-color) / 0.15);
+  transition: border-left-color 200ms ease, background 200ms ease;
 }
 
 .experiment-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px hsl(var(--shadow-color) / 0.25);
-  border-color: color-mix(in srgb, var(--accent) 30%, var(--rule) 70%);
+  border-left-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 2%, var(--surface));
 }
 
 .experiment-card h3 {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
-  margin: 0.6rem 0 0.5rem;
-  line-height: 1.4;
+  font-size: 1.05rem;
+  margin: 0.4rem 0 0.4rem;
+  line-height: 1.45;
   font-weight: 600;
-  letter-spacing: -0.01em;
 }
 
 .card-header {
@@ -207,65 +210,60 @@ main {
 
 .card-header time {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--muted);
 }
 
 .card-meta {
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-family: var(--font-mono);
 }
 
 .card-result {
-  margin-top: 0.75rem;
+  margin-top: 0.6rem;
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--accent);
 }
 
 /* ============================================================
-   Tags — pill-shaped, colored
+   Tags — small, typographic
    ============================================================ */
 
-.tags, .card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin: 0.5rem 0;
-}
+.tags, .card-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.4rem 0; }
 
 .tag {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-family: var(--font-mono);
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
   font-weight: 500;
-  letter-spacing: 0.01em;
+  border: 1px solid;
 }
 
-.tag-domain { background: color-mix(in srgb, var(--tag-domain) 15%, transparent); color: var(--tag-domain); }
-.tag-hw { background: color-mix(in srgb, var(--tag-hw) 15%, transparent); color: var(--tag-hw); }
-.tag-method { background: color-mix(in srgb, var(--tag-method) 15%, transparent); color: var(--tag-method); }
+.tag-domain { border-color: color-mix(in srgb, var(--accent-blue) 30%, transparent); color: var(--accent-blue); background: color-mix(in srgb, var(--accent-blue) 5%, transparent); }
+.tag-hw { border-color: color-mix(in srgb, var(--accent-gold) 30%, transparent); color: var(--accent-gold); background: color-mix(in srgb, var(--accent-gold) 5%, transparent); }
+.tag-method { border-color: color-mix(in srgb, var(--accent-rose) 30%, transparent); color: var(--accent-rose); background: color-mix(in srgb, var(--accent-rose) 5%, transparent); }
 
 /* ============================================================
    Status badges
    ============================================================ */
 
 .status {
-  font-size: 0.72rem;
-  font-family: var(--font-mono);
-  padding: 0.2rem 0.65rem;
-  border-radius: 999px;
+  font-size: 0.68rem;
+  font-family: var(--font-sans);
+  padding: 0.15rem 0.55rem;
+  border-radius: 3px;
   text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
-.status-in-progress { background: color-mix(in srgb, #f59e0b 15%, transparent); color: #fbbf24; }
-.status-complete { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); }
-.status-planned { background: color-mix(in srgb, #94a3b8 12%, transparent); color: #94a3b8; }
-.status-critical { background: color-mix(in srgb, #ef4444 15%, transparent); color: #f87171; }
+.status-in-progress { background: color-mix(in srgb, #f59e0b 12%, transparent); color: #fbbf24; border: 1px solid color-mix(in srgb, #f59e0b 25%, transparent); }
+.status-complete { background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); }
+.status-planned { background: color-mix(in srgb, #94a3b8 8%, transparent); color: #94a3b8; border: 1px solid color-mix(in srgb, #94a3b8 20%, transparent); }
+.status-critical { background: color-mix(in srgb, #ef4444 12%, transparent); color: #f87171; border: 1px solid color-mix(in srgb, #ef4444 25%, transparent); }
 
 /* ============================================================
    Experiment detail — meta panel
@@ -274,84 +272,47 @@ main {
 .experiment-meta {
   background: var(--surface);
   border: 1px solid var(--rule);
-  border-radius: 16px;
-  padding: 2rem;
+  border-radius: 6px;
+  padding: 1.75rem 2rem;
   margin-bottom: 3rem;
-  box-shadow: 0 2px 8px hsl(var(--shadow-color) / 0.15);
 }
 
-.meta-row {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-}
+.meta-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.meta-row time { color: var(--muted); font-family: var(--font-mono); font-size: 0.8rem; }
+.meta-row .author a { color: var(--accent); text-decoration: none; font-family: var(--font-sans); font-size: 0.85rem; }
 
-.meta-row time {
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-}
-
-.meta-row .author a {
-  color: var(--accent);
-  text-decoration: none;
-  font-family: var(--font-sans);
-  font-size: 0.88rem;
-}
-
-.hardware-block, .results-summary {
-  margin-top: 1.25rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--rule);
-}
+.hardware-block, .results-summary { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
 
 .hardware-block h4, .results-summary h4 {
   font-family: var(--font-sans);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--muted);
   margin-bottom: 0.6rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
-.hardware-specs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
+.hardware-specs { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
 .hardware-specs .spec {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   background: var(--panel);
-  padding: 0.3rem 0.7rem;
-  border-radius: 10px;
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
   border: 1px solid var(--rule);
   color: var(--ink-secondary);
 }
 
-.results-summary dl {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.4rem 1.25rem;
-  font-size: 0.88rem;
-}
-
-.results-summary dt {
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-}
-
+.results-summary dl { display: grid; grid-template-columns: auto 1fr; gap: 0.35rem 1.25rem; font-size: 0.85rem; }
+.results-summary dt { color: var(--muted); font-family: var(--font-mono); font-size: 0.75rem; }
 .results-summary dd { font-family: var(--font-mono); }
 .result-pass { color: var(--accent); font-weight: 700; }
 .result-fail { color: #ef4444; font-weight: 700; }
 
 /* ============================================================
-   Article content — editorial typography
+   Article content — academic journal typography
    ============================================================ */
 
 .experiment-content {
@@ -363,466 +324,374 @@ main {
 
 .experiment-content h1 {
   font-family: var(--font-serif);
-  font-size: 2.2rem;
-  margin: 3.5rem 0 1.5rem;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-size: 1.9rem;
+  margin: 3rem 0 1.25rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
   color: var(--ink);
   font-weight: 700;
 }
 
 .experiment-content h2 {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
-  margin: 4rem 0 1.25rem;
-  padding-top: 2.5rem;
+  font-size: 1.35rem;
+  margin: 3.5rem 0 1rem;
+  padding-top: 2rem;
   border-top: 1px solid var(--rule);
   color: var(--ink);
-  letter-spacing: -0.015em;
   font-weight: 600;
 }
 
+/* Section numbering feel via small-caps */
 .experiment-content h3 {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 0.88rem;
   margin: 2.5rem 0 0.75rem;
   color: var(--accent);
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
-.experiment-content p {
-  margin-bottom: 1.35rem;
-}
+.experiment-content p { margin-bottom: 1.25rem; }
 
 .experiment-content a {
   color: var(--accent);
   text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-bottom: 1px dotted color-mix(in srgb, var(--accent) 50%, transparent);
   transition: border-color 160ms ease;
 }
+.experiment-content a:hover { border-bottom-style: solid; border-color: var(--accent); }
 
-.experiment-content a:hover { border-color: var(--accent); }
+.experiment-content strong { color: var(--ink); font-weight: 700; }
+.experiment-content em { font-style: italic; color: var(--ink); }
 
-.experiment-content strong {
+/* ============================================================
+   MATHEMATICAL ENVIRONMENTS — the heart of the design
+   ============================================================ */
+
+/* Display math — the main equation environment */
+.katex-display {
+  margin: 2.5rem 0;
+  padding: 1.75rem 2rem;
+  background: var(--theorem-bg);
+  border-left: 2px solid color-mix(in srgb, var(--accent) 60%, var(--rule));
+  border-radius: 0 4px 4px 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+
+.katex-display > .katex { text-align: center; }
+
+.katex {
+  font-size: 1.15em;
   color: var(--ink);
-  font-weight: 700;
+}
+
+/* Inline math — subtle academic styling */
+.katex:not(.katex-display .katex) {
+  padding: 0 0.12em;
+}
+
+.katex .mfrac { padding: 0.12em 0; }
+.katex-mathml { position: absolute; clip: rect(1px,1px,1px,1px); padding: 0; border: 0; height: 1px; width: 1px; overflow: hidden; }
+
+/* Consecutive display equations — group them */
+.katex-display + .katex-display { margin-top: -1rem; }
+
+/* ============================================================
+   Theorem/Proof/Lemma environments via blockquotes
+
+   In markdown:
+     > **Theorem.** Statement here...
+
+   Gets styled as a proper theorem environment.
+   ============================================================ */
+
+.experiment-content blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem 1.75rem;
+  border-left: 2px solid var(--accent-blue);
+  border-radius: 0 4px 4px 0;
+  background: var(--theorem-bg);
+  font-style: normal;
+  color: var(--ink-secondary);
+  position: relative;
+}
+
+/* Proof-style blockquotes: italic body, QED square implied */
+.experiment-content blockquote em {
+  font-style: italic;
+}
+
+/* Nested blockquote = proof environment */
+.experiment-content blockquote blockquote {
+  border-left-color: var(--muted);
+  background: var(--proof-bg);
+  margin: 1rem 0 0.5rem;
+  padding: 1rem 1.5rem;
+  font-style: italic;
+}
+
+/* QED symbol after proofs */
+.experiment-content blockquote blockquote::after {
+  content: '□';
+  display: block;
+  text-align: right;
+  color: var(--muted);
+  font-style: normal;
+  margin-top: 0.5rem;
+}
+
+/* Definition environment */
+.experiment-content blockquote:has(strong:first-child) {
+  border-left-color: var(--accent-gold);
+  background: var(--definition-bg);
 }
 
 /* ============================================================
-   Tables — clean, editorial
+   Tables — journal-quality data presentation
    ============================================================ */
 
 .experiment-content table {
   width: 100%;
   border-collapse: collapse;
   margin: 2rem 0;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   display: block;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 .experiment-content th {
   text-align: left;
-  padding: 0.8rem 1rem;
+  padding: 0.6rem 0.8rem;
   border-bottom: 2px solid var(--rule);
   color: var(--muted);
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-weight: 700;
   white-space: nowrap;
 }
 
 .experiment-content td {
-  padding: 0.7rem 1rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--rule) 60%, transparent);
+  padding: 0.55rem 0.8rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--rule) 50%, transparent);
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--ink-secondary);
 }
 
-.experiment-content tr:hover {
+.experiment-content tbody tr:hover {
   background: color-mix(in srgb, var(--accent) 3%, transparent);
 }
 
+.experiment-content table strong { color: var(--accent); }
+
 /* ============================================================
-   Code — pill-shaped inline, paneled blocks
+   Code — academic monospace
    ============================================================ */
 
 .experiment-content code {
   font-family: var(--font-mono);
-  font-size: 0.85em;
+  font-size: 0.84em;
   background: var(--panel);
-  padding: 0.15em 0.5em;
-  border-radius: 8px;
-  color: var(--accent-warm);
+  padding: 0.12em 0.4em;
+  border-radius: 3px;
+  color: var(--accent);
+  border: 1px solid var(--rule);
 }
 
 .experiment-content pre {
   background: var(--surface);
   border: 1px solid var(--rule);
-  border-radius: 14px;
-  padding: 1.5rem 1.75rem;
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: 2.25rem 0;
-  line-height: 1.6;
-  box-shadow: 0 2px 8px hsl(var(--shadow-color) / 0.1);
+  margin: 2rem 0;
+  line-height: 1.55;
 }
 
 .experiment-content pre code {
   background: none;
   padding: 0;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--ink-secondary);
+  border: none;
   border-radius: 0;
 }
 
 /* ============================================================
-   KaTeX math — editorial, warm panels, distinctive
+   Lists — academic numbering feel
    ============================================================ */
 
-/* Display math — warm paper-like panel */
-.katex-display {
-  margin: 2.75rem -1.5rem;
-  padding: 2rem 2rem;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--accent) 3%, var(--surface)),
-    color-mix(in srgb, var(--tag-method) 2%, var(--surface))
-  );
-  border-left: 3px solid color-mix(in srgb, var(--accent) 50%, var(--rule));
-  border-radius: 0 14px 14px 0;
-  position: relative;
-}
-
-/* Subtle glow on the left accent */
-.katex-display::before {
-  content: '';
-  position: absolute;
-  left: -3px;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--accent);
-  filter: blur(4px);
-  opacity: 0.4;
-}
-
-.katex-display > .katex { text-align: center; }
-
-.katex {
-  font-size: 1.18em;
-  color: var(--ink);
-}
-
-/* Inline math — subtle warm highlight */
-.katex:not(.katex-display .katex) {
-  padding: 0.05em 0.2em;
-  background: color-mix(in srgb, var(--accent) 5%, transparent);
-  border-radius: 4px;
-  border-bottom: 1px solid color-mix(in srgb, var(--accent) 15%, transparent);
-}
-
-.katex .mfrac { padding: 0.15em 0; }
-
-/* Hide MathML accessibility layer */
-.katex-mathml {
-  position: absolute;
-  clip: rect(1px,1px,1px,1px);
-  padding: 0; border: 0;
-  height: 1px; width: 1px;
-  overflow: hidden;
-}
-
-/* ============================================================
-   Theorem/proof environments — editorial boxing
-   Targets content patterns like "**Theorem:**" or "**Proof:**"
-   ============================================================ */
-
-/* Any paragraph starting with bold "Theorem", "Lemma", "Corollary", "Proof" */
-.experiment-content p:has(> strong:first-child) {
-  /* We can't easily detect theorem starts in pure CSS,
-     but we CAN style the bold openers distinctively */
-}
-
-/* Blockquotes used as theorem statements get special treatment */
-.experiment-content blockquote:has(.katex-display),
-.experiment-content blockquote:has(.katex) {
-  border-left-color: color-mix(in srgb, var(--tag-domain) 70%, var(--accent));
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--tag-domain) 4%, var(--surface)),
-    color-mix(in srgb, var(--accent) 2%, var(--surface))
-  );
-  border-radius: 0 16px 16px 0;
-  padding: 1.75rem 2rem;
-  font-style: normal;
-}
-
-/* ============================================================
-   Data tables with math — warm alternating rows
-   ============================================================ */
-
-.experiment-content table:has(.katex) td {
-  vertical-align: middle;
-}
-
-.experiment-content table:has(.katex) tr:nth-child(even) {
-  background: color-mix(in srgb, var(--surface) 80%, var(--panel) 20%);
-}
-
-/* ============================================================
-   Math + text flow — equations between paragraphs
-   ============================================================ */
-
-/* When display math follows a paragraph, tighten the gap */
-.experiment-content p + .katex-display {
-  margin-top: 1.5rem;
-}
-
-/* When a paragraph follows display math, maintain breathing room */
-.experiment-content .katex-display + p {
-  margin-top: 1.5rem;
-}
-
-/* Multiple display equations in sequence — tighter grouping */
-.experiment-content .katex-display + .katex-display {
-  margin-top: -0.5rem;
-  border-top: none;
-  border-radius: 0 0 14px 0;
-}
-
-/* First in a sequence of equations */
-.experiment-content .katex-display:has(+ .katex-display) {
-  margin-bottom: 0;
-  border-radius: 0 14px 0 0;
-}
-
-/* Summary statistics tables — highlight key results */
-.experiment-content table strong {
-  color: var(--accent);
-}
-
-/* ============================================================
-   Blockquotes — left accent, warm
-   ============================================================ */
-
-.experiment-content blockquote {
-  border-left: 3px solid var(--accent);
-  padding: 1.25rem 1.5rem;
-  margin: 2.5rem 0;
-  color: var(--muted);
-  background: var(--surface);
-  border-radius: 0 14px 14px 0;
-  font-style: italic;
-  line-height: 1.7;
-}
-
-/* Horizontal rules */
-.experiment-content hr {
-  border: none;
-  border-top: 1px solid var(--rule);
-  margin: 3.5rem 0;
-}
-
-/* Lists */
 .experiment-content ul, .experiment-content ol {
-  margin: 1rem 0 1.75rem 1.5rem;
+  margin: 1rem 0 1.5rem 1.5rem;
 }
 
 .experiment-content li {
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
   padding-left: 0.25rem;
 }
 
 .experiment-content li p { margin-bottom: 0.5rem; }
 
-/* Images */
-.experiment-content img {
-  max-width: 100%;
-  border-radius: 14px;
-  margin: 2rem 0;
+/* Ordered lists in academic style */
+.experiment-content ol {
+  list-style-type: decimal;
+}
+
+.experiment-content ol ol { list-style-type: lower-alpha; }
+.experiment-content ol ol ol { list-style-type: lower-roman; }
+
+/* ============================================================
+   Horizontal rules — section dividers
+   ============================================================ */
+
+.experiment-content hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 3rem 0;
+}
+
+/* Three-star divider style */
+.experiment-content hr::after {
+  content: '§';
+  display: block;
+  text-align: center;
+  margin-top: -0.75em;
+  color: var(--muted);
+  font-size: 0.9rem;
+  background: var(--page);
+  width: 2em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ============================================================
-   Experiment footer
+   Images
+   ============================================================ */
+
+.experiment-content img {
+  max-width: 100%;
+  border-radius: 4px;
+  margin: 2rem 0;
+  border: 1px solid var(--rule);
+}
+
+/* ============================================================
+   Links footer
    ============================================================ */
 
 .experiment-footer {
   margin-top: 3.5rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--rule);
+  border-top: 2px solid var(--rule);
 }
 
 .code-link {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--accent);
   text-decoration: none;
-  padding: 0.6rem 1.25rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  border-radius: 12px;
-  transition: background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+  padding: 0.5rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 4px;
+  transition: background 160ms ease;
 }
 
-.code-link:hover {
-  background: color-mix(in srgb, var(--accent) 8%, transparent);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px hsl(var(--shadow-color) / 0.15);
-}
+.code-link:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
 
 /* ============================================================
    About page
    ============================================================ */
 
-.about-page h1 {
-  font-family: var(--font-serif);
-  margin-bottom: 1.75rem;
-  letter-spacing: -0.02em;
-}
-
-.about-page h2 {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  color: var(--muted);
-  margin: 3rem 0 1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.8rem;
-}
-
-.about-page p {
-  color: var(--ink-secondary);
-  margin-bottom: 1.1rem;
-  line-height: 1.85;
-}
-
-.about-page ul { margin: 0.75rem 0 1.75rem 1.5rem; }
-.about-page li { margin-bottom: 0.6rem; line-height: 1.7; color: var(--ink-secondary); }
-.about-page a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
-.about-page a:hover { border-color: var(--accent); }
-.who-section { display: flex; gap: 1.75rem; align-items: flex-start; }
-.profile-pic { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--rule); flex-shrink: 0; }
+.about-page h1 { font-family: var(--font-serif); margin-bottom: 1.5rem; }
+.about-page h2 { font-family: var(--font-sans); font-size: 0.72rem; color: var(--muted); margin: 2.5rem 0 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+.about-page p { color: var(--ink-secondary); margin-bottom: 1rem; line-height: 1.8; }
+.about-page ul { margin: 0.5rem 0 1.5rem 1.5rem; }
+.about-page li { margin-bottom: 0.5rem; line-height: 1.7; color: var(--ink-secondary); }
+.about-page a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted color-mix(in srgb, var(--accent) 50%, transparent); }
+.about-page a:hover { border-bottom-style: solid; }
+.who-section { display: flex; gap: 1.5rem; align-items: flex-start; }
+.profile-pic { width: 72px; height: 72px; border-radius: 50%; border: 2px solid var(--rule); flex-shrink: 0; }
 
 /* ============================================================
-   About — sections
+   Home about section
    ============================================================ */
 
-.about {
-  margin: 4rem 0;
-  padding: 3rem 0;
-  border-top: 1px solid var(--rule);
-}
-
-.about h2 {
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  color: var(--muted);
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 600;
-}
-
-.about p {
-  color: var(--muted);
-  margin-bottom: 0.6rem;
-  font-size: 0.92rem;
-  line-height: 1.75;
-}
-
+.about { margin: 3.5rem 0; padding: 2.5rem 0; border-top: 1px solid var(--rule); }
+.about h2 { font-family: var(--font-sans); font-size: 0.72rem; color: var(--muted); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+.about p { color: var(--muted); margin-bottom: 0.5rem; font-size: 0.9rem; }
 .about a { color: var(--accent); text-decoration: none; }
 
 /* ============================================================
-   Footer — disclaimer, links
+   Footer
    ============================================================ */
 
 footer {
-  border-top: 1px solid var(--rule);
+  border-top: 2px solid var(--rule);
   padding: 2.5rem 24px;
   text-align: center;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-family: var(--font-sans);
 }
 
 footer .disclaimer {
   width: min(var(--max-width), calc(100vw - 48px));
-  margin: 0 auto 1.75rem;
-  padding: 1.25rem 1.5rem;
-  border: 1px solid color-mix(in srgb, var(--tag-hw) 20%, var(--rule) 80%);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--tag-hw) 3%, transparent);
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--surface);
   text-align: left;
 }
 
 footer .disclaimer p {
-  font-size: 0.78rem;
-  line-height: 1.65;
+  font-size: 0.75rem;
+  line-height: 1.6;
   color: var(--muted);
   margin: 0;
+  font-family: var(--font-sans);
 }
 
 footer .agent-note {
-  margin-top: 0.4rem;
+  margin-top: 0.35rem;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
 }
 
 footer a { color: var(--accent); text-decoration: none; }
 
 /* ============================================================
-   Responsive — fluid, no harsh breakpoints
+   Responsive
    ============================================================ */
 
 @media (max-width: 768px) {
   html { font-size: 16px; }
-
-  nav { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
-
-  main { padding: 2rem 0 3rem; }
-
+  nav { flex-direction: column; gap: 0.6rem; align-items: flex-start; }
+  main { padding: 1.5rem 0 3rem; }
   .hero { padding: 3rem 0 2.5rem; }
-  .hero h1 { font-size: 2rem; }
-  .tagline { font-size: 1.1rem; }
-
-  .experiment-card { padding: 1.25rem; border-radius: 12px; }
-  .experiment-meta { padding: 1.25rem; border-radius: 12px; }
-
-  .experiment-content h1 { font-size: 1.6rem; margin: 2.5rem 0 1rem; }
-  .experiment-content h2 { font-size: 1.25rem; margin: 3rem 0 1rem; padding-top: 2rem; }
-
+  .hero h1 { font-size: 1.8rem; }
+  .experiment-meta { padding: 1.25rem; }
+  .experiment-content h1 { font-size: 1.5rem; }
+  .experiment-content h2 { font-size: 1.2rem; padding-top: 1.5rem; }
   .hardware-specs { flex-direction: column; }
-  .results-summary dl { grid-template-columns: 1fr; gap: 0.15rem 0; }
-  .results-summary dt { margin-top: 0.5rem; }
-
-  .meta-row { gap: 0.5rem; }
-
-  .katex-display { margin: 2rem -24px; padding: 1.25rem 24px; border-radius: 0; }
-  .experiment-content pre { margin: 1.75rem -24px; border-radius: 0; padding: 1.25rem; }
-
+  .results-summary dl { grid-template-columns: 1fr; }
+  .katex-display { margin-left: -24px; margin-right: -24px; border-radius: 0; padding: 1.25rem 1.5rem; }
+  .experiment-content pre { margin-left: -24px; margin-right: -24px; border-radius: 0; }
   .who-section { flex-direction: column; align-items: center; text-align: center; }
 }
 
 @media (max-width: 400px) {
   html { font-size: 15px; }
-  .hero h1 { font-size: 1.6rem; }
-  .katex { font-size: 1em; }
+  .hero h1 { font-size: 1.5rem; }
 }
-
-/* ============================================================
-   Reduced motion
-   ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
-  .experiment-card:hover { transform: none; }
 }

@@ -1,352 +1,378 @@
-    // ============================================================
-    // Witness Distribution Visualization
-    // ============================================================
-    const witnessCanvas = document.getElementById('witness-canvas');
-    const wCtx = witnessCanvas.getContext('2d');
-    const wSlider = document.getElementById('witness-max-d');
-    const wLabel = document.getElementById('witness-d-label');
+// ============================================================
+// bigcompute.science — Interactive Visualizations
+// ============================================================
 
-    function gcd(a, b) { while (b) { [a, b] = [b, a % b]; } return a; }
+(function() {
+  'use strict';
 
-    function cfQuotients(a, d) {
-      const q = [];
-      while (d !== 0) {
-        q.push(Math.floor(a / d));
-        [a, d] = [d, a % d];
-      }
-      return q;
+  // Utility: setup a canvas with proper DPR handling
+  // Returns { ctx, W, H } where W, H are CSS pixels
+  function setupCanvas(canvas) {
+    var dpr = window.devicePixelRatio || 1;
+    var W = parseInt(canvas.getAttribute('width'));
+    var H = parseInt(canvas.getAttribute('height'));
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    var ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+    return { ctx: ctx, W: W, H: H };
+  }
+
+  function gcd(a, b) {
+    while (b) { var t = b; b = a % b; a = t; }
+    return a;
+  }
+
+  function cfQuotients(a, d) {
+    var q = [];
+    while (d !== 0) {
+      q.push(Math.floor(a / d));
+      var r = a % d;
+      a = d;
+      d = r;
     }
+    return q;
+  }
 
-    function findWitness(d) {
-      for (let a = 1; a <= d; a++) {
-        if (gcd(a, d) === 1) {
-          const pqs = cfQuotients(a, d);
-          if (pqs.every(q => q <= 5)) return { a, pqs };
-        }
+  function findWitness(d) {
+    for (var a = 1; a <= d; a++) {
+      if (gcd(a, d) === 1) {
+        var pqs = cfQuotients(a, d);
+        var ok = true;
+        for (var i = 0; i < pqs.length; i++) { if (pqs[i] > 5) { ok = false; break; } }
+        if (ok) return { a: a, pqs: pqs };
       }
-      return null;
     }
+    return null;
+  }
 
+  function maxOfArray(arr) {
+    var m = arr[0];
+    for (var i = 1; i < arr.length; i++) { if (arr[i] > m) m = arr[i]; }
+    return m;
+  }
+
+  // ============================================================
+  // 1. Witness Distribution
+  // ============================================================
+
+  var witnessCanvas = document.getElementById('witness-canvas');
+  var wSlider = document.getElementById('witness-max-d');
+  var wLabel = document.getElementById('witness-d-label');
+
+  if (witnessCanvas && wSlider) {
     function drawWitness() {
-      const maxD = parseInt(wSlider.value);
+      var c = setupCanvas(witnessCanvas);
+      var ctx = c.ctx, W = c.W, H = c.H;
+      var maxD = parseInt(wSlider.value);
       wLabel.textContent = maxD;
-      const W = witnessCanvas.width, H = witnessCanvas.height;
-      const dpr = window.devicePixelRatio || 1;
-      witnessCanvas.width = W * dpr;
-      witnessCanvas.height = H * dpr;
-      wCtx.scale(dpr, dpr);
-      witnessCanvas.style.width = W + 'px';
-      witnessCanvas.style.height = H + 'px';
 
-      wCtx.fillStyle = '#0b0d10';
-      wCtx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0b0d10';
+      ctx.fillRect(0, 0, W, H);
 
-      const margin = { top: 30, right: 20, bottom: 40, left: 55 };
-      const pw = W - margin.left - margin.right;
-      const ph = H - margin.top - margin.bottom;
+      var margin = { top: 30, right: 20, bottom: 40, left: 55 };
+      var pw = W - margin.left - margin.right;
+      var ph = H - margin.top - margin.bottom;
 
       // Axes
-      wCtx.strokeStyle = '#2a2e35';
-      wCtx.lineWidth = 1;
-      wCtx.beginPath();
-      wCtx.moveTo(margin.left, margin.top);
-      wCtx.lineTo(margin.left, H - margin.bottom);
-      wCtx.lineTo(W - margin.right, H - margin.bottom);
-      wCtx.stroke();
+      ctx.strokeStyle = '#2a2e35';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(margin.left, margin.top);
+      ctx.lineTo(margin.left, H - margin.bottom);
+      ctx.lineTo(W - margin.right, H - margin.bottom);
+      ctx.stroke();
 
-      // Labels
-      wCtx.fillStyle = '#8a8580';
-      wCtx.font = '11px "Helvetica Neue", sans-serif';
-      wCtx.textAlign = 'center';
-      wCtx.fillText('d', W / 2, H - 8);
-      wCtx.save();
-      wCtx.translate(14, H / 2);
-      wCtx.rotate(-Math.PI / 2);
-      wCtx.fillText('α(d) / d', 0, 0);
-      wCtx.restore();
+      // Axis labels
+      ctx.fillStyle = '#8a8580';
+      ctx.font = '11px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('d', W / 2, H - 8);
+      ctx.save();
+      ctx.translate(14, H / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.fillText('\u03B1(d) / d', 0, 0);
+      ctx.restore();
 
-      // Y axis ticks
-      for (let y = 0; y <= 0.5; y += 0.1) {
-        const py = margin.top + ph - (y / 0.5) * ph;
-        wCtx.fillStyle = '#8a8580';
-        wCtx.textAlign = 'right';
-        wCtx.fillText(y.toFixed(1), margin.left - 8, py + 4);
-        wCtx.strokeStyle = '#1a1e25';
-        wCtx.beginPath();
-        wCtx.moveTo(margin.left, py);
-        wCtx.lineTo(W - margin.right, py);
-        wCtx.stroke();
+      // Y grid
+      for (var yv = 0; yv <= 0.5; yv += 0.1) {
+        var py = margin.top + ph - (yv / 0.5) * ph;
+        ctx.fillStyle = '#8a8580';
+        ctx.textAlign = 'right';
+        ctx.font = '10px sans-serif';
+        ctx.fillText(yv.toFixed(1), margin.left - 8, py + 4);
+        ctx.strokeStyle = '#1a1e25';
+        ctx.beginPath();
+        ctx.moveTo(margin.left, py);
+        ctx.lineTo(W - margin.right, py);
+        ctx.stroke();
       }
 
       // Mean line at 0.171
-      const meanY = margin.top + ph - (0.171 / 0.5) * ph;
-      wCtx.strokeStyle = '#5eead4';
-      wCtx.setLineDash([4, 4]);
-      wCtx.beginPath();
-      wCtx.moveTo(margin.left, meanY);
-      wCtx.lineTo(W - margin.right, meanY);
-      wCtx.stroke();
-      wCtx.setLineDash([]);
-      wCtx.fillStyle = '#5eead4';
-      wCtx.textAlign = 'left';
-      wCtx.font = '10px monospace';
-      wCtx.fillText('μ = 0.171', W - margin.right - 65, meanY - 6);
+      var meanY = margin.top + ph - (0.171 / 0.5) * ph;
+      ctx.strokeStyle = '#5eead4';
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(margin.left, meanY);
+      ctx.lineTo(W - margin.right, meanY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#5eead4';
+      ctx.font = '10px monospace';
+      ctx.textAlign = 'left';
+      ctx.fillText('\u03BC = 0.171', W - margin.right - 70, meanY - 6);
 
       // Data points
-      const colors = ['#2a2e35', '#2a2e35', '#2a2e35', '#7dd3fc', '#fcd34d', '#5eead4'];
+      var colors = ['#2a2e35', '#2a2e35', '#2a2e35', '#7dd3fc', '#fcd34d', '#5eead4'];
 
-      for (let d = 6; d <= maxD; d++) {
-        const w = findWitness(d);
+      for (var d = 6; d <= maxD; d++) {
+        var w = findWitness(d);
         if (!w) continue;
-        const ratio = w.a / d;
-        const maxPQ = Math.max.apply(null, w.pqs);
-        const px = margin.left + ((d - 6) / (maxD - 6)) * pw;
-        const py = margin.top + ph - (ratio / 0.5) * ph;
-        const r = Math.max(1.5, Math.min(4, w.pqs.length / 4));
+        var ratio = w.a / d;
+        var maxPQ = maxOfArray(w.pqs);
+        var px = margin.left + ((d - 6) / (maxD - 6)) * pw;
+        var ptY = margin.top + ph - (ratio / 0.5) * ph;
+        var r = Math.max(1.5, Math.min(4, w.pqs.length / 4));
 
-        wCtx.beginPath();
-        wCtx.arc(px, py, r, 0, Math.PI * 2);
-        wCtx.fillStyle = colors[maxPQ] || '#5eead4';
-        wCtx.globalAlpha = 0.7;
-        wCtx.fill();
-        wCtx.globalAlpha = 1;
+        ctx.beginPath();
+        ctx.arc(px, ptY, r, 0, Math.PI * 2);
+        ctx.fillStyle = colors[maxPQ] || '#5eead4';
+        ctx.globalAlpha = 0.7;
+        ctx.fill();
+        ctx.globalAlpha = 1;
       }
     }
 
     wSlider.addEventListener('input', drawWitness);
     drawWitness();
+  }
 
-    // ============================================================
-    // Spectral Gap Visualization
-    // ============================================================
-    const specCanvas = document.getElementById('spectral-canvas');
-    const sCtx = specCanvas.getContext('2d');
-    const tooltip = document.getElementById('spectral-tooltip');
+  // ============================================================
+  // 2. Spectral Gap Landscape
+  // ============================================================
 
-    // Fetch spectral data
-    let spectralData = [];
+  var specCanvas = document.getElementById('spectral-canvas');
+  var tooltip = document.getElementById('spectral-tooltip');
+  var spectralData = [];
 
-    async function loadSpectralData() {
-      try {
-        const resp = await fetch('/data/spectral-gaps.json');
-        const json = await resp.json();
-        spectralData = json.data;
-        drawSpectral();
-      } catch (e) {
-        // Fallback: draw placeholder
-        sCtx.fillStyle = '#8a8580';
-        sCtx.font = '14px serif';
-        sCtx.textAlign = 'center';
-        sCtx.fillText('Loading spectral data...', specCanvas.width / 2, specCanvas.height / 2);
-      }
-    }
-
+  if (specCanvas) {
     function drawSpectral() {
-      const W = specCanvas.width, H = specCanvas.height;
-      const dpr = window.devicePixelRatio || 1;
-      specCanvas.width = W * dpr;
-      specCanvas.height = H * dpr;
-      sCtx.scale(dpr, dpr);
-      specCanvas.style.width = W + 'px';
-      specCanvas.style.height = H + 'px';
+      var c = setupCanvas(specCanvas);
+      var ctx = c.ctx, W = c.W, H = c.H;
 
-      sCtx.fillStyle = '#0b0d10';
-      sCtx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0b0d10';
+      ctx.fillRect(0, 0, W, H);
 
-      const margin = { top: 30, right: 20, bottom: 40, left: 55 };
-      const pw = W - margin.left - margin.right;
-      const ph = H - margin.top - margin.bottom;
-      const maxM = spectralData.reduce(function(a,b){return a.m>b.m?a:b}).m;
+      if (spectralData.length === 0) {
+        ctx.fillStyle = '#8a8580';
+        ctx.font = '14px serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Loading spectral data...', W / 2, H / 2);
+        return;
+      }
+
+      var margin = { top: 30, right: 20, bottom: 40, left: 55 };
+      var pw = W - margin.left - margin.right;
+      var ph = H - margin.top - margin.bottom;
+
+      var maxM = 0;
+      for (var i = 0; i < spectralData.length; i++) {
+        if (spectralData[i].m > maxM) maxM = spectralData[i].m;
+      }
 
       // Grid
-      sCtx.strokeStyle = '#1a1e25';
-      sCtx.lineWidth = 1;
-      for (let g = 0; g <= 1; g += 0.2) {
-        const y = margin.top + ph - g * ph;
-        sCtx.beginPath();
-        sCtx.moveTo(margin.left, y);
-        sCtx.lineTo(W - margin.right, y);
-        sCtx.stroke();
-        sCtx.fillStyle = '#8a8580';
-        sCtx.textAlign = 'right';
-        sCtx.font = '10px sans-serif';
-        sCtx.fillText(g.toFixed(1), margin.left - 8, y + 3);
+      ctx.strokeStyle = '#1a1e25';
+      ctx.lineWidth = 1;
+      for (var g = 0; g <= 1; g += 0.2) {
+        var y = margin.top + ph - g * ph;
+        ctx.beginPath();
+        ctx.moveTo(margin.left, y);
+        ctx.lineTo(W - margin.right, y);
+        ctx.stroke();
+        ctx.fillStyle = '#8a8580';
+        ctx.textAlign = 'right';
+        ctx.font = '10px sans-serif';
+        ctx.fillText(g.toFixed(1), margin.left - 8, y + 3);
       }
 
       // Axes
-      sCtx.strokeStyle = '#2a2e35';
-      sCtx.lineWidth = 1.5;
-      sCtx.beginPath();
-      sCtx.moveTo(margin.left, margin.top);
-      sCtx.lineTo(margin.left, H - margin.bottom);
-      sCtx.lineTo(W - margin.right, H - margin.bottom);
-      sCtx.stroke();
+      ctx.strokeStyle = '#2a2e35';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(margin.left, margin.top);
+      ctx.lineTo(margin.left, H - margin.bottom);
+      ctx.lineTo(W - margin.right, H - margin.bottom);
+      ctx.stroke();
 
       // Labels
-      sCtx.fillStyle = '#8a8580';
-      sCtx.font = '11px sans-serif';
-      sCtx.textAlign = 'center';
-      sCtx.fillText('modulus m', W / 2, H - 8);
-      sCtx.save();
-      sCtx.translate(14, H / 2);
-      sCtx.rotate(-Math.PI / 2);
-      sCtx.fillText('spectral gap σₘ', 0, 0);
-      sCtx.restore();
+      ctx.fillStyle = '#8a8580';
+      ctx.font = '11px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('modulus m', W / 2, H - 8);
+      ctx.save();
+      ctx.translate(14, H / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.fillText('spectral gap \u03C3\u2098', 0, 0);
+      ctx.restore();
 
       // B-K threshold
-      const threshY = margin.top + ph - 0.672 * ph;
-      sCtx.strokeStyle = '#f87171';
-      sCtx.setLineDash([6, 4]);
-      sCtx.lineWidth = 1;
-      sCtx.beginPath();
-      sCtx.moveTo(margin.left, threshY);
-      sCtx.lineTo(W - margin.right, threshY);
-      sCtx.stroke();
-      sCtx.setLineDash([]);
-      sCtx.fillStyle = '#f87171';
-      sCtx.font = '10px monospace';
-      sCtx.textAlign = 'right';
-      sCtx.fillText('B-K threshold (0.672)', W - margin.right, threshY - 6);
+      var threshY = margin.top + ph - 0.672 * ph;
+      ctx.strokeStyle = '#f87171';
+      ctx.setLineDash([6, 4]);
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(margin.left, threshY);
+      ctx.lineTo(W - margin.right, threshY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#f87171';
+      ctx.font = '10px monospace';
+      ctx.textAlign = 'right';
+      ctx.fillText('B-K threshold (0.672)', W - margin.right, threshY - 6);
 
-      // Data points
-      spectralData.forEach(d => {
-        const x = margin.left + (d.m / maxM) * pw;
-        const y = margin.top + ph - d.gap * ph;
-        sCtx.beginPath();
-        sCtx.arc(x, y, 2, 0, Math.PI * 2);
-        sCtx.fillStyle = d.gap < 0.28 ? '#fbbf24' : '#5eead4';
-        sCtx.globalAlpha = 0.65;
-        sCtx.fill();
-        sCtx.globalAlpha = 1;
-      });
-
-      // Min point
-      const minD = spectralData.reduce((a, b) => a.gap < b.gap ? a : b);
-      const mx = margin.left + (minD.m / maxM) * pw;
-      const my = margin.top + ph - minD.gap * ph;
-      sCtx.beginPath();
-      sCtx.arc(mx, my, 5, 0, Math.PI * 2);
-      sCtx.strokeStyle = '#fbbf24';
-      sCtx.lineWidth = 1.5;
-      sCtx.stroke();
-      sCtx.fillStyle = '#fbbf24';
-      sCtx.font = '10px monospace';
-      sCtx.textAlign = 'left';
-      sCtx.fillText(`m=${minD.m} (${minD.gap.toFixed(3)})`, mx + 8, my + 3);
-
-      // Store positions for hover
-      specCanvas._points = spectralData.map(d => ({
-        x: margin.left + (d.m / maxM) * pw,
-        y: margin.top + ph - d.gap * ph,
-        m: d.m, gap: d.gap, orbits: d.orbits
-      }));
-    }
-
-    specCanvas.addEventListener('mousemove', (e) => {
-      if (!specCanvas._points) return;
-      const rect = specCanvas.getBoundingClientRect();
-      const mx = e.clientX - rect.left;
-      const my = e.clientY - rect.top;
-
-      let closest = null, minDist = 20;
-      for (const p of specCanvas._points) {
-        const dist = Math.hypot(p.x - mx, p.y - my);
-        if (dist < minDist) { closest = p; minDist = dist; }
+      // Points
+      var points = [];
+      for (var i = 0; i < spectralData.length; i++) {
+        var d = spectralData[i];
+        var x = margin.left + (d.m / maxM) * pw;
+        var y = margin.top + ph - d.gap * ph;
+        ctx.beginPath();
+        ctx.arc(x, y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = d.gap < 0.28 ? '#fbbf24' : '#5eead4';
+        ctx.globalAlpha = 0.65;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        points.push({ x: x, y: y, m: d.m, gap: d.gap, orbits: d.orbits || 0 });
       }
 
-      if (closest) {
+      // Min point
+      var minD = spectralData[0];
+      for (var i = 1; i < spectralData.length; i++) {
+        if (spectralData[i].gap < minD.gap) minD = spectralData[i];
+      }
+      var mx = margin.left + (minD.m / maxM) * pw;
+      var my = margin.top + ph - minD.gap * ph;
+      ctx.beginPath();
+      ctx.arc(mx, my, 5, 0, Math.PI * 2);
+      ctx.strokeStyle = '#fbbf24';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      ctx.fillStyle = '#fbbf24';
+      ctx.font = '10px monospace';
+      ctx.textAlign = 'left';
+      ctx.fillText('m=' + minD.m + ' (' + minD.gap.toFixed(3) + ')', mx + 8, my + 3);
+
+      specCanvas._points = points;
+    }
+
+    // Tooltip
+    specCanvas.addEventListener('mousemove', function(e) {
+      if (!specCanvas._points) return;
+      var rect = specCanvas.getBoundingClientRect();
+      var mx = e.clientX - rect.left;
+      var my = e.clientY - rect.top;
+      var closest = null, minDist = 20;
+      for (var i = 0; i < specCanvas._points.length; i++) {
+        var p = specCanvas._points[i];
+        var dist = Math.sqrt((p.x - mx) * (p.x - mx) + (p.y - my) * (p.y - my));
+        if (dist < minDist) { closest = p; minDist = dist; }
+      }
+      if (closest && tooltip) {
         tooltip.style.display = 'block';
         tooltip.style.left = (closest.x + 12) + 'px';
         tooltip.style.top = (closest.y - 10) + 'px';
-        tooltip.textContent = `m=${closest.m}  gap=${closest.gap.toFixed(4)}  orbits=${closest.orbits}`;
-      } else {
+        tooltip.textContent = 'm=' + closest.m + '  gap=' + closest.gap.toFixed(4) + '  orbits=' + closest.orbits;
+      } else if (tooltip) {
         tooltip.style.display = 'none';
       }
     });
 
-    specCanvas.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
-    loadSpectralData();
+    specCanvas.addEventListener('mouseleave', function() {
+      if (tooltip) tooltip.style.display = 'none';
+    });
 
-    // ============================================================
-    // CF Tree Explorer
-    // ============================================================
-    const treeCanvas = document.getElementById('tree-canvas');
-    const tCtx = treeCanvas.getContext('2d');
-    const tSlider = document.getElementById('tree-depth');
-    const tLabel = document.getElementById('tree-depth-label');
-    const tAnimate = document.getElementById('tree-animate');
+    // Load data
+    fetch('/data/spectral-gaps.json')
+      .then(function(r) { return r.json(); })
+      .then(function(json) { spectralData = json.data; drawSpectral(); })
+      .catch(function() { drawSpectral(); });
+  }
 
+  // ============================================================
+  // 3. CF Tree Explorer
+  // ============================================================
+
+  var treeCanvas = document.getElementById('tree-canvas');
+  var tSlider = document.getElementById('tree-depth');
+  var tLabel = document.getElementById('tree-depth-label');
+  var tAnimate = document.getElementById('tree-animate');
+
+  if (treeCanvas && tSlider) {
     function drawTree(maxDepth, animateUpTo) {
-      const W = treeCanvas.width, H = treeCanvas.height;
-      const dpr = window.devicePixelRatio || 1;
-      treeCanvas.width = W * dpr;
-      treeCanvas.height = H * dpr;
-      tCtx.scale(dpr, dpr);
-      treeCanvas.style.width = W + 'px';
-      treeCanvas.style.height = H + 'px';
+      var c = setupCanvas(treeCanvas);
+      var ctx = c.ctx, W = c.W, H = c.H;
 
-      tCtx.fillStyle = '#0b0d10';
-      tCtx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0b0d10';
+      ctx.fillRect(0, 0, W, H);
 
-      const depth = animateUpTo || maxDepth;
-      const denominators = new Set();
-      let nodeCount = 0;
+      var depth = animateUpTo || maxDepth;
+      var denominators = {};
+      var denomCount = 0;
+      var nodeCount = 0;
 
       function drawNode(x, y, qPrev, q, d, spreadX, spreadY) {
         if (d > depth) return;
-        denominators.add(q);
+        if (!denominators[q]) { denominators[q] = true; denomCount++; }
         nodeCount++;
 
-        // Node color by depth
-        const hue = (d / maxDepth) * 120 + 160;
-        const alpha = Math.max(0.3, 1 - d / (maxDepth + 2));
-        tCtx.fillStyle = `hsla(${hue}, 60%, 65%, ${alpha})`;
-        const r = Math.max(1.5, 4 - d * 0.3);
-        tCtx.beginPath();
-        tCtx.arc(x, y, r, 0, Math.PI * 2);
-        tCtx.fill();
+        var hue = (d / maxDepth) * 120 + 160;
+        var alpha = Math.max(0.3, 1 - d / (maxDepth + 2));
+        ctx.fillStyle = 'hsla(' + hue + ', 60%, 65%, ' + alpha + ')';
+        var r = Math.max(1.5, 4 - d * 0.3);
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fill();
 
-        // Children
-        for (let a = 1; a <= 5; a++) {
-          const qNew = a * q + qPrev;
-          const childX = x + (a - 3) * spreadX;
-          const childY = y + spreadY;
+        for (var a = 1; a <= 5; a++) {
+          var qNew = a * q + qPrev;
+          var childX = x + (a - 3) * spreadX;
+          var childY = y + spreadY;
 
-          tCtx.strokeStyle = `hsla(${hue}, 40%, 50%, ${alpha * 0.3})`;
-          tCtx.lineWidth = 0.5;
-          tCtx.beginPath();
-          tCtx.moveTo(x, y);
-          tCtx.lineTo(childX, childY);
-          tCtx.stroke();
+          ctx.strokeStyle = 'hsla(' + hue + ', 40%, 50%, ' + (alpha * 0.3) + ')';
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+          ctx.lineTo(childX, childY);
+          ctx.stroke();
 
           drawNode(childX, childY, q, qNew, d + 1, spreadX * 0.45, spreadY);
         }
       }
 
-      const startY = 30;
-      const spreadX = W / 12;
-      const spreadY = (H - 60) / Math.max(depth, 1);
-
+      var startY = 30;
+      var spreadX = W / 12;
+      var spreadY = (H - 60) / Math.max(depth, 1);
       drawNode(W / 2, startY, 0, 1, 0, spreadX, spreadY);
 
-      // Stats
-      tCtx.fillStyle = '#8a8580';
-      tCtx.font = '11px monospace';
-      tCtx.textAlign = 'left';
-      tCtx.fillText(`depth: ${depth}  nodes: ${nodeCount}  unique denominators: ${denominators.size}`, 10, H - 10);
+      ctx.fillStyle = '#8a8580';
+      ctx.font = '11px monospace';
+      ctx.textAlign = 'left';
+      ctx.fillText('depth: ' + depth + '  nodes: ' + nodeCount + '  unique denominators: ' + denomCount, 10, H - 10);
     }
 
-    tSlider.addEventListener('input', () => {
+    tSlider.addEventListener('input', function() {
       tLabel.textContent = tSlider.value;
       drawTree(parseInt(tSlider.value));
     });
 
-    let animating = false;
-    tAnimate.addEventListener('click', () => {
+    var animating = false;
+    tAnimate.addEventListener('click', function() {
       if (animating) return;
       animating = true;
-      let d = 1;
-      const max = parseInt(tSlider.value);
+      var d = 1;
+      var max = parseInt(tSlider.value);
       function step() {
         drawTree(max, d);
         d++;
@@ -357,3 +383,6 @@
     });
 
     drawTree(6);
+  }
+
+})();

@@ -61,66 +61,75 @@
   function buildParticles() {
     particles = [];
 
-    // Render text to offscreen canvas to get pixel positions
+    // Render text at 2x resolution for clean sampling
+    var scale = 2;
     var offCanvas = document.createElement('canvas');
-    offCanvas.width = W;
-    offCanvas.height = H;
+    offCanvas.width = W * scale;
+    offCanvas.height = H * scale;
     var offCtx = offCanvas.getContext('2d');
 
-    // Title text
     var titleText = 'bigcompute';
     var dotText = '.science';
+    var fullText = titleText + dotText;
 
-    // Find font size that fits
-    fontSize = Math.floor(W / 8);
-    if (fontSize > 72) fontSize = 72;
-    if (fontSize < 24) fontSize = 24;
+    // Font size to fill width nicely
+    fontSize = Math.floor(W / 7.5);
+    if (fontSize > 80) fontSize = 80;
+    if (fontSize < 20) fontSize = 20;
 
+    var scaledFont = fontSize * scale;
     offCtx.fillStyle = '#ffffff';
-    offCtx.font = '700 ' + fontSize + 'px "JetBrains Mono", "Fira Code", monospace';
+    offCtx.font = '800 ' + scaledFont + 'px "JetBrains Mono", "Fira Code", "Courier New", monospace';
     offCtx.textAlign = 'center';
     offCtx.textBaseline = 'middle';
+    offCtx.fillText(fullText, offCanvas.width / 2, offCanvas.height / 2);
 
-    // Draw title
-    var fullText = titleText + dotText;
-    offCtx.fillText(fullText, W / 2, H / 2);
+    // Measure text positions for accent detection
+    var fullW = offCtx.measureText(fullText).width;
+    var titleW = offCtx.measureText(titleText).width;
+    var textStartX = offCanvas.width / 2 - fullW / 2;
+    var dotStartX = textStartX + titleW;
 
-    // Sample pixels
-    var imageData = offCtx.getImageData(0, 0, W, H);
+    // Sample pixels from the high-res render
+    var imageData = offCtx.getImageData(0, 0, offCanvas.width, offCanvas.height);
     var data = imageData.data;
 
-    // Determine grid spacing based on desired density
-    var gap = Math.max(4, Math.floor(fontSize / 8));
-    var charSize = gap * 1.2;
+    // Grid spacing in display pixels — controls particle density
+    var gap = Math.max(3, Math.floor(fontSize / 10));
+    var charSize = Math.max(4, gap * 1.1);
 
     for (var y = 0; y < H; y += gap) {
       for (var x = 0; x < W; x += gap) {
-        var idx = (y * W + x) * 4;
-        var alpha = data[idx + 3];
-        if (alpha > 128) {
-          // Determine if this pixel is in the ".science" part (accent color)
-          // Measure where dotText starts
-          var fullW = offCtx.measureText(fullText).width;
-          var titleW = offCtx.measureText(titleText).width;
-          var textStartX = W / 2 - fullW / 2;
-          var dotStartX = textStartX + titleW;
-          var isAccent = x >= dotStartX;
+        // Sample from the scaled canvas
+        var sx = Math.floor(x * scale);
+        var sy = Math.floor(y * scale);
+
+        // Sample a small area (2x2) to catch thin strokes
+        var hit = false;
+        for (var dy = 0; dy <= 1 && !hit; dy++) {
+          for (var dx = 0; dx <= 1 && !hit; dx++) {
+            var px = sx + dx;
+            var py = sy + dy;
+            if (px < offCanvas.width && py < offCanvas.height) {
+              var idx = (py * offCanvas.width + px) * 4;
+              if (data[idx + 3] > 80) hit = true;
+            }
+          }
+        }
+
+        if (hit) {
+          var isAccent = (sx >= dotStartX);
 
           particles.push({
-            // Target position
             tx: x,
             ty: y,
-            // Current position (start scattered)
-            x: x + (Math.random() - 0.5) * W * 0.8,
-            y: y + (Math.random() - 0.5) * H * 0.8,
-            // Velocity
+            x: x + (Math.random() - 0.5) * W * 0.6,
+            y: y + (Math.random() - 0.5) * H * 1.5,
             vx: 0,
             vy: 0,
-            // Display
             char: MATH_CHARS[Math.floor(Math.random() * MATH_CHARS.length)],
             size: charSize,
             accent: isAccent,
-            // Slight phase offset for shimmer
             phase: Math.random() * Math.PI * 2
           });
         }

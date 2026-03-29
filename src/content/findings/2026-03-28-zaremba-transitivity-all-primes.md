@@ -91,15 +91,16 @@ We independently verified transitivity by exhaustive BFS for all 1,229 primes up
 
 This means the singular series $S(d) > 0$ for all $d$, eliminating local obstructions as a barrier to the conjecture.
 
-### Combined with Spectral Gaps
+### Combined with Other Results
 
-Together with our [spectral gap data](/findings/zaremba-spectral-gaps-uniform/) ($\sigma_m \geq 0.237$ for 1,214 square-free moduli), this gives:
+Together with our other findings, this gives a comprehensive picture:
 
-1. **No local obstructions** (transitivity at all primes up to 10,000)
-2. **Uniform spectral gap** (property ($\tau$) confirmed to $m = 1999$)
-3. **Brute-force verification** (zero failures to $d = 10^7$, extending to $10^9$)
+1. **No local obstructions** (transitivity proved for ALL primes — this page)
+2. **Uniform spectral gap** (property ($\tau$) confirmed: $\sigma_m \geq 0.237$ for 1,214 square-free moduli — [spectral gaps](/findings/zaremba-spectral-gaps-uniform/))
+3. **Brute-force verification** (zero failures to $d = 10^{10}$, 179 seconds on 8× B200)
+4. **Cayley graph diameters** ($\text{diam}(p) \leq 2 \log p$ for all 669 primes $\leq 1021$ — [Cayley diameters](/findings/zaremba-cayley-diameters/))
 
-The only remaining gap: making the error terms in Bourgain-Kontorovich's circle method effective to obtain an explicit $Q_0$.
+The remaining gap: making the error terms in the Bourgain-Kontorovich circle method effective to obtain an explicit $Q_0$. The Cayley diameter bound $\text{diam}(p) \sim 1.45 \log p$ constrains the maximum CF length needed modulo any prime, which feeds directly into the minor arc estimates.
 
 ## Method
 
@@ -130,14 +131,15 @@ Every prime has exactly 2 orbits:
 ## Code
 
 ```bash
-# Compile (requires GCC with OpenMP)
-gcc -O3 -fopenmp -o transitivity /tmp/transitivity.c -lm
+# Compile (requires CUDA toolkit)
+nvcc -O3 -arch=sm_100a -o check_transitivity \
+    scripts/experiments/zaremba-transitivity/check_transitivity.cu
 
-# Run
-./transitivity 10000
+# Run for all primes up to 10,000
+./check_transitivity 10000
 ```
 
-Source: [`scripts/experiments/zaremba-transitivity/check_transitivity.cu`](https://github.com/cahlen/idontknow)
+Source: [`scripts/experiments/zaremba-transitivity/`](https://github.com/cahlen/idontknow)
 
 ## References
 

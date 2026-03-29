@@ -38,6 +38,9 @@
   var dpr = window.devicePixelRatio || 1;
   var W, H, fontSize, particles = [];
   var mouseX = -9999, mouseY = -9999;
+  var titleTextGlobal = 'bigcompute';
+  var dotTextGlobal = '.science';
+  var titleTextWidth = 0, dotTextWidth = 0;
   var REPEL_RADIUS = 80;
   var REPEL_FORCE = 8;
   var SPRING = 0.08;
@@ -89,11 +92,17 @@
     offCtx.textBaseline = 'middle';
     offCtx.fillText(fullText, offCanvas.width / 2, offCanvas.height / 2);
 
-    // Measure text positions for accent detection
+    // Measure text positions for accent detection and background draw
     var fullW = offCtx.measureText(fullText).width;
     var titleW = offCtx.measureText(titleText).width;
     var textStartX = offCanvas.width / 2 - fullW / 2;
     var dotStartX = textStartX + titleW;
+
+    // Store for the animate background text
+    // Measure at display scale (not offscreen scale)
+    ctx.font = '800 ' + fontSize + 'px "JetBrains Mono", "Fira Code", "Courier New", monospace';
+    titleTextWidth = ctx.measureText(titleTextGlobal).width;
+    dotTextWidth = ctx.measureText(dotTextGlobal).width;
 
     // Sample pixels from the high-res render
     var imageData = offCtx.getImageData(0, 0, offCanvas.width, offCanvas.height);
@@ -145,6 +154,20 @@
   function animate() {
     ctx.clearRect(0, 0, W, H);
 
+    // Draw solid text underneath as a readable "shadow"
+    ctx.font = '800 ' + fontSize + 'px "JetBrains Mono", "Fira Code", "Courier New", monospace';
+    ctx.textBaseline = 'middle';
+    var totalW = titleTextWidth + dotTextWidth;
+    var startX = (W - totalW) / 2;
+
+    ctx.globalAlpha = 0.18;
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#e8e6e3';
+    ctx.fillText(titleTextGlobal, startX, H / 2);
+    ctx.fillStyle = '#5eead4';
+    ctx.fillText(dotTextGlobal, startX + titleTextWidth, H / 2);
+    ctx.globalAlpha = 1;
+
     var time = Date.now() * 0.001;
 
     for (var i = 0; i < particles.length; i++) {
@@ -174,19 +197,30 @@
       p.x += p.vx;
       p.y += p.vy;
 
-      // Shimmer opacity
-      var shimmer = 0.6 + 0.4 * Math.sin(time * 1.5 + p.phase);
+      // Distance from target — settled particles are bright and still
+      var distFromHome = Math.sqrt(dx * dx + dy * dy);
+      var settled = 1 - Math.min(1, distFromHome / 20);
 
-      // Distance from target affects opacity (settled = brighter)
-      var settled = 1 - Math.min(1, Math.sqrt(dx * dx + dy * dy) / 30);
-      var alpha = shimmer * (0.4 + 0.6 * settled);
+      // Settled: high opacity, slight shimmer. Displaced: more transparent
+      var shimmer = 0.85 + 0.15 * Math.sin(time * 1.2 + p.phase);
+      var alpha = settled * shimmer * 0.9 + (1 - settled) * 0.3;
 
       ctx.globalAlpha = alpha;
       ctx.fillStyle = p.accent ? '#5eead4' : '#e8e6e3';
-      ctx.font = Math.floor(p.size) + 'px serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(p.char, p.x, p.y);
+
+      // Settled particles are small dots, displaced are math symbols
+      if (distFromHome < 3) {
+        // Tight dot — reads as clean text
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * 0.35, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        // Scattered — show the math symbol
+        ctx.font = Math.floor(p.size) + 'px serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(p.char, p.x, p.y);
+      }
     }
 
     ctx.globalAlpha = 1;

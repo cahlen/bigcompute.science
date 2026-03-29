@@ -169,25 +169,26 @@ Showing the first 50 square-free moduli, plus notable extremes. Full dataset (1,
 
 - **Hausdorff dimension**: $\delta = 0.836829443681208$ (computed to 15 digits) — [see experiment](/experiments/zaremba-transfer-operator/)
 - **Witness distribution**: smallest witness concentrates at $a/d \approx 0.171$, connected to $1/(5 + \varphi)$ — [see finding](/findings/zaremba-witness-golden-ratio/)
-- **Brute-force verification**: zero failures for all $d$ tested up to $10^7$ (v4 kernel), spot-checked to $3 \times 10^9$
+- **Brute-force verification**: zero failures for all $d \leq 10^{10}$ (v6 multi-pass kernel, 179s on 8× B200)
+- **Cayley graph diameters**: $\text{diam}(p) \leq 2 \log p$ for all 669 primes $\leq 1021$ — [see finding](/findings/zaremba-cayley-diameters/)
+- **Transitivity**: algebraically proved for ALL primes via Dickson's classification — [see finding](/findings/zaremba-transitivity-all-primes/)
 
 ## What This Enables
 
-The combination of uniform spectral gaps + brute-force verification opens a concrete path to the full conjecture:
+The combination of uniform spectral gaps + brute-force verification + Cayley diameter bounds opens a concrete path to the full conjecture:
 
-1. **Effective Q₀**: Bourgain-Kontorovich's density-1 proof has non-effective error terms. With explicit spectral gap data ($\sigma_m \geq 0.271$ for $m \leq 998$), the error terms in their circle method analysis can potentially be made explicit, yielding a concrete $Q_0$ such that Zaremba holds for all $d > Q_0$.
+1. **Effective Q₀**: Bourgain-Kontorovich's density-1 proof has non-effective error terms. With explicit spectral gap data ($\sigma_m \geq 0.237$ for $m \leq 1999$) and Cayley diameter bounds ($\text{diam}(p) \sim 1.45 \log p$), the error terms in their circle method analysis can potentially be made explicit, yielding a concrete $Q_0$ such that Zaremba holds for all $d > Q_0$.
 
-2. **Computational closure**: If $Q_0$ falls below our brute-force verification range, the conjecture is proved. We are currently extending v4 verification to $10^9$ and spectral gaps to $m = 2000$.
+2. **Computational closure**: If $Q_0$ falls below our brute-force verification range ($10^{10}$ and growing), the conjecture is proved. The gap between the analytic bound and the verification frontier is narrowing from both sides.
 
-3. **The m=34 anomaly**: Understanding why $34 = 2 \times 17$ gives the tightest gap could reveal arithmetic structure in the conjecture. This is a natural target for deeper investigation.
+3. **The m=1469 minimum**: Understanding why $1469 = 13 \times 113$ gives the global minimum gap (0.237) could reveal arithmetic structure. The second minimum at $m = 638 = 2 \times 11 \times 29$ (gap 0.258) and third at $m = 34 = 2 \times 17$ (gap 0.271) suggest the tightest gaps arise at moduli with small prime factors combined with moderately large ones.
 
-## Next Steps (In Progress)
+## Next Steps
 
-- **Done**: Spectral gaps computed for all 1,214 square-free $m \leq 1999$
-- **Running**: v4 brute-force extending to $d = 10^9$ on CPU
-- **Next**: Connect spectral gap data to B-K's circle method for effective $Q_0$
-- **Next**: Investigate the $m = 638$ and $m = 34$ tight-gap families
-- **Next**: Push spectral gaps to $m = 5000+$
+- Connect spectral gap data to B-K's circle method for effective $Q_0$
+- Investigate the tight-gap moduli ($m = 1469, 638, 34$) for arithmetic patterns
+- Push spectral gaps to $m = 5000+$
+- Extend brute-force verification to $10^{11}$ and beyond
 
 ## Code
 

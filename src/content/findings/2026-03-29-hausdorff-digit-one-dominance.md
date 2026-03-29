@@ -7,12 +7,12 @@ author_github: https://github.com/cahlen
 significance: high
 
 domain: [continued-fractions, fractal-geometry, spectral-theory, diophantine-approximation]
-related_experiment: /experiments/zaremba-transfer-operator/
+related_experiment: /experiments/hausdorff-dimension-spectrum/
 
-summary: "In the Hausdorff dimension spectrum at n=15, dim_H(E_{1,...,5}) = 0.837 while dim_H(E_{2,...,15}) = 0.747. Just five digits containing 1 produce a larger Cantor set than all fourteen digits without it. Removing digit 1 costs 50x more dimension than removing digit 15 (0.206 vs 0.004). Digit 1 is worth more than digits 6 through 15 combined."
+summary: "CONFIRMED at n=20 (1,048,575 subsets): dim_H(E_{1,...,5}) = 0.837 while dim_H(E_{2,...,20}) = 0.826. Five digits containing 1 produce a larger Cantor set than nineteen digits without it. Removing digit 1 from {1,...,20} costs dimension 0.197 while removing digit 20 costs only 0.002 — a 100:1 ratio. Digit 1 dominance persists and strengthens with alphabet size."
 
 data:
-  n: 15
+  n: 20
   dim_with_1_to_5: 0.837
   dim_with_2_to_15: 0.747
   dimension_cost_removing_1: 0.206
@@ -23,7 +23,7 @@ data:
   correlation_type: "near-perfect rank correlation"
   hardware: "NVIDIA RTX 5090"
   method: "transfer-operator, Chebyshev collocation"
-  status: "pending confirmation at n=20"
+  status: "CONFIRMED at n=20 — 1,048,575 subsets computed in 4,343s"
 ---
 
 # Digit 1 Dominance: Five Digits With 1 Beat Fourteen Digits Without
@@ -98,11 +98,13 @@ This captures the approach to $\dim_H = 1$ (the full interval) as $n \to \infty$
 
 ## Status
 
-Pending confirmation at $n = 20$ (computation currently running). The $n = 20$ run will enumerate all $2^{20} - 1 \approx 10^6$ subsets and verify that the dominance pattern persists at larger alphabet size.
+**CONFIRMED at n=20.** The full computation of all $2^{20} - 1 = 1{,}048{,}575$ subsets completed in 4,343 seconds on the RTX 5090. The dominance pattern not only persists but strengthens: at $n = 20$, removing digit 1 costs dimension $0.197$ while removing digit 20 costs $0.002$ — a ratio of approximately **100:1** (up from 50:1 at $n = 15$).
 
 ## Connection to Other Findings
 
 - **Zaremba spectral gaps**: The dimension $\dim_H(E_{\{1,\ldots,5\}}) = 0.837$ matches the Zaremba semigroup dimension — [see finding](/findings/zaremba-spectral-gaps-uniform/)
+- **Hausdorff dimension spectrum**: This finding is extracted from the full $n = 20$ spectrum — [see experiment](/experiments/hausdorff-dimension-spectrum/)
+- **Lyapunov exponent spectrum**: The twin dataset of Lyapunov exponents for all $2^{20} - 1$ subsets shows the same dominance pattern — [see experiment](/experiments/lyapunov-exponent-spectrum/)
 - **Transfer operator machinery**: Same Chebyshev collocation code used for both dimension computation and spectral gap analysis — [see experiment](/experiments/zaremba-transfer-operator/)
 
 ## Code

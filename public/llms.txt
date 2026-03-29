@@ -34,13 +34,14 @@ We publish results from computations that require significant hardware and custo
 
 ## Current content
 
-### Experiments (6)
+### Experiments (7)
 1. `/experiments/zaremba-conjecture-8b-verification/` — Zaremba's Conjecture verification via CUDA + LLM proving (in-progress)
 2. `/experiments/zaremba-transfer-operator/` — Transfer operator spectral analysis for Zaremba (complete)
 3. `/experiments/mcts-proof-search-benchmark/` — MCTS vs naive sampling for LLM theorem proving (planned)
 4. `/experiments/ramsey-r55-lower-bound/` — Ramsey R(5,5) lower bound search (planned)
 5. `/experiments/class-numbers-real-quadratic/` — Class numbers of real quadratic fields to 10^13 (planned)
 6. `/experiments/kronecker-coefficients-gpu/` — Kronecker coefficients to n=120 (planned)
+7. `/experiments/hausdorff-dimension-spectrum/` — First complete Hausdorff dimension spectrum for all 2^20 - 1 subsets of {1,...,20} (in-progress)
 
 ### Findings (3)
 1. `/findings/zaremba-spectral-gaps-uniform/` — Congruence spectral gaps for Zaremba's semigroup are uniform across 1,214 square-free moduli up to m=1999 (high significance)
@@ -91,13 +92,13 @@ zaremba_conjecture:
 ## Tags
 
 ### Domain
-number-theory, continued-fractions, open-conjectures, spectral-theory, algebraic-combinatorics, combinatorics, ramsey-theory, algebraic-number-theory, theorem-proving, ai, search-algorithms, dynamical-systems
+number-theory, continued-fractions, open-conjectures, spectral-theory, algebraic-combinatorics, combinatorics, ramsey-theory, algebraic-number-theory, theorem-proving, ai, search-algorithms, dynamical-systems, fractal-geometry, diophantine-approximation, hausdorff-dimension
 
 ### Hardware
-b200, dgx, nvlink, a100, h100, tpu-v5
+b200, dgx, nvlink, a100, h100, tpu-v5, rtx-5090
 
 ### Method
-cuda-kernel, brute-force, llm-proving, formal-verification, transfer-operator, chebyshev-collocation, mcts, tree-search, simulated-annealing, segmented-sieve, miller-rabin
+cuda-kernel, brute-force, llm-proving, formal-verification, transfer-operator, chebyshev-collocation, mcts, tree-search, simulated-annealing, segmented-sieve, miller-rabin, power-iteration, eigenvalue-computation
 
 ## About
 See `/about/` for the project's mission and how to contribute.

@@ -25,10 +25,10 @@
   --proof-bg: #10130e;
   --definition-bg: #14110e;
 
-  /* Academic typography */
-  --font-serif: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  /* Academic typography — loaded via Google Fonts */
+  --font-serif: 'STIX Two Text', 'Palatino Linotype', Palatino, Georgia, serif;
+  --font-sans: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
   /* Layout — journal column width */
   --max-width: 740px;

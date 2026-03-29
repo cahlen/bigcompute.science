@@ -114,6 +114,9 @@ Requires: CUDA 13.0+, GPU with compute capability 12.0 (RTX 5090) or adjust `-ar
 
 - M. Kesseböhmer and B. O. Stratmann, "A multifractal analysis for Stern-Brocot intervals, continued fractions and Diophantine growth rates," *J. reine angew. Math.* **605** (2007), 133-163.
 - M. Kesseböhmer and B. O. Stratmann, "Fractal analysis for sets of non-differentiability of Minkowski's question mark function," *J. Number Theory* **128** (2008), 2663-2686.
+- Minkowski, H. (1904). "Zur Geometrie der Zahlen." *Verhandlungen des III Internationalen Mathematiker-Kongresses*, pp. 164–173.
+- Salem, R. (1943). "On some singular monotonic functions which are strictly increasing." *Transactions of the AMS*, 53(3), pp. 427–439.
+- Denjoy, A. (1938). "Sur une fonction de Minkowski." *Journal de Mathématiques Pures et Appliquées*, 17, pp. 105–151.
 
 ## Why This Matters for AI
 

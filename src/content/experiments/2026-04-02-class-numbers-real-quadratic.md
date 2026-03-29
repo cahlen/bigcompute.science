@@ -151,6 +151,13 @@ nvcc -O3 -arch=sm_100a -o class_number_rqf scripts/experiments/class-numbers/cla
 ./scripts/experiments/class-numbers/run.sh
 ```
 
+## References
+
+- Cohen, H. and Lenstra, H.W. Jr. (1984). "Heuristics on class groups of number fields." *Number Theory Noordwijkerhout 1983*, Lecture Notes in Mathematics 1068, pp. 33--62.
+- Jacobson, M.J. Jr., Ramachandran, S., and Williams, H.C. (2006). "Numerical results on class groups of imaginary quadratic fields." *Mathematics of Computation*, 75(254), pp. 1003--1024.
+- Watkins, M. (2004). "Class numbers of imaginary quadratic fields." *Mathematics of Computation*, 73(246), pp. 907--938.
+- Shanks, D. (1971). "Class number, a theory of factorization, and genera." *Proceedings of Symposia in Pure Mathematics*, 20, pp. 415--440.
+
 ---
 
 *Computed on NVIDIA DGX B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

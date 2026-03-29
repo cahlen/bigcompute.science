@@ -52,6 +52,12 @@ This growth rate is exactly what the transfer operator predicts: the number of C
 
 GPU representation counter (`exponential_sum.cu`): enumerates all CF sequences with partial quotients $\leq 5$ and denominators $\leq N$, counting how many produce each denominator $d$. Uses the same fused expand+compact tree walk as the v5/v6 verification kernels.
 
+## References
+
+- Zaremba, S.K. (1972). "La méthode des 'bons treillis' pour le calcul des intégrales multiples." Applications of Number Theory to Numerical Analysis, pp. 39–119.
+- Bourgain, J. and Kontorovich, A. (2014). "On Zaremba's conjecture." Annals of Mathematics, 180(1), pp. 137–196.
+- Hensley, D. (1992). "Continued fraction Cantor sets, Hausdorff dimension, and functional analysis." Journal of Number Theory, 40(3), pp. 336–358.
+
 ---
 
 *Computed on NVIDIA B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

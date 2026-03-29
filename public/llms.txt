@@ -46,10 +46,14 @@ We publish results from computations that require significant hardware and custo
 9. `/experiments/lyapunov-exponent-spectrum/` — Lyapunov exponent λ(A) for all 2^20 - 1 subsets of {1,...,20}, twin dataset with Hausdorff spectrum (complete)
 10. `/experiments/minkowski-spectrum/` — First numerical computation of the multifractal singularity spectrum f(α) of the Minkowski ?(x) function (complete)
 
-### Findings (3)
+### Findings (7)
 1. `/findings/zaremba-spectral-gaps-uniform/` — Congruence spectral gaps for Zaremba's semigroup are uniform across 1,214 square-free moduli up to m=1999 (high significance)
 2. `/findings/zaremba-transitivity-all-primes/` — Semigroup acts transitively on (Z/pZ)² for ALL 1,229 primes up to 10,000 — no local obstructions (high significance)
 3. `/findings/zaremba-witness-golden-ratio/` — Zaremba witnesses concentrate at a/d ≈ 0.171, connected to golden ratio (medium significance)
+4. `/findings/zaremba-cayley-diameters/` — Cayley graph diameters diam(p) ≤ 2·log(p) for all 669 primes to 1021, bounding max CF length mod p (high significance)
+5. `/findings/gpu-matrix-enumeration-175x/` — GPU matrix enumeration kernel: 175× speedup via batched 2×2 matrix multiply (medium significance)
+6. `/findings/hausdorff-digit-one-dominance/` — Digit 1 dominance in Hausdorff dimension spectrum (medium significance)
+7. `/findings/zaremba-representation-growth/` — Representation count R(d) grows as d^0.674 (medium significance)
 
 ## Key results (machine-readable summary)
 
@@ -85,6 +89,14 @@ zaremba_conjecture:
     theorems_proved: 19/20
     models: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
     score: "10-10 split"
+  cayley_diameters:
+    primes_computed: 669
+    max_prime: 1021
+    max_diameter: 10
+    ratio_range: [1.37, 2.89]
+    ratio_trend: "decreasing, converges to ~1.45"
+    conjectured_bound: "diam(p) ≤ 2·log(p)"
+    computation_time: "40 seconds on 8× B200"
   witness_distribution:
     mean_ratio: 0.1712
     dominant_cf_prefix: "[0, 5, 1, ...]"

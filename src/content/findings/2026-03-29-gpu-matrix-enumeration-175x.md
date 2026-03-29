@@ -59,6 +59,11 @@ The compaction is critical: without it, the matrix count grows as $5^k$ (exponen
 - **Memory efficient**: fused expand+compact means we never store more than 2 buffers of live matrices
 - **Naturally pruning**: the denominator bound eliminates dead branches at every step
 
+## References
+
+- Zaremba, S.K. (1972). "La méthode des 'bons treillis' pour le calcul des intégrales multiples." Applications of Number Theory to Numerical Analysis, pp. 39–119.
+- Bourgain, J. and Kontorovich, A. (2014). "On Zaremba's conjecture." Annals of Mathematics, 180(1), pp. 137–196.
+
 ---
 
 *Computed on NVIDIA DGX B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

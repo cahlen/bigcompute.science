@@ -95,6 +95,12 @@ mkdir -p scripts/experiments/lyapunov-spectrum/results
 
 Requires: CUDA 13.0+, GPU with compute capability 12.0 (RTX 5090) or adjust `-arch` flag.
 
+## References
+
+- Jenkinson, O. and Pollicott, M. (2001). "Computing the dimension of dynamically defined sets: E_2 and bounded continued fraction entries." *Ergodic Theory and Dynamical Systems*, 21(5), pp. 1429–1445.
+- Hensley, D. (1992). "Continued fraction Cantor sets, Hausdorff dimension, and functional analysis." *Journal of Number Theory*, 40(3), pp. 336–358.
+- Oseledets, V.I. (1968). "A multiplicative ergodic theorem. Characteristic Ljapunov exponents of dynamical systems." *Trudy Moskovskogo Matematicheskogo Obshchestva*, 19, pp. 179–210.
+
 ## Why This Matters for AI
 
 - **Twin dataset with Hausdorff dimensions:** Together with the [dimension spectrum](/experiments/hausdorff-dimension-spectrum/), this provides paired (dimension, Lyapunov exponent) data for over 1M continued fraction Cantor sets — a dataset that does not exist anywhere in the literature.

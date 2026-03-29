@@ -312,6 +312,14 @@ lean lean4-proving/conjectures/zaremba_proved_race.lean
 - LLM proving race log: [`/data/zaremba-8b/race-results.log`](/data/zaremba-8b/race-results.log)
 - CUDA verification logs: [`/data/zaremba-8b/gpu_logs/`](/data/zaremba-8b/gpu_logs/)
 
+## References
+
+- Zaremba, S.K. (1972). "La methode des 'bons treillis' pour le calcul des integrales multiples." *Applications of Number Theory to Numerical Analysis*, pp. 39--119.
+- Bourgain, J. and Kontorovich, A. (2014). "On Zaremba's conjecture." *Annals of Mathematics*, 180(1), pp. 137--196.
+- Huang, S. (2015). "An improvement to Zaremba's conjecture." *Geometric and Functional Analysis*, 25(3), pp. 860--914.
+- Dickson, L.E. (1901). *Linear Groups with an Exposition of the Galois Field Theory*. B.G. Teubner, Leipzig.
+- Jenkinson, O. and Pollicott, M. (2001). "Computing the dimension of dynamically defined sets." *Ergodic Theory and Dynamical Systems*, 21(5), pp. 1429--1445.
+
 ---
 
 *Computed 2026-03-28 on NVIDIA DGX B200. Transfer operator analysis: [companion post](/experiments/zaremba-transfer-operator). Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

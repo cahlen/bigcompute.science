@@ -159,4 +159,13 @@ nvcc -O3 -arch=sm_100a -o kronecker_compute scripts/experiments/kronecker-coeffi
 
 ---
 
+## References
+
+- Stanley, R.P. (2000). "Positivity problems and conjectures in algebraic combinatorics." *Mathematics: Frontiers and Perspectives*, pp. 295–319.
+- Mulmuley, K.D. and Sohoni, M.A. (2001). "Geometric complexity theory I: An approach to the P vs. NP and related problems." *SIAM Journal on Computing*, 31(2), pp. 496–526.
+- Pak, I. and Panova, G. (2017). "On the complexity of computing Kronecker coefficients." *Computational Complexity*, 26(1), pp. 1–36.
+- Murnaghan, F.D. (1938). "The analysis of the Kronecker product of irreducible representations of the symmetric group." *American Journal of Mathematics*, 60(3), pp. 761–784.
+
+---
+
 *Computed on NVIDIA DGX B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

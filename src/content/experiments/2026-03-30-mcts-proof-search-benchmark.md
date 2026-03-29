@@ -161,4 +161,11 @@ python lean4-proving/prover.py \
 
 ---
 
+## References
+
+- Zaremba, S.K. (1972). "La méthode des 'bons treillis' pour le calcul des intégrales multiples." *Applications of Number Theory to Numerical Analysis*, pp. 39–119.
+- Silver, D. et al. (2017). "Mastering the game of Go without human knowledge." *Nature*, 550, pp. 354–359.
+
+---
+
 *Computed on NVIDIA DGX B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

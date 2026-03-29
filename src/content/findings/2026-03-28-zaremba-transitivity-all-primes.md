@@ -139,6 +139,13 @@ gcc -O3 -fopenmp -o transitivity /tmp/transitivity.c -lm
 
 Source: [`scripts/experiments/zaremba-transitivity/check_transitivity.cu`](https://github.com/cahlen/idontknow)
 
+## References
+
+1. Zaremba, S.K. (1972). "La méthode des 'bons treillis' pour le calcul des intégrales multiples." *Applications of Number Theory to Numerical Analysis*, pp. 39–119.
+2. Dickson, L.E. (1901). *Linear Groups with an Exposition of the Galois Field Theory*. B.G. Teubner, Leipzig.
+3. Bourgain, J. and Kontorovich, A. (2014). "On Zaremba's conjecture." *Annals of Mathematics*, 180(1), pp. 137–196. arXiv:1107.3776
+4. Bourgain, J. and Gamburd, A. (2008). "Uniform expansion bounds for Cayley graphs of SL_2(F_p)." *Annals of Mathematics*, 167(2), pp. 625–642.
+
 ---
 
 *Computed on 2× Intel Xeon Platinum 8570 (112 cores), 133 seconds.*

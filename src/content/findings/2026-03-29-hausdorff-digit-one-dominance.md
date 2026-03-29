@@ -109,6 +109,13 @@ Pending confirmation at $n = 20$ (computation currently running). The $n = 20$ r
 
 - Transfer operator: [`scripts/experiments/zaremba-transfer-operator/transfer_operator.cu`](https://github.com/cahlen/idontknow)
 
+## References
+
+- Hensley, D. (1992). "Continued fraction Cantor sets, Hausdorff dimension, and functional analysis." Journal of Number Theory, 40(3), pp. 336–358.
+- Jenkinson, O. and Pollicott, M. (2001). "Computing the dimension of dynamically defined sets: E_2 and bounded continued fraction entries." Ergodic Theory and Dynamical Systems, 21(5), pp. 1429–1445.
+- Jarník, V. (1929). "Zur metrischen Theorie der diophantischen Approximationen." Prace Matematyczno-Fizyczne, 36, pp. 91–106.
+- Hausdorff, F. (1919). "Dimension und äußeres Maß." Mathematische Annalen, 79, pp. 157–179.
+
 ---
 
 *Computed on NVIDIA RTX 5090. All eigenvalue problems solved on GPU via cuSOLVER.*

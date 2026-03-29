@@ -178,6 +178,14 @@ nvcc -O3 -arch=sm_100a -o transfer_op scripts/experiments/zaremba-transfer-opera
 ./transfer_op 40 3 2000
 ```
 
+## References
+
+- Zaremba, S.K. (1972). "La methode des 'bons treillis' pour le calcul des integrales multiples." *Applications of Number Theory to Numerical Analysis*, pp. 39--119.
+- Bourgain, J. and Kontorovich, A. (2014). "On Zaremba's conjecture." *Annals of Mathematics*, 180(1), pp. 137--196. arXiv:1107.3776
+- Huang, S. (2015). "An improvement to Zaremba's conjecture." *Geometric and Functional Analysis*, 25(3), pp. 860--914. arXiv:1310.3772
+- Jenkinson, O. and Pollicott, M. (2001). "Computing the dimension of dynamically defined sets." *Ergodic Theory and Dynamical Systems*, 21(5), pp. 1429--1445.
+- Hensley, D. (1992). "Continued fraction Cantor sets, Hausdorff dimension, and functional analysis." *Journal of Number Theory*, 40(3), pp. 336--358.
+
 ---
 
 *Computed 2026-03-28 on NVIDIA DGX B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

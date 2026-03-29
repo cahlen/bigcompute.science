@@ -210,4 +210,12 @@ nvcc -O3 -arch=sm_100a -o flint_hills scripts/experiments/flint-hills/flint_hill
 
 ---
 
+## References
+
+- Pickover, C.A. (2002). *The Mathematics of Oz*. Cambridge University Press.
+- Salikhov, V.Kh. (2008). "On the irrationality measure of π." *Russian Mathematical Surveys*, 63(3), pp. 570–572.
+- Baillie, R. (2008). "Summing a curious, slowly convergent series." *American Mathematical Monthly*, 115(6), pp. 525–540.
+
+---
+
 *Computed 2026-03-29 on NVIDIA RTX 5090 (32 GB). Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

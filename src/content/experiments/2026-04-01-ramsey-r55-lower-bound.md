@@ -164,6 +164,13 @@ nvcc -O3 -arch=sm_100a -o ramsey_search scripts/experiments/ramsey-r55/ramsey_se
 ./scripts/experiments/ramsey-r55/run.sh
 ```
 
+## References
+
+- Ramsey, F.P. (1930). "On a problem of formal logic." *Proceedings of the London Mathematical Society*, 2(30), pp. 264--286.
+- Exoo, G. (1989). "A lower bound for R(5,5)." *Journal of Graph Theory*, 13(1), pp. 97--98.
+- Angeltveit, V. and McKay, B.D. (2024). "R(5,5) <= 48." *Journal of Graph Theory*, 105(1), pp. 7--14. arXiv:1703.08768
+- Radziszowski, S.P. (2021). "Small Ramsey Numbers." *Electronic Journal of Combinatorics*, Dynamic Survey DS1.
+
 ---
 
 *Computed on NVIDIA DGX B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

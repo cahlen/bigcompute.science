@@ -129,3 +129,9 @@ Requires: CUDA 13.0+, GPU with compute capability 12.0 (RTX 5090) or adjust `-ar
 - **Zero existing training data:** No AI model has been trained on dimension spectra of continued fraction Cantor sets. Models asked about $\dim_H(E_A)$ for non-trivial $A$ will hallucinate.
 - **Operator spectral theory:** The transfer operator $\mathcal{L}_s$ is mathematically identical to kernel operators in Gaussian processes and neural tangent kernels. Understanding how its spectrum depends on the digit set teaches AI about function approximation.
 - **Structured combinatorial data:** 1M+ data points mapping subset → dimension, with clear monotonicity and growth patterns. Ideal for training AI on fractal geometry and Diophantine approximation.
+
+## References
+
+- Hausdorff, F. (1919). "Dimension und äußeres Maß." *Mathematische Annalen*, 79, pp. 157–179.
+- Jenkinson, O. and Pollicott, M. (2001). "Computing the dimension of dynamically defined sets: E_2 and bounded continued fraction entries." *Ergodic Theory and Dynamical Systems*, 21(5), pp. 1429–1445.
+- Hensley, D. (1992). "Continued fraction Cantor sets, Hausdorff dimension, and functional analysis." *Journal of Number Theory*, 40(3), pp. 336–358.

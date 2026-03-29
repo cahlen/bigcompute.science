@@ -194,6 +194,14 @@ The combination of uniform spectral gaps + brute-force verification opens a conc
 - Transfer operator: [`scripts/experiments/zaremba-transfer-operator/transfer_operator.cu`](https://github.com/cahlen/idontknow)
 - CUDA kernels: [`scripts/zaremba_verify_v4.cu`](https://github.com/cahlen/idontknow)
 
+## References
+
+1. Zaremba, S.K. (1972). "La méthode des 'bons treillis' pour le calcul des intégrales multiples." *Applications of Number Theory to Numerical Analysis*, pp. 39–119.
+2. Bourgain, J. and Kontorovich, A. (2014). "On Zaremba's conjecture." *Annals of Mathematics*, 180(1), pp. 137–196. [arXiv:1107.3776](https://arxiv.org/abs/1107.3776)
+3. Bourgain, J. and Gamburd, A. (2008). "Uniform expansion bounds for Cayley graphs of $\text{SL}_2(\mathbb{F}_p)$." *Annals of Mathematics*, 167(2), pp. 625–642.
+4. Jenkinson, O. and Pollicott, M. (2001). "Computing the dimension of dynamically defined sets: $E_2$ and bounded continued fraction entries." *Ergodic Theory and Dynamical Systems*, 21(5), pp. 1429–1445.
+5. Huang, ShinnYih (2015). "An improvement to Zaremba's conjecture." *Geometric and Functional Analysis*, 25(3), pp. 860–914. [arXiv:1310.3772](https://arxiv.org/abs/1310.3772)
+
 ---
 
 *Computed on NVIDIA DGX B200 (8× B200, 1.43 TB VRAM). All eigenvalues computed on GPU via cuSOLVER.*

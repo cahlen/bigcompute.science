@@ -64,6 +64,12 @@ This observation enabled a **13× speedup** in our CUDA verification kernel (v2 
 
 Analysis script and raw data: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow)
 
+## References
+
+1. Zaremba, S.K. (1972). "La méthode des 'bons treillis' pour le calcul des intégrales multiples." *Applications of Number Theory to Numerical Analysis*, pp. 39–119.
+2. Bourgain, J. and Kontorovich, A. (2014). "On Zaremba's conjecture." *Annals of Mathematics*, 180(1), pp. 137–196. [arXiv:1107.3776](https://arxiv.org/abs/1107.3776)
+3. Khintchine, A.Ya. (1964). *Continued Fractions*. University of Chicago Press.
+
 ---
 
 *Computed from exhaustive analysis of $d = 1$ to $100{,}000$ on NVIDIA DGX B200.*

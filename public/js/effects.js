@@ -20,7 +20,9 @@
   // ============================================================
 
   function scrambleText(el) {
-    var original = el.textContent;
+    // Save the original innerHTML to restore at end (preserves colors/spans)
+    var originalHTML = el.innerHTML;
+    var originalText = el.textContent;
     var duration = 800;
     var start = null;
     var chars = MATH_CHARS + MONO_CHARS;
@@ -28,15 +30,14 @@
     function frame(ts) {
       if (!start) start = ts;
       var progress = Math.min((ts - start) / duration, 1);
-      // Cubic ease out
       var ease = 1 - Math.pow(1 - progress, 3);
-      var resolved = Math.floor(ease * original.length);
+      var resolved = Math.floor(ease * originalText.length);
 
       var display = '';
-      for (var i = 0; i < original.length; i++) {
+      for (var i = 0; i < originalText.length; i++) {
         if (i < resolved) {
-          display += original[i];
-        } else if (original[i] === ' ') {
+          display += originalText[i];
+        } else if (originalText[i] === ' ') {
           display += ' ';
         } else {
           display += chars[Math.floor(Math.random() * chars.length)];
@@ -47,7 +48,8 @@
       if (progress < 1) {
         requestAnimationFrame(frame);
       } else {
-        el.textContent = original;
+        // Restore original HTML with all styling intact
+        el.innerHTML = originalHTML;
       }
     }
 
@@ -68,11 +70,7 @@
     scrambleObserver.observe(el);
   });
 
-  // Also scramble the hero title on load
-  var heroH1 = document.querySelector('.hero h1');
-  if (heroH1) {
-    setTimeout(function() { scrambleText(heroH1); }, 200);
-  }
+  // Don't scramble the hero h1 — the particle mosaic handles that
 
   // ============================================================
   // 2. Scroll Sparkle Particles

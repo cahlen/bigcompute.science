@@ -1,5 +1,5 @@
 ---
-title: "Zaremba's Conjecture: 10B Verified in 3 Minutes on 8× NVIDIA B200"
+title: "Zaremba's Conjecture: 100 Billion Verified in 29 Minutes on 8× NVIDIA B200"
 slug: zaremba-conjecture-verification
 date: 2026-03-28
 author: cahlen
@@ -31,11 +31,11 @@ results:
   conjecture: "Zaremba's Conjecture (1972)"
   conjecture_year: 1972
   bound: 5
-  status: "10B VERIFIED (zero gaps, 179s on 8× B200). Spectral gaps to m=2000 complete. Transitivity proved for ALL primes."
-  verified_range: [1, 10000000000]
+  status: "100B VERIFIED (zero gaps, 29 min on 8× B200). Spectral gaps to m=2000 complete. Transitivity proved for ALL primes."
+  verified_range: [1, 100000000000]
   failures: 0
-  verification_time: "179 seconds on 8× B200"
-  verification_kernel: "v6 multi-pass GPU matrix enumeration"
+  verification_time: "1,746 seconds (29 min) on 8× B200"
+  verification_kernel: "v6 multi-pass GPU matrix enumeration (64 rounds)"
   llm_proofs: 19/20
   models_used: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
 
@@ -47,7 +47,7 @@ data: /data/zaremba-8b/
 
 ## Abstract
 
-We verify Zaremba's Conjecture for all $d$ from 1 to **10 billion** using GPU-accelerated continued fraction tree enumeration across 8 NVIDIA B200 GPUs. The v6 multi-pass kernel completes in **179 seconds** with zero failures. Combined with spectral analysis (congruence transfer operator gaps uniform $\geq 0.237$ across 1,214 square-free moduli), an algebraic transitivity proof (Γ generates SL₂ for ALL primes via Dickson's classification), Cayley graph diameters (diam(p) ≤ 2·log(p) for 669 primes), and 19/20 machine-verified Lean 4 proofs from a dual-model LLM race, this is the most comprehensive computational attack on Zaremba's Conjecture to date.
+We verify Zaremba's Conjecture for all $d$ from 1 to **100 billion** using GPU-accelerated continued fraction tree enumeration across 8 NVIDIA B200 GPUs. The v6 multi-pass kernel completes in **29 minutes** with zero failures. Combined with spectral analysis (congruence transfer operator gaps uniform $\geq 0.237$ across 1,214 square-free moduli), an algebraic transitivity proof (Γ generates SL₂ for ALL primes via Dickson's classification), Cayley graph diameters (diam(p) ≤ 2·log(p) for 669 primes), and 19/20 machine-verified Lean 4 proofs from a dual-model LLM race, this is the most comprehensive computational attack on Zaremba's Conjecture to date.
 
 ## Background
 

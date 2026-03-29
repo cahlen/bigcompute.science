@@ -27,6 +27,9 @@ const { title, description = "Experimental results from heavy computation." } = 
       /* Fallback: ensure MathML layer is always hidden even if KaTeX CSS fails to load */
       .katex-mathml { position: absolute; clip: rect(1px, 1px, 1px, 1px); padding: 0; border: 0; height: 1px; width: 1px; overflow: hidden; }
     </style>
+    <link rel="alternate" type="application/rss+xml" title="bigcompute.science — All Updates" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="bigcompute.science — Experiments" href="/experiments/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="bigcompute.science — Findings" href="/findings/rss.xml" />
     <link rel="stylesheet" href="/styles/global.css" />
   </head>
   <body>
@@ -51,6 +54,7 @@ const { title, description = "Experimental results from heavy computation." } = 
       </div>
       <p>bigcompute.science — serious hardware, open results</p>
       <p class="agent-note">Agent-friendly: see <a href="/llms.txt">/llms.txt</a> for structured consumption</p>
+      <p class="rss-links">RSS: <a href="/rss.xml">All</a> · <a href="/experiments/rss.xml">Experiments</a> · <a href="/findings/rss.xml">Findings</a></p>
     </footer>
   <script is:inline>
     if (document.getElementById('load-interactive')) {

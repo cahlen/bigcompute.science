@@ -4,3 +4,8 @@ Allow: /
 # Agent-friendly: all content is accessible
 # Structured data in frontmatter of each experiment
 # See /llms.txt for consumption guide
+#
+# RSS feeds for automated consumption:
+# All updates:  https://bigcompute.science/rss.xml
+# Experiments:  https://bigcompute.science/experiments/rss.xml
+# Findings:     https://bigcompute.science/findings/rss.xml

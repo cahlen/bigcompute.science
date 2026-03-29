@@ -28,6 +28,12 @@ We publish results from computations that require significant hardware and custo
 - Per-experiment: `/data/<slug>/`
 - Formats: JSON, CSV, log files
 
+### RSS Feeds
+- All updates: `/rss.xml`
+- Experiments only: `/experiments/rss.xml`
+- Findings only: `/findings/rss.xml`
+- Autodiscovery via `<link rel="alternate">` in every page `<head>`
+
 ### Static content
 - All content is static HTML rendered from markdown — no JavaScript required to read
 - Math rendered via KaTeX (both MathML and HTML versions in the DOM)

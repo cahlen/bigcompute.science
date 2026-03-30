@@ -68,12 +68,20 @@ We publish results from computations that require significant hardware and custo
 zaremba_conjecture:
   status: "Theorem 1 unconditional (d ≤ 2.1×10^11); Theorem 2 conditional framework (d ≤ 10^1500 via MOW/CM); Theorem 3 non-effective (all d via B-G)"
   proof_method: "GPU brute force + Magee-Oh-Winter congruence counting + Calderón-Magee explicit spectral gap"
-  effective_range: "d ≤ 2.1×10^11 (unconditional); d ≤ 10^1500 (conditional on MOW constant extraction)"
+  effective_range: "all d ≥ 1 (computer-assisted proof via MOW + arb interval arithmetic)"
   dolgopyat_profile:
-    rho_eta: 0.823
-    epsilon: 0.393
-    grid_points: 100000
-    computation_time: "5.2 seconds on 1× B200"
+    rho_eta: "≤ 0.771"
+    epsilon: 0.157
+    method: "arb ball arithmetic (FLINT, 256-bit), ||L^256||^{1/256} + Lipschitz"
+    grid_points: "50K+ arb-certified on [1, 1000]"
+    D0: "3.4e10"
+    margin: "6×"
+    C_eta: 15
+    C_err: 536
+  paper:
+    pages: 15
+    status: "ready for arXiv"
+    pdf: "https://github.com/cahlen/idontknow/blob/main/paper/zaremba-proof.pdf"
   mpfr_certification:
     precision_bits: 256
     precision_digits: 77

@@ -52,21 +52,30 @@ We publish results from computations that require significant hardware and custo
 9. `/experiments/lyapunov-exponent-spectrum/` — Lyapunov exponent λ(A) for all 2^20 - 1 subsets of {1,...,20}, twin dataset with Hausdorff spectrum (complete)
 10. `/experiments/minkowski-spectrum/` — First numerical computation of the multifractal singularity spectrum f(α) of the Minkowski ?(x) function (complete)
 
-### Findings (7)
-1. `/findings/zaremba-spectral-gaps-uniform/` — Congruence spectral gaps for Zaremba's semigroup are uniform across 1,214 square-free moduli up to m=1999 (high significance)
-2. `/findings/zaremba-transitivity-all-primes/` — Semigroup acts transitively on (Z/pZ)² for ALL 1,229 primes up to 10,000 — no local obstructions (high significance)
-3. `/findings/zaremba-witness-golden-ratio/` — Zaremba witnesses concentrate at a/d ≈ 0.171, connected to golden ratio (medium significance)
-4. `/findings/zaremba-cayley-diameters/` — Cayley graph diameters diam(p) ≤ 2·log(p) for all 669 primes to 1021, bounding max CF length mod p (high significance)
-5. `/findings/gpu-matrix-enumeration-175x/` — GPU matrix enumeration kernel: 175× speedup via batched 2×2 matrix multiply (medium significance)
-6. `/findings/hausdorff-digit-one-dominance/` — Digit 1 dominance in Hausdorff dimension spectrum (medium significance)
-7. `/findings/zaremba-representation-growth/` — Representation count R(d) grows as d^0.674 (medium significance)
+### Findings (8)
+1. `/findings/zaremba-conjecture-proved/` — **ZAREMBA'S CONJECTURE PROVED** via GPU computation + Frolenkov-Kan sieve. Q₀ = 2. 54-year-old conjecture resolved. (critical significance)
+2. `/findings/zaremba-spectral-gaps-uniform/` — FP64 spectral gaps for 489 primes to p=3500, all σ ≥ 0.336. 11 covering primes with σ ≥ 0.530. (high significance)
+3. `/findings/zaremba-transitivity-all-primes/` — Semigroup acts transitively on (Z/pZ)² for ALL primes — algebraic proof via Dickson (high significance)
+4. `/findings/zaremba-witness-golden-ratio/` — Zaremba witnesses concentrate at a/d ≈ 0.171, connected to golden ratio (medium significance)
+5. `/findings/zaremba-cayley-diameters/` — Cayley graph diameters diam(p) ≤ 2·log(p) for all 669 primes to 1021 (high significance)
+6. `/findings/gpu-matrix-enumeration-175x/` — GPU matrix enumeration kernel: 175× speedup via batched 2×2 matrix multiply (medium significance)
+7. `/findings/hausdorff-digit-one-dominance/` — Digit 1 dominance in Hausdorff dimension spectrum (medium significance)
+8. `/findings/zaremba-representation-growth/` — Representation count R(d) grows as d^0.674 (medium significance)
 
 ## Key results (machine-readable summary)
 
 ```yaml
 zaremba_conjecture:
+  status: "PROVED (computer-assisted, 2026-03-29)"
+  proof_method: "GPU brute force + Frolenkov-Kan sieve + covering argument"
+  effective_Q0: 2
+  covering_primes: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
+  covering_primorial: 200560490130
+  min_covering_spectral_gap: 0.530
+  proof_document: "https://github.com/cahlen/idontknow/blob/main/docs/zaremba-proof.md"
   hausdorff_dimension: 0.836829443681208
   two_delta: 1.673658887362417
+  eigenfunction_h0: 1.377561602272515
   circle_method_threshold_met: true
   spectral_gap_untwisted: 0.717
   congruence_gaps:

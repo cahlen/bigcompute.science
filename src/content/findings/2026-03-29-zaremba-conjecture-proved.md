@@ -1,5 +1,5 @@
 ---
-title: "Zaremba's Conjecture (1972): Effective Proof for d ≤ 10^1500 via GPU + Frolenkov-Kan Sieve"
+title: "Toward Zaremba's Conjecture: 210B Verified + Conditional Framework via Spectral Gaps"
 slug: zaremba-conjecture-proved
 date: 2026-03-29
 author: cahlen
@@ -10,11 +10,11 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, spectral-theory, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "Computer-assisted proof of Zaremba's Conjecture for all d ≤ 10^1500 (effective) and all d (using non-effective Bourgain-Gamburd for the tail). Combines GPU brute-force (2.1×10^11, zero failures) with Frolenkov-Kan sieve using 489 FP64 spectral gaps in a layered covering argument. The effective range 10^1500 exceeds any conceivable application. The non-effective tail at d > 10^1500 requires extracting explicit constants from Bourgain-Gamburd (2008)."
+summary: "Unconditional GPU verification of Zaremba's Conjecture for all d ≤ 2.1×10^11 (Theorem 1). Conditional framework extending to d ≤ 10^1500 via Magee-Oh-Winter uniform congruence counting + Calderón-Magee explicit spectral gap (Theorem 2). MPFR-certified spectral gaps at 77-digit precision. Dolgopyat spectral profile: ρ_η = 0.823, ε = 0.393. The conjecture remains open for all d; the gap between density-one and pointwise is precisely identified."
 
 data:
   conjecture: "Zaremba's Conjecture (1972)"
-  status: "PROVED for d ≤ 10^1500 (effective); PROVED for all d (non-effective tail via Bourgain-Gamburd)"
+  status: "Theorem 1: unconditional for d ≤ 2.1×10^11. Theorem 2: conditional framework for d ≤ 10^1500 (MOW/CM constant extraction needed). Conjecture open for all d."
   bound_A: 5
   brute_force_range: [1, 210000000000]
   brute_force_failures: 0
@@ -38,13 +38,20 @@ data:
 code: https://github.com/cahlen/idontknow
 ---
 
-# Zaremba's Conjecture: Proved
+# Toward Zaremba's Conjecture: Computational Evidence and Conditional Framework
 
 ## Statement
 
 **Zaremba's Conjecture (1972).** For every integer $d \geq 1$, there exists $a$ with $\gcd(a,d) = 1$ such that $a/d = [0; a_1, \ldots, a_k]$ has all $a_i \leq 5$.
 
-**Status: PROVED for all $d \leq 10^{1500}$ (effective, constructive).** For all $d$ (including $d > 10^{1500}$): proved using non-effective Bourgain-Gamburd property ($\tau$). Computer-assisted proof, 2026-03-29.
+## Status
+
+- **Theorem 1 (unconditional):** $R(d) \geq 1$ for all $d \leq 2.1 \times 10^{11}$. GPU brute-force verification, deterministic, reproducible.
+- **Theorem 2 (conditional):** Zaremba holds for $d \leq 10^{1500}$, conditional on extracting explicit constants from the Magee-Oh-Winter congruence counting theorem and the Calderón-Magee spectral gap.
+- **Theorem 3 (non-effective):** Zaremba holds for all $d$, conditional on Bourgain-Gamburd property ($\tau$).
+- **The conjecture remains open** for all $d$ unconditionally. The gap between density-one (Huang 2015) and pointwise is precisely identified.
+
+Full paper: [`paper/zaremba-proof.tex`](https://github.com/cahlen/idontknow/blob/main/paper/zaremba-proof.tex)
 
 ## Proof Overview
 
@@ -52,7 +59,7 @@ The proof has three components:
 
 ### 1. Brute-Force Verification ($d \leq 2.1 \times 10^{11}$)
 
-GPU matrix enumeration (v6 multi-pass kernel) verifies every integer from 1 to 210 billion. Zero failures. Runtime: ~60 minutes on 8× NVIDIA B200.
+GPU matrix enumeration (v6 multi-pass kernel) verifies every integer from 1 to 210 billion. Zero failures. Runtime: 116 minutes on 8× NVIDIA B200. [Verification manifest with SHA256 checksums](https://github.com/cahlen/idontknow/blob/main/paper/verification-manifest.txt).
 
 ### 2. Spectral Gap Computation (11 primes, FP64)
 
@@ -78,7 +85,7 @@ For each prime $p \in \{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31\}$, the spectral 
 
 $$R(d) \geq c \cdot d^{2\delta - 1} - \frac{1 - \sigma_p}{\sigma_p}$$
 
-where $c \approx 0.8$ (from the Patterson-Sullivan measure) and $\delta = 0.8368$. For $d \geq 2$ and any covering prime with $\sigma_p \geq 0.530$: the main term $c \cdot d^{0.674} \geq 1.27$ exceeds the error $(1-\sigma)/\sigma \leq 0.887$. So $R(d) \geq 1$ for all $d \geq 2$ coprime to $p$.
+where $c_1 = 1/|P'(\delta)| = 0.6046$ (from the Lalley renewal theorem, Appendix A of the paper) and $\delta = 0.8368$. For $d \geq 2$ and any covering prime with $\sigma_p \geq 0.530$: the main term $c \cdot d^{0.674} \geq 1.27$ exceeds the error $(1-\sigma)/\sigma \leq 0.887$. So $R(d) \geq 1$ for all $d \geq 2$ coprime to $p$.
 
 **Layered Covering.** The covering proceeds in layers. For any integer $d \geq 2$, exactly one of the following holds:
 
@@ -120,6 +127,28 @@ nvcc -O3 -arch=sm_100a -o extract_ef \
 ./extract_ef  # outputs h(0) and gaps for primes ≤ 97
 ```
 
+## New Computations (2026-03-29)
+
+### MPFR-Certified Spectral Gaps
+
+All 11 covering primes certified at 256-bit MPFR precision (77 decimal digits) with guaranteed rounding. All gaps $\sigma_p \geq 0.650$. This upgrades FP64 measurements to rigorous bounds.
+
+### Dolgopyat Spectral Profile
+
+First computation of the spectral radius $\rho(t)$ of $L_{\delta+it}$ for $t \in [0, 1000]$: 100,000 grid points in 5.2 seconds on one B200.
+
+- $\rho(1) = 0.753$, $\rho(2) = 0.363$ (strong contraction)
+- $\rho_\eta = \sup_{|t| > b_0} \rho(t) = 0.823$ (Dolgopyat bound)
+- $\varepsilon = \min(\sigma/|P'(\delta)|, -\log\rho_\eta/\log\varphi) = \min(0.393, 0.405) = 0.393$
+
+### Renewal Constant
+
+$c_1 = 1/|P'(\delta)| = 0.6046$ from the Lalley renewal theorem, computed via the Hellmann-Feynman formula using the left eigenmeasure $\nu$ and right eigenfunction $h$ of $\mathcal{L}_\delta$.
+
+### The Remaining Barrier
+
+The power savings $\varepsilon = 0.393 < 1$ means the MOW exceptional-set bound $O(N^{1-\varepsilon}) = O(N^{0.607})$ still grows with $N$. Upgrading from density-one to pointwise requires either $\varepsilon > 1$ (impossible from spectral gaps) or a fundamentally new approach. This is the same barrier that stopped Bourgain-Kontorovich, Huang, and all subsequent work.
+
 ## Relation to Shkredov (2026)
 
 Independently and two weeks prior, Ilya Shkredov ([arXiv:2603.14116](https://arxiv.org/abs/2603.14116), March 14, 2026) proved that for sufficiently large primes $q$, there exists $a$ coprime to $q$ with all partial quotients of $a/q$ bounded by $O(\sqrt{\log q})$. This is a major theoretical advance but does not resolve Zaremba's Conjecture as originally stated:
@@ -145,6 +174,9 @@ The gap between a growing bound and a fixed constant is where the deepest struct
 - **Bourgain, J. and Gamburd, A.** (2008). "Uniform expansion bounds for Cayley graphs of $\text{SL}_2(\mathbb{F}_p)$." *Annals of Mathematics*, 167(2), pp. 625–642.
 - **Dickson, L.E.** (1901). *Linear Groups with an Exposition of the Galois Field Theory*. B.G. Teubner, Leipzig.
 - **Huang, ShinnYih** (2015). "An improvement to Zaremba's conjecture." *Geometric and Functional Analysis*, 25(3), pp. 860–914.
+- **Magee, M., Oh, H., and Winter, D.** (2019). "Uniform congruence counting for Schottky semigroups in SL₂(Z)." *J. reine angew. Math. (Crelle)*, 753, pp. 89–135.
+- **Calderón, I. and Magee, M.** (2025). "Explicit spectral gap for Schottky subgroups of SL(2,Z)." *J. Eur. Math. Soc.*
+- **Lalley, S.P.** (1989). "Renewal theorems in symbolic dynamics." *Acta Math.*, 163, pp. 1–55.
 
 ---
 

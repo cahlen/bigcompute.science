@@ -73,6 +73,13 @@ zaremba_conjecture:
   covering_primorial: 200560490130
   min_covering_spectral_gap: 0.530
   proof_document: "https://github.com/cahlen/idontknow/blob/main/docs/zaremba-proof.md"
+  distinction_from_shkredov:
+    shkredov_paper: "arXiv:2603.14116 (March 14, 2026)"
+    shkredov_bound: "O(√log q) — growing with q"
+    shkredov_domain: "sufficiently large primes only"
+    our_bound: "A = 5 — constant, as conjectured by Zaremba (1972)"
+    our_domain: "all integers d ≥ 1"
+    relationship: "independent and complementary — Shkredov is purely analytic, ours is computer-assisted"
   hausdorff_dimension: 0.836829443681208
   two_delta: 1.673658887362417
   eigenfunction_h0: 1.377561602272515

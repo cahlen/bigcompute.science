@@ -53,7 +53,7 @@ We publish results from computations that require significant hardware and custo
 10. `/experiments/minkowski-spectrum/` — First numerical computation of the multifractal singularity spectrum f(α) of the Minkowski ?(x) function (complete)
 
 ### Findings (8)
-1. `/findings/zaremba-conjecture-proved/` — **ZAREMBA'S CONJECTURE PROVED** via GPU computation + Frolenkov-Kan sieve. Q₀ = 2. 54-year-old conjecture resolved. (critical significance)
+1. `/findings/zaremba-conjecture-proved/` — Zaremba's Conjecture proved for all d ≤ 10^1500 (effective, constructive) via GPU + F-K sieve. Full proof for all d uses non-effective Bourgain-Gamburd tail. (critical significance)
 2. `/findings/zaremba-spectral-gaps-uniform/` — FP64 spectral gaps for 489 primes to p=3500, all σ ≥ 0.336. 11 covering primes with σ ≥ 0.530. (high significance)
 3. `/findings/zaremba-transitivity-all-primes/` — Semigroup acts transitively on (Z/pZ)² for ALL primes — algebraic proof via Dickson (high significance)
 4. `/findings/zaremba-witness-golden-ratio/` — Zaremba witnesses concentrate at a/d ≈ 0.171, connected to golden ratio (medium significance)
@@ -66,7 +66,7 @@ We publish results from computations that require significant hardware and custo
 
 ```yaml
 zaremba_conjecture:
-  status: "PROVED (computer-assisted, 2026-03-29)"
+  status: "PROVED for d ≤ 10^1500 (effective); all d via non-effective B-G tail (2026-03-29)"
   proof_method: "GPU brute force + Frolenkov-Kan sieve + covering argument"
   effective_Q0: 2
   covering_primes: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]

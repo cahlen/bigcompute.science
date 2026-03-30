@@ -1,5 +1,5 @@
 ---
-title: "Zaremba's Conjecture (1972): Proved via GPU Computation + Frolenkov-Kan Sieve"
+title: "Zaremba's Conjecture (1972): Effective Proof for d ≤ 10^1500 via GPU + Frolenkov-Kan Sieve"
 slug: zaremba-conjecture-proved
 date: 2026-03-29
 author: cahlen
@@ -23,7 +23,7 @@ data:
   covering_primorial: 200560490130
   min_covering_gap: 0.530
   min_covering_gap_prime: 13
-  effective_Q0: 2
+  effective_range: "d ≤ 10^1500 (constructive), all d (non-effective tail)"
   spectral_gaps_method: "cuBLAS FP64, N=40 Chebyshev collocation, 500 power iterations"
   eigenfunction_h0: 1.377561602272515
   hausdorff_dimension: 0.836829443681208

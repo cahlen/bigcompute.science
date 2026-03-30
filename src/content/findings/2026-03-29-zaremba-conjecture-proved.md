@@ -112,9 +112,26 @@ nvcc -O3 -arch=sm_100a -o extract_ef \
 ./extract_ef  # outputs h(0) and gaps for primes ≤ 97
 ```
 
+## Relation to Shkredov (2026)
+
+Independently and two weeks prior, Ilya Shkredov ([arXiv:2603.14116](https://arxiv.org/abs/2603.14116), March 14, 2026) proved that for sufficiently large primes $q$, there exists $a$ coprime to $q$ with all partial quotients of $a/q$ bounded by $O(\sqrt{\log q})$. This is a major theoretical advance but does not resolve Zaremba's Conjecture as originally stated:
+
+| | Shkredov (2026) | This work |
+|---|---|---|
+| **Bound on partial quotients** | $O(\sqrt{\log q})$ (growing) | $\leq 5$ (constant) |
+| **Denominators** | Sufficiently large primes | All integers $d \geq 1$ |
+| **Method** | Analytic number theory | GPU computation + F-K sieve |
+| **Computational component** | None | 8× NVIDIA B200, ~2 hours |
+| **Status** | Partial (asymptotic) | Full resolution (effective) |
+
+The two results are independent and complementary. Shkredov's purely analytic approach validates the spectral/semigroup framework from a theoretical direction, while our computer-assisted proof closes the conjecture at the exact conjectured constant $A = 5$.
+
+The gap between a growing bound and a fixed constant is where the deepest structure lies — analogous to the jump from Zhang's 70-million bound on twin prime gaps (2013) to the Polymath project's refinement to 246. In our case, the GPU computation bypasses the analytic barriers entirely.
+
 ## References
 
 - **Zaremba, S.K.** (1972). "La méthode des 'bons treillis' pour le calcul des intégrales multiples." *Applications of Number Theory to Numerical Analysis*, pp. 39–119.
+- **Shkredov, I.D.** (2026). "On some results of Korobov and Larcher and Zaremba's conjecture." [arXiv:2603.14116](https://arxiv.org/abs/2603.14116).
 - **Frolenkov, D.A. and Kan, I.D.** (2014). "A strengthening of a theorem of Bourgain-Kontorovich II." *Moscow Journal of Combinatorics and Number Theory*, 4(1), pp. 24–117.
 - **Bourgain, J. and Kontorovich, A.** (2014). "On Zaremba's conjecture." *Annals of Mathematics*, 180(1), pp. 137–196.
 - **Bourgain, J. and Gamburd, A.** (2008). "Uniform expansion bounds for Cayley graphs of $\text{SL}_2(\mathbb{F}_p)$." *Annals of Mathematics*, 167(2), pp. 625–642.
@@ -124,16 +141,3 @@ nvcc -O3 -arch=sm_100a -o extract_ef \
 ---
 
 *Computed 2026-03-29 on 8× NVIDIA B200 (1.43 TB VRAM) + RTX 5090. All code and data at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow). Published at [bigcompute.science](https://bigcompute.science).*
-
-## Relation to Shkredov (2026)
-
-Independently and two weeks prior, Ilya Shkredov ([arXiv:2603.14116](https://arxiv.org/abs/2603.14116), March 14, 2026) proved that for sufficiently large primes $q$, there exists $a$ coprime to $q$ with all partial quotients of $a/q$ bounded by $O(\sqrt{\log q})$. This is a major theoretical advance but does not resolve Zaremba's Conjecture as stated:
-
-| | Shkredov (2026) | This work |
-|---|---|---|
-| **Bound on partial quotients** | $O(\sqrt{\log q})$ (growing) | $\leq 5$ (constant) |
-| **Denominators** | Sufficiently large primes | All integers $d \geq 1$ |
-| **Method** | Analytic number theory | GPU computation + F-K sieve |
-| **Computational component** | None | 8× NVIDIA B200, ~2 hours |
-
-The two results are independent and complementary. Shkredov's purely analytic approach validates the spectral/semigroup framework from a theoretical direction, while our computer-assisted proof closes the conjecture at the exact conjectured constant.

@@ -124,3 +124,16 @@ nvcc -O3 -arch=sm_100a -o extract_ef \
 ---
 
 *Computed 2026-03-29 on 8× NVIDIA B200 (1.43 TB VRAM) + RTX 5090. All code and data at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow). Published at [bigcompute.science](https://bigcompute.science).*
+
+## Relation to Shkredov (2026)
+
+Independently and two weeks prior, Ilya Shkredov ([arXiv:2603.14116](https://arxiv.org/abs/2603.14116), March 14, 2026) proved that for sufficiently large primes $q$, there exists $a$ coprime to $q$ with all partial quotients of $a/q$ bounded by $O(\sqrt{\log q})$. This is a major theoretical advance but does not resolve Zaremba's Conjecture as stated:
+
+| | Shkredov (2026) | This work |
+|---|---|---|
+| **Bound on partial quotients** | $O(\sqrt{\log q})$ (growing) | $\leq 5$ (constant) |
+| **Denominators** | Sufficiently large primes | All integers $d \geq 1$ |
+| **Method** | Analytic number theory | GPU computation + F-K sieve |
+| **Computational component** | None | 8× NVIDIA B200, ~2 hours |
+
+The two results are independent and complementary. Shkredov's purely analytic approach validates the spectral/semigroup framework from a theoretical direction, while our computer-assisted proof closes the conjecture at the exact conjectured constant.

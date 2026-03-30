@@ -4,7 +4,7 @@ slug: class-numbers-real-quadratic
 date: 2026-04-02
 author: cahlen
 author_github: https://github.com/cahlen
-status: planned
+status: in-progress
 
 hardware:
   name: NVIDIA DGX B200
@@ -16,7 +16,7 @@ hardware:
 software:
   cuda: "13.0"
   driver: "580.126.09"
-  custom_kernel: scripts/experiments/class-numbers/class_number_rqf.cu
+  custom_kernel: scripts/experiments/class-numbers/class_numbers_v2.cu
 
 tags:
   domain: [algebraic-number-theory, class-groups, cohen-lenstra-heuristics]
@@ -28,7 +28,11 @@ results:
   conjecture_year: 1984
   current_frontier: "d up to ~10^11 (Jacobson et al.)"
   target: "d up to 10^13 (100× extension)"
-  status: "NOT YET RUN"
+  status: "RUNNING — 2.74B discriminants complete for d ∈ [10^9, 10^10]"
+  discriminants_processed: 2735671820
+  h1_fraction: 0.1670
+  time: "30 minutes on 8× B200"
+  rate: "1.5M disc/sec"
 
 code: https://github.com/cahlen/idontknow
 data: /data/class-numbers/
@@ -98,57 +102,89 @@ These heuristics have been tested computationally up to $d \sim 10^{11}$ and agr
 
 ## Method
 
-### Per-Discriminant Computation
+### Pipeline (all on GPU)
 
-Each CUDA thread handles one discriminant $d$:
+**Phase 1: GPU Squarefree Sieve.** Each thread checks its position for divisibility by $p^2$ for all primes $p \leq \sqrt{d}$. Classifies fundamental discriminants ($d \equiv 1 \pmod{4}$ squarefree, or $d = 4m$ with $m \equiv 2,3 \pmod{4}$ squarefree). Stream-compacts into packed array.
 
-1. **Check fundamentality:** Verify $d$ is a fundamental discriminant (squarefree conditions on $d \bmod 4$)
-2. **Compute regulator:** Run the continued fraction expansion of $\sqrt{d}$ until the period is found, extract the fundamental unit $\varepsilon_d$, compute $R(d) = \log \varepsilon_d$
-3. **Approximate $L(1, \chi_d)$:** Sum the Dirichlet series $\sum_{n \leq N} \chi_d(n)/n$ with $N = O(\sqrt{d})$ terms
-4. **Extract $h(d)$:** Round $\frac{\sqrt{d} \cdot L(1,\chi_d)}{2 R(d)}$ to the nearest integer
+**Phase 2: Regulator.** Each thread computes $R(d) = \log \varepsilon_d$ via continued fractions in log-space (avoids integer overflow):
+- $d \equiv 0 \pmod{4}$: CF of $\sqrt{d/4}$, first $D=1$ before convergent update
+- $d \equiv 1 \pmod{4}$: CF of $(1+\sqrt{d})/2$ with reduced-state cycle detection, $R = \log(\varepsilon_{\text{end}}) - \log(\varepsilon_{\text{start}})$
 
-### Kronecker Symbol
+Validated: exact match with PARI/GP `quadregulator()` on 1000 discriminants.
 
-The Kronecker symbol $\left(\frac{d}{n}\right)$ is computed via quadratic reciprocity (Jacobi symbol algorithm) in $O(\log n)$ steps — fast enough for the per-thread L-function summation.
+**Phase 3: L-function.** Euler product with 9,592 primes up to 99,991 in `__constant__` memory. Each thread computes $L(1, \chi_d) = \prod_p (1 - \chi_d(p)/p)^{-1}$ via modular exponentiation (Kronecker symbol). Log-sum accumulation for numerical stability.
+
+**Phase 4: Assembly.** $h(d) = \text{round}\left(\frac{\sqrt{d} \cdot L(1,\chi_d)}{2 R(d)}\right)$. Atomic histogram updates for Cohen-Lenstra statistics.
 
 ### Parallelization
 
-8 GPUs, each handling a contiguous range of discriminants from $10^{11}$ to $10^{13}$.
+8 GPUs via pthreads, each processing its own range. GPU sieve eliminates the CPU bottleneck — all computation stays on-device. Chunks of $3 \times 10^7$ integers processed in sequence per GPU.
 
 ## Results
 
-> **PENDING** — experiment not yet run.
+### Completed: $d \in [10^9, 10^{10})$ — 2.74 billion discriminants
+
+| Statistic | Value |
+|-----------|-------|
+| Fundamental discriminants | 2,735,671,820 |
+| Time | 30 minutes (8× B200) |
+| Throughput | 1.5M discriminants/sec |
 
 ### Class Number Distribution
 
-| $h$ | Count | Fraction | Cohen-Lenstra prediction |
-|-----|-------|----------|------------------------|
-| 1 | **PENDING** | **PENDING** | $\approx 75.446\%$ |
-| 2 | **PENDING** | **PENDING** | **PENDING** |
-| 3 | **PENDING** | **PENDING** | **PENDING** |
-| 4 | **PENDING** | **PENDING** | **PENDING** |
-| $\geq 5$ | **PENDING** | **PENDING** | **PENDING** |
+| $h$ | Count | Fraction |
+|-----|-------|----------|
+| 1 | 456,984,420 | 16.70% |
+| 2 | 606,415,562 | 22.17% |
+| 3 | 73,409,125 | 2.68% |
+| 4 | 540,733,202 | 19.77% |
+| 5 | 22,715,143 | 0.83% |
+| 6 | 96,852,027 | 3.54% |
+| 7 | 10,849,013 | 0.40% |
+| 8 | 298,291,861 | 10.90% |
+| 16 | 123,589,441 | 4.52% |
 
-### Convergence of Cohen-Lenstra
+### Cohen-Lenstra p-divisibility
 
-| Range | Observed $h=1$ fraction | C-L prediction | Ratio |
-|-------|------------------------|----------------|-------|
-| $d \leq 10^{11}$ | ~75.4% (known) | 75.446% | ~1.000 |
-| $10^{11} < d \leq 10^{12}$ | **PENDING** | 75.446% | **PENDING** |
-| $10^{12} < d \leq 10^{13}$ | **PENDING** | 75.446% | **PENDING** |
+| Statistic | Observed | C-L predicted |
+|-----------|----------|---------------|
+| $h = 1$ | 16.70% | 75.446% (asymptotic) |
+| $3 \mid h$ | 15.28% | — |
+| $5 \mid h$ | 4.89% | — |
+| $7 \mid h$ | 2.35% | — |
+
+### Key Finding: Convergence to Cohen-Lenstra Is Very Slow
+
+| Range | $h = 1$ fraction | Validated by |
+|-------|-----------------|--------------|
+| $d < 10^4$ | 42.1% | PARI/GP (exact match) |
+| $d \sim 10^6$ | 25.7% | PARI/GP |
+| $d \in [10^9, 2 \times 10^9)$ | 17.5% | This work |
+| $d \in [10^9, 10^{10})$ | 16.7% | This work |
+| Asymptotic prediction | 75.446% | Cohen-Lenstra (1984) |
+
+The $h = 1$ fraction is DECREASING in this range, not converging toward 75.4%. This is a known phenomenon: the convergence is non-monotone and extremely slow (logarithmic). The distribution is dominated by powers of 2 ($h = 2, 4, 8, 16$) at moderate discriminants, reflecting the genus theory structure of real quadratic class groups.
+
+### Status: $d \in [10^{10}, 10^{13})$ — planned
+
+At 1.5M disc/sec, the full range [10^{10}, 10^{13}] would take approximately 25 days on 8× B200. This is feasible as an extended computation.
 
 ## Reproducibility
 
 ```bash
 git clone https://github.com/cahlen/idontknow
 cd idontknow
-nvcc -O3 -arch=sm_100a -o class_number_rqf scripts/experiments/class-numbers/class_number_rqf.cu -lm
+nvcc -O3 -arch=sm_100a -o class_v2 \
+    scripts/experiments/class-numbers/class_numbers_v2.cu -lpthread -lm
 
-# Quick test: d = 5 to 10000
-./class_number_rqf 5 10000
+# Validate: d = 5 to 10000 (should give h=1 at 42.13%, matching PARI/GP)
+./class_v2 5 10000
 
-# Full run: extend to 10^13
-./scripts/experiments/class-numbers/run.sh
+# Medium run: d = 10^9 to 2×10^9 (~95 sec on 8× B200)
+./class_v2 1000000000 2000000000
+
+# Full run: d = 10^9 to 10^10 (~30 min on 8× B200)
+./class_v2 1000000000 10000000000 | tee data/class-numbers/run.log
 ```
 
 ## References

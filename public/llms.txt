@@ -45,7 +45,7 @@ We publish results from computations that require significant hardware and custo
 2. `/experiments/zaremba-transfer-operator/` — Transfer operator spectral analysis for Zaremba (complete)
 3. `/experiments/mcts-proof-search-benchmark/` — MCTS vs naive sampling for LLM theorem proving (planned)
 4. `/experiments/ramsey-r55-lower-bound/` — Ramsey R(5,5): exhaustive extension search, 656/656 K42 colorings UNSAT, strongest evidence R(5,5)=43 (complete)
-5. `/experiments/class-numbers-real-quadratic/` — Class numbers of real quadratic fields to 10^13 (planned)
+5. `/experiments/class-numbers-real-quadratic/` — Class numbers: 2.74B discriminants for d∈[10^9,10^10], h=1 rate 16.7%, GPU sieve + regulator + Euler product (in-progress)
 6. `/experiments/kronecker-coefficients-gpu/` — Kronecker coefficients to n=120 (planned)
 7. `/experiments/hausdorff-dimension-spectrum/` — First complete Hausdorff dimension spectrum for all 2^20 - 1 subsets of {1,...,20} (complete)
 8. `/experiments/flint-hills-series/` — Flint Hills partial sums to 10^10, spike decomposition, growth rate analysis (complete)

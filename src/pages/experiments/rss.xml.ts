@@ -15,7 +15,7 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: 'bigcompute.science — Experiments',
-    description: 'Open experimental results from heavy computation. Custom CUDA kernels, GPU clusters, serious hardware.',
+    description: 'Open experimental results from heavy computation. Custom CUDA kernels, GPU clusters, big math, serious hardware.',
     site: context.site!.toString(),
     items,
     customData: '<language>en-us</language>',

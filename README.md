@@ -1,6 +1,6 @@
 # bigcompute.science
 
-Experimental results from heavy computation. Custom CUDA kernels, GPU clusters, serious hardware. Open results.
+Experimental results from heavy computation. Custom CUDA kernels. GPU clusters. Big math. Serious hardware. Open results.
 
 **Human-readable. Agent-consumable.**
 

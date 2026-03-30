@@ -1,6 +1,6 @@
 # bigcompute.science
 
-> Open experimental results from heavy computation. Custom CUDA kernels, GPU clusters, serious hardware. Designed for both human readers and AI agents.
+> Open experimental results from heavy computation. Custom CUDA kernels, GPU clusters, big math, serious hardware. Designed for both human readers and AI agents.
 
 ## Important Notice
 

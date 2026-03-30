@@ -18,7 +18,7 @@ data:
   bound_A: 5
   brute_force_range: [1, 210000000000]
   brute_force_failures: 0
-  brute_force_time: "~60 min on 8× NVIDIA B200"
+  brute_force_time: "116 min on 8× NVIDIA B200"
   covering_primes: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
   covering_primorial: 200560490130
   min_covering_gap: 0.530
@@ -27,7 +27,8 @@ data:
   spectral_gaps_method: "cuBLAS FP64, N=40 Chebyshev collocation, 500 power iterations"
   eigenfunction_h0: 1.377561602272515
   hausdorff_dimension: 0.836829443681208
-  main_term_coefficient: 0.8
+  main_term_coefficient_c1: 0.6046
+  pressure_derivative: -1.6539
   proof_dependencies:
     - "Frolenkov-Kan (2014): sieve framework"
     - "Bourgain-Gamburd (2008): property (τ) for d > 10^1500"

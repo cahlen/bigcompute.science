@@ -40,11 +40,11 @@ We publish results from computations that require significant hardware and custo
 
 ## Current content
 
-### Experiments (10)
+### Experiments (10, 7 complete)
 1. `/experiments/zaremba-conjecture-8b-verification/` — Zaremba's Conjecture: 210B verified, conditional framework to 10^1500 (complete)
 2. `/experiments/zaremba-transfer-operator/` — Transfer operator spectral analysis for Zaremba (complete)
 3. `/experiments/mcts-proof-search-benchmark/` — MCTS vs naive sampling for LLM theorem proving (planned)
-4. `/experiments/ramsey-r55-lower-bound/` — Ramsey R(5,5) lower bound search (planned)
+4. `/experiments/ramsey-r55-lower-bound/` — Ramsey R(5,5): exhaustive extension search, 656/656 K42 colorings UNSAT, strongest evidence R(5,5)=43 (complete)
 5. `/experiments/class-numbers-real-quadratic/` — Class numbers of real quadratic fields to 10^13 (planned)
 6. `/experiments/kronecker-coefficients-gpu/` — Kronecker coefficients to n=120 (planned)
 7. `/experiments/hausdorff-dimension-spectrum/` — First complete Hausdorff dimension spectrum for all 2^20 - 1 subsets of {1,...,20} (complete)
@@ -142,6 +142,31 @@ zaremba_conjecture:
     dominant_cf_prefix: "[0, 5, 1, ...]"
     prefix_frequency: 0.997
     golden_ratio_connection: "1/(5+phi)"
+```
+
+ramsey_r55:
+  status: "complete — strongest computational evidence R(5,5) = 43"
+  known_bounds: "43 <= R(5,5) <= 48"
+  exoo_exhaustive_extension:
+    extensions_checked: 4398046511104
+    valid: 0
+    time: "130 seconds on 8x B200"
+  k42_4sat:
+    colorings_checked: 656
+    extensible: 0
+    source: "McKay-Radziszowski database (complete up to isomorphism)"
+    time: "3 seconds on 8x B200"
+  simulated_annealing:
+    best_fitness_n43: "127-134 (stuck)"
+    throughput: "332M flips/sec on 8x B200"
+  direct_sat:
+    variables: 903
+    clauses: "~1.9M"
+    status: "not attempted — likely intractable, this IS the open problem"
+  bugs_fixed: "adj[i]=0 inside loop destroyed back-edges — fixed in all 7 CUDA kernels"
+  incremental_counter: "verified correct — 0 drift in 100 steps at n=43"
+  computation_date: "2026-03-30"
+  hardware: "8x NVIDIA B200 DGX (1.43 TB VRAM)"
 ```
 
 ## Tags

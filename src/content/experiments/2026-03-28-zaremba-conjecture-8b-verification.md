@@ -1,5 +1,5 @@
 ---
-title: "Zaremba's Conjecture: 100 Billion Verified in 29 Minutes on 8× NVIDIA B200"
+title: "Zaremba's Conjecture: 210 Billion Verified in 116 Minutes on 8× NVIDIA B200"
 slug: zaremba-conjecture-verification
 date: 2026-03-28
 author: cahlen
@@ -31,10 +31,10 @@ results:
   conjecture: "Zaremba's Conjecture (1972)"
   conjecture_year: 1972
   bound: 5
-  status: "100B VERIFIED (zero gaps, 29 min on 8× B200). Spectral gaps to m=2000 complete. Transitivity proved for ALL primes."
-  verified_range: [1, 100000000000]
+  status: "210B VERIFIED (zero gaps, 116 min on 8× B200). Spectral gaps to m=2000 complete. Transitivity proved for ALL primes."
+  verified_range: [1, 210000000000]
   failures: 0
-  verification_time: "1,746 seconds (29 min) on 8× B200"
+  verification_time: "6,962 seconds (116 min) on 8× B200"
   verification_kernel: "v6 multi-pass GPU matrix enumeration (64 rounds)"
   llm_proofs: 19/20
   models_used: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
@@ -43,11 +43,11 @@ code: https://github.com/cahlen/idontknow
 data: /data/zaremba-8b/
 ---
 
-# Zaremba's Conjecture: 100 Billion Verified on 8× NVIDIA B200
+# Zaremba's Conjecture: 210 Billion Verified on 8× NVIDIA B200
 
 ## Abstract
 
-We verify Zaremba's Conjecture for all $d$ from 1 to **100 billion** using GPU-accelerated continued fraction tree enumeration across 8 NVIDIA B200 GPUs. The v6 multi-pass kernel completes in **29 minutes** with zero failures. Combined with spectral analysis (congruence transfer operator gaps uniform $\geq 0.237$ across 1,214 square-free moduli), an algebraic transitivity proof (Γ generates SL₂ for ALL primes via Dickson's classification), Cayley graph diameters (diam(p) ≤ 2·log(p) for 669 primes), and 19/20 machine-verified Lean 4 proofs from a dual-model LLM race, this is the most comprehensive computational attack on Zaremba's Conjecture to date.
+We verify Zaremba's Conjecture for all $d$ from 1 to **210 billion** using GPU-accelerated continued fraction tree enumeration across 8 NVIDIA B200 GPUs. The v6 multi-pass kernel completes in **116 minutes** with zero failures. Combined with spectral analysis (congruence transfer operator gaps uniform $\geq 0.237$ across 1,214 square-free moduli), an algebraic transitivity proof (Γ generates SL₂ for ALL primes via Dickson's classification), Cayley graph diameters (diam(p) ≤ 2·log(p) for 669 primes), and 19/20 machine-verified Lean 4 proofs from a dual-model LLM race, this is the most comprehensive computational attack on Zaremba's Conjecture to date.
 
 ## Background
 
@@ -191,9 +191,9 @@ Three bugs were discovered and fixed during the proving run:
 
 3. **`decide` vs `native_decide`:** Models generate `by decide` for all proof obligations. The kernel evaluator times out on CF computation; `native_decide` compiles to native code and runs instantly. Fixed with post-processing.
 
-### Exhaustive Verification: 0 Failures to $10^{11}$
+### Exhaustive Verification: 0 Failures to $2.1 \times 10^{11}$
 
-**Verified:** The v6 multi-pass GPU matrix enumeration kernel confirmed **zero gaps for all $d \leq 10^{11}$** (100 billion) in **29 minutes** on 8× NVIDIA B200. This is a complete computational proof that Zaremba's Conjecture holds for every integer up to 100 billion.
+**Verified:** The v6 multi-pass GPU matrix enumeration kernel confirmed **zero gaps for all $d \leq 2.1 \times 10^{11}$** (210 billion) in **116 minutes** on 8× NVIDIA B200. This is a complete computational proof that Zaremba's Conjecture holds for every integer up to 210 billion.
 
 The kernel performs the entire CF tree walk on GPU via batched 2×2 matrix multiplication with fused expand+mark+compact. Phase A builds the tree to depth 12 on one GPU, Phase B distributes 244M matrices across all 8 GPUs in 64 rounds, each expanding to depth 62.
 
@@ -203,7 +203,8 @@ The kernel performs the entire CF tree walk on GPU via batched 2×2 matrix multi
 | v5 kernel | 1× B200 | $d = 1$ to $10^8$ | 7.5 s | 13.3M d/s |
 | v6 multi-pass | 8× B200 | $d = 1$ to $10^9$ | 21.8 s | 45.9M d/s |
 | v6 multi-pass | 8× B200 | $d = 1$ to $10^{10}$ | 179 s | 55.9M d/s |
-| **v6 multi-pass** | **8× B200** | **$d = 1$ to $10^{11}$** | **1,746 s** | **57.3M d/s** |
+| v6 multi-pass | 8× B200 | $d = 1$ to $10^{11}$ | 1,746 s | 57.3M d/s |
+| **v6 multi-pass** | **8× B200** | **$d = 1$ to $2.1 \times 10^{11}$** | **6,962 s** | **30.2M d/s** |
 
 Speedup from Python baseline: **~43,000× on 8 GPUs.**
 
@@ -296,8 +297,8 @@ nvcc -O3 -arch=sm_100a -o matrix_v6 \
 # Verify d=1 to 1B (any multi-GPU NVIDIA system)
 ./matrix_v6 1000000000
 
-# Verify d=1 to 100B (requires 8× B200 or similar, ~29 min)
-./matrix_v6 100000000000
+# Verify d=1 to 210B (requires 8× B200 or similar, ~116 min)
+./matrix_v6 210000000000
 ```
 
 **Single-GPU quick check (v5 kernel):**
@@ -309,6 +310,7 @@ nvcc -O3 -arch=sm_100a -o matrix_enum \
 
 ## Raw Data
 
+- v6 verification log (210B): [`run_210B.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/run_210B.log)
 - v6 verification log (100B): [`run_100B_v2.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/run_100B_v2.log)
 - v6 verification log (10B): [`run_10B_v3.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/run_10B_v3.log)
 - Spectral gap data (1,214 moduli): [`/data/spectral-gaps.json`](/data/spectral-gaps.json)

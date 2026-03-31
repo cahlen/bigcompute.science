@@ -23,19 +23,112 @@ import Base from '../layouts/Base.astro';
   const section = document.getElementById('manifesto-section');
   if (!stage || !orbEl || !section) throw new Error('missing elements');
 
-  const TEXT = `Why Human–AI Collaboration Changes Everything\n\nConsider how mathematical progress has always worked. A human is born somewhere on Earth. They survive childhood. Somehow, through an improbable chain of circumstances — the right school, the right teacher, the right book left open on the right page — they discover they have a talent for abstract thought. They spend decades training. If they're extraordinarily lucky, they produce a handful of results that push a field forward by the time they're forty or fifty. Then they slow down, and the world waits for the next one.\n\nWe waited 200 years between Euler and Ramanujan. A century between Gauss and Grothendieck. The entire edifice of modern mathematics — every theorem, every conjecture, every computational technique — rests on the output of a few thousand people across all of human history who happened to be born, happened to survive, happened to find mathematics, and happened to be productive during their brief window of peak creativity.\n\nThis is an absurd way to advance knowledge.\n\nThe bottleneck was never the mathematics itself. The bottleneck was always biological: waiting for nature to randomly assemble a mind capable of seeing what others couldn't. The proofs were always there. The patterns were always there. The continued fraction identities, the spectral gaps, the Kronecker coefficients — they existed before anyone computed them. We just had to wait for the right human to come along and look.\n\nHuman–AI collaboration breaks this cycle. Not because AI replaces human insight — it doesn't. The deep intuition that says "this conjecture should be true" or "this approach will never work" remains fundamentally human. What AI does is eliminate the waiting. A mathematician with AI collaboration can explore computational landscapes that would take a lifetime to traverse alone. They can test conjectures across billions of cases in minutes. They can write, debug, and optimize GPU kernels for problems they conceived that morning. The time between "I wonder if..." and "here is the data" collapses from years to hours.\n\nEvery result on this site was produced this way. A human directed the research — chose the conjectures, judged the approaches, decided what mattered. AI agents wrote CUDA kernels, constructed proofs, generated documentation, and managed the computational pipeline. Neither could have produced these results alone. The human without the AI would still be hand-checking continued fractions. The AI without the human would have no idea which continued fractions to check.\n\nThe 27 exceptions to Zaremba's conjecture with A={1,2,3}. The 26.4 billion Kronecker coefficients for S₃₀. The 30 billion class numbers of real quadratic fields. The complete Hausdorff dimension spectrum for a million continued fraction Cantor sets. None of these existed in the literature before this project. Not because the mathematics was too hard — but because no single human lifetime had enough hours to compute them, and the traditional system had no mechanism to accelerate the process.\n\nWe cannot afford to keep waiting for nature to randomly produce the next Euler. The open problems are too important, the tools are too powerful, and the data is too vast. Human–AI collaboration is not a shortcut or a crutch. It is the only honest response to the fact that mathematics is infinite and human lifetimes are not.\n\n— Cahlen Humphreys, 2026. Built with Claude.`;
+  const TEXT = "Why Human\u2013AI Collaboration Changes Everything\n\nConsider how mathematical progress has always worked. A human is born somewhere on Earth. They survive childhood. Somehow, through an improbable chain of circumstances \u2014 the right school, the right teacher, the right book left open on the right page \u2014 they discover they have a talent for abstract thought. They spend decades training. If they\u2019re extraordinarily lucky, they produce a handful of results that push a field forward by the time they\u2019re forty or fifty. Then they slow down, and the world waits for the next one.\n\nWe waited 200 years between Euler and Ramanujan. A century between Gauss and Grothendieck. The entire edifice of modern mathematics \u2014 every theorem, every conjecture, every computational technique \u2014 rests on the output of a few thousand people across all of human history who happened to be born, happened to survive, happened to find mathematics, and happened to be productive during their brief window of peak creativity.\n\nThis is an absurd way to advance knowledge.\n\nThe bottleneck was never the mathematics itself. The bottleneck was always biological: waiting for nature to randomly assemble a mind capable of seeing what others couldn\u2019t. The proofs were always there. The patterns were always there. The continued fraction identities, the spectral gaps, the Kronecker coefficients \u2014 they existed before anyone computed them. We just had to wait for the right human to come along and look.\n\nHuman\u2013AI collaboration breaks this cycle. Not because AI replaces human insight \u2014 it doesn\u2019t. The deep intuition that says \u201cthis conjecture should be true\u201d or \u201cthis approach will never work\u201d remains fundamentally human. What AI does is eliminate the waiting. A mathematician with AI collaboration can explore computational landscapes that would take a lifetime to traverse alone. They can test conjectures across billions of cases in minutes. They can write, debug, and optimize GPU kernels for problems they conceived that morning. The time between \u201cI wonder if...\u201d and \u201chere is the data\u201d collapses from years to hours.\n\nEvery result on this site was produced this way. A human directed the research \u2014 chose the conjectures, judged the approaches, decided what mattered. AI agents wrote CUDA kernels, constructed proofs, generated documentation, and managed the computational pipeline. Neither could have produced these results alone. The human without the AI would still be hand-checking continued fractions. The AI without the human would have no idea which continued fractions to check.\n\nThe 27 exceptions to Zaremba\u2019s conjecture with A=\u007b1,2,3\u007d. The 26.4 billion Kronecker coefficients for S\u2083\u2080. The 30 billion class numbers of real quadratic fields. The complete Hausdorff dimension spectrum for a million continued fraction Cantor sets. None of these existed in the literature before this project. Not because the mathematics was too hard \u2014 but because no single human lifetime had enough hours to compute them, and the traditional system had no mechanism to accelerate the process.\n\nWe cannot afford to keep waiting for nature to randomly produce the next Euler. The open problems are too important, the tools are too powerful, and the data is too vast. Human\u2013AI collaboration is not a shortcut or a crutch. It is the only honest response to the fact that mathematics is infinite and human lifetimes are not.\n\n\u2014 Cahlen Humphreys, 2026. Built with Claude.";
 
-  const FONT = '16px/1.75 "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif';
+  const FONT = '16px "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif';
   const LINE_HEIGHT = 28;
-  const ORB_RADIUS = 80;
+  const ORB_RADIUS = 90;
+  const ORB_PAD = 14;
   const PAD = 40;
+  const MIN_SLOT = 60;
 
-  let orbX = 300, orbY = 200;
-  let targetX = 300, targetY = 200;
+  let orbX, orbY, targetX, targetY;
   let prepared = null;
-  let lines = [];
+  let lastReflowX = -999, lastReflowY = -999;
 
-  async function init() {
+  function circleInterval(cx, cy, r, bandTop, bandBot, hPad, vPad) {
+    const top = bandTop - vPad;
+    const bot = bandBot + vPad;
+    if (top >= cy + r || bot <= cy - r) return null;
+    const minDy = (cy >= top && cy <= bot) ? 0 : (cy < top ? top - cy : cy - bot);
+    if (minDy >= r) return null;
+    const maxDx = Math.sqrt(r * r - minDy * minDy);
+    return { left: cx - maxDx - hPad, right: cx + maxDx + hPad };
+  }
+
+  function carveSlots(base, blocked) {
+    let slots = [base];
+    for (const iv of blocked) {
+      const next = [];
+      for (const s of slots) {
+        if (iv.right <= s.left || iv.left >= s.right) { next.push(s); continue; }
+        if (iv.left > s.left) next.push({ left: s.left, right: iv.left });
+        if (iv.right < s.right) next.push({ left: iv.right, right: s.right });
+      }
+      slots = next;
+    }
+    return slots.filter(s => s.right - s.left >= MIN_SLOT);
+  }
+
+  function reflow() {
+    const W = section.clientWidth;
+    const regionX = PAD;
+    const regionW = W - PAD * 2;
+
+    // Clear previous lines
+    stage.innerHTML = '';
+
+    let cursor = { segmentIndex: 0, graphemeIndex: 0 };
+    let y = PAD;
+    let done = false;
+
+    while (!done && y < 8000) {
+      const bandTop = y;
+      const bandBot = y + LINE_HEIGHT;
+
+      // Compute blocked intervals from orb
+      const blocked = [];
+      const iv = circleInterval(orbX - regionX, orbY, ORB_RADIUS, bandTop, bandBot, ORB_PAD, 2);
+      if (iv) blocked.push(iv);
+
+      const slots = carveSlots({ left: 0, right: regionW }, blocked);
+      if (slots.length === 0) { y += LINE_HEIGHT; continue; }
+
+      // Sort slots left to right, fill each
+      slots.sort((a, b) => a.left - b.left);
+
+      for (const slot of slots) {
+        const slotW = slot.right - slot.left;
+        const line = layoutNextLine(prepared, cursor, slotW);
+        if (!line) { done = true; break; }
+
+        const el = document.createElement('div');
+        el.className = 'mline';
+        el.textContent = line.text;
+        el.style.top = y + 'px';
+        el.style.left = (regionX + slot.left) + 'px';
+        el.style.width = slotW + 'px';
+        stage.appendChild(el);
+
+        cursor = line.end;
+      }
+
+      y += LINE_HEIGHT;
+    }
+
+    section.style.height = Math.max(y + PAD, 400) + 'px';
+  }
+
+  function animate() {
+    orbX += (targetX - orbX) * 0.07;
+    orbY += (targetY - orbY) * 0.07;
+
+    orbEl.style.left = (orbX - ORB_RADIUS) + 'px';
+    orbEl.style.top = (orbY - ORB_RADIUS) + 'px';
+
+    if (Math.abs(orbX - lastReflowX) > 2 || Math.abs(orbY - lastReflowY) > 2) {
+      reflow();
+      lastReflowX = orbX;
+      lastReflowY = orbY;
+    }
+    requestAnimationFrame(animate);
+  }
+
+  function init() {
+    const W = section.clientWidth;
+    orbX = W * 0.7; orbY = 300;
+    targetX = orbX; targetY = orbY;
+
     prepared = prepareWithSegments(TEXT, FONT, { whiteSpace: 'pre-wrap' });
     reflow();
 
@@ -44,96 +137,14 @@ import Base from '../layouts/Base.astro';
       targetX = e.clientX - r.left;
       targetY = e.clientY - r.top;
     });
+    section.addEventListener('mouseleave', () => {
+      targetX = section.clientWidth * 0.7;
+      targetY = 300;
+    });
 
     requestAnimationFrame(animate);
   }
 
-  function reflow() {
-    const W = section.clientWidth - PAD * 2;
-    stage.innerHTML = '';
-    lines = [];
-
-    let cursor = { value: 0 };
-    let y = PAD;
-    let lineIdx = 0;
-
-    while (cursor.value < TEXT.length && y < 5000) {
-      // Check if orb overlaps this line band
-      const lineTop = y;
-      const lineBot = y + LINE_HEIGHT;
-      let availWidth = W;
-      let offsetX = 0;
-
-      // Circle-line intersection: does the orb overlap [lineTop, lineBot]?
-      const orbCenterY = orbY;
-      const orbCenterX = orbX - PAD;
-      const dy = Math.max(lineTop - orbCenterY, 0, orbCenterY - lineBot);
-
-      if (dy < ORB_RADIUS) {
-        // Orb overlaps this line — compute horizontal exclusion
-        const dx = Math.sqrt(ORB_RADIUS * ORB_RADIUS - dy * dy);
-        const orbLeft = orbCenterX - dx;
-        const orbRight = orbCenterX + dx;
-
-        // Text goes on the wider side
-        if (orbLeft > W - orbRight) {
-          // More space on the left
-          availWidth = Math.max(orbLeft - 10, 50);
-          offsetX = 0;
-        } else {
-          // More space on the right
-          availWidth = Math.max(W - orbRight - 10, 50);
-          offsetX = orbRight + 10;
-        }
-      }
-
-      const result = layoutNextLine(prepared, cursor, availWidth);
-      if (!result) break;
-
-      const lineEl = document.createElement('div');
-      lineEl.className = 'mline';
-      lineEl.textContent = result.text;
-      lineEl.style.top = y + 'px';
-      lineEl.style.left = (PAD + offsetX) + 'px';
-      lineEl.style.width = availWidth + 'px';
-
-      // Style the title line
-      if (lineIdx === 0) {
-        lineEl.style.fontSize = '22px';
-        lineEl.style.fontWeight = 'bold';
-        lineEl.style.color = '#e8c47a';
-      }
-
-      stage.appendChild(lineEl);
-      lines.push(lineEl);
-
-      cursor = result.cursor;
-      y += LINE_HEIGHT;
-      lineIdx++;
-    }
-
-    section.style.height = (y + PAD) + 'px';
-  }
-
-  function animate() {
-    // Smooth follow
-    orbX += (targetX - orbX) * 0.08;
-    orbY += (targetY - orbY) * 0.08;
-
-    orbEl.style.left = (orbX - ORB_RADIUS) + 'px';
-    orbEl.style.top = (orbY - ORB_RADIUS) + 'px';
-
-    // Only reflow if orb moved enough
-    if (Math.abs(orbX - lastReflowX) > 3 || Math.abs(orbY - lastReflowY) > 3) {
-      reflow();
-      lastReflowX = orbX;
-      lastReflowY = orbY;
-    }
-
-    requestAnimationFrame(animate);
-  }
-
-  let lastReflowX = 0, lastReflowY = 0;
   init();
   </script>
 

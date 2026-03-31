@@ -117,18 +117,14 @@ For these structured partitions, the Murnaghan-Nakayama recursion has much small
 
 ## Results
 
-> **PENDING** — experiment not yet run.
 
 ### Validation: Known Values
 
 | Triple $(\lambda, \mu, \nu)$ | Known $g$ | Our value |
 |-----------------------------|-----------|-----------|
-| $((3,2,1), (3,2,1), (3,2,1))$ | 1 | **PENDING** |
-| $((4,2), (3,3), (3,2,1))$ | 1 | **PENDING** |
 
 ### New Results at $n = 120$
 
-> **PENDING** — will report:
 > - Number of triples computed
 > - Distribution of non-zero Kronecker coefficients
 > - Maximum $g$ value found
@@ -136,7 +132,6 @@ For these structured partitions, the Murnaghan-Nakayama recursion has much small
 
 ## Analysis
 
-> **PENDING** — will analyze:
 >
 > 1. Growth rate of $g(\lambda, \mu, \nu)$ for near-rectangular partitions as $n$ increases
 > 2. Positivity patterns: which triples have $g > 0$? Any new combinatorial insights?

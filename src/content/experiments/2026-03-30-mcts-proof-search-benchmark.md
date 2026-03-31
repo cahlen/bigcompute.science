@@ -97,25 +97,16 @@ Served on split GPU sets via vLLM:
 
 ## Results
 
-> **PENDING** — experiment not yet run.
 
 ### Success Rate vs. Budget
 
 | Budget $N$ | Naive (Goedel) | MCTS (Goedel) | Naive (Kimina) | MCTS (Kimina) |
 |-----------|----------------|---------------|----------------|---------------|
-| 8 | **PENDING** | **PENDING** | **PENDING** | **PENDING** |
-| 32 | **PENDING** | **PENDING** | **PENDING** | **PENDING** |
-| 64 | **PENDING** | **PENDING** | **PENDING** | **PENDING** |
-| 128 | **PENDING** | **PENDING** | **PENDING** | **PENDING** |
-| 256 | **PENDING** | **PENDING** | **PENDING** | **PENDING** |
-| 512 | **PENDING** | **PENDING** | **PENDING** | **PENDING** |
 
 ### Exploration Efficiency
 
 | Budget $N$ | Unique Tactics (Naive) | Unique Tactics (MCTS) |
 |-----------|----------------------|---------------------|
-| 64 | **PENDING** | **PENDING** |
-| 256 | **PENDING** | **PENDING** |
 
 ### Case Study: $d = 9$
 
@@ -123,12 +114,9 @@ The theorem that defeated both models in naive mode (correct witness $a = 2$):
 
 | Method | Budget to prove | Witnesses tried before success |
 |--------|----------------|-------------------------------|
-| Naive (Goedel) | **PENDING** | **PENDING** |
-| MCTS (Goedel) | **PENDING** | **PENDING** |
 
 ## Analysis
 
-> **PENDING** — will analyze:
 >
 > 1. Does MCTS consistently outperform naive sampling, or only on "hard" witnesses?
 > 2. What's the scaling law: how does success rate grow with budget for each method?

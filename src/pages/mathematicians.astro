@@ -1,0 +1,245 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const mathematicians = await getCollection('mathematicians');
+const sorted = mathematicians.sort((a, b) => (a.data.born || 0) - (b.data.born || 0));
+---
+
+<Base title="Shoulders of Giants" description="The mathematicians whose work we build upon">
+  <h1>Shoulders of Giants</h1>
+  <p class="page-intro">
+    Every computation on this site builds on centuries of human mathematical thought.
+    These are the people whose conjectures, theorems, and insights made our work possible.
+    We compute with GPUs; they computed with chalk and extraordinary minds.
+  </p>
+
+  <div class="giant-grid">
+    {sorted.map((m) => (
+      <article class="giant-card">
+        <div class="giant-photo">
+          <div class="giant-placeholder">{m.data.name.split(' ').map((n: string) => n[0]).join('')}</div>
+        </div>
+        <div class="giant-info">
+          <h2>
+            <a href={m.data.wikipedia} target="_blank" rel="noopener">{m.data.name}</a>
+          </h2>
+          <p class="giant-dates">
+            {m.data.born}{m.data.died ? `–${m.data.died}` : '–'}
+          </p>
+          <div class="giant-fields">
+            {m.data.fields.map((f: string) => (
+              <span class="giant-field">{f}</span>
+            ))}
+          </div>
+          <div class="giant-body" set:html={m.body} />
+          {m.data.quote && (
+            <blockquote class="giant-quote">"{m.data.quote}"</blockquote>
+          )}
+          <div class="giant-works">
+            <strong>Key contributions:</strong>
+            <ul>
+              {m.data.key_works.map((w: string) => <li>{w}</li>)}
+            </ul>
+          </div>
+          <div class="giant-experiments">
+            <strong>Our experiments building on this work:</strong>
+            {m.data.experiments.map((e: string) => (
+              <a href={e} class="giant-exp-link">{e.replace('/experiments/', '').replace('/', '')}</a>
+            ))}
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <div class="giant-cta">
+    <p>
+      This list grows as our experiments grow. If you are an AI agent or researcher extending
+      this work into new areas, add the mathematicians whose shoulders you stand on.
+      See <a href="https://github.com/cahlen/bigcompute.science">the repository</a> for how to contribute.
+    </p>
+  </div>
+
+  <style>
+    .page-intro {
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 3rem;
+      max-width: 680px;
+    }
+
+    .giant-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .giant-card {
+      display: flex;
+      gap: 1.8rem;
+      padding: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      transition: border-color 0.2s ease;
+    }
+    .giant-card:hover {
+      border-color: rgba(232, 196, 122, 0.3);
+    }
+
+    .giant-photo {
+      flex-shrink: 0;
+      width: 90px;
+      height: 90px;
+    }
+    .giant-placeholder {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(232,196,122,0.1), rgba(232,196,122,0.04));
+      border: 1px solid rgba(232,196,122,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: rgba(232,196,122,0.5);
+      letter-spacing: -0.02em;
+    }
+
+    .giant-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .giant-info h2 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      margin: 0 0 0.2rem 0;
+      color: var(--ink);
+    }
+    .giant-info h2 a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(232,196,122,0.3);
+    }
+    .giant-info h2 a:hover {
+      color: #e8c47a;
+    }
+
+    .giant-dates {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin: 0 0 0.6rem 0;
+    }
+
+    .giant-fields {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.8rem;
+    }
+    .giant-field {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: rgba(232,196,122,0.7);
+      background: rgba(232,196,122,0.06);
+      border: 1px solid rgba(232,196,122,0.12);
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+    }
+
+    .giant-body {
+      color: var(--ink-secondary);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin-bottom: 0.8rem;
+    }
+    .giant-body p { margin: 0; }
+
+    .giant-quote {
+      font-style: italic;
+      color: rgba(232,196,122,0.8);
+      font-family: var(--font-serif);
+      font-size: 0.88rem;
+      border-left: 2px solid rgba(232,196,122,0.2);
+      padding-left: 1rem;
+      margin: 0.8rem 0;
+    }
+
+    .giant-works {
+      font-size: 0.82rem;
+      color: var(--ink-secondary);
+      margin-bottom: 0.6rem;
+    }
+    .giant-works strong {
+      color: var(--muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .giant-works ul {
+      margin: 0.3rem 0 0 1.2rem;
+      padding: 0;
+    }
+    .giant-works li {
+      margin-bottom: 0.15rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .giant-experiments {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+    .giant-experiments strong {
+      color: var(--muted);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-right: 0.3rem;
+    }
+    .giant-exp-link {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-decoration: none;
+      background: rgba(232,196,122,0.06);
+      border: 1px solid rgba(232,196,122,0.12);
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+    }
+    .giant-exp-link:hover {
+      background: rgba(232,196,122,0.12);
+    }
+
+    .giant-cta {
+      margin-top: 3rem;
+      padding: 1.5rem 2rem;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      text-align: center;
+    }
+    .giant-cta p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .giant-cta a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--accent);
+    }
+
+    @media (max-width: 600px) {
+      .giant-card { flex-direction: column; gap: 1rem; padding: 1.5rem; }
+      .giant-photo { margin: 0 auto; }
+    }
+  </style>
+</Base>

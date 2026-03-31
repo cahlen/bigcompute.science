@@ -1,5 +1,5 @@
 ---
-title: "Zaremba's Semigroup Acts Transitively on (Z/pZ)² for ALL Primes (Proved)"
+title: "Zaremba's Semigroup Acts Transitively on (Z/pZ)² for ALL Primes (Algebraic Argument + Computation)"
 slug: zaremba-transitivity-all-primes
 date: 2026-03-28
 author: cahlen
@@ -10,7 +10,7 @@ conjecture_year: 1972
 domain: [number-theory, group-theory, continued-fractions]
 related_experiment: /experiments/zaremba-transfer-operator/
 
-summary: "PROVED: The semigroup Γ_{1,...,5} acts transitively on nonzero vectors in (Z/pZ)² for EVERY prime p. Proof by Dickson's classification: not Borel (nonzero (2,1) entry), not Cartan normalizer (h₁=g₁² and h₂=g₁g₂ never share eigenvectors — their char polys have no common root since λ²-3λ+1=0 and λ²-4λ+1=0 force λ=0 but χ₁(0)=1≠0), not exceptional for p≥13 (order), small primes by computation. No local obstructions to Zaremba's Conjecture exist at ANY prime."
+summary: "The semigroup Γ_{1,...,5} acts transitively on nonzero vectors in (Z/pZ)² for every prime p. Algebraic argument via Dickson's classification (1901): not Borel (nonzero (2,1) entry), not Cartan normalizer (h₁ and h₂ never share eigenvectors), not exceptional for p≥13 (order too small), small primes verified by BFS computation. This eliminates local obstructions to Zaremba's Conjecture at all primes. Note: this argument applies classical theory to our specific semigroup — it was constructed with AI assistance and has not been independently peer-reviewed."
 
 data:
   semigroup: "Γ_{1,...,5} ⊂ SL_2(Z)"
@@ -25,7 +25,7 @@ data:
 code: https://github.com/cahlen/idontknow
 ---
 
-# Zaremba's Semigroup Acts Transitively for All Primes up to 10,000
+# Zaremba's Semigroup Acts Transitively for All Primes
 
 ## The Finding
 
@@ -35,9 +35,9 @@ $$g_a = \begin{pmatrix} a & 1 \\ 1 & 0 \end{pmatrix}, \qquad a = 1, 2, 3, 4, 5$$
 
 acts **transitively** on $(\mathbb{Z}/p\mathbb{Z})^2 \setminus \{0\}$ for **every prime $p$**.
 
-This is not just computational evidence — it is an **algebraic proof** using Dickson's classification of subgroups of $\text{SL}_2(\mathbb{F}_p)$, combined with direct computation for small primes.
+The argument applies **Dickson's classification** (1901) of subgroups of $\text{SL}_2(\mathbb{F}_p)$ to our specific semigroup, combined with direct BFS computation for small primes ($p \leq 11$). This was constructed with AI assistance and has not been independently peer-reviewed.
 
-## The Proof
+## The Argument
 
 Let $h_1 = g_1^2 = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$ and $h_2 = g_1 g_2 = \begin{pmatrix} 3 & 1 \\ 2 & 1 \end{pmatrix}$. Both lie in $\text{SL}_2(\mathbb{Z})$ ($\det = 1$). Let $H = \langle h_1, h_2 \rangle \leq \text{SL}_2(\mathbb{Z}/p\mathbb{Z})$.
 
@@ -73,17 +73,19 @@ For $p = 2, 3, 5, 7, 11$: exhaustive BFS confirms the orbit of $(0, 1)$ under $\
 
 ### Conclusion
 
-$H$ is not contained in any maximal proper subgroup of $\text{SL}_2(\mathbb{F}_p)$ for any prime $p$. Therefore $H = \text{SL}_2(\mathbb{Z}/p\mathbb{Z})$. $\square$
+$H$ is not contained in any maximal proper subgroup of $\text{SL}_2(\mathbb{F}_p)$ for any prime $p$. Therefore $H = \text{SL}_2(\mathbb{Z}/p\mathbb{Z})$.
+
+**Note:** This argument was constructed with AI assistance (Claude) and applies well-known classical results (Dickson 1901) to our specific semigroup. It has not been independently verified by a human number theorist. The computational cross-check below provides supporting evidence.
 
 ## Why This Matters
 
-### No Local Obstructions — Proved, Not Just Verified
+### No Local Obstructions
 
 A **local obstruction** at prime $p$ would mean some residue class $d \bmod p$ is never hit by the semigroup, immediately giving infinitely many counterexamples to Zaremba's Conjecture.
 
-Our proof shows: the semigroup generates all of $\text{SL}_2(\mathbb{Z}/p\mathbb{Z})$ for every prime. This means the orbit hits **every nonzero vector** mod $p$, for **every** $p$. The singular series $S(d) > 0$ for all $d$, eliminating local obstructions entirely.
+The argument above (if correct) shows: the semigroup generates all of $\text{SL}_2(\mathbb{Z}/p\mathbb{Z})$ for every prime. This means the orbit hits **every nonzero vector** mod $p$, for **every** $p$. The singular series $S(d) > 0$ for all $d$, which would eliminate local obstructions entirely.
 
-This is not a heuristic or a finite computation — it is a complete proof for all primes simultaneously.
+This argument applies classical theory (Dickson's classification) and is supported by exhaustive BFS computation for all primes up to 17,389 — but it has not been peer-reviewed.
 
 ### Computational Cross-Check
 
@@ -95,7 +97,7 @@ This means the singular series $S(d) > 0$ for all $d$, eliminating local obstruc
 
 Together with our other findings, this gives a comprehensive picture:
 
-1. **No local obstructions** (transitivity proved for ALL primes — this page)
+1. **No local obstructions** (transitivity argument for all primes — this page, not yet peer-reviewed)
 2. **Uniform spectral gap** (property ($\tau$) confirmed: $\sigma_m \geq 0.237$ for 1,214 square-free moduli — [spectral gaps](/findings/zaremba-spectral-gaps-uniform/))
 3. **Brute-force verification** (zero failures to $d = 10^{10}$, 179 seconds on 8× B200)
 4. **Cayley graph diameters** ($\text{diam}(p) \leq 2 \log p$ for all 669 primes $\leq 1021$ — [Cayley diameters](/findings/zaremba-cayley-diameters/))
@@ -150,4 +152,4 @@ Source: [`scripts/experiments/zaremba-transitivity/`](https://github.com/cahlen/
 
 ---
 
-*Computed on 2× Intel Xeon Platinum 8570 (112 cores), 133 seconds.*
+*Computed on 2× Intel Xeon Platinum 8570 (112 cores), 133 seconds. Algebraic argument constructed with AI assistance (Claude). All code and data open for independent verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

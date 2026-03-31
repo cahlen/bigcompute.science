@@ -243,4 +243,4 @@ The two results are independent and complementary. Shkredov's purely analytic ap
 
 ---
 
-*Computed 2026-03-29 on 8× NVIDIA B200 (1.43 TB VRAM) + RTX 5090. All code and data at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow). Published at [bigcompute.science](https://bigcompute.science).*
+*Computed 2026-03-29 on 8× NVIDIA B200 (1.43 TB VRAM) + RTX 5090. This work was produced through human–AI collaboration: the proof strategy, CUDA kernels, interval arithmetic, and documentation were developed jointly by Cahlen Humphreys and AI agents (Claude). The mathematical arguments have not been independently peer-reviewed. All code and data are open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow). Published at [bigcompute.science](https://bigcompute.science).*

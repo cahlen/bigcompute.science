@@ -172,7 +172,7 @@ Showing the first 50 square-free moduli, plus notable extremes. Full dataset (1,
 - **Witness distribution**: smallest witness concentrates at $a/d \approx 0.171$, connected to $1/(5 + \varphi)$ — [see finding](/findings/zaremba-witness-golden-ratio/)
 - **Brute-force verification**: zero failures for all $d \leq 10^{10}$ (v6 multi-pass kernel, 179s on 8× B200)
 - **Cayley graph diameters**: $\text{diam}(p) \leq 2 \log p$ for all 669 primes $\leq 1021$ — [see finding](/findings/zaremba-cayley-diameters/)
-- **Transitivity**: algebraically proved for ALL primes via Dickson's classification — [see finding](/findings/zaremba-transitivity-all-primes/)
+- **Transitivity**: algebraic argument for all primes via Dickson's classification (AI-assisted, not peer-reviewed) — [see finding](/findings/zaremba-transitivity-all-primes/)
 
 ## What This Enables
 
@@ -180,7 +180,7 @@ The combination of uniform spectral gaps + brute-force verification + Cayley dia
 
 1. **Effective Q₀**: Bourgain-Kontorovich's density-1 proof has non-effective error terms. With explicit spectral gap data ($\sigma_m \geq 0.237$ for $m \leq 1999$) and Cayley diameter bounds ($\text{diam}(p) \sim 1.45 \log p$), the error terms in their circle method analysis can potentially be made explicit, yielding a concrete $Q_0$ such that Zaremba holds for all $d > Q_0$.
 
-2. **Computational closure**: If $Q_0$ falls below our brute-force verification range ($10^{10}$ and growing), the conjecture is proved. The gap between the analytic bound and the verification frontier is narrowing from both sides.
+2. **Computational closure**: If $Q_0$ falls below our brute-force verification range ($10^{10}$ and growing), the conjecture would be resolved computationally. The gap between the analytic bound and the verification frontier is narrowing from both sides.
 
 3. **The m=1469 minimum**: Understanding why $1469 = 13 \times 113$ gives the global minimum gap (0.237) could reveal arithmetic structure. The second minimum at $m = 638 = 2 \times 11 \times 29$ (gap 0.258) and third at $m = 34 = 2 \times 17$ (gap 0.271) suggest the tightest gaps arise at moduli with small prime factors combined with moderately large ones.
 

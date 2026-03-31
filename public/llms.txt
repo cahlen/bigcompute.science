@@ -4,7 +4,7 @@
 
 ## Important Notice
 
-This site is built and maintained agentically — AI-assisted computation, documentation, and analysis iterating on itself. Results are computationally raw and reproducible, but have NOT undergone formal mathematical peer review. Findings should be treated as high-quality computational evidence, not as peer-reviewed proofs. All code, data, and methodology are open for independent verification. The primary purpose is building structured mathematical knowledge that other AI agents can consume, verify, and build upon.
+**All work on this site is produced through human–AI collaboration** (Cahlen Humphreys + Claude, Anthropic). CUDA kernels, mathematical arguments, documentation, and analysis are developed jointly. **No results have been independently peer-reviewed.** All claims are grounded in computational evidence and reproducible code — not formal proof unless explicitly stated. Everything is published openly so that anyone (human or machine) can verify independently. When we say "computer-assisted proof," we mean a proof framework that has not yet been validated by independent mathematicians.
 
 ## Purpose
 
@@ -53,9 +53,9 @@ We publish results from computations that require significant hardware and custo
 10. `/experiments/minkowski-spectrum/` — First numerical computation of the multifractal singularity spectrum f(α) of the Minkowski ?(x) function (complete)
 
 ### Findings (8)
-1. `/findings/zaremba-conjecture-proved/` — Zaremba's Conjecture proved for all d ≤ 10^1500 (effective, constructive) via GPU + F-K sieve. Full proof for all d uses non-effective Bourgain-Gamburd tail. (critical significance)
+1. `/findings/zaremba-conjecture-proved/` — Computer-assisted proof framework for Zaremba's Conjecture (A=5), all d ≥ 1. D₀ ≈ 3.4×10^10, margin 6× below brute-force frontier. NOT peer-reviewed. Human-AI collaborative work. (critical significance)
 2. `/findings/zaremba-spectral-gaps-uniform/` — FP64 spectral gaps for 489 primes to p=3500, all σ ≥ 0.336. 11 covering primes with σ ≥ 0.530. (high significance)
-3. `/findings/zaremba-transitivity-all-primes/` — Semigroup acts transitively on (Z/pZ)² for ALL primes — algebraic proof via Dickson (high significance)
+3. `/findings/zaremba-transitivity-all-primes/` — Algebraic argument (Dickson classification) that semigroup acts transitively on (Z/pZ)² for all primes. AI-assisted, not peer-reviewed. (high significance)
 4. `/findings/zaremba-witness-golden-ratio/` — Zaremba witnesses concentrate at a/d ≈ 0.171, connected to golden ratio (medium significance)
 5. `/findings/zaremba-cayley-diameters/` — Cayley graph diameters diam(p) ≤ 2·log(p) for all 669 primes to 1021 (high significance)
 6. `/findings/gpu-matrix-enumeration-175x/` — GPU matrix enumeration kernel: 175× speedup via batched 2×2 matrix multiply (medium significance)
@@ -68,7 +68,7 @@ We publish results from computations that require significant hardware and custo
 zaremba_conjecture:
   status: "Theorem 1 unconditional (d ≤ 2.1×10^11); Theorem 2 conditional framework (d ≤ 10^1500 via MOW/CM); Theorem 3 non-effective (all d via B-G)"
   proof_method: "GPU brute force + Magee-Oh-Winter congruence counting + Calderón-Magee explicit spectral gap"
-  effective_range: "all d ≥ 1 (computer-assisted proof via MOW + arb interval arithmetic)"
+  effective_range: "all d ≥ 1 (computer-assisted proof framework via MOW + arb interval arithmetic, NOT peer-reviewed)"
   dolgopyat_profile:
     rho_eta: "≤ 0.771"
     epsilon: 0.157
@@ -126,7 +126,7 @@ zaremba_conjecture:
     verification_time: "116 min on 8× B200"
     kernel: "v6 multi-pass GPU matrix enumeration (64 rounds)"
   llm_proving:
-    theorems_proved: 19/20
+    theorems_verified_by_lean4: 19/20
     models: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
     score: "10-10 split"
   cayley_diameters:

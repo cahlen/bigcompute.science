@@ -6,8 +6,7 @@ died: null
 photo: "/images/mathematicians/lenstra.jpg"
 fields: ["algebraic-number-theory", "algebra"]
 key_works:
-  - "Heuristics on class groups (with Cohen
-  - " 1984)
+  - "Heuristics on class groups (with Cohen, 1984)"
   - "Elliptic curve factorization (1987)"
 experiments: ["/experiments/class-numbers-real-quadratic/"]
 quote: null

@@ -6,7 +6,7 @@ died: 1783
 photo: "/images/mathematicians/euler.jpg"
 fields: ["analysis", "number-theory", "continued-fractions"]
 key_works:
-  - "De fractionibus continuis (1737)
+  - "De fractionibus continuis (1737)"
   - "Introductio in analysin infinitorum (1748)"
 experiments: ["/experiments/zaremba-conjecture-8b-verification/", "/experiments/ramanujan-machine-gpu/"]
 quote: null

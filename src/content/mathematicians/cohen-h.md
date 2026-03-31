@@ -6,8 +6,7 @@ died: null
 photo: "/images/mathematicians/cohen-h.jpg"
 fields: ["algebraic-number-theory", "computational-mathematics"]
 key_works:
-  - "Heuristics on class groups of number fields (with Lenstra
-  - " 1984)"
+  - "Heuristics on class groups of number fields (with Lenstra, 1984)"
 experiments: ["/experiments/class-numbers-real-quadratic/"]
 quote: null
 wikipedia: "https://en.wikipedia.org/wiki/Henri_Cohen_(number_theorist)"

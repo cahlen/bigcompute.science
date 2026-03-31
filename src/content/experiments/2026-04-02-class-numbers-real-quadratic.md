@@ -28,11 +28,13 @@ results:
   conjecture_year: 1984
   current_frontier: "d up to ~10^11 (Jacobson et al.)"
   target: "d up to 10^13 (100× extension)"
-  status: "RUNNING — 2.74B discriminants complete for d ∈ [10^9, 10^10]; [10^10, 10^11] COMPLETE — 27.4B discriminants, h=1 drops to 15.35%"
-  discriminants_processed: 2735671820
-  h1_fraction: 0.1670
-  time: "30 minutes on 8× B200"
-  rate: "1.5M disc/sec"
+  status: "Two ranges complete: [10^9, 10^10] (2.74B disc) and [10^10, 10^11] (27.4B disc). 30B total."
+  discriminants_range1: 2735671820
+  discriminants_range2: 27356719769
+  h1_fraction_range1: 0.1670
+  h1_fraction_range2: 0.1535
+  time_range1: "30 minutes on 8× B200"
+  time_range2: "16.5 hours on 8× B200"
 
 code: https://github.com/cahlen/idontknow
 data: /data/class-numbers/

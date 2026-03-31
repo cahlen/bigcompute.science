@@ -59,7 +59,7 @@ The connection between spectral gap and diameter is classical: for a $k$-regular
 
 ### Comparison with Known Results
 
-Helfgott's growth theorem ([Helfgott, 2008](#references)) implies that generating sets of $\text{SL}_2(\mathbb{F}_p)$ produce Cayley graphs with diameter $O(\log p)$, but without explicit constants. Bourgain-Gamburd ([Bourgain-Gamburd, 2008](#references)) proved that random generators give spectral gaps bounded away from zero, yielding $O(\log p)$ diameter. Our computation provides the first **explicit numerical data** for the Zaremba generators specifically, with the constant approaching $C \approx 1.45$.
+Helfgott's growth theorem ([Helfgott, 2008](#references)) implies that generating sets of $\text{SL}_2(\mathbb{F}_p)$ produce Cayley graphs with diameter $O(\log p)$, but without explicit constants. Bourgain-Gamburd ([Bourgain-Gamburd, 2008](#references)) proved that random generators give spectral gaps bounded away from zero, yielding $O(\log p)$ diameter. Our computation provides, to our knowledge, the first **explicit numerical data** for the Zaremba generators specifically, with the constant approaching $C \approx 1.45$.
 
 ## Data
 

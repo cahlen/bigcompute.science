@@ -181,10 +181,12 @@ Following the Angeltveit-McKay framework:
 
 ### Current Status
 
-- **R(4,5,23) with $e \geq 118$**: Enumeration running (SMS, up to isomorphism)
-- **R(4,5,22) with $e \geq 102$**: Queued
-- **R(4,5,21) with $e \geq 90$**: Queued
-- **R(4,5,20) with $e \geq 81$**: Queued
+The neighborhood catalogue enumeration is in early stages. SMS (SAT Modulo Symmetries) and nauty are being evaluated as enumeration tools. Note: this is a multi-month computation — Angeltveit-McKay's R(4,5,23) catalogue alone took ~5 CPU-years.
+
+- **R(4,5,23) with $e \geq 118$**: Not yet complete
+- **R(4,5,22) with $e \geq 102$**: Not yet started
+- **R(4,5,21) with $e \geq 90$**: Not yet started
+- **R(4,5,20) with $e \geq 81$**: Not yet started
 
 ### What Changed from Prior Approaches
 

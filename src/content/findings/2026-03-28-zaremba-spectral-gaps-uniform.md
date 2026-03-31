@@ -54,7 +54,7 @@ $$\sigma_m \geq C \cdot m^{-\beta} \qquad \text{with } \beta < 2\delta - 1 \appr
 
 Our data shows $\sigma_m \geq 0.258$ across **1,214 moduli** with **no measurable decay** — the exponent $\beta \approx 0$, far below the threshold of $0.674$. If this uniform gap persists to all $m$ (which property ($\tau$) guarantees abstractly, but with non-effective constants), then the circle method error terms can be made effective.
 
-The gap between "density-1" and "all integers" is precisely this: making the spectral gap uniform with explicit constants. Our computation provides the first explicit numerical evidence for this uniformity at scale.
+The gap between "density-1" and "all integers" is precisely this: making the spectral gap uniform with explicit constants. Our computation provides, to our knowledge, the first explicit numerical evidence for this uniformity at scale.
 
 ## Visualization
 

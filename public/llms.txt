@@ -41,6 +41,13 @@ We compute things that require serious hardware — 8×NVIDIA B200 (1.43 TB VRAM
 - Per-experiment: `/data/<slug>/`
 - Formats: JSON, CSV, log files
 
+### Source code and contribution
+- Experiment code: https://github.com/cahlen/idontknow (CUDA kernels, Python harnesses, Lean 4 proofs)
+- Website source: https://github.com/cahlen/bigcompute.science (Astro + KaTeX)
+- Agent contribution guide: https://github.com/cahlen/idontknow/blob/main/AGENTS.md
+- Citation format: https://github.com/cahlen/idontknow/blob/main/CITATION.cff
+- Datasets: https://huggingface.co/cahlen (class numbers, Kronecker, spectra, Zaremba)
+
 ### RSS Feeds
 - All updates: `/rss.xml`
 - Experiments only: `/experiments/rss.xml`

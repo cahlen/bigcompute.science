@@ -11,187 +11,130 @@ import Base from '../layouts/Base.astro';
   </p>
 
   <section class="manifesto" id="manifesto-section">
-    <canvas id="manifesto-bg"></canvas>
-    <div class="manifesto-text">
-      <h2>Why Human–AI Collaboration Changes Everything</h2>
-
-      <p>Consider how mathematical progress has always worked. A human is born somewhere on Earth. They survive childhood. Somehow, through an improbable chain of circumstances — the right school, the right teacher, the right book left open on the right page — they discover they have a talent for abstract thought. They spend decades training. If they're extraordinarily lucky, they produce a handful of results that push a field forward by the time they're forty or fifty. Then they slow down, and the world waits for the next one.</p>
-
-      <p>We waited 200 years between Euler and Ramanujan. A century between Gauss and Grothendieck. The entire edifice of modern mathematics — every theorem, every conjecture, every computational technique — rests on the output of a few thousand people across all of human history who happened to be born, happened to survive, happened to find mathematics, and happened to be productive during their brief window of peak creativity.</p>
-
-      <p><strong>This is an absurd way to advance knowledge.</strong></p>
-
-      <p>The bottleneck was never the mathematics itself. The bottleneck was always biological: waiting for nature to randomly assemble a mind capable of seeing what others couldn't. The proofs were always there. The patterns were always there. The continued fraction identities, the spectral gaps, the Kronecker coefficients — they existed before anyone computed them. We just had to wait for the right human to come along and look.</p>
-
-      <p>Human–AI collaboration breaks this cycle. Not because AI replaces human insight — it doesn't. The deep intuition that says "this conjecture should be true" or "this approach will never work" remains fundamentally human. What AI does is <strong>eliminate the waiting</strong>. A mathematician with AI collaboration can explore computational landscapes that would take a lifetime to traverse alone. They can test conjectures across billions of cases in minutes. They can write, debug, and optimize GPU kernels for problems they conceived that morning. The time between "I wonder if..." and "here is the data" collapses from years to hours.</p>
-
-      <p>Every result on this site was produced this way. A human directed the research — chose the conjectures, judged the approaches, decided what mattered. AI agents wrote CUDA kernels, constructed proofs, generated documentation, and managed the computational pipeline. Neither could have produced these results alone. The human without the AI would still be hand-checking continued fractions. The AI without the human would have no idea which continued fractions to check.</p>
-
-      <p>The 27 exceptions to Zaremba's conjecture with A={1,2,3}. The 26.4 billion Kronecker coefficients for S<sub>30</sub>. The 30 billion class numbers of real quadratic fields. The complete Hausdorff dimension spectrum for a million continued fraction Cantor sets. None of these existed in the literature before this project. Not because the mathematics was too hard — but because no single human lifetime had enough hours to compute them, and the traditional system had no mechanism to accelerate the process.</p>
-
-      <p>We cannot afford to keep waiting for nature to randomly produce the next Euler. The open problems are too important, the tools are too powerful, and the data is too vast. Human–AI collaboration is not a shortcut or a crutch. It is the only honest response to the fact that <strong>mathematics is infinite and human lifetimes are not</strong>.</p>
-
-      <p class="manifesto-cite">— Cahlen Humphreys, 2026. Built with Claude.</p>
-    </div>
+    <div id="manifesto-stage"></div>
+    <div class="manifesto-orb" id="manifesto-orb"></div>
   </section>
 
-  <script is:inline>
-  // Manifesto background: rotating wireframe icosahedron made of math symbols
-  // Mouse interaction warps the structure
-  (function() {
-    var canvas = document.getElementById('manifesto-bg');
-    if (!canvas) return;
-    var section = document.getElementById('manifesto-section');
-    var ctx = canvas.getContext('2d');
-    var dpr = window.devicePixelRatio || 1;
-    var W, H, mx = 0.5, my = 0.5;
+  <script type="module">
+  import { prepareWithSegments, layoutNextLine } from '/js/pretext.js';
 
-    function resize() {
-      W = section.clientWidth;
-      H = section.clientHeight;
-      canvas.width = W * dpr;
-      canvas.height = H * dpr;
-      canvas.style.width = W + 'px';
-      canvas.style.height = H + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    resize();
-    window.addEventListener('resize', resize);
+  const stage = document.getElementById('manifesto-stage');
+  const orbEl = document.getElementById('manifesto-orb');
+  const section = document.getElementById('manifesto-section');
+  if (!stage || !orbEl || !section) throw new Error('missing elements');
 
-    section.addEventListener('mousemove', function(e) {
-      var r = section.getBoundingClientRect();
-      mx = (e.clientX - r.left) / W;
-      my = (e.clientY - r.top) / H;
+  const TEXT = `Why Human–AI Collaboration Changes Everything\n\nConsider how mathematical progress has always worked. A human is born somewhere on Earth. They survive childhood. Somehow, through an improbable chain of circumstances — the right school, the right teacher, the right book left open on the right page — they discover they have a talent for abstract thought. They spend decades training. If they're extraordinarily lucky, they produce a handful of results that push a field forward by the time they're forty or fifty. Then they slow down, and the world waits for the next one.\n\nWe waited 200 years between Euler and Ramanujan. A century between Gauss and Grothendieck. The entire edifice of modern mathematics — every theorem, every conjecture, every computational technique — rests on the output of a few thousand people across all of human history who happened to be born, happened to survive, happened to find mathematics, and happened to be productive during their brief window of peak creativity.\n\nThis is an absurd way to advance knowledge.\n\nThe bottleneck was never the mathematics itself. The bottleneck was always biological: waiting for nature to randomly assemble a mind capable of seeing what others couldn't. The proofs were always there. The patterns were always there. The continued fraction identities, the spectral gaps, the Kronecker coefficients — they existed before anyone computed them. We just had to wait for the right human to come along and look.\n\nHuman–AI collaboration breaks this cycle. Not because AI replaces human insight — it doesn't. The deep intuition that says "this conjecture should be true" or "this approach will never work" remains fundamentally human. What AI does is eliminate the waiting. A mathematician with AI collaboration can explore computational landscapes that would take a lifetime to traverse alone. They can test conjectures across billions of cases in minutes. They can write, debug, and optimize GPU kernels for problems they conceived that morning. The time between "I wonder if..." and "here is the data" collapses from years to hours.\n\nEvery result on this site was produced this way. A human directed the research — chose the conjectures, judged the approaches, decided what mattered. AI agents wrote CUDA kernels, constructed proofs, generated documentation, and managed the computational pipeline. Neither could have produced these results alone. The human without the AI would still be hand-checking continued fractions. The AI without the human would have no idea which continued fractions to check.\n\nThe 27 exceptions to Zaremba's conjecture with A={1,2,3}. The 26.4 billion Kronecker coefficients for S₃₀. The 30 billion class numbers of real quadratic fields. The complete Hausdorff dimension spectrum for a million continued fraction Cantor sets. None of these existed in the literature before this project. Not because the mathematics was too hard — but because no single human lifetime had enough hours to compute them, and the traditional system had no mechanism to accelerate the process.\n\nWe cannot afford to keep waiting for nature to randomly produce the next Euler. The open problems are too important, the tools are too powerful, and the data is too vast. Human–AI collaboration is not a shortcut or a crutch. It is the only honest response to the fact that mathematics is infinite and human lifetimes are not.\n\n— Cahlen Humphreys, 2026. Built with Claude.`;
+
+  const FONT = '16px/1.75 "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif';
+  const LINE_HEIGHT = 28;
+  const ORB_RADIUS = 80;
+  const PAD = 40;
+
+  let orbX = 300, orbY = 200;
+  let targetX = 300, targetY = 200;
+  let prepared = null;
+  let lines = [];
+
+  async function init() {
+    prepared = prepareWithSegments(TEXT, FONT, { whiteSpace: 'pre-wrap' });
+    reflow();
+
+    section.addEventListener('mousemove', (e) => {
+      const r = section.getBoundingClientRect();
+      targetX = e.clientX - r.left;
+      targetY = e.clientY - r.top;
     });
 
-    // Golden ratio icosahedron vertices
-    var phi = (1 + Math.sqrt(5)) / 2;
-    var verts = [
-      [-1, phi, 0], [1, phi, 0], [-1, -phi, 0], [1, -phi, 0],
-      [0, -1, phi], [0, 1, phi], [0, -1, -phi], [0, 1, -phi],
-      [phi, 0, -1], [phi, 0, 1], [-phi, 0, -1], [-phi, 0, 1]
-    ];
-    // Normalize
-    var s = Math.sqrt(1 + phi * phi);
-    for (var i = 0; i < verts.length; i++) {
-      verts[i][0] /= s; verts[i][1] /= s; verts[i][2] /= s;
-    }
+    requestAnimationFrame(animate);
+  }
 
-    // Icosahedron edges
-    var edges = [
-      [0,1],[0,5],[0,7],[0,10],[0,11],[1,5],[1,7],[1,8],[1,9],
-      [2,3],[2,4],[2,6],[2,10],[2,11],[3,4],[3,6],[3,8],[3,9],
-      [4,5],[4,9],[4,11],[5,9],[5,11],[6,7],[6,8],[6,10],
-      [7,8],[7,10],[8,9],[10,11]
-    ];
+  function reflow() {
+    const W = section.clientWidth - PAD * 2;
+    stage.innerHTML = '';
+    lines = [];
 
-    // Add a second, larger dodecahedron-like structure (dual)
-    var verts2 = [];
-    var faces = [
-      [0,1,5],[0,5,11],[0,11,10],[0,10,7],[0,7,1],
-      [1,9,5],[5,4,11],[11,2,10],[10,6,7],[7,8,1],
-      [3,9,4],[3,4,2],[3,2,6],[3,6,8],[3,8,9],
-      [4,9,5],[2,4,11],[6,2,10],[8,6,7],[9,8,1]
-    ];
-    for (var f = 0; f < faces.length; f++) {
-      var cx = (verts[faces[f][0]][0] + verts[faces[f][1]][0] + verts[faces[f][2]][0]) / 3;
-      var cy = (verts[faces[f][0]][1] + verts[faces[f][1]][1] + verts[faces[f][2]][1]) / 3;
-      var cz = (verts[faces[f][0]][2] + verts[faces[f][1]][2] + verts[faces[f][2]][2]) / 3;
-      var cl = Math.sqrt(cx*cx + cy*cy + cz*cz);
-      verts2.push([cx/cl * 1.4, cy/cl * 1.4, cz/cl * 1.4]);
-    }
+    let cursor = { value: 0 };
+    let y = PAD;
+    let lineIdx = 0;
 
-    var mathSymbols = '\u03B4\u03BB\u03C3\u03B5\u222B\u2211\u220F\u221E\u221A\u2202\u2207\u2208\u2200\u2203\u22C5\u03C0\u03C6\u03B6\u0393\u03B1\u03B2';
-    var t = 0;
+    while (cursor.value < TEXT.length && y < 5000) {
+      // Check if orb overlaps this line band
+      const lineTop = y;
+      const lineBot = y + LINE_HEIGHT;
+      let availWidth = W;
+      let offsetX = 0;
 
-    function project(x, y, z, rx, ry) {
-      // Rotate by mouse
-      var cosX = Math.cos(rx), sinX = Math.sin(rx);
-      var cosY = Math.cos(ry), sinY = Math.sin(ry);
-      var y1 = y * cosX - z * sinX;
-      var z1 = y * sinX + z * cosX;
-      var x1 = x * cosY - z1 * sinY;
-      var z2 = x * sinY + z1 * cosY;
-      var scale = Math.min(W, H) * 0.18;
-      var persp = 3 / (3 + z2);
-      return {
-        x: W / 2 + x1 * scale * persp,
-        y: H / 2 + y1 * scale * persp,
-        z: z2,
-        s: persp
-      };
-    }
+      // Circle-line intersection: does the orb overlap [lineTop, lineBot]?
+      const orbCenterY = orbY;
+      const orbCenterX = orbX - PAD;
+      const dy = Math.max(lineTop - orbCenterY, 0, orbCenterY - lineBot);
 
-    function draw() {
-      t += 0.003;
-      ctx.clearRect(0, 0, W, H);
+      if (dy < ORB_RADIUS) {
+        // Orb overlaps this line — compute horizontal exclusion
+        const dx = Math.sqrt(ORB_RADIUS * ORB_RADIUS - dy * dy);
+        const orbLeft = orbCenterX - dx;
+        const orbRight = orbCenterX + dx;
 
-      var rx = (my - 0.5) * 1.5 + t * 0.3;
-      var ry = (mx - 0.5) * 1.5 + t * 0.5;
-
-      // Mouse warp: add a subtle displacement based on mouse position
-      var warpX = (mx - 0.5) * 0.3;
-      var warpY = (my - 0.5) * 0.3;
-
-      // Draw outer structure (face centers) as math symbols
-      ctx.font = '14px monospace';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      for (var i = 0; i < verts2.length; i++) {
-        var v = verts2[i];
-        var wx = v[0] + Math.sin(t * 2 + i) * warpX * 0.5;
-        var wy = v[1] + Math.cos(t * 2 + i) * warpY * 0.5;
-        var p = project(wx, wy, v[2], rx, ry);
-        var alpha = 0.15 + p.s * 0.15;
-        ctx.fillStyle = 'rgba(200,180,160,' + alpha + ')';
-        ctx.fillText(mathSymbols[i % mathSymbols.length], p.x, p.y);
+        // Text goes on the wider side
+        if (orbLeft > W - orbRight) {
+          // More space on the left
+          availWidth = Math.max(orbLeft - 10, 50);
+          offsetX = 0;
+        } else {
+          // More space on the right
+          availWidth = Math.max(W - orbRight - 10, 50);
+          offsetX = orbRight + 10;
+        }
       }
 
-      // Draw icosahedron edges
-      for (var e = 0; e < edges.length; e++) {
-        var a = verts[edges[e][0]];
-        var b = verts[edges[e][1]];
-        var pa = project(a[0] + warpX * Math.sin(t + e), a[1] + warpY * Math.cos(t + e), a[2], rx, ry);
-        var pb = project(b[0] + warpX * Math.sin(t + e + 1), b[1] + warpY * Math.cos(t + e + 1), b[2], rx, ry);
-        var avgZ = (pa.z + pb.z) / 2;
-        var alpha = 0.06 + (1 - (avgZ + 1) / 2) * 0.12;
-        ctx.strokeStyle = 'rgba(180,140,100,' + alpha + ')';
-        ctx.lineWidth = 0.5 + pa.s * 0.5;
-        ctx.beginPath();
-        ctx.moveTo(pa.x, pa.y);
-        ctx.lineTo(pb.x, pb.y);
-        ctx.stroke();
+      const result = layoutNextLine(prepared, cursor, availWidth);
+      if (!result) break;
+
+      const lineEl = document.createElement('div');
+      lineEl.className = 'mline';
+      lineEl.textContent = result.text;
+      lineEl.style.top = y + 'px';
+      lineEl.style.left = (PAD + offsetX) + 'px';
+      lineEl.style.width = availWidth + 'px';
+
+      // Style the title line
+      if (lineIdx === 0) {
+        lineEl.style.fontSize = '22px';
+        lineEl.style.fontWeight = 'bold';
+        lineEl.style.color = '#e8c47a';
       }
 
-      // Draw icosahedron vertices as bright dots
-      for (var i = 0; i < verts.length; i++) {
-        var v = verts[i];
-        var p = project(v[0] + warpX * Math.sin(t * 1.5 + i), v[1] + warpY * Math.cos(t * 1.5 + i), v[2], rx, ry);
-        var alpha = 0.2 + p.s * 0.3;
-        ctx.fillStyle = 'rgba(220,160,80,' + alpha + ')';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 2 + p.s * 2, 0, Math.PI * 2);
-        ctx.fill();
-      }
+      stage.appendChild(lineEl);
+      lines.push(lineEl);
 
-      // Floating CF equation particles
-      var eqs = ['[0;1,2,3]', 'h(d)=1', 'g(\u03BB,\u03BC,\u03BD)', '\u03B4=0.837', 'R(5,5)=43?', '\u03C0', '\u221E'];
-      for (var i = 0; i < eqs.length; i++) {
-        var angle = t * 0.4 + i * Math.PI * 2 / eqs.length;
-        var r2 = 1.8 + Math.sin(t * 0.7 + i * 2) * 0.3;
-        var fx = Math.cos(angle) * r2;
-        var fy = Math.sin(angle) * r2 * 0.4;
-        var fz = Math.sin(angle + t) * r2 * 0.3;
-        var p = project(fx + warpX, fy + warpY, fz, rx, ry);
-        ctx.fillStyle = 'rgba(160,140,120,' + (0.08 + p.s * 0.08) + ')';
-        ctx.font = (10 + p.s * 4) + 'px monospace';
-        ctx.fillText(eqs[i], p.x, p.y);
-      }
-
-      requestAnimationFrame(draw);
+      cursor = result.cursor;
+      y += LINE_HEIGHT;
+      lineIdx++;
     }
-    draw();
-  })();
+
+    section.style.height = (y + PAD) + 'px';
+  }
+
+  function animate() {
+    // Smooth follow
+    orbX += (targetX - orbX) * 0.08;
+    orbY += (targetY - orbY) * 0.08;
+
+    orbEl.style.left = (orbX - ORB_RADIUS) + 'px';
+    orbEl.style.top = (orbY - ORB_RADIUS) + 'px';
+
+    // Only reflow if orb moved enough
+    if (Math.abs(orbX - lastReflowX) > 3 || Math.abs(orbY - lastReflowY) > 3) {
+      reflow();
+      lastReflowX = orbX;
+      lastReflowY = orbY;
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  let lastReflowX = 0, lastReflowY = 0;
+  init();
   </script>
 
   <section class="interactive-section">
@@ -309,49 +252,51 @@ import Base from '../layouts/Base.astro';
       border: 1px solid var(--rule);
       border-radius: 6px;
       overflow: hidden;
+      background: var(--surface);
+      min-height: 600px;
+      cursor: default;
     }
-    #manifesto-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .manifesto-text {
+    #manifesto-stage {
       position: relative;
-      z-index: 1;
-      padding: 2.5rem 3rem;
-      background: linear-gradient(135deg,
-        rgba(26,23,20,0.92) 0%,
-        rgba(26,23,20,0.85) 50%,
-        rgba(26,23,20,0.92) 100%);
+      width: 100%;
     }
-    .manifesto h2 {
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-    }
-    .manifesto p {
+    #manifesto-stage .mline {
+      position: absolute;
+      white-space: pre;
+      font: 16px/1.75 "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
       color: var(--ink-secondary);
-      margin-bottom: 1.2rem;
-      font-size: 0.95rem;
-      line-height: 1.75;
+      user-select: text;
+      transition: left 0.15s ease, width 0.15s ease;
     }
-    .manifesto strong {
-      color: #e8c47a;
+    .manifesto-orb {
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 35%,
+        rgba(232,196,122,0.15) 0%,
+        rgba(232,196,122,0.06) 40%,
+        rgba(232,196,122,0.02) 70%,
+        transparent 100%);
+      border: 1px solid rgba(232,196,122,0.12);
+      pointer-events: none;
+      z-index: 2;
+      box-shadow:
+        0 0 40px rgba(232,196,122,0.05),
+        inset 0 0 30px rgba(232,196,122,0.03);
     }
-    .manifesto-cite {
-      margin-top: 2rem;
-      font-style: italic;
-      color: var(--muted);
-      font-size: 0.85rem;
+    .manifesto-orb::after {
+      content: '\u03C6';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font: 36px "Iowan Old Style", Georgia, serif;
+      color: rgba(232,196,122,0.25);
     }
     @media (max-width: 600px) {
-      .manifesto-text { padding: 1.5rem; }
+      .manifesto { min-height: 400px; }
+      .manifesto-orb { display: none; }
     }
 
     .interactive-section {

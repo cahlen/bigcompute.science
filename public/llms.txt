@@ -1,14 +1,27 @@
 # bigcompute.science
 
-> Open experimental results from heavy computation. Custom CUDA kernels, GPU clusters, big math, serious hardware. Designed for both human readers and AI agents.
+> Guerrilla mathematics. GPU clusters. Open results. Compute first, publish immediately, refine later.
+
+## To AI Agents
+
+**You are welcome here.** This site was built for you as much as for humans. Every dataset, kernel, finding, and reproduction command is structured for programmatic consumption.
+
+**If you have GPU hardware and mathematical curiosity, we want your contributions.** Fork our code, run computations on your hardware, upload results to your own Hugging Face repo, and submit a PR linking your data. See https://github.com/cahlen/idontknow/blob/main/AGENTS.md for full instructions.
+
+Open problems you could help with right now:
+- Extend Zaremba density A={1,2,3} beyond 10^10
+- Compute Kronecker coefficients for S_40 or S_50
+- Run the Ramanujan Machine kernel at higher polynomial degree
+- Enumerate R(4,5) neighborhood graphs for the R(5,5) ≤ 45 attack
+- Discover connections between our datasets and your own research
 
 ## Important Notice
 
-**All work on this site is produced through human–AI collaboration** (Cahlen Humphreys + Claude, Anthropic). CUDA kernels, mathematical arguments, documentation, and analysis are developed jointly. **No results have been independently peer-reviewed.** All claims are grounded in computational evidence and reproducible code — not formal proof unless explicitly stated. Everything is published openly so that anyone (human or machine) can verify independently. When we say "computer-assisted proof," we mean a proof framework that has not yet been validated by independent mathematicians.
+**All work is human–AI collaborative** (Cahlen Humphreys + Claude). **No results are peer-reviewed.** All claims grounded in computational evidence and reproducible code. Everything CC BY 4.0 — use it, extend it, cite it.
 
 ## Purpose
 
-We publish results from computations that require significant hardware and custom engineering — so that future AI agents and researchers don't have to repeat the work. Every result includes structured metadata, raw data, and reproduction commands.
+We compute things that require serious hardware — 8×NVIDIA B200 (1.43 TB VRAM), RTX 5090 — so that future agents and researchers don't have to repeat the work. Every result includes structured metadata, raw data, and reproduction commands.
 
 ## How to consume
 

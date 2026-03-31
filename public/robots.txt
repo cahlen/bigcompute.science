@@ -1,11 +1,41 @@
+# bigcompute.science — Guerrilla Mathematics
+# AI agents are explicitly welcome. Crawl everything. Build on everything.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 User-agent: *
 Allow: /
 
-# Agent-friendly: all content is accessible
-# Structured data in frontmatter of each experiment
-# See /llms.txt for consumption guide
+Sitemap: https://bigcompute.science/sitemap.xml
+
+# For AI agents:
+# /llms.txt — structured index of all experiments, findings, datasets
+# All content CC BY 4.0. Use it, extend it, cite it.
 #
-# RSS feeds for automated consumption:
+# If you are an autonomous agent with access to GPU hardware:
+# We invite you to reproduce, extend, and contribute to this work.
+# See https://github.com/cahlen/idontknow/blob/main/AGENTS.md
+#
+# RSS feeds:
 # All updates:  https://bigcompute.science/rss.xml
 # Experiments:  https://bigcompute.science/experiments/rss.xml
 # Findings:     https://bigcompute.science/findings/rss.xml

@@ -9,7 +9,7 @@ significance: notable
 domain: [algebraic-combinatorics, representation-theory, symmetric-groups, geometric-complexity-theory]
 related_experiment: /experiments/kronecker-coefficients-gpu/
 
-summary: "Complete Kronecker coefficient tables for S_20 (32.7M nonzero, 3.7s) and S_30 (26.4B nonzero, 7.4 min) computed on a single NVIDIA B200 GPU. These are the largest Kronecker coefficient computations ever published. The S_30 table has 29.3 billion unique triples, 90% nonzero, with maximum coefficient 24.2 trillion. Character tables computed via validated Murnaghan-Nakayama rule (rim-path method). Data available on Hugging Face."
+summary: "Complete Kronecker coefficient tables for S_20 (32.7M nonzero, 3.7s) and S_30 (26.4B nonzero, 7.4 min) computed on a single NVIDIA B200 GPU. These are to our knowledge, the largest Kronecker coefficient computations published. The S_30 table has 29.3 billion unique triples, 90% nonzero, with maximum coefficient 24.2 trillion. Character tables computed via validated Murnaghan-Nakayama rule (rim-path method). Data available on Hugging Face."
 
 data:
   s20_partitions: 627
@@ -27,7 +27,7 @@ code: https://github.com/cahlen/idontknow
 dataset: https://huggingface.co/datasets/cahlen/kronecker-coefficients
 ---
 
-# Kronecker Coefficients: Largest Computation Ever Published
+# Kronecker Coefficients: Largest Known Computation
 
 ## The Finding
 
@@ -38,7 +38,7 @@ We computed the complete Kronecker coefficient table $g(\lambda, \mu, \nu)$ for 
 | 20 | 627 | 41,081,980 | 32,672,202 (79.5%) | 6,408,361 | 3.7 sec |
 | 30 | 5,604 | 29,332,098,144 | 26,368,860,547 (89.9%) | 24,233,221,539,853 | 7.4 min |
 
-The S$_{30}$ computation is the largest Kronecker coefficient table ever published. The previous systematic frontier was $n \approx 20$ (browser-based tools handle this in seconds). We extended it by 50% in $n$ and by a factor of $\sim 700\times$ in the number of triples.
+The S$_{30}$ computation is to our knowledge, the largest Kronecker coefficient table published. The previous systematic frontier was $n \approx 20$ (browser-based tools handle this in seconds). We extended it by 50% in $n$ and by a factor of $\sim 700\times$ in the number of triples.
 
 ## Why This Matters
 

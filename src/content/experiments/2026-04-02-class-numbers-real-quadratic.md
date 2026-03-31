@@ -43,7 +43,7 @@ dataset: https://huggingface.co/datasets/cahlen/class-numbers-real-quadratic
 
 ## Abstract
 
-We compute class numbers $h(d)$ of real quadratic fields $\mathbb{Q}(\sqrt{d})$ for all fundamental discriminants $d$ from $10^{11}$ to $10^{13}$ — a 100× extension of existing systematic tables. Each discriminant is handled by an independent CUDA thread using the analytic class number formula combined with continued-fraction computation of the regulator. The resulting dataset tests the Cohen-Lenstra heuristics at unprecedented scale, specifically the prediction that $h(d) = 1$ occurs with probability $\approx 75.446\%$ for real quadratic fields.
+We compute class numbers $h(d)$ of real quadratic fields $\mathbb{Q}(\sqrt{d})$ for all fundamental discriminants $d$ from $10^{11}$ to $10^{13}$ — a 100× extension of existing systematic tables. Each discriminant is handled by an independent CUDA thread using the analytic class number formula combined with continued-fraction computation of the regulator. The resulting dataset tests the Cohen-Lenstra heuristics at this scale, specifically the prediction that $h(d) = 1$ occurs with probability $\approx 75.446\%$ for real quadratic fields.
 
 ## Background
 

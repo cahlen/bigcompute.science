@@ -46,7 +46,7 @@ data: /data/ramsey-r55/
 
 ## Abstract
 
-We attack the Ramsey number $R(5,5)$ from multiple angles using 8 NVIDIA B200 GPUs. Rather than finding a new lower bound (which would require a $K_5$-free 2-coloring of $K_{44}$), we produce the strongest computational evidence to date that $R(5,5) = 43$. Our key results:
+We attack the Ramsey number $R(5,5)$ from multiple angles using 8 NVIDIA B200 GPUs. Rather than finding a new lower bound (which would require a $K_5$-free 2-coloring of $K_{44}$), we produce among the strongest computational evidence that $R(5,5) = 43$. Our key results:
 
 1. **Exhaustive extension of Exoo's coloring:** All $2^{42} = 4.4 \times 10^{12}$ ways to extend Exoo's $K_{42}$ circulant coloring to $K_{43}$ were checked. Zero produce a valid (monochromatic-$K_5$-free) coloring. Time: 130 seconds on 8x B200.
 
@@ -147,7 +147,7 @@ We ran a portfolio of 98 solver instances (66 Kissat 4.0.4 + 32 CaDiCaL 1.7.3) o
 
 ### What This Means
 
-Our results do not resolve $R(5,5)$, but they provide the strongest computational evidence to date that $R(5,5) = 43$ (this work is human-AI collaborative and not peer-reviewed):
+Our results do not resolve $R(5,5)$, but they provide among the strongest computational evidence that $R(5,5) = 43$ (this work is human-AI collaborative and not peer-reviewed):
 
 1. **Every known approach to constructing $K_{43}$ fails.** The 656 known $K_{42}$ colorings cannot be extended, and SA search cannot find colorings from scratch.
 

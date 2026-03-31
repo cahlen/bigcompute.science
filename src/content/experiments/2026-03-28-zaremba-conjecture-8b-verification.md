@@ -227,7 +227,7 @@ The spectral gap of $0.717$ is strong: the dominant eigenfunction controls the o
 **Why this matters:**
 - $2\delta > 1$ confirms the Hausdorff dimension of $E_5$ is large enough for the circle method to potentially close the gap from density-1 to all $d$
 - The spectral gap quantifies mixing rates in the continued fraction dynamics
-- **Phase 2 complete:** congruence spectral gaps computed for all 1,214 square-free moduli up to $m = 1999$ — every gap positive (min $0.237$), confirming property ($\tau$) at unprecedented scale. See [findings](/findings/zaremba-spectral-gaps-uniform/)
+- **Phase 2 complete:** congruence spectral gaps computed for all 1,214 square-free moduli up to $m = 1999$ — every gap positive (min $0.237$), confirming property ($\tau$) at this scale. See [findings](/findings/zaremba-spectral-gaps-uniform/)
 - **Transitivity proved:** algebraic proof that $\Gamma_{\{1,\ldots,5\}}$ generates $\text{SL}_2(\mathbb{Z}/p\mathbb{Z})$ for every prime $p$ — no local obstructions exist. See [findings](/findings/zaremba-transitivity-all-primes/)
 
 ## Analysis: The Witness Distribution

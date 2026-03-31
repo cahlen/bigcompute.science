@@ -49,7 +49,7 @@ dataset: https://huggingface.co/datasets/cahlen/zaremba-conjecture-data
 
 ## Abstract
 
-We computed the Hausdorff dimension of the set $E_5$ (reals whose continued fraction has all partial quotients $\leq 5$) to 15 digits of precision using a GPU-accelerated spectral method. The result $\delta = 0.836829443681208$ confirms $2\delta = 1.674 > 1$, meeting the circle method threshold required by Bourgain-Kontorovich's approach to Zaremba's Conjecture. The spectral gap of $0.717$ quantifies the mixing rate of the underlying continued fraction dynamics. Phase 2 (congruence gap analysis) computed spectral gaps for all 1,214 square-free moduli up to $m = 1999$ in 77 minutes — every gap positive, minimum $0.237$ at $m = 1469$, confirming property ($\tau$) at unprecedented scale.
+We computed the Hausdorff dimension of the set $E_5$ (reals whose continued fraction has all partial quotients $\leq 5$) to 15 digits of precision using a GPU-accelerated spectral method. The result $\delta = 0.836829443681208$ confirms $2\delta = 1.674 > 1$, meeting the circle method threshold required by Bourgain-Kontorovich's approach to Zaremba's Conjecture. The spectral gap of $0.717$ quantifies the mixing rate of the underlying continued fraction dynamics. Phase 2 (congruence gap analysis) computed spectral gaps for all 1,214 square-free moduli up to $m = 1999$ in 77 minutes — every gap positive, minimum $0.237$ at $m = 1469$, confirming property ($\tau$) at this scale.
 
 ## Background
 
@@ -147,7 +147,7 @@ We computed the spectral gap $\sigma_m$ of the congruence transfer operator $\ma
 
 $$0.237 \leq \sigma_m \leq 0.998, \qquad \text{mean } = 0.482 \qquad \text{for all square-free } m \leq 1999$$
 
-The minimum gap of $0.237$ occurs at $m = 1469 = 13 \times 113$. There is **no decay trend** — gaps at $m = 1997$ are just as large as at $m = 2$. This confirms **property ($\tau$)** of the Zaremba semigroup at unprecedented scale.
+The minimum gap of $0.237$ occurs at $m = 1469 = 13 \times 113$. There is **no decay trend** — gaps at $m = 1997$ are just as large as at $m = 2$. This confirms **property ($\tau$)** of the Zaremba semigroup at this scale.
 
 This is precisely the condition Bourgain-Kontorovich need: a uniform spectral gap with decay exponent $\beta \approx 0$, far below their threshold of $\beta < 2\delta - 1 \approx 0.672$.
 

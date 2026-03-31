@@ -46,7 +46,7 @@ dataset: https://huggingface.co/datasets/cahlen/continued-fraction-spectra
 
 ## Abstract
 
-We compute the multifractal singularity spectrum $f(\alpha)$ of the Minkowski question mark function $?(x)$ — the first numerical computation of this spectrum. Using a weighted transfer operator with Minkowski measure weights, bisection over 2,001 $q$-values, and a Legendre transform, the full spectrum is obtained in **4.9 seconds** on a single RTX 5090.
+We compute the multifractal singularity spectrum $f(\alpha)$ of the Minkowski question mark function $?(x)$ — to our knowledge, the first numerical computation of this spectrum. Using a weighted transfer operator with Minkowski measure weights, bisection over 2,001 $q$-values, and a Legendre transform, the full spectrum is obtained in **4.9 seconds** on a single RTX 5090.
 
 ## Background
 
@@ -121,7 +121,7 @@ Requires: CUDA 13.0+, GPU with compute capability 12.0 (RTX 5090) or adjust `-ar
 
 ## Why This Matters for AI
 
-- **First numerical computation:** This spectrum has been studied theoretically but never computed. No training data exists for AI models to learn the shape of $f(\alpha)$ for the Minkowski measure.
+- **To our knowledge, first numerical computation:** This spectrum has been studied theoretically but never computed. No training data exists for AI models to learn the shape of $f(\alpha)$ for the Minkowski measure.
 - **Multifractal analysis benchmark:** The $\tau(0)$ and $\tau(1)$ checks provide hard ground truth. Any AI system claiming to reason about multifractal spectra can be tested against this data.
 - **Connects number theory and ergodic theory:** The Minkowski function bridges continued fractions, Farey sequences, and fractal geometry — a rich intersection that AI models currently cannot navigate.
 

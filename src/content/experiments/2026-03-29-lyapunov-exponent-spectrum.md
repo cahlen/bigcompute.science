@@ -41,7 +41,7 @@ dataset: https://huggingface.co/datasets/cahlen/continued-fraction-spectra
 
 ## Abstract
 
-We compute the Lyapunov exponent $\lambda(A)$ for every non-empty subset $A \subseteq \{1,\ldots,20\}$ — a total of $2^{20} - 1 = 1{,}048{,}575$ subsets — in 305 seconds on a single RTX 5090. This is the twin dataset to the [Hausdorff dimension spectrum](/experiments/hausdorff-dimension-spectrum/), together providing the first complete mapping of both the geometric size and the dynamical divergence rate for all continued fraction Cantor sets up to digit 20.
+We compute the Lyapunov exponent $\lambda(A)$ for every non-empty subset $A \subseteq \{1,\ldots,20\}$ — a total of $2^{20} - 1 = 1{,}048{,}575$ subsets — in 305 seconds on a single RTX 5090. This is the twin dataset to the [Hausdorff dimension spectrum](/experiments/hausdorff-dimension-spectrum/), together providing to our knowledge, the first complete mapping of both the geometric size and the dynamical divergence rate for all continued fraction Cantor sets up to digit 20.
 
 ## Background
 

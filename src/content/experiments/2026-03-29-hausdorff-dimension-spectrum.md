@@ -47,7 +47,7 @@ dataset: https://huggingface.co/datasets/cahlen/continued-fraction-spectra
 
 ## Abstract
 
-We compute the Hausdorff dimension $\dim_H(E_A)$ for every non-empty subset $A \subseteq \{1,\ldots,20\}$ — a total of $2^{20} - 1 = 1{,}048{,}575$ subsets. This is the first complete mapping of the "dimension spectrum" of continued fraction Cantor sets, producing a structured dataset that does not exist anywhere in the literature.
+We compute the Hausdorff dimension $\dim_H(E_A)$ for every non-empty subset $A \subseteq \{1,\ldots,20\}$ — a total of $2^{20} - 1 = 1{,}048{,}575$ subsets. To our knowledge, this is the first complete mapping of the "dimension spectrum" of continued fraction Cantor sets, producing a structured dataset that does not exist anywhere in the literature.
 
 ## Background
 

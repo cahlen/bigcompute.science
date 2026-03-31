@@ -28,7 +28,6 @@ results:
   conjecture_year: 1938
   current_frontier: "Systematic computation to n ~ 60-80"
   target: "n = 120 for GCT-relevant triples"
-  status: "NOT YET RUN"
 
 code: https://github.com/cahlen/idontknow
 dataset: https://huggingface.co/datasets/cahlen/kronecker-coefficients

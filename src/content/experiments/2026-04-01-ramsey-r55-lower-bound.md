@@ -39,6 +39,7 @@ results:
   conclusion: "Strongest computational evidence ever assembled that R(5,5) = 43"
 
 code: https://github.com/cahlen/idontknow
+dataset: https://huggingface.co/datasets/cahlen/kronecker-coefficients
 data: /data/ramsey-r55/
 ---
 

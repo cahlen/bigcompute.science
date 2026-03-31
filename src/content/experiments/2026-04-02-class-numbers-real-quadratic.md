@@ -28,7 +28,7 @@ results:
   conjecture_year: 1984
   current_frontier: "d up to ~10^11 (Jacobson et al.)"
   target: "d up to 10^13 (100× extension)"
-  status: "RUNNING — 2.74B discriminants complete for d ∈ [10^9, 10^10]; [10^10, 10^11] ~26% complete"
+  status: "RUNNING — 2.74B discriminants complete for d ∈ [10^9, 10^10]; [10^10, 10^11] COMPLETE — 27.4B discriminants, h=1 drops to 15.35%"
   discriminants_processed: 2735671820
   h1_fraction: 0.1670
   time: "30 minutes on 8× B200"

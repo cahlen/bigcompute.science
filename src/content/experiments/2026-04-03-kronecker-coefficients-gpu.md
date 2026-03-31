@@ -31,6 +31,7 @@ results:
   status: "NOT YET RUN"
 
 code: https://github.com/cahlen/idontknow
+dataset: https://huggingface.co/datasets/cahlen/kronecker-coefficients
 data: /data/kronecker/
 ---
 

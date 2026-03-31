@@ -82,3 +82,17 @@ Source code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow/t
 *Computed 2026-03-30 on 8× NVIDIA B200. All code and data at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow). Published at [bigcompute.science](https://bigcompute.science).*
 
 *This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+
+## Update: d ∈ [10^10, 10^11] — 27.4 Billion Discriminants (2026-03-31)
+
+| Statistic | [10^9, 10^10] | [10^10, 10^11] |
+|-----------|--------------|----------------|
+| Discriminants | 2,735,671,820 | 27,356,719,769 |
+| h=1 rate | 16.70% | **15.35%** |
+| h=2 | 22.17% | 21.27% |
+| h=4 | 19.77% | 19.92% |
+| h=8 | 10.90% | **11.67%** |
+| h=16 | 4.52% | **5.15%** |
+| 3 divides h | 15.28% | 15.48% |
+
+The h=1 rate continues to fall (16.7% → 15.4%). Powers of 2 are increasing (h=8: 10.9% → 11.7%, h=16: 4.5% → 5.2%), consistent with genus theory dominating at larger discriminants. Total: **30 billion discriminants** across both ranges.

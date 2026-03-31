@@ -47,6 +47,7 @@ We publish results from computations that require significant hardware and custo
 4. `/experiments/ramsey-r55-lower-bound/` — Ramsey R(5,5): exhaustive extension search, 656/656 K42 colorings UNSAT, strongest evidence R(5,5)=43 (complete)
 5. `/experiments/class-numbers-real-quadratic/` — Class numbers: 2.74B discriminants for d∈[10^9,10^10], h=1 rate 16.7%, GPU sieve + regulator + Euler product (in-progress)
 6. `/experiments/kronecker-coefficients-gpu/` — Kronecker coefficients to n=120 (planned)
+7. `/experiments/ramanujan-machine-gpu/` — GPU-accelerated discovery of continued fraction formulas for mathematical constants via polynomial enumeration + PSLQ (in-progress)
 7. `/experiments/hausdorff-dimension-spectrum/` — To our knowledge, first complete Hausdorff dimension spectrum for all 2^20 - 1 subsets of {1,...,20} (complete)
 8. `/experiments/flint-hills-series/` — Flint Hills partial sums to 10^10, spike decomposition, growth rate analysis (complete)
 9. `/experiments/lyapunov-exponent-spectrum/` — Lyapunov exponent λ(A) for all 2^20 - 1 subsets of {1,...,20}, twin dataset with Hausdorff spectrum (complete)

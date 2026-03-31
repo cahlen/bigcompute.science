@@ -52,9 +52,10 @@ We publish results from computations that require significant hardware and custo
 9. `/experiments/lyapunov-exponent-spectrum/` — Lyapunov exponent λ(A) for all 2^20 - 1 subsets of {1,...,20}, twin dataset with Hausdorff spectrum (complete)
 10. `/experiments/minkowski-spectrum/` — First numerical computation of the multifractal singularity spectrum f(α) of the Minkowski ?(x) function (complete)
 
-### Findings (10)
-1. `/findings/zaremba-density-phase-transition/` — A={1,2,3} gives 99.997% Zaremba density at d≤10^6, only 27 exceptions (all ≤1155). Phase transition at Hausdorff dim=1/2. Suggests A=3 suffices, not A=5. (high significance, PENDING 10^9 verification)
-2. `/findings/class-number-convergence/` — Cohen-Lenstra h=1 convergence is non-monotone: 42% at d~10^4, 17% at d~10^10. 2.74B discriminants. (notable significance)
+### Findings (11)
+1. `/findings/kronecker-s30-largest-computation/` — Complete S_30 Kronecker table: 26.4B nonzero triples, max 24.2T, 7.4 min on B200. Largest ever computed. S_20 also complete. (notable significance)
+2. `/findings/zaremba-density-phase-transition/` — A={1,2,3} gives 99.997% Zaremba density at d≤10^6, only 27 exceptions (all ≤1155). Phase transition at Hausdorff dim=1/2. Suggests A=3 suffices, not A=5. (high significance, PENDING 10^9 verification)
+3. `/findings/class-number-convergence/` — Cohen-Lenstra h=1 convergence is non-monotone: 42% at d~10^4, 17% at d~10^10. 2.74B discriminants. (notable significance)
 3. `/findings/zaremba-conjecture-proved/` — Computer-assisted proof framework for Zaremba's Conjecture (A=5), all d ≥ 1. D₀ ≈ 3.4×10^10, margin 6× below brute-force frontier. NOT peer-reviewed. Human-AI collaborative work. (critical significance)
 4. `/findings/zaremba-spectral-gaps-uniform/` — FP64 spectral gaps for 489 primes to p=3500, all σ ≥ 0.336. 11 covering primes with σ ≥ 0.530. (high significance)
 5. `/findings/zaremba-transitivity-all-primes/` — Algebraic argument (Dickson classification) that semigroup acts transitively on (Z/pZ)² for all primes. AI-assisted, not peer-reviewed. (high significance)

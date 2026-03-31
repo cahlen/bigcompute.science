@@ -16,6 +16,8 @@ import Base from '../layouts/Base.astro';
       Drag the slider to explore how the witness ratio α(d)/d concentrates
       around 0.171 as d grows. Each bubble is a value of d, sized by its
       CF length, colored by max partial quotient.
+      <a href="/findings/zaremba-witness-golden-ratio/">Finding →</a>
+      <a href="/experiments/zaremba-conjecture-verification/">Experiment →</a>
     </p>
     <div class="viz-container" id="witness-viz">
       <canvas id="witness-canvas"></canvas>
@@ -35,6 +37,8 @@ import Base from '../layouts/Base.astro';
       The congruence spectral gaps σ<sub>m</sub> for all 1,214 square-free moduli
       up to m=1999. Hover over any point to see the modulus, factorization,
       and gap value. The red dashed line marks the Bourgain-Kontorovich threshold.
+      <a href="/findings/zaremba-spectral-gaps-uniform/">Finding →</a>
+      <a href="/experiments/zaremba-transfer-operator/">Experiment →</a>
     </p>
     <div class="viz-container" id="spectral-viz">
       <canvas id="spectral-canvas"></canvas>
@@ -48,6 +52,7 @@ import Base from '../layouts/Base.astro';
       The continued fraction tree with partial quotients in &#123;1, &hellip;, 5&#125;.
       Each path from root to leaf gives a Zaremba denominator. Watch the
       tree grow and see how quickly it covers the integers.
+      <a href="/findings/zaremba-conjecture-proved/">Finding →</a>
     </p>
     <div class="viz-container" id="tree-viz">
       <canvas id="tree-canvas"></canvas>
@@ -59,6 +64,50 @@ import Base from '../layouts/Base.astro';
         </label>
         <button id="tree-animate" class="viz-btn">Animate Growth</button>
       </div>
+    </div>
+  </section>
+
+  <section class="interactive-section">
+    <h2>Zaremba Density Phase Transition</h2>
+    <p>
+      For digit set A, the Zaremba density measures what fraction of integers d have a
+      coprime a/d with all CF partial quotients in A. A sharp phase transition occurs
+      between A=&#123;1,2&#125; (58%) and A=&#123;1,2,3&#125; (99.997%). The transition is controlled
+      by the Hausdorff dimension crossing 1/2.
+      <a href="/findings/zaremba-density-phase-transition/">Finding →</a>
+    </p>
+    <div class="viz-container" id="density-viz">
+      <canvas id="density-canvas"></canvas>
+    </div>
+  </section>
+
+  <section class="interactive-section">
+    <h2>Class Number Distribution</h2>
+    <p>
+      Distribution of class numbers h(d) for 2.74 billion real quadratic fields
+      Q(√d) with d&nbsp;∈&nbsp;[10<sup>9</sup>,&nbsp;10<sup>10</sup>). Dominated by powers of 2
+      (genus theory). The Cohen-Lenstra prediction of 75% with h=1 is far from realized
+      at this scale — convergence is non-monotone.
+      <a href="/findings/class-number-convergence/">Finding →</a>
+      <a href="/experiments/class-numbers-real-quadratic/">Experiment →</a>
+    </p>
+    <div class="viz-container" id="classnum-viz">
+      <canvas id="classnum-canvas"></canvas>
+    </div>
+  </section>
+
+  <section class="interactive-section">
+    <h2>Hausdorff Dimension Spectrum</h2>
+    <p>
+      Hausdorff dimension dim<sub>H</sub>(E<sub>A</sub>) for every subset
+      A&nbsp;⊆&nbsp;&#123;1,…,10&#125;, grouped by cardinality |A|. Each dot is one of
+      the 1,023 nonempty subsets. Adding digit 1 has the largest effect on
+      dimension — 5 digits including 1 beat 9 digits without it.
+      <a href="/findings/hausdorff-digit-one-dominance/">Finding →</a>
+      <a href="/experiments/hausdorff-dimension-spectrum/">Experiment →</a>
+    </p>
+    <div class="viz-container" id="hausdorff-viz">
+      <canvas id="hausdorff-canvas"></canvas>
     </div>
   </section>
 

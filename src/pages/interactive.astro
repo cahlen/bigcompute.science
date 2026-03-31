@@ -11,105 +11,88 @@ import Base from '../layouts/Base.astro';
   </p>
 
   <section class="manifesto" id="manifesto-section">
-    <div class="manifesto-text" id="manifesto-text">
-      <h2>Why Human–AI Collaboration Changes Everything</h2>
+    <div class="manifesto-text">
+      <h2 class="m-reveal">Why Human–AI Collaboration Changes Everything</h2>
 
-      <p>Consider how mathematical progress has always worked. A human is born somewhere on Earth. They survive childhood. Somehow, through an improbable chain of circumstances — the right school, the right teacher, the right book left open on the right page — they discover they have a talent for abstract thought. They spend decades training. If they're extraordinarily lucky, they produce a handful of results that push a field forward by the time they're forty or fifty. Then they slow down, and the world waits for the next one.</p>
+      <p class="m-reveal">Consider how mathematical progress has always worked. A human is born somewhere on Earth. They survive childhood. Somehow, through an improbable chain of circumstances — the right school, the right teacher, the right book left open on the right page — they discover they have a talent for abstract thought. They spend decades training. If they're extraordinarily lucky, they produce a handful of results that push a field forward by the time they're forty or fifty. Then they slow down, and the world waits for the next one.</p>
 
-      <p>We waited 200 years between Euler and Ramanujan. A century between Gauss and Grothendieck. The entire edifice of modern mathematics — every theorem, every conjecture, every computational technique — rests on the output of a few thousand people across all of human history who happened to be born, happened to survive, happened to find mathematics, and happened to be productive during their brief window of peak creativity.</p>
+      <p class="m-reveal">We waited <span class="m-num" data-value="200">200</span> years between Euler and Ramanujan. A century between Gauss and Grothendieck. The entire edifice of modern mathematics — every theorem, every conjecture, every computational technique — rests on the output of a few thousand people across all of human history who happened to be born, happened to survive, happened to find mathematics, and happened to be productive during their brief window of peak creativity.</p>
 
-      <p><strong>This is an absurd way to advance knowledge.</strong></p>
+      <div class="m-pullquote m-reveal"><span>This is an absurd way to advance knowledge.</span></div>
 
-      <p>The bottleneck was never the mathematics itself. The bottleneck was always biological: waiting for nature to randomly assemble a mind capable of seeing what others couldn't. The proofs were always there. The patterns were always there. The continued fraction identities, the spectral gaps, the Kronecker coefficients — they existed before anyone computed them. We just had to wait for the right human to come along and look.</p>
+      <p class="m-reveal">The bottleneck was never the mathematics itself. The bottleneck was always biological: waiting for nature to randomly assemble a mind capable of seeing what others couldn't. The proofs were always there. The patterns were always there. The continued fraction identities, the spectral gaps, the Kronecker coefficients — they existed before anyone computed them. We just had to wait for the right human to come along and look.</p>
 
-      <p>Human–AI collaboration breaks this cycle. Not because AI replaces human insight — it doesn't. The deep intuition that says "this conjecture should be true" or "this approach will never work" remains fundamentally human. What AI does is <strong>eliminate the waiting</strong>. A mathematician with AI collaboration can explore computational landscapes that would take a lifetime to traverse alone. They can test conjectures across billions of cases in minutes. They can write, debug, and optimize GPU kernels for problems they conceived that morning. The time between "I wonder if..." and "here is the data" collapses from years to hours.</p>
+      <p class="m-reveal">Human–AI collaboration breaks this cycle. Not because AI replaces human insight — it doesn't. The deep intuition that says "this conjecture should be true" or "this approach will never work" remains fundamentally human. What AI does is <strong class="m-glow">eliminate the waiting</strong>. A mathematician with AI collaboration can explore computational landscapes that would take a lifetime to traverse alone. They can test conjectures across billions of cases in minutes. The time between "I wonder if..." and "here is the data" collapses from years to hours.</p>
 
-      <p>Every result on this site was produced this way. A human directed the research — chose the conjectures, judged the approaches, decided what mattered. AI agents wrote CUDA kernels, constructed proofs, generated documentation, and managed the computational pipeline. Neither could have produced these results alone. The human without the AI would still be hand-checking continued fractions. The AI without the human would have no idea which continued fractions to check.</p>
+      <p class="m-reveal">Every result on this site was produced this way. A human directed the research — chose the conjectures, judged the approaches, decided what mattered. AI agents wrote CUDA kernels, constructed proofs, generated documentation, and managed the computational pipeline. <strong class="m-glow">Neither could have produced these results alone.</strong></p>
 
-      <p>The 27 exceptions to Zaremba's conjecture with A={1,2,3}. The 26.4 billion Kronecker coefficients for S<sub>30</sub>. The 30 billion class numbers of real quadratic fields. The complete Hausdorff dimension spectrum for a million continued fraction Cantor sets. None of these existed in the literature before this project. Not because the mathematics was too hard — but because no single human lifetime had enough hours to compute them, and the traditional system had no mechanism to accelerate the process.</p>
+      <div class="m-stats m-reveal">
+        <div class="m-stat"><span class="m-num" data-value="27">0</span><small>Zaremba exceptions<br/>with A={1,2,3}</small></div>
+        <div class="m-stat"><span class="m-num" data-value="26400000000" data-display="26.4B">0</span><small>Kronecker coefficients<br/>for S₃₀</small></div>
+        <div class="m-stat"><span class="m-num" data-value="30000000000" data-display="30B">0</span><small>class numbers<br/>computed</small></div>
+        <div class="m-stat"><span class="m-num" data-value="1048575">0</span><small>Hausdorff dimensions<br/>all subsets of {1,…,20}</small></div>
+      </div>
 
-      <p>We cannot afford to keep waiting for nature to randomly produce the next Euler. The open problems are too important, the tools are too powerful, and the data is too vast. Human–AI collaboration is not a shortcut or a crutch. It is the only honest response to the fact that <strong>mathematics is infinite and human lifetimes are not</strong>.</p>
+      <p class="m-reveal">None of these existed in the literature before this project. Not because the mathematics was too hard — but because no single human lifetime had enough hours to compute them.</p>
 
-      <p class="manifesto-cite">— Cahlen Humphreys, 2026. Built with Claude.</p>
-    </div>
-    <div class="manifesto-orb" id="manifesto-orb">
-      <span class="orb-symbol">&phi;</span>
+      <div class="m-pullquote m-reveal"><span>Mathematics is infinite and human lifetimes are not.</span></div>
+
+      <p class="m-reveal">We cannot afford to keep waiting for nature to randomly produce the next Euler. The open problems are too important, the tools are too powerful, and the data is too vast. Human–AI collaboration is not a shortcut or a crutch. It is the only honest response to a universe of mathematical truth that dwarfs any individual mind.</p>
+
+      <p class="manifesto-cite m-reveal">— Cahlen Humphreys, 2026. Built with Claude.</p>
     </div>
   </section>
 
   <script is:inline>
-  // Subtle Pretext-inspired effect: the orb repels nearby text
-  // Paragraphs smoothly shift their shape-outside when the orb is near
+  // Scroll-triggered reveals + number counter animation
   (function() {
-    var orb = document.getElementById('manifesto-orb');
-    var section = document.getElementById('manifesto-section');
-    var textDiv = document.getElementById('manifesto-text');
-    if (!orb || !section || !textDiv) return;
+    var reveals = document.querySelectorAll('.m-reveal');
+    var nums = document.querySelectorAll('.m-num[data-value]');
+    var counted = new Set();
 
-    var orbX = 0, orbY = 0, targetX = 0, targetY = 0;
-    var W = section.clientWidth, H = section.clientHeight;
-    var active = false;
-
-    section.addEventListener('mouseenter', function() { active = true; });
-    section.addEventListener('mouseleave', function() {
-      active = false;
-      orb.style.opacity = '0';
-    });
-    section.addEventListener('mousemove', function(e) {
-      var r = section.getBoundingClientRect();
-      targetX = e.clientX - r.left;
-      targetY = e.clientY - r.top;
-    });
-
-    // Collect all paragraphs for displacement
-    var paras = textDiv.querySelectorAll('p, h2');
-
-    function animate() {
-      if (active) {
-        orbX += (targetX - orbX) * 0.08;
-        orbY += (targetY - orbY) * 0.08;
-        orb.style.left = (orbX - 80) + 'px';
-        orb.style.top = (orbY - 80) + 'px';
-        orb.style.opacity = '1';
-
-        // Subtle text displacement: paragraphs near the orb get a slight indent/margin shift
-        for (var i = 0; i < paras.length; i++) {
-          var p = paras[i];
-          var pr = p.getBoundingClientRect();
-          var sr = section.getBoundingClientRect();
-          var pMidY = pr.top - sr.top + pr.height / 2;
-          var dy = Math.abs(pMidY - orbY);
-          var influence = Math.max(0, 1 - dy / 250);
-
-          if (influence > 0) {
-            // Determine if orb is on left or right side
-            var pMidX = pr.left - sr.left + pr.width / 2;
-            var isLeft = orbX < pMidX;
-            var push = Math.round(influence * influence * 60);
-
-            if (isLeft) {
-              p.style.paddingLeft = (push) + 'px';
-              p.style.paddingRight = '0px';
-            } else {
-              p.style.paddingRight = (push) + 'px';
-              p.style.paddingLeft = '0px';
-            }
-            p.style.transition = 'padding 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
-          } else {
-            p.style.paddingLeft = '0px';
-            p.style.paddingRight = '0px';
-          }
-        }
-      } else {
-        // Reset padding
-        for (var i = 0; i < paras.length; i++) {
-          paras[i].style.paddingLeft = '0px';
-          paras[i].style.paddingRight = '0px';
+    function onScroll() {
+      var vh = window.innerHeight;
+      for (var i = 0; i < reveals.length; i++) {
+        var el = reveals[i];
+        var top = el.getBoundingClientRect().top;
+        if (top < vh * 0.85) el.classList.add('visible');
+      }
+      // Animate numbers when visible
+      for (var j = 0; j < nums.length; j++) {
+        var n = nums[j];
+        if (counted.has(n)) continue;
+        if (n.getBoundingClientRect().top < vh * 0.85) {
+          counted.add(n);
+          animateNum(n);
         }
       }
-      requestAnimationFrame(animate);
     }
-    animate();
+
+    function animateNum(el) {
+      var target = parseInt(el.getAttribute('data-value'));
+      var display = el.getAttribute('data-display');
+      var duration = 1200;
+      var start = performance.now();
+      function step(now) {
+        var t = Math.min((now - start) / duration, 1);
+        t = 1 - Math.pow(1 - t, 3); // ease out cubic
+        var current = Math.round(target * t);
+        if (display) {
+          // Format as "26.4B" style
+          var ratio = t;
+          el.textContent = display.replace(/[\d.]+/, function(m) {
+            return (parseFloat(m) * ratio).toFixed(m.includes('.') ? 1 : 0);
+          });
+        } else {
+          el.textContent = current.toLocaleString();
+        }
+        if (t < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // initial check
   })();
   </script>
 
@@ -223,66 +206,123 @@ import Base from '../layouts/Base.astro';
     .page-intro a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
 
     .manifesto {
-      position: relative;
       margin-bottom: 4rem;
       border: 1px solid var(--rule);
-      border-left: 4px solid var(--accent);
       border-radius: 6px;
-      overflow: hidden;
       background: var(--surface);
+      overflow: hidden;
     }
     .manifesto-text {
-      padding: 2.5rem 3rem;
-      position: relative;
-      z-index: 1;
+      padding: 3rem 3.5rem;
+      max-width: 720px;
+      margin: 0 auto;
     }
     .manifesto h2 {
       font-family: var(--font-serif);
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
       color: var(--ink);
       letter-spacing: -0.02em;
+      text-align: center;
     }
     .manifesto p {
       color: var(--ink-secondary);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.4rem;
       font-size: 0.95rem;
-      line-height: 1.75;
+      line-height: 1.8;
     }
     .manifesto strong {
       color: #e8c47a;
     }
     .manifesto-cite {
-      margin-top: 2rem;
+      margin-top: 2.5rem;
       font-style: italic;
       color: var(--muted);
       font-size: 0.85rem;
+      text-align: center;
     }
-    .manifesto-orb {
-      position: absolute;
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 40% 35%,
-        rgba(232,196,122,0.12) 0%,
-        rgba(232,196,122,0.04) 50%,
-        transparent 100%);
-      border: 1px solid rgba(232,196,122,0.08);
-      pointer-events: none;
-      z-index: 0;
+
+    /* Scroll reveal */
+    .m-reveal {
       opacity: 0;
-      transition: opacity 0.4s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
-    .orb-symbol {
-      font: italic 42px "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-      color: rgba(232,196,122,0.18);
+    .m-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-    @media (max-width: 600px) {
-      .manifesto-text { padding: 1.5rem; }
-      .manifesto-orb { display: none; }
+
+    /* Stagger children */
+    .m-reveal:nth-child(2) { transition-delay: 0.05s; }
+    .m-reveal:nth-child(3) { transition-delay: 0.1s; }
+    .m-reveal:nth-child(4) { transition-delay: 0.15s; }
+
+    /* Pull quotes */
+    .m-pullquote {
+      margin: 2.5rem 0;
+      padding: 0;
+      text-align: center;
+    }
+    .m-pullquote span {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-style: italic;
+      color: #e8c47a;
+      letter-spacing: -0.01em;
+      position: relative;
+      display: inline-block;
+      padding: 0.5rem 0;
+    }
+    .m-pullquote span::before,
+    .m-pullquote span::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: rgba(232,196,122,0.3);
+      margin: 0.8rem auto;
+    }
+
+    /* Glowing highlight */
+    .m-glow {
+      color: #e8c47a;
+      text-shadow: 0 0 20px rgba(232,196,122,0.15);
+    }
+
+    /* Stats counter row */
+    .m-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin: 2.5rem 0;
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(232,196,122,0.1);
+      border-bottom: 1px solid rgba(232,196,122,0.1);
+    }
+    .m-stat {
+      text-align: center;
+    }
+    .m-stat .m-num {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 1.6rem;
+      color: #e8c47a;
+      font-weight: bold;
+      margin-bottom: 0.4rem;
+    }
+    .m-stat small {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.4;
+      display: block;
+    }
+
+    @media (max-width: 700px) {
+      .manifesto-text { padding: 2rem 1.5rem; }
+      .m-stats { grid-template-columns: repeat(2, 1fr); }
+      .m-pullquote span { font-size: 1.1rem; }
     }
 
     .interactive-section {

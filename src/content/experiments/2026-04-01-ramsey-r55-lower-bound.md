@@ -128,15 +128,32 @@ McKay and Radziszowski catalogued all 656 non-isomorphic 2-colorings of $K_{42}$
 
 **Conclusion:** No known $K_{42}$ coloring can be extended to $K_{43}$ by adding a single vertex. If $R(5,5) \geq 44$, any valid $K_{43}$ coloring must contain a $K_{42}$ subcoloring that is NOT isomorphic to any of the 656 known ones — which seems unlikely given that this is believed to be a complete enumeration up to isomorphism.
 
-### Approach 4: Direct SAT (Not Attempted)
+### Approach 4: Direct K₄₃ SAT (Running)
 
-The full problem — does there exist ANY 2-coloring of $K_{43}$ with no monochromatic $K_5$? — encodes as a SAT instance with 903 variables and approximately 1.9M clauses. This is almost certainly beyond current SAT solver capabilities and constitutes the core of the open problem $R(5,5) = ?$.
+The full problem — does there exist ANY 2-coloring of $K_{43}$ with no monochromatic $K_5$? — encodes as a SAT instance.
+
+| Parameter | Value |
+|-----------|-------|
+| Variables | 903 (one per edge) |
+| Clauses | 1,925,237 (with symmetry breaking) |
+| Clause type | 10-literal (one per 5-subset per color) |
+| Symmetry breaking | Fix edge(0,1)=red + lex-leader on vertex 0 neighborhood |
+| Encoding | `gen_cnf_v2.c` in DIMACS CNF format |
+
+**Solver portfolio (running as of 2026-03-30):**
+
+| Solver | Version | Instances | Hardware |
+|--------|---------|-----------|----------|
+| Kissat | 4.0.4 | 66 | 224 CPU cores (2× Xeon Platinum 8570) |
+| CaDiCaL | 1.7.3 | 32 | Same |
+
+Each instance uses a different random seed for CDCL search diversity. This is the open problem — if any solver returns SAT, we have a K₄₃ coloring (R(5,5) > 43); if UNSAT, we have computational evidence that R(5,5) ≤ 43. Realistically, this instance is likely beyond current CDCL solver capabilities.
 
 ## Analysis
 
 ### What This Means
 
-Our results do not resolve $R(5,5)$, but they provide the strongest computational evidence to date that $R(5,5) = 43$:
+Our results do not resolve $R(5,5)$, but they provide the strongest computational evidence to date that $R(5,5) = 43$ (this work is human-AI collaborative and not peer-reviewed):
 
 1. **Every known approach to constructing $K_{43}$ fails.** The 656 known $K_{42}$ colorings cannot be extended, and SA search cannot find colorings from scratch.
 

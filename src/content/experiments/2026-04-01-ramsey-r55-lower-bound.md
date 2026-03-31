@@ -128,26 +128,20 @@ McKay and Radziszowski catalogued all 656 non-isomorphic 2-colorings of $K_{42}$
 
 **Conclusion:** No known $K_{42}$ coloring can be extended to $K_{43}$ by adding a single vertex. If $R(5,5) \geq 44$, any valid $K_{43}$ coloring must contain a $K_{42}$ subcoloring that is NOT isomorphic to any of the 656 known ones — which seems unlikely given that this is believed to be a complete enumeration up to isomorphism.
 
-### Approach 4: Direct K₄₃ SAT (Running)
+### Approach 4: Direct K₄₃ SAT (Abandoned — Naive Encoding Intractable)
 
-The full problem — does there exist ANY 2-coloring of $K_{43}$ with no monochromatic $K_5$? — encodes as a SAT instance.
+The full problem — does there exist ANY 2-coloring of $K_{43}$ with no monochromatic $K_5$? — encodes as a SAT instance with 903 variables and ~1.9M clauses.
 
-| Parameter | Value |
-|-----------|-------|
-| Variables | 903 (one per edge) |
-| Clauses | 1,925,237 (with symmetry breaking) |
-| Clause type | 10-literal (one per 5-subset per color) |
-| Symmetry breaking | Fix edge(0,1)=red + lex-leader on vertex 0 neighborhood |
-| Encoding | `gen_cnf_v2.c` in DIMACS CNF format |
+We ran a portfolio of 98 solver instances (66 Kissat 4.0.4 + 32 CaDiCaL 1.7.3) on 224 CPU cores for ~2 hours. Result: **no progress**. Solvers accumulated tens of millions of conflicts but made no meaningful reduction in the clause set. The naive encoding has essentially no structure for CDCL to exploit.
 
-**Solver portfolio (running as of 2026-03-30):**
+**Why naive SAT fails:** The search space is $2^{903}$. Our symmetry breaking (fix edge(0,1) + lex-leader on vertex 0) eliminates a negligible fraction. The clause-to-variable ratio (~2130) is in the "hard" regime for random-like instances. CDCL solvers rely on learning short clauses from conflicts, but Ramsey constraints generate only long (10-literal) learned clauses that don't propagate.
 
-| Solver | Version | Instances | Hardware |
-|--------|---------|-----------|----------|
-| Kissat | 4.0.4 | 66 | 224 CPU cores (2× Xeon Platinum 8570) |
-| CaDiCaL | 1.7.3 | 32 | Same |
-
-Each instance uses a different random seed for CDCL search diversity. This is the open problem — if any solver returns SAT, we have a K₄₃ coloring (R(5,5) > 43); if UNSAT, we have computational evidence that R(5,5) ≤ 43. Realistically, this instance is likely beyond current CDCL solver capabilities.
+**What could work (future):** A mathematically-informed encoding that adds:
+- **Degree constraints:** Since $R(4,5) = 25$, every vertex must have between 18 and 24 red neighbors. This alone eliminates most of the search space.
+- **Turán density bounds:** Red subgraph within each neighborhood must be $K_4$-free (edge density $\leq 2/3$ by Turán's theorem).
+- **Full symmetry breaking:** BreakID or Shatter to exploit the $S_{43}$ automorphism group (43! $\approx 6 \times 10^{52}$), not just vertex 0.
+- **Flag algebra cutting planes:** Razborov's method gives tight subgraph density bounds that translate to additional clauses.
+- **Algebraic structure search:** Restrict to Cayley graph colorings over groups of order 43 (Z/43Z is the only one, since 43 is prime), reducing to 21 variables.
 
 ## Analysis
 

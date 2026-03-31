@@ -18,7 +18,10 @@ const sorted = mathematicians.sort((a, b) => (a.data.born || 0) - (b.data.born |
     {sorted.map((m) => (
       <article class="giant-card">
         <div class="giant-photo">
-          <div class="giant-placeholder">{m.data.name.split(' ').map((n: string) => n[0]).join('')}</div>
+          <img src={m.data.photo} alt={m.data.name}
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+               class="giant-img" />
+          <div class="giant-placeholder" style="display:none">{m.data.name.split(' ').map((n: string) => n[0]).join('')}</div>
         </div>
         <div class="giant-info">
           <h2>
@@ -92,6 +95,14 @@ const sorted = mathematicians.sort((a, b) => (a.data.born || 0) - (b.data.born |
       flex-shrink: 0;
       width: 90px;
       height: 90px;
+    }
+    .giant-img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid rgba(232,196,122,0.15);
+      filter: grayscale(40%) sepia(15%);
     }
     .giant-placeholder {
       width: 90px;

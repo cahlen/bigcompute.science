@@ -39,6 +39,7 @@ results:
 
 code: https://github.com/cahlen/idontknow
 data: /data/minkowski-spectrum/
+dataset: https://huggingface.co/datasets/cahlen/continued-fraction-spectra
 ---
 
 # Minkowski ?(x) Singularity Spectrum
@@ -123,3 +124,5 @@ Requires: CUDA 13.0+, GPU with compute capability 12.0 (RTX 5090) or adjust `-ar
 - **First numerical computation:** This spectrum has been studied theoretically but never computed. No training data exists for AI models to learn the shape of $f(\alpha)$ for the Minkowski measure.
 - **Multifractal analysis benchmark:** The $\tau(0)$ and $\tau(1)$ checks provide hard ground truth. Any AI system claiming to reason about multifractal spectra can be tested against this data.
 - **Connects number theory and ergodic theory:** The Minkowski function bridges continued fractions, Farey sequences, and fractal geometry — a rich intersection that AI models currently cannot navigate.
+
+*This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

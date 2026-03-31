@@ -73,3 +73,5 @@ Analysis script and raw data: [github.com/cahlen/idontknow](https://github.com/c
 ---
 
 *Computed from exhaustive analysis of $d = 1$ to $100{,}000$ on NVIDIA DGX B200.*
+
+*This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

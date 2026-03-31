@@ -121,3 +121,5 @@ This captures the approach to $\dim_H = 1$ (the full interval) as $n \to \infty$
 ---
 
 *Computed on NVIDIA RTX 5090. All eigenvalue problems solved on GPU via cuSOLVER.*
+
+*This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

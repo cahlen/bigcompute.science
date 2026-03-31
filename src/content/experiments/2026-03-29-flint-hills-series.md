@@ -39,6 +39,7 @@ results:
   irrationality_measure_evidence: "consistent with mu(pi) <= 5/2"
 
 code: https://github.com/cahlen/idontknow
+dataset: https://huggingface.co/datasets/cahlen/continued-fraction-spectra
 ---
 
 # Flint Hills Series: Partial Sums to $10^{10}$ with Spike Decomposition
@@ -219,3 +220,5 @@ nvcc -O3 -arch=sm_100a -o flint_hills scripts/experiments/flint-hills/flint_hill
 ---
 
 *Computed 2026-03-29 on NVIDIA RTX 5090 (32 GB). Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+
+*This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

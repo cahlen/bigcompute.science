@@ -61,3 +61,5 @@ GPU representation counter (`exponential_sum.cu`): enumerates all CF sequences w
 ---
 
 *Computed on NVIDIA B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+
+*This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

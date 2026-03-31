@@ -42,6 +42,7 @@ results:
   phase2_time: "77 min on 8× B200"
 
 code: https://github.com/cahlen/idontknow
+dataset: https://huggingface.co/datasets/cahlen/zaremba-conjecture-data
 ---
 
 # Transfer Operator for Zaremba's Conjecture: Hausdorff Dimension to 15 Digits
@@ -189,3 +190,5 @@ nvcc -O3 -arch=sm_100a -o transfer_op scripts/experiments/zaremba-transfer-opera
 ---
 
 *Computed 2026-03-28 on NVIDIA DGX B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+
+*This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

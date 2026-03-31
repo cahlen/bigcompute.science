@@ -40,6 +40,7 @@ results:
   models_used: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
 
 code: https://github.com/cahlen/idontknow
+dataset: https://huggingface.co/datasets/cahlen/zaremba-conjecture-data
 data: /data/zaremba-8b/
 ---
 
@@ -326,3 +327,5 @@ nvcc -O3 -arch=sm_100a -o matrix_enum \
 ---
 
 *Computed 2026-03-28 on NVIDIA DGX B200. Transfer operator analysis: [companion post](/experiments/zaremba-transfer-operator). Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+
+*This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

@@ -34,6 +34,7 @@ results:
 
 code: https://github.com/cahlen/idontknow
 data: /data/lyapunov-spectrum/
+dataset: https://huggingface.co/datasets/cahlen/continued-fraction-spectra
 ---
 
 # Lyapunov Exponent Spectrum: All Subsets of {1,...,20}
@@ -106,3 +107,5 @@ Requires: CUDA 13.0+, GPU with compute capability 12.0 (RTX 5090) or adjust `-ar
 - **Twin dataset with Hausdorff dimensions:** Together with the [dimension spectrum](/experiments/hausdorff-dimension-spectrum/), this provides paired (dimension, Lyapunov exponent) data for over 1M continued fraction Cantor sets — a dataset that does not exist anywhere in the literature.
 - **Ergodic theory training data:** The Lyapunov exponent encodes mixing rates and entropy production. AI models have no training data on how $\lambda(A)$ depends on the digit set $A$.
 - **Dynamical systems benchmarks:** The monotonicity and analytic singleton checks provide ground truth for AI systems reasoning about dynamical invariants.
+
+*This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

@@ -40,6 +40,7 @@ results:
 
 code: https://github.com/cahlen/idontknow
 data: /data/hausdorff-spectrum/
+dataset: https://huggingface.co/datasets/cahlen/continued-fraction-spectra
 ---
 
 # Hausdorff Dimension Spectrum: All Subsets of {1,...,20}
@@ -150,3 +151,5 @@ Requires: CUDA 13.0+, GPU with compute capability 12.0 (RTX 5090) or adjust `-ar
 - Hausdorff, F. (1919). "Dimension und äußeres Maß." *Mathematische Annalen*, 79, pp. 157–179.
 - Jenkinson, O. and Pollicott, M. (2001). "Computing the dimension of dynamically defined sets: E_2 and bounded continued fraction entries." *Ergodic Theory and Dynamical Systems*, 21(5), pp. 1429–1445.
 - Hensley, D. (1992). "Continued fraction Cantor sets, Hausdorff dimension, and functional analysis." *Journal of Number Theory*, 40(3), pp. 336–358.
+
+*This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

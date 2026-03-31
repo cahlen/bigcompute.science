@@ -80,3 +80,5 @@ Source code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow/t
 ---
 
 *Computed 2026-03-30 on 8× NVIDIA B200. All code and data at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow). Published at [bigcompute.science](https://bigcompute.science).*
+
+*This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

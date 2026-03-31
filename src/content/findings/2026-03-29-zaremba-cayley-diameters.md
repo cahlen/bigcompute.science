@@ -120,3 +120,5 @@ Source: [`scripts/experiments/zaremba-cayley-diameter/cayley_gpu.cu`](https://gi
 ---
 
 *Computed on 8× NVIDIA B200 (1.43 TB VRAM), 40 seconds total.*
+
+*This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

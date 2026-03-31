@@ -10,6 +10,28 @@ import Base from '../layouts/Base.astro';
     measuring and flowing text without DOM reflows.
   </p>
 
+  <section class="manifesto">
+    <h2>Why Human–AI Collaboration Changes Everything</h2>
+
+    <p>Consider how mathematical progress has always worked. A human is born somewhere on Earth. They survive childhood. Somehow, through an improbable chain of circumstances — the right school, the right teacher, the right book left open on the right page — they discover they have a talent for abstract thought. They spend decades training. If they're extraordinarily lucky, they produce a handful of results that push a field forward by the time they're forty or fifty. Then they slow down, and the world waits for the next one.</p>
+
+    <p>We waited 200 years between Euler and Ramanujan. A century between Gauss and Grothendieck. The entire edifice of modern mathematics — every theorem, every conjecture, every computational technique — rests on the output of a few thousand people across all of human history who happened to be born, happened to survive, happened to find mathematics, and happened to be productive during their brief window of peak creativity.</p>
+
+    <p><strong>This is an absurd way to advance knowledge.</strong></p>
+
+    <p>The bottleneck was never the mathematics itself. The bottleneck was always biological: waiting for nature to randomly assemble a mind capable of seeing what others couldn't. The proofs were always there. The patterns were always there. The continued fraction identities, the spectral gaps, the Kronecker coefficients — they existed before anyone computed them. We just had to wait for the right human to come along and look.</p>
+
+    <p>Human–AI collaboration breaks this cycle. Not because AI replaces human insight — it doesn't. The deep intuition that says "this conjecture should be true" or "this approach will never work" remains fundamentally human. What AI does is <strong>eliminate the waiting</strong>. A mathematician with AI collaboration can explore computational landscapes that would take a lifetime to traverse alone. They can test conjectures across billions of cases in minutes. They can write, debug, and optimize GPU kernels for problems they conceived that morning. The time between "I wonder if..." and "here is the data" collapses from years to hours.</p>
+
+    <p>Every result on this site was produced this way. A human directed the research — chose the conjectures, judged the approaches, decided what mattered. AI agents wrote CUDA kernels, constructed proofs, generated documentation, and managed the computational pipeline. Neither could have produced these results alone. The human without the AI would still be hand-checking continued fractions. The AI without the human would have no idea which continued fractions to check.</p>
+
+    <p>The 27 exceptions to Zaremba's conjecture with A={1,2,3}. The 26.4 billion Kronecker coefficients for S<sub>30</sub>. The 30 billion class numbers of real quadratic fields. The complete Hausdorff dimension spectrum for a million continued fraction Cantor sets. None of these existed in the literature before this project. Not because the mathematics was too hard — but because no single human lifetime had enough hours to compute them, and the traditional system had no mechanism to accelerate the process.</p>
+
+    <p>We cannot afford to keep waiting for nature to randomly produce the next Euler. The open problems are too important, the tools are too powerful, and the data is too vast. Human–AI collaboration is not a shortcut or a crutch. It is the only honest response to the fact that <strong>mathematics is infinite and human lifetimes are not</strong>.</p>
+
+    <p class="manifesto-cite">— Cahlen Humphreys, 2026. Built with Claude.</p>
+  </section>
+
   <section class="interactive-section">
     <h2>Zaremba Witness Distribution</h2>
     <p>
@@ -118,6 +140,36 @@ import Base from '../layouts/Base.astro';
       margin-bottom: 3rem;
     }
     .page-intro a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+
+    .manifesto {
+      margin-bottom: 4rem;
+      padding: 2rem 2.5rem;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+    }
+    .manifesto h2 {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      color: var(--ink);
+    }
+    .manifesto p {
+      color: var(--ink-secondary);
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .manifesto strong {
+      color: var(--ink);
+    }
+    .manifesto-cite {
+      margin-top: 2rem;
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
 
     .interactive-section {
       margin-bottom: 4rem;

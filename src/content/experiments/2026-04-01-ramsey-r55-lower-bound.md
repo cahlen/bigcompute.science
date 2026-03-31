@@ -4,7 +4,7 @@ slug: ramsey-r55-lower-bound
 date: 2026-04-01
 author: cahlen
 author_github: https://github.com/cahlen
-status: complete
+status: in-progress
 
 hardware:
   name: NVIDIA DGX B200
@@ -159,6 +159,46 @@ Our results do not resolve $R(5,5)$, but they provide the strongest computationa
 
 The SA search reveals a rugged fitness landscape for $n \geq 43$. Walkers consistently get trapped at fitness 127-134, suggesting a "fitness floor" well above zero. This is qualitatively different from $n \leq 42$, where SA easily finds zero-fitness colorings.
 
+## Approach 5: Structural Attack on R(5,5) ≤ 45 (In Progress)
+
+Instead of attacking K₄₃ directly, we are working toward proving **R(5,5) ≤ 45** — which would improve the current world record of R(5,5) ≤ 46 (Angeltveit-McKay, 2024).
+
+### Method: Excess Identity + Neighborhood Catalogues
+
+Following the Angeltveit-McKay framework:
+
+1. **Excess identity** constrains vertex neighborhoods. For $n=45$, every vertex has red degree $d \in \{20, 21, 22, 23, 24\}$. The identity forces:
+   - $d = 24$ is **effectively forbidden** (would need 142 edges in the neighborhood, but $E(4,5,24) = 132$)
+   - $d = 23$: neighborhood must have $\geq 118$ edges (out of max $E(4,5,23) = 122$)
+   - $d = 22$: $\geq 102$ edges (out of 114)
+   - $d = 21$: $\geq 90$ edges (out of 107)
+   - $d = 20$: $\geq 81$ edges (out of 107)
+
+2. **Enumerate all R(4,5)-good graphs** at each edge threshold. These are $K_4$-free graphs with independence number $< 5$, enumerated up to isomorphism using SMS (SAT Modulo Symmetries).
+
+3. **Gluing procedure**: check if any pair of neighborhood graphs can be consistently combined into a global coloring, using parallel SAT solving on the 8× B200 cluster.
+
+### Current Status
+
+- **R(4,5,23) with $e \geq 118$**: Enumeration running (SMS, up to isomorphism)
+- **R(4,5,22) with $e \geq 102$**: Queued
+- **R(4,5,21) with $e \geq 90$**: Queued
+- **R(4,5,20) with $e \geq 81$**: Queued
+
+### What Changed from Prior Approaches
+
+| Approach | Method | Result |
+|----------|--------|--------|
+| SA search | Random local search | Stuck at fitness 127-134 |
+| Exhaustive extension | Brute-force 2^42 | Zero extensions from any K₄₂ |
+| 4-SAT (656 colorings) | Specific K₄₂ → K₄₃ | All 656 UNSAT |
+| Naive K₄₃ SAT | CDCL (Kissat/CaDiCaL) | Intractable (0% var elimination) |
+| Degree-constrained SAT | CDCL + R(4,5)=25 | 88% var elimination, no resolution |
+| SMS cube-and-conquer | Dynamic symmetry breaking | 890K cubes, all UNSAT (partial coverage) |
+| **Structural (this)** | **Excess identity + SMS enumeration** | **In progress — targets R(5,5) ≤ 45** |
+
+The structural approach is fundamentally different: instead of searching for/against K₄₃ colorings directly, it proves no valid coloring of K₄₅ exists by showing the vertex neighborhood constraints are mutually incompatible. This is the same method that achieved the current world record R(5,5) ≤ 46.
+
 ## Reproducibility
 
 ```bash
@@ -185,7 +225,9 @@ nvcc -O3 -arch=sm_100a -o ramsey_search scripts/experiments/ramsey-r55/ramsey_se
 
 - Ramsey, F.P. (1930). "On a problem of formal logic." *Proceedings of the London Mathematical Society*, 2(30), pp. 264--286.
 - Exoo, G. (1989). "A lower bound for R(5,5)." *Journal of Graph Theory*, 13(1), pp. 97--98.
-- Angeltveit, V. and McKay, B.D. (2024). "R(5,5) <= 48." *Journal of Graph Theory*, 105(1), pp. 7--14. arXiv:1703.08768
+- Angeltveit, V. and McKay, B.D. (2024). "R(5,5) <= 46." arXiv:2409.15709
+- Angeltveit, V. and McKay, B.D. (2017). "R(5,5) <= 48." *Journal of Graph Theory*, 105(1), pp. 7--14. arXiv:1703.08768
+- Kirchweger, M. and Szeider, S. (2024). "SAT Modulo Symmetries for Graph Generation." *ACM Trans. Computational Logic*.
 - Radziszowski, S.P. (2021). "Small Ramsey Numbers." *Electronic Journal of Combinatorics*, Dynamic Survey DS1.
 - McKay, B.D. Ramsey Numbers Data. https://users.cecs.anu.edu.au/~bdm/data/ramsey.html
 

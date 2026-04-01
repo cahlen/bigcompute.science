@@ -274,12 +274,12 @@ const CERTIFICATIONS: Record<string, Certification> = {
   },
   "zaremba-conjecture-proved": {
     level: "silver",
-    label: "SILVER — 2 reviews: ACCEPT with revision (Claude Opus 4.6 + Grok)",
+    label: "SILVER — 2 reviews + revisions complete. Pending: human verification of MOW matching.",
     arxiv_corroboration: 6,
     zbmath_corroboration: 1,
     oeis_matches: 0,
     last_verified: "2026-04-01",
-    process: "MOW (2019) framework verified in arXiv. Two independent AI reviews (Anthropic + xAI) agree: framework is mathematically sound, three fixable gaps. Theorem 1 (brute-force) is 'rock-solid'. Verification manifest praised as 'exemplary'.",
+    process: "2 AI reviews (Claude Opus 4.6 + Grok/xAI), both ACCEPT WITH REVISION. All 3 gaps resolved: (1) rho_eta arb-certified (abstract was stale), (2) MOW theorem matching added, (3) C_eta = 15 > Naud 13. Remaining: independent human verification of MOW matching.",
     reviews: [
       { date: "2026-04-01", model: "Claude Opus 4.6", provider: "Anthropic", model_id: "claude-opus-4-6[1m]", verdict: "ACCEPT_WITH_REVISION", level: "silver", key_finding: "MOW framework is sound but D0 bound depends on interval arithmetic certification with known gaps." },
       { date: "2026-04-01", model: "Grok", provider: "xAI", verdict: "ACCEPT_WITH_REVISION", level: "silver", key_finding: "Line-by-line review: no math errors, citations correct, manifest exemplary, gaps fixable. Theorem 1 is 'rock-solid computational evidence (strongest to date)'." },

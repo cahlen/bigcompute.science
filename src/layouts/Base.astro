@@ -39,12 +39,20 @@ const { title, description = "Experimental results from heavy computation." } = 
         <div class="nav-links">
           <a href="/experiments/">Experiments</a>
           <a href="/findings/">Findings</a>
-          <a href="/mathematicians/">Giants</a>
-          <a href="/interactive/">Interactive</a>
           <a href="/verification/">Verification</a>
-          <a href="/about/">About</a>
-          <a href="https://github.com/cahlen/bigcompute.science" target="_blank">GitHub</a>
+          <details class="nav-more">
+            <summary>More</summary>
+            <div class="nav-dropdown">
+              <a href="/interactive/">Interactive</a>
+              <a href="/mathematicians/">Giants</a>
+              <a href="/about/">About</a>
+              <a href="https://github.com/cahlen/bigcompute.science" target="_blank">GitHub</a>
+            </div>
+          </details>
         </div>
+        <button class="nav-toggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </nav>
     </header>
     <main>
@@ -61,6 +69,25 @@ const { title, description = "Experimental results from heavy computation." } = 
       <p class="rss-links">RSS: <a href="/rss.xml">All</a> · <a href="/experiments/rss.xml">Experiments</a> · <a href="/findings/rss.xml">Findings</a></p>
     </footer>
   <script is:inline>
+    // Mobile nav toggle
+    (function() {
+      var toggle = document.querySelector('.nav-toggle');
+      var links = document.querySelector('.nav-links');
+      if (toggle && links) {
+        toggle.addEventListener('click', function() {
+          links.classList.toggle('open');
+        });
+        // Close on link click (mobile)
+        links.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() { links.classList.remove('open'); });
+        });
+      }
+      // Close More dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        var more = document.querySelector('.nav-more');
+        if (more && more.open && !more.contains(e.target)) more.open = false;
+      });
+    })();
     if (document.getElementById('load-interactive')) {
       var s = document.createElement('script');
       s.src = '/js/interactive.js';

@@ -64,6 +64,7 @@ body {
 header {
   border-bottom: 2px solid var(--rule);
   padding: 1rem 0;
+  position: relative;
 }
 
 nav {
@@ -71,7 +72,7 @@ nav {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
 }
 
 .logo {
@@ -91,20 +92,125 @@ nav {
 .logo span { color: var(--accent); }
 .logo-icon { width: 20px; height: 20px; }
 
-.nav-links { display: flex; gap: 2rem; }
+/* Mobile: hamburger menu */
+.nav-links {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-bottom: 2px solid var(--rule);
+  padding: 0.5rem 0;
+  z-index: 100;
+}
+
+.nav-links.open { display: flex; }
 
 .nav-links a {
   font-family: var(--font-sans);
   color: var(--muted);
   text-decoration: none;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   transition: color 160ms ease;
+  padding: 0.6rem 1.5rem;
 }
 
-.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover { color: var(--ink); background: rgba(255,255,255,0.03); }
+
+/* Hamburger button */
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--muted);
+  border-radius: 1px;
+  transition: all 200ms ease;
+}
+
+/* More dropdown (hidden on mobile — everything is flat) */
+.nav-more { display: none; }
+.nav-more summary { list-style: none; cursor: pointer; }
+.nav-more summary::-webkit-details-marker { display: none; }
+
+/* Desktop: horizontal nav, no hamburger */
+@media (min-width: 700px) {
+  header { position: relative; }
+
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    gap: 1.8rem;
+    position: static;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .nav-links a {
+    padding: 0;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .nav-links a:hover { background: none; }
+
+  .nav-toggle { display: none; }
+
+  /* More dropdown on desktop */
+  .nav-more {
+    display: inline-block;
+    position: relative;
+  }
+  .nav-more summary {
+    font-family: var(--font-sans);
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: color 160ms ease;
+    user-select: none;
+  }
+  .nav-more summary:hover { color: var(--ink); }
+  .nav-more summary::after { content: ' +'; font-size: 0.7rem; }
+  .nav-more[open] summary::after { content: ' -'; }
+
+  .nav-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 0.4rem 0;
+    min-width: 140px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    z-index: 200;
+  }
+  .nav-dropdown a {
+    display: block;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .nav-dropdown a:hover { background: rgba(255,255,255,0.05); }
+}
 
 /* ============================================================
    Main

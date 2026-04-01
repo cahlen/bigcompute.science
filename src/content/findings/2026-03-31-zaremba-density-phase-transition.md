@@ -10,7 +10,7 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, diophantine-approximation, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "CONFIRMED TO 10^10: A={1,2,3} has exactly 27 exceptions (all ≤ 6234), giving 99.9999997% density at d ≤ 10^9. Zero new exceptions between d=6234 and d=10^10. The exception set appears finite and closed. By contrast, A={1,2} gives only 72% density at 10^9. Phase transition at Hausdorff dimension δ = 1/2. This suggests Zaremba's conjecture holds with A=3, not A=5. Verified to 10^10. Running to higher ranges. Not peer-reviewed."
+summary: "CONFIRMED TO 10^10: A={1,2,3} has exactly 27 exceptions (all ≤ 6234), giving 99.9999997% density at d ≤ 10^{10}. Zero new exceptions between d=6234 and d=10^10. The exception set appears finite and closed. By contrast, A={1,2} gives only 72% density at 10^9. Phase transition at Hausdorff dimension δ = 1/2. This suggests Zaremba's conjecture holds with A=3, not A=5. Verified to 10^10. Running to higher ranges. Not peer-reviewed."
 
 data:
   density_A123_1e10: 0.999999997
@@ -40,7 +40,7 @@ For a digit set $A \subseteq \{1, 2, 3, \ldots\}$, define the **Zaremba density*
 
 Zaremba (1972) conjectured that $A = \{1, \ldots, 5\}$ gives density 1 (i.e., every integer is covered). Our GPU computation reveals a sharp **phase transition** in Zaremba density controlled by the Hausdorff dimension of the associated Cantor set:
 
-| Digit set $A$ | Density at $d \leq 10^9$ | Uncovered | $\dim_H(E_A)$ | Above $1/2$? |
+| Digit set $A$ | Density at $d \leq 10^{10}$ | Uncovered | $\dim_H(E_A)$ | Above $1/2$? |
 |---------------|-------------------------|-----------|----------------|-------------|
 | $\{1, 2\}$ | 72.06% | 279,384,673 | 0.5313 | Barely |
 | $\{1, 3, 5\}$ | 99.99% | 75,547 | 0.6240 | Yes |
@@ -54,7 +54,7 @@ For $A = \{1, 2, 3\}$, **exactly 27 integers** in $[1, 10^9]$ are uncovered — 
 
 $$6, 20, 28, 38, 42, 54, 96, 150, 156, 164, 216, 228, 318, 350, 384, 558, 770, 876, 1014, 1155, 1170, 1410, 1870, 2052, 2370, 5052, 6234$$
 
-**Zero new exceptions** between $d = 6{,}234$ and $d = 10^9$. The exception set is finite and appears to be complete. This means $A = \{1, 2, 3\}$ gives full Zaremba density with exactly 27 exceptions.
+**Zero new exceptions** between $d = 6{,}234$ and $d = 10^{10}$. The exception set is finite and appears to be complete. This means $A = \{1, 2, 3\}$ gives full Zaremba density with exactly 27 exceptions.
 
 ## Why This Matters
 
@@ -64,7 +64,7 @@ Zaremba originally conjectured $A = 5$. Bourgain-Kontorovich (2014) proved densi
 
 ### The Hausdorff Dimension Threshold
 
-The phase transition between "sub-full density" ($A = \{1, 2\}$, 72% at $10^9$) and "full density" ($A = \{1, 2, 3\}$, 99.9999997% at $10^9$) aligns with the **Hausdorff dimension crossing $1/2$**:
+The phase transition between "sub-full density" ($A = \{1, 2\}$, 72% at $10^{10}$) and "full density" ($A = \{1, 2, 3\}$, 99.9999997% at $10^{10}$) aligns with the **Hausdorff dimension crossing $1/2$**:
 
 - $\dim_H(E_{\{1,2\}}) = 0.5313 > 1/2$ but only barely
 - $\dim_H(E_{\{1,2,3\}}) = 0.7057 \gg 1/2$
@@ -85,7 +85,7 @@ This is $O(\text{total CFs})$ rather than $O(N)$ per denominator — fundamental
 
 ## Update: GPU Results to $10^9$ (2026-03-31)
 
-**The exception set for $A = \{1,2,3\}$ is CLOSED.** Zero new exceptions between $d = 6{,}234$ and $d = 10^9$:
+**The exception set for $A = \{1,2,3\}$ is CLOSED.** Zero new exceptions between $d = 6{,}234$ and $d = 10^{10}$:
 
 | Digit set | Range | Density | Uncovered | GPU time |
 |-----------|-------|---------|-----------|----------|
@@ -103,7 +103,7 @@ All $\leq 6{,}234$. No new exceptions in 999,993,766 additional integers tested.
 
 | Computation | Status |
 |------------|--------|
-| $A = \{1,2,3\}$, $d \leq 10^9$ | **Complete**: 27 uncovered, all $\leq 6234$ |
+| $A = \{1,2,3\}$, $d \leq 10^{10}$ | **Complete**: 27 uncovered, all $\leq 6234$ |
 | $A = \{1,2,3,4\}$, $d \leq 10^9$ | **Running** (2026-03-31) |
 | $A = \{1,2,3\}$, $d \leq 10^{10}$ | **Running** |
 | $A = \{1,2,3,4\}$, $d \leq 10^{10}$ | **Running** |

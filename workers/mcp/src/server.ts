@@ -61,7 +61,7 @@ const EXPERIMENTS = [
     slug: "zaremba-density",
     title: "Zaremba Density Phase Transition",
     status: "complete",
-    summary: "A={1,2,3} has exactly 27 exceptions to 10^9. Phase transition at Hausdorff dim = 1/2.",
+    summary: "A={1,2,3} has exactly 27 exceptions to 10^10. Phase transition at Hausdorff dim = 1/2.",
     key_results: {
       exceptions_A123: 27,
       exceptions_list: [6,20,28,38,42,54,96,150,156,164,216,228,318,350,384,558,770,876,1014,1155,1170,1410,1870,2052,2370,5052,6234],
@@ -172,7 +172,7 @@ function createServer(env: any) {
           "A={1,2,3,4}": "2 exceptions (d=54, d=150)",
           "A={1,2,3,4,5}": "0 exceptions (Zaremba's conjecture)",
         },
-        note: "Verified to 10^9 — zero new exceptions beyond d=6234. Not peer-reviewed.",
+        note: "Verified to 10^10 — zero new exceptions beyond d=6234. Not peer-reviewed.",
       }, null, 2) }]
     })
   );

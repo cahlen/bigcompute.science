@@ -26,40 +26,55 @@ const { title, date, author, status, hardware, tags, results } = frontmatter;
         <details class="cert-detail">
           <summary class="cert-detail-summary">
             <span class={`cert-badge cert-${frontmatter.certification.level}`}>
-              {frontmatter.certification.level.toUpperCase()} Verified
+              {frontmatter.certification.level.toUpperCase()}
             </span>
-            <span class="cert-verdict">{frontmatter.certification.verdict}</span>
-            <span class="cert-reviewer-inline">by {frontmatter.certification.reviewer}</span>
-            <span class="cert-expand-hint">Click for peer review details</span>
+            <span class="cert-summary-text">
+              AI Peer Review
+              {frontmatter.certification.reviews && ` \u00b7 ${frontmatter.certification.reviews} review${frontmatter.certification.reviews > 1 ? 's' : ''}`}
+            </span>
+            <span class="cert-expand-hint">&darr;</span>
           </summary>
           <div class="cert-expanded">
-            <div class="cert-meta-row">
-              <span class="cert-reviewer">Reviewer: {frontmatter.certification.reviewer}</span>
-              <span class="cert-date">Date: {frontmatter.certification.date}</span>
-            </div>
-            <div class="cert-note-block">
-              <strong>Review Summary:</strong>
+            <table class="cert-table-inner">
+              <tr>
+                <td class="cert-label">Verdict</td>
+                <td><code>{frontmatter.certification.verdict}</code></td>
+              </tr>
+              <tr>
+                <td class="cert-label">Reviewed by</td>
+                <td>{frontmatter.certification.reviewer}</td>
+              </tr>
+              <tr>
+                <td class="cert-label">Date</td>
+                <td>{frontmatter.certification.date}</td>
+              </tr>
+              <tr>
+                <td class="cert-label">Level</td>
+                <td>
+                  <span class={`cert-badge cert-${frontmatter.certification.level}`} style="font-size:0.65rem">
+                    {frontmatter.certification.level.toUpperCase()}
+                  </span>
+                  {frontmatter.certification.level === 'gold' && ' \u2014 3+ peer-reviewed papers corroborate methods'}
+                  {frontmatter.certification.level === 'silver' && ' \u2014 Peer-reviewed literature supports approach'}
+                  {frontmatter.certification.level === 'bronze' && ' \u2014 Novel observation, limited literature precedent'}
+                </td>
+              </tr>
+              {frontmatter.certification.revision_status && (
+                <tr>
+                  <td class="cert-label">Revisions</td>
+                  <td>{frontmatter.certification.revision_status}</td>
+                </tr>
+              )}
+            </table>
+
+            <div class="cert-note-box">
               <p>{frontmatter.certification.note}</p>
             </div>
-            <div class="cert-what-this-means">
-              <strong>What this means:</strong>
-              <p>
-                {frontmatter.certification.level === 'gold' &&
-                  '3+ peer-reviewed papers (zbMATH) corroborate the mathematical context. Methods validated against published benchmarks. Computational results are reproducible.'}
-                {frontmatter.certification.level === 'silver' &&
-                  '1+ peer-reviewed paper plus strong arXiv coverage support the approach. Methods are grounded in established literature.'}
-                {frontmatter.certification.level === 'bronze' &&
-                  'This is a novel computational observation. arXiv preprints exist on related topics, but no direct literature precedent for this specific finding.'}
-              </p>
-            </div>
-            <div class="cert-how-it-works">
-              <strong>How this review was conducted:</strong>
-              <p>The reviewer used the <a href="https://mcp.bigcompute.science">bigcompute.science MCP server</a> to query arXiv, zbMATH, Semantic Scholar, and OEIS. Each numerical claim was checked against the papers found. The full claim-by-claim review is available as JSON.</p>
-            </div>
+
             <div class="cert-actions">
-              <a href={`https://github.com/cahlen/idontknow/blob/main/docs/verifications/${frontmatter.slug}_peer-review.json`} target="_blank" class="cert-action-btn">View Full Review (JSON)</a>
-              <a href="/verification/" class="cert-action-btn">About Verification</a>
-              <a href="https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md" target="_blank" class="cert-action-btn cert-action-contribute">Submit Your Own Review</a>
+              <a href={`https://github.com/cahlen/idontknow/blob/main/docs/verifications/${frontmatter.slug}_peer-review.json`} target="_blank" class="cert-action-btn">Full Review</a>
+              <a href="/verification/" class="cert-action-btn">How This Works</a>
+              <a href="https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md" target="_blank" class="cert-action-btn cert-action-contribute">Add Your Review</a>
             </div>
           </div>
         </details>

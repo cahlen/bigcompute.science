@@ -46,6 +46,7 @@ All work produced through human-AI collaboration (Cahlen Humphreys + Claude). No
 - [Website source](https://github.com/cahlen/bigcompute.science): Astro + KaTeX
 - [Agent guide](https://github.com/cahlen/idontknow/blob/main/AGENTS.md): How to contribute
 - [Citation](https://github.com/cahlen/idontknow/blob/main/CITATION.cff): CITATION.cff
+- [MCP Server](https://mcp.bigcompute.science/mcp): Model Context Protocol endpoint for AI agents (no auth)
 
 ## Optional
 

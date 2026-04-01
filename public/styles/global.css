@@ -714,3 +714,119 @@ footer a { color: var(--accent); text-decoration: none; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+/* ============================================================
+   Connect / Get Started Section
+   ============================================================ */
+
+.connect {
+  margin-top: 4rem;
+}
+.connect h2 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.connect-intro {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+.connect-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+@media (max-width: 700px) {
+  .connect-grid { grid-template-columns: 1fr; }
+}
+.connect-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+.connect-card:hover {
+  border-color: rgba(232,196,122,0.25);
+}
+.connect-mcp {
+  grid-column: 1 / -1;
+  border-left: 3px solid var(--accent);
+}
+.connect-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--ink);
+}
+.connect-card p {
+  color: var(--ink-secondary);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  margin-bottom: 0.8rem;
+}
+.connect-url {
+  display: block;
+  background: rgba(232,196,122,0.06);
+  border: 1px solid rgba(232,196,122,0.15);
+  border-radius: 4px;
+  padding: 0.6rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: #e8c47a;
+  margin-bottom: 1rem;
+  user-select: all;
+}
+.connect-configs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.connect-configs details {
+  background: rgba(0,0,0,0.15);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+.connect-configs summary {
+  padding: 0.5rem 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+.connect-configs summary:hover {
+  color: #e8c47a;
+}
+.connect-configs pre {
+  margin: 0;
+  padding: 0.8rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--muted);
+  overflow-x: auto;
+  border-top: 1px solid var(--rule);
+  background: rgba(0,0,0,0.1);
+}
+.connect-btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #e8c47a;
+  text-decoration: none;
+  background: rgba(232,196,122,0.06);
+  border: 1px solid rgba(232,196,122,0.2);
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  transition: background 0.15s ease;
+}
+.connect-btn:hover {
+  background: rgba(232,196,122,0.12);
+}
+.connect-note {
+  font-size: 0.75rem !important;
+  color: var(--muted) !important;
+  font-style: italic;
+  margin-top: 0.4rem;
+}

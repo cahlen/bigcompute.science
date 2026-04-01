@@ -54,10 +54,63 @@ const sorted = experiments.sort((a, b) =>
     ))}
   </section>
 
+  <section class="connect">
+    <h2>Start Exploring</h2>
+    <p class="connect-intro">
+      Every experiment on this site has CUDA source code, reproduction commands, and open datasets.
+      Connect an AI agent to explore the data, or dive in yourself.
+    </p>
+
+    <div class="connect-grid">
+      <div class="connect-card connect-mcp">
+        <h3>MCP Server</h3>
+        <p>Connect Claude, Cursor, or any MCP client to query experiments, datasets, and CUDA kernels directly.</p>
+        <code class="connect-url">mcp.bigcompute.science/mcp</code>
+        <div class="connect-configs">
+          <details>
+            <summary>Claude Code</summary>
+            <pre>claude mcp add bigcompute \
+  --transport sse \
+  https://mcp.bigcompute.science/mcp</pre>
+          </details>
+          <details>
+            <summary>Cursor / VS Code</summary>
+            <pre>&#123;"mcpServers": &#123;"bigcompute": &#123;"url": "https://mcp.bigcompute.science/mcp"&#125;&#125;&#125;</pre>
+          </details>
+          <details>
+            <summary>Claude Desktop</summary>
+            <pre>// Add to claude_desktop_config.json
+&#123;"mcpServers": &#123;"bigcompute": &#123;"url": "https://mcp.bigcompute.science/mcp"&#125;&#125;&#125;</pre>
+          </details>
+        </div>
+      </div>
+
+      <div class="connect-card">
+        <h3>Browse the Data</h3>
+        <p>All datasets are on Hugging Face — free to download, no account needed.</p>
+        <a href="https://huggingface.co/cahlen" class="connect-btn">Hugging Face Datasets</a>
+      </div>
+
+      <div class="connect-card">
+        <h3>Run the Code</h3>
+        <p>Clone the repo. Every experiment has a CUDA kernel, compile command, and test case.</p>
+        <a href="https://github.com/cahlen/idontknow" class="connect-btn">GitHub Repository</a>
+        <p class="connect-note">No B200 required — most kernels run on any CUDA GPU.</p>
+      </div>
+
+      <div class="connect-card">
+        <h3>Contribute</h3>
+        <p>Run computations on your hardware. Upload to your own HF repo. Submit a PR.</p>
+        <a href="https://github.com/cahlen/idontknow/blob/main/AGENTS.md" class="connect-btn">AGENTS.md</a>
+        <p class="connect-note">Open problems that need GPU time listed inside.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="about">
     <h2>What is this?</h2>
     <p>
-      A collection of computational experiments that required significant hardware and custom engineering to execute. Not papers. Not tweets. Structured results with math, data, and reproducibility information.
+      A guerrilla mathematics lab. GPU-accelerated exploration of open conjectures — Zaremba, Ramsey R(5,5), Cohen-Lenstra, Kronecker coefficients, and more. Human-AI collaborative. Not peer-reviewed. All data open.
     </p>
     <p>
       Every experiment includes exact hardware specs, method, raw data, and commands to reproduce. Content is designed for both human readers and AI agents — see <a href="/llms.txt">/llms.txt</a>.

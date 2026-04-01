@@ -23,6 +23,13 @@ data:
   uncovered_A123_list: [6, 20, 28, 38, 42, 54, 96, 150, 156, 164, 216, 228, 318, 350, 384, 558, 770, 876, 1014, 1155, 1170, 1410, 1870, 2052, 2370, 5052, 6234]
   new_exceptions_after_6234: 0
   range_verified: 10000000000
+  density_sweep_subsets: 1023
+  density_sweep_range: 1000000
+  subsets_ge_9999_density: 366
+  subsets_100_density: 141
+  subsets_ge_9999_with_digit_1: 361
+  subsets_ge_9999_without_digit_1: 5
+  min_cardinality_100_density: 5
   hausdorff_E12: 0.531280506277205
   hausdorff_E123: 0.705661868065221
   hausdorff_E1234: 0.819297734508498
@@ -104,9 +111,54 @@ All $\leq 6{,}234$. No new exceptions in 999,993,766 additional integers tested.
 | Computation | Status |
 |------------|--------|
 | $A = \{1,2,3\}$, $d \leq 10^{10}$ | **Complete**: 27 uncovered, all $\leq 6234$ |
-| $A = \{1,2,3,4\}$, $d \leq 10^9$ | **Running** (2026-03-31) |
-| $A = \{1,2,3\}$, $d \leq 10^{10}$ | **Running** |
-| $A = \{1,2,3,4\}$, $d \leq 10^{10}$ | **Running** |
+| $A = \{1,2,3,4\}$, $d \leq 10^{9}$ | **Running** (2026-04-01) |
+| $A = \{1,2,3,4\}$, $d \leq 10^{10}$ | **Running** (2026-04-01) |
+
+## Update: Complete Density Landscape (2026-04-01)
+
+We computed the Zaremba density for **all 1,023 nonempty subsets** of $\{1, \ldots, 10\}$ at $N = 10^6$.
+
+### Digit 1 Dominance in Density
+
+Of the 366 subsets achieving $\geq 99.99\%$ density, **361 contain digit 1**. Only 5 do not — and those require $|A| \geq 8$:
+
+| Digit set (no digit 1) | $|A|$ | Density | Uncovered |
+|-------------------------|-------|---------|-----------|
+| $\{2,3,4,5,6,7,8,9,10\}$ | 9 | 99.999% | 14 |
+| $\{2,3,4,5,6,7,8,9\}$ | 8 | 99.997% | 34 |
+| $\{2,3,4,5,6,7,8,10\}$ | 8 | 99.996% | 39 |
+| $\{2,3,4,5,6,7,9,10\}$ | 8 | 99.995% | 48 |
+| $\{2,3,4,5,6,8,9,10\}$ | 8 | 99.994% | 60 |
+
+With digit 1, only 3 digits suffice: $A = \{1,2,3\}$ gives 99.997% density with just 27 exceptions. Without digit 1, you need **8 or 9 digits** for comparable density. This mirrors the [Hausdorff digit 1 dominance](https://bigcompute.science/findings/hausdorff-digit-one-dominance/) — digit 1 is disproportionately powerful in both dimension and density.
+
+### Minimum Cardinality for Full Density
+
+| Cardinality | Best density | Example |
+|-------------|-------------|---------|
+| 1 | 0.003% | $\{1\}$ |
+| 2 | 57.98% | $\{1,2\}$ |
+| 3 | 99.997% | $\{1,2,3\}$ |
+| 4 | ~100% | $\{1,2,3,4\}$ (2 exceptions) |
+| 5 | **100%** | $\{1,2,3,4,5\}$ (0 exceptions) |
+
+The jump from 2 to 3 elements is the phase transition: 57.98% → 99.997%.
+
+### Best 3-Element Subsets
+
+| Digit set | Density | Uncovered |
+|-----------|---------|-----------|
+| $\{1,2,3\}$ | 99.997% | 27 |
+| $\{1,2,4\}$ | 99.994% | 64 |
+| $\{1,2,5\}$ | 99.963% | 373 |
+| $\{1,2,6\}$ | 99.828% | 1,720 |
+| $\{1,2,7\}$ | 99.461% | 5,388 |
+| $\{1,3,4\}$ | 99.433% | 5,667 |
+| $\{2,3,4\}$ | 24.613% | 753,868 |
+
+Note $\{2,3,4\}$ (no digit 1) has only 24.6% density — the same cardinality as $\{1,2,3\}$ at 99.997%. Digit 1 accounts for a **75 percentage point** difference.
+
+**Dataset:** [density_all_subsets_n10_1e6.csv](https://huggingface.co/datasets/cahlen/zaremba-conjecture-data/blob/main/density/density_all_subsets_n10_1e6.csv) on Hugging Face (1,023 rows, CC BY 4.0).
 
 ## Reproduce
 

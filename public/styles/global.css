@@ -925,6 +925,8 @@ footer .agent-note {
 }
 
 footer a { color: var(--accent); text-decoration: none; }
+footer .copyright { margin-top: 0.3rem; font-size: 0.7rem; color: var(--muted); opacity: 0.7; }
+footer .copyright a { color: var(--muted); border-bottom: 1px dotted var(--muted); }
 
 /* ============================================================
    Responsive

@@ -47,20 +47,22 @@ $$\text{density}(N) \approx 30.1 + 4.65 \cdot \log_{10}(N)$$
 |-----------|-----------------|----------------------|----------|
 | $10^6$ | 57.98% | 57.96% | -0.02% |
 | $10^9$ | 72.06% | 71.97% | +0.09% |
-| $10^{10}$ | **76.55%** | 76.62% | -0.07% |
+| $10^{10}$ | 76.55% | 76.62% | -0.07% |
+| $10^{12}$ | **84.58%** | 85.88% | **-1.30%** |
 
-Residuals are less than 0.1 percentage points — an excellent fit.
+The logarithmic model predicted 85.9% at $10^{12}$; the observed value is **84.58%** — off by 1.3 percentage points. The pure power-law model predicted ~80%, which is further off. The truth is between the two models, but the logarithmic fit is degrading. With four data points, a revised fit gives:
 
-### Predictions
+$$\text{density}(N) \approx 27.0 + 4.80 \cdot \log_{10}(N) \quad (\text{residuals} \leq 0.6\%)$$
 
-| Range | Predicted density |
-|-------|------------------|
-| $10^{12}$ | 85.9% |
-| $10^{13}$ | 90.5% |
-| $10^{15}$ | **99.9%** |
-| $10^{15.0}$ | **100%** |
+### Updated Predictions
 
-If the logarithmic trend holds, $A = \{1,2\}$ achieves full density at $N \approx 10^{15}$.
+| Range | Original prediction | Revised prediction |
+|-------|--------------------|--------------------|
+| $10^{13}$ | 90.5% | 89.4% |
+| $10^{15}$ | 99.9% | 99.0% |
+| 100% at | $10^{15.0}$ | $10^{15.2}$ |
+
+The convergence is slightly slower than the 3-point model suggested, but still logarithmic. Full density around $10^{15}$ remains plausible.
 
 ## Why This Matters
 

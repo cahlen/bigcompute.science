@@ -109,13 +109,13 @@ The group $\text{SL}_2(\mathbb{Z}/p\mathbb{Z})$ has order $p(p^2 - 1)$. For $p =
 
 ```bash
 # Compile (requires CUDA)
-nvcc -O3 -arch=sm_100a -o cayley_gpu scripts/experiments/zaremba-cayley-diameter/cayley_gpu.cu
+nvcc -O3 -arch=sm_100a -o cayley_gpu scripts/experiments/zaremba-transfer-operator/cayley_gpu.cu
 
 # Run for all primes up to 1021
 ./cayley_gpu 1021
 ```
 
-Source: [`scripts/experiments/zaremba-cayley-diameter/cayley_gpu.cu`](https://github.com/cahlen/idontknow)
+Source: [`scripts/experiments/zaremba-transfer-operator/cayley_gpu.cu`](https://github.com/cahlen/idontknow)
 
 ---
 

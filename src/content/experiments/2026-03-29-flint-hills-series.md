@@ -197,12 +197,12 @@ git clone https://github.com/cahlen/idontknow
 cd idontknow
 
 # Compile the Flint Hills kernel (requires CUDA 13.0+, RTX 5090 or similar)
-nvcc -O3 -arch=sm_100a -o flint_hills scripts/experiments/flint-hills/flint_hills.cu -lm
+nvcc -O3 -arch=sm_100a -o flint_hills scripts/experiments/flint-hills-series/flint_hills.cu -lm
 
 # Run to N = 10^10
 ./flint_hills 10000000000
 
-# Results written to scripts/experiments/flint-hills/results/
+# Results written to scripts/experiments/flint-hills-series/results/
 ```
 
 ### Raw Data

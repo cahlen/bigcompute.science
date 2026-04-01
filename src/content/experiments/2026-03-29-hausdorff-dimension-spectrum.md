@@ -16,7 +16,7 @@ hardware:
 software:
   cuda: "13.0"
   method: Chebyshev collocation (N=40) + power iteration + bisection (55 steps)
-  custom_kernel: scripts/experiments/hausdorff-spectrum/hausdorff_spectrum.cu
+  custom_kernel: scripts/experiments/hausdorff-dimension-spectrum/hausdorff_spectrum.cu
 
 tags:
   domain: [continued-fractions, fractal-geometry, spectral-theory, diophantine-approximation]
@@ -136,8 +136,8 @@ Key observations:
 git clone https://github.com/cahlen/idontknow.git
 cd idontknow
 nvcc -O3 -arch=sm_120 -o hausdorff_spectrum \
-    scripts/experiments/hausdorff-spectrum/hausdorff_spectrum.cu -lm
-mkdir -p scripts/experiments/hausdorff-spectrum/results
+    scripts/experiments/hausdorff-dimension-spectrum/hausdorff_spectrum.cu -lm
+mkdir -p scripts/experiments/hausdorff-dimension-spectrum/results
 ./hausdorff_spectrum 20 40
 ```
 

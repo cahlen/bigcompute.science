@@ -115,11 +115,11 @@ git clone https://github.com/cahlen/idontknow
 cd idontknow
 
 # CPU version (slow)
-gcc -O3 -o zaremba_density scripts/experiments/zaremba-density/zaremba_density.c -lm
+gcc -O3 -o zaremba_density scripts/experiments/zaremba-conjecture-verification/zaremba_density.c -lm
 ./zaremba_density 1000000 1,2,3
 
 # GPU version (fast — requires CUDA)
-nvcc -O3 -arch=sm_100a -o zaremba_density_gpu scripts/experiments/zaremba-density/zaremba_density_gpu.cu -lm
+nvcc -O3 -arch=sm_100a -o zaremba_density_gpu scripts/experiments/zaremba-conjecture-verification/zaremba_density_gpu.cu -lm
 ./zaremba_density_gpu 1000000000 1,2,3
 ```
 

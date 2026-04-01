@@ -295,7 +295,7 @@ cd idontknow
 
 # Compile v6 multi-pass kernel
 nvcc -O3 -arch=sm_100a -o matrix_v6 \
-    scripts/experiments/zaremba-effective-bound/matrix_enum_multipass.cu -lpthread
+    scripts/experiments/zaremba-conjecture-verification/matrix_enum_multipass.cu -lpthread
 
 # Verify d=1 to 1B (any multi-GPU NVIDIA system)
 ./matrix_v6 1000000000
@@ -307,15 +307,15 @@ nvcc -O3 -arch=sm_100a -o matrix_v6 \
 **Single-GPU quick check (v5 kernel):**
 ```bash
 nvcc -O3 -arch=sm_100a -o matrix_enum \
-    scripts/experiments/zaremba-effective-bound/matrix_enum.cu
+    scripts/experiments/zaremba-conjecture-verification/matrix_enum.cu
 ./matrix_enum 100000000  # 100M in ~7.5s on one B200
 ```
 
 ## Raw Data
 
-- v6 verification log (210B): [`run_210B.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/run_210B.log)
-- v6 verification log (100B): [`run_100B_v2.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/run_100B_v2.log)
-- v6 verification log (10B): [`run_10B_v3.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/run_10B_v3.log)
+- v6 verification log (210B): [`run_210B.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-conjecture-verification/run_210B.log)
+- v6 verification log (100B): [`run_100B_v2.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-conjecture-verification/run_100B_v2.log)
+- v6 verification log (10B): [`run_10B_v3.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-conjecture-verification/run_10B_v3.log)
 - Spectral gap data (1,214 moduli): [`/data/spectral-gaps.json`](/data/spectral-gaps.json)
 
 ## References

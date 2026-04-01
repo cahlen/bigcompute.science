@@ -87,11 +87,11 @@ git clone https://github.com/cahlen/idontknow
 cd idontknow
 
 # Step 1: Compute character table (CPU)
-python3 scripts/experiments/kronecker-coefficients/char_table.py 20
+python3 scripts/experiments/kronecker-coefficients-gpu/char_table.py 20
 
 # Step 2: GPU Kronecker triple-sum
 nvcc -O3 -arch=sm_100a -o kronecker_gpu \
-    scripts/experiments/kronecker-coefficients/kronecker_gpu.cu -lm
+    scripts/experiments/kronecker-coefficients-gpu/kronecker_gpu.cu -lm
 ./kronecker_gpu 20
 ```
 

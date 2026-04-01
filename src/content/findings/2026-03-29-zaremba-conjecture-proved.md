@@ -166,7 +166,7 @@ From our GPU computation (5.3 seconds, one B200):
 
 $$R(d) \sim d^{0.654} \quad \text{(empirical, } d \leq 10^6\text{)}$$
 
-Theoretical prediction: $R(d) \sim d^{2\delta - 1} = d^{0.674}$. The slight undercount (0.654 vs 0.674) is expected from finite-depth effects. Minimum $R(d) = 6$ at $d = 1$. **Zero exceptions** in $[1, 10^6]$. Full dataset: [1M rows CSV](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/representation_counts_1000000.csv).
+Theoretical prediction: $R(d) \sim d^{2\delta - 1} = d^{0.674}$. The slight undercount (0.654 vs 0.674) is expected from finite-depth effects. Minimum $R(d) = 6$ at $d = 1$. **Zero exceptions** in $[1, 10^6]$. Full dataset: [1M rows CSV](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-conjecture-verification/representation_counts_1000000.csv).
 
 ## Reproduction
 
@@ -176,12 +176,12 @@ cd idontknow
 
 # Step 1: Brute force (requires 8× NVIDIA B200 or similar)
 nvcc -O3 -arch=sm_100a -o matrix_v6 \
-    scripts/experiments/zaremba-effective-bound/matrix_enum_multipass.cu -lpthread
+    scripts/experiments/zaremba-conjecture-verification/matrix_enum_multipass.cu -lpthread
 ./matrix_v6 210000000000
 
 # Step 2: Spectral gaps (requires cuBLAS)
 nvcc -O3 -arch=sm_100a -o extract_ef \
-    scripts/experiments/zaremba-effective-bound/extract_eigenfunction.cu -lcublas -lm
+    scripts/experiments/zaremba-conjecture-verification/extract_eigenfunction.cu -lcublas -lm
 ./extract_ef  # outputs h(0) and gaps for primes ≤ 97
 ```
 

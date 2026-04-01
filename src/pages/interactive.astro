@@ -12,19 +12,11 @@ import Base from '../layouts/Base.astro';
 
   <section class="manifesto" id="manifesto-section">
     <div class="manifesto-text">
-      <h2 class="m-reveal">Why Human–AI Collaboration Changes Everything</h2>
+      <h2 class="m-reveal">How This Site Was Built</h2>
 
-      <p class="m-reveal">Consider how mathematical progress has always worked. A human is born somewhere on Earth. They survive childhood. Somehow, through an improbable chain of circumstances — the right school, the right teacher, the right book left open on the right page — they discover they have a talent for abstract thought. They spend decades training. If they're extraordinarily lucky, they produce a handful of results that push a field forward by the time they're forty or fifty. Then they slow down, and the world waits for the next one.</p>
+      <p class="m-reveal">A human picked the problems. An AI wrote the CUDA kernels. The human decided which results mattered. The AI managed the data pipeline. Neither could have done this alone.</p>
 
-      <p class="m-reveal">We waited <span class="m-num" data-value="200">200</span> years between Euler and Ramanujan. A century between Gauss and Grothendieck. The entire edifice of modern mathematics — every theorem, every conjecture, every computational technique — rests on the output of a few thousand people across all of human history who happened to be born, happened to survive, happened to find mathematics, and happened to be productive during their brief window of peak creativity.</p>
-
-      <div class="m-pullquote m-reveal"><span>This is an absurd way to advance knowledge.</span></div>
-
-      <p class="m-reveal">The bottleneck was never the mathematics itself. The bottleneck was always biological: waiting for nature to randomly assemble a mind capable of seeing what others couldn't. The proofs were always there. The patterns were always there. The continued fraction identities, the spectral gaps, the Kronecker coefficients — they existed before anyone computed them. We just had to wait for the right human to come along and look.</p>
-
-      <p class="m-reveal">Human–AI collaboration breaks this cycle. Not because AI replaces human insight — it doesn't. The deep intuition that says "this conjecture should be true" or "this approach will never work" remains fundamentally human. What AI does is <strong class="m-glow">eliminate the waiting</strong>. A mathematician with AI collaboration can explore computational landscapes that would take a lifetime to traverse alone. They can test conjectures across billions of cases in minutes. The time between "I wonder if&hellip;" and "here is the data" collapses from years to hours.</p>
-
-      <p class="m-reveal">Every result on this site was produced this way. A human directed the research — chose the conjectures, judged the approaches, decided what mattered. AI agents wrote CUDA kernels, constructed proofs, generated documentation, and managed the computational pipeline. <strong class="m-glow">Neither could have produced these results alone.</strong></p>
+      <p class="m-reveal">That's not a grand statement about the future of mathematics — it's just what happened here. One person with a GPU cluster and an AI assistant produced computational results across a dozen open problems in number theory and combinatorics. Some of those computations would have taken months of manual coding. With AI collaboration, they took hours.</p>
 
       <div class="m-stats m-reveal">
         <div class="m-stat"><span class="m-num" data-value="27">0</span><small>Zaremba exceptions<br/>with A=&#123;1,2,3&#125;</small></div>
@@ -33,11 +25,15 @@ import Base from '../layouts/Base.astro';
         <div class="m-stat"><span class="m-num" data-value="1048575">0</span><small>Hausdorff dimensions<br/>all subsets of &#123;1,...,20&#125;</small></div>
       </div>
 
-      <p class="m-reveal">None of these existed in the literature before this project. Not because the mathematics was too hard — but because no single human lifetime had enough hours to compute them.</p>
+      <p class="m-reveal">These are computational results, not proofs. None of this work has been peer-reviewed. The code is open, the data is open, and the reproduction commands are on every page — so anyone can check our work. That's the point. We're not claiming authority. We're publishing the computations and inviting scrutiny.</p>
 
-      <div class="m-pullquote m-reveal"><span>Mathematics is infinite and human lifetimes are not.</span></div>
+      <p class="m-reveal">The AI didn't have mathematical insight. It had speed. It could write a CUDA kernel in minutes, debug it against test cases, optimize memory access patterns, and manage uploads to Hugging Face — all tasks that are tedious for a human but trivial for an AI. The human decided <em>what</em> to compute and <em>why</em> it mattered. The AI decided <em>how</em> to compute it efficiently.</p>
 
-      <p class="m-reveal">We cannot afford to keep waiting for nature to randomly produce the next Euler. The open problems are too important, the tools are too powerful, and the data is too vast. Human–AI collaboration is not a shortcut or a crutch. It is the only honest response to a universe of mathematical truth that dwarfs any individual mind.</p>
+      <div class="m-pullquote m-reveal"><span>The bottleneck in computational mathematics has always been engineering, not ideas.</span></div>
+
+      <p class="m-reveal">There are thousands of open conjectures where the next step is "compute this for larger values and see what happens." Most of those computations never get done because writing the GPU kernel, setting up the data pipeline, and publishing the results is more work than most researchers want to do for a speculative computation. AI collaboration removes that friction. The ideas were always there. Now they can be tested.</p>
+
+      <p class="m-reveal">This site is an experiment in that process. Some of the results will turn out to be interesting. Some won't survive peer review. All of the data is here for you to use.</p>
 
       <p class="manifesto-cite m-reveal">— Cahlen Humphreys, 2026. Built with Claude.</p>
     </div>

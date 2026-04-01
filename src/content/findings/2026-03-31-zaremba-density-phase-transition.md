@@ -50,7 +50,7 @@ Zaremba (1972) conjectured that $A = \{1, \ldots, 5\}$ gives density 1 (i.e., ev
 | $\{1, 2, 3, 4\}$ | ~100% | ~2 | 0.8193 | Yes |
 | $\{1, 2, 3, 4, 5\}$ | **100%** | 0 | 0.8368 | Yes |
 
-For $A = \{1, 2, 3\}$, **exactly 27 integers** in $[1, 10^9]$ are uncovered — all $\leq 6{,}234$:
+For $A = \{1, 2, 3\}$, **exactly 27 integers** in $[1, 10^{10}]$ are uncovered — all $\leq 6{,}234$:
 
 $$6, 20, 28, 38, 42, 54, 96, 150, 156, 164, 216, 228, 318, 350, 384, 558, 770, 876, 1014, 1155, 1170, 1410, 1870, 2052, 2370, 5052, 6234$$
 
@@ -83,7 +83,7 @@ We use the **inverse CF construction** (from our Zaremba v4 kernel): enumerate A
 
 This is $O(\text{total CFs})$ rather than $O(N)$ per denominator — fundamentally faster for dense digit sets.
 
-## Update: GPU Results to $10^9$ (2026-03-31)
+## Update: GPU Results to $10^{10}$ (2026-03-31)
 
 **The exception set for $A = \{1,2,3\}$ is CLOSED.** Zero new exceptions between $d = 6{,}234$ and $d = 10^{10}$:
 

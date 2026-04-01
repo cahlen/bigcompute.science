@@ -164,7 +164,7 @@ The spectral data is complete. What's needed to close the conjecture is making B
 
 Our parallel brute-force verification (see [companion experiment](/experiments/zaremba-conjecture-verification)) found:
 
-- **Zero counterexamples** across all tested ranges up to $d \sim 3 \times 10^9$
+- **Zero counterexamples** across all tested ranges up to $d = 2.1 \times 10^{11}$
 - **99.7% of witnesses** have CF prefix $[0;\, 5, 1, \ldots]$
 - **Mean witness ratio** $\alpha(d)/d = 0.1712$, connected to $1/(5 + \varphi)$
 

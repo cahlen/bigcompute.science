@@ -206,6 +206,6 @@ The combination of uniform spectral gaps + brute-force verification + Cayley dia
 
 ---
 
-*Computed on NVIDIA DGX B200 (8× B200, 1.43 TB VRAM). All eigenvalues computed on GPU via cuSOLVER.*
+*Computed on NVIDIA DGX B200 (8× B200, 1.43 TB VRAM). All eigenvalues computed on GPU via cuSOLVER using Chebyshev collocation (N=15). Note: the Zaremba proof page reports higher-precision gaps (N=40 Chebyshev) for the 11 covering primes, which may differ from the N=15 values here.*
 
 *This work was produced through human-AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

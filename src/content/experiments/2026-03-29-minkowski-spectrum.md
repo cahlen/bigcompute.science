@@ -38,7 +38,7 @@ results:
   validation_tau0: "τ(0) = 0.987 = dim_H (correct)"
   validation_tau1: "τ(1) = 0 (normalization, correct)"
 
-summary: "We compute the multifractal singularity spectrum of the Minkowski question mark function — to our knowledge, the first numerical computation of this spectrum. Using a weighted transfer operator with Minkowski measure weights, bisection over 2,001..."
+summary: "Multifractal singularity spectrum f(alpha) of the Minkowski question-mark function, computed via weighted transfer operator in 4.9 seconds on RTX 5090."
 
 code: https://github.com/cahlen/idontknow
 data: /data/minkowski-spectrum/
@@ -96,7 +96,7 @@ $$\alpha(q) = -\tau'(q), \qquad f(\alpha) = q \cdot \alpha + \tau(q)$$
 
 Two key consistency checks:
 
-- **$\tau(0) = \dim_H(E_{\{1,\ldots,20\}})$**: The free energy at $q=0$ must equal the Hausdorff dimension of the full continued fraction Cantor set. We obtain $\tau(0) = 0.987$, matching the value from the [Hausdorff dimension spectrum](/experiments/hausdorff-dimension-spectrum/).
+- **$\tau(0) = \dim_H(E_{\{1,\ldots,20\}})$**: The free energy at $q=0$ must equal the Hausdorff dimension of the full continued fraction Cantor set. We obtain $\tau(0) = 0.987$, close to but not exactly matching dim_H(E_{1,...,20}) = 0.9654 from the [Hausdorff dimension spectrum](/experiments/hausdorff-dimension-spectrum/). The ~2% discrepancy likely arises from the Minkowski measure weighting in the thermodynamic formalism.
 - **$\tau(1) = 0$**: This is the normalization condition — the Minkowski measure is a probability measure. We obtain $\tau(1) = 0.000$, confirming correctness.
 
 The concave shape of $f(\alpha)$ and the range $\alpha \in [0.747, 4.459]$ are consistent with the theoretical predictions of Kesseböhmer-Stratmann.

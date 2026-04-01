@@ -39,7 +39,7 @@ results:
   llm_proofs: 19/20
   models_used: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
 
-summary: "We verify Zaremba's Conjecture for all from 1 to 210 billion using GPU-accelerated continued fraction tree enumeration across 8 NVIDIA B200 GPUs. The v6 multi-pass kernel completes in 116 minutes with zero failures. Combined with spectral analysis..."
+summary: "GPU verification of Zaremba's Conjecture for all d up to 210 billion (zero failures), plus spectral gap analysis, transitivity proof, and LLM theorem proving in Lean 4."
 
 code: https://github.com/cahlen/idontknow
 dataset: https://huggingface.co/datasets/cahlen/zaremba-conjecture-data
@@ -180,7 +180,7 @@ We discretized $\mathcal{L}_s$ using **Chebyshev collocation with $N = 40$ point
 | 9 | **FAIL** | — | 19 | Kimina | 4 |
 | 10 | Kimina | 3 | 20 | Kimina | 9 |
 
-**Final score: Goedel 10, Kimina 10.** All 19 proofs verified by the Lean 4 compiler.
+**Final score: Goedel-Prover and Kimina-Prover split the 19 proved cases.** All 19 proofs verified by the Lean 4 compiler.
 
 The single failure ($d = 9$, correct witness $a = 2$) was a search problem: both models repeatedly tried $a = 1$ and $a = 3$ instead of $a = 2$ across 80 total attempts. The models understood the proof *structure* perfectly — every suggestion was syntactically correct — but couldn't find the right *witness*.
 

@@ -30,8 +30,8 @@ results:
   chebyshev_order: 40
   bisection_steps: 55
   precision_digits: 15
-  status: "COMPLETE — 1,048,575 subsets computed in 4,322s on RTX 5090"
-  scaling_n20: "1,048,575 subsets in 4,322s"
+  status: "COMPLETE — 1,048,575 subsets computed in 4,343s on RTX 5090"
+  scaling_n20: "1,048,575 subsets in 4,343s"
   validation_e12: "0.531280506277205 (exact match to Jenkinson-Pollicott)"
   validation_e12345: "0.836829443681209 (diff 6.66e-16 from Zaremba transfer operator)"
   validation_monotonicity: "PASS"
@@ -39,7 +39,7 @@ results:
   scaling_n10: "1,023 subsets in 3.8s"
   scaling_n15: "32,767 subsets in 126.1s"
 
-summary: "We compute the Hausdorff dimension for every non-empty subset — a total of subsets. To our knowledge, this is the first complete mapping of the \"dimension spectrum\" of continued fraction Cantor sets, producing a structured dataset that does not..."
+summary: "Hausdorff dimension computed for every non-empty subset of {1,...,20} — 1,048,575 subsets in 4,343 seconds on RTX 5090. Validated against Jenkinson-Pollicott."
 
 code: https://github.com/cahlen/idontknow
 data: /data/hausdorff-spectrum/

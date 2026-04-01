@@ -33,7 +33,7 @@ results:
   validation_singleton: "λ({1}) matches analytic value to 10 digits"
   validation_monotonicity: "PASS"
 
-summary: "We compute the Lyapunov exponent for every non-empty subset — a total of subsets — in 305 seconds on a single RTX 5090. This is the twin dataset to the Hausdorff dimension spectrum, together providing to our knowledge, the first complete mapping of..."
+summary: "Lyapunov exponents for all 1,048,575 non-empty subsets of {1,...,20}, computed in 305 seconds on RTX 5090. Twin dataset with the Hausdorff dimension spectrum."
 
 code: https://github.com/cahlen/idontknow
 data: /data/lyapunov-spectrum/

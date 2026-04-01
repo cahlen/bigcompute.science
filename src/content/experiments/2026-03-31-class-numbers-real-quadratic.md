@@ -36,7 +36,7 @@ results:
   time_range1: "30 minutes on 8× B200"
   time_range2: "16.5 hours on 8× B200"
 
-summary: "We compute class numbers of real quadratic fields for all fundamental discriminants from to — a 100× extension of existing systematic tables. Each discriminant is handled by an independent CUDA thread using the analytic class number formula combined..."
+summary: "Class numbers h(d) for 30 billion real quadratic fields. Cohen-Lenstra h=1 rate drops from 42% to 15% — convergence is non-monotone and extremely slow."
 
 code: https://github.com/cahlen/idontknow
 data: /data/class-numbers/

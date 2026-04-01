@@ -30,7 +30,7 @@ results:
   benchmark: "MCTS vs naive sampling for Lean 4 proof search"
   conjecture_year: 1972
 
-summary: "In our previous experiment (Zaremba verification), we discovered that SOTA theorem-proving LLMs nail proof *structure* but fail at witness *search* — producing syntactically perfect proofs with wrong values across 80 attempts. This experiment tests..."
+summary: "Planned benchmark comparing Monte Carlo Tree Search vs naive sampling for LLM theorem proving in Lean 4."
 
 code: https://github.com/cahlen/idontknow
 data: /data/mcts-benchmark/
@@ -158,6 +158,6 @@ python lean4-proving/prover.py \
 
 ---
 
-*Computed on NVIDIA DGX B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+*Planned for NVIDIA DGX B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
 
 *This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

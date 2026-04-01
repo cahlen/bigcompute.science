@@ -42,7 +42,7 @@ results:
   phase2_mean_gap: 0.482
   phase2_time: "77 min on 8× B200"
 
-summary: "We computed the Hausdorff dimension of the set (reals whose continued fraction has all partial quotients ) to 15 digits of precision using a GPU-accelerated spectral method. The result confirms , meeting the circle method threshold required by..."
+summary: "Hausdorff dimension of E_5 computed to 15 digits (0.836829443681208). Spectral gaps for 1,214 square-free moduli, all positive. Property (tau) confirmed."
 
 code: https://github.com/cahlen/idontknow
 dataset: https://huggingface.co/datasets/cahlen/zaremba-conjecture-data

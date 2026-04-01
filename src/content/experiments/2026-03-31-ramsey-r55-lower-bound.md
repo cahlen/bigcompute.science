@@ -38,7 +38,7 @@ results:
   lower_bound_improved: false
   conclusion: "Strongest computational evidence ever assembled that R(5,5) = 43"
 
-summary: "We attack the Ramsey number from multiple angles using 8 NVIDIA B200 GPUs. Rather than finding a new lower bound (which would require a -free 2-coloring of ), we produce among the strongest computational evidence that . Our key results:"
+summary: "Strongest computational evidence that R(5,5) = 43. All 656 known K42 colorings UNSAT. Structural attack toward R(5,5) <= 45 in progress."
 
 code: https://github.com/cahlen/idontknow
 # dataset: none published yet

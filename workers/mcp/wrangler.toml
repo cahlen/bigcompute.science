@@ -7,3 +7,7 @@ main = "src/server.ts"
 SITE_URL = "https://bigcompute.science"
 REPO_URL = "https://github.com/cahlen/idontknow"
 HF_BASE = "https://huggingface.co/datasets/cahlen"
+
+[[routes]]
+pattern = "mcp.bigcompute.science/*"
+zone_name = "bigcompute.science"

@@ -20,36 +20,39 @@ const sorted = experiments.sort((a, b) =>
     <h2 class="m-reveal">Experiments</h2>
     {sorted.map((exp) => (
       <a href={`/experiments/${exp.frontmatter.slug}/`} class="experiment-card">
-        <div class="card-header">
+        <div class="card-top-row">
           <time datetime={exp.frontmatter.date}>
             {new Date(exp.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
           </time>
-          {exp.frontmatter.status && (
-            <span class={`status status-${exp.frontmatter.status}`}>{exp.frontmatter.status}</span>
-          )}
+          <div class="card-badges">
+            {exp.frontmatter.status && (
+              <span class={`status status-${exp.frontmatter.status}`}>{exp.frontmatter.status}</span>
+            )}
+            {(exp.frontmatter.results?.conjecture_year || exp.frontmatter.conjecture_year) && (
+              <span class="conjecture-age">{2026 - (exp.frontmatter.results?.conjecture_year || exp.frontmatter.conjecture_year)}yr open</span>
+            )}
+          </div>
         </div>
         <h3>{exp.frontmatter.title}</h3>
         {exp.frontmatter.summary && (
-          <p class="card-meta">{exp.frontmatter.summary}</p>
+          <p class="card-summary">{exp.frontmatter.summary.slice(0, 180)}{exp.frontmatter.summary.length > 180 ? '...' : ''}</p>
         )}
-        <div class="card-meta">
-          <span class="hw-summary">{exp.frontmatter.hardware?.gpus}</span>
-          {(exp.frontmatter.results?.conjecture_year || exp.frontmatter.conjecture_year) && (
-            <span class="conjecture-age">Open for {2026 - (exp.frontmatter.results?.conjecture_year || exp.frontmatter.conjecture_year)} years</span>
-          )}
-        </div>
-        <div class="card-tags">
-          {exp.frontmatter.tags?.domain?.map((t: string) => <span class="tag tag-domain">{t}</span>)}
-          {exp.frontmatter.tags?.method?.map((t: string) => <span class="tag tag-method">{t}</span>)}
-        </div>
         {exp.frontmatter.results?.failures !== undefined && (
           <div class="card-result">
             <strong>{exp.frontmatter.results.failures === 0 ? 'PASS' : 'FAIL'}</strong>
             {exp.frontmatter.results.verified_range && (
-              <span>— verified {exp.frontmatter.results.verified_range[1].toLocaleString()} values</span>
+              <span>— {exp.frontmatter.results.verified_range[1].toLocaleString()} verified</span>
             )}
           </div>
         )}
+        <div class="card-footer-row">
+          <div class="card-tags">
+            {exp.frontmatter.tags?.domain?.slice(0, 3).map((t: string) => <span class="tag tag-domain">{t}</span>)}
+          </div>
+          {exp.frontmatter.hardware?.gpus && (
+            <span class="card-hw">{exp.frontmatter.hardware.gpus.replace(/\(.*\)/, '').trim()}</span>
+          )}
+        </div>
       </a>
     ))}
   </section>

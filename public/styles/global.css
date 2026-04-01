@@ -289,8 +289,8 @@ main {
   border: 1px solid var(--rule);
   border-left: 3px solid var(--rule);
   border-radius: 2px 8px 8px 2px;
-  padding: 1.5rem 1.75rem 1.5rem 1.5rem;
-  margin-bottom: 0.75rem;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 0.6rem;
   text-decoration: none;
   color: var(--ink);
   transition: border-left-color 200ms ease, background 200ms ease;
@@ -303,54 +303,74 @@ main {
 
 .experiment-card h3 {
   font-family: var(--font-serif);
-  font-size: 1.05rem;
-  margin: 0.4rem 0 0.4rem;
-  line-height: 1.45;
+  font-size: 1rem;
+  margin: 0.3rem 0;
+  line-height: 1.4;
   font-weight: 600;
 }
 
-.card-desc {
-  color: var(--ink-secondary);
-  font-size: 0.85rem;
-  line-height: 1.55;
-  margin: 0 0 0.5rem 0;
-  font-family: var(--font-sans);
-}
-
-.card-header {
+.card-top-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.15rem;
 }
 
-.card-header time {
+.card-top-row time {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--muted);
 }
 
-.card-meta {
-  color: var(--muted);
-  font-size: 0.8rem;
-  font-family: var(--font-mono);
+.card-badges {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
 }
+
+.card-summary {
+  color: var(--ink-secondary);
+  font-size: 0.82rem;
+  font-family: var(--font-serif);
+  line-height: 1.55;
+  margin: 0.2rem 0 0.5rem;
+}
+
+/* Legacy — keep for any pages still using old markup */
+.card-header { display: flex; justify-content: space-between; align-items: center; }
+.card-header time { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
+.card-meta { color: var(--muted); font-size: 0.78rem; font-family: var(--font-mono); }
 
 .conjecture-age {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   color: var(--accent-gold);
   background: color-mix(in srgb, var(--accent-gold) 8%, transparent);
   border: 1px solid color-mix(in srgb, var(--accent-gold) 20%, transparent);
-  padding: 0.12rem 0.5rem;
+  padding: 0.1rem 0.4rem;
   border-radius: 3px;
   white-space: nowrap;
 }
 
 .card-result {
-  margin-top: 0.6rem;
+  margin: 0.4rem 0;
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   color: var(--accent);
+}
+
+.card-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.3rem;
+}
+
+.card-hw {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--muted);
+  opacity: 0.6;
 }
 
 /* ============================================================

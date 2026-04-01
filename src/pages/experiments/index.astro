@@ -16,19 +16,20 @@ const sorted = experiments.sort((a, b) =>
   <div class="experiments-list">
     {sorted.map((exp) => (
       <a href={`/experiments/${exp.frontmatter.slug}/`} class="experiment-card">
-        <div class="card-header">
+        <div class="card-top-row">
           <time datetime={exp.frontmatter.date}>
             {new Date(exp.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
           </time>
-          {exp.frontmatter.status && (
-            <span class={`status status-${exp.frontmatter.status}`}>{exp.frontmatter.status}</span>
-          )}
+          <div class="card-badges">
+            {exp.frontmatter.status && (
+              <span class={`status status-${exp.frontmatter.status}`}>{exp.frontmatter.status}</span>
+            )}
+          </div>
         </div>
         <h3>{exp.frontmatter.title}</h3>
-        <p class="card-meta">{exp.frontmatter.summary}</p>
+        <p class="card-summary">{exp.frontmatter.summary?.slice(0, 200)}{exp.frontmatter.summary?.length > 200 ? '...' : ''}</p>
         <div class="card-tags">
-          {exp.frontmatter.tags?.domain?.map((t: string) => <span class="tag tag-domain">{t}</span>)}
-          {exp.frontmatter.tags?.method?.map((t: string) => <span class="tag tag-method">{t}</span>)}
+          {exp.frontmatter.tags?.domain?.slice(0, 4).map((t: string) => <span class="tag tag-domain">{t}</span>)}
         </div>
       </a>
     ))}

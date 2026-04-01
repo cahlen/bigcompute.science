@@ -16,26 +16,25 @@ const sorted = findings.sort((a, b) =>
   <div class="experiments-list">
     {sorted.map((f) => (
       <a href={`/findings/${f.frontmatter.slug}/`} class="experiment-card">
-        <div class="card-header">
+        <div class="card-top-row">
           <time datetime={f.frontmatter.date}>
             {new Date(f.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
           </time>
-          {f.frontmatter.certification && (
-            <span class={`cert-badge cert-${f.frontmatter.certification.level}`}
-                  title={`${f.frontmatter.certification.verdict} by ${f.frontmatter.certification.reviewer} (${f.frontmatter.certification.date})`}>
-              {f.frontmatter.certification.level === 'gold' ? 'GOLD' :
-               f.frontmatter.certification.level === 'silver' ? 'SILVER' :
-               f.frontmatter.certification.level === 'bronze' ? 'BRONZE' : '?'} Verified
-            </span>
-          )}
-          {f.frontmatter.conjecture_year && (
-            <span class="conjecture-age">Open for {2026 - f.frontmatter.conjecture_year} years</span>
-          )}
+          <div class="card-badges">
+            {f.frontmatter.certification && (
+              <span class={`cert-badge cert-${f.frontmatter.certification.level}`}>
+                {f.frontmatter.certification.level.toUpperCase()}
+              </span>
+            )}
+            {f.frontmatter.conjecture_year && (
+              <span class="conjecture-age">{2026 - f.frontmatter.conjecture_year}yr open</span>
+            )}
+          </div>
         </div>
         <h3>{f.frontmatter.title}</h3>
-        <p class="card-meta">{f.frontmatter.summary}</p>
+        <p class="card-summary">{f.frontmatter.summary?.slice(0, 200)}{f.frontmatter.summary?.length > 200 ? '...' : ''}</p>
         <div class="card-tags">
-          {f.frontmatter.domain?.map((t: string) => <span class="tag tag-domain">{t}</span>)}
+          {f.frontmatter.domain?.slice(0, 4).map((t: string) => <span class="tag tag-domain">{t}</span>)}
         </div>
       </a>
     ))}

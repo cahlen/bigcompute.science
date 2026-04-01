@@ -5,6 +5,14 @@ const experiments = await Astro.glob('../../content/experiments/*.md');
 const sorted = experiments.sort((a, b) =>
   new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
 );
+
+// Extract a short description from results.problem or first paragraph
+function getDescription(exp: any): string {
+  if (exp.frontmatter.results?.problem) return exp.frontmatter.results.problem;
+  if (exp.frontmatter.results?.status) return exp.frontmatter.results.status;
+  // Fallback: use title
+  return '';
+}
 ---
 
 <Base title="All Experiments">
@@ -12,15 +20,84 @@ const sorted = experiments.sort((a, b) =>
   <div class="experiments-list">
     {sorted.map((exp) => (
       <a href={`/experiments/${exp.frontmatter.slug}/`} class="experiment-card">
-        <time datetime={exp.frontmatter.date}>
-          {new Date(exp.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-        </time>
+        <div class="card-header">
+          <time datetime={exp.frontmatter.date}>
+            {new Date(exp.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+          </time>
+          <span class={`card-status status-${exp.frontmatter.status}`}>{exp.frontmatter.status}</span>
+        </div>
         <h3>{exp.frontmatter.title}</h3>
+        {getDescription(exp) && <p class="card-desc">{getDescription(exp)}</p>}
         <div class="card-tags">
           {exp.frontmatter.tags?.domain?.map((t: string) => <span class="tag tag-domain">{t}</span>)}
-          {exp.frontmatter.tags?.hardware?.map((t: string) => <span class="tag tag-hw">{t}</span>)}
         </div>
       </a>
     ))}
   </div>
+
+  <style>
+    .experiments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .experiment-card {
+      display: block;
+      padding: 1.5rem 2rem;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      text-decoration: none;
+      transition: border-color 0.2s ease;
+    }
+    .experiment-card:hover {
+      border-color: rgba(232,196,122,0.3);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .card-header time {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .card-status {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .status-complete { color: #27ae60; background: rgba(39,174,96,0.08); border: 1px solid rgba(39,174,96,0.15); }
+    .status-in-progress { color: #e8c47a; background: rgba(232,196,122,0.08); border: 1px solid rgba(232,196,122,0.15); }
+    .status-planned { color: var(--muted); background: rgba(138,133,128,0.08); border: 1px solid rgba(138,133,128,0.15); }
+    .experiment-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin: 0 0 0.4rem 0;
+    }
+    .card-desc {
+      color: var(--ink-secondary);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin: 0 0 0.6rem 0;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      padding: 0.12rem 0.4rem;
+      border-radius: 3px;
+    }
+    .tag-domain { color: rgba(232,196,122,0.7); background: rgba(232,196,122,0.06); border: 1px solid rgba(232,196,122,0.12); }
+  </style>
 </Base>

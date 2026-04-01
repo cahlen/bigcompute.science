@@ -88,7 +88,7 @@ const EXPERIMENTS = [
     slug: "ramanujan-machine-gpu",
     title: "Ramanujan Machine: CF Formula Discovery",
     status: "in-progress",
-    summary: "GPU search for new continued fraction formulas for mathematical constants.",
+    summary: "GPU search for CF formulas for mathematical constants. 42B+ candidates at deg 1-3, zero transcendental hits. Deg 2 exhausted (only sqrt(2)/sqrt(5)). Deg 4+ running — where real pi/e/zeta(3) formulas should appear. v3 kernel: 29 compound expressions + zero-value filter.",
     cuda_kernel: "scripts/experiments/ramanujan-machine/ramanujan_gpu.cu",
     compile: "nvcc -O3 -arch=sm_90 -o ramanujan_gpu scripts/experiments/ramanujan-machine/ramanujan_gpu.cu -lm",
     run: "./ramanujan_gpu 2 10 500",

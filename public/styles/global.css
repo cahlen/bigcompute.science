@@ -996,3 +996,15 @@ footer a { color: var(--accent); text-decoration: none; }
   border-radius: 0 4px 4px 0;
   font-size: 0.83rem !important;
 }
+
+.rosetta-agent-note {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.5;
+  margin: -0.5rem 0 1.2rem 0;
+  padding: 0.6rem 0.8rem;
+  background: rgba(122,181,106,0.04);
+  border-radius: 4px;
+  border: 1px solid rgba(122,181,106,0.1);
+}

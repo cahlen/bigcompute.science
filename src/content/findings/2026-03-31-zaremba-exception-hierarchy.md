@@ -16,7 +16,7 @@ summary: "The 27 exceptions to Zaremba density with A={1,2,3} decompose hierarch
 
 ## The Finding
 
-The 27 exceptions to full Zaremba density with A={1,2,3} (verified to 10^9) have a precise hierarchical structure:
+The 27 exceptions to full Zaremba density with A={1,2,3} (verified to 10^{10}) have a precise hierarchical structure:
 
 | Digit set | Exceptions | Which ones |
 |-----------|-----------|------------|

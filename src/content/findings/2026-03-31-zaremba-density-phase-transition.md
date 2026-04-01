@@ -10,7 +10,7 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, diophantine-approximation, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "CONFIRMED TO 10^10: A={1,2,3} has exactly 27 exceptions (all ≤ 6234), giving 99.9999973% density at d ≤ 10^9. Zero new exceptions between d=6234 and d=10^10. The exception set appears finite and closed. By contrast, A={1,2} gives only 72% density at 10^9. Phase transition at Hausdorff dimension δ = 1/2. This suggests Zaremba's conjecture holds with A=3, not A=5. Verified to 10^10. Running to higher ranges. Not peer-reviewed."
+summary: "CONFIRMED TO 10^10: A={1,2,3} has exactly 27 exceptions (all ≤ 6234), giving 99.9999997% density at d ≤ 10^9. Zero new exceptions between d=6234 and d=10^10. The exception set appears finite and closed. By contrast, A={1,2} gives only 72% density at 10^9. Phase transition at Hausdorff dimension δ = 1/2. This suggests Zaremba's conjecture holds with A=3, not A=5. Verified to 10^10. Running to higher ranges. Not peer-reviewed."
 
 data:
   density_A123_1e10: 0.999999997
@@ -45,7 +45,7 @@ Zaremba (1972) conjectured that $A = \{1, \ldots, 5\}$ gives density 1 (i.e., ev
 | $\{1, 2\}$ | 72.06% | 279,384,673 | 0.5313 | Barely |
 | $\{1, 3, 5\}$ | 99.99% | 75,547 | 0.6240 | Yes |
 | $\{2, 3, 4, 5\}$ | 97.29% | 27,062,520 | 0.6050 | Yes |
-| $\{1, 2, 3\}$ | **99.9999973%** | **27** | 0.7057 | Yes |
+| $\{1, 2, 3\}$ | **99.9999997%** | **27** | 0.7057 | Yes |
 | $\{1, 2, 4\}$ | 99.9999936% | 64 | 0.6950 | Yes |
 | $\{1, 2, 3, 4\}$ | ~100% | ~2 | 0.8193 | Yes |
 | $\{1, 2, 3, 4, 5\}$ | **100%** | 0 | 0.8368 | Yes |
@@ -64,7 +64,7 @@ Zaremba originally conjectured $A = 5$. Bourgain-Kontorovich (2014) proved densi
 
 ### The Hausdorff Dimension Threshold
 
-The phase transition between "sub-full density" ($A = \{1, 2\}$, 72% at $10^9$) and "full density" ($A = \{1, 2, 3\}$, 99.9999973% at $10^9$) aligns with the **Hausdorff dimension crossing $1/2$**:
+The phase transition between "sub-full density" ($A = \{1, 2\}$, 72% at $10^9$) and "full density" ($A = \{1, 2, 3\}$, 99.9999997% at $10^9$) aligns with the **Hausdorff dimension crossing $1/2$**:
 
 - $\dim_H(E_{\{1,2\}}) = 0.5313 > 1/2$ but only barely
 - $\dim_H(E_{\{1,2,3\}}) = 0.7057 \gg 1/2$

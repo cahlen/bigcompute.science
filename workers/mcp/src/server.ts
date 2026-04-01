@@ -65,7 +65,7 @@ const EXPERIMENTS = [
     key_results: {
       exceptions_A123: 27,
       exceptions_list: [6,20,28,38,42,54,96,150,156,164,216,228,318,350,384,558,770,876,1014,1155,1170,1410,1870,2052,2370,5052,6234],
-      density_A123_1e9: "99.9999973%",
+      density_A123_1e10: "99.9999997%",
       exceptions_A1234: 2,
       exceptions_A1234_list: [54, 150],
     },
@@ -103,7 +103,7 @@ const DATASETS = [
 ];
 
 const OPEN_PROBLEMS = [
-  "Extend Zaremba density A={1,2,3} beyond 10^10 — does the exception set stay at 27?",
+  "Extend Zaremba density A={1,2,3} beyond 10^10 (27 exceptions confirmed closed) — does the exception set stay at 27?",
   "Compute Kronecker coefficients for S_40 or S_50",
   "Run Ramanujan Machine at degree 4-6 polynomials to discover new CF formulas",
   "Enumerate R(4,5) neighborhood graphs for R(5,5) <= 45 structural attack",

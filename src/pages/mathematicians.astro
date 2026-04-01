@@ -1,16 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
-import fs from 'node:fs';
 
 const mathematicians = await getCollection('mathematicians');
 const sorted = mathematicians.sort((a, b) => (a.data.born || 0) - (b.data.born || 0));
 
-// Check which photos actually exist at build time
-const photosDir = new URL('../../public/images/mathematicians/', import.meta.url).pathname;
-function hasPhoto(slug: string): boolean {
-  try { return fs.existsSync(`${photosDir}${slug}.jpg`); } catch { return false; }
-}
+// Photos confirmed to exist in public/images/mathematicians/
+const PHOTOS = new Set(['euler', 'gauss', 'ramanujan', 'minkowski', 'bourgain', 'cohen-h']);
+function hasPhoto(slug: string): boolean { return PHOTOS.has(slug); }
 ---
 
 <Base title="Shoulders of Giants" description="The mathematicians whose work we build upon">

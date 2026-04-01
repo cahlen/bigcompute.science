@@ -10,10 +10,10 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, diophantine-approximation, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "CONFIRMED TO 10^9: A={1,2,3} has exactly 27 exceptions (all ≤ 6234), giving 99.9999973% density at d ≤ 10^9. Zero new exceptions between d=6234 and d=10^9. The exception set appears finite and closed. By contrast, A={1,2} gives only 72% density at 10^9. Phase transition at Hausdorff dimension δ = 1/2. This suggests Zaremba's conjecture holds with A=3, not A=5. Running to 10^10. Not peer-reviewed."
+summary: "CONFIRMED TO 10^10: A={1,2,3} has exactly 27 exceptions (all ≤ 6234), giving 99.9999973% density at d ≤ 10^9. Zero new exceptions between d=6234 and d=10^10. The exception set appears finite and closed. By contrast, A={1,2} gives only 72% density at 10^9. Phase transition at Hausdorff dimension δ = 1/2. This suggests Zaremba's conjecture holds with A=3, not A=5. Verified to 10^10. Running to higher ranges. Not peer-reviewed."
 
 data:
-  density_A123_1e9: 0.999999973
+  density_A123_1e10: 0.999999997
   density_A12_1e9: 0.720615327
   density_A124_1e9: 0.999999936
   density_A135_1e9: 0.999924453
@@ -22,7 +22,7 @@ data:
   uncovered_A123_max: 6234
   uncovered_A123_list: [6, 20, 28, 38, 42, 54, 96, 150, 156, 164, 216, 228, 318, 350, 384, 558, 770, 876, 1014, 1155, 1170, 1410, 1870, 2052, 2370, 5052, 6234]
   new_exceptions_after_6234: 0
-  range_verified: 1000000000
+  range_verified: 10000000000
   hausdorff_E12: 0.531280506277205
   hausdorff_E123: 0.705661868065221
   hausdorff_E1234: 0.819297734508498
@@ -89,7 +89,7 @@ This is $O(\text{total CFs})$ rather than $O(N)$ per denominator — fundamental
 
 | Digit set | Range | Density | Uncovered | GPU time |
 |-----------|-------|---------|-----------|----------|
-| $\{1,2,3\}$ | $10^9$ | **99.9999973%** | **27** (same 27 as at $10^6$) | 50 min |
+| $\{1,2,3\}$ | $10^{10}$ | **99.9999997%** | **27** (same 27 as at $10^6$ and $10^9$) | 12 hours |
 | $\{1,2,4\}$ | $10^9$ | 99.9999936% | 64 | 15 min |
 | $\{1,2\}$ | $10^9$ | 72.06% | 279M | 28 sec |
 | $\{1,3,5\}$ | $10^9$ | 99.99% | 75,547 | 62 sec |

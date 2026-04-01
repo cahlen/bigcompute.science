@@ -9,6 +9,10 @@ const sorted = findings.sort((a, b) =>
 
 <Base title="Findings" description="Novel observations and discoveries from heavy computation">
   <h1>Findings</h1>
+  <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">
+    Each finding is peer-reviewed claim-by-claim against live academic literature. Badges show the <a href="/verification/" style="color: var(--accent);">certification level</a>.
+    <a href="/verification/" style="color: var(--text-secondary); margin-left: 0.3rem;">What do the badges mean?</a>
+  </p>
 
   <div class="experiments-list">
     {sorted.map((f) => (

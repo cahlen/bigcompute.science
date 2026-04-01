@@ -23,24 +23,46 @@ const { title, date, author, status, hardware, tags, results } = frontmatter;
       </div>
 
       {frontmatter.certification && (
-        <div class="cert-detail">
-          <div class="cert-detail-header">
+        <details class="cert-detail">
+          <summary class="cert-detail-summary">
             <span class={`cert-badge cert-${frontmatter.certification.level}`}>
               {frontmatter.certification.level.toUpperCase()} Verified
             </span>
             <span class="cert-verdict">{frontmatter.certification.verdict}</span>
+            <span class="cert-reviewer-inline">by {frontmatter.certification.reviewer}</span>
+            <span class="cert-expand-hint">Click for peer review details</span>
+          </summary>
+          <div class="cert-expanded">
+            <div class="cert-meta-row">
+              <span class="cert-reviewer">Reviewer: {frontmatter.certification.reviewer}</span>
+              <span class="cert-date">Date: {frontmatter.certification.date}</span>
+            </div>
+            <div class="cert-note-block">
+              <strong>Review Summary:</strong>
+              <p>{frontmatter.certification.note}</p>
+            </div>
+            <div class="cert-what-this-means">
+              <strong>What this means:</strong>
+              <p>
+                {frontmatter.certification.level === 'gold' &&
+                  '3+ peer-reviewed papers (zbMATH) corroborate the mathematical context. Methods validated against published benchmarks. Computational results are reproducible.'}
+                {frontmatter.certification.level === 'silver' &&
+                  '1+ peer-reviewed paper plus strong arXiv coverage support the approach. Methods are grounded in established literature.'}
+                {frontmatter.certification.level === 'bronze' &&
+                  'This is a novel computational observation. arXiv preprints exist on related topics, but no direct literature precedent for this specific finding.'}
+              </p>
+            </div>
+            <div class="cert-how-it-works">
+              <strong>How this review was conducted:</strong>
+              <p>The reviewer used the <a href="https://mcp.bigcompute.science">bigcompute.science MCP server</a> to query arXiv, zbMATH, Semantic Scholar, and OEIS. Each numerical claim was checked against the papers found. The full claim-by-claim review is available as JSON.</p>
+            </div>
+            <div class="cert-actions">
+              <a href={`https://github.com/cahlen/idontknow/blob/main/docs/verifications/${frontmatter.slug}_peer-review.json`} target="_blank" class="cert-action-btn">View Full Review (JSON)</a>
+              <a href="/verification/" class="cert-action-btn">About Verification</a>
+              <a href="https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md" target="_blank" class="cert-action-btn cert-action-contribute">Submit Your Own Review</a>
+            </div>
           </div>
-          <div class="cert-detail-body">
-            <span class="cert-reviewer">Reviewed by {frontmatter.certification.reviewer}</span>
-            <span class="cert-date">{frontmatter.certification.date}</span>
-          </div>
-          <p class="cert-note">{frontmatter.certification.note}</p>
-          <p class="cert-link">
-            <a href="https://github.com/cahlen/idontknow/tree/main/docs/verifications" target="_blank">View full review</a>
-            &middot;
-            <a href="https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md" target="_blank">Submit your own review</a>
-          </p>
-        </div>
+        </details>
       )}
 
       {hardware && (

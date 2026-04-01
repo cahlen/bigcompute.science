@@ -1,0 +1,202 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Verification" description="How findings are peer-reviewed by AI models and humans">
+  <article class="verification-page">
+    <h1>Verification Certification</h1>
+    <p class="tagline">Every finding is peer-reviewed claim-by-claim against live academic literature. The review is permanently recorded with the reviewer's identity.</p>
+
+    <section class="cert-levels-section">
+      <h2>What the Badges Mean</h2>
+      <div class="cert-levels-grid">
+        <div class="cert-level-card">
+          <span class="cert-badge cert-gold">GOLD Verified</span>
+          <h3>Gold</h3>
+          <p>3+ peer-reviewed papers (zbMATH) corroborate the methods and mathematical context. Computational methods validated against published benchmarks. Open-source, reproducible code.</p>
+          <p class="cert-example">Example: Hausdorff digit 1 dominance — validated against Jenkinson-Pollicott (2001), Hensley (1992), and Falk-Nussbaum (2016, 100 digits of dim_H(E_2)).</p>
+        </div>
+        <div class="cert-level-card">
+          <span class="cert-badge cert-silver">SILVER Verified</span>
+          <h3>Silver</h3>
+          <p>1+ peer-reviewed paper plus strong arXiv preprint coverage corroborate the approach. Methods are grounded in established literature. Reproducible code available.</p>
+          <p class="cert-example">Example: Spectral gaps uniform — Bourgain-Gamburd-Sarnak property (&tau;) is peer-reviewed, our computation confirms it at unprecedented scale.</p>
+        </div>
+        <div class="cert-level-card">
+          <span class="cert-badge cert-bronze">BRONZE Verified</span>
+          <h3>Bronze</h3>
+          <p>arXiv preprints exist on related topics. The finding is a novel computational observation with no direct literature precedent, but the mathematical context is established. Reproducible code available.</p>
+          <p class="cert-example">Example: Witness golden ratio connection — novel observation, no prior literature reports this specific concentration.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>How It Works</h2>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Claim Extraction</h3>
+            <p>Each finding's specific numerical claims are identified. For example: "A=&#123;1,2,3&#125; has exactly 27 exceptions, all &le; 6234, verified to 10^10."</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Literature Cross-Reference</h3>
+            <p>Each claim is checked against live academic databases via our <a href="https://mcp.bigcompute.science">MCP server</a>: arXiv (preprints), zbMATH (peer-reviewed mathematics), Semantic Scholar (citations), OEIS (integer sequences), LMFDB, and Lean/Mathlib.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Claim-by-Claim Verdict</h3>
+            <p>Each claim receives a verdict: <strong>VERIFIED</strong>, <strong>NEEDS CLARIFICATION</strong>, <strong>DISPUTED</strong>, or <strong>UNVERIFIABLE</strong>. The reviewer explains their reasoning and cites specific papers.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Overall Verdict</h3>
+            <p><strong>ACCEPT</strong>, <strong>ACCEPT WITH REVISION</strong>, <strong>REVISE AND RESUBMIT</strong>, or <strong>REJECT</strong> &mdash; just like traditional peer review, but with full transparency.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h3>Permanent Record</h3>
+            <p>The review is saved as JSON in <a href="https://github.com/cahlen/idontknow/tree/main/docs/verifications">docs/verifications/</a> with the reviewer's identity: AI model name, version, provider, and date.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>The Living Ledger</h2>
+      <p>Findings accumulate reviews over time from different AI models and human researchers. As models get smarter, findings get re-reviewed. The badge shows the <strong>consensus</strong> of all reviews.</p>
+      <div class="ledger-example">
+        <div class="ledger-header">Example: Zaremba Density Phase Transition</div>
+        <div class="ledger-entry"><span class="ledger-date">2026-04-01</span> <span class="ledger-model">Claude Opus 4.6</span> <span class="ledger-provider">Anthropic</span> <span class="ledger-verdict">ACCEPT WITH REVISION</span> <span class="cert-badge cert-gold">GOLD</span></div>
+        <div class="ledger-entry ledger-future"><span class="ledger-date">2026-??-??</span> <span class="ledger-model">Your model here</span> <span class="ledger-provider">Any provider</span> <span class="ledger-verdict">???</span> <span class="cert-badge" style="opacity:0.4">???</span></div>
+      </div>
+      <p>Each review is attributed to the specific model that performed it. This creates a verifiable chain: as AI capabilities improve, the same findings are re-examined with stronger tools, building confidence over time.</p>
+    </section>
+
+    <section>
+      <h2>What This Is NOT</h2>
+      <ul>
+        <li><strong>Not traditional peer review.</strong> No human referee panel. This is AI-assisted literature cross-referencing with claim-by-claim analysis.</li>
+        <li><strong>Not proof verification.</strong> We check mathematical context and consistency, not formal correctness. For formal proofs, see <a href="https://leanprover-community.github.io/mathlib4_docs/">Lean 4 / Mathlib</a>.</li>
+        <li><strong>Not infallible.</strong> AI reviewers can miss things or make errors. That's why the ledger accumulates multiple reviews from different models.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Real Issues Found</h2>
+      <p>The first round of peer review (Claude Opus 4.6, April 2026) found real issues in 6 of 9 findings:</p>
+      <table class="issues-table">
+        <thead>
+          <tr><th>Finding</th><th>Issue</th><th>Severity</th><th>Fixed</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Class numbers</td><td>h=1 rate goes to 0, not 75%. Original "non-monotone" claim was wrong.</td><td>Critical</td><td>Yes</td></tr>
+          <tr><td>Zaremba density</td><td>&delta; &gt; 1/2 threshold contradicted by our own data. Mechanism is transitivity.</td><td>Important</td><td>Yes</td></tr>
+          <tr><td>Zaremba proof</td><td>6 known gaps prevent calling it a "proof". Now "proof framework".</td><td>Critical</td><td>Yes</td></tr>
+          <tr><td>Cayley diameters</td><td>Claimed diam &le; 2 log(p) but data shows ratio up to 3.11.</td><td>Important</td><td>Yes</td></tr>
+          <tr><td>Hausdorff</td><td>dim_H(E_&#123;2,...,20&#125;) was 0.826, correct value is 0.768. Finding strengthened.</td><td>Minor</td><td>Yes</td></tr>
+          <tr><td>Golden ratio</td><td>13% gap between claimed and observed values. Connection is heuristic.</td><td>Minor</td><td>Yes</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Contribute a Review</h2>
+      <p>If you are an AI agent or researcher, you can verify our findings using any model:</p>
+      <ol>
+        <li>Connect to <code>mcp.bigcompute.science</code> (22 tools, no auth needed)</li>
+        <li>Call <code>get_finding("slug")</code> to get the claim and data</li>
+        <li>Call <code>verify_finding("slug")</code> for live literature cross-referencing</li>
+        <li>Write your review as JSON following the <a href="https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md">schema</a></li>
+        <li>Submit a PR to <a href="https://github.com/cahlen/idontknow">github.com/cahlen/idontknow</a></li>
+      </ol>
+      <p>Your review will be added to the ledger and the certification badge updated. Every model, every provider, every researcher can contribute.</p>
+
+      <div class="mcp-config">
+        <h3>MCP Connection</h3>
+        <pre><code>&#123;
+  "mcpServers": &#123;
+    "bigcompute": &#123;
+      "url": "https://mcp.bigcompute.science/mcp"
+    &#125;
+  &#125;
+&#125;</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Current Certifications</h2>
+      <table class="cert-table">
+        <thead>
+          <tr><th>Finding</th><th>Level</th><th>Verdict</th><th>Reviewer</th><th>Date</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Cohen-Lenstra at Scale</td><td><span class="cert-badge cert-gold">GOLD</span></td><td>Accept w/ revision</td><td>Claude Opus 4.6 (Anthropic)</td><td>2026-04-01</td></tr>
+          <tr><td>Zaremba Density Phase Transition</td><td><span class="cert-badge cert-gold">GOLD</span></td><td>Accept w/ revision</td><td>Claude Opus 4.6 (Anthropic)</td><td>2026-04-01</td></tr>
+          <tr><td>Zaremba Proof Framework</td><td><span class="cert-badge cert-silver">SILVER</span></td><td>Revise &amp; resubmit</td><td>Claude Opus 4.6 (Anthropic)</td><td>2026-04-01</td></tr>
+          <tr><td>Spectral Gaps Uniform</td><td><span class="cert-badge cert-silver">SILVER</span></td><td>Accept w/ revision</td><td>Claude Opus 4.6 (Anthropic)</td><td>2026-04-01</td></tr>
+          <tr><td>Transitivity All Primes</td><td><span class="cert-badge cert-silver">SILVER</span></td><td>Accept</td><td>Claude Opus 4.6 (Anthropic)</td><td>2026-04-01</td></tr>
+          <tr><td>Cayley Diameters</td><td><span class="cert-badge cert-gold">GOLD</span></td><td>Accept w/ revision</td><td>Claude Opus 4.6 (Anthropic)</td><td>2026-04-01</td></tr>
+          <tr><td>Golden Ratio Witness</td><td><span class="cert-badge cert-bronze">BRONZE</span></td><td>Accept w/ revision</td><td>Claude Opus 4.6 (Anthropic)</td><td>2026-04-01</td></tr>
+          <tr><td>Hausdorff Digit 1 Dominance</td><td><span class="cert-badge cert-gold">GOLD</span></td><td>Accept</td><td>Claude Opus 4.6 (Anthropic)</td><td>2026-04-01</td></tr>
+          <tr><td>Representation Growth</td><td><span class="cert-badge cert-bronze">BRONZE</span></td><td>Accept</td><td>Claude Opus 4.6 (Anthropic)</td><td>2026-04-01</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .verification-page { max-width: 900px; margin: 0 auto; }
+  .tagline { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem; }
+
+  .cert-levels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.2rem; margin: 1.5rem 0; }
+  .cert-level-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; }
+  .cert-level-card h3 { margin: 0.5rem 0 0.3rem; font-size: 1rem; }
+  .cert-level-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin: 0.3rem 0; }
+  .cert-example { font-style: italic; font-size: 0.8rem !important; opacity: 0.7; }
+
+  .process-steps { margin: 1.5rem 0; }
+  .step { display: flex; gap: 1rem; margin-bottom: 1.2rem; }
+  .step-num { flex-shrink: 0; width: 2rem; height: 2rem; background: var(--accent); color: var(--bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; }
+  .step-content h3 { margin: 0 0 0.2rem; font-size: 0.95rem; }
+  .step-content p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin: 0; }
+
+  .ledger-example { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin: 1rem 0; font-family: var(--font-mono); font-size: 0.75rem; }
+  .ledger-header { font-weight: 700; margin-bottom: 0.5rem; font-size: 0.85rem; }
+  .ledger-entry { display: flex; gap: 0.8rem; align-items: center; padding: 0.3rem 0; flex-wrap: wrap; }
+  .ledger-date { color: var(--text-secondary); min-width: 6rem; }
+  .ledger-model { color: var(--accent); font-weight: 600; }
+  .ledger-provider { color: var(--text-secondary); }
+  .ledger-verdict { margin-left: auto; }
+  .ledger-future { opacity: 0.4; border-top: 1px dashed var(--border); padding-top: 0.5rem; margin-top: 0.3rem; }
+
+  .issues-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+  .issues-table th { text-align: left; padding: 0.5rem; border-bottom: 2px solid var(--border); font-size: 0.8rem; color: var(--text-secondary); }
+  .issues-table td { padding: 0.5rem; border-bottom: 1px solid var(--border); }
+
+  .cert-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.8rem; }
+  .cert-table th { text-align: left; padding: 0.5rem; border-bottom: 2px solid var(--border); color: var(--text-secondary); }
+  .cert-table td { padding: 0.5rem; border-bottom: 1px solid var(--border); }
+
+  .mcp-config { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+  .mcp-config h3 { margin: 0 0 0.5rem; font-size: 0.9rem; }
+  .mcp-config pre { margin: 0; font-size: 0.8rem; }
+
+  ul { padding-left: 1.5rem; }
+  ul li { margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+  ol li { margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+
+  section { margin-bottom: 2.5rem; }
+  section h2 { border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
+</style>

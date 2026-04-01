@@ -357,6 +357,66 @@ main {
 }
 .cert-link a:hover { text-decoration: underline; }
 
+/* Expandable cert detail */
+details.cert-detail { margin: 0.8rem 0; }
+details.cert-detail[open] .cert-expand-hint { display: none; }
+.cert-detail-summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding: 0.6rem 0.8rem;
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+  border-radius: 8px;
+  list-style: none;
+}
+.cert-detail-summary::-webkit-details-marker { display: none; }
+.cert-detail-summary::marker { display: none; content: ""; }
+.cert-reviewer-inline { font-size: 0.75rem; color: var(--text-secondary); font-style: italic; }
+.cert-expand-hint { font-size: 0.7rem; color: var(--accent); margin-left: auto; opacity: 0.7; }
+.cert-expanded {
+  background: color-mix(in srgb, var(--surface) 40%, transparent);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  padding: 1rem 1.2rem;
+}
+.cert-meta-row {
+  display: flex; gap: 1.5rem;
+  font-size: 0.8rem; color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 30%, transparent);
+}
+.cert-note-block, .cert-what-this-means, .cert-how-it-works {
+  margin-bottom: 0.8rem;
+}
+.cert-note-block strong, .cert-what-this-means strong, .cert-how-it-works strong {
+  font-size: 0.8rem; color: var(--text-primary);
+}
+.cert-note-block p, .cert-what-this-means p, .cert-how-it-works p {
+  font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; margin: 0.2rem 0 0;
+}
+.cert-actions {
+  display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.8rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid color-mix(in srgb, var(--border) 30%, transparent);
+}
+.cert-action-btn {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.cert-action-btn:hover { border-color: var(--accent); color: var(--accent); }
+.cert-action-contribute { border-color: var(--accent); color: var(--accent); }
+
 /* ============================================================
    Experiment detail — meta panel
    ============================================================ */

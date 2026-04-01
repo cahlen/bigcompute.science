@@ -930,6 +930,72 @@ details.cert-detail[open] .cert-expand-hint { transform: rotate(180deg); }
 .about a { color: var(--accent); text-decoration: none; }
 
 /* ============================================================
+   Changelog — auto-generated from git at build time
+   ============================================================ */
+
+.changelog {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem 0;
+  margin-top: 3rem;
+}
+.changelog-inner {
+  width: min(var(--max-width), calc(100vw - 48px));
+  margin: 0 auto;
+}
+.changelog h3 {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+.changelog-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.cl-entry {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+.cl-entry time {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  min-width: 3.5rem;
+  opacity: 0.6;
+}
+.cl-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.08rem 0.35rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.cl-finding { color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.cl-experiment { color: var(--accent-blue); background: color-mix(in srgb, var(--accent-blue) 8%, transparent); }
+.cl-verification { color: var(--accent-gold); background: color-mix(in srgb, var(--accent-gold) 8%, transparent); }
+.cl-data { color: var(--accent-rose); background: color-mix(in srgb, var(--accent-rose) 8%, transparent); }
+.cl-infra { color: var(--muted); background: color-mix(in srgb, var(--muted) 8%, transparent); }
+.cl-update { color: var(--muted); background: color-mix(in srgb, var(--muted) 8%, transparent); }
+.cl-msg {
+  color: var(--ink-secondary);
+  font-family: var(--font-serif);
+}
+@media (max-width: 700px) {
+  .cl-entry { flex-wrap: wrap; }
+  .cl-entry time { min-width: auto; }
+}
+
+/* ============================================================
    Footer
    ============================================================ */
 

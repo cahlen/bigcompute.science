@@ -1,4 +1,6 @@
 ---
+import Changelog from '../components/Changelog.astro';
+
 interface Props {
   title: string;
   description?: string;
@@ -58,6 +60,7 @@ const { title, description = "Experimental results from heavy computation." } = 
     <main>
       <slot />
     </main>
+    <Changelog />
     <footer>
       <div class="disclaimer">
         <p><strong>How this site is made.</strong> Every experiment, finding, and page on this site is produced through human–AI collaboration: custom CUDA kernels provide computational evidence, AI agents assist with documentation and analysis, and a human mathematician directs the research and reviews the output. <strong>No results have been independently verified or peer-reviewed.</strong> All claims are grounded in computational evidence and reproducible code — not formal proof unless explicitly stated. The raw data, source code, and reproduction instructions are published openly so that anyone (human or machine) can verify independently.</p>

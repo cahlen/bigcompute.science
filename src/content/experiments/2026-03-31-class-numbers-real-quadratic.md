@@ -1,7 +1,7 @@
 ---
 title: "Class Numbers of Real Quadratic Fields: Extending Tables to 10^13 on 8× B200"
 slug: class-numbers-real-quadratic
-date: 2026-04-02
+date: 2026-03-31
 author: cahlen
 author_github: https://github.com/cahlen
 status: in-progress

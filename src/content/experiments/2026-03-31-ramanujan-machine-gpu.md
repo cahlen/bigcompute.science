@@ -1,7 +1,7 @@
 ---
 title: "Ramanujan Machine: GPU-Accelerated Discovery of Continued Fraction Formulas"
 slug: ramanujan-machine-gpu
-date: 2026-04-04
+date: 2026-03-31
 author: cahlen
 author_github: https://github.com/cahlen
 status: in-progress

@@ -1,7 +1,7 @@
 ---
 title: "Kronecker Coefficients: Pushing the Frontier to n=120 on 8× B200"
 slug: kronecker-coefficients-gpu
-date: 2026-04-03
+date: 2026-03-31
 author: cahlen
 author_github: https://github.com/cahlen
 status: in-progress

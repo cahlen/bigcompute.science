@@ -5,6 +5,21 @@ const experiments = await Astro.glob('../content/experiments/*.md');
 const sorted = experiments.sort((a, b) =>
   new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
 );
+
+function getExcerpt(exp: any): string {
+  // Try results.problem first
+  if (exp.frontmatter.results?.problem) return exp.frontmatter.results.problem;
+  // Fall back to first paragraph of the raw markdown body (after the Abstract heading)
+  const raw = exp.rawContent?.() || '';
+  const match = raw.match(/## Abstract\s*\n\n(.+?)(?:\n\n|\n##)/s);
+  if (match) {
+    // Strip markdown formatting and truncate
+    let text = match[1].replace(/\$[^$]+\$/g, '').replace(/\*\*([^*]+)\*\*/g, '$1').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+    if (text.length > 200) text = text.substring(0, 200).replace(/\s+\S*$/, '') + '...';
+    return text;
+  }
+  return '';
+}
 ---
 
 <Base title="Home" description="Experimental results from heavy computation. Custom CUDA kernels, GPU clusters, big math, serious hardware.">
@@ -28,11 +43,8 @@ const sorted = experiments.sort((a, b) =>
           )}
         </div>
         <h3>{exp.frontmatter.title}</h3>
-        {exp.frontmatter.results?.problem && (
-          <p class="card-desc">{exp.frontmatter.results.problem}</p>
-        )}
-        {exp.frontmatter.results?.status && !exp.frontmatter.results?.problem && (
-          <p class="card-desc">{exp.frontmatter.results.status}</p>
+        {getExcerpt(exp) && (
+          <p class="card-desc">{getExcerpt(exp)}</p>
         )}
         <div class="card-meta">
           <span class="hw-summary">{exp.frontmatter.hardware?.gpus}</span>

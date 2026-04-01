@@ -30,6 +30,7 @@ All work produced through human-AI collaboration (Cahlen Humphreys + Claude). No
 - [Cayley Diameters](/findings/zaremba-cayley-diameters/): diam(p) <= 2 log(p) for 669 primes. (high)
 - [GPU 175x Speedup](/findings/gpu-matrix-enumeration-175x/): Batched 2x2 matrix multiply. (medium)
 - [Digit 1 Dominance](/findings/hausdorff-digit-one-dominance/): 5 digits with 1 beat 19 without. (medium)
+- [Exception Hierarchy](/findings/zaremba-exception-hierarchy/): 27 exceptions decompose to 2 (d=54,150) with digit 4, then 0 with digit 5. (notable)
 - [Representation Growth](/findings/zaremba-representation-growth/): R(d) grows as d^0.674. (medium)
 
 ## Datasets

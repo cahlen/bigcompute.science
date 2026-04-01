@@ -960,3 +960,39 @@ footer a { color: var(--accent); text-decoration: none; }
   overflow-x: auto;
   white-space: pre;
 }
+
+/* Rosetta: third column — agentic conversation */
+.rosetta-columns {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+@media (max-width: 1100px) {
+  .rosetta-columns { grid-template-columns: 1fr; }
+}
+.rosetta-agent {
+  border-top: 3px solid #7ab56a;
+}
+.rosetta-agent h4 { color: #7ab56a; }
+
+.rosetta-chat {
+  margin-bottom: 0.8rem;
+}
+.rosetta-human-label {
+  color: #9ab5d0 !important;
+}
+.rosetta-agent-label {
+  color: #7ab56a !important;
+}
+.rosetta-human {
+  background: rgba(154,181,208,0.06);
+  border-left: 2px solid rgba(154,181,208,0.25);
+  padding: 0.5rem 0.8rem;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.83rem !important;
+}
+.rosetta-ai {
+  background: rgba(122,181,106,0.06);
+  border-left: 2px solid rgba(122,181,106,0.25);
+  padding: 0.5rem 0.8rem;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.83rem !important;
+}

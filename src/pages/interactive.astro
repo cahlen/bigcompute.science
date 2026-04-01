@@ -196,8 +196,7 @@ import Base from '../layouts/Base.astro';
   <section class="rosetta">
     <h2>CUDA Kernels: A Rosetta Stone</h2>
     <p class="rosetta-intro">
-      The same computation explained for two audiences. Read both columns — the thinking is more similar than you'd expect.
-      The language is different. The logic is the same. AI bridges the gap.
+      The same computation explained three ways. The mathematician and computer scientist think they speak different languages — but they're describing the same structure. The third column shows what actually happened: a human directing an AI agent. That's how the kernel got built. Not by hand-coding CUDA. By conversation.
     </p>
 
     <div class="rosetta-example">
@@ -272,6 +271,50 @@ import Base from '../layouts/Base.astro';
             <span class="rosetta-label">What AI does</span>
             <p>Understands the mathematical structure well enough to choose the right parallelization strategy.
               The CS person says "parallelize the tree search." The AI knows that the branching factor and Hausdorff dimension determine the optimal prefix depth.</p>
+          </div>
+        </div>
+
+        <div class="rosetta-col rosetta-agent">
+          <h4>What Actually Happened</h4>
+
+          <div class="rosetta-step rosetta-chat">
+            <span class="rosetta-label rosetta-human-label">Human</span>
+            <p class="rosetta-human">The CPU density code has been running 12 hours. A CUDA kernel would finish in minutes.</p>
+          </div>
+
+          <div class="rosetta-step rosetta-chat">
+            <span class="rosetta-label rosetta-agent-label">Agent</span>
+            <p class="rosetta-ai">The CF tree enumeration is embarrassingly parallel. Each branch is independent. I'll generate prefixes on CPU to depth 8, giving ~6500 GPU threads, then each thread does DFS on its subtree.</p>
+          </div>
+
+          <div class="rosetta-step rosetta-chat">
+            <span class="rosetta-label rosetta-human-label">Human</span>
+            <p class="rosetta-human">Why are we only using 1 GPU? We have 8.</p>
+          </div>
+
+          <div class="rosetta-step rosetta-chat">
+            <span class="rosetta-label rosetta-agent-label">Agent</span>
+            <p class="rosetta-ai">Each digit set at each range is independent. Let me launch all 8 — different digit sets in parallel.</p>
+          </div>
+
+          <div class="rosetta-step rosetta-chat">
+            <span class="rosetta-label rosetta-human-label">Human</span>
+            <p class="rosetta-human">Validation says 76 uncovered instead of 27. Something's wrong.</p>
+          </div>
+
+          <div class="rosetta-step rosetta-chat">
+            <span class="rosetta-label rosetta-agent-label">Agent</span>
+            <p class="rosetta-ai">The prefix depth skips CFs shorter than 8. Depths 4-7 aren't being marked. I need the CPU to handle all depths below PREFIX_DEPTH, then GPU handles the rest.</p>
+          </div>
+
+          <div class="rosetta-step rosetta-chat">
+            <span class="rosetta-label rosetta-human-label">Human</span>
+            <p class="rosetta-human">27 exceptions confirmed. Same 27 as at 10^6. Zero new ones to 10^9.</p>
+          </div>
+
+          <div class="rosetta-step rosetta-bridge">
+            <span class="rosetta-label">The point</span>
+            <p>The human never wrote a line of CUDA. The human never debugged a thread index. The human said what the computation should do and whether the answer was right. The agent handled the engineering. That's how a mathematician who understands the problem but doesn't want to spend weeks on GPU plumbing gets a result in an afternoon.</p>
           </div>
         </div>
       </div>

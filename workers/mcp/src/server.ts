@@ -108,9 +108,9 @@ const DATASETS = [
 const FINDINGS = [
   {
     slug: "class-number-convergence",
-    title: "Cohen-Lenstra Convergence Is Non-Monotone",
-    claim: "The h=1 rate for real quadratic fields drops from 42% at d~10^6 to 15.35% at d~10^10 before converging to the predicted 75.45%.",
-    our_data: { h1_rate_1e6: "42%", h1_rate_1e9: "16.70%", h1_rate_1e10: "15.35%", predicted_asymptotic: "75.45%", discriminants_computed: "2.74B" },
+    title: "Cohen-Lenstra at Scale: h=1 Rate Falls to 15% at 10^10, Genus Theory Dominates",
+    claim: "The h=1 rate for real quadratic fields falls monotonically from 42% at d~10^4 to 15.35% at d~10^10 and continues to 0 asymptotically (genus theory). The 75.4% Cohen-Lenstra prediction applies to Prob(h_odd=1), not Prob(h=1). CORRECTED: original version incorrectly claimed non-monotone convergence.",
+    our_data: { h1_rate_1e4: "42%", h1_rate_1e6: "25.7%", h1_rate_1e9: "16.70%", h1_rate_1e10: "15.35%", h1_asymptotic: "0 (genus theory)", h_odd1_asymptotic: "75.45% (Cohen-Lenstra)", discriminants_computed: "30B" },
     search_terms: ["Cohen-Lenstra heuristics real quadratic", "class number distribution quadratic fields", "Cohen-Martinet class group"],
     key_references: ["Cohen, Lenstra (1984) 'Heuristics on class groups of number fields'", "Cohen, Martinet (1990) 'Class groups of number fields'"],
     oeis_sequences: ["class number", "fundamental discriminant"],

@@ -1,5 +1,5 @@
 ---
-title: "Zaremba's Conjecture (A=5): Computer-Assisted Proof via GPU Verification + MOW Spectral Theory"
+title: "Zaremba's Conjecture (A=5): Proof Framework via GPU Verification + MOW Spectral Theory (Not Peer-Reviewed)"
 slug: zaremba-conjecture-proved
 date: 2026-03-29
 author: cahlen
@@ -10,11 +10,11 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, spectral-theory, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "Computer-assisted proof of Zaremba's Conjecture (A=5) for all d ≥ 1. Theorem 1: GPU brute force to 2.1×10^11. Theorem 2: MOW uniform congruence counting + arb-certified Dolgopyat bound (ρ_η ≤ 0.771, 70 digits via FLINT ball arithmetic) + MPFR spectral gaps. D₀ ≈ 3.4×10^10, margin 6× below brute-force frontier. Paper: 15 pages, ready for arXiv."
+summary: "Proof FRAMEWORK (not a completed proof) for Zaremba's Conjecture (A=5). Theorem 1: GPU brute force to 2.1×10^11 (unconditional). Theorem 2: MOW congruence counting framework — D₀ ≈ 3.4×10^10, margin 6× below brute-force frontier. KNOWN GAPS: ρ_η is FP64 not interval-certified; MOW theorem matching not verified theorem-by-theorem; C_η constant underestimated. Paper: 15 pages, requires gap closure before arXiv submission. Not peer-reviewed. CORRECTED (2026-04-01): MCP peer review identified 6 gaps preventing characterization as a completed proof."
 
 data:
   conjecture: "Zaremba's Conjecture (1972)"
-  status: "Computer-assisted proof for all d ≥ 1. Theorem 1: unconditional GPU verification to 2.1×10^11. Theorem 2: MOW congruence counting + arb-certified Dolgopyat bound, D₀ ≈ 3.4×10^10."
+  status: "Proof FRAMEWORK (not completed). Theorem 1: unconditional GPU verification to 2.1×10^11. Theorem 2: MOW congruence counting framework with 6 known gaps (see peer review). D₀ ≈ 3.4×10^10."
   bound_A: 5
   brute_force_range: [1, 210000000000]
   brute_force_failures: 0

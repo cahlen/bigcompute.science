@@ -69,16 +69,28 @@ $$6, 20, 28, 38, 42, 54, 96, 150, 156, 164, 216, 228, 318, 350, 384, 558, 770, 8
 
 Zaremba originally conjectured $A = 5$. Bourgain-Kontorovich (2014) proved density 1 for $A = 50$ (non-effectively). Our data suggests the truth may be much stronger: $A = 3$ appears to suffice with exactly 27 exceptions, all $\leq 6{,}234$. This is a dramatic strengthening — the bound on partial quotients drops from 5 to 3, and the exception set is finite (verified to $10^9$, running to $10^{10}$).
 
-### The Hausdorff Dimension Threshold
+### Hausdorff Dimension and Transitivity
 
-The phase transition between "sub-full density" ($A = \{1, 2\}$, 72% at $10^{10}$) and "full density" ($A = \{1, 2, 3\}$, 99.9999997% at $10^{10}$) aligns with the **Hausdorff dimension crossing $1/2$**:
+The Bourgain-Kontorovich framework requires two conditions for full Zaremba density:
 
-- $\dim_H(E_{\{1,2\}}) = 0.5313 > 1/2$ but only barely
-- $\dim_H(E_{\{1,2,3\}}) = 0.7057 \gg 1/2$
+1. **Large Hausdorff dimension** ($\delta > 1/2$): ensures enough representations exist.
+2. **Transitivity of the semigroup** on $(\mathbb{Z}/p\mathbb{Z})^2$: ensures no congruence obstructions block coverage.
 
-In the Bourgain-Kontorovich framework, the density of the Zaremba set depends on the spectral gap of the associated transfer operator, which is controlled by $\delta = \dim_H(E_A)$. The critical threshold for full density appears to be around $\delta > 1/2$. For $A = \{1, 2\}$ the dimension is barely above $1/2$, and the density is indeed less than 1. For $A = \{1, 2, 3\}$ the dimension is well above $1/2$, and the density appears to be 1 with finitely many exceptions.
+Hausdorff dimension alone is **not sufficient**. Our own data demonstrates this:
 
-This connects our Hausdorff dimension spectrum (all $2^{20} - 1$ subsets) directly to the Zaremba density question: **every digit set whose Cantor set has Hausdorff dimension well above $1/2$ should give full Zaremba density**.
+| Digit set | $\dim_H$ | Density | Contains 1? | Why not full? |
+|-----------|----------|---------|-------------|---------------|
+| $\{1, 2\}$ | 0.531 | 72% | Yes | $\delta$ barely above $1/2$ — representations grow too slowly |
+| $\{2, 3, 4, 5\}$ | 0.605 | 97.3% | **No** | Congruence obstructions — semigroup not transitive mod some primes |
+| $\{1, 2, 3\}$ | 0.706 | 99.9999997% | Yes | $\delta \gg 1/2$ AND transitive — full density with 27 exceptions |
+
+The zbMATH review of Bourgain-Kontorovich (2014) notes that Hensley conjectured $\delta > 1/2$ alone implies full density, but **Hensley's conjecture is false** — sets with congruence obstructions (typically those lacking digit 1) can fail to achieve full density even with $\delta$ well above $1/2$.
+
+The real mechanism: **digit 1 ensures transitivity**. The matrix $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ (corresponding to digit 1) generates a unipotent element that, combined with other generators, forces the semigroup to act transitively on $(\mathbb{Z}/p\mathbb{Z})^2$ for all primes $p$. This is confirmed by our [transitivity finding](https://bigcompute.science/findings/zaremba-transitivity-all-primes/). Without digit 1, congruence obstructions can persist even when $\delta > 1/2$.
+
+Our density sweep of all 1,023 subsets of $\{1, \ldots, 10\}$ confirms this dramatically: of 366 subsets with $\geq 99.99\%$ density, **361 contain digit 1**. Only 5 achieve near-full density without digit 1, and those require $|A| \geq 8$.
+
+The correct statement: **$\delta > 1/2$ plus transitivity implies full density** (with finitely many exceptions).
 
 ### Connection to Representation Counting
 

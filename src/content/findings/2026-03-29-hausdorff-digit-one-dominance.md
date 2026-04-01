@@ -9,7 +9,7 @@ significance: high
 domain: [continued-fractions, fractal-geometry, spectral-theory, diophantine-approximation]
 related_experiment: /experiments/hausdorff-dimension-spectrum/
 
-summary: "CONFIRMED at n=20 (1,048,575 subsets): dim_H(E_{1,...,5}) = 0.837 while dim_H(E_{2,...,20}) = 0.826. Five digits containing 1 produce a larger Cantor set than nineteen digits without it. Removing digit 1 from {1,...,20} costs dimension 0.197 while removing digit 20 costs only 0.002 — a 100:1 ratio. Digit 1 dominance persists and strengthens with alphabet size."
+summary: "CONFIRMED at n=20 (1,048,575 subsets): dim_H(E_{1,...,5}) = 0.837 while dim_H(E_{2,...,20}) = 0.768. Five digits containing 1 produce a larger Cantor set than nineteen digits without it. Removing digit 1 from {1,...,20} costs dimension 0.197 while removing digit 20 costs only 0.002 — a 100:1 ratio. Digit 1 dominance persists and strengthens with alphabet size. CORRECTED (2026-04-01): E_{2,...,20} previously reported as 0.826; actual value from spectrum data is 0.768."
 
 data:
   n: 20
@@ -98,7 +98,17 @@ This captures the approach to $\dim_H = 1$ (the full interval) as $n \to \infty$
 
 ## Status
 
-**CONFIRMED at n=20.** The full computation of all $2^{20} - 1 = 1{,}048{,}575$ subsets completed in 4,343 seconds on the RTX 5090. The dominance pattern not only persists but strengthens: at $n = 20$, removing digit 1 costs dimension $0.197$ while removing digit 20 costs $0.002$ — a ratio of approximately **100:1** (up from 50:1 at $n = 15$).
+**CONFIRMED at n=20.** The full computation of all $2^{20} - 1 = 1{,}048{,}575$ subsets completed in 4,343 seconds on the RTX 5090. The dominance pattern not only persists but strengthens:
+
+| Digit set | $\dim_H$ | Note |
+|-----------|----------|------|
+| $E_{\{1,\ldots,5\}}$ | **0.837** | 5 digits with 1 |
+| $E_{\{2,\ldots,20\}}$ | **0.768** | 19 digits without 1 |
+| $E_{\{1,\ldots,20\}}$ | 0.965 | All 20 digits |
+
+Five digits with 1 beat nineteen digits without 1 by a margin of **0.069** in Hausdorff dimension. Removing digit 1 from $\{1, \ldots, 20\}$ costs dimension $0.197$ while removing digit 20 costs $0.002$ — a ratio of approximately **100:1** (up from 50:1 at $n = 15$).
+
+> **Correction (2026-04-01):** $\dim_H(E_{\{2,\ldots,20\}})$ was previously reported as 0.826. MCP peer review (Claude Opus 4.6, Anthropic) cross-checked against the actual spectrum data (`spectrum_n20.csv`) and found the correct value is **0.768**. This correction *strengthens* the finding: the gap between 5-with-1 and 19-without-1 is 0.069, larger than the previously reported 0.011. Digit 1 dominance is even more extreme than originally stated.
 
 ## Connection to Other Findings
 

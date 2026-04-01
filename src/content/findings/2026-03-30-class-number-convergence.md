@@ -1,5 +1,5 @@
 ---
-title: "Cohen-Lenstra Convergence Is Non-Monotone: h=1 Rate Decreases Before Increasing"
+title: "Cohen-Lenstra at Scale: h=1 Rate Falls to 15% at 10^10, Genus Theory Dominates"
 slug: class-number-convergence
 date: 2026-03-30
 author: cahlen
@@ -9,14 +9,14 @@ significance: notable
 domain: [algebraic-number-theory, cohen-lenstra-heuristics, computational-mathematics]
 related_experiment: /experiments/class-numbers-real-quadratic/
 
-summary: "GPU computation of 2.74 billion class numbers for real quadratic fields reveals that the h(d)=1 rate DECREASES from 42% at d~10^4 to 17% at d~10^10, despite the Cohen-Lenstra prediction of 75.4% asymptotically. The distribution is dominated by powers of 2 (genus theory), with 3-divisibility at 15% vs predicted 44%. Convergence to Cohen-Lenstra is extremely slow."
+summary: "GPU computation of 30 billion class numbers for real quadratic fields reveals that the h(d)=1 rate DECREASES from 42% at d~10^4 to 15.35% at d~10^10 and is still falling. This is NOT non-monotone convergence — the h=1 rate goes to 0 asymptotically because genus theory forces 2|h for discriminants with multiple prime factors (which become dominant by Erdos-Kac). The Cohen-Lenstra prediction of 75.4% applies to Prob(h_odd=1), not Prob(h=1). The odd-part distribution converges extremely slowly to C-L, with 3|h at 15% vs predicted 44%. CORRECTION (2026-04-01): original version incorrectly claimed non-monotone convergence to 75%. Peer review via MCP verification identified the error."
 ---
 
 # Cohen-Lenstra Convergence Is Non-Monotone
 
 ## Key Finding
 
-The fraction of real quadratic fields $\mathbb{Q}(\sqrt{d})$ with class number $h(d) = 1$ **decreases** as the discriminant range increases from $10^4$ to $10^{10}$, despite the Cohen-Lenstra heuristic predicting an asymptotic rate of $\approx 75.4\%$.
+The fraction of real quadratic fields $\mathbb{Q}(\sqrt{d})$ with class number $h(d) = 1$ **decreases monotonically** as the discriminant range increases from $10^4$ to $10^{10}$:
 
 | Range | $h = 1$ fraction | Validated by |
 |-------|-----------------|--------------|
@@ -24,9 +24,11 @@ The fraction of real quadratic fields $\mathbb{Q}(\sqrt{d})$ with class number $
 | $d \sim 10^6$ | 25.7% | PARI/GP |
 | $d \in [10^9, 2 \times 10^9)$ | 17.5% | This work |
 | $d \in [10^9, 10^{10})$ | 16.7% | This work |
-| Asymptotic | 75.446% | Cohen-Lenstra (1984) |
+| $d \in [10^{10}, 10^{11})$ | 15.35% | This work |
+| Asymptotic | **→ 0** | Genus theory (see below) |
+| $h_{\text{odd}} = 1$ asymptotic | 75.446% | Cohen-Lenstra (1984) |
 
-The convergence is **non-monotone**: the rate must eventually turn around and increase toward 75.4%, but at $d \sim 10^{10}$ it is still falling.
+> **Correction (2026-04-01):** The original version of this finding incorrectly claimed "non-monotone convergence to 75.4%". Peer review via the MCP verification process (Claude Opus 4.6, Anthropic) identified that 75.4% is the Cohen-Lenstra prediction for $\Pr(h_{\text{odd}} = 1)$, not $\Pr(h = 1)$. Since $h = 1$ requires the 2-part $h_2 = 1$, which requires at most one odd prime factor in the discriminant, and the density of such discriminants goes to 0 by the Erdős–Kac theorem, $\Pr(h = 1) \to 0$ monotonically. The rate will NOT turn around.
 
 ## Why This Happens
 
@@ -48,7 +50,9 @@ These five values account for **74.1%** of all discriminants — the entire dist
 
 Cohen-Lenstra heuristics predict the distribution of the **odd part** of the class group, not the full class number. The 2-part is deterministic (from genus theory). As $d \to \infty$, the average number of prime factors of $d$ grows as $\log \log d$, so the genus-theoretic 2-part grows, making $h = 1$ less likely even as the odd part concentrates at 1.
 
-This explains the non-monotone convergence: at small $d$, few prime factors → small 2-part → more $h = 1$. At moderate $d$, more prime factors → larger 2-part → fewer $h = 1$. The eventual convergence to 75.4% requires the odd part to concentrate strongly enough to overcome the growing 2-part.
+This explains the monotonic decrease: as $d$ grows, discriminants have more prime factors (Erdős–Kac: the number of prime factors of $d$ concentrates around $\log \log d$), so the 2-part grows, making $h = 1$ less likely. The rate $\Pr(h = 1)$ goes to 0 — it does NOT converge to 75.4%.
+
+The Cohen-Lenstra prediction of 75.446% applies to the **odd part**: $\Pr(h_{\text{odd}} = 1) \to 75.4\%$. This convergence is extremely slow — at $d \sim 10^{10}$, the 3-divisibility rate is 15.3% vs the predicted 44%, still far from asymptotic.
 
 ### 3-Divisibility
 

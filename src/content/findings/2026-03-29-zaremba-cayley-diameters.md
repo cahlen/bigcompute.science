@@ -1,5 +1,5 @@
 ---
-title: "Cayley Graph Diameters of Zaremba's Semigroup: diam(p) ≤ 2·log(p) for All Primes to 1021"
+title: "Cayley Graph Diameters of Zaremba's Semigroup: diam(p)/log(p) → 1.45 for Primes to 1021"
 slug: zaremba-cayley-diameters
 date: 2026-03-29
 author: cahlen
@@ -10,7 +10,7 @@ conjecture_year: 1972
 domain: [number-theory, group-theory, continued-fractions, combinatorics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "GPU BFS on the Cayley graph of Γ_{1,...,5} in SL₂(Z/pZ) for all 669 primes p ≤ 1021. The diameter — maximum word length needed to reach any group element — satisfies diam(p)/log(p) ∈ [1.37, 2.89] with a decreasing trend, strongly suggesting diam(p) ≤ 2·log(p) for large p. This bounds the maximum continued fraction length needed to represent any denominator class mod p."
+summary: "GPU BFS on the Cayley graph of Γ_{1,...,5} in SL₂(Z/pZ) for all 669 primes p ≤ 1021. The diameter ratio diam(p)/log(p) decreases from ~3.1 at small primes to ~1.45 at p~1000, suggesting diam(p) ≤ 2·log(p) for sufficiently large p. Note: small primes (p=2,5) violate the 2·log(p) bound. The asymptotic constant appears to be ~1.45."
 
 data:
   semigroup: "Γ_{1,...,5} ⊂ SL_2(Z)"

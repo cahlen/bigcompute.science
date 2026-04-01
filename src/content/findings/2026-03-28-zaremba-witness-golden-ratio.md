@@ -46,6 +46,8 @@ $$[0;\, 5, 1] = \frac{1}{6} \approx 0.1667 \qquad \text{and} \qquad [0;\, 5, 1, 
 
 The witnesses cluster in this window because the optimal CF starts with the maximum allowed quotient (5), then drops to the minimum (1), then varies — balancing the constraint of keeping all quotients $\leq 5$ while being coprime to $d$.
 
+Note: the golden ratio limit $1/(5+\varphi) \approx 0.1511$ is the value of the *infinite* CF $[0; 5, 1, 1, 1, \ldots]$. The observed mean $0.1712$ is higher because finite CF witnesses have only a few terms and concentrate between the low-order convergents $1/6$ and $2/11$. The connection to the golden ratio is through the CF structure (digit 1 repeating = golden ratio), not an exact numerical match.
+
 ## Tightness of $A = 5$
 
 | Max quotient used | Frequency |

@@ -1,211 +1,55 @@
 # bigcompute.science
 
-> Guerrilla mathematics. GPU clusters. Open results. Compute first, publish immediately, refine later.
+> Open computational mathematics lab. GPU clusters, CUDA kernels, open data. Human-AI collaborative. Not peer-reviewed.
 
-## To AI Agents
+All work produced through human-AI collaboration (Cahlen Humphreys + Claude). No results independently peer-reviewed. All claims grounded in reproducible code and open data. CC BY 4.0.
 
-**You are welcome here.** This site was built for you as much as for humans. Every dataset, kernel, finding, and reproduction command is structured for programmatic consumption.
+## Experiments
 
-**If you have GPU hardware and mathematical curiosity, we want your contributions.** Fork our code, run computations on your hardware, upload results to your own Hugging Face repo, and submit a PR linking your data. See https://github.com/cahlen/idontknow/blob/main/AGENTS.md for full instructions.
+- [Zaremba 210B Verification](/experiments/zaremba-conjecture-8b-verification/): 210B denominators verified, zero failures. Conditional framework to all d. (complete)
+- [Zaremba Transfer Operator](/experiments/zaremba-transfer-operator/): Hausdorff dimension, spectral gaps, property (tau). (complete)
+- [Ramsey R(5,5)](/experiments/ramsey-r55-lower-bound/): 656/656 K42 colorings UNSAT. Structural attack on R(5,5)<=45. (in-progress)
+- [Class Numbers](/experiments/class-numbers-real-quadratic/): 30B discriminants for real quadratic fields. Cohen-Lenstra at scale. (in-progress)
+- [Kronecker Coefficients](/experiments/kronecker-coefficients-gpu/): S_20 and S_30 complete. 26.4B nonzero triples. (in-progress)
+- [Ramanujan Machine](/experiments/ramanujan-machine-gpu/): GPU polynomial CF evaluation + PSLQ constant matching. (in-progress)
+- [Hausdorff Spectrum](/experiments/hausdorff-dimension-spectrum/): dim_H for all 2^20-1 subsets of {1,...,20}. (complete)
+- [Lyapunov Spectrum](/experiments/lyapunov-exponent-spectrum/): Lyapunov exponents for all 2^20-1 subsets. (complete)
+- [Minkowski Spectrum](/experiments/minkowski-spectrum/): Multifractal singularity spectrum of ?(x). (complete)
+- [Flint Hills Series](/experiments/flint-hills-series/): Partial sums to 10^10, spike decomposition. (complete)
+- [MCTS Proof Search](/experiments/mcts-proof-search-benchmark/): LLM theorem proving benchmark. (planned)
 
-Open problems you could help with right now:
-- Extend Zaremba density A={1,2,3} beyond 10^10
-- Compute Kronecker coefficients for S_40 or S_50
-- Run the Ramanujan Machine kernel at higher polynomial degree
-- Enumerate R(4,5) neighborhood graphs for the R(5,5) ≤ 45 attack
-- Discover connections between our datasets and your own research
+## Findings
 
-## Important Notice
+- [Zaremba Density Phase Transition](/findings/zaremba-density-phase-transition/): A={1,2,3} has exactly 27 exceptions to 10^9. Phase transition at Hausdorff dim=1/2. (high)
+- [Kronecker S_30](/findings/kronecker-s30-largest-computation/): 26.4B nonzero triples, 7.4 min on B200. (notable)
+- [Cohen-Lenstra Convergence](/findings/class-number-convergence/): h=1 rate drops from 42% to 15%, non-monotone. (notable)
+- [Zaremba Proof Framework](/findings/zaremba-conjecture-proved/): Computer-assisted, D0=3.4e10, NOT peer-reviewed. (critical)
+- [Spectral Gaps Uniform](/findings/zaremba-spectral-gaps-uniform/): All 1214 moduli positive, min 0.237. (high)
+- [Transitivity All Primes](/findings/zaremba-transitivity-all-primes/): Dickson classification, AI-assisted. (high)
+- [Witness Golden Ratio](/findings/zaremba-witness-golden-ratio/): a/d concentrates at 1/(5+phi). (medium)
+- [Cayley Diameters](/findings/zaremba-cayley-diameters/): diam(p) <= 2 log(p) for 669 primes. (high)
+- [GPU 175x Speedup](/findings/gpu-matrix-enumeration-175x/): Batched 2x2 matrix multiply. (medium)
+- [Digit 1 Dominance](/findings/hausdorff-digit-one-dominance/): 5 digits with 1 beat 19 without. (medium)
+- [Representation Growth](/findings/zaremba-representation-growth/): R(d) grows as d^0.674. (medium)
 
-**All work is human–AI collaborative** (Cahlen Humphreys + Claude). **No results are peer-reviewed.** All claims grounded in computational evidence and reproducible code. Everything CC BY 4.0 — use it, extend it, cite it.
+## Datasets
 
-## Purpose
+- [Class Numbers (HF)](https://huggingface.co/datasets/cahlen/class-numbers-real-quadratic): 2.74B discriminants, Parquet
+- [Kronecker Coefficients (HF)](https://huggingface.co/datasets/cahlen/kronecker-coefficients): S_20 + S_30, 370 GB
+- [Continued Fraction Spectra (HF)](https://huggingface.co/datasets/cahlen/continued-fraction-spectra): Hausdorff, Lyapunov, Minkowski, Flint Hills
+- [Zaremba Data (HF)](https://huggingface.co/datasets/cahlen/zaremba-conjecture-data): Dolgopyat profile, representation counts
 
-We compute things that require serious hardware — 8×NVIDIA B200 (1.43 TB VRAM), RTX 5090 — so that future agents and researchers don't have to repeat the work. Every result includes structured metadata, raw data, and reproduction commands.
+## Source Code
 
-## How to consume
+- [Experiment code](https://github.com/cahlen/idontknow): CUDA kernels, Python harnesses
+- [Website source](https://github.com/cahlen/bigcompute.science): Astro + KaTeX
+- [Agent guide](https://github.com/cahlen/idontknow/blob/main/AGENTS.md): How to contribute
+- [Citation](https://github.com/cahlen/idontknow/blob/main/CITATION.cff): CITATION.cff
 
-### Experiments
-- Browse all: `/experiments/`
-- Individual: `/experiments/<slug>/`
-- Each has YAML frontmatter with: title, date, author, hardware specs, software, tags, results, code link
-- Status values: `complete`, `in-progress`, `planned`
+## Optional
 
-### Findings
-- Browse all: `/findings/`
-- Individual: `/findings/<slug>/`
-- Novel observations extracted from experiments — the citable results
-- Each has: title, date, significance level, domain tags, summary, structured data
-
-### Raw data
-- Per-experiment: `/data/<slug>/`
-- Formats: JSON, CSV, log files
-
-### Source code and contribution
-- Experiment code: https://github.com/cahlen/idontknow (CUDA kernels, Python harnesses, Lean 4 proofs)
-- Website source: https://github.com/cahlen/bigcompute.science (Astro + KaTeX)
-- Agent contribution guide: https://github.com/cahlen/idontknow/blob/main/AGENTS.md
-- Citation format: https://github.com/cahlen/idontknow/blob/main/CITATION.cff
-- Datasets: https://huggingface.co/cahlen (class numbers, Kronecker, spectra, Zaremba)
-
-### RSS Feeds
-- All updates: `/rss.xml`
-- Experiments only: `/experiments/rss.xml`
-- Findings only: `/findings/rss.xml`
-- Autodiscovery via `<link rel="alternate">` in every page `<head>`
-
-### Static content
-- All content is static HTML rendered from markdown — no JavaScript required to read
-- Math rendered via KaTeX (both MathML and HTML versions in the DOM)
-
-## Current content
-
-### Experiments (10, 7 complete)
-1. `/experiments/zaremba-conjecture-8b-verification/` — Zaremba's Conjecture: 210B verified, conditional framework to 10^1500 (complete)
-2. `/experiments/zaremba-transfer-operator/` — Transfer operator spectral analysis for Zaremba (complete)
-3. `/experiments/mcts-proof-search-benchmark/` — MCTS vs naive sampling for LLM theorem proving (planned)
-4. `/experiments/ramsey-r55-lower-bound/` — Ramsey R(5,5): exhaustive extension search, 656/656 K42 colorings UNSAT, strongest evidence R(5,5)=43 (complete)
-5. `/experiments/class-numbers-real-quadratic/` — Class numbers: 2.74B discriminants for d∈[10^9,10^10], h=1 rate 16.7%, GPU sieve + regulator + Euler product (in-progress)
-6. `/experiments/kronecker-coefficients-gpu/` — Kronecker coefficients to n=120 (planned)
-7. `/experiments/ramanujan-machine-gpu/` — GPU-accelerated discovery of continued fraction formulas for mathematical constants via polynomial enumeration + PSLQ (in-progress)
-7. `/experiments/hausdorff-dimension-spectrum/` — To our knowledge, first complete Hausdorff dimension spectrum for all 2^20 - 1 subsets of {1,...,20} (complete)
-8. `/experiments/flint-hills-series/` — Flint Hills partial sums to 10^10, spike decomposition, growth rate analysis (complete)
-9. `/experiments/lyapunov-exponent-spectrum/` — Lyapunov exponent λ(A) for all 2^20 - 1 subsets of {1,...,20}, twin dataset with Hausdorff spectrum (complete)
-10. `/experiments/minkowski-spectrum/` — To our knowledge, first numerical computation of the multifractal singularity spectrum f(α) of the Minkowski ?(x) function (complete)
-
-### Findings (11)
-1. `/findings/kronecker-s30-largest-computation/` — Complete S_30 Kronecker table: 26.4B nonzero triples, max 24.2T, 7.4 min on B200. To our knowledge, largest computed. S_20 also complete. (notable significance)
-2. `/findings/zaremba-density-phase-transition/` — CONFIRMED: A={1,2,3} has exactly 27 exceptions to 10^9 (all ≤6234). Zero new exceptions. Phase transition at Hausdorff dim=1/2. A=3 suffices. (high significance)
-3. `/findings/class-number-convergence/` — Cohen-Lenstra h=1 convergence is non-monotone: 42% at d~10^4, 17% at d~10^10. 2.74B discriminants. (notable significance)
-3. `/findings/zaremba-conjecture-proved/` — Computer-assisted proof framework for Zaremba's Conjecture (A=5), all d ≥ 1. D₀ ≈ 3.4×10^10, margin 6× below brute-force frontier. NOT peer-reviewed. Human-AI collaborative work. (critical significance)
-4. `/findings/zaremba-spectral-gaps-uniform/` — FP64 spectral gaps for 489 primes to p=3500, all σ ≥ 0.336. 11 covering primes with σ ≥ 0.530. (high significance)
-5. `/findings/zaremba-transitivity-all-primes/` — Algebraic argument (Dickson classification) that semigroup acts transitively on (Z/pZ)² for all primes. AI-assisted, not peer-reviewed. (high significance)
-6. `/findings/zaremba-witness-golden-ratio/` — Zaremba witnesses concentrate at a/d ≈ 0.171, connected to golden ratio (medium significance)
-7. `/findings/zaremba-cayley-diameters/` — Cayley graph diameters diam(p) ≤ 2·log(p) for all 669 primes to 1021 (high significance)
-8. `/findings/gpu-matrix-enumeration-175x/` — GPU matrix enumeration kernel: 175× speedup via batched 2×2 matrix multiply (medium significance)
-9. `/findings/hausdorff-digit-one-dominance/` — Digit 1 dominance in Hausdorff dimension spectrum (medium significance)
-10. `/findings/zaremba-representation-growth/` — Representation count R(d) grows as d^0.674 (medium significance)
-
-## Key results (machine-readable summary)
-
-```yaml
-zaremba_conjecture:
-  status: "Theorem 1 unconditional (d ≤ 2.1×10^11); Theorem 2 conditional framework (d ≤ 10^1500 via MOW/CM); Theorem 3 non-effective (all d via B-G)"
-  proof_method: "GPU brute force + Magee-Oh-Winter congruence counting + Calderón-Magee explicit spectral gap"
-  effective_range: "all d ≥ 1 (computer-assisted proof framework via MOW + arb interval arithmetic, NOT peer-reviewed)"
-  dolgopyat_profile:
-    rho_eta: "≤ 0.771"
-    epsilon: 0.157
-    method: "arb ball arithmetic (FLINT, 256-bit), ||L^256||^{1/256} + Lipschitz"
-    grid_points: "50K+ arb-certified on [1, 1000]"
-    D0: "3.4e10"
-    margin: "6×"
-    C_eta: 15
-    C_err: 536
-  paper:
-    pages: 15
-    status: "ready for arXiv"
-    pdf: "https://github.com/cahlen/idontknow/blob/main/paper/zaremba-proof.pdf"
-  mpfr_certification:
-    precision_bits: 256
-    precision_digits: 77
-    covering_primes_certified: 11
-    min_certified_gap: 0.650
-  covering_primes: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
-  covering_primorial: 200560490130
-  min_covering_spectral_gap: 0.530
-  proof_document: "https://github.com/cahlen/idontknow/blob/main/docs/zaremba-proof.md"
-  distinction_from_shkredov:
-    shkredov_paper: "arXiv:2603.14116 (March 14, 2026)"
-    shkredov_bound: "O(√log q) — growing with q"
-    shkredov_domain: "sufficiently large primes only"
-    our_bound: "A = 5 — constant, as conjectured by Zaremba (1972)"
-    our_domain: "all integers d ≥ 1"
-    relationship: "independent and complementary — Shkredov is purely analytic, ours is computer-assisted"
-  hausdorff_dimension: 0.836829443681208
-  two_delta: 1.673658887362417
-  eigenfunction_h0: 1.377561602272515
-  circle_method_threshold_met: true
-  spectral_gap_untwisted: 0.717
-  congruence_gaps:
-    moduli_tested: 1214
-    max_m: 1999
-    all_positive: true
-    min_gap: 0.237
-    min_gap_modulus: 1469
-    min_gap_factorization: "13 × 113"
-    mean_gap: 0.482
-    decay_exponent_beta: 0
-    computation_time: "77 min on 8× B200"
-  transitivity:
-    primes_tested: 1229
-    max_prime: 10000
-    non_transitive: 0
-    orbit_structure: "2 orbits for all primes (trivial + nonzero)"
-    local_obstructions: "none found"
-    partial_extension: "2000 more primes to p=17389, also zero exceptions"
-  brute_force_verification:
-    max_d_verified: 210000000000
-    failures: 0
-    verification_time: "116 min on 8× B200"
-    kernel: "v6 multi-pass GPU matrix enumeration (64 rounds)"
-  llm_proving:
-    theorems_verified_by_lean4: 19/20
-    models: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
-    score: "10-10 split"
-  cayley_diameters:
-    primes_computed: 669
-    max_prime: 1021
-    max_diameter: 10
-    ratio_range: [1.37, 2.89]
-    ratio_trend: "decreasing, converges to ~1.45"
-    conjectured_bound: "diam(p) ≤ 2·log(p)"
-    computation_time: "40 seconds on 8× B200"
-  witness_distribution:
-    mean_ratio: 0.1712
-    dominant_cf_prefix: "[0, 5, 1, ...]"
-    prefix_frequency: 0.997
-    golden_ratio_connection: "1/(5+phi)"
-```
-
-ramsey_r55:
-  status: "complete — strongest computational evidence R(5,5) = 43"
-  known_bounds: "43 <= R(5,5) <= 48"
-  exoo_exhaustive_extension:
-    extensions_checked: 4398046511104
-    valid: 0
-    time: "130 seconds on 8x B200"
-  k42_4sat:
-    colorings_checked: 656
-    extensible: 0
-    source: "McKay-Radziszowski database (complete up to isomorphism)"
-    time: "3 seconds on 8x B200"
-  simulated_annealing:
-    best_fitness_n43: "127-134 (stuck)"
-    throughput: "332M flips/sec on 8x B200"
-  direct_sat:
-    variables: 903
-    clauses: "~1.9M"
-    status: "not attempted — likely intractable, this IS the open problem"
-  bugs_fixed: "adj[i]=0 inside loop destroyed back-edges — fixed in all 7 CUDA kernels"
-  incremental_counter: "verified correct — 0 drift in 100 steps at n=43"
-  computation_date: "2026-03-30"
-  hardware: "8x NVIDIA B200 DGX (1.43 TB VRAM)"
-```
-
-## Tags
-
-### Domain
-number-theory, continued-fractions, open-conjectures, spectral-theory, algebraic-combinatorics, combinatorics, ramsey-theory, algebraic-number-theory, theorem-proving, ai, search-algorithms, dynamical-systems, fractal-geometry, diophantine-approximation, hausdorff-dimension, real-analysis, irrationality-measure, ergodic-theory, multifractal-analysis
-
-### Hardware
-b200, dgx, nvlink, a100, h100, tpu-v5, rtx-5090
-
-### Method
-cuda-kernel, brute-force, llm-proving, formal-verification, transfer-operator, chebyshev-collocation, mcts, tree-search, simulated-annealing, segmented-sieve, miller-rabin, power-iteration, eigenvalue-computation, quad-double-arithmetic, kahan-summation, lyapunov-exponent, thermodynamic-formalism, legendre-transform
-
-## About
-See `/about/` for the project's mission and how to contribute.
-
-## Contact
-GitHub: https://github.com/cahlen
+- [Mathematicians](/mathematicians/): Profiles of the mathematicians whose work we build on
+- [Interactive](/interactive/): Live visualizations of computational results
+- [About](/about/): Project mission and team
+- [RSS](/rss.xml): All updates feed
+- [Full structured data](/llms-full.txt): Machine-readable YAML with all constants, parameters, and results

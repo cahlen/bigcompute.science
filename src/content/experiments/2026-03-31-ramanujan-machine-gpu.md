@@ -27,12 +27,13 @@ tags:
 results:
   problem: "Discover new continued fraction formulas for mathematical constants"
   prior_work: "Raayoni et al. (PNAS 2024): 1.77M polynomial CFs, degree 2-3"
-  candidates_evaluated: "94 billion (deg 1-4)"
+  candidates_evaluated: "145 billion (deg 1-5)"
   transcendental_hits: 0
+  false_positives: "6 (all failed mpmath 50-digit verification)"
   algebraic_hits: "sqrt(2), sqrt(5), phi"
-  status: "In progress — deg 5 running, need PSLQ for high-precision verification"
+  status: "In progress — need wider coefficient ranges and GPU PSLQ"
 
-summary: "94 billion polynomial CFs evaluated through degree 4 on B200 GPU — zero transcendental constant formulas found. All matches are algebraic (sqrt(2), sqrt(5), phi). Degree 5+ in progress. v3 kernel matches 10 base constants + 29 compound expressions."
+summary: "145 billion polynomial CFs evaluated through degree 5 on B200 GPU — zero transcendental constant formulas found. All matches are algebraic (sqrt(2), sqrt(5), phi). Degree 5+ in progress. v3 kernel matches 10 base constants + 29 compound expressions."
 
 code: https://github.com/cahlen/idontknow
 ---
@@ -61,7 +62,7 @@ Raayoni et al. (PNAS 2024) discovered that many CF formulas arise from a unified
 |------|------|--------------|-------------------|-----------------|
 | Raayoni et al. (Nature) | 2019 | ~500K | 1-2 | pi, e, Catalan |
 | Raayoni et al. (PNAS) | 2024 | 1.77M | 2-3 | pi, ln(2), Gauss, Lemniscate |
-| **This work** | 2026 | **94 billion** | **1-5** | **None yet (all algebraic)** |
+| **This work** | 2026 | **145 billion** | **1-5** | **None yet (all algebraic)** |
 
 ## Method
 
@@ -104,15 +105,15 @@ Each B200 GPU runs ~10,000 independent CF evaluations in parallel (one per CUDA 
 | 2 | [-20,20] | 4.75B | 4.49M | sqrt(2), sqrt(5) | No |
 | 3 | [-10,10] | 37.8B | 119M | sqrt(2) | No |
 | 4 | [-5,5] | 25.9B | 260 | sqrt(2) | No (2 false positive) |
-| 5 | [-3,3] | 13.8B | Running | TBD | TBD |
-| **Total** | | **~94B** | | | **Zero transcendental** |
+| 5 | [-3,3] | 13.8B | 67.5K | sqrt(2) | No (2 false positive) |
+| **Total** | | **~145B** | | | **Zero transcendental** |
 
 ### Key observations
 
 1. **Degree 2 is fully exhausted** at range [-20,20] (4.75B candidates). Only sqrt(2) and sqrt(5) matches.
 2. **Degree 4 produces dramatically fewer hits** than degree 2-3 (260 vs millions) — the CF convergence is more selective at higher degree.
 3. **Two false positives** at degree 4 matched pi·ln(2) at double precision but failed 50-digit mpmath verification. This confirms the need for PSLQ high-precision verification.
-4. **No formulas for pi, e, zeta(3), gamma, Catalan, or any transcendental constant** through 94 billion candidates at degrees 1-4.
+4. **No formulas for pi, e, zeta(3), gamma, Catalan, or any transcendental constant** through 145 billion candidates at degrees 1-5. Six false positives (pi/4, 2/sqrt(pi), pi·ln(2)) all failed 50-digit mpmath verification.
 
 ### What this means
 

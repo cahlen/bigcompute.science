@@ -1,0 +1,9 @@
+name = "bigcompute-mcp"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+main = "src/server.ts"
+
+[vars]
+SITE_URL = "https://bigcompute.science"
+REPO_URL = "https://github.com/cahlen/idontknow"
+HF_BASE = "https://huggingface.co/datasets/cahlen"

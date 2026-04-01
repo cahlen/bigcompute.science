@@ -1,9 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import fs from 'node:fs';
 
 const mathematicians = await getCollection('mathematicians');
 const sorted = mathematicians.sort((a, b) => (a.data.born || 0) - (b.data.born || 0));
+
+// Check which photos actually exist at build time
+const photosDir = new URL('../../public/images/mathematicians/', import.meta.url).pathname;
+function hasPhoto(slug: string): boolean {
+  try { return fs.existsSync(`${photosDir}${slug}.jpg`); } catch { return false; }
+}
 ---
 
 <Base title="Shoulders of Giants" description="The mathematicians whose work we build upon">
@@ -18,10 +25,11 @@ const sorted = mathematicians.sort((a, b) => (a.data.born || 0) - (b.data.born |
     {sorted.map((m) => (
       <article class="giant-card">
         <div class="giant-photo">
-          <img src={m.data.photo} alt={m.data.name}
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-               class="giant-img" />
-          <div class="giant-placeholder" style="display:none">{m.data.name.split(' ').map((n: string) => n[0]).join('')}</div>
+          {hasPhoto(m.data.slug) ? (
+            <img src={m.data.photo} alt={m.data.name} class="giant-img" />
+          ) : (
+            <div class="giant-placeholder">{m.data.name.split(' ').map((n: string) => n[0]).join('')}</div>
+          )}
         </div>
         <div class="giant-info">
           <h2>

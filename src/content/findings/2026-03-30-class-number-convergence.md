@@ -96,3 +96,17 @@ Source code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow/t
 | 3 divides h | 15.28% | 15.48% |
 
 The h=1 rate continues to fall (16.7% → 15.4%). Powers of 2 are increasing (h=8: 10.9% → 11.7%, h=16: 4.5% → 5.2%), consistent with genus theory dominating at larger discriminants. Total: **30 billion discriminants** across both ranges.
+
+## Genus Theory Shift: Powers of 2 Redistributing
+
+The class number distribution is dominated by powers of 2 (genus theory), and this dominance is evolving:
+
+| h | d ~ 10^9 | d ~ 10^10 | Change |
+|---|---------|----------|--------|
+| 1 | 16.71% | 15.35% | -1.35% |
+| 2 | 22.17% | 21.27% | -0.90% |
+| 4 | 19.77% | 19.92% | +0.15% |
+| 8 | 10.90% | 11.67% | +0.77% |
+| 16 | 4.52% | 5.15% | +0.63% |
+
+The h=1 and h=2 "drain" is flowing into h=8 and h=16. This is consistent with discriminants at larger d having more prime factors on average (grows as log log d), which increases the 2-rank of the class group via genus theory. The total power-of-2 share is slowly decreasing (74.1% to 73.4%), meaning odd class numbers are very gradually gaining ground.

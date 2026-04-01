@@ -133,3 +133,17 @@ nvcc -O3 -arch=sm_100a -o zaremba_density_gpu scripts/experiments/zaremba-densit
 ---
 
 *Computed 2026-03-31 on Intel Xeon Platinum 8570 (DGX B200 cluster). This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+
+## Open Question: Does A={1,2} Have Full Density?
+
+A={1,2} has Hausdorff dimension delta = 0.531, barely above the critical threshold 1/2. The Bourgain-Kontorovich framework predicts full density when delta > 1/2, but the exponent 2*delta - 1 = 0.062 is extremely small.
+
+| Range | Density |
+|-------|---------|
+| d <= 10^6 | 57.98% |
+| d <= 10^9 | 72.06% |
+| Growth per decade | ~4.7% |
+
+The density IS growing, but at ~4.7% per decade. At this rate, reaching 99% would require d ~ 10^15 or beyond. The theoretical prediction says yes, but the convergence may be so slow that it is effectively sub-full for any computationally accessible range.
+
+This is a concrete open question that can be addressed by extending our GPU computation to 10^12 or 10^15.

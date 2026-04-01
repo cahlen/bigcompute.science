@@ -48,3 +48,19 @@ d=150: best CF is 29/150 = [0; 5, 5, 1, 4]. No splitting resolves the double-5 s
 ---
 
 *This work was produced through human-AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+
+## Why d=54 and d=150 Are Special
+
+Both stubborn exceptions share structural properties:
+
+| | d=54 | d=150 |
+|---|---|---|
+| Factorization | 2 x 3^3 | 2 x 3 x 5^2 |
+| Divisible by 6 | yes | yes |
+| Prime power factor | 3^3 | 5^2 |
+| GCD(54, 150) | 6 | 6 |
+| Best max partial quotient | 5 | 5 |
+
+For d=54, EVERY coprime fraction a/54 has a partial quotient of at least 5. There are 18 coprime residues mod 54, and none of their CFs avoid digit 5. Similarly for d=150 (40 coprime residues, all CFs require digit 5).
+
+These are the only 2 integers in [1, 10^6] where digit 5 is truly unavoidable — making them the "hardest" denominators for Zaremba's conjecture.

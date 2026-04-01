@@ -207,3 +207,5 @@ The combination of uniform spectral gaps + brute-force verification + Cayley dia
 ---
 
 *Computed on NVIDIA DGX B200 (8× B200, 1.43 TB VRAM). All eigenvalues computed on GPU via cuSOLVER.*
+
+*This work was produced through human-AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

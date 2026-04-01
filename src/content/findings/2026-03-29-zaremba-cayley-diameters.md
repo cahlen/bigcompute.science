@@ -20,7 +20,7 @@ data:
   max_prime: 1021
   max_diameter: 10
   max_diameter_first_at: 211
-  ratio_range: [1.37, 2.89]
+  ratio_range: [1.37, 3.11]  # includes small primes
   ratio_trend: "decreasing — converges toward ~1.45"
   conjectured_bound: "diam(p) ≤ 2·log(p)"
   asymptotic_ratio: "~1.45"

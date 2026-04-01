@@ -134,7 +134,7 @@ Every prime has exactly 2 orbits:
 
 ```bash
 # Compile (requires CUDA toolkit)
-nvcc -O3 -arch=sm_100a -o check_transitivity \
+gcc -O3 -fopenmp -o check_transitivity \
     scripts/experiments/zaremba-transfer-operator/check_transitivity.cu
 
 # Run for all primes up to 10,000

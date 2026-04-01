@@ -27,7 +27,7 @@ results:
   problem: "Ramsey number R(5,5)"
   conjecture_year: 1930
   last_lower_bound_improvement: 1989
-  known_bounds: "43 <= R(5,5) <= 48"
+  known_bounds: "43 <= R(5,5) <= 46"
   key_finding: "All 656 known K42 colorings (McKay-Radziszowski) fail to extend to K43 via 4-SAT"
   exoo_exhaustive: "All 2^42 = 4.4e12 extensions of Exoo's K42 coloring checked — zero valid (130 sec)"
   k42_4sat: "656/656 known K42 colorings UNSAT for K43 extension (3 sec)"
@@ -41,7 +41,7 @@ results:
 summary: "We attack the Ramsey number from multiple angles using 8 NVIDIA B200 GPUs. Rather than finding a new lower bound (which would require a -free 2-coloring of ), we produce among the strongest computational evidence that . Our key results:"
 
 code: https://github.com/cahlen/idontknow
-dataset: https://huggingface.co/datasets/cahlen/kronecker-coefficients
+# dataset: none published yet
 data: /data/ramsey-r55/
 ---
 
@@ -76,7 +76,7 @@ Ramsey's theorem (1930) guarantees these numbers exist, but computing them is ex
 | Lower | $\geq 43$ | Exoo | 1989 |
 | Upper | $\leq 48$ | Angeltveit, McKay | 2024 |
 
-The gap $[43, 48]$ has been open for decades. Improving **either** bound would be a major result in combinatorics.
+The gap $[43, 46]$ has been open for decades. Improving **either** bound would be a major result in combinatorics.
 
 ## Hardware
 

@@ -29,7 +29,7 @@ results:
   problem: "Hausdorff dimension, spectral gaps, and property (tau) for the Zaremba semigroup"
   hausdorff_dimension: 0.836829443681208
   precision_digits: 15
-  two_delta: 1.674
+  two_delta: 1.6737
   circle_method_threshold: "MET (2delta > 1)"
   spectral_gap: 0.717
   eigenvalue_ratio: 0.283

@@ -60,7 +60,7 @@ $$6, 20, 28, 38, 42, 54, 96, 150, 156, 164, 216, 228, 318, 350, 384, 558, 770, 8
 
 ### A Strengthened Zaremba Conjecture
 
-Zaremba originally conjectured $A = 5$. Bourgain-Kontorovich (2014) proved density 1 for $A = 50$ (non-effectively). Our data shows the truth is much stronger: $A = 3$ already suffices with exactly 27 exceptions, all $\leq 6{,}234$. This is a dramatic strengthening — the bound on partial quotients drops from 5 to 3, and the exception set is finite (verified to $10^9$, running to $10^{10}$).
+Zaremba originally conjectured $A = 5$. Bourgain-Kontorovich (2014) proved density 1 for $A = 50$ (non-effectively). Our data suggests the truth may be much stronger: $A = 3$ appears to suffice with exactly 27 exceptions, all $\leq 6{,}234$. This is a dramatic strengthening — the bound on partial quotients drops from 5 to 3, and the exception set is finite (verified to $10^9$, running to $10^{10}$).
 
 ### The Hausdorff Dimension Threshold
 
@@ -104,7 +104,7 @@ All $\leq 6{,}234$. No new exceptions in 999,993,766 additional integers tested.
 | Computation | Status |
 |------------|--------|
 | $A = \{1,2,3\}$, $d \leq 10^9$ | **Complete**: 27 uncovered, all $\leq 6234$ |
-| $A = \{1,2,3,4\}$, $d \leq 10^9$ | **Running** |
+| $A = \{1,2,3,4\}$, $d \leq 10^9$ | **Running** (2026-03-31) |
 | $A = \{1,2,3\}$, $d \leq 10^{10}$ | **Running** |
 | $A = \{1,2,3,4\}$, $d \leq 10^{10}$ | **Running** |
 

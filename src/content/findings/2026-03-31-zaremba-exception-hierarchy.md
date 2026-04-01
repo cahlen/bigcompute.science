@@ -36,7 +36,7 @@ allows the last quotient to be split, potentially reducing the maximum digit by 
 
 ## The Two Stubborn Exceptions
 
-d=54: best CF is 17/54 = [0; 3, 5, 1, 2]. Even with splitting, [0; 3, 4, 1, 1, 2] requires digit 4 but the intermediate convergent structure prevents finding any representation using only {1,2,3,4}.
+d=54: every coprime fraction a/54 has a partial quotient of at least 5 in its continued fraction expansion. No representation — canonical or non-canonical — avoids digit 5.
 
 d=150: best CF is 29/150 = [0; 5, 5, 1, 4]. No splitting resolves the double-5 structure.
 

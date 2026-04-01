@@ -30,6 +30,8 @@ results:
   our_target: "Extend to degree 4-6 polynomials, 10^9+ CF evaluations"
   status: "In progress"
 
+summary: "We extend the Ramanujan Machine framework (Raayoni et al., 2024) using GPU-accelerated arbitrary precision arithmetic on an 8× B200 cluster. The original project evaluated ~1.77 million polynomial continued fractions (degree 2-3) over 2+ years of..."
+
 code: https://github.com/cahlen/idontknow
 ---
 

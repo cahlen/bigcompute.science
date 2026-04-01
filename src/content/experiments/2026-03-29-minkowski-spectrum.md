@@ -38,6 +38,8 @@ results:
   validation_tau0: "τ(0) = 0.987 = dim_H (correct)"
   validation_tau1: "τ(1) = 0 (normalization, correct)"
 
+summary: "We compute the multifractal singularity spectrum of the Minkowski question mark function — to our knowledge, the first numerical computation of this spectrum. Using a weighted transfer operator with Minkowski measure weights, bisection over 2,001..."
+
 code: https://github.com/cahlen/idontknow
 data: /data/minkowski-spectrum/
 dataset: https://huggingface.co/datasets/cahlen/continued-fraction-spectra

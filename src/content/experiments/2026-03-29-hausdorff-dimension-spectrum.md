@@ -39,6 +39,8 @@ results:
   scaling_n10: "1,023 subsets in 3.8s"
   scaling_n15: "32,767 subsets in 126.1s"
 
+summary: "We compute the Hausdorff dimension for every non-empty subset — a total of subsets. To our knowledge, this is the first complete mapping of the \"dimension spectrum\" of continued fraction Cantor sets, producing a structured dataset that does not..."
+
 code: https://github.com/cahlen/idontknow
 data: /data/hausdorff-spectrum/
 dataset: https://huggingface.co/datasets/cahlen/continued-fraction-spectra

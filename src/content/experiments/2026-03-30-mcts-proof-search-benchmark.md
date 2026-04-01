@@ -30,6 +30,8 @@ results:
   benchmark: "MCTS vs naive sampling for Lean 4 proof search"
   conjecture_year: 1972
 
+summary: "In our previous experiment (Zaremba verification), we discovered that SOTA theorem-proving LLMs nail proof *structure* but fail at witness *search* — producing syntactically perfect proofs with wrong values across 80 attempts. This experiment tests..."
+
 code: https://github.com/cahlen/idontknow
 data: /data/mcts-benchmark/
 ---

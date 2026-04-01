@@ -29,6 +29,8 @@ results:
   current_frontier: "Systematic computation to n ~ 60-80"
   target: "n = 120 for GCT-relevant triples"
 
+summary: "We compute Kronecker coefficients of the symmetric group for up to 120, roughly doubling the existing computational frontier. Kronecker coefficients describe tensor product decompositions of symmetric group representations and are central to..."
+
 code: https://github.com/cahlen/idontknow
 dataset: https://huggingface.co/datasets/cahlen/kronecker-coefficients
 data: /data/kronecker/

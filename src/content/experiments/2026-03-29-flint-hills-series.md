@@ -39,6 +39,8 @@ results:
   spike_trend: "shrinking"
   irrationality_measure_evidence: "consistent with mu(pi) <= 5/2"
 
+summary: "We computed the Flint Hills partial sum in 1.9 seconds on a single RTX 5090 GPU. This extends the computational frontier approximately 100,000x beyond published results (previously ). The computation decomposes the sum into 19 convergent spike terms..."
+
 code: https://github.com/cahlen/idontknow
 dataset: https://huggingface.co/datasets/cahlen/continued-fraction-spectra
 ---

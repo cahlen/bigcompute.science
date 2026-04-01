@@ -39,6 +39,8 @@ results:
   llm_proofs: 19/20
   models_used: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
 
+summary: "We verify Zaremba's Conjecture for all from 1 to 210 billion using GPU-accelerated continued fraction tree enumeration across 8 NVIDIA B200 GPUs. The v6 multi-pass kernel completes in 116 minutes with zero failures. Combined with spectral analysis..."
+
 code: https://github.com/cahlen/idontknow
 dataset: https://huggingface.co/datasets/cahlen/zaremba-conjecture-data
 data: /data/zaremba-8b/

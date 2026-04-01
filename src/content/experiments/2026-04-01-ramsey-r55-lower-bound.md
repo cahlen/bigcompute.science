@@ -38,6 +38,8 @@ results:
   lower_bound_improved: false
   conclusion: "Strongest computational evidence ever assembled that R(5,5) = 43"
 
+summary: "We attack the Ramsey number from multiple angles using 8 NVIDIA B200 GPUs. Rather than finding a new lower bound (which would require a -free 2-coloring of ), we produce among the strongest computational evidence that . Our key results:"
+
 code: https://github.com/cahlen/idontknow
 dataset: https://huggingface.co/datasets/cahlen/kronecker-coefficients
 data: /data/ramsey-r55/

@@ -830,3 +830,133 @@ footer a { color: var(--accent); text-decoration: none; }
   font-style: italic;
   margin-top: 0.4rem;
 }
+
+/* ============================================================
+   Rosetta Stone: CUDA for Mathematicians & Computer Scientists
+   ============================================================ */
+
+.rosetta {
+  margin-bottom: 4rem;
+}
+.rosetta h2 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+.rosetta-intro {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 2.5rem;
+  max-width: 640px;
+}
+.rosetta-example {
+  margin-bottom: 3rem;
+}
+.rosetta-example h3 {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+.rosetta-problem {
+  color: var(--ink-secondary);
+  font-size: 0.88rem;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+.rosetta-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+@media (max-width: 800px) {
+  .rosetta-columns { grid-template-columns: 1fr; }
+}
+.rosetta-col {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+.rosetta-math {
+  border-top: 3px solid #6a9fb5;
+}
+.rosetta-cs {
+  border-top: 3px solid #b59a6a;
+}
+.rosetta-col h4 {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 1.2rem 0;
+}
+.rosetta-math h4 { color: #6a9fb5; }
+.rosetta-cs h4 { color: #b59a6a; }
+
+.rosetta-step {
+  margin-bottom: 1.2rem;
+}
+.rosetta-step:last-child {
+  margin-bottom: 0;
+}
+.rosetta-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+.rosetta-step p {
+  color: var(--ink-secondary);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 0;
+}
+.rosetta-bridge {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+}
+.rosetta-bridge .rosetta-label {
+  color: #e8c47a;
+}
+.rosetta-bridge p {
+  color: var(--ink);
+  font-size: 0.85rem;
+}
+
+.rosetta-convergence {
+  margin-top: 2rem;
+  padding: 1.5rem 2rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-left: 3px solid #e8c47a;
+  border-radius: 6px;
+}
+.rosetta-convergence p {
+  color: var(--ink-secondary);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin-bottom: 0.8rem;
+}
+.rosetta-convergence p:last-child {
+  margin-bottom: 0;
+}
+.rosetta-convergence strong {
+  color: #e8c47a;
+}
+
+.rosetta-code {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1.2rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: var(--ink-secondary);
+  overflow-x: auto;
+  white-space: pre;
+}

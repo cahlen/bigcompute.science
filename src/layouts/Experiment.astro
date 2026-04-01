@@ -12,7 +12,36 @@ const { title, date, author, status, hardware, tags, results } = frontmatter;
         <time datetime={date}>{new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
         <span class="author">by <a href={frontmatter.author_github}>{author}</a></span>
         {status && <span class={`status status-${status}`}>{status}</span>}
+        {frontmatter.certification && (
+          <span class={`cert-badge cert-${frontmatter.certification.level}`}
+                title={frontmatter.certification.note}>
+            {frontmatter.certification.level === 'gold' ? 'GOLD' :
+             frontmatter.certification.level === 'silver' ? 'SILVER' :
+             frontmatter.certification.level === 'bronze' ? 'BRONZE' : '?'} Verified
+          </span>
+        )}
       </div>
+
+      {frontmatter.certification && (
+        <div class="cert-detail">
+          <div class="cert-detail-header">
+            <span class={`cert-badge cert-${frontmatter.certification.level}`}>
+              {frontmatter.certification.level.toUpperCase()} Verified
+            </span>
+            <span class="cert-verdict">{frontmatter.certification.verdict}</span>
+          </div>
+          <div class="cert-detail-body">
+            <span class="cert-reviewer">Reviewed by {frontmatter.certification.reviewer}</span>
+            <span class="cert-date">{frontmatter.certification.date}</span>
+          </div>
+          <p class="cert-note">{frontmatter.certification.note}</p>
+          <p class="cert-link">
+            <a href="https://github.com/cahlen/idontknow/tree/main/docs/verifications" target="_blank">View full review</a>
+            &middot;
+            <a href="https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md" target="_blank">Submit your own review</a>
+          </p>
+        </div>
+      )}
 
       {hardware && (
         <div class="hardware-block">

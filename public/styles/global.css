@@ -285,6 +285,79 @@ main {
 .status-critical { background: color-mix(in srgb, #ef4444 12%, transparent); color: #f87171; border: 1px solid color-mix(in srgb, #ef4444 25%, transparent); }
 
 /* ============================================================
+   Certification badges
+   ============================================================ */
+.cert-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: help;
+}
+.cert-gold {
+  background: linear-gradient(135deg, rgba(251,191,36,0.15), rgba(245,158,11,0.08));
+  color: #fbbf24;
+  border: 1px solid rgba(251,191,36,0.35);
+  text-shadow: 0 0 8px rgba(251,191,36,0.3);
+}
+.cert-silver {
+  background: linear-gradient(135deg, rgba(148,163,184,0.15), rgba(100,116,139,0.08));
+  color: #cbd5e1;
+  border: 1px solid rgba(148,163,184,0.35);
+}
+.cert-bronze {
+  background: linear-gradient(135deg, rgba(180,83,9,0.15), rgba(146,64,14,0.08));
+  color: #d97706;
+  border: 1px solid rgba(180,83,9,0.35);
+}
+
+.cert-detail {
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin: 0.8rem 0;
+}
+.cert-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+.cert-verdict {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+.cert-detail-body {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+}
+.cert-reviewer { font-style: italic; }
+.cert-date { opacity: 0.7; }
+.cert-note {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0.3rem 0;
+  line-height: 1.4;
+}
+.cert-link {
+  font-size: 0.7rem;
+  margin: 0.4rem 0 0;
+}
+.cert-link a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.cert-link a:hover { text-decoration: underline; }
+
+/* ============================================================
    Experiment detail — meta panel
    ============================================================ */
 

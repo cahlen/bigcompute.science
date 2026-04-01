@@ -22,6 +22,12 @@ data:
   orbit_structure: "2 orbits for all primes: {(0,0)} and everything else"
   computation_time: "133 seconds on 112 CPU cores (OpenMP)"
 
+certification:
+  level: silver
+  verdict: ACCEPT
+  reviewer: "Claude Opus 4.6 (Anthropic)"
+  date: 2026-04-01
+  note: "Dickson classification sound. Not formalized."
 code: https://github.com/cahlen/idontknow
 ---
 

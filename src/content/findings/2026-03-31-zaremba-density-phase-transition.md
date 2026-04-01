@@ -36,6 +36,12 @@ data:
   hausdorff_E12345: 0.836829443681208
   threshold: 0.5
 
+certification:
+  level: gold
+  verdict: ACCEPT_WITH_REVISION
+  reviewer: "Claude Opus 4.6 (Anthropic)"
+  date: 2026-04-01
+  note: "Delta>1/2 threshold corrected: requires transitivity too."
 code: https://github.com/cahlen/idontknow
 ---
 

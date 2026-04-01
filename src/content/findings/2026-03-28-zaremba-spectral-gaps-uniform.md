@@ -34,6 +34,13 @@ data:
   q0_estimate: "~10^5 (conditional on σ ≥ 0.344 for all primes)"
   brute_force_frontier: 100000000000
   computation_method: "cuBLAS FP64 dense matrix, N=40 Chebyshev collocation"
+
+certification:
+  level: silver
+  verdict: ACCEPT_WITH_REVISION
+  reviewer: "Claude Opus 4.6 (Anthropic)"
+  date: 2026-04-01
+  note: "Property (tau) confirmed. Threshold depends on proof framework."
 ---
 
 # Congruence Spectral Gaps for Zaremba's Semigroup Are Uniform

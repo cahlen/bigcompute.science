@@ -24,6 +24,13 @@ data:
   hardware: "NVIDIA RTX 5090"
   method: "transfer-operator, Chebyshev collocation"
   status: "CONFIRMED at n=20 — 1,048,575 subsets computed in 4,343s"
+
+certification:
+  level: gold
+  verdict: ACCEPT
+  reviewer: "Claude Opus 4.6 (Anthropic)"
+  date: 2026-04-01
+  note: "dim_H(E_{2,...,20}) corrected to 0.768. Finding strengthened."
 ---
 
 # Digit 1 Dominance: Five Digits With 1 Beat Fourteen Digits Without

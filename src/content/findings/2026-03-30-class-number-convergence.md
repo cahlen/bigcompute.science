@@ -10,6 +10,13 @@ domain: [algebraic-number-theory, cohen-lenstra-heuristics, computational-mathem
 related_experiment: /experiments/class-numbers-real-quadratic/
 
 summary: "GPU computation of 30 billion class numbers for real quadratic fields reveals that the h(d)=1 rate DECREASES from 42% at d~10^4 to 15.35% at d~10^10 and is still falling. This is NOT non-monotone convergence — the h=1 rate goes to 0 asymptotically because genus theory forces 2|h for discriminants with multiple prime factors (which become dominant by Erdos-Kac). The Cohen-Lenstra prediction of 75.4% applies to Prob(h_odd=1), not Prob(h=1). The odd-part distribution converges extremely slowly to C-L, with 3|h at 15% vs predicted 44%. CORRECTION (2026-04-01): original version incorrectly claimed non-monotone convergence to 75%. Peer review via MCP verification identified the error."
+
+certification:
+  level: gold
+  verdict: ACCEPT_WITH_REVISION
+  reviewer: "Claude Opus 4.6 (Anthropic)"
+  date: 2026-04-01
+  note: "h=1 rate corrected to →0. 75.4% is Prob(h_odd=1)."
 ---
 
 # Cohen-Lenstra Convergence Is Non-Monotone

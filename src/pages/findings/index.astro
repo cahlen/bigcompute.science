@@ -17,13 +17,16 @@ const sorted = findings.sort((a, b) =>
           <time datetime={f.frontmatter.date}>
             {new Date(f.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
           </time>
+          {f.frontmatter.certification && (
+            <span class={`cert-badge cert-${f.frontmatter.certification.level}`}
+                  title={`${f.frontmatter.certification.verdict} by ${f.frontmatter.certification.reviewer} (${f.frontmatter.certification.date})`}>
+              {f.frontmatter.certification.level === 'gold' ? 'GOLD' :
+               f.frontmatter.certification.level === 'silver' ? 'SILVER' :
+               f.frontmatter.certification.level === 'bronze' ? 'BRONZE' : '?'} Verified
+            </span>
+          )}
           {f.frontmatter.conjecture_year && (
             <span class="conjecture-age">Open for {2026 - f.frontmatter.conjecture_year} years</span>
-          )}
-          {f.frontmatter.significance && (
-            <span class={`status status-${f.frontmatter.significance === 'critical' ? 'critical' : f.frontmatter.significance === 'high' ? 'complete' : 'in-progress'}`}>
-              {f.frontmatter.significance}
-            </span>
           )}
         </div>
         <h3>{f.frontmatter.title}</h3>

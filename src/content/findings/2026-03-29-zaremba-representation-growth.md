@@ -18,6 +18,13 @@ data:
   hardest_d: [1, 13]
   hardest_R: 1
   verified_range: 1000000
+
+certification:
+  level: bronze
+  verdict: ACCEPT
+  reviewer: "Claude Opus 4.6 (Anthropic)"
+  date: 2026-04-01
+  note: "Growth exponent matches theory to 0.04%."
 ---
 
 # Zaremba Representation Counts Grow as $d^{0.674}$

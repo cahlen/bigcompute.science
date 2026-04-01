@@ -36,6 +36,12 @@ data:
     - "Dickson (1901): transitivity at all primes"
     - "GPU/arb computation: brute force + interval-certified spectral data"
 
+certification:
+  level: silver
+  verdict: REVISE_AND_RESUBMIT
+  reviewer: "Claude Opus 4.6 (Anthropic)"
+  date: 2026-04-01
+  note: "Proof framework, not completed proof. 6 gaps identified."
 code: https://github.com/cahlen/idontknow
 ---
 

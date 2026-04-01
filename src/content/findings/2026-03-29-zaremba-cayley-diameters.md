@@ -26,6 +26,12 @@ data:
   asymptotic_ratio: "~1.45"
   computation_time: "40 seconds across 8× NVIDIA B200"
 
+certification:
+  level: gold
+  verdict: ACCEPT_WITH_REVISION
+  reviewer: "Claude Opus 4.6 (Anthropic)"
+  date: 2026-04-01
+  note: "Bound corrected: diam/log(p)→1.45, not ≤2log(p)."
 code: https://github.com/cahlen/idontknow
 ---
 

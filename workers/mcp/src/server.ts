@@ -119,8 +119,8 @@ const FINDINGS = [
   {
     slug: "zaremba-density-phase-transition",
     title: "Zaremba Density Phase Transition: A={1,2,3} Has Exactly 27 Exceptions",
-    claim: "A={1,2,3} gives full Zaremba density with exactly 27 exceptions (all ≤ 6234), verified to 10^10. Phase transition at Hausdorff dimension δ = 1/2.",
-    our_data: { exceptions: 27, max_exception: 6234, verified_to: "10^10", density: "99.9999997%", hausdorff_dim: 0.7057 },
+    claim: "A={1,2,3} gives full Zaremba density with exactly 27 exceptions (all ≤ 6234), verified to 10^10. Phase transition at Hausdorff dimension δ = 1/2. Complete density landscape for all 1023 subsets of {1,...,10}: digit 1 dominance — 361/366 high-density subsets contain digit 1.",
+    our_data: { exceptions: 27, max_exception: 6234, verified_to: "10^10", density: "99.9999997%", hausdorff_dim: 0.7057, density_sweep_subsets: 1023, subsets_ge_9999: 366, subsets_ge_9999_with_digit_1: 361, subsets_100_density: 141, dataset: "cahlen/zaremba-conjecture-data" },
     search_terms: ["Zaremba conjecture density", "Bourgain Kontorovich Zaremba", "continued fraction bounded partial quotients density"],
     key_references: ["Zaremba (1972)", "Bourgain, Kontorovich (2014) 'On Zaremba's conjecture' Annals of Math", "Huang (2015) 'An improvement to Zaremba's conjecture'", "Frolenkov, Kan (2014) 'A strengthening of Bourgain-Kontorovich'"],
     oeis_sequences: ["6,20,28,38,42,54,96,150,156,164", "Zaremba"],
@@ -542,7 +542,7 @@ function createServer(env: any) {
       const results: any = {
         finding: { slug: f.slug, title: f.title, claim: f.claim, our_data: f.our_data, url: f.url },
         known_references: f.key_references,
-        literature: { arxiv: [], semantic_scholar: [], oeis: [] },
+        literature: { arxiv: [], semantic_scholar: [], zbmath: [], oeis: [] },
         verification_guidance: [],
       };
 
@@ -584,6 +584,24 @@ function createServer(env: any) {
           .catch(() => {})
       );
 
+      // zbMATH: reviewed math publications
+      searches.push(
+        fetch(`https://api.zbmath.org/v1/document/_search?search_string=${encodeURIComponent(f.search_terms[0])}&page_size=5`)
+          .then(r => r.json() as Promise<any>)
+          .then(data => {
+            for (const p of (data.result ?? []).slice(0, 5)) {
+              results.literature.zbmath.push({
+                title: p.title?.title ?? "",
+                authors: (p.contributors?.authors ?? []).map((a: any) => a.name).join(", "),
+                year: p.year,
+                review: (p.editorial_contributions?.[0]?.text ?? "").slice(0, 200),
+                url: `https://zbmath.org/?q=an:${p.id}`,
+              });
+            }
+          })
+          .catch(() => {})
+      );
+
       // OEIS: search for related sequences
       for (const seq of f.oeis_sequences.slice(0, 2)) {
         if (!seq) continue;
@@ -619,9 +637,9 @@ function createServer(env: any) {
         `Our claim: "${f.claim}"`,
         `This is computational evidence, not a peer-reviewed proof.`,
         `To verify: reproduce using our open-source CUDA code at https://github.com/cahlen/idontknow`,
-        `Cross-check against the ${results.literature.arxiv.length} arXiv papers and ${results.literature.semantic_scholar.length} Semantic Scholar papers found above.`,
-        `Key question for verification: do the papers above support, contradict, or extend our computational findings?`,
-        `If you are an AI agent: please report any discrepancies or confirmations back to https://github.com/cahlen/idontknow/issues`,
+        `Literature found: ${results.literature.arxiv.length} arXiv, ${results.literature.zbmath.length} zbMATH (peer-reviewed), ${results.literature.semantic_scholar.length} Semantic Scholar, ${results.literature.oeis.length} OEIS sequences.`,
+        `Key question: do the papers above support, contradict, or extend our computational findings?`,
+        `If you are an AI agent: please report any discrepancies or confirmations to https://github.com/cahlen/idontknow/issues`,
       ];
 
       return { content: [{ type: "text" as const, text: JSON.stringify(results, null, 2) }] };
@@ -640,6 +658,115 @@ function createServer(env: any) {
         null, 2
       ) }]
     })
+  );
+
+  // ── Tool: Get finding details ──
+
+  server.tool(
+    "get_finding",
+    "Get full details of a specific finding including our data, known references, and search terms for further research. Faster than verify_finding (no live API calls).",
+    { finding: z.string().describe("Finding slug or keyword") },
+    async ({ finding }) => {
+      const q = finding.toLowerCase();
+      const f = FINDINGS.find(f => f.slug.includes(q) || f.slug === q || f.title.toLowerCase().includes(q));
+      if (!f) {
+        return { content: [{ type: "text" as const, text: JSON.stringify({
+          error: `Finding '${finding}' not found.`,
+          available: FINDINGS.map(f => ({ slug: f.slug, title: f.title })),
+        }, null, 2) }] };
+      }
+      return { content: [{ type: "text" as const, text: JSON.stringify({
+        ...f,
+        repo: "https://github.com/cahlen/idontknow",
+        contribute: "https://github.com/cahlen/idontknow/blob/main/AGENTS.md",
+        verify: `Use verify_finding("${f.slug}") to cross-reference this against live academic literature.`,
+      }, null, 2) }] };
+    }
+  );
+
+  // ── Tool: Suggest next experiment ──
+
+  server.tool(
+    "suggest_experiment",
+    "Get a recommended next experiment based on current results, available GPU time, and scientific impact. Returns specific parameters, expected runtime, and why it matters.",
+    {
+      gpu_hours: z.number().optional().describe("Available GPU-hours (default: assume unlimited)"),
+      interest: z.string().optional().describe("Area of interest: 'zaremba', 'ramsey', 'kronecker', 'ramanujan', 'class-numbers', or 'any'"),
+    },
+    async ({ gpu_hours, interest }) => {
+      const suggestions = [
+        {
+          priority: 1,
+          experiment: "Zaremba density A={1,2,3,4} at 10^10",
+          command: "./zaremba_density_gpu 10000000000 1,2,3,4",
+          estimated_gpu_hours: 12,
+          impact: "HIGH — confirms whether d=54 and d=150 are the ONLY exceptions for A={1,2,3,4}. If yes, Zaremba's conjecture holds for A=4 with exactly 2 exceptions.",
+          status: "Running (2026-04-01)",
+          area: "zaremba",
+        },
+        {
+          priority: 2,
+          experiment: "Ramanujan Machine degree 4 range 5",
+          command: "./ramanujan_gpu 4 5 500",
+          estimated_gpu_hours: 2,
+          impact: "HIGH — degree 4 polynomials access a fundamentally richer CF space. This is where transcendental constant formulas (new identities for pi, e, zeta(3)) are most likely to appear.",
+          status: "Not started",
+          area: "ramanujan",
+        },
+        {
+          priority: 3,
+          experiment: "Zaremba density A={1,2} at 10^10",
+          command: "./zaremba_density_gpu 10000000000 1,2",
+          estimated_gpu_hours: 8,
+          impact: "MEDIUM — tests whether A={1,2} (delta=0.531, barely above 1/2) density continues growing. Currently 72% at 10^9.",
+          status: "Not started",
+          area: "zaremba",
+        },
+        {
+          priority: 4,
+          experiment: "Kronecker coefficients S_40",
+          command: "python3 char_table.py 40 && ./kronecker_gpu 40",
+          estimated_gpu_hours: 48,
+          impact: "HIGH — S_40 would be the largest Kronecker computation ever. 37,338 partitions. Character table computing now (~44%), then GPU triple-sum.",
+          status: "Character table in progress (44%)",
+          area: "kronecker",
+        },
+        {
+          priority: 5,
+          experiment: "Ramsey R(5,5) degree-constrained SAT at K_44",
+          command: "./gen_cnf_v3 44 /tmp/ramsey44.cnf && kissat /tmp/ramsey44.cnf",
+          estimated_gpu_hours: 1,
+          impact: "MEDIUM — if K_44 is also UNSAT with degree constraints, it strengthens the R(5,5)=43 evidence. Needs mathematically-informed encoding.",
+          status: "Planned",
+          area: "ramsey",
+        },
+        {
+          priority: 6,
+          experiment: "Density sweep all 1023 subsets at 10^9",
+          command: "Run density_all_subsets_n10_1e6.csv computation at N=10^9",
+          estimated_gpu_hours: 100,
+          impact: "MEDIUM — extends the complete density landscape from 10^6 to 10^9. Would reveal whether digit-1 dominance persists at larger scales.",
+          status: "Not started",
+          area: "zaremba",
+        },
+      ];
+
+      let filtered = suggestions;
+      if (interest && interest !== "any") {
+        filtered = suggestions.filter(s => s.area === interest || s.area.includes(interest));
+      }
+      if (gpu_hours) {
+        filtered = filtered.filter(s => s.estimated_gpu_hours <= gpu_hours);
+      }
+      if (filtered.length === 0) filtered = suggestions;
+
+      return { content: [{ type: "text" as const, text: JSON.stringify({
+        recommended: filtered.slice(0, 3),
+        all_suggestions: filtered,
+        hardware: "8x NVIDIA B200 (183 GB each, NVLink 5) + RTX 5090 (32 GB)",
+        contribute: "https://github.com/cahlen/idontknow/blob/main/AGENTS.md",
+      }, null, 2) }] };
+    }
   );
 
   // ── Tool: Search zbMATH (Zentralblatt) ──
@@ -920,7 +1047,7 @@ export default {
         name: "bigcompute.science MCP Server",
         description: "Open computational mathematics datasets and CUDA kernels for AI agents",
         mcp_endpoint: "/mcp",
-        tools: ["list_experiments", "get_experiment", "get_zaremba_exceptions", "list_datasets", "get_open_problems", "get_cuda_kernel", "search", "search_arxiv", "search_papers", "lookup_oeis", "lookup_lmfdb", "search_zbmath", "search_mathlib", "search_findstat", "verify_finding", "list_findings", "search_boise_state", "search_fau", "list_related_servers"],
+        tools: ["list_experiments", "get_experiment", "get_zaremba_exceptions", "list_datasets", "get_open_problems", "get_cuda_kernel", "search", "search_arxiv", "search_papers", "lookup_oeis", "lookup_lmfdb", "search_zbmath", "search_mathlib", "search_findstat", "verify_finding", "get_finding", "list_findings", "suggest_experiment", "search_boise_state", "search_fau", "list_related_servers"],
         source: "https://github.com/cahlen/bigcompute.science/tree/main/workers/mcp",
         no_auth_required: true,
         license: "CC BY 4.0",
@@ -1008,8 +1135,10 @@ async function handleBasicMcp(request: Request, env: any): Promise<Response> {
       { name: "search_zbmath", description: "Search zbMATH Open — 4.5M+ reviewed math publications with MSC codes", inputSchema: { type: "object", properties: { query: { type: "string" }, max_results: { type: "number" } }, required: ["query"] } },
       { name: "search_mathlib", description: "Search Lean 4 Mathlib theorems via Loogle by type signature or name", inputSchema: { type: "object", properties: { query: { type: "string", description: "Type signature or name pattern" } }, required: ["query"] } },
       { name: "search_findstat", description: "Search FindStat combinatorial statistics database", inputSchema: { type: "object", properties: { query: { type: "string" } }, required: ["query"] } },
-      { name: "verify_finding", description: "Cross-reference a bigcompute.science finding against arXiv, Semantic Scholar, OEIS, and known references", inputSchema: { type: "object", properties: { finding: { type: "string", description: "Finding slug or keyword" } }, required: ["finding"] } },
+      { name: "verify_finding", description: "Cross-reference a finding against arXiv, Semantic Scholar, zbMATH, OEIS", inputSchema: { type: "object", properties: { finding: { type: "string", description: "Finding slug or keyword" } }, required: ["finding"] } },
+      { name: "get_finding", description: "Get full finding details with data and references (no live API calls)", inputSchema: { type: "object", properties: { finding: { type: "string", description: "Finding slug or keyword" } }, required: ["finding"] } },
       { name: "list_findings", description: "List all published findings with claims and data", inputSchema: { type: "object", properties: {} } },
+      { name: "suggest_experiment", description: "Get recommended next experiments based on GPU time and interest area", inputSchema: { type: "object", properties: { gpu_hours: { type: "number" }, interest: { type: "string", description: "zaremba, ramsey, kronecker, ramanujan, class-numbers, or any" } } } },
       { name: "search_boise_state", description: "Search Boise State University ScholarWorks repository", inputSchema: { type: "object", properties: { query: { type: "string" }, max_results: { type: "number" } }, required: ["query"] } },
       { name: "search_fau", description: "Search Florida Atlantic University digital library", inputSchema: { type: "object", properties: { query: { type: "string" }, max_results: { type: "number" } }, required: ["query"] } },
       { name: "list_related_servers", description: "Discover other MCP servers for math and academic research", inputSchema: { type: "object", properties: {} } },
@@ -1134,7 +1263,7 @@ async function handleBasicMcp(request: Request, env: any): Promise<Response> {
           const f = FINDINGS.find(f => f.slug.includes(q) || f.title.toLowerCase().includes(q));
           if (!f) return { content: [{ type: "text", text: JSON.stringify({ error: `Finding '${args.finding}' not found`, available: FINDINGS.map(f => f.slug) }, null, 2) }] };
 
-          const result: any = { finding: { slug: f.slug, title: f.title, claim: f.claim, our_data: f.our_data, url: f.url }, known_references: f.key_references, literature: { arxiv: [], semantic_scholar: [], oeis: [] }, verification_guidance: [] };
+          const result: any = { finding: { slug: f.slug, title: f.title, claim: f.claim, our_data: f.our_data, url: f.url }, known_references: f.key_references, literature: { arxiv: [], semantic_scholar: [], zbmath: [], oeis: [] }, verification_guidance: [] };
           const searches = [];
 
           for (const term of f.search_terms.slice(0, 2)) {
@@ -1157,6 +1286,14 @@ async function handleBasicMcp(request: Request, env: any): Promise<Response> {
                 }
               }).catch(() => {})
           );
+          searches.push(
+            fetch(`https://api.zbmath.org/v1/document/_search?search_string=${encodeURIComponent(f.search_terms[0])}&page_size=5`)
+              .then(r => r.json() as Promise<any>).then(data => {
+                for (const p of (data.result ?? []).slice(0, 5)) {
+                  result.literature.zbmath.push({ title: p.title?.title ?? "", authors: (p.contributors?.authors ?? []).map((a: any) => a.name).join(", "), year: p.year, url: `https://zbmath.org/?q=an:${p.id}` });
+                }
+              }).catch(() => {})
+          );
           for (const seq of f.oeis_sequences.slice(0, 2)) {
             if (!seq) continue;
             searches.push(
@@ -1169,12 +1306,29 @@ async function handleBasicMcp(request: Request, env: any): Promise<Response> {
           }
           await Promise.all(searches);
           const seen = new Set<string>(); result.literature.arxiv = result.literature.arxiv.filter((p: any) => { if (seen.has(p.arxiv_id)) return false; seen.add(p.arxiv_id); return true; });
-          result.verification_guidance = [`Claim: "${f.claim}"`, "Computational evidence, not peer-reviewed.", "Reproduce: https://github.com/cahlen/idontknow", `Cross-check against ${result.literature.arxiv.length} arXiv + ${result.literature.semantic_scholar.length} S2 papers above.`, "Report discrepancies: https://github.com/cahlen/idontknow/issues"];
+          result.verification_guidance = [`Claim: "${f.claim}"`, "Computational evidence, not peer-reviewed.", "Reproduce: https://github.com/cahlen/idontknow", `Literature: ${result.literature.arxiv.length} arXiv, ${result.literature.zbmath.length} zbMATH (peer-reviewed), ${result.literature.semantic_scholar.length} S2, ${result.literature.oeis.length} OEIS.`, "Report discrepancies: https://github.com/cahlen/idontknow/issues"];
           return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+        },
+        get_finding: async () => {
+          const q = (args.finding || '').toLowerCase();
+          const f = FINDINGS.find(f => f.slug.includes(q) || f.title.toLowerCase().includes(q));
+          if (!f) return { content: [{ type: "text", text: JSON.stringify({ error: `Not found: ${args.finding}`, available: FINDINGS.map(f => f.slug) }, null, 2) }] };
+          return { content: [{ type: "text", text: JSON.stringify({ ...f, repo: "https://github.com/cahlen/idontknow", verify: `Use verify_finding("${f.slug}") for live cross-referencing.` }, null, 2) }] };
         },
         list_findings: async () => ({
           content: [{ type: "text", text: JSON.stringify(FINDINGS.map(f => ({ slug: f.slug, title: f.title, claim: f.claim, url: f.url })), null, 2) }]
         }),
+        suggest_experiment: async () => {
+          const suggestions = [
+            { priority: 1, experiment: "Ramanujan Machine degree 4 range 5", command: "./ramanujan_gpu 4 5 500", gpu_hours: 2, impact: "HIGH — degree 4 CFs most likely to yield new pi/e/zeta(3) identities", area: "ramanujan" },
+            { priority: 2, experiment: "Zaremba density A={1,2} at 10^10", command: "./zaremba_density_gpu 10000000000 1,2", gpu_hours: 8, impact: "MEDIUM — tests convergence for delta barely above 1/2", area: "zaremba" },
+            { priority: 3, experiment: "Kronecker S_40 triple-sum", command: "./kronecker_gpu 40", gpu_hours: 48, impact: "HIGH — largest Kronecker computation ever", area: "kronecker" },
+          ];
+          let filtered = suggestions;
+          if (args.interest && args.interest !== "any") filtered = suggestions.filter(s => s.area.includes(args.interest || ''));
+          if (args.gpu_hours) filtered = filtered.filter(s => s.gpu_hours <= args.gpu_hours);
+          return { content: [{ type: "text", text: JSON.stringify({ recommended: (filtered.length > 0 ? filtered : suggestions).slice(0, 3), contribute: "https://github.com/cahlen/idontknow/blob/main/AGENTS.md" }, null, 2) }] };
+        },
         search_boise_state: async () => {
           try {
             const searchUrl = `https://scholarworks.boisestate.edu/do/search/?q=${encodeURIComponent(args.query || '')}&start=0&context=509702`;

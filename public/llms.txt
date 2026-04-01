@@ -6,7 +6,7 @@ All work produced through human-AI collaboration (Cahlen Humphreys + Claude). No
 
 ## Experiments
 
-- [Zaremba 210B Verification](/experiments/zaremba-conjecture-8b-verification/): 210B denominators verified, zero failures. Conditional framework to all d. (complete)
+- [Zaremba 210B Verification](/experiments/zaremba-conjecture-verification/): 210B denominators verified, zero failures. Conditional framework to all d. (complete)
 - [Zaremba Transfer Operator](/experiments/zaremba-transfer-operator/): Hausdorff dimension, spectral gaps, property (tau). (complete)
 - [Ramsey R(5,5)](/experiments/ramsey-r55-lower-bound/): 656/656 K42 colorings UNSAT. Structural attack on R(5,5)<=45. (in-progress)
 - [Class Numbers](/experiments/class-numbers-real-quadratic/): 30B discriminants for real quadratic fields. Cohen-Lenstra at scale. (in-progress)

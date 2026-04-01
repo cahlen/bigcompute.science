@@ -7,7 +7,7 @@ photo: "/images/mathematicians/zaremba.jpg"
 fields: ["number-theory", "numerical-analysis"]
 key_works:
   - "La méthode des bons treillis (1972)"
-experiments: ["/experiments/zaremba-conjecture-8b-verification/", "/experiments/zaremba-transfer-operator/"]
+experiments: ["/experiments/zaremba-conjecture-verification/", "/experiments/zaremba-transfer-operator/"]
 quote: null
 wikipedia: "https://en.wikipedia.org/wiki/Stefan_Zaremba_(mathematician)"
 ---

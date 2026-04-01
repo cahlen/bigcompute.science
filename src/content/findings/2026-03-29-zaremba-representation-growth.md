@@ -8,7 +8,7 @@ significance: medium
 
 conjecture_year: 1972
 domain: [number-theory, continued-fractions]
-related_experiment: /experiments/zaremba-conjecture-8b-verification/
+related_experiment: /experiments/zaremba-conjecture-verification/
 
 summary: "The number of CF representations R(d) with partial quotients ≤ 5 grows as d^{0.674}, matching the transfer operator prediction d^{2δ-1}. The hardest cases (fewest representations) are d=1 and d=13 with R(d)=1. Large d values are easier, not harder. Verified via GPU representation counter to d = 10^6."
 

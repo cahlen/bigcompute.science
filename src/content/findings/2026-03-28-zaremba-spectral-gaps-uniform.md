@@ -8,7 +8,7 @@ significance: high
 
 conjecture_year: 1972
 domain: [number-theory, spectral-theory, continued-fractions]
-related_experiment: /experiments/zaremba-conjecture-8b-verification/
+related_experiment: /experiments/zaremba-conjecture-verification/
 
 summary: "FP64/N=40 cuBLAS computation of congruence spectral gaps for Zaremba's semigroup Γ_{1,...,5}. All 168 primes to p=1000 have σ_p ≥ 0.344. Global minimum: σ(p=491) = 0.344. Primes to p=3500 verified on 8× B200 (in progress). Combined with flat gap bound |λ₂|/√p ≤ 2.18 for 9,592 primes, property (τ) confirmed with explicit constant. The convergence threshold σ > 0.277 is met with margin 0.067."
 

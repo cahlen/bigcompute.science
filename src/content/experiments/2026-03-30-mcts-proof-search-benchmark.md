@@ -40,7 +40,7 @@ data: /data/mcts-benchmark/
 
 ## Abstract
 
-In our previous experiment ([Zaremba verification](/experiments/zaremba-conjecture-8b-verification/)), we discovered that SOTA theorem-proving LLMs nail proof *structure* but fail at witness *search* — producing syntactically perfect proofs with wrong values across 80 attempts. This experiment tests whether Monte Carlo Tree Search (MCTS) over the tactic space fixes this bottleneck. We compare naive i.i.d. sampling (the standard approach) against UCB1-guided tree search on the same proof obligations, measuring success rate vs. compute budget.
+In our previous experiment ([Zaremba verification](/experiments/zaremba-conjecture-verification/)), we discovered that SOTA theorem-proving LLMs nail proof *structure* but fail at witness *search* — producing syntactically perfect proofs with wrong values across 80 attempts. This experiment tests whether Monte Carlo Tree Search (MCTS) over the tactic space fixes this bottleneck. We compare naive i.i.d. sampling (the standard approach) against UCB1-guided tree search on the same proof obligations, measuring success rate vs. compute budget.
 
 ## Background
 

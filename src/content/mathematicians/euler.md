@@ -8,7 +8,7 @@ fields: ["analysis", "number-theory", "continued-fractions"]
 key_works:
   - "De fractionibus continuis (1737)"
   - "Introductio in analysin infinitorum (1748)"
-experiments: ["/experiments/zaremba-conjecture-8b-verification/", "/experiments/ramanujan-machine-gpu/"]
+experiments: ["/experiments/zaremba-conjecture-verification/", "/experiments/ramanujan-machine-gpu/"]
 quote: null
 wikipedia: "https://en.wikipedia.org/wiki/Leonhard_Euler"
 ---

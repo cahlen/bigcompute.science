@@ -7,7 +7,7 @@ photo: "/images/mathematicians/kontorovich.jpg"
 fields: ["number-theory", "spectral-theory"]
 key_works:
   - "On Zaremba's conjecture (with Bourgain, Annals 2014)"
-experiments: ["/experiments/zaremba-conjecture-8b-verification/"]
+experiments: ["/experiments/zaremba-conjecture-verification/"]
 quote: null
 wikipedia: "https://en.wikipedia.org/wiki/Alex_Kontorovich"
 ---

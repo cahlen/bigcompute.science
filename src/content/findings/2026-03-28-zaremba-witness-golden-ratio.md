@@ -8,7 +8,7 @@ significance: medium
 
 conjecture_year: 1972
 domain: [number-theory, continued-fractions, dynamical-systems]
-related_experiment: /experiments/zaremba-conjecture-8b-verification/
+related_experiment: /experiments/zaremba-conjecture-verification/
 
 summary: "The smallest Zaremba witness for d concentrates at a/d ≈ 0.171 with 99.7% sharing CF prefix [0; 5, 1, ...]. The concentration lies between the convergents 1/6 and 2/11, connected to 1/(5+φ) where φ is the golden ratio. The bound A=5 is tight — 99.9% of cases require max quotient exactly 5."
 

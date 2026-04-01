@@ -162,7 +162,7 @@ The spectral data is complete. What's needed to close the conjecture is making B
 
 ## Connection to Brute-Force Verification
 
-Our parallel brute-force verification (see [companion experiment](/experiments/zaremba-conjecture-8b-verification)) found:
+Our parallel brute-force verification (see [companion experiment](/experiments/zaremba-conjecture-verification)) found:
 
 - **Zero counterexamples** across all tested ranges up to $d \sim 3 \times 10^9$
 - **99.7% of witnesses** have CF prefix $[0;\, 5, 1, \ldots]$

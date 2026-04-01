@@ -7,7 +7,7 @@ author_github: https://github.com/cahlen
 significance: high
 
 domain: [computational-methods, gpu-computing, number-theory]
-related_experiment: /experiments/zaremba-conjecture-8b-verification/
+related_experiment: /experiments/zaremba-conjecture-verification/
 
 summary: "Reformulating CF tree enumeration as batched 2×2 matrix multiplication on GPU eliminates all CPU bottlenecks. The fused expand+mark+compact kernel verifies 100M values in 7.5 seconds on a single B200, 175× faster than the previous tree-walk approach. At 10B values, 8 GPUs complete in 43 seconds."
 

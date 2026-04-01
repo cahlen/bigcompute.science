@@ -61,7 +61,7 @@ We compute things that require serious hardware — 8×NVIDIA B200 (1.43 TB VRAM
 ## Current content
 
 ### Experiments (10, 7 complete)
-1. `/experiments/zaremba-conjecture-8b-verification/` — Zaremba's Conjecture: 210B verified, conditional framework to 10^1500 (complete)
+1. `/experiments/zaremba-conjecture-verification/` — Zaremba's Conjecture: 210B verified, conditional framework to 10^1500 (complete)
 2. `/experiments/zaremba-transfer-operator/` — Transfer operator spectral analysis for Zaremba (complete)
 3. `/experiments/mcts-proof-search-benchmark/` — MCTS vs naive sampling for LLM theorem proving (planned)
 4. `/experiments/ramsey-r55-lower-bound/` — Ramsey R(5,5): exhaustive extension search, 656/656 K42 colorings UNSAT, strongest evidence R(5,5)=43 (complete)

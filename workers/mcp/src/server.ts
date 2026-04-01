@@ -314,24 +314,137 @@ export default {
   }
 };
 
-// ─── Fallback basic MCP handler (no agents package needed) ──────
+// ─── Fallback MCP handler with proper protocol support ──────────
 
 async function handleBasicMcp(request: Request, env: any): Promise<Response> {
+  if (request.method === "GET") {
+    // SSE endpoint — not supported in fallback
+    return new Response("SSE not supported in fallback mode. Use POST.", { status: 405 });
+  }
+
+  if (request.method === "OPTIONS") {
+    return new Response(null, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Accept, Mcp-Session-Id",
+      }
+    });
+  }
+
   if (request.method !== "POST") {
-    return new Response("MCP server. Send POST with JSON-RPC.", { status: 405 });
+    return new Response("Method not allowed", { status: 405 });
   }
 
   const body = await request.json() as any;
-  const server = createServer(env);
+  const headers = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+  };
 
-  // For now, return the server info
+  // Handle initialize
+  if (body.method === "initialize") {
+    return new Response(JSON.stringify({
+      jsonrpc: "2.0",
+      id: body.id,
+      result: {
+        protocolVersion: "2025-03-26",
+        capabilities: {
+          tools: { listChanged: false },
+          resources: { listChanged: false },
+        },
+        serverInfo: {
+          name: "bigcompute.science",
+          version: "1.0.0",
+        },
+      }
+    }), { headers });
+  }
+
+  // Handle initialized notification (no response needed)
+  if (body.method === "notifications/initialized") {
+    return new Response(null, { status: 204 });
+  }
+
+  // Handle tools/list
+  if (body.method === "tools/list") {
+    const toolDefs = [
+      { name: "list_experiments", description: "List all experiments with status and key results", inputSchema: { type: "object", properties: {} } },
+      { name: "get_experiment", description: "Get full details of a specific experiment", inputSchema: { type: "object", properties: { slug: { type: "string", description: "Experiment slug" } }, required: ["slug"] } },
+      { name: "get_zaremba_exceptions", description: "Get the 27 Zaremba exceptions for A={1,2,3}", inputSchema: { type: "object", properties: {} } },
+      { name: "list_datasets", description: "List all Hugging Face datasets", inputSchema: { type: "object", properties: {} } },
+      { name: "get_open_problems", description: "Get open problems that need GPU compute", inputSchema: { type: "object", properties: {} } },
+      { name: "get_cuda_kernel", description: "Get CUDA kernel compile and run commands", inputSchema: { type: "object", properties: { experiment: { type: "string", description: "Experiment name" } }, required: ["experiment"] } },
+      { name: "search", description: "Search experiments, findings, and datasets", inputSchema: { type: "object", properties: { query: { type: "string", description: "Search query" } }, required: ["query"] } },
+    ];
+    return new Response(JSON.stringify({
+      jsonrpc: "2.0",
+      id: body.id,
+      result: { tools: toolDefs }
+    }), { headers });
+  }
+
+  // Handle tools/call
+  if (body.method === "tools/call") {
+    const toolName = body.params?.name;
+    const args = body.params?.arguments || {};
+
+    // Create server and use its registered tools
+    const server = createServer(env);
+
+    // Simple dispatch — call the tool by name
+    let result: any;
+    try {
+      // Use the server's internal tool handling
+      const toolMap: Record<string, () => Promise<any>> = {
+        list_experiments: async () => ({
+          content: [{ type: "text", text: JSON.stringify(EXPERIMENTS.map(e => ({ slug: e.slug, title: e.title, status: e.status, summary: e.summary })), null, 2) }]
+        }),
+        get_zaremba_exceptions: async () => ({
+          content: [{ type: "text", text: JSON.stringify({
+            digit_set: "{1,2,3}", verified_to: "10^10", total_exceptions: 27, all_below: 6234,
+            exceptions: [6,20,28,38,42,54,96,150,156,164,216,228,318,350,384,558,770,876,1014,1155,1170,1410,1870,2052,2370,5052,6234],
+            hierarchy: { "A={1,2,3}": "27 exceptions", "A={1,2,3,4}": "2 exceptions (d=54, d=150)", "A={1,2,3,4,5}": "0 exceptions" },
+          }, null, 2) }]
+        }),
+        list_datasets: async () => ({
+          content: [{ type: "text", text: JSON.stringify(DATASETS.map(d => ({ ...d, url: `https://huggingface.co/datasets/${d.id}` })), null, 2) }]
+        }),
+        get_open_problems: async () => ({
+          content: [{ type: "text", text: JSON.stringify({ problems: OPEN_PROBLEMS, how_to_contribute: "https://github.com/cahlen/idontknow/blob/main/AGENTS.md" }, null, 2) }]
+        }),
+        get_experiment: async () => {
+          const exp = EXPERIMENTS.find(e => e.slug.includes(args.slug || '') || e.slug === args.slug);
+          return { content: [{ type: "text", text: exp ? JSON.stringify(exp, null, 2) : `Not found: ${args.slug}` }] };
+        },
+        get_cuda_kernel: async () => {
+          const exp = EXPERIMENTS.find(e => e.slug.includes((args.experiment || '').toLowerCase()) || e.title.toLowerCase().includes((args.experiment || '').toLowerCase()));
+          return { content: [{ type: "text", text: exp?.cuda_kernel ? JSON.stringify({ kernel: exp.cuda_kernel, compile: exp.compile, run: exp.run }, null, 2) : `Not found: ${args.experiment}` }] };
+        },
+        search: async () => {
+          const q = (args.query || '').toLowerCase();
+          const results = EXPERIMENTS.filter(e => e.title.toLowerCase().includes(q) || e.slug.includes(q)).map(e => ({ type: "experiment", slug: e.slug, title: e.title }));
+          return { content: [{ type: "text", text: JSON.stringify(results, null, 2) }] };
+        },
+      };
+
+      const handler = toolMap[toolName];
+      result = handler ? await handler() : { content: [{ type: "text", text: `Unknown tool: ${toolName}` }] };
+    } catch (e: any) {
+      result = { content: [{ type: "text", text: `Error: ${e.message}` }] };
+    }
+
+    return new Response(JSON.stringify({
+      jsonrpc: "2.0",
+      id: body.id,
+      result,
+    }), { headers });
+  }
+
+  // Unknown method
   return new Response(JSON.stringify({
     jsonrpc: "2.0",
     id: body.id,
-    result: {
-      name: "bigcompute.science",
-      version: "1.0.0",
-      tools: ["list_experiments", "get_experiment", "get_zaremba_exceptions", "list_datasets", "get_open_problems", "get_cuda_kernel", "search"],
-    }
-  }), { headers: { "Content-Type": "application/json" } });
+    error: { code: -32601, message: `Method not found: ${body.method}` }
+  }), { headers });
 }

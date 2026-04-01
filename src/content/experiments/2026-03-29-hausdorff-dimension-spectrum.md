@@ -24,6 +24,7 @@ tags:
   method: [transfer-operator, chebyshev-collocation, eigenvalue-computation, hausdorff-dimension]
 
 results:
+  problem: "Complete Hausdorff dimension spectrum for all subsets of digits 1 through 20"
   total_subsets: 1048575
   max_digit: 20
   chebyshev_order: 40

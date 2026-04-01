@@ -24,6 +24,7 @@ tags:
   method: [transfer-operator, chebyshev-collocation, lyapunov-exponent]
 
 results:
+  problem: "Lyapunov exponents for all 1,048,575 continued fraction digit subsets"
   total_subsets: 1048575
   max_digit: 20
   chebyshev_order: 40

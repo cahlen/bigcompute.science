@@ -25,6 +25,7 @@ tags:
   method: [cuda-kernel, quad-double-arithmetic, kahan-summation]
 
 results:
+  problem: "Convergence of the Flint Hills series to 10 billion terms with quad-double precision"
   S_10e10: 30.31454612296317
   max_N: 10000000000
   runtime_seconds: 1.9

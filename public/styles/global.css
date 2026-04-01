@@ -202,6 +202,14 @@ main {
   font-weight: 600;
 }
 
+.card-desc {
+  color: var(--ink-secondary);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  margin: 0 0 0.5rem 0;
+  font-family: var(--font-sans);
+}
+
 .card-header {
   display: flex;
   justify-content: space-between;

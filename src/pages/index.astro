@@ -28,6 +28,12 @@ const sorted = experiments.sort((a, b) =>
           )}
         </div>
         <h3>{exp.frontmatter.title}</h3>
+        {exp.frontmatter.results?.problem && (
+          <p class="card-desc">{exp.frontmatter.results.problem}</p>
+        )}
+        {exp.frontmatter.results?.status && !exp.frontmatter.results?.problem && (
+          <p class="card-desc">{exp.frontmatter.results.status}</p>
+        )}
         <div class="card-meta">
           <span class="hw-summary">{exp.frontmatter.hardware?.gpus}</span>
           {(exp.frontmatter.results?.conjecture_year || exp.frontmatter.conjecture_year) && (

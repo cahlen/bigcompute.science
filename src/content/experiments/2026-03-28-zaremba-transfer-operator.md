@@ -26,6 +26,7 @@ tags:
   method: [transfer-operator, chebyshev-collocation, eigenvalue-computation, spectral-gap]
 
 results:
+  problem: "Hausdorff dimension, spectral gaps, and property (tau) for the Zaremba semigroup"
   hausdorff_dimension: 0.836829443681208
   precision_digits: 15
   two_delta: 1.674

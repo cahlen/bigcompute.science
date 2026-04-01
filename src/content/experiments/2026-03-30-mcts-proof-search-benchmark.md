@@ -26,6 +26,7 @@ tags:
   method: [mcts, llm-proving, tree-search, formal-verification]
 
 results:
+  problem: "Benchmark LLM theorem provers with Monte Carlo Tree Search on Lean 4"
   benchmark: "MCTS vs naive sampling for Lean 4 proof search"
   conjecture_year: 1972
 

@@ -24,6 +24,7 @@ tags:
   method: [transfer-operator, chebyshev-collocation, thermodynamic-formalism, legendre-transform]
 
 results:
+  problem: "Multifractal singularity spectrum of the Minkowski question-mark function"
   q_values: 2001
   q_range: "-10 to 10"
   q_step: 0.01

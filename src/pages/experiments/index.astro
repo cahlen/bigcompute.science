@@ -8,7 +8,10 @@ const sorted = experiments.sort((a, b) =>
 ---
 
 <Base title="All Experiments">
-  <h1>All Experiments</h1>
+  <h1 class="m-reveal">All Experiments</h1>
+  <p class="m-reveal" style="color: var(--muted); margin-bottom: 1.5rem; font-size: 0.9rem; font-style: italic;">
+    GPU-accelerated exploration of open conjectures. Every experiment has CUDA source, reproduction commands, and open data.
+  </p>
 
   <div class="experiments-list">
     {sorted.map((exp) => (
@@ -30,4 +33,25 @@ const sorted = experiments.sort((a, b) =>
       </a>
     ))}
   </div>
+
+  <script is:inline>
+  (function() {
+    var reveals = document.querySelectorAll('.m-reveal');
+    function onScroll() {
+      var vh = window.innerHeight;
+      for (var i = 0; i < reveals.length; i++) {
+        var el = reveals[i];
+        if (el.getBoundingClientRect().top < vh * 0.85) el.classList.add('visible');
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+  </script>
+
+  <style>
+    .m-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .m-reveal.visible { opacity: 1; transform: translateY(0); }
+    h1 { font-family: var(--font-serif); letter-spacing: -0.03em; }
+  </style>
 </Base>

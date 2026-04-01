@@ -10,14 +10,14 @@ const sorted = experiments.sort((a, b) =>
 
 <Base title="Home" description="Experimental results from heavy computation. Custom CUDA kernels, GPU clusters, big math, serious hardware.">
   <section class="hero">
-    <h1>bigcompute<span>.science</span></h1>
-    <p class="tagline">Experimental results from heavy computation.</p>
-    <p class="subtitle">Custom CUDA kernels. GPU clusters. Big math. Serious hardware. Open results.</p>
-    <p class="subtitle agent-callout">Human-readable. <a href="/llms.txt">Agent-consumable</a>.</p>
+    <h1 class="m-reveal">bigcompute<span>.science</span></h1>
+    <p class="tagline m-reveal">Experimental results from heavy computation.</p>
+    <p class="subtitle m-reveal">Custom CUDA kernels. GPU clusters. Big math. Serious hardware. Open results.</p>
+    <p class="subtitle agent-callout m-reveal">Human-readable. <a href="/llms.txt">Agent-consumable</a>. <a href="/verification/">Verified</a>.</p>
   </section>
 
   <section class="experiments-list">
-    <h2>Experiments</h2>
+    <h2 class="m-reveal">Experiments</h2>
     {sorted.map((exp) => (
       <a href={`/experiments/${exp.frontmatter.slug}/`} class="experiment-card">
         <div class="card-header">
@@ -54,7 +54,7 @@ const sorted = experiments.sort((a, b) =>
     ))}
   </section>
 
-  <section class="connect">
+  <section class="connect m-reveal">
     <h2>Start Exploring</h2>
     <p class="connect-intro">
       Every experiment on this site has CUDA source code, reproduction commands, and open datasets.
@@ -107,7 +107,7 @@ const sorted = experiments.sort((a, b) =>
     </div>
   </section>
 
-  <section class="about">
+  <section class="about m-reveal">
     <h2>What is this?</h2>
     <p>
       A guerrilla mathematics lab. GPU-accelerated exploration of open conjectures — Zaremba, Ramsey R(5,5), Cohen-Lenstra, Kronecker coefficients, and more. Human-AI collaborative. Not peer-reviewed. All data open.
@@ -116,4 +116,30 @@ const sorted = experiments.sort((a, b) =>
       Every experiment includes exact hardware specs, method, raw data, and commands to reproduce. Content is designed for both human readers and AI agents — see <a href="/llms.txt">/llms.txt</a>.
     </p>
   </section>
+
+  <script is:inline>
+  (function() {
+    var reveals = document.querySelectorAll('.m-reveal');
+    function onScroll() {
+      var vh = window.innerHeight;
+      for (var i = 0; i < reveals.length; i++) {
+        var el = reveals[i];
+        if (el.getBoundingClientRect().top < vh * 0.85) el.classList.add('visible');
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+  </script>
+
+  <style>
+    .m-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .m-reveal.visible { opacity: 1; transform: translateY(0); }
+    .m-reveal:nth-child(2) { transition-delay: 0.05s; }
+    .m-reveal:nth-child(3) { transition-delay: 0.1s; }
+    .m-reveal:nth-child(4) { transition-delay: 0.15s; }
+    .about h2 { font-family: var(--font-serif); font-size: 1.3rem; letter-spacing: -0.02em; margin-bottom: 0.8rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
+    .about p { color: var(--ink-secondary); line-height: 1.8; margin-bottom: 1rem; }
+    .about a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted color-mix(in srgb, var(--accent) 50%, transparent); }
+  </style>
 </Base>

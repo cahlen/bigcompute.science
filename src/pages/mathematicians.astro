@@ -11,8 +11,8 @@ function hasPhoto(slug: string): boolean { return PHOTOS.has(slug); }
 ---
 
 <Base title="Shoulders of Giants" description="The mathematicians whose work we build upon">
-  <h1>Shoulders of Giants</h1>
-  <p class="page-intro">
+  <h1 class="m-reveal">Shoulders of Giants</h1>
+  <p class="page-intro m-reveal">
     Every computation on this site builds on centuries of human mathematical thought.
     These are the people whose conjectures, theorems, and insights made our work possible.
     We compute with GPUs; they computed with chalk and extraordinary minds.
@@ -257,5 +257,22 @@ function hasPhoto(slug: string): boolean { return PHOTOS.has(slug); }
       .giant-card { flex-direction: column; gap: 1rem; padding: 1.5rem; }
       .giant-photo { margin: 0 auto; }
     }
+    .m-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .m-reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
+
+  <script is:inline>
+  (function() {
+    var reveals = document.querySelectorAll('.m-reveal');
+    function onScroll() {
+      var vh = window.innerHeight;
+      for (var i = 0; i < reveals.length; i++) {
+        var el = reveals[i];
+        if (el.getBoundingClientRect().top < vh * 0.85) el.classList.add('visible');
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+  </script>
 </Base>

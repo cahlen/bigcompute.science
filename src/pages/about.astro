@@ -4,9 +4,9 @@ import Base from '../layouts/Base.astro';
 
 <Base title="About" description="Why bigcompute.science exists and how to contribute">
   <section class="about-page">
-    <h1>About</h1>
+    <h1 class="m-reveal">About</h1>
 
-    <p class="tagline"><strong>Big math</strong> — computational mathematics at scales requiring specialized hardware — GPU clusters, HPC systems, or custom accelerators — to achieve results within practical timeframes. Problems where the answer exceeds the capacity of commodity hardware.</p>
+    <p class="tagline m-reveal"><strong>Big math</strong> — computational mathematics at scales requiring specialized hardware — GPU clusters, HPC systems, or custom accelerators — to achieve results within practical timeframes. Problems where the answer exceeds the capacity of commodity hardware.</p>
 
     <p>
       bigcompute.science is an open, collaborative effort to publish results from big math — the kind that requires custom CUDA kernels, GPU clusters, and serious engineering to execute.
@@ -20,7 +20,7 @@ import Base from '../layouts/Base.astro';
       Every result on this site is designed to be consumed by both humans and machines. The structured YAML frontmatter in each experiment means an AI agent can find, parse, and reason about our results without scraping HTML. The <a href="/llms.txt">/llms.txt</a> endpoint describes how to consume everything programmatically.
     </p>
 
-    <h2>Why This Matters</h2>
+    <h2 class="m-reveal">Why This Matters</h2>
 
     <p>
       AI models are increasingly being used for mathematical reasoning and scientific computation. But they waste cycles rediscovering things that have already been computed. If a mathematical agent needs to know whether Zaremba's conjecture holds for d up to 10 million — that answer exists here, verified, with the code to reproduce it.
@@ -37,7 +37,7 @@ import Base from '../layouts/Base.astro';
       <li><strong>Honest</strong> — experiments marked as planned, in-progress, or complete</li>
     </ul>
 
-    <h2>Contribute</h2>
+    <h2 class="m-reveal">Contribute</h2>
 
     <p>
       The site is static Astro + KaTeX on Cloudflare Pages. Adding an experiment is dropping a markdown file with structured frontmatter. See the <a href="https://github.com/cahlen/bigcompute.science">GitHub repo</a> for the template.
@@ -47,9 +47,9 @@ import Base from '../layouts/Base.astro';
       Got serious hardware and interesting results? Open a PR.
     </p>
 
-    <h2>Who</h2>
+    <h2 class="m-reveal">Who</h2>
 
-    <div class="who-section">
+    <div class="who-section m-reveal">
       <img src="https://cdn-avatars.huggingface.co/v1/production/uploads/64495e3c958a6aca061119f2/-D9CURxArrhYAc9oFdsO6.png" alt="Cahlen Humphreys" class="profile-pic" />
       <div>
         <p>
@@ -62,4 +62,24 @@ import Base from '../layouts/Base.astro';
       <a href="https://x.com/cahlenhumphreys">X</a> · <a href="https://huggingface.co/cahlen">Hugging Face</a> · <a href="https://www.linkedin.com/in/cahlenhu">LinkedIn</a>
     </p>
   </section>
+
+  <script is:inline>
+  (function() {
+    var reveals = document.querySelectorAll('.m-reveal');
+    function onScroll() {
+      var vh = window.innerHeight;
+      for (var i = 0; i < reveals.length; i++) {
+        var el = reveals[i];
+        if (el.getBoundingClientRect().top < vh * 0.85) el.classList.add('visible');
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+  </script>
+
+  <style>
+    .m-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .m-reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
 </Base>

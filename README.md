@@ -2,7 +2,30 @@
 
 Experimental results from heavy computation. Custom CUDA kernels. GPU clusters. Big math. Serious hardware. Open results.
 
-**Human-readable. Agent-consumable.**
+**Human-readable. Agent-consumable.** AI-audited, not peer-reviewed.
+
+## Project Structure
+
+This is the **website** repo. The project has three components:
+
+| Repo | Purpose |
+|------|---------|
+| **[cahlen/bigcompute.science](https://github.com/cahlen/bigcompute.science)** | This repo — Astro website, experiment/finding pages, MCP server |
+| **[cahlen/idontknow](https://github.com/cahlen/idontknow)** | Computation repo — CUDA kernels, results, paper, verifications |
+| **[cahlen/guerrillamathematics.com](https://github.com/cahlen/guerrillamathematics.com)** | Merch store (private) |
+
+### Datasets on Hugging Face
+
+| Dataset | Contents |
+|---------|----------|
+| [cahlen/zaremba-conjecture-data](https://huggingface.co/datasets/cahlen/zaremba-conjecture-data) | Density logs, Dolgopyat profile, representation counts |
+| [cahlen/ramanujan-machine-results](https://huggingface.co/datasets/cahlen/ramanujan-machine-results) | 586B candidate CF evaluations, hit CSVs |
+| [cahlen/kronecker-coefficients](https://huggingface.co/datasets/cahlen/kronecker-coefficients) | S_20, S_30, S_40 character tables + Kronecker triples |
+| [cahlen/continued-fraction-spectra](https://huggingface.co/datasets/cahlen/continued-fraction-spectra) | Hausdorff, Lyapunov, Minkowski, Flint Hills |
+
+### MCP Server
+
+22 tools at `mcp.bigcompute.science` — arXiv, zbMATH, OEIS, LMFDB, Mathlib, plus experiment data and AI audit tools. No auth required. Source in `workers/mcp/`.
 
 ## Adding an Experiment
 

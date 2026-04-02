@@ -12,7 +12,6 @@ This is the **website** repo. The project has three components:
 |------|---------|
 | **[cahlen/bigcompute.science](https://github.com/cahlen/bigcompute.science)** | This repo — Astro website, experiment/finding pages, MCP server |
 | **[cahlen/idontknow](https://github.com/cahlen/idontknow)** | Computation repo — CUDA kernels, results, paper, verifications |
-| **[cahlen/guerrillamathematics.com](https://github.com/cahlen/guerrillamathematics.com)** | Merch store (private) |
 
 ### Datasets on Hugging Face
 

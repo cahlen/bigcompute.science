@@ -12,14 +12,14 @@ try {
 
   entries = log.trim().split('\n').map(line => {
     const [hash, date, ...msgParts] = line.split('|');
-    return { hash, date, message: msgParts.join('|') };
+    // Take only the first line of the commit message
+    const msg = msgParts.join('|').split('\n')[0];
+    return { hash, date, message: msg };
   }).filter(e => {
-    // Only show substantive updates, skip meta/style/infra commits
     const m = e.message.toLowerCase();
-    return !m.includes('co-authored') &&
-           !m.includes('merge') &&
+    return !m.includes('merge') &&
            e.message.length > 10;
-  }).slice(0, 8);
+  }).slice(0, 10);
 } catch (e) {
   // Build might not have git access (e.g., Cloudflare)
   entries = [];

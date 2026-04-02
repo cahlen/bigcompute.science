@@ -196,6 +196,46 @@ const FINDINGS = [
     oeis_sequences: [],
     url: "https://bigcompute.science/findings/zaremba-representation-growth/",
   },
+  {
+    slug: "gpu-matrix-enumeration-175x",
+    title: "GPU Matrix Enumeration: 175x Faster Zaremba Verification",
+    claim: "Reformulating CF tree enumeration as batched 2x2 matrix multiplication on GPU eliminates all CPU bottlenecks. 100M values in 7.5 seconds on a single B200, 175x faster than tree-walk.",
+    our_data: { speedup: "175x", throughput: "100M values / 7.5s", method: "fused expand+mark+compact kernel" },
+    search_terms: ["continued fraction GPU computation matrix multiplication", "GPU number theory enumeration"],
+    key_references: [],
+    oeis_sequences: [],
+    url: "https://bigcompute.science/findings/gpu-matrix-enumeration-175x/",
+  },
+  {
+    slug: "kronecker-s30-largest-computation",
+    title: "Kronecker Coefficients: Complete S_30 Table — 26.4 Billion Nonzero Triples",
+    claim: "Complete Kronecker coefficient tables for S_20 (32.7M nonzero) and S_30 (26.4B nonzero, 7.4 min on B200). To our knowledge, the largest Kronecker coefficient computation published.",
+    our_data: { s20_nonzero: "32.7M", s30_nonzero: "26.4B", s30_max: "24.2T", s30_time: "7.4 min", s40_partitions: 37338 },
+    search_terms: ["Kronecker coefficients computation symmetric group", "Murnaghan-Nakayama character table GPU", "geometric complexity theory Kronecker"],
+    key_references: ["Burgisser, Christandl, Ikenmeyer (2011)", "Pak, Panova (2017) 'On the complexity of computing Kronecker coefficients'"],
+    oeis_sequences: ["Kronecker coefficient"],
+    url: "https://bigcompute.science/findings/kronecker-s30-largest-computation/",
+  },
+  {
+    slug: "zaremba-exception-hierarchy",
+    title: "Zaremba Exception Hierarchy: 27 to 2 to 0 as Digits Grow",
+    claim: "The 27 exceptions for A={1,2,3} decompose hierarchically: 25 resolved by adding digit 4, leaving d=54 and d=150 (need digit 5). Hierarchy 27-2-0.",
+    our_data: { exceptions_A123: 27, exceptions_A1234: 2, exceptions_A12345: 0, stubborn: [54, 150] },
+    search_terms: ["Zaremba conjecture exceptions continued fractions", "Zaremba density digit set"],
+    key_references: ["Bourgain, Kontorovich (2014) 'On Zaremba's conjecture'"],
+    oeis_sequences: ["6,20,28,38,42,54,96,150"],
+    url: "https://bigcompute.science/findings/zaremba-exception-hierarchy/",
+  },
+  {
+    slug: "zaremba-digit-pair-hierarchy",
+    title: "The {1,k} Density Hierarchy: Digit 2 Is Worth 7x More Than Digit 3",
+    claim: "Complete density for all {1,k} and {2,k} pairs at 10^10. {1,k} decays as k^(-3.5). Digit 1 amplifies density 42-243x. Three closed exception sets: {1,2,3}=27, {1,2,4}=64, {1,2,5}=374.",
+    our_data: { pairs_computed: 18, range: "10^10", density_12: "76.55%", density_13: "11.06%", closed_sets: 3 },
+    search_terms: ["Zaremba conjecture digit set density", "continued fraction Gauss measure digit frequency"],
+    key_references: ["Bourgain, Kontorovich (2014)", "Hensley (1996)"],
+    oeis_sequences: [],
+    url: "https://bigcompute.science/findings/zaremba-digit-pair-hierarchy/",
+  },
 ];
 
 // ─── Verification Certification ─────────────────────────────────
@@ -360,8 +400,8 @@ const CERTIFICATIONS: Record<string, Certification> = {
 };
 
 const OPEN_PROBLEMS = [
-  "Extend Zaremba density A={1,2,3} beyond 10^10 (27 exceptions confirmed closed) — does the exception set stay at 27?",
-  "Compute Kronecker coefficients for S_40 or S_50",
+  "Confirm A={1,2,3} 27 exceptions at 10^11 and 10^12 (running)",
+  "Run S_40 Kronecker triple-sum (needs int128 kernel upgrade)",
   "Run Ramanujan Machine at degree 4-6 polynomials to discover new CF formulas",
   "Enumerate R(4,5) neighborhood graphs for R(5,5) <= 45 structural attack",
   "Compute class numbers for d in [10^11, 10^12] with raw data preserved",

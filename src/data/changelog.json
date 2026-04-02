@@ -2,6 +2,11 @@
   {
     "hash": "latest",
     "date": "Apr 02",
+    "message": "Consistency fixes: badge suffix, MCP language, sitemap URL, changelog"
+  },
+  {
+    "hash": "d52df50",
+    "date": "Apr 02",
     "message": "Fix changelog: static JSON instead of runtime git log (works on Cloudflare)"
   },
   {
@@ -43,10 +48,5 @@
     "hash": "4b647d0",
     "date": "Apr 01",
     "message": "Auto-generated changelog from git log \u2014 updates on every build"
-  },
-  {
-    "hash": "448e942",
-    "date": "Apr 01",
-    "message": "Update findings with 3 major results:"
   }
 ]

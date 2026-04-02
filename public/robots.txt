@@ -25,7 +25,7 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://bigcompute.science/sitemap.xml
+Sitemap: https://bigcompute.science/sitemap-index.xml
 
 # For AI agents:
 # /llms.txt — structured index of all experiments, findings, datasets

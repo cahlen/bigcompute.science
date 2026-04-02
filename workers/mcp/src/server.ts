@@ -213,7 +213,7 @@ interface Certification {
   process: string;
 }
 
-const CERTIFICATION_PROCESS = `MCP Verification Certification is an AI peer review process. Each finding is reviewed claim-by-claim against live academic literature, and the review is permanently recorded with the reviewer's identity.
+const CERTIFICATION_PROCESS = `MCP Verification Certification is an AI literature audit process. Each finding is reviewed claim-by-claim against live academic literature, and the review is permanently recorded with the reviewer's identity.
 
 HOW IT WORKS:
 1. CLAIM EXTRACTION: Each finding's specific numerical claims are identified.
@@ -255,7 +255,7 @@ const CERTIFICATIONS: Record<string, Certification> = {
     zbmath_corroboration: 5,
     oeis_matches: 6,
     last_verified: "2026-04-01",
-    process: "Claim-by-claim peer review. h=1 rate drop VERIFIED (PARI/GP cross-validated). Genus theory explanation VERIFIED (mathematically rigorous). 75.4% asymptotic NEEDS CLARIFICATION (may be h_odd=1 not h=1). Non-monotone characterization is inferred, not observed.",
+    process: "Claim-by-claim AI audit. h=1 rate drop VERIFIED (PARI/GP cross-validated). Genus theory explanation VERIFIED (mathematically rigorous). 75.4% asymptotic NEEDS CLARIFICATION (may be h_odd=1 not h=1). Non-monotone characterization is inferred, not observed.",
     reviews: [
       { date: "2026-04-01", model: "Claude Opus 4.6", provider: "Anthropic", model_id: "claude-opus-4-6[1m]", verdict: "ACCEPT_WITH_REVISION", level: "gold", key_finding: "75.4% may be Prob(h_odd=1) not Prob(h=1) — needs clarification" },
     ],

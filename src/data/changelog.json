@@ -2,7 +2,12 @@
   {
     "hash": "latest",
     "date": "Apr 02",
-    "message": "Consistency fixes: badge suffix, MCP language, sitemap URL, changelog"
+    "message": "Update experiment summaries: class numbers corrected, Ramanujan 586B"
+  },
+  {
+    "hash": "145f8fc",
+    "date": "Apr 02",
+    "message": "Consistency fixes: badge suffix, MCP language, sitemap URL"
   },
   {
     "hash": "d52df50",
@@ -43,10 +48,5 @@
     "hash": "b0d873c",
     "date": "Apr 01",
     "message": "Update findings: A={1,2,5} nearly closed (374 at 10^10, was 373 at 10^6)"
-  },
-  {
-    "hash": "4b647d0",
-    "date": "Apr 01",
-    "message": "Auto-generated changelog from git log \u2014 updates on every build"
   }
 ]

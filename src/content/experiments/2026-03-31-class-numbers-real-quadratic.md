@@ -36,7 +36,7 @@ results:
   time_range1: "30 minutes on 8× B200"
   time_range2: "16.5 hours on 8× B200"
 
-summary: "Class numbers h(d) for 30 billion real quadratic fields. Cohen-Lenstra h=1 rate drops from 42% to 15% — convergence is non-monotone and extremely slow."
+summary: "Class numbers h(d) for 30 billion real quadratic fields across [10^9, 10^11]. h=1 rate falls monotonically: 42% → 17% → 15.4%. Goes to 0, not 75% (genus theory). Odd-part convergence to Cohen-Lenstra extremely slow."
 
 code: https://github.com/cahlen/idontknow
 data: /data/class-numbers/

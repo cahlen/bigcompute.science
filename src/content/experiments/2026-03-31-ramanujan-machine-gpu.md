@@ -27,13 +27,13 @@ tags:
 results:
   problem: "Discover new continued fraction formulas for mathematical constants"
   prior_work: "Raayoni et al. (PNAS 2024): 1.77M polynomial CFs, degree 2-3"
-  candidates_evaluated: "145 billion (deg 1-5)"
+  candidates_evaluated: "586 billion (deg 1-7)"
   transcendental_hits: 0
   false_positives: "6 (all failed mpmath 50-digit verification)"
   algebraic_hits: "sqrt(2), sqrt(5), phi"
   status: "In progress — need wider coefficient ranges and GPU PSLQ"
 
-summary: "145 billion polynomial CFs evaluated through degree 5 on B200 GPU — zero transcendental constant formulas found. All matches are algebraic (sqrt(2), sqrt(5), phi). Degree 5+ in progress. v3 kernel matches 10 base constants + 29 compound expressions."
+summary: "586 billion polynomial CFs evaluated through degree 7 on B200 GPU — zero confirmed transcendental formulas. All matches algebraic (sqrt(2), sqrt(5), phi). 30 compound false positives at deg 7. Need GPU PSLQ for high-precision verification."
 
 code: https://github.com/cahlen/idontknow
 ---

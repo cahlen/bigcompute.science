@@ -2,7 +2,12 @@
   {
     "hash": "latest",
     "date": "Apr 02",
-    "message": "Update experiment summaries: class numbers corrected, Ramanujan 586B"
+    "message": "A={1,2,5} at 10^11: 374 exceptions CLOSED \u2014 third confirmed set"
+  },
+  {
+    "hash": "cebbb42",
+    "date": "Apr 02",
+    "message": "Update stale experiment summaries"
   },
   {
     "hash": "145f8fc",
@@ -43,10 +48,5 @@
     "hash": "19995e6",
     "date": "Apr 01",
     "message": "Add A={2,3,4,5,6} to density finding table + fix HF model cards"
-  },
-  {
-    "hash": "b0d873c",
-    "date": "Apr 01",
-    "message": "Update findings: A={1,2,5} nearly closed (374 at 10^10, was 373 at 10^6)"
   }
 ]

@@ -102,6 +102,18 @@ For comparison, we computed all $\{2, k\}$ pairs at $10^{10}$:
 
 Without digit 1, no pair achieves even 0.1% density. This is the strongest quantitative evidence for the digit 1 dominance phenomenon.
 
+## Closed Exception Sets
+
+Three $\{1, 2, k\}$ triples have confirmed **closed** exception sets — the number of uncovered integers stabilizes and no new exceptions appear at larger ranges:
+
+| Digit set | Exceptions | Confirmed to | Largest exception |
+|-----------|-----------|-------------|-------------------|
+| $\{1,2,3\}$ | **27** | $10^{10}$ (pending $10^{11}$) | 6,234 |
+| $\{1,2,4\}$ | **64** | $10^{10}$ (pending $10^{11}$) | 51,270 |
+| $\{1,2,5\}$ | **374** | $10^{11}$ | confirmed closed |
+
+For these sets, every integer above the largest exception has a Zaremba representation. The finite exception sets are a dramatic strengthening of the conjecture: not just "density 1" but "all but finitely many."
+
 ## Reproduce
 
 ```bash

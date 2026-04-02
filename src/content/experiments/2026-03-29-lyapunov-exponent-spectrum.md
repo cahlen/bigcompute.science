@@ -16,7 +16,7 @@ hardware:
 software:
   cuda: "13.0"
   method: Transfer operator at s=1 and s=1+ε, finite difference of log(eigenvalue), Chebyshev collocation (N=40)
-  custom_kernel: scripts/experiments/lyapunov-exponent-spectrum/lyapunov_spectrum.cu
+  custom_kernel: scripts/experiments/lyapunov-spectrum/lyapunov_spectrum.cu
 
 tags:
   domain: [continued-fractions, dynamical-systems, ergodic-theory]
@@ -92,8 +92,8 @@ The full computation of 1,048,575 Lyapunov exponents completed in **305 seconds*
 git clone https://github.com/cahlen/idontknow.git
 cd idontknow
 nvcc -O3 -arch=sm_120 -o lyapunov_spectrum \
-    scripts/experiments/lyapunov-exponent-spectrum/lyapunov_spectrum.cu -lm
-mkdir -p scripts/experiments/lyapunov-exponent-spectrum/results
+    scripts/experiments/lyapunov-spectrum/lyapunov_spectrum.cu -lm
+mkdir -p scripts/experiments/lyapunov-spectrum/results
 ./lyapunov_spectrum 20 40
 ```
 

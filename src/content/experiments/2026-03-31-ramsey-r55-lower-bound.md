@@ -16,7 +16,7 @@ hardware:
 software:
   cuda: "13.0"
   driver: "580.126.09"
-  custom_kernel: scripts/experiments/ramsey-r55-lower-bound/ramsey_search.cu
+  custom_kernel: scripts/experiments/ramsey-r55/ramsey_search.cu
 
 tags:
   domain: [combinatorics, ramsey-theory, open-conjectures]
@@ -211,7 +211,7 @@ git clone https://github.com/cahlen/idontknow
 cd idontknow
 
 # Build (requires CUDA 13.0+ and sm_100a architecture for B200)
-nvcc -O3 -arch=sm_100a -o ramsey_search scripts/experiments/ramsey-r55-lower-bound/ramsey_search.cu -lcurand
+nvcc -O3 -arch=sm_100a -o ramsey_search scripts/experiments/ramsey-r55/ramsey_search.cu -lcurand
 
 # Validate incremental counter (should show 0 drift)
 ./ramsey_search --validate 43 100

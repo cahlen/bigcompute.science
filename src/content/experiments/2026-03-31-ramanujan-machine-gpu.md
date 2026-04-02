@@ -16,7 +16,7 @@ hardware:
 software:
   cuda: "13.0"
   driver: "580.126.09"
-  custom_kernel: scripts/experiments/ramanujan-machine-gpu/ramanujan_gpu.cu
+  custom_kernel: scripts/experiments/ramanujan-machine/ramanujan_gpu.cu
   libraries: ["CGBN (CUDA Generic Big Numbers)", "MPFR"]
 
 tags:

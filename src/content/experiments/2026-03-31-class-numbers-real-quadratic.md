@@ -16,7 +16,7 @@ hardware:
 software:
   cuda: "13.0"
   driver: "580.126.09"
-  custom_kernel: scripts/experiments/class-numbers-real-quadratic/class_numbers_v2.cu
+  custom_kernel: scripts/experiments/class-numbers/class_numbers_v2.cu
 
 tags:
   domain: [algebraic-number-theory, class-groups, cohen-lenstra-heuristics]
@@ -180,7 +180,7 @@ At 1.5M disc/sec, the full range [10^{10}, 10^{13}] would take approximately 25 
 git clone https://github.com/cahlen/idontknow
 cd idontknow
 nvcc -O3 -arch=sm_100a -o class_v2 \
-    scripts/experiments/class-numbers-real-quadratic/class_numbers_v2.cu -lpthread -lm
+    scripts/experiments/class-numbers/class_numbers_v2.cu -lpthread -lm
 
 # Validate: d = 5 to 10000 (should give h=1 at 42.13%, matching PARI/GP)
 ./class_v2 5 10000

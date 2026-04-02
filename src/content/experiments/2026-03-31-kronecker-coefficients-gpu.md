@@ -16,7 +16,7 @@ hardware:
 software:
   cuda: "13.0"
   driver: "580.126.09"
-  custom_kernel: scripts/experiments/kronecker-coefficients-gpu/kronecker_compute.cu
+  custom_kernel: scripts/experiments/kronecker-coefficients/kronecker_gpu.cu
 
 tags:
   domain: [algebraic-combinatorics, representation-theory, geometric-complexity-theory]
@@ -145,7 +145,7 @@ For these structured partitions, the Murnaghan-Nakayama recursion has much small
 ```bash
 git clone https://github.com/cahlen/idontknow
 cd idontknow
-nvcc -O3 -arch=sm_100a -o kronecker_compute scripts/experiments/kronecker-coefficients-gpu/kronecker_compute.cu
+nvcc -O3 -arch=sm_100a -o kronecker_compute scripts/experiments/kronecker-coefficients/kronecker_gpu.cu
 
 # Full table for S_30
 ./kronecker_compute 30 all

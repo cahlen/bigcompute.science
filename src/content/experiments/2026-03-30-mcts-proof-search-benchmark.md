@@ -18,7 +18,7 @@ software:
   vllm: "0.18.0"
   lean: "4.29.0-rc8"
   python: "3.12"
-  custom_kernel: scripts/experiments/mcts-proof-search-benchmark/mcts_prover.py
+  custom_kernel: scripts/experiments/mcts-proof-search/mcts_prover.py
 
 tags:
   domain: [theorem-proving, ai, search-algorithms]
@@ -137,7 +137,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 ./scripts/serve-model.sh models/Goedel-Prover-V2-32
 CUDA_VISIBLE_DEVICES=4,5,6,7 ./scripts/serve-model.sh models/Kimina-Prover-72B --tp 4 --port 8001 &
 
 # Run MCTS prover
-python scripts/experiments/mcts-proof-search-benchmark/mcts_prover.py \
+python scripts/experiments/mcts-proof-search/mcts_prover.py \
     --server http://localhost:8000 \
     --file lean4-proving/conjectures/zaremba.lean \
     --budget 256 --rollouts 8

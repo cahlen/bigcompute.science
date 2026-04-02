@@ -1,0 +1,52 @@
+[
+  {
+    "hash": "latest",
+    "date": "Apr 02",
+    "message": "Fix changelog: static JSON instead of runtime git log (works on Cloudflare)"
+  },
+  {
+    "hash": "89fd2b3",
+    "date": "Apr 02",
+    "message": "Major credibility overhaul based on external review"
+  },
+  {
+    "hash": "e23d054",
+    "date": "Apr 01",
+    "message": "Fix changelog: show 10 entries, remove broken co-authored filter"
+  },
+  {
+    "hash": "eef88a6",
+    "date": "Apr 01",
+    "message": "Update A={1,2} convergence finding: 5 data points, fit holds at 0.52% residuals"
+  },
+  {
+    "hash": "ac178e2",
+    "date": "Apr 01",
+    "message": "New finding: digit pair density hierarchy with {1,k} vs {2,k} comparison"
+  },
+  {
+    "hash": "d9a87d0",
+    "date": "Apr 01",
+    "message": "Add A={1,2,6} to density finding table (1,834 uncovered at 10^10)"
+  },
+  {
+    "hash": "19995e6",
+    "date": "Apr 01",
+    "message": "Add A={2,3,4,5,6} to density finding table + fix HF model cards"
+  },
+  {
+    "hash": "b0d873c",
+    "date": "Apr 01",
+    "message": "Update findings: A={1,2,5} nearly closed (374 at 10^10, was 373 at 10^6)"
+  },
+  {
+    "hash": "4b647d0",
+    "date": "Apr 01",
+    "message": "Auto-generated changelog from git log \u2014 updates on every build"
+  },
+  {
+    "hash": "448e942",
+    "date": "Apr 01",
+    "message": "Update findings with 3 major results:"
+  }
+]

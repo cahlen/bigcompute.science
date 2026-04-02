@@ -1,38 +1,16 @@
 ---
-// Pull recent git commits at build time
-import { execSync } from 'child_process';
+// Read changelog from static JSON (generated pre-commit, checked into repo)
+import changelogData from '../data/changelog.json';
 
-let entries: { date: string; message: string; hash: string }[] = [];
+const entries = (changelogData as { hash: string; date: string; message: string }[]).slice(0, 10);
 
-try {
-  const log = execSync(
-    'git log --pretty=format:"%h|%ad|%s" --date=format:"%b %d" -20',
-    { encoding: 'utf-8', cwd: process.cwd() }
-  );
-
-  entries = log.trim().split('\n').map(line => {
-    const [hash, date, ...msgParts] = line.split('|');
-    // Take only the first line of the commit message
-    const msg = msgParts.join('|').split('\n')[0];
-    return { hash, date, message: msg };
-  }).filter(e => {
-    const m = e.message.toLowerCase();
-    return !m.includes('merge') &&
-           e.message.length > 10;
-  }).slice(0, 10);
-} catch (e) {
-  // Build might not have git access (e.g., Cloudflare)
-  entries = [];
-}
-
-// Classify commits by keywords
 function getTag(msg: string): { label: string; cls: string } {
   const m = msg.toLowerCase();
   if (m.includes('finding') || m.includes('density') || m.includes('exception') || m.includes('convergence'))
     return { label: 'finding', cls: 'cl-finding' };
   if (m.includes('ramanujan') || m.includes('kronecker') || m.includes('class num') || m.includes('hausdorff'))
     return { label: 'experiment', cls: 'cl-experiment' };
-  if (m.includes('peer review') || m.includes('verification') || m.includes('review') || m.includes('cert'))
+  if (m.includes('review') || m.includes('audit') || m.includes('cert') || m.includes('credibility'))
     return { label: 'review', cls: 'cl-verification' };
   if (m.includes('mcp') || m.includes('deploy') || m.includes('tool'))
     return { label: 'infra', cls: 'cl-infra' };

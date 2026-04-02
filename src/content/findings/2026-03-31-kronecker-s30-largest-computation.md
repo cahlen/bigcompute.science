@@ -23,6 +23,12 @@ data:
   s30_unique_triples: 29332098144
   s30_nonzero_fraction: 0.899
 
+certification:
+  level: gold
+  verdict: ACCEPT
+  reviewer: "Claude Opus 4.6 (Anthropic)"
+  date: 2026-04-02
+  note: "zbMATH corroborates MN rule, validated, unprecedented scale"
 code: https://github.com/cahlen/idontknow
 dataset: https://huggingface.co/datasets/cahlen/kronecker-coefficients
 ---

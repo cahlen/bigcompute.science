@@ -2,11 +2,11 @@
 import Base from '../layouts/Base.astro';
 ---
 
-<Base title="Verification" description="How findings are peer-reviewed by AI models and humans">
+<Base title="Verification" description="How findings are AI-audited against published literature">
 
   <section class="v-hero">
-    <h1 class="v-title m-reveal">Verification Certification</h1>
-    <p class="v-subtitle m-reveal">Every finding is peer-reviewed claim-by-claim against live academic literature.<br/>The review is permanently recorded with the reviewer's identity.</p>
+    <h1 class="v-title m-reveal">Audit Ledger</h1>
+    <p class="v-subtitle m-reveal">Every finding is AI-audited claim-by-claim against published literature and mathematical databases. This is not a substitute for formal peer review.<br/>The review is permanently recorded with the reviewer's identity.</p>
 
     <div class="v-stats m-reveal">
       <div class="v-stat"><span class="v-num">9</span><small>Findings<br/>reviewed</small></div>
@@ -20,17 +20,17 @@ import Base from '../layouts/Base.astro';
     <h2>What the Badges Mean</h2>
     <div class="v-badges-grid">
       <div class="v-badge-card v-badge-gold">
-        <span class="cert-badge cert-gold">GOLD Verified</span>
-        <p>3+ peer-reviewed papers corroborate the methods. Validated against published benchmarks.</p>
+        <span class="cert-badge cert-gold">Gold literature-supported</span>
+        <p>3+ published papers corroborate the methods. Validated against published benchmarks.</p>
         <span class="v-badge-example">e.g. Hausdorff digit 1 dominance &mdash; validated against Jenkinson-Pollicott, Hensley, and Falk-Nussbaum</span>
       </div>
       <div class="v-badge-card v-badge-silver">
-        <span class="cert-badge cert-silver">SILVER Verified</span>
-        <p>1+ peer-reviewed paper plus arXiv coverage. Methods grounded in established literature.</p>
+        <span class="cert-badge cert-silver">Silver literature-supported</span>
+        <p>1+ published paper plus arXiv coverage. Methods grounded in established literature.</p>
         <span class="v-badge-example">e.g. Spectral gaps &mdash; Bourgain-Gamburd-Sarnak property (&tau;) confirmed at unprecedented scale</span>
       </div>
       <div class="v-badge-card v-badge-bronze">
-        <span class="cert-badge cert-bronze">BRONZE Verified</span>
+        <span class="cert-badge cert-bronze">Bronze novel observation</span>
         <p>Novel observation. Related preprints exist but no direct literature precedent.</p>
         <span class="v-badge-example">e.g. Golden ratio witness &mdash; no prior report of this concentration</span>
       </div>
@@ -88,13 +88,6 @@ import Base from '../layouts/Base.astro';
         <span class="v-ledger-provider">Anthropic</span>
         <span class="v-ledger-verdict">ACCEPT w/ REVISION</span>
         <span class="cert-badge cert-gold">GOLD</span>
-      </div>
-      <div class="v-ledger-row v-ledger-future">
-        <span class="v-ledger-date">2026-??-??</span>
-        <span class="v-ledger-model">Your model here</span>
-        <span class="v-ledger-provider">Any provider</span>
-        <span class="v-ledger-verdict">&mdash;</span>
-        <span class="cert-badge" style="opacity:0.3">???</span>
       </div>
     </div>
   </section>
@@ -383,125 +376,3 @@ import Base from '../layouts/Base.astro';
     .v-ledger-model { color: #e8c47a; font-weight: 600; }
     .v-ledger-provider { color: var(--text-secondary); }
     .v-ledger-verdict { margin-left: auto; color: var(--text-secondary); }
-    .v-ledger-future {
-      opacity: 0.35;
-      border-top: 1px dashed var(--border);
-      padding-top: 0.6rem;
-      margin-top: 0.3rem;
-    }
-
-    /* Issues */
-    .v-issues { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1rem; }
-    .v-issue {
-      display: flex;
-      gap: 1rem;
-      padding: 0.8rem 1rem;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      align-items: flex-start;
-    }
-    .v-issue-severity {
-      flex-shrink: 0;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.15rem 0.5rem;
-      border-radius: 3px;
-      min-width: 5rem;
-      text-align: center;
-    }
-    .v-issue-critical .v-issue-severity { background: rgba(239,68,68,0.12); color: #f87171; }
-    .v-issue-important .v-issue-severity { background: rgba(245,158,11,0.12); color: #fbbf24; }
-    .v-issue-minor .v-issue-severity { background: rgba(148,163,184,0.12); color: #94a3b8; }
-    .v-issue strong { font-size: 0.85rem; }
-    .v-issue small { font-size: 0.78rem; color: var(--text-secondary); }
-
-    /* Not cards */
-    .v-not-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem; }
-    .v-not-card {
-      padding: 1rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--surface);
-    }
-    .v-not-card h3 { font-size: 0.9rem; margin: 0 0 0.4rem; }
-    .v-not-card p { font-size: 0.8rem; margin: 0; }
-
-    /* Contribute */
-    .v-contribute-steps {
-      display: flex;
-      gap: 0.6rem;
-      margin: 1.2rem 0;
-      flex-wrap: wrap;
-    }
-    .v-c-step {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 0.8rem;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }
-    .v-c-step span {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 1.4rem;
-      height: 1.4rem;
-      background: #e8c47a;
-      color: var(--bg, #0f0f0f);
-      border-radius: 50%;
-      font-size: 0.7rem;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .v-c-step code {
-      font-size: 0.75rem;
-      background: rgba(232,196,122,0.08);
-      padding: 0.1rem 0.3rem;
-      border-radius: 3px;
-    }
-    .v-c-step a { color: #e8c47a; text-decoration: none; }
-
-    .v-mcp-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem;
-      margin-top: 1rem;
-    }
-    .v-mcp-box pre { margin: 0; font-size: 0.8rem; }
-    .v-mcp-box small { display: block; margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.75rem; }
-
-    /* Certification list */
-    .v-cert-list { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 1rem; }
-    .v-cert-row {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      padding: 0.5rem 0.8rem;
-      border-bottom: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
-      font-size: 0.82rem;
-    }
-    .v-cert-name { flex: 1; font-weight: 500; }
-    .v-cert-verdict { color: var(--text-secondary); font-size: 0.75rem; }
-    .v-cert-model { color: var(--text-secondary); font-size: 0.72rem; font-style: italic; }
-
-    /* Scroll reveal (same as interactive page) */
-    .m-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .m-reveal.visible { opacity: 1; transform: translateY(0); }
-    .m-reveal:nth-child(2) { transition-delay: 0.05s; }
-    .m-reveal:nth-child(3) { transition-delay: 0.1s; }
-
-    @media (max-width: 700px) {
-      .v-badges-grid, .v-not-grid { grid-template-columns: 1fr; }
-      .v-stats { grid-template-columns: repeat(2, 1fr); }
-      .v-contribute-steps { flex-direction: column; }
-      .v-ledger-row { font-size: 0.65rem; }
-    }
-  </style>
-</Base>

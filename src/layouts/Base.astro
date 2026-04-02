@@ -41,7 +41,7 @@ const { title, description = "Experimental results from heavy computation." } = 
         <div class="nav-links">
           <a href="/experiments/">Experiments</a>
           <a href="/findings/">Findings</a>
-          <a href="/verification/">Verification</a>
+          <a href="/verification/">Audit Ledger</a>
           <details class="nav-more">
             <summary>More</summary>
             <div class="nav-dropdown">
@@ -58,6 +58,7 @@ const { title, description = "Experimental results from heavy computation." } = 
       </nav>
     </header>
     <main>
+      <p class="site-caveat">Open computational mathematics. AI-audited, not peer-reviewed. <a href="/verification/">All code and data open for independent verification.</a></p>
       <slot />
     </main>
     <Changelog />
@@ -69,7 +70,7 @@ const { title, description = "Experimental results from heavy computation." } = 
         <p style="margin-top:0.5rem;"><strong>Support this research.</strong> Every purchase at <a href="https://guerrillamathematics.com">guerrillamathematics.com</a> funds GPU time for attacking unsolved problems.</p>
       </div>
       <p>bigcompute.science — <a href="https://guerrillamathematics.com">Guerrilla Mathematics&#8482;</a></p>
-      <p class="copyright">&copy; 2026 Cahlen Humphreys. All rights reserved. Code and data licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
+      <p class="copyright">&copy; 2026 Cahlen Humphreys. Content licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Code licensed MIT.</p>
       <p class="agent-note">MCP → <a href="https://mcp.bigcompute.science">mcp.bigcompute.science</a> · <a href="/llms.txt">llms.txt</a> · <a href="https://github.com/cahlen/idontknow/blob/main/AGENTS.md">AGENTS.md</a></p>
       <p class="rss-links">RSS: <a href="/rss.xml">All</a> · <a href="/experiments/rss.xml">Experiments</a> · <a href="/findings/rss.xml">Findings</a></p>
     </footer>

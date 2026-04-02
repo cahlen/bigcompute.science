@@ -163,7 +163,7 @@ nav {
   .nav-links a {
     padding: 0;
     font-size: 0.82rem;
-    text-transform: uppercase;
+    /* text-transform removed for mixed-case badge names */
     letter-spacing: 0.06em;
   }
 
@@ -181,7 +181,7 @@ nav {
     color: var(--muted);
     font-size: 0.82rem;
     font-weight: 500;
-    text-transform: uppercase;
+    /* text-transform removed for mixed-case badge names */
     letter-spacing: 0.06em;
     transition: color 160ms ease;
     user-select: none;
@@ -215,6 +215,18 @@ nav {
 /* ============================================================
    Main
    ============================================================ */
+
+.site-caveat {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-align: center;
+  padding: 0.5rem 0;
+  margin-bottom: 0.5rem;
+  opacity: 0.6;
+  border-bottom: 1px solid var(--rule);
+}
+.site-caveat a { color: var(--muted); text-decoration: underline; }
 
 main {
   width: min(var(--max-width), calc(100vw - 48px));
@@ -401,7 +413,7 @@ main {
   font-family: var(--font-sans);
   padding: 0.15rem 0.55rem;
   border-radius: 3px;
-  text-transform: uppercase;
+  /* text-transform removed for mixed-case badge names */
   font-weight: 700;
   letter-spacing: 0.04em;
 }
@@ -421,7 +433,7 @@ main {
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  text-transform: uppercase;
+  /* text-transform removed for mixed-case badge names */
   cursor: help;
 }
 .cert-gold {
@@ -527,7 +539,7 @@ details.cert-detail[open] .cert-expand-hint { transform: rotate(180deg); }
   font-weight: 600;
   color: var(--text-primary);
   font-size: 0.75rem;
-  text-transform: uppercase;
+  /* text-transform removed for mixed-case badge names */
   letter-spacing: 0.03em;
   opacity: 0.7;
 }
@@ -587,7 +599,7 @@ details.cert-detail[open] .cert-expand-hint { transform: rotate(180deg); }
 .hardware-block h4, .results-summary h4 {
   font-family: var(--font-sans);
   font-size: 0.68rem;
-  text-transform: uppercase;
+  /* text-transform removed for mixed-case badge names */
   letter-spacing: 0.1em;
   color: var(--muted);
   margin-bottom: 0.6rem;
@@ -650,7 +662,7 @@ details.cert-detail[open] .cert-expand-hint { transform: rotate(180deg); }
   margin: 2.5rem 0 0.75rem;
   color: var(--accent);
   font-weight: 700;
-  text-transform: uppercase;
+  /* text-transform removed for mixed-case badge names */
   letter-spacing: 0.06em;
 }
 
@@ -771,7 +783,7 @@ details.cert-detail[open] .cert-expand-hint { transform: rotate(180deg); }
   color: var(--muted);
   font-family: var(--font-sans);
   font-size: 0.72rem;
-  text-transform: uppercase;
+  /* text-transform removed for mixed-case badge names */
   letter-spacing: 0.06em;
   font-weight: 700;
   white-space: nowrap;
@@ -925,7 +937,7 @@ details.cert-detail[open] .cert-expand-hint { transform: rotate(180deg); }
    ============================================================ */
 
 .about { margin: 3.5rem 0; padding: 2.5rem 0; border-top: 1px solid var(--rule); }
-.about h2 { font-family: var(--font-sans); font-size: 0.72rem; color: var(--muted); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+.about h2 { font-family: var(--font-sans); font-size: 0.72rem; color: var(--muted); margin-bottom: 0.75rem; /* text-transform removed for mixed-case badge names */ letter-spacing: 0.1em; font-weight: 700; }
 .about p { color: var(--muted); margin-bottom: 0.5rem; font-size: 0.9rem; }
 .about a { color: var(--accent); text-decoration: none; }
 
@@ -946,7 +958,7 @@ details.cert-detail[open] .cert-expand-hint { transform: rotate(180deg); }
   font-family: var(--font-sans);
   font-size: 0.68rem;
   color: var(--muted);
-  text-transform: uppercase;
+  /* text-transform removed for mixed-case badge names */
   letter-spacing: 0.1em;
   margin-bottom: 0.8rem;
   font-weight: 600;
@@ -974,7 +986,7 @@ details.cert-detail[open] .cert-expand-hint { transform: rotate(180deg); }
   font-family: var(--font-mono);
   font-size: 0.6rem;
   font-weight: 600;
-  text-transform: uppercase;
+  /* text-transform removed for mixed-case badge names */
   letter-spacing: 0.04em;
   padding: 0.08rem 0.35rem;
   border-radius: 3px;
@@ -1236,7 +1248,7 @@ footer .copyright a { color: var(--muted); border-bottom: 1px dotted var(--muted
 .rosetta-col h4 {
   font-family: var(--font-mono);
   font-size: 0.82rem;
-  text-transform: uppercase;
+  /* text-transform removed for mixed-case badge names */
   letter-spacing: 0.06em;
   margin: 0 0 1.2rem 0;
 }
@@ -1253,7 +1265,7 @@ footer .copyright a { color: var(--muted); border-bottom: 1px dotted var(--muted
   display: block;
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  text-transform: uppercase;
+  /* text-transform removed for mixed-case badge names */
   letter-spacing: 0.05em;
   color: var(--muted);
   margin-bottom: 0.3rem;

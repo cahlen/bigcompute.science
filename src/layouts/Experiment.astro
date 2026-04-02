@@ -15,9 +15,9 @@ const { title, date, author, status, hardware, tags, results } = frontmatter;
         {frontmatter.certification && (
           <span class={`cert-badge cert-${frontmatter.certification.level}`}
                 title={frontmatter.certification.note}>
-            {frontmatter.certification.level === 'gold' ? 'GOLD' :
-             frontmatter.certification.level === 'silver' ? 'SILVER' :
-             frontmatter.certification.level === 'bronze' ? 'BRONZE' : '?'} Verified
+            {frontmatter.certification.level === 'gold' ? 'Gold' :
+             frontmatter.certification.level === 'silver' ? 'Silver' :
+             frontmatter.certification.level === 'bronze' ? 'Bronze' : '?'} Verified
           </span>
         )}
       </div>
@@ -29,7 +29,7 @@ const { title, date, author, status, hardware, tags, results } = frontmatter;
               {frontmatter.certification.level.toUpperCase()}
             </span>
             <span class="cert-summary-text">
-              AI Peer Review
+              AI Literature Audit
               {frontmatter.certification.reviews && ` \u00b7 ${frontmatter.certification.reviews} review${frontmatter.certification.reviews > 1 ? 's' : ''}`}
             </span>
             <span class="cert-expand-hint">&darr;</span>
@@ -54,8 +54,8 @@ const { title, date, author, status, hardware, tags, results } = frontmatter;
                   <span class={`cert-badge cert-${frontmatter.certification.level}`} style="font-size:0.65rem">
                     {frontmatter.certification.level.toUpperCase()}
                   </span>
-                  {frontmatter.certification.level === 'gold' && ' \u2014 3+ peer-reviewed papers corroborate methods'}
-                  {frontmatter.certification.level === 'silver' && ' \u2014 Peer-reviewed literature supports approach'}
+                  {frontmatter.certification.level === 'gold' && ' \u2014 3+ published papers corroborate methods'}
+                  {frontmatter.certification.level === 'silver' && ' \u2014 Published literature supports approach'}
                   {frontmatter.certification.level === 'bronze' && ' \u2014 Novel observation, limited literature precedent'}
                 </td>
               </tr>
@@ -73,8 +73,8 @@ const { title, date, author, status, hardware, tags, results } = frontmatter;
 
             <div class="cert-actions">
               <a href={`https://github.com/cahlen/idontknow/blob/main/docs/verifications/${frontmatter.slug}_peer-review.json`} target="_blank" class="cert-action-btn">Full Review</a>
-              <a href="/verification/" class="cert-action-btn">How This Works</a>
-              <a href="https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md" target="_blank" class="cert-action-btn cert-action-contribute">Add Your Review</a>
+              <a href="/verification/" class="cert-action-btn">About Auditing</a>
+              <a href="https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md" target="_blank" class="cert-action-btn cert-action-contribute">Add Your Audit</a>
             </div>
           </div>
         </details>

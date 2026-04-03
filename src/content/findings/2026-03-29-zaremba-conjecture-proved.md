@@ -39,10 +39,10 @@ data:
 certification:
   level: silver
   verdict: ACCEPT_WITH_REVISION
-  reviewer: "Claude Opus 4.6 (Anthropic) + Grok (xAI)"
+  reviewer: "Claude Opus 4.6 + Grok + GPT-5.2 (3 models, 3 providers)"
   reviews: 2
   date: 2026-04-01
-  note: "2 reviews concordant (ACCEPT WITH REVISION). All 3 gaps now addressed: (1) rho_eta was already arb-certified — abstract updated, (2) MOW theorem matching added — pending human verification, (3) C_eta = 15 > Naud bound. Remaining: independent human check of MOW matching."
+  note: "3 reviews concordant (Anthropic + xAI + OpenAI) (ACCEPT WITH REVISION). All 3 gaps now addressed: (1) rho_eta was already arb-certified — abstract updated, (2) MOW theorem matching added — pending human verification, (3) C_eta = 15 > Naud bound. Remaining: independent human check of MOW matching."
   revision_status: "All reviewer-identified issues resolved (2026-04-01). See revision-response.json for full trail."
 code: https://github.com/cahlen/idontknow/tree/main/paper
 ---

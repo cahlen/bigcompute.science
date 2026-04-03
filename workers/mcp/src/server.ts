@@ -236,6 +236,16 @@ const FINDINGS = [
     oeis_sequences: [],
     url: "https://bigcompute.science/findings/zaremba-digit-pair-hierarchy/",
   },
+  {
+    slug: "zaremba-A12-logarithmic-convergence",
+    title: "A={1,2} Density Fits Logarithmic Growth: 31.5 + 4.47 log10(N)",
+    claim: "A={1,2} density fits 31.5 + 4.47*log10(N) with 5 data points (10^6 through 10^12), residuals < 0.52%. Predicts 100% at ~10^15.3. This is logarithmic, not the power-law N^0.062 predicted by BK for R(d) growth.",
+    our_data: { density_1e6: "57.98%", density_1e9: "72.06%", density_1e10: "76.55%", density_1e11: "80.75%", density_1e12: "84.58%", fit: "31.5 + 4.47*log10(N)", residuals: "< 0.52%", predicted_100pct: "10^15.3" },
+    search_terms: ["Zaremba conjecture density convergence rate", "Bourgain Kontorovich Zaremba effective"],
+    key_references: ["Bourgain, Kontorovich (2014) 'On Zaremba's conjecture'"],
+    oeis_sequences: [],
+    url: "https://bigcompute.science/findings/zaremba-A12-logarithmic-convergence/",
+  },
 ];
 
 // ─── Verification Certification ─────────────────────────────────
@@ -435,6 +445,16 @@ const CERTIFICATIONS: Record<string, Certification> = {
     process: "Gauss-Kuzmin theorem (classical, peer-reviewed) supports the theoretical explanation. 3 closed exception sets verified. {1,k} hierarchy is clean data.",
     reviews: [
       { date: "2026-04-02", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT", level: "silver", key_finding: "Gauss measure explains hierarchy. 3 closed sets confirmed at 10^10-10^11." },
+    ],
+  },
+  "zaremba-A12-logarithmic-convergence": {
+    level: "bronze",
+    label: "Bronze — 1 review: ACCEPT WITH REVISION",
+    arxiv_corroboration: 6, zbmath_corroboration: 0, oeis_matches: 0,
+    last_verified: "2026-04-01",
+    process: "Novel convergence model. 5 data points fit logarithmic. BK R(d) growth != density convergence (different quantities). Testable prediction at 10^13.",
+    reviews: [
+      { date: "2026-04-01", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT_WITH_REVISION", level: "bronze", key_finding: "R(d) growth exponent and density convergence are different quantities. Log fit is real but 5 points insufficient for definitive model selection." },
     ],
   },
 };

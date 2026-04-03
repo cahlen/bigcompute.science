@@ -1,52 +1,52 @@
 [
   {
-    "hash": "latest",
+    "hash": "d99cb0c",
     "date": "Apr 02",
-    "message": "A={1,2,5} at 10^11: 374 exceptions CLOSED \u2014 third confirmed set"
+    "message": "Link all finding Code: references to specific files/directories"
   },
   {
-    "hash": "cebbb42",
+    "hash": "a81159a",
     "date": "Apr 02",
-    "message": "Update stale experiment summaries"
+    "message": "Link Code: references directly to specific kernel files, not generic repo"
   },
   {
-    "hash": "145f8fc",
+    "hash": "3a6d62c",
     "date": "Apr 02",
-    "message": "Consistency fixes: badge suffix, MCP language, sitemap URL"
+    "message": "Fix audit page: 13 findings (was 9), add 4 missing rows to cert table"
   },
   {
-    "hash": "d52df50",
+    "hash": "99135f8",
     "date": "Apr 02",
-    "message": "Fix changelog: static JSON instead of runtime git log (works on Cloudflare)"
+    "message": "Fix Loogle cell: handle blocked cloud IPs gracefully"
   },
   {
-    "hash": "89fd2b3",
+    "hash": "620d936",
     "date": "Apr 02",
-    "message": "Major credibility overhaul based on external review"
+    "message": "Add PR template generator to Colab notebook"
   },
   {
-    "hash": "e23d054",
-    "date": "Apr 01",
-    "message": "Fix changelog: show 10 entries, remove broken co-authored filter"
+    "hash": "4759cd5",
+    "date": "Apr 02",
+    "message": "Rewrite Colab notebook: HF datasets, visualizations, Gemini prompts"
   },
   {
-    "hash": "eef88a6",
-    "date": "Apr 01",
-    "message": "Update A={1,2} convergence finding: 5 data points, fit holds at 0.52% residuals"
+    "hash": "5bc1f61",
+    "date": "Apr 02",
+    "message": "Notebook: add Loogle direct fallback when MCP proxy is blocked"
   },
   {
-    "hash": "ac178e2",
-    "date": "Apr 01",
-    "message": "New finding: digit pair density hierarchy with {1,k} vs {2,k} comparison"
+    "hash": "369a654",
+    "date": "Apr 02",
+    "message": "Fix MCP: add 4 missing certifications + update stale experiment suggestions"
   },
   {
-    "hash": "d9a87d0",
-    "date": "Apr 01",
-    "message": "Add A={1,2,6} to density finding table (1,834 uncovered at 10^10)"
+    "hash": "0c70899",
+    "date": "Apr 02",
+    "message": "Add Colab MCP Explorer notebook + interactive page launch button"
   },
   {
-    "hash": "19995e6",
-    "date": "Apr 01",
-    "message": "Add A={2,3,4,5,6} to density finding table + fix HF model cards"
+    "hash": "c19f5f6",
+    "date": "Apr 02",
+    "message": "Fix certification badges: all 14 findings now have audit levels visible"
   }
 ]

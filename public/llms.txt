@@ -1,57 +1,53 @@
 # bigcompute.science
 
-> Open computational mathematics lab. GPU clusters, CUDA kernels, open data. Human-AI collaborative. Not peer-reviewed.
+> Open computational mathematics. GPU clusters, CUDA kernels, open data. Human-AI collaborative. AI-audited, not peer-reviewed.
 
-All work produced through human-AI collaboration (Cahlen Humphreys + Claude). No results independently peer-reviewed. All claims grounded in reproducible code and open data. CC BY 4.0.
+All work produced through human-AI collaboration (Cahlen Humphreys + Claude). AI-audited against published literature (arXiv, zbMATH, OEIS). Not independently peer-reviewed. CC BY 4.0.
 
 ## Experiments
 
-- [Zaremba 210B Verification](/experiments/zaremba-conjecture-verification/): 210B denominators verified, zero failures. Conditional framework to all d. (complete)
+- [Zaremba 210B Verification](/experiments/zaremba-conjecture-verification/): 210B denominators verified, zero failures. Proof framework (not completed proof). (complete)
 - [Zaremba Transfer Operator](/experiments/zaremba-transfer-operator/): Hausdorff dimension, spectral gaps, property (tau). (complete)
-- [Ramsey R(5,5)](/experiments/ramsey-r55-lower-bound/): 656/656 K42 colorings UNSAT. Structural attack on R(5,5)<=45. (in-progress)
-- [Class Numbers](/experiments/class-numbers-real-quadratic/): 30B discriminants for real quadratic fields. Cohen-Lenstra at scale. (in-progress)
-- [Kronecker Coefficients](/experiments/kronecker-coefficients-gpu/): S_20 and S_30 complete. 26.4B nonzero triples. (in-progress)
-- [Ramanujan Machine](/experiments/ramanujan-machine-gpu/): GPU polynomial CF evaluation + PSLQ constant matching. (in-progress)
+- [Zaremba Density](/experiments/zaremba-density-phase-transition/): Phase transition, 3 closed exception sets, {1,k} hierarchy. (in-progress)
+- [Ramsey R(5,5)](/experiments/ramsey-r55-lower-bound/): 656/656 K42 colorings UNSAT. (in-progress)
+- [Class Numbers](/experiments/class-numbers-real-quadratic/): 30B discriminants. h=1 rate falls to 0 (genus theory). (in-progress)
+- [Kronecker Coefficients](/experiments/kronecker-coefficients-gpu/): S_20, S_30 (26.4B nonzero), S_40 char table done. (in-progress)
+- [Ramanujan Machine](/experiments/ramanujan-machine-gpu/): 586B candidates through deg 7, zero transcendentals. (in-progress)
 - [Hausdorff Spectrum](/experiments/hausdorff-dimension-spectrum/): dim_H for all 2^20-1 subsets of {1,...,20}. (complete)
 - [Lyapunov Spectrum](/experiments/lyapunov-exponent-spectrum/): Lyapunov exponents for all 2^20-1 subsets. (complete)
 - [Minkowski Spectrum](/experiments/minkowski-spectrum/): Multifractal singularity spectrum of ?(x). (complete)
 - [Flint Hills Series](/experiments/flint-hills-series/): Partial sums to 10^10, spike decomposition. (complete)
-- [MCTS Proof Search](/experiments/mcts-proof-search-benchmark/): LLM theorem proving benchmark. (planned)
 
-## Findings
+## Findings (14 total, all AI-audited)
 
-- [Zaremba Density Phase Transition](/findings/zaremba-density-phase-transition/): A={1,2,3} has exactly 27 exceptions to 10^10. Phase transition at Hausdorff dim=1/2. (high)
-- [Kronecker S_30](/findings/kronecker-s30-largest-computation/): 26.4B nonzero triples, 7.4 min on B200. (notable)
-- [Cohen-Lenstra Convergence](/findings/class-number-convergence/): h=1 rate drops from 42% to 15%, non-monotone. (notable)
-- [Zaremba Proof Framework](/findings/zaremba-conjecture-proved/): Computer-assisted, D0=3.4e10, NOT peer-reviewed. (critical)
-- [Spectral Gaps Uniform](/findings/zaremba-spectral-gaps-uniform/): All 1214 moduli positive, min 0.237. (high)
-- [Transitivity All Primes](/findings/zaremba-transitivity-all-primes/): Dickson classification, AI-assisted. (high)
-- [Witness Golden Ratio](/findings/zaremba-witness-golden-ratio/): a/d concentrates at 1/(5+phi). (medium)
-- [Cayley Diameters](/findings/zaremba-cayley-diameters/): diam(p) <= 2 log(p) for 669 primes. (high)
-- [GPU 175x Speedup](/findings/gpu-matrix-enumeration-175x/): Batched 2x2 matrix multiply. (medium)
-- [Digit 1 Dominance](/findings/hausdorff-digit-one-dominance/): 5 digits with 1 beat 19 without. (medium)
-- [Exception Hierarchy](/findings/zaremba-exception-hierarchy/): 27 exceptions decompose to 2 (d=54,150) with digit 4, then 0 with digit 5. (notable)
-- [Representation Growth](/findings/zaremba-representation-growth/): R(d) grows as d^0.674. (medium)
+- [Zaremba Density Phase Transition](/findings/zaremba-density-phase-transition/): A={1,2,3} exactly 27 exceptions. delta > 1/2 PLUS transitivity needed. [GOLD]
+- [A={1,2} Logarithmic Convergence](/findings/zaremba-A12-logarithmic-convergence/): 5 data points, density = 31.5 + 4.47*log10(N). [BRONZE]
+- [Digit Pair Hierarchy](/findings/zaremba-digit-pair-hierarchy/): {1,k} decays as k^(-3.5). Digit 1 amplifies 42-243x. 3 closed sets. [SILVER]
+- [Exception Hierarchy](/findings/zaremba-exception-hierarchy/): 27 -> 2 -> 0 as digits grow. d=54, d=150 need digit 5. [BRONZE]
+- [Kronecker S_30](/findings/kronecker-s30-largest-computation/): 26.4B nonzero triples, 7.4 min on B200. [GOLD]
+- [Cohen-Lenstra at Scale](/findings/class-number-convergence/): h=1 rate falls to 0 (genus theory), NOT 75%. [GOLD]
+- [Zaremba Proof Framework](/findings/zaremba-conjecture-proved/): D0=3.4e10, 2 AI reviews (Claude + Grok). NOT a completed proof. [SILVER]
+- [Spectral Gaps Uniform](/findings/zaremba-spectral-gaps-uniform/): All 1214 moduli positive, min 0.237. [SILVER]
+- [Transitivity All Primes](/findings/zaremba-transitivity-all-primes/): Dickson classification, AI-assisted. [SILVER]
+- [Cayley Diameters](/findings/zaremba-cayley-diameters/): diam/log(p) -> 1.45 for 669 primes. [GOLD]
+- [Digit 1 Dominance](/findings/hausdorff-digit-one-dominance/): dim_H(E_{1,...,5}) > dim_H(E_{2,...,20}). [GOLD]
+- [Witness Golden Ratio](/findings/zaremba-witness-golden-ratio/): a/d concentrates near 0.171. [BRONZE]
+- [GPU 175x Speedup](/findings/gpu-matrix-enumeration-175x/): Batched 2x2 matrix multiply. [BRONZE]
+- [Representation Growth](/findings/zaremba-representation-growth/): R(d) grows as d^0.674. [BRONZE]
 
-## Datasets
+## Datasets (Hugging Face)
 
-- [Class Numbers (HF)](https://huggingface.co/datasets/cahlen/class-numbers-real-quadratic): 2.74B discriminants, Parquet
-- [Kronecker Coefficients (HF)](https://huggingface.co/datasets/cahlen/kronecker-coefficients): S_20 + S_30, 370 GB
-- [Continued Fraction Spectra (HF)](https://huggingface.co/datasets/cahlen/continued-fraction-spectra): Hausdorff, Lyapunov, Minkowski, Flint Hills
-- [Zaremba Data (HF)](https://huggingface.co/datasets/cahlen/zaremba-conjecture-data): Dolgopyat profile, representation counts
+- [Zaremba Data](https://huggingface.co/datasets/cahlen/zaremba-conjecture-data): Density logs, Dolgopyat profile, {1,k} hierarchy, closed exception sets
+- [Ramanujan Machine](https://huggingface.co/datasets/cahlen/ramanujan-machine-results): 586B candidate evaluations through deg 7
+- [Kronecker Coefficients](https://huggingface.co/datasets/cahlen/kronecker-coefficients): S_20, S_30, S_40 character tables + Kronecker triples
+- [Continued Fraction Spectra](https://huggingface.co/datasets/cahlen/continued-fraction-spectra): Hausdorff, Lyapunov, Minkowski, Flint Hills
 
-## Source Code
+## Tools
 
+- [MCP Server](https://mcp.bigcompute.science/mcp): 22 tools, no auth. arXiv, zbMATH, OEIS, LMFDB, Lean/Mathlib + experiment data.
+- [Colab Notebook](https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_mcp_explorer.ipynb): Pre-loaded MCP client + HF datasets.
 - [Experiment code](https://github.com/cahlen/idontknow): CUDA kernels, Python harnesses
 - [Website source](https://github.com/cahlen/bigcompute.science): Astro + KaTeX
 - [Agent guide](https://github.com/cahlen/idontknow/blob/main/AGENTS.md): How to contribute
+- [Audit Ledger](/verification/): AI audit process + all reviews
 - [Citation](https://github.com/cahlen/idontknow/blob/main/CITATION.cff): CITATION.cff
-- [MCP Server](https://mcp.bigcompute.science/mcp): Model Context Protocol endpoint for AI agents (no auth)
-
-## Optional
-
-- [Mathematicians](/mathematicians/): Profiles of the mathematicians whose work we build on
-- [Interactive](/interactive/): Live visualizations of computational results
-- [About](/about/): Project mission and team
-- [RSS](/rss.xml): All updates feed
-- [Full structured data](/llms-full.txt): Machine-readable YAML with all constants, parameters, and results

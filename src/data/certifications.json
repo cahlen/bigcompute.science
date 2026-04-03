@@ -1,0 +1,495 @@
+{
+  "generated_at": "2026-04-03T20:39:41Z",
+  "stats": {
+    "findings_audited": 15,
+    "total_reviews": 41,
+    "issues_discovered": 10,
+    "issues_fixed": 0,
+    "unique_models": 4,
+    "unique_providers": 3
+  },
+  "certifications": [
+    {
+      "slug": "zaremba-cayley-diameters",
+      "title": "Cayley Graph Diameters of Zaremba's Semigroup: diam(p)/log(p) \u2192 1.45 for Primes to 1021",
+      "level": "silver",
+      "review_count": 3,
+      "verdict_summary": "Accept w/ revision (3 reviews)",
+      "models_summary": "Claude + o3-pro + unknown",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T19:50:28Z",
+      "reviews": [
+        {
+          "date": "2026-04-01",
+          "model": "unknown",
+          "provider": "unknown",
+          "verdict": "Helfgott (2008) and Bourgain-Gamburd (2008) establ",
+          "level": "gold"
+        },
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-01",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "gold"
+        }
+      ]
+    },
+    {
+      "slug": "class-number-convergence",
+      "title": "Cohen-Lenstra at Scale: h=1 Rate Falls to 15% at 10^10, Genus Theory Dominates",
+      "level": "silver",
+      "review_count": 3,
+      "verdict_summary": "Accept w/ revision (3 reviews)",
+      "models_summary": "o3-pro + unknown",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T19:55:49Z",
+      "reviews": [
+        {
+          "date": "2026-04-01",
+          "model": "unknown",
+          "provider": "unknown",
+          "verdict": "Cohen-Lenstra heuristics are extensively studied. ",
+          "level": "gold"
+        },
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-01",
+          "model": "unknown",
+          "provider": "unknown",
+          "verdict": "",
+          "level": "gold"
+        }
+      ]
+    },
+    {
+      "slug": "zaremba-spectral-gaps-uniform",
+      "title": "Congruence Spectral Gaps for Zaremba's Semigroup Are Uniform",
+      "level": "silver",
+      "review_count": 3,
+      "verdict_summary": "Accept w/ revision (3 reviews)",
+      "models_summary": "Claude + o3-pro + unknown",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T19:44:30Z",
+      "reviews": [
+        {
+          "date": "2026-04-01",
+          "model": "unknown",
+          "provider": "unknown",
+          "verdict": "Property (tau) is theoretically established by BGS",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-01",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        }
+      ]
+    },
+    {
+      "slug": "hausdorff-digit-one-dominance",
+      "title": "Digit 1 Dominance: Five Digits With 1 Beat Fourteen Digits Without",
+      "level": "silver",
+      "review_count": 3,
+      "verdict_summary": "Accept w/ revision (3 reviews)",
+      "models_summary": "Claude + o3-pro + unknown",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T19:49:03Z",
+      "reviews": [
+        {
+          "date": "2026-04-01",
+          "model": "unknown",
+          "provider": "unknown",
+          "verdict": "Hausdorff dimension computation methods are well-e",
+          "level": "gold"
+        },
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-01",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "ACCEPT",
+          "level": "gold"
+        }
+      ]
+    },
+    {
+      "slug": "kronecker-s30-largest-computation",
+      "title": "Kronecker Coefficients: Complete S_30 Table \u2014 26.4 Billion Nonzero Triples in 7 Minutes",
+      "level": "silver",
+      "review_count": 2,
+      "verdict_summary": "Accept w/ revision (2 reviews)",
+      "models_summary": "Claude + o3-pro",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T19:58:04Z",
+      "reviews": [
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-02",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "ACCEPT",
+          "level": "gold"
+        }
+      ]
+    },
+    {
+      "slug": "kronecker-s40-character-table",
+      "title": "Kronecker S_40: Complete Character Table and Targeted Coefficients \u2014 94.9% Nonzero",
+      "level": "silver",
+      "review_count": 2,
+      "verdict_summary": "Accept w/ revision (2 reviews)",
+      "models_summary": "Claude + o3-pro",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T20:09:44Z",
+      "reviews": [
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-03",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "ACCEPT",
+          "level": "gold"
+        }
+      ]
+    },
+    {
+      "slug": "zaremba-density-phase-transition",
+      "title": "Zaremba Density Phase Transition: A={1,2,3} Appears to Have Full Density",
+      "level": "silver",
+      "review_count": 3,
+      "verdict_summary": "Accept w/ revision (3 reviews)",
+      "models_summary": "Claude + o3-pro + unknown",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T20:01:13Z",
+      "reviews": [
+        {
+          "date": "2026-04-01",
+          "model": "unknown",
+          "provider": "unknown",
+          "verdict": "Bourgain-Kontorovich (2014) proves density 1 for A",
+          "level": "gold"
+        },
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-01",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "gold"
+        }
+      ]
+    },
+    {
+      "slug": "zaremba-A12-logarithmic-convergence",
+      "title": "A={1,2} Density Fits Logarithmic Growth: 30 + 4.65\u00b7log\u2081\u2080(N), Testable at 10^12",
+      "level": "bronze",
+      "review_count": 2,
+      "verdict_summary": "Accept w/ revision (2 reviews)",
+      "models_summary": "Claude + o3-pro",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T20:04:56Z",
+      "reviews": [
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-01",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "bronze"
+        }
+      ]
+    },
+    {
+      "slug": "gpu-matrix-enumeration-175x",
+      "title": "GPU Matrix Enumeration: 175\u00d7 Faster Zaremba Verification via Batched 2\u00d72 Multiply",
+      "level": "bronze",
+      "review_count": 2,
+      "verdict_summary": "Accept w/ revision (2 reviews)",
+      "models_summary": "Claude + o3-pro",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T19:42:14Z",
+      "reviews": [
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-02",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "ACCEPT",
+          "level": "bronze"
+        }
+      ]
+    },
+    {
+      "slug": "zaremba-digit-pair-hierarchy",
+      "title": "The {1,k} Density Hierarchy: Digit 2 Is Worth 7x More Than Digit 3",
+      "level": "bronze",
+      "review_count": 2,
+      "verdict_summary": "Revise & resubmit (2 reviews)",
+      "models_summary": "Claude + o3-pro",
+      "issues_found": 3,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T20:06:40Z",
+      "reviews": [
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "REVISE_AND_RESUBMIT",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-02",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "ACCEPT",
+          "level": "silver"
+        }
+      ]
+    },
+    {
+      "slug": "zaremba-exception-hierarchy",
+      "title": "Zaremba Exception Hierarchy: 27 \u2192 2 \u2192 0 as Digits Grow",
+      "level": "bronze",
+      "review_count": 2,
+      "verdict_summary": "Accept w/ revision (2 reviews)",
+      "models_summary": "Claude + o3-pro",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T20:03:34Z",
+      "reviews": [
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-02",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "ACCEPT",
+          "level": "bronze"
+        }
+      ]
+    },
+    {
+      "slug": "zaremba-representation-growth",
+      "title": "Zaremba Representation Counts Grow as d^{0.674} \u2014 Hardest Cases Are Small d",
+      "level": "bronze",
+      "review_count": 3,
+      "verdict_summary": "Accept w/ revision (3 reviews)",
+      "models_summary": "Claude + o3-pro + unknown",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T19:54:00Z",
+      "reviews": [
+        {
+          "date": "2026-04-01",
+          "model": "unknown",
+          "provider": "unknown",
+          "verdict": "Growth exponent R(d) ~ d^(2delta-1) is predicted b",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-01",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "ACCEPT",
+          "level": "bronze"
+        }
+      ]
+    },
+    {
+      "slug": "zaremba-witness-golden-ratio",
+      "title": "Zaremba Witnesses Concentrate at \u03b1(d)/d \u2248 0.171, Connected to the Golden Ratio",
+      "level": "bronze",
+      "review_count": 3,
+      "verdict_summary": "Accept w/ revision (3 reviews)",
+      "models_summary": "Claude + o3-pro + unknown",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T19:48:03Z",
+      "reviews": [
+        {
+          "date": "2026-04-01",
+          "model": "unknown",
+          "provider": "unknown",
+          "verdict": "The concentration of optimal witnesses at a/d ~ 1/",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-01",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "bronze"
+        }
+      ]
+    },
+    {
+      "slug": "zaremba-conjecture-proved",
+      "title": "Zaremba's Conjecture (A=5): Proof Framework via GPU Verification + MOW Spectral Theory (Not Peer-Reviewed)",
+      "level": "bronze",
+      "review_count": 5,
+      "verdict_summary": "Revise & resubmit (5 reviews)",
+      "models_summary": "Claude + GPT-5.2 + Grok + o3-pro + unknown",
+      "issues_found": 4,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T19:52:39Z",
+      "reviews": [
+        {
+          "date": "2026-04-01",
+          "model": "Grok",
+          "provider": "xAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-02",
+          "model": "GPT-5.2",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-01",
+          "model": "unknown",
+          "provider": "unknown",
+          "verdict": "MOW framework is established. Our proof framework ",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "REVISE_AND_RESUBMIT",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-01",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "REVISE_AND_RESUBMIT",
+          "level": "silver"
+        }
+      ]
+    },
+    {
+      "slug": "zaremba-transitivity-all-primes",
+      "title": "Zaremba's Semigroup Acts Transitively on (Z/pZ)\u00b2 for ALL Primes (Algebraic Argument + Computation)",
+      "level": "bronze",
+      "review_count": 3,
+      "verdict_summary": "Revise & resubmit (3 reviews)",
+      "models_summary": "Claude + o3-pro + unknown",
+      "issues_found": 3,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T19:46:50Z",
+      "reviews": [
+        {
+          "date": "2026-04-01",
+          "model": "unknown",
+          "provider": "unknown",
+          "verdict": "Uses Dickson's classical classification (1901). AI",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "REVISE_AND_RESUBMIT",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-01",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "ACCEPT",
+          "level": "silver"
+        }
+      ]
+    }
+  ]
+}

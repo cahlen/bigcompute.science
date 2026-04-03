@@ -10,6 +10,12 @@ domain: [number-theory, continued-fractions, diophantine-approximation]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
 summary: "The 27 exceptions to Zaremba density with A={1,2,3} decompose hierarchically: 25 are resolved by adding digit 4, leaving only d=54 and d=150 (which need digit 5). The hierarchy 27 -> 2 -> 0 reveals a precise structure in the exception set. The CF identity [0;...,a] = [0;...,a-1,1] allows some exceptions to be resolved by splitting the last quotient."
+certification:
+  level: bronze
+  verdict: ACCEPT
+  reviewer: "Claude Opus 4.6 (Anthropic)"
+  date: 2026-04-02
+  note: "Novel hierarchy decomposition. 27-2-0 structure verified computationally."
 ---
 
 # Zaremba Exception Hierarchy: 27 → 2 → 0

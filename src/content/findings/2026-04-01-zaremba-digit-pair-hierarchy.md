@@ -28,12 +28,11 @@ data:
   scaling: "approximately k^(-3.5)"
 
 certification:
-  level: bronze
-  verdict: PENDING
-  reviewer: "Not yet reviewed"
-  date: 2026-04-01
-  note: "New finding. Clean computational data but no peer review yet."
-
+  level: silver
+  verdict: ACCEPT
+  reviewer: "Claude Opus 4.6 (Anthropic)"
+  date: 2026-04-02
+  note: "Gauss-Kuzmin supports theory. 3 closed exception sets verified. {1,k} hierarchy clean data." 
 code: https://github.com/cahlen/idontknow
 ---
 

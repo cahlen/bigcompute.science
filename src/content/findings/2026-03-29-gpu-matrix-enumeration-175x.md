@@ -17,6 +17,13 @@ data:
   verified_10B_time: "43 seconds"
   kernel: "v5/v6 fused expand+mark+compact"
   approach: "batched 2×2 matrix multiply + stream compaction"
+
+certification:
+  level: bronze
+  verdict: ACCEPT
+  reviewer: "Claude Opus 4.6 (Anthropic)"
+  date: 2026-04-02
+  note: "Engineering finding. 175x speedup verified. Matrix-CF equivalence is classical." 
 ---
 
 # GPU Matrix Enumeration: 175× Faster Zaremba Verification
@@ -64,6 +71,13 @@ The compaction is critical: without it, the matrix count grows as $5^k$ (exponen
 - Zaremba, S.K. (1972). "La méthode des 'bons treillis' pour le calcul des intégrales multiples." Applications of Number Theory to Numerical Analysis, pp. 39–119.
 - Bourgain, J. and Kontorovich, A. (2014). "On Zaremba's conjecture." Annals of Mathematics, 180(1), pp. 137–196.
 
+
+certification:
+  level: bronze
+  verdict: ACCEPT
+  reviewer: "Claude Opus 4.6 (Anthropic)"
+  date: 2026-04-02
+  note: "Engineering finding. 175x speedup verified. Matrix-CF equivalence is classical."
 ---
 
 *Computed on NVIDIA DGX B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

@@ -103,16 +103,16 @@ Without digit 1, no pair achieves even 0.1% density. This is the strongest quant
 
 ## Closed Exception Sets
 
-Four $\{1, 2, k\}$ triples have confirmed **closed** exception sets — the number of uncovered integers stabilizes and no new exceptions appear at larger ranges:
+Four $\{1, 2, k\}$ triples have computationally observed exception sets that appear closed — no new exceptions appear when extending the search range by a factor of 10:
 
-| Digit set | Exceptions | Confirmed to | Status |
-|-----------|-----------|-------------|--------|
-| $\{1,2,3\}$ | **27** | $10^{10}$ (pending $10^{11}$) | closed |
-| $\{1,2,4\}$ | **64** | $10^{10}$ (pending $10^{11}$) | closed |
-| $\{1,2,5\}$ | **374** | $10^{11}$ | closed |
-| $\{1,2,6\}$ | **1,834** | $10^{11}$ | closed |
+| Digit set | Exceptions | Verified to | Status |
+|-----------|-----------|------------|--------|
+| $\{1,2,3\}$ | **27** | $10^{10}$ (pending $10^{11}$) | no growth from $10^9$ to $10^{10}$ |
+| $\{1,2,4\}$ | **64** | $10^{10}$ (pending $10^{11}$) | no growth from $10^9$ to $10^{10}$ |
+| $\{1,2,5\}$ | **374** | $10^{11}$ | no growth from $10^{10}$ to $10^{11}$ |
+| $\{1,2,6\}$ | **1,834** | $10^{11}$ | no growth from $10^{10}$ to $10^{11}$ |
 
-The sequence 27, 64, 374, 1,834 grows rapidly with $k$. For each of these sets, every integer above the largest exception has a Zaremba representation. The finite exception sets are a dramatic strengthening of the conjecture: not just "density 1" but "all but finitely many." The computation A=$\{1,2,7\}$ at $10^{10}$ is underway to determine if there is a 5th closed set.
+The sequence 27, 64, 374, 1,834 grows rapidly with $k$. We cannot rigorously prove these sets are finite — additional exceptions could in principle appear beyond our search range. However, the stability across a full decade of extension is strong computational evidence. The computation A=$\{1,2,7\}$ at $10^{10}$ found 7,178 uncovered; the $10^{11}$ run is underway to test stability.
 
 ## Reproduce
 

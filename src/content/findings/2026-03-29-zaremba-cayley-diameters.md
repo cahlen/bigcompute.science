@@ -10,13 +10,13 @@ conjecture_year: 1972
 domain: [number-theory, group-theory, continued-fractions, combinatorics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "GPU BFS on the Cayley graph of Γ_{1,...,5} in SL₂(Z/pZ) for all 669 primes p ≤ 1021. The diameter ratio diam(p)/log(p) decreases from ~3.1 at small primes to ~1.45 at p~1000, suggesting diam(p) ≤ 2·log(p) for sufficiently large p. Note: small primes (p=2,5) violate the 2·log(p) bound. The asymptotic constant appears to be ~1.45."
+summary: "GPU BFS on the Cayley graph of Γ_{1,...,5} in SL₂(Z/pZ) for all 172 primes p ≤ 1021. The diameter ratio diam(p)/log(p) decreases from ~3.1 at small primes to ~1.45 at p~1000, suggesting diam(p) ≤ 2·log(p) for sufficiently large p. Note: small primes (p=2,5) violate the 2·log(p) bound. The asymptotic constant appears to be ~1.45."
 
 data:
   semigroup: "Γ_{1,...,5} ⊂ SL_2(Z)"
   generators: "g_a = (a,1;1,0) for a = 1,...,5 and their inverses"
   num_generators: 10
-  primes_computed: 669
+  primes_computed: 172
   max_prime: 1021
   max_diameter: 10
   max_diameter_first_at: 211
@@ -41,7 +41,7 @@ code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/zaremba-
 
 For each prime $p$, the **Cayley graph** of $\Gamma_{\{1,\ldots,5\}}$ in $\text{SL}_2(\mathbb{Z}/p\mathbb{Z})$ — where vertices are group elements and edges connect elements differing by one generator — has a diameter satisfying:
 
-$$\frac{\text{diam}(p)}{\log p} \in [1.37, \, 2.89] \qquad \text{for all } 669 \text{ primes } p \leq 1021$$
+$$\frac{\text{diam}(p)}{\log p} \in [1.37, \, 2.89] \qquad \text{for all } 172 \text{ primes } p \leq 1021$$
 
 The ratio is **decreasing** and appears to converge to approximately $1.45$, strongly suggesting:
 

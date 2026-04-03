@@ -30,7 +30,7 @@ All work produced through human-AI collaboration (Cahlen Humphreys + Claude). AI
 - [Zaremba Proof Framework](/findings/zaremba-conjecture-proved/): D0=3.4e10, 3 AI reviews (Claude + Grok + GPT-5.2). NOT a completed proof. [SILVER]
 - [Spectral Gaps Uniform](/findings/zaremba-spectral-gaps-uniform/): All 1214 moduli positive, min 0.237. [SILVER]
 - [Transitivity All Primes](/findings/zaremba-transitivity-all-primes/): Dickson classification, AI-assisted. [SILVER]
-- [Cayley Diameters](/findings/zaremba-cayley-diameters/): diam/log(p) -> 1.45 for 669 primes. [GOLD]
+- [Cayley Diameters](/findings/zaremba-cayley-diameters/): diam/log(p) -> 1.45 for 172 primes. [GOLD]
 - [Digit 1 Dominance](/findings/hausdorff-digit-one-dominance/): dim_H(E_{1,...,5}) > dim_H(E_{2,...,20}). [GOLD]
 - [Witness Golden Ratio](/findings/zaremba-witness-golden-ratio/): a/d concentrates near 0.171. [BRONZE]
 - [GPU 175x Speedup](/findings/gpu-matrix-enumeration-175x/): Batched 2x2 matrix multiply. [BRONZE]

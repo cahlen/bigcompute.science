@@ -42,7 +42,7 @@ certification:
   reviewer: "Claude Opus 4.6 + Grok + GPT-5.2 (3 models, 3 providers)"
   reviews: 2
   date: 2026-04-01
-  note: "3 reviews concordant (Anthropic + xAI + OpenAI) (ACCEPT WITH REVISION). All 3 gaps now addressed: (1) rho_eta was already arb-certified — abstract updated, (2) MOW theorem matching added — pending human verification, (3) C_eta = 15 > Naud bound. Remaining: independent human check of MOW matching."
+  note: "4 reviews (Anthropic + xAI + OpenAI GPT-5.2 + OpenAI o3-pro). Remaining gaps: (1) truncation error bound for transfer operator discretization, (2) explicit constant propagation through MOW/Calderón-Magee, (3) non-effective property (tau) in Layer 4, (4) MOW matching needs independent verification."
   revision_status: "All reviewer-identified issues resolved (2026-04-01). See revision-response.json for full trail."
 code: https://github.com/cahlen/idontknow/tree/main/paper
 ---
@@ -57,7 +57,7 @@ code: https://github.com/cahlen/idontknow/tree/main/paper
 
 - **Theorem 1 (unconditional):** $R(d) \geq 1$ for all $d \leq 2.1 \times 10^{11}$. GPU brute-force verification, deterministic, reproducible.
 - **Theorem 2 (computer-assisted proof for all $d$):** Zaremba holds for all $d \geq 1$, via the Magee-Oh-Winter uniform congruence counting theorem (Crelle 2019) + arb-certified Dolgopyat bound ($\rho_\eta \leq 0.771$, 70 digits via FLINT ball arithmetic) + Tauberian extraction. Threshold $D_0 \approx 3.4 \times 10^{10}$, margin $6\times$ below brute-force frontier.
-- **Rigor level:** 7 of 8 load-bearing constants interval-certified (arb/MPFR); $C_1$ bounded by mpmath with 10% margin. Remaining specialist question: MOW/Calderón-Magee theorem-matching precision. Paper ready for arXiv peer review.
+- **Rigor level:** 7 of 8 load-bearing constants interval-certified (arb/MPFR); $C_1$ bounded by mpmath with 10% margin. **Remaining gaps:** (a) no rigorous truncation error bound for N=40 Chebyshev discretization of the infinite-dimensional transfer operator, (b) explicit constant propagation through MOW/Calderón-Magee Tauberian step not shown, (c) Layer 4 property ($\tau$) invocation is non-effective (no explicit constant), (d) MOW theorem-matching precision needs independent verification. Paper is a proof framework, not a complete proof.
 
 Full paper: [PDF](https://github.com/cahlen/idontknow/blob/main/paper/zaremba-proof.pdf) · [LaTeX source](https://github.com/cahlen/idontknow/blob/main/paper/zaremba-proof.tex) · [Verification manifest](https://github.com/cahlen/idontknow/blob/main/paper/verification-manifest.txt)
 

@@ -20,7 +20,7 @@ data:
   cost_ratio_1_vs_15: "50×"
   empirical_fit: "dim_H(E_{1,...,n}) ≈ 1 - 0.58/n^0.88"
   correlation_metric: "Σ 1/a² over digits a in subset"
-  correlation_type: "near-perfect rank correlation"
+  correlation_type: "strong rank correlation (qualitative observation)"
   hardware: "NVIDIA RTX 5090"
   method: "transfer-operator, Chebyshev collocation"
   status: "CONFIRMED at n=20 — 1,048,575 subsets computed in 4,343s"

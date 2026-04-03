@@ -54,7 +54,7 @@ We computed the complete character table of the symmetric group $S_{40}$ and use
 | Max $g(\lambda,\mu,\nu)$ | 6,408,361 | 24.2 trillion | **$\geq 1.30 \times 10^{18}$** (sampled) |
 | Character table time | 1.7 sec | 220 sec | **9.5 hours** |
 
-The S$_{40}$ character table has **37,338 rows and 37,338 columns** (1.394 billion entries), computed via the Murnaghan-Nakayama rule. This is, to our knowledge, the first complete $S_{40}$ character table computed and publicly available.
+The S$_{40}$ character table has **37,338 rows and 37,338 columns** (1.394 billion entries), computed via the Murnaghan-Nakayama rule. This is, to our knowledge, the first complete $S_{40}$ character table explicitly computed and archived as a public dataset (GAP can compute individual entries on demand, but no complete table file has been published).
 
 ## Why This Matters
 

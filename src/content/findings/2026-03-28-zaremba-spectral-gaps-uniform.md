@@ -40,7 +40,7 @@ certification:
   verdict: ACCEPT_WITH_REVISION
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-01
-  note: "Property (tau) confirmed. Threshold depends on proof framework."
+  note: "Property (tau) computationally supported (square-free m ≤ 1999). Threshold depends on proof framework."
 ---
 
 # Congruence Spectral Gaps for Zaremba's Semigroup Are Uniform

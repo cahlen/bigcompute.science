@@ -82,7 +82,7 @@ We compute things that require serious hardware — 8×NVIDIA B200 (1.43 TB VRAM
 6. `/findings/zaremba-spectral-gaps-uniform/` — FP64 spectral gaps for 489 primes to p=3500, all σ ≥ 0.336. 11 covering primes with σ ≥ 0.530. (high significance)
 7. `/findings/zaremba-transitivity-all-primes/` — Algebraic argument (Dickson classification) that semigroup acts transitively on (Z/pZ)² for all primes. AI-assisted, not peer-reviewed. (high significance)
 8. `/findings/zaremba-witness-golden-ratio/` — Zaremba witnesses concentrate at a/d ≈ 0.171, connected to golden ratio (medium significance)
-9. `/findings/zaremba-cayley-diameters/` — Cayley graph diameters diam(p) ≤ 2·log(p) for all 669 primes to 1021 (high significance)
+9. `/findings/zaremba-cayley-diameters/` — Cayley graph diameters diam(p) ≤ 2·log(p) for all 172 primes to 1021 (high significance)
 10. `/findings/gpu-matrix-enumeration-175x/` — GPU matrix enumeration kernel: 175× speedup via batched 2×2 matrix multiply (medium significance)
 11. `/findings/hausdorff-digit-one-dominance/` — Digit 1 dominance in Hausdorff dimension spectrum (medium significance)
 12. `/findings/zaremba-representation-growth/` — Representation count R(d) grows as d^0.674 (medium significance)
@@ -158,7 +158,7 @@ zaremba_conjecture:
     models: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
     score: "10-10 split"
   cayley_diameters:
-    primes_computed: 669
+    primes_computed: 172
     max_prime: 1021
     max_diameter: 10
     ratio_range: [1.37, 2.89]

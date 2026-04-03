@@ -97,7 +97,7 @@ The real mechanism: **digit 1 ensures transitivity**. The matrix $\begin{pmatrix
 
 Our density sweep of all 1,023 subsets of $\{1, \ldots, 10\}$ confirms this dramatically: of 366 subsets with $\geq 99.99\%$ density, **361 contain digit 1**. Only 5 achieve near-full density without digit 1, and those require $|A| \geq 8$.
 
-The correct statement: **$\delta > 1/2$ plus transitivity implies full density** (with finitely many exceptions).
+The correct heuristic: **$\delta > 1/2$ plus transitivity are necessary conditions for full density**, but may not be sufficient on their own — BK (2014) also requires spectral gap conditions (property $\tau$). The precise sufficient conditions for full density remain an open question.
 
 ### Connection to Representation Counting
 

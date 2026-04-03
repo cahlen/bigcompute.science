@@ -159,8 +159,8 @@ const FINDINGS = [
   {
     slug: "zaremba-cayley-diameters",
     title: "Cayley Graph Diameters Bounded by 2 log(p)",
-    claim: "diam(Cay(SL(2,p), S_5)) ≤ 2 log(p) for all 669 primes to p=1021.",
-    our_data: { max_prime: 1021, primes_tested: 669, bound: "2*log(p)" },
+    claim: "diam(Cay(SL(2,p), S_5)) ≤ 2 log(p) for all 172 primes to p=1021.",
+    our_data: { max_prime: 1021, primes_tested: 172, bound: "2*log(p)" },
     search_terms: ["Cayley graph diameter SL(2,p)", "expander graph number theory", "Helfgott growth SL(2,p)"],
     key_references: ["Helfgott (2008) 'Growth and generation in SL(2,Z/pZ)'", "Bourgain, Gamburd (2008) 'Uniform expansion bounds'"],
     oeis_sequences: [],

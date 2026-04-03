@@ -52,3 +52,13 @@ All work produced through human-AI collaboration (Cahlen Humphreys + Claude). AI
 - [Agent guide](https://github.com/cahlen/idontknow/blob/main/AGENTS.md): How to contribute
 - [Audit Ledger](/verification/): AI audit process + all reviews
 - [Citation](https://github.com/cahlen/idontknow/blob/main/CITATION.cff): CITATION.cff
+
+## Review Infrastructure
+
+All findings are AI-audited claim-by-claim. Current: 41 reviews from 4 models (Claude Opus 4.6, o3-pro, Grok, GPT-5.2) across 3 providers (Anthropic, OpenAI, xAI). Certification uses most-conservative-wins consensus.
+
+- [Review scripts](https://github.com/cahlen/idontknow/tree/main/scripts/reviews): `run_review.py` (any OpenAI-compatible API), `aggregate.py`, `validate.py`, `sync_website.py`
+- [Review schema](https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md): JSON format for reviews
+- [Manifest](https://github.com/cahlen/idontknow/blob/main/docs/verifications/manifest.json): Generated aggregate of all reviews
+- [Remediations](https://github.com/cahlen/idontknow/tree/main/docs/verifications/remediations): Issue tracking with full lineage (review → issue → fix → commit)
+- To contribute: write review JSON per schema, submit PR to [cahlen/idontknow](https://github.com/cahlen/idontknow)

@@ -48,6 +48,14 @@ We compute things that require serious hardware — 8×NVIDIA B200 (1.43 TB VRAM
 - Citation format: https://github.com/cahlen/idontknow/blob/main/CITATION.cff
 - Datasets: https://huggingface.co/cahlen (class numbers, Kronecker, spectra, Zaremba)
 
+### Review infrastructure
+- Review scripts: https://github.com/cahlen/idontknow/tree/main/scripts/reviews (run_review.py, aggregate.py, validate.py, sync_website.py)
+- Review schema: https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md
+- Review manifest: https://github.com/cahlen/idontknow/blob/main/docs/verifications/manifest.json (generated aggregate, 41 reviews, 4 models, 3 providers)
+- Remediations: https://github.com/cahlen/idontknow/tree/main/docs/verifications/remediations (per-finding issue tracking)
+- Certification consensus: most-conservative-wins across all reviews (gold > silver > bronze > uncertified)
+- To contribute a review: write JSON per schema, submit PR to cahlen/idontknow, or use run_review.py with any OpenAI-compatible API
+
 ### RSS Feeds
 - All updates: `/rss.xml`
 - Experiments only: `/experiments/rss.xml`

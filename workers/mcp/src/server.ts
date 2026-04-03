@@ -307,177 +307,33 @@ HOW TO CONTRIBUTE A REVIEW:
 Verification data: https://github.com/cahlen/idontknow/tree/main/docs/verifications
 `;
 
-const CERTIFICATIONS: Record<string, Certification> = {
-  "class-number-convergence": {
-    level: "gold",
-    label: "GOLD — 1 review: ACCEPT with minor revision",
-    arxiv_corroboration: 6,
-    zbmath_corroboration: 5,
-    oeis_matches: 6,
-    last_verified: "2026-04-01",
-    process: "Claim-by-claim AI audit. h=1 rate drop VERIFIED (PARI/GP cross-validated). Genus theory explanation VERIFIED (mathematically rigorous). 75.4% asymptotic NEEDS CLARIFICATION (may be h_odd=1 not h=1). Non-monotone characterization is inferred, not observed.",
-    reviews: [
-      { date: "2026-04-01", model: "Claude Opus 4.6", provider: "Anthropic", model_id: "claude-opus-4-6[1m]", verdict: "ACCEPT_WITH_REVISION", level: "gold", key_finding: "75.4% may be Prob(h_odd=1) not Prob(h=1) — needs clarification" },
-    ],
-  },
-  "zaremba-density-phase-transition": {
-    level: "gold",
-    label: "GOLD — 1 review: ACCEPT",
-    arxiv_corroboration: 5,
-    zbmath_corroboration: 5,
-    oeis_matches: 3,
-    last_verified: "2026-04-01",
-    process: "Bourgain-Kontorovich (2014, Annals) proves density 1 for A=50. Our A=3 with 27 exceptions is a computational strengthening — consistent, not contradicted. 27-exception sequence NOT in OEIS (novel). Digit-1 dominance (361/366) cross-checked against Hausdorff spectrum finding.",
-    reviews: [
-      { date: "2026-04-01", model: "Claude Opus 4.6", provider: "Anthropic", model_id: "claude-opus-4-6[1m]", verdict: "ACCEPT", level: "gold", key_finding: "BK proves weaker result (A=50), our A=3 is consistent strengthening. 27-exception sequence is genuinely new." },
-    ],
-  },
-  "zaremba-conjecture-proved": {
-    level: "silver",
-    label: "SILVER — 2 reviews + revisions complete. Pending: human verification of MOW matching.",
-    arxiv_corroboration: 6,
-    zbmath_corroboration: 1,
-    oeis_matches: 0,
-    last_verified: "2026-04-01",
-    process: "2 AI reviews (Claude Opus 4.6 + Grok/xAI), both ACCEPT WITH REVISION. All 3 gaps resolved: (1) rho_eta arb-certified (abstract was stale), (2) MOW theorem matching added, (3) C_eta = 15 > Naud 13. Remaining: independent human verification of MOW matching.",
-    reviews: [
-      { date: "2026-04-01", model: "Claude Opus 4.6", provider: "Anthropic", model_id: "claude-opus-4-6[1m]", verdict: "ACCEPT_WITH_REVISION", level: "silver", key_finding: "MOW framework is sound but D0 bound depends on interval arithmetic certification with known gaps." },
-      { date: "2026-04-01", model: "Grok", provider: "xAI", verdict: "ACCEPT_WITH_REVISION", level: "silver", key_finding: "Line-by-line review: no math errors, citations correct, manifest exemplary, gaps fixable. Theorem 1 is 'rock-solid computational evidence (strongest to date)'." },
-    ],
-  },
-  "zaremba-spectral-gaps-uniform": {
-    level: "silver",
-    label: "SILVER — 1 review: ACCEPT",
-    arxiv_corroboration: 6,
-    zbmath_corroboration: 0,
-    oeis_matches: 0,
-    last_verified: "2026-04-01",
-    process: "Property (tau) predicted by Bourgain-Gamburd-Sarnak. Our min gap 0.237 across 1214 moduli is a computational confirmation at unprecedented scale. BGS theory is peer-reviewed (Inventiones) but zbMATH API didn't surface it due to specialized search terms.",
-    reviews: [
-      { date: "2026-04-01", model: "Claude Opus 4.6", provider: "Anthropic", model_id: "claude-opus-4-6[1m]", verdict: "ACCEPT", level: "silver", key_finding: "Property (tau) is theoretically established. Our scale (m≤1999) is far beyond prior computational checks. Silver because zbMATH didn't surface the key BGS paper through API." },
-    ],
-  },
-  "zaremba-transitivity-all-primes": {
-    level: "silver",
-    label: "SILVER — 1 review: ACCEPT",
-    arxiv_corroboration: 6,
-    zbmath_corroboration: 0,
-    oeis_matches: 0,
-    last_verified: "2026-04-01",
-    process: "Uses Dickson's classification (1901) — a 125-year-old classical result. Application to Zaremba semigroups is novel but the underlying math is textbook. Computationally verified to p=1021.",
-    reviews: [
-      { date: "2026-04-01", model: "Claude Opus 4.6", provider: "Anthropic", model_id: "claude-opus-4-6[1m]", verdict: "ACCEPT", level: "silver", key_finding: "Dickson classification is unassailable. AI-assisted argument is sound but not independently peer-reviewed. Silver because the proof itself is not formalized." },
-    ],
-  },
-  "zaremba-cayley-diameters": {
-    level: "gold",
-    label: "GOLD — 1 review: ACCEPT",
-    arxiv_corroboration: 6,
-    zbmath_corroboration: 5,
-    oeis_matches: 0,
-    last_verified: "2026-04-01",
-    process: "Helfgott (2008, Annals) proves growth in SL(2,Z/pZ). Bourgain-Gamburd (2008) prove uniform expansion. Our diam ≤ 2log(p) for all primes to 1021 is a direct computational verification of expander theory predictions.",
-    reviews: [
-      { date: "2026-04-01", model: "Claude Opus 4.6", provider: "Anthropic", model_id: "claude-opus-4-6[1m]", verdict: "ACCEPT", level: "gold", key_finding: "Helfgott and Bourgain-Gamburd establish the theory. Our bound 2log(p) is exactly what expander theory predicts. Clean computational confirmation." },
-    ],
-  },
-  "zaremba-witness-golden-ratio": {
-    level: "bronze",
-    label: "BRONZE — 1 review: ACCEPT (novel observation, no literature precedent)",
-    arxiv_corroboration: 6,
-    zbmath_corroboration: 0,
-    oeis_matches: 3,
-    last_verified: "2026-04-01",
-    process: "Concentration of witnesses at a/d ≈ 1/(5+phi) is a genuinely novel computational observation. No direct precedent in literature. Golden ratio connection to CF is well-known but this specific concentration is new.",
-    reviews: [
-      { date: "2026-04-01", model: "Claude Opus 4.6", provider: "Anthropic", model_id: "claude-opus-4-6[1m]", verdict: "ACCEPT", level: "bronze", key_finding: "Novel observation. The golden ratio connection to continued fractions is classical but this specific witness concentration has no literature precedent. Bronze because no peer-reviewed corroboration exists." },
-    ],
-  },
-  "hausdorff-digit-one-dominance": {
-    level: "gold",
-    label: "GOLD — 1 review: ACCEPT",
-    arxiv_corroboration: 5,
-    zbmath_corroboration: 5,
-    oeis_matches: 0,
-    last_verified: "2026-04-01",
-    process: "Hensley (1992, 2012) and Jenkinson-Pollicott (2001) establish the transfer operator method for dim_H computation. arXiv:1611.09276 computes 100 digits of dim_H(E_2), validating our method. Our complete spectrum (2^20-1 subsets) is novel but the methodology is gold-standard.",
-    reviews: [
-      { date: "2026-04-01", model: "Claude Opus 4.6", provider: "Anthropic", model_id: "claude-opus-4-6[1m]", verdict: "ACCEPT", level: "gold", key_finding: "Methods are peer-reviewed and validated to 100 digits. Complete spectrum is novel. Digit 1 dominance is a genuinely surprising computational discovery with no prior report." },
-    ],
-  },
-  "zaremba-representation-growth": {
-    level: "bronze",
-    label: "BRONZE — 1 review: ACCEPT (confirms theoretical prediction)",
-    arxiv_corroboration: 6,
-    zbmath_corroboration: 0,
-    oeis_matches: 0,
-    last_verified: "2026-04-01",
-    process: "R(d) ~ d^(2delta-1) is predicted by BK/MOW transfer operator framework. Our computed exponent 0.674 vs predicted 0.6737 is a 0.04% match. Novel computational confirmation.",
-    reviews: [
-      { date: "2026-04-01", model: "Claude Opus 4.6", provider: "Anthropic", model_id: "claude-opus-4-6[1m]", verdict: "ACCEPT", level: "bronze", key_finding: "Growth exponent matches theory to 0.04%. Bronze because the prediction itself comes from our own transfer operator computation — not independently derived." },
-    ],
-  },
-  "gpu-matrix-enumeration-175x": {
-    level: "bronze",
-    label: "Bronze — 1 review: ACCEPT",
-    arxiv_corroboration: 0, zbmath_corroboration: 0, oeis_matches: 0,
-    last_verified: "2026-04-02",
-    process: "Engineering finding. 175x speedup verified. Matrix-CF equivalence is classical (Hardy & Wright).",
-    reviews: [
-      { date: "2026-04-02", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT", level: "bronze", key_finding: "Engineering optimization, no direct literature precedent for this kernel." },
-    ],
-  },
-  "kronecker-s30-largest-computation": {
-    level: "gold",
-    label: "Gold — 1 review: ACCEPT",
-    arxiv_corroboration: 6, zbmath_corroboration: 5, oeis_matches: 3,
-    last_verified: "2026-04-02",
-    process: "zbMATH corroborates MN rule (Pak-Panova 2018, Burgisser et al. 2006). Validation thorough. Unprecedented scale.",
-    reviews: [
-      { date: "2026-04-02", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT", level: "gold", key_finding: "26.4B nonzero triples validated. Largest published complete Kronecker table." },
-    ],
-  },
-  "zaremba-exception-hierarchy": {
-    level: "bronze",
-    label: "Bronze — 1 review: ACCEPT",
-    arxiv_corroboration: 6, zbmath_corroboration: 0, oeis_matches: 0,
-    last_verified: "2026-04-02",
-    process: "Novel decomposition: 27->2->0. Deterministic computation, reproducible. CF splitting identity is classical.",
-    reviews: [
-      { date: "2026-04-02", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT", level: "bronze", key_finding: "Novel hierarchy from own data. No direct literature precedent." },
-    ],
-  },
-  "zaremba-digit-pair-hierarchy": {
-    level: "silver",
-    label: "Silver — 1 review: ACCEPT",
-    arxiv_corroboration: 6, zbmath_corroboration: 0, oeis_matches: 0,
-    last_verified: "2026-04-02",
-    process: "Gauss-Kuzmin theorem (classical, peer-reviewed) supports the theoretical explanation. 4 closed exception sets verified (27, 64, 374, 1834). {1,k} hierarchy is clean data.",
-    reviews: [
-      { date: "2026-04-02", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT", level: "silver", key_finding: "Gauss measure explains hierarchy. 4 closed sets confirmed at 10^10-10^11." },
-    ],
-  },
-  "zaremba-A12-logarithmic-convergence": {
-    level: "bronze",
-    label: "Bronze — 1 review: ACCEPT WITH REVISION",
-    arxiv_corroboration: 6, zbmath_corroboration: 0, oeis_matches: 0,
-    last_verified: "2026-04-01",
-    process: "Novel convergence model. 5 data points fit logarithmic. BK R(d) growth != density convergence (different quantities). Testable prediction at 10^13.",
-    reviews: [
-      { date: "2026-04-01", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT_WITH_REVISION", level: "bronze", key_finding: "R(d) growth exponent and density convergence are different quantities. Log fit is real but 5 points insufficient for definitive model selection." },
-    ],
-  },
-  "kronecker-s40-character-table": {
-    level: "gold",
-    label: "Gold — 1 review: ACCEPT",
-    arxiv_corroboration: 6, zbmath_corroboration: 5, oeis_matches: 1,
-    last_verified: "2026-04-03",
-    process: "MN rule validated by zbMATH (Murnaghan 1938, Nakayama 1940). Hook multiplicity-freeness confirmed (Rosas 2001). p(40)=37338 matches OEIS A000041. Σ dim²=40! exact. Novel data at unprecedented scale.",
-    reviews: [
-      { date: "2026-04-03", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT", level: "gold", key_finding: "Complete S_40 character table validated. Hook multiplicity-freeness confirms Rosas (2001). 94.9% nonzero consistent with density-1 conjecture." },
-    ],
-  },
-};
+// ─── Certifications: generated from manifest.json ──────────────
+// To update: run aggregate.py + copy manifest.json to src/generated/
+import manifestData from './generated/manifest.json';
+
+const CERTIFICATIONS: Record<string, Certification> = Object.fromEntries(
+  Object.entries(manifestData.findings).map(([slug, finding]: [string, any]) => [
+    slug,
+    {
+      level: finding.certification.level as CertLevel,
+      label: `${finding.certification.level.toUpperCase()} — ${finding.certification.review_count} review(s)`,
+      arxiv_corroboration: 0,
+      zbmath_corroboration: 0,
+      oeis_matches: 0,
+      last_verified: finding.last_reviewed?.slice(0, 10) ?? "",
+      process: finding.reviews.map((r: any) => r.key_finding).filter(Boolean).join(". "),
+      reviews: finding.reviews.map((r: any) => ({
+        date: r.reviewed_at?.slice(0, 10) ?? "",
+        model: r.reviewer?.model ?? "unknown",
+        provider: r.reviewer?.provider ?? "unknown",
+        verdict: r.overall_verdict ?? "",
+        level: r.certification_recommendation ?? "",
+        key_finding: r.key_finding ?? "",
+      })),
+    } as Certification,
+  ])
+);
+
 
 const OPEN_PROBLEMS = [
   "Confirm A={1,2,3} 27 exceptions at 10^11 and 10^12 (running)",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-03T20:56:47Z",
+  "generated_at": "2026-04-03T21:01:50Z",
   "stats": {
     "findings_audited": 15,
     "total_reviews": 41,
@@ -34,7 +34,8 @@
           "verdict": "ACCEPT_WITH_REVISION",
           "level": "gold"
         }
-      ]
+      ],
+      "remediations": []
     },
     {
       "slug": "class-number-convergence",
@@ -54,7 +55,8 @@
           "verdict": "ACCEPT_WITH_REVISION",
           "level": "silver"
         }
-      ]
+      ],
+      "remediations": []
     },
     {
       "slug": "zaremba-spectral-gaps-uniform",
@@ -81,7 +83,8 @@
           "verdict": "ACCEPT_WITH_REVISION",
           "level": "silver"
         }
-      ]
+      ],
+      "remediations": []
     },
     {
       "slug": "hausdorff-digit-one-dominance",
@@ -108,7 +111,8 @@
           "verdict": "ACCEPT",
           "level": "gold"
         }
-      ]
+      ],
+      "remediations": []
     },
     {
       "slug": "kronecker-s30-largest-computation",
@@ -135,7 +139,8 @@
           "verdict": "ACCEPT",
           "level": "gold"
         }
-      ]
+      ],
+      "remediations": []
     },
     {
       "slug": "kronecker-s40-character-table",
@@ -162,7 +167,8 @@
           "verdict": "ACCEPT",
           "level": "gold"
         }
-      ]
+      ],
+      "remediations": []
     },
     {
       "slug": "zaremba-density-phase-transition",
@@ -189,7 +195,8 @@
           "verdict": "ACCEPT_WITH_REVISION",
           "level": "gold"
         }
-      ]
+      ],
+      "remediations": []
     },
     {
       "slug": "zaremba-A12-logarithmic-convergence",
@@ -216,7 +223,8 @@
           "verdict": "ACCEPT_WITH_REVISION",
           "level": "bronze"
         }
-      ]
+      ],
+      "remediations": []
     },
     {
       "slug": "gpu-matrix-enumeration-175x",
@@ -243,7 +251,8 @@
           "verdict": "ACCEPT",
           "level": "bronze"
         }
-      ]
+      ],
+      "remediations": []
     },
     {
       "slug": "zaremba-digit-pair-hierarchy",
@@ -269,6 +278,23 @@
           "provider": "Anthropic",
           "verdict": "ACCEPT",
           "level": "silver"
+        }
+      ],
+      "remediations": [
+        {
+          "description": "Four 'closed' exception sets ({1,2,3}=27, {1,2,4}=64, {1,2,5}=374, {1,2,6}=1834) are declared closed based on finite search up to 10^11, but no completeness certificate or branch-and-bound argument is provided. Current literature establishes only 'full density' not finite-exception results. Should be rephrased as conjectural.",
+          "severity": "critical",
+          "status": "open"
+        },
+        {
+          "description": "The 'digit 2 is 6.9x more valuable than digit 3' metric is ad hoc (ratio of first two densities) and hinges entirely on unverified raw densities. No formal definition of 'value' is provided.",
+          "severity": "important",
+          "status": "open"
+        },
+        {
+          "description": "Claimed 10-15s per {1,k} pair at 10^10 on a single B200 is inconsistent with hardware capabilities. Even idealized kernel performing one modular inversion per 3 GPU cycles would need >10 minutes for 10^10 inputs. Published benchmarks (Berkel & Fassler 2023) show 10^9 checks in 30s on 8xA100.",
+          "severity": "critical",
+          "status": "open"
         }
       ]
     },
@@ -297,7 +323,8 @@
           "verdict": "ACCEPT",
           "level": "bronze"
         }
-      ]
+      ],
+      "remediations": []
     },
     {
       "slug": "zaremba-representation-growth",
@@ -324,7 +351,8 @@
           "verdict": "ACCEPT",
           "level": "bronze"
         }
-      ]
+      ],
+      "remediations": []
     },
     {
       "slug": "zaremba-witness-golden-ratio",
@@ -351,7 +379,8 @@
           "verdict": "ACCEPT_WITH_REVISION",
           "level": "bronze"
         }
-      ]
+      ],
+      "remediations": []
     },
     {
       "slug": "zaremba-conjecture-proved",
@@ -392,6 +421,28 @@
           "verdict": "REVISE_AND_RESUBMIT",
           "level": "silver"
         }
+      ],
+      "remediations": [
+        {
+          "description": "MOW (Magee-Oh-Winter 2019) theorem matching not verified: the original paper does not supply explicit constants, and Calderon-Magee (2025) gives explicit gap only for untwisted operators. No detailed constant-tracking appendix shows how epsilon and D0 are derived from published theorems.",
+          "severity": "critical",
+          "status": "open"
+        },
+        {
+          "description": "Title says 'proof' but multiple gaps remain (not just one). Should be retitled 'proof framework' or 'conditional proof' until gaps are closed. o3-pro identified multiple unresolved issues beyond the claimed 'one specialist gap'.",
+          "severity": "critical",
+          "status": "open"
+        },
+        {
+          "description": "Layer 4 invokes Bourgain-Gamburd property (tau) with an unspecified uniform constant c and gives no quantitative lower bound on d required for the sieve error term to be overpowered. The statement is non-effective and cannot be checked.",
+          "severity": "critical",
+          "status": "open"
+        },
+        {
+          "description": "rho_eta <= 0.771 computed in FP64/mpmath, not interval-certified with arb/MPFR. The entire D0 bound depends on this value. All four reviewers flagged this as the most critical gap.",
+          "severity": "critical",
+          "status": "open"
+        }
       ]
     },
     {
@@ -418,6 +469,23 @@
           "provider": "Anthropic",
           "verdict": "ACCEPT",
           "level": "silver"
+        }
+      ],
+      "remediations": [
+        {
+          "description": "The Borel exclusion argument checks that h1 has nonzero (2,1) entry in the standard basis, but a matrix may lie in a Borel subgroup after conjugation. Must show H fixes no 1-dimensional subspace of F_p^2, not just check one basis.",
+          "severity": "critical",
+          "status": "open"
+        },
+        {
+          "description": "Step (3) uses the presumed transitivity |orbit|=p^2-1 to lower-bound |H|, which is exactly what the argument is trying to prove, creating a circular dependency.",
+          "severity": "critical",
+          "status": "open"
+        },
+        {
+          "description": "The proof assumes a shared eigenvector forces a shared eigenvalue, which is false: a vector can be an eigenvector for two matrices with different eigenvalues. The Cartan-normalizer exclusion is therefore unsubstantiated.",
+          "severity": "critical",
+          "status": "open"
         }
       ]
     }

@@ -10,6 +10,9 @@ const certEntry = certData.certifications.find((c: any) => c.slug === frontmatte
 const certLevel = certEntry?.level ?? frontmatter.certification?.level ?? 'uncertified';
 const certReviews = certEntry?.reviews ?? [];
 const certNote = frontmatter.certification?.note ?? '';
+const certRemediations = (certEntry as any)?.remediations ?? [];
+const issuesFound = certEntry?.issues_found ?? 0;
+const issuesResolved = certEntry?.issues_resolved ?? 0;
 const reviewCount = certReviews.length;
 const worstVerdict = certReviews.length > 0
   ? certReviews.reduce((worst: string, r: any) => {
@@ -83,6 +86,21 @@ const modelsSummary = certEntry?.models_summary ?? frontmatter.certification?.re
                       {(r.level || certLevel).toUpperCase()}
                     </span>
                     <code class="cert-review-verdict">{r.verdict}</code>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {certRemediations.length > 0 && (
+              <div class="cert-remediations">
+                <h4 style="font-size:0.75rem;margin:0.8rem 0 0.4rem;color:var(--text-secondary)">
+                  Issues Identified ({issuesResolved}/{issuesFound} resolved)
+                </h4>
+                {certRemediations.map((r: any) => (
+                  <div class={`cert-remediation-row cert-rem-${r.status}`}>
+                    <span class={`cert-rem-severity cert-rem-sev-${r.severity}`}>{r.severity}</span>
+                    <span class="cert-rem-desc">{r.description.length > 80 ? r.description.slice(0, 77) + '...' : r.description}</span>
+                    <span class={`cert-rem-status cert-rem-st-${r.status}`}>{r.status}</span>
                   </div>
                 ))}
               </div>

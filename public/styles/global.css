@@ -594,6 +594,44 @@ details.cert-detail[open] .cert-expand-hint { transform: rotate(180deg); }
 .cert-review-provider { color: var(--text-secondary); font-size: 0.65rem; }
 .cert-review-verdict { font-size: 0.65rem; margin-left: auto; }
 
+/* Remediation rows */
+.cert-remediations { margin: 0.5rem 0; }
+.cert-remediation-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+  font-size: 0.72rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 15%, transparent);
+}
+.cert-rem-severity {
+  display: inline-block;
+  min-width: 4.5rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+.cert-rem-sev-critical { background: rgba(239,68,68,0.15); color: #f87171; }
+.cert-rem-sev-important { background: rgba(251,191,36,0.15); color: #fbbf24; }
+.cert-rem-sev-minor { background: rgba(148,163,184,0.15); color: #94a3b8; }
+.cert-rem-desc { flex: 1; color: var(--text-secondary); line-height: 1.3; }
+.cert-rem-status {
+  display: inline-block;
+  min-width: 4.5rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+.cert-rem-st-resolved { background: rgba(34,197,94,0.15); color: #22c55e; }
+.cert-rem-st-open { background: rgba(239,68,68,0.1); color: #f87171; }
+.cert-rem-st-acknowledged { background: rgba(251,191,36,0.1); color: #fbbf24; }
+
 /* ============================================================
    Experiment detail — meta panel
    ============================================================ */

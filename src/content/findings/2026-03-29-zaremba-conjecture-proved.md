@@ -37,7 +37,7 @@ data:
     - "GPU/arb computation: brute force + interval-certified spectral data"
 
 certification:
-  level: silver
+  level: bronze
   verdict: ACCEPT_WITH_REVISION
   reviewer: "Claude Opus 4.6 + Grok + GPT-5.2 (3 models, 3 providers)"
   reviews: 2

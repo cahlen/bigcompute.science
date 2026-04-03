@@ -26,7 +26,7 @@ data:
   status: "CONFIRMED at n=20 — 1,048,575 subsets computed in 4,343s"
 
 certification:
-  level: gold
+  level: silver
   verdict: ACCEPT
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-01

@@ -37,7 +37,7 @@ data:
   threshold: 0.5
 
 certification:
-  level: gold
+  level: silver
   verdict: ACCEPT_WITH_REVISION
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-01

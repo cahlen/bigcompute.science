@@ -29,7 +29,7 @@ data:
   s40_near_rect_max_g: 105927325
 
 certification:
-  level: gold
+  level: silver
   verdict: ACCEPT
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-03

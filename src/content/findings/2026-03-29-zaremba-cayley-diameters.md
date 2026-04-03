@@ -27,7 +27,7 @@ data:
   computation_time: "40 seconds across 8× NVIDIA B200"
 
 certification:
-  level: gold
+  level: silver
   verdict: ACCEPT_WITH_REVISION
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-01

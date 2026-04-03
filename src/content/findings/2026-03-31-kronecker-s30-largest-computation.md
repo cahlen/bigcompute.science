@@ -24,7 +24,7 @@ data:
   s30_nonzero_fraction: 0.899
 
 certification:
-  level: gold
+  level: silver
   verdict: ACCEPT
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-02

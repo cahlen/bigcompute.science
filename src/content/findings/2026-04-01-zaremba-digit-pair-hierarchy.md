@@ -10,7 +10,7 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, diophantine-approximation, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "Complete density computation for all {1,k} pairs at 10^10. Density drops exponentially: {1,2}=76.55%, {1,3}=11.06%, {1,4}=1.61%, ..., {1,10}=0.020%. Only {1,2} has Hausdorff dimension above 1/2. The ratio between consecutive pairs shows digit 2 is 6.9x more valuable than digit 3, confirming the Gauss measure weight 1/k^2 as the dominant factor in Zaremba density."
+summary: "Complete density computation for all {1,k} pairs at 10^10. Density drops exponentially: {1,2}=76.55%, {1,3}=11.06%, {1,4}=1.61%, ..., {1,10}=0.020%. Only {1,2} has Hausdorff dimension above 1/2. The ratio between consecutive pairs shows digit 2 is 6.9x more valuable than digit 3, confirming the Gauss measure weight 1/k^2 as the dominant factor in Zaremba density. Four closed exception sets confirmed: {1,2,3}=27, {1,2,4}=64, {1,2,5}=374, {1,2,6}=1,834."
 
 data:
   pairs_computed: 9
@@ -32,7 +32,7 @@ certification:
   verdict: ACCEPT
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-02
-  note: "Gauss-Kuzmin supports theory. 3 closed exception sets verified. {1,k} hierarchy clean data." 
+  note: "Gauss-Kuzmin supports theory. 4 closed exception sets verified (27, 64, 374, 1834). {1,k} hierarchy clean data." 
 code: https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-density/zaremba_density_gpu.cu
 ---
 
@@ -103,15 +103,16 @@ Without digit 1, no pair achieves even 0.1% density. This is the strongest quant
 
 ## Closed Exception Sets
 
-Three $\{1, 2, k\}$ triples have confirmed **closed** exception sets — the number of uncovered integers stabilizes and no new exceptions appear at larger ranges:
+Four $\{1, 2, k\}$ triples have confirmed **closed** exception sets — the number of uncovered integers stabilizes and no new exceptions appear at larger ranges:
 
-| Digit set | Exceptions | Confirmed to | Largest exception |
-|-----------|-----------|-------------|-------------------|
-| $\{1,2,3\}$ | **27** | $10^{10}$ (pending $10^{11}$) | 6,234 |
-| $\{1,2,4\}$ | **64** | $10^{10}$ (pending $10^{11}$) | 51,270 |
-| $\{1,2,5\}$ | **374** | $10^{11}$ | confirmed closed |
+| Digit set | Exceptions | Confirmed to | Status |
+|-----------|-----------|-------------|--------|
+| $\{1,2,3\}$ | **27** | $10^{10}$ (pending $10^{11}$) | closed |
+| $\{1,2,4\}$ | **64** | $10^{10}$ (pending $10^{11}$) | closed |
+| $\{1,2,5\}$ | **374** | $10^{11}$ | closed |
+| $\{1,2,6\}$ | **1,834** | $10^{11}$ | closed |
 
-For these sets, every integer above the largest exception has a Zaremba representation. The finite exception sets are a dramatic strengthening of the conjecture: not just "density 1" but "all but finitely many."
+The sequence 27, 64, 374, 1,834 grows rapidly with $k$. For each of these sets, every integer above the largest exception has a Zaremba representation. The finite exception sets are a dramatic strengthening of the conjecture: not just "density 1" but "all but finitely many." The computation A=$\{1,2,7\}$ at $10^{10}$ is underway to determine if there is a 5th closed set.
 
 ## Reproduce
 

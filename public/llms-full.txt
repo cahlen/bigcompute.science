@@ -87,7 +87,7 @@ We compute things that require serious hardware — 8×NVIDIA B200 (1.43 TB VRAM
 11. `/findings/hausdorff-digit-one-dominance/` — Digit 1 dominance in Hausdorff dimension spectrum (medium significance)
 12. `/findings/zaremba-representation-growth/` — Representation count R(d) grows as d^0.674 (medium significance)
 13. `/findings/zaremba-A12-logarithmic-convergence/` — A={1,2} density fits 31.5 + 4.47*log10(N). (notable significance)
-14. `/findings/zaremba-digit-pair-hierarchy/` — {1,k} decays as k^(-3.5). Digit 1 amplifies 42-243x. 3 closed sets. (notable significance)
+14. `/findings/zaremba-digit-pair-hierarchy/` — {1,k} decays as k^(-3.5). Digit 1 amplifies 42-243x. 4 closed sets (27, 64, 374, 1834). (notable significance)
 15. `/findings/zaremba-exception-hierarchy/` — 27 -> 2 -> 0 as digits grow. d=54, d=150 need digit 5. (notable significance)
 
 ## Key results (machine-readable summary)

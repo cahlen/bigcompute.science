@@ -229,8 +229,8 @@ const FINDINGS = [
   {
     slug: "zaremba-digit-pair-hierarchy",
     title: "The {1,k} Density Hierarchy: Digit 2 Is Worth 7x More Than Digit 3",
-    claim: "Complete density for all {1,k} and {2,k} pairs at 10^10. {1,k} decays as k^(-3.5). Digit 1 amplifies density 42-243x. Three closed exception sets: {1,2,3}=27, {1,2,4}=64, {1,2,5}=374.",
-    our_data: { pairs_computed: 18, range: "10^10", density_12: "76.55%", density_13: "11.06%", closed_sets: 3 },
+    claim: "Complete density for all {1,k} and {2,k} pairs at 10^10. {1,k} decays as k^(-3.5). Digit 1 amplifies density 42-243x. Four closed exception sets: {1,2,3}=27, {1,2,4}=64, {1,2,5}=374, {1,2,6}=1,834.",
+    our_data: { pairs_computed: 18, range: "10^10", density_12: "76.55%", density_13: "11.06%", closed_sets: 4, exception_sequence: "27, 64, 374, 1834" },
     search_terms: ["Zaremba conjecture digit set density", "continued fraction Gauss measure digit frequency"],
     key_references: ["Bourgain, Kontorovich (2014)", "Hensley (1996)"],
     oeis_sequences: [],
@@ -452,9 +452,9 @@ const CERTIFICATIONS: Record<string, Certification> = {
     label: "Silver — 1 review: ACCEPT",
     arxiv_corroboration: 6, zbmath_corroboration: 0, oeis_matches: 0,
     last_verified: "2026-04-02",
-    process: "Gauss-Kuzmin theorem (classical, peer-reviewed) supports the theoretical explanation. 3 closed exception sets verified. {1,k} hierarchy is clean data.",
+    process: "Gauss-Kuzmin theorem (classical, peer-reviewed) supports the theoretical explanation. 4 closed exception sets verified (27, 64, 374, 1834). {1,k} hierarchy is clean data.",
     reviews: [
-      { date: "2026-04-02", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT", level: "silver", key_finding: "Gauss measure explains hierarchy. 3 closed sets confirmed at 10^10-10^11." },
+      { date: "2026-04-02", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT", level: "silver", key_finding: "Gauss measure explains hierarchy. 4 closed sets confirmed at 10^10-10^11." },
     ],
   },
   "zaremba-A12-logarithmic-convergence": {

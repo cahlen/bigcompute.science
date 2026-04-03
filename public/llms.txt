@@ -22,7 +22,7 @@ All work produced through human-AI collaboration (Cahlen Humphreys + Claude). AI
 
 - [Zaremba Density Phase Transition](/findings/zaremba-density-phase-transition/): A={1,2,3} exactly 27 exceptions. delta > 1/2 PLUS transitivity needed. [GOLD]
 - [A={1,2} Logarithmic Convergence](/findings/zaremba-A12-logarithmic-convergence/): 5 data points, density = 31.5 + 4.47*log10(N). [BRONZE]
-- [Digit Pair Hierarchy](/findings/zaremba-digit-pair-hierarchy/): {1,k} decays as k^(-3.5). Digit 1 amplifies 42-243x. 3 closed sets. [SILVER]
+- [Digit Pair Hierarchy](/findings/zaremba-digit-pair-hierarchy/): {1,k} decays as k^(-3.5). Digit 1 amplifies 42-243x. 4 closed sets (27, 64, 374, 1834). [SILVER]
 - [Exception Hierarchy](/findings/zaremba-exception-hierarchy/): 27 -> 2 -> 0 as digits grow. d=54, d=150 need digit 5. [BRONZE]
 - [Kronecker S_30](/findings/kronecker-s30-largest-computation/): 26.4B nonzero triples, 7.4 min on B200. [GOLD]
 - [Kronecker S_40](/findings/kronecker-s40-character-table/): Complete char table (37,338 partitions, 1.394B entries). 94.9% nonzero (sampled). Hooks multiplicity-free. [GOLD]

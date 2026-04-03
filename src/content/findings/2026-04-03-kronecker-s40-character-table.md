@@ -97,8 +97,8 @@ The near-rectangular nonzero rate is only **10.1%** -- far lower than the overal
 
 The 1.394 billion character values span 23 orders of magnitude:
 
-| $\lfloor\log_{10} |\chi|\rfloor$ | Count | Fraction |
-|-----------------------------------|-------|----------|
+| log₁₀ magnitude | Count | Fraction |
+|------------------|-------|----------|
 | 0 (values 1--9) | 252,183,229 | 28.3% |
 | 1--5 | 580,078,760 | 65.1% |
 | 6--10 | 52,108,263 | 5.84% |

@@ -43,9 +43,11 @@ For each prime $p$, the **Cayley graph** of $\Gamma_{\{1,\ldots,5\}}$ in $\text{
 
 $$\frac{\text{diam}(p)}{\log p} \in [1.37, \, 2.89] \qquad \text{for all } 172 \text{ primes } p \leq 1021$$
 
-The ratio is **decreasing** and appears to converge to approximately $1.45$, strongly suggesting:
+The ratio is **decreasing** and appears to converge to approximately $1.45$, suggesting:
 
 $$\text{diam}(p) \leq 2 \log p \qquad \text{for all sufficiently large } p$$
+
+This asymptotic claim is based on the empirical trend over two orders of magnitude in $p$ and should be treated as a conjecture, not a proven bound. A formal statistical analysis (regression with confidence intervals) has not been performed.
 
 The maximum diameter observed is **10**, first achieved at $p = 211$.
 
@@ -55,7 +57,9 @@ The maximum diameter observed is **10**, first achieved at $p = 211$.
 
 The Cayley diameter equals the **maximum continued fraction length** needed to represent any element of $\text{SL}_2(\mathbb{Z}/p\mathbb{Z})$ as a product of the generators $g_a = \begin{pmatrix} a & 1 \\ 1 & 0 \end{pmatrix}$. Since continued fraction convergents correspond to products of these matrices, the diameter bounds the **worst-case CF length** needed to hit any denominator class modulo $p$.
 
-If $\text{diam}(p) \leq C \log p$ with explicit $C$, this feeds directly into an effective $Q_0$ for Zaremba's Conjecture via the Bourgain-Kontorovich circle method ([Bourgain-Kontorovich, 2014](#references)).
+Note: the correspondence between Cayley diameter in $\text{SL}_2(\mathbb{Z}/p\mathbb{Z})$ and CF length over $\mathbb{Z}$ is subtle — reduction mod $p$ can lose information. The diameter gives an upper bound on CF length *modulo $p$*, but lifting to integer continued fractions requires additional arguments (see Bourgain-Kontorovich 2014, Section 4).
+
+If $\text{diam}(p) \leq C \log p$ with explicit $C$, this could feed into an effective $Q_0$ for Zaremba's Conjecture via the Bourgain-Kontorovich circle method ([Bourgain-Kontorovich, 2014](#references)).
 
 ### Connection to Property (τ)
 
@@ -125,6 +129,6 @@ Source: [`scripts/experiments/zaremba-transfer-operator/cayley_gpu.cu`](https://
 
 ---
 
-*Computed on 8× NVIDIA B200 (1.43 TB VRAM), 40 seconds total.*
+*Computed on 8× NVIDIA B200 (1.43 TB VRAM, Blackwell architecture, CUDA 12.8), 40 seconds total. Full BFS logs and per-prime diameter data available in the GitHub repository.*
 
 *This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

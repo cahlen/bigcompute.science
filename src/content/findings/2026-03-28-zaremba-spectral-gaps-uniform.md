@@ -51,7 +51,7 @@ The spectral gap $\sigma_m$ of the congruence transfer operator $\mathcal{L}_{\d
 
 $$0.237 \leq \sigma_m \leq 0.998 \qquad \text{for all square-free } m \leq 1999$$
 
-Mean gap: $0.482$. Computed in **77 minutes on 8 NVIDIA B200 GPUs** using implicit Kronecker matrix-vector products (never forming the full matrix). This is computational evidence for **property ($\tau$)** of $\Gamma_{\{1,\ldots,5\}}$ in $\text{SL}_2(\mathbb{Z}/m\mathbb{Z})$ at a scale nobody has computed before.
+Mean gap: $0.482$. Computed in **77 minutes on 8 NVIDIA B200 GPUs** using implicit Kronecker matrix-vector products (never forming the full matrix). Note: with $N = 15$ Chebyshev collocation, the numerical accuracy is approximately 2--3 decimal places; the stated lower bound of 0.237 may shift by $\sim 0.02$ under refinement (a convergence study at higher $N$ for the tightest-gap moduli is planned). This is computational evidence *consistent with* **property ($\tau$)** of $\Gamma_{\{1,\ldots,5\}}$ in $\text{SL}_2(\mathbb{Z}/m\mathbb{Z})$, but property ($\tau$) itself remains unproven — the computation covers only square-free $m \leq 1999$, and extension to all moduli (including non-square-free and $m > 1999$) is required. To our knowledge, this is the largest computation of congruence spectral gaps for this semigroup.
 
 ## Why This Matters
 
@@ -178,14 +178,14 @@ Showing the first 50 square-free moduli, plus notable extremes. Full dataset (1,
 - **Hausdorff dimension**: $\delta = 0.836829443681208$ (computed to 15 digits) — [see experiment](/experiments/zaremba-transfer-operator/)
 - **Witness distribution**: smallest witness concentrates at $a/d \approx 0.171$, connected to $1/(5 + \varphi)$ — [see finding](/findings/zaremba-witness-golden-ratio/)
 - **Brute-force verification**: zero failures for all $d \leq 10^{10}$ (v6 multi-pass kernel, 179s on 8× B200)
-- **Cayley graph diameters**: $\text{diam}(p) \leq 2 \log p$ for all 669 primes $\leq 1021$ — [see finding](/findings/zaremba-cayley-diameters/)
+- **Cayley graph diameters**: $\text{diam}(p) \leq 2 \log p$ for all 172 primes $\leq 1021$ — [see finding](/findings/zaremba-cayley-diameters/)
 - **Transitivity**: algebraic argument for all primes via Dickson's classification (AI-assisted, not peer-reviewed) — [see finding](/findings/zaremba-transitivity-all-primes/)
 
 ## What This Enables
 
 The combination of uniform spectral gaps + brute-force verification + Cayley diameter bounds opens a concrete path to the full conjecture:
 
-1. **Effective Q₀**: Bourgain-Kontorovich's density-1 proof has non-effective error terms. With explicit spectral gap data ($\sigma_m \geq 0.237$ for $m \leq 1999$) and Cayley diameter bounds ($\text{diam}(p) \sim 1.45 \log p$), the error terms in their circle method analysis can potentially be made explicit, yielding a concrete $Q_0$ such that Zaremba holds for all $d > Q_0$.
+1. **Toward effective Q₀**: Bourgain-Kontorovich's density-1 proof has non-effective error terms. With explicit spectral gap data ($\sigma_m \geq 0.237$ for $m \leq 1999$) and Cayley diameter bounds ($\text{diam}(p) \sim 1.45 \log p$), the error terms in their circle method analysis could in principle be made explicit, yielding a concrete $Q_0$ such that Zaremba holds for all $d > Q_0$. However, this requires rigorous (not just numerical) bounds on spectral gaps for *all* moduli plus tight control of exponential sums — a substantial analytic challenge that remains open.
 
 2. **Computational closure**: If $Q_0$ falls below our brute-force verification range ($10^{10}$ and growing), the conjecture would be resolved computationally. The gap between the analytic bound and the verification frontier is narrowing from both sides.
 
@@ -202,6 +202,8 @@ The combination of uniform spectral gaps + brute-force verification + Cayley dia
 
 - Transfer operator: [`scripts/experiments/zaremba-transfer-operator/transfer_operator.cu`](https://github.com/cahlen/idontknow)
 - CUDA kernels: [`scripts/zaremba_verify_v4.cu`](https://github.com/cahlen/idontknow)
+
+Full reproduction data (raw eigenvalue files, N=40 prime data, and flat-gap computation for primes to 100,000) are available in the GitHub repository. The N=40 run for 168 primes to $p = 1000$ and the flat-gap bound $|\lambda_2|/\sqrt{p} \leq 2.18$ for 9,592 primes use cuBLAS FP64 dense eigensolver; algorithmic details and stopping criteria are documented in the source code.
 
 ## References
 

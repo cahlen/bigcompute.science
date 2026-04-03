@@ -27,8 +27,8 @@ The fraction of real quadratic fields $\mathbb{Q}(\sqrt{d})$ with class number $
 
 | Range | $h = 1$ fraction | Validated by |
 |-------|-----------------|--------------|
-| $d < 10^4$ | 42.1% | PARI/GP (exact match) |
-| $d \sim 10^6$ | 25.7% | PARI/GP |
+| $d < 10^4$ | 42.1% | spot-checked against PARI/GP |
+| $d \sim 10^6$ | 25.7% | spot-checked against PARI/GP |
 | $d \in [10^9, 2 \times 10^9)$ | 17.5% | This work |
 | $d \in [10^9, 10^{10})$ | 16.7% | This work |
 | $d \in [10^{10}, 10^{11})$ | 15.35% | This work |
@@ -73,10 +73,11 @@ The p-divisibility rates are also far from the asymptotic predictions, again due
 
 ## Computational Details
 
-- **2,735,671,820 fundamental discriminants** processed
-- **30 minutes** on 8× NVIDIA B200 DGX cluster
+- **2,735,671,820 fundamental discriminants** processed in the $[10^9, 10^{10})$ range
+- **30 minutes** on 8× NVIDIA B200 DGX cluster (Blackwell, 192 GB HBM3e each, CUDA 12.8) for the first 2.7 billion
+- Total wall-clock for the full 30 billion discriminants (including $[10^{10}, 10^{11})$): approximately 5 hours
 - **1.5M discriminants/sec** throughput
-- **Method**: GPU sieve + CF regulator (log-space, validated against PARI/GP) + Euler product (9,592 primes)
+- **Method**: GPU sieve + CF regulator (log-space, spot-checked against PARI/GP for $d < 10^6$) + Euler product (9,592 primes). Note: spot-checking a small prefix does not guarantee absence of silent errors over the full 30 billion inputs. A randomized cross-check on a $\geq 0.1\%$ subsample using an independent algorithm is planned.
 - **Raw data**: every (d, h) pair preserved in binary format, to be uploaded to [Hugging Face](https://huggingface.co/cahlen)
 
 Full paper: [experiment page](/experiments/class-numbers-real-quadratic/)

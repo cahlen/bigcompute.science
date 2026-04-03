@@ -39,6 +39,8 @@ Reformulating continued fraction tree enumeration as **batched 2×2 matrix multi
 | $10^{9}$ | ~days | **14.4s** | ~10,000× |
 | $10^{10}$ | infeasible | **43s** | — |
 
+**Hardware and baseline**: GPU timings on NVIDIA B200 (Blackwell, 192 GB HBM3e, CUDA 12.8, `nvcc -O3 -arch=sm_100a`). The v4 baseline is a CPU recursive tree-walk on 2x Intel Xeon Platinum 8570 (112 cores). The 175x speedup figure is measured at $10^7$ where both codepaths complete; at larger ranges v4 becomes impractical, so extrapolated speedups ("~1000x", "~10000x") are approximate. The speedup includes contributions from both the GPU migration and kernel-level optimizations (fusion, early-exit predicates), which have not been isolated via ablation.
+
 ## The Key Insight
 
 Every CF path $[a_1, a_2, \ldots, a_k]$ with partial quotients in $\{1,\ldots,5\}$ corresponds to the matrix product:

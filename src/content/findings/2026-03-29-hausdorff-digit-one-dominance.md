@@ -51,6 +51,8 @@ The Gauss measure assigns weight proportional to $\log(1 + 1/(a(a+2)))$ to digit
 - **Removing digit 15** from $\{1, \ldots, 15\}$ costs dimension $0.004$
 - The ratio is approximately **50:1**
 
+Note: with $N = 15$ Chebyshev collocation nodes, the expected truncation error is on the order of $10^{-3}$. The 0.004 drop for digit 15 is close to this error floor, so the 50:1 ratio should be treated as approximate. A convergence study at higher $N$ (e.g., $N = 25, 35$) for representative alphabets is needed to confirm the precise magnitude of small dimension drops.
+
 This is not merely a curiosity. The dimension of $E_A$ governs the metric theory of Diophantine approximation restricted to digit set $A$: Jarník-type theorems, Khintchine-type dichotomies, and the distribution of rationals with bounded partial quotients all depend on $\dim_H(E_A)$. The extreme dominance of small digits — particularly digit 1 — means that for most applications, **the first few digits carry nearly all the information**.
 
 ## Key Results
@@ -81,11 +83,11 @@ For **every** cardinality $k$ from 1 to 14, subsets of $\{1, \ldots, 15\}$ that 
 
 ### Gauss measure predicts dimension ranking
 
-The Hausdorff dimension $\dim_H(E_A)$ is almost perfectly rank-correlated with the sum
+The Hausdorff dimension $\dim_H(E_A)$ shows a strong rank-correlation with the sum
 
 $$S(A) = \sum_{a \in A} \frac{1}{a^2}$$
 
-over digits $a$ in the subset $A$. Since $1/1^2 = 1$ while $1/15^2 \approx 0.004$, this explains why digit 1 contributes so disproportionately: the Gauss measure weight $1/a^2$ drops by a factor of 225 from $a = 1$ to $a = 15$.
+over digits $a$ in the subset $A$. This is expected from the first-order term in the pressure expansion around $s = 1$, though published studies (Hensley 1992; Falk-Nussbaum 2019) show noticeable deviations for mixed alphabets. A formal correlation coefficient (Kendall $\tau$ or Spearman $\rho$) across all subsets has not yet been computed. Since $1/1^2 = 1$ while $1/15^2 \approx 0.004$, this explains qualitatively why digit 1 contributes so disproportionately: the Gauss measure weight $1/a^2$ drops by a factor of 225 from $a = 1$ to $a = 15$.
 
 ### Empirical growth law
 
@@ -93,7 +95,7 @@ The dimension of consecutive-digit sets follows the empirical fit:
 
 $$\dim_H(E_{\{1,\ldots,n\}}) \approx 1 - \frac{0.58}{n^{0.88}}$$
 
-This captures the approach to $\dim_H = 1$ (the full interval) as $n \to \infty$, with a power-law correction whose exponent $0.88$ reflects the harmonic-like decay of digit contributions.
+This is an empirical fit over the range $n = 1$ to $20$; with only 2--3 significant digits per dimension value and a limited range, many functional forms (including the classical asymptotic $1 - c/\log n$) could fit comparably. Residuals and goodness-of-fit statistics have not been computed. The exponent $0.88$ should be treated as a rough guide, not a precise measurement.
 
 ## Method
 
@@ -113,7 +115,7 @@ This captures the approach to $\dim_H = 1$ (the full interval) as $n \to \infty$
 | $E_{\{2,\ldots,20\}}$ | **0.768** | 19 digits without 1 |
 | $E_{\{1,\ldots,20\}}$ | 0.965 | All 20 digits |
 
-Five digits with 1 beat nineteen digits without 1 by a margin of **0.069** in Hausdorff dimension. Removing digit 1 from $\{1, \ldots, 20\}$ costs dimension $0.197$ while removing digit 20 costs $0.002$ — a ratio of approximately **100:1** (up from 50:1 at $n = 15$).
+Five digits with 1 beat nineteen digits without 1 by a margin of **0.069** in Hausdorff dimension. Removing digit 1 from $\{1, \ldots, 20\}$ costs dimension $0.197$ while removing digit 20 costs $0.002$ — a ratio of approximately **100:1** (up from 50:1 at $n = 15$). As with the $n = 15$ case, the 0.002 drop is at the edge of the $N = 15$ collocation truncation error, so the exact ratio should be treated as approximate pending a higher-$N$ convergence study.
 
 > **Correction (2026-04-01):** $\dim_H(E_{\{2,\ldots,20\}})$ was previously reported as 0.826. MCP peer review (Claude Opus 4.6, Anthropic) cross-checked against the actual spectrum data (`spectrum_n20.csv`) and found the correct value is **0.768**. This correction *strengthens* the finding: the gap between 5-with-1 and 19-without-1 is 0.069, larger than the previously reported 0.011. Digit 1 dominance is even more extreme than originally stated.
 

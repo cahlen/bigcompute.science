@@ -35,7 +35,7 @@ For each integer $d$, define $R(d)$ as the number of continued fraction represen
 
 $$R(d) \sim C \cdot d^{2\delta - 1} \approx C \cdot d^{0.674}$$
 
-matching the prediction from the transfer operator analysis. Crucially, **the hardest cases are small $d$**, not large $d$:
+matching the prediction from the transfer operator analysis (2(0.836829) - 1 = 0.673658; the fitted value 0.674 agrees within the fitting uncertainty, though no confidence interval or regression methodology is reported here). Crucially, **the hardest cases are small $d$**, not large $d$:
 
 | $d$ | $R(d)$ | Notes |
 |-----|--------|-------|
@@ -51,13 +51,13 @@ matching the prediction from the transfer operator analysis. Crucially, **the ha
 
 ## Why This Matters
 
-A counterexample to Zaremba's Conjecture would require $R(d) = 0$ for some $d$. Our data shows $R(d)$ is monotonically increasing on average — the larger $d$ gets, the MORE representations it has. The only values with $R(d) = 1$ are $d = 1$ and $d = 13$, both well within our verified range.
+A counterexample to Zaremba's Conjecture would require $R(d) = 0$ for some $d$. Our data shows $R(d)$ is *increasing in expectation* — the average representation count grows with $d$. (Note: individual $R(d)$ values exhibit substantial local fluctuations; "increasing on average" refers to the Cesaro mean or moving average over windows, not pointwise monotonicity.) The only values with $R(d) = 1$ are $d = 1$ and $d = 13$, both well within our verified range.
 
 This growth rate is exactly what the transfer operator predicts: the number of CF paths of length $k$ with partial quotients in $\{1,\ldots,5\}$ grows as $\lambda_0^k = 1^k$ (since $\delta$ is chosen so $\lambda_0 = 1$), and the denominators of these paths cover $\sim N^{2\delta}$ values up to $N$, giving each $d \leq N$ approximately $N^{2\delta} / N = N^{2\delta-1}$ representations.
 
 ## Method
 
-GPU representation counter (`exponential_sum.cu`): enumerates all CF sequences with partial quotients $\leq 5$ and denominators $\leq N$, counting how many produce each denominator $d$. Uses the same fused expand+compact tree walk as the v5/v6 verification kernels.
+GPU representation counter (`exponential_sum.cu`): enumerates all CF sequences with partial quotients $\leq 5$ and denominators $\leq N$, counting how many produce each denominator $d$. Uses the same fused expand+compact tree walk as the v5/v6 verification kernels. Runtime: 5.3 seconds for $d \leq 10^6$ on a single NVIDIA B200. Full $R(d)$ data and reproduction scripts available in the GitHub repository.
 
 ## References
 

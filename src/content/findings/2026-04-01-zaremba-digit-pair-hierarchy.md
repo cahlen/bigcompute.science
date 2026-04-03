@@ -10,7 +10,7 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, diophantine-approximation, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "Complete density computation for all {1,k} pairs at 10^10. Density drops exponentially: {1,2}=76.55%, {1,3}=11.06%, {1,4}=1.61%, ..., {1,10}=0.020%. Only {1,2} has Hausdorff dimension above 1/2. The ratio between consecutive pairs shows digit 2 is 6.9x more valuable than digit 3, confirming the Gauss measure weight 1/k^2 as the dominant factor in Zaremba density. Four closed exception sets confirmed: {1,2,3}=27, {1,2,4}=64, {1,2,5}=374, {1,2,6}=1,834."
+summary: "Complete density computation for all {1,k} pairs at 10^10. Density drops exponentially: {1,2}=76.55%, {1,3}=11.06%, {1,4}=1.61%, ..., {1,10}=0.020%. Only {1,2} has Hausdorff dimension above 1/2. The ratio between consecutive pairs shows digit 2 is 6.9x more valuable than digit 3, consistent with the Gauss measure weight 1/k^2 as the dominant factor in Zaremba density. Four exception sets observed to be stable (no growth across a decade of extension): {1,2,3}=27, {1,2,4}=64, {1,2,5}=374, {1,2,6}=1,834."
 
 data:
   pairs_computed: 9
@@ -25,7 +25,7 @@ data:
     k8: 0.0475
     k9: 0.0297
     k10: 0.0201
-  scaling: "approximately k^(-3.5)"
+  scaling: "approximately k^(-3 to -4), precise exponent uncertain"
 
 certification:
   level: bronze
@@ -58,7 +58,7 @@ For each $k = 2, 3, \ldots, 10$, we computed the Zaremba density of the pair $A 
 
 ### The critical jump is at $k = 2$
 
-The jump from $k = 3$ (11%) to $k = 2$ (77%) is the largest in the entire hierarchy — a factor of **6.9x**. Digit 2 is worth almost **7 times** more than digit 3 for Zaremba density. This is not just because $\{1,2\}$ crosses the Hausdorff dimension threshold ($\delta > 1/2$), but because the Gauss measure weight $1/k^2$ drops by a factor of $4/9 \approx 0.44$ from $k=2$ to $k=3$.
+The jump from $k = 3$ (11%) to $k = 2$ (77%) is the largest in the entire hierarchy — a factor of **6.9x** in observed density. This ratio measures the density gap between consecutive pairs at a fixed search range ($10^{10}$), not an intrinsic "value" of a digit. The large jump reflects both $\{1,2\}$ crossing the Hausdorff dimension threshold ($\delta > 1/2$) and the Gauss measure weight $1/k^2$ dropping by a factor of $4/9 \approx 0.44$ from $k=2$ to $k=3$.
 
 ### Gauss measure predicts the hierarchy
 
@@ -78,9 +78,9 @@ Digit 1 appears 41.5% of the time in a typical CF. Digit 2 appears 17%. Digit 3 
 
 The densities fit approximately:
 
-$$\text{density}(\{1,k\}) \approx C \cdot k^{-3.5} \qquad \text{for } k \geq 3$$
+$$\text{density}(\{1,k\}) \approx C \cdot k^{-\alpha} \qquad \text{for } k \geq 3$$
 
-with $C \approx 350$. The exponent $-3.5$ is close to twice the Gauss measure exponent $-2$ (from $1/k^2$), which is expected since density depends on the *product* of the two digits' contributions.
+with $\alpha$ in the range 3--4 (a formal log-log regression with confidence intervals has not been performed; the exponent estimate is approximate given the small number of data points). The rough magnitude is consistent with twice the Gauss measure exponent $-2$ (from $1/k^2$), which is expected since density depends on the *product* of the two digits' contributions.
 
 ## Without Digit 1: The {2,k} Hierarchy
 
@@ -103,7 +103,7 @@ Without digit 1, no pair achieves even 0.1% density. This is the strongest quant
 
 ## Closed Exception Sets
 
-Four $\{1, 2, k\}$ triples have computationally observed exception sets that appear closed — no new exceptions appear when extending the search range by a factor of 10:
+Four $\{1, 2, k\}$ triples have computationally observed exception sets that appear *stable* — no new exceptions appear when extending the search range by a factor of 10. Note: stability across one decade of extension is strong computational evidence but does not constitute a proof of finiteness; additional exceptions could in principle appear at larger ranges.
 
 | Digit set | Exceptions | Verified to | Status |
 |-----------|-----------|------------|--------|
@@ -123,7 +123,7 @@ for k in 2 3 4 5 6 7 8 9 10; do
 done
 ```
 
-Each pair takes 10-15 seconds on a B200.
+Each pair takes 10-15 seconds on a B200 (Blackwell, 192 GB HBM3e, CUDA 12.8). The kernel uses an inverse CF construction (enumerating all CFs with digits in $A$ and marking their denominators in a bitset), not per-denominator modular inversion. Full algorithmic details and timing logs are available in the GitHub repository.
 
 ---
 

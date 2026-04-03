@@ -10,7 +10,7 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, diophantine-approximation, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "The Zaremba density for A={1,2} fits density = 30.1 + 4.65·log₁₀(N) with residuals < 0.1%, predicting 100% density at N ~ 10^15. This is logarithmic convergence, NOT the power-law N^(2δ-1) = N^0.062 predicted by the Bourgain-Kontorovich transfer operator framework. The observed rate is 2.35× faster than the theoretical exponent. Three data points (10^6, 10^9, 10^10) fit perfectly. This is the slowest-converging digit set we've measured (δ = 0.531, barely above the critical 1/2 threshold) and a stress test for the BK framework."
+summary: "The Zaremba density for A={1,2} fits density = 30.1 + 4.65·log₁₀(N) with residuals < 0.1%, predicting 100% density at N ~ 10^15. This is logarithmic convergence, NOT the power-law N^(2δ-1) = N^0.062 predicted by the Bourgain-Kontorovich transfer operator framework. Note: the BK exponent describes R(d) growth, not density convergence directly. Five data points (10^6 through 10^12) fit the logarithmic model. This is the slowest-converging digit set we've measured (δ = 0.531, barely above the critical 1/2 threshold) and a stress test for the BK framework."
 
 data:
   digit_set: "{1,2}"
@@ -51,7 +51,7 @@ $$\text{density}(N) \approx 30.1 + 4.65 \cdot \log_{10}(N)$$
 | $10^{11}$ | **80.75%** | 80.64% | +0.11% |
 | $10^{12}$ | **84.58%** | 85.10% | -0.52% |
 
-With **five data points** spanning 6 decades, the logarithmic fit is robust:
+With **five data points** spanning 6 decades (all five are empirical measurements at $10^6$, $10^9$, $10^{10}$, $10^{11}$, and $10^{12}$), the logarithmic fit is:
 
 $$\text{density}(N) \approx 31.5 + 4.47 \cdot \log_{10}(N) \quad (\text{residuals} \leq 0.52\%)$$
 
@@ -108,9 +108,9 @@ Our complete density sweep of all 1,023 subsets of $\{1, \ldots, 10\}$ reveals t
 
 At cardinality 4, digit 1 is worth **79 percentage points** of density. By cardinality 8, the advantage shrinks to under 1 point — enough other digits compensate.
 
-## Exception Scaling: {1,2,k} Follows k^7
+## Exception Scaling: {1,2,k}
 
-For the family $A = \{1, 2, k\}$ at $N = 10^6$, the number of uncovered integers grows approximately as $k^7$:
+For the family $A = \{1, 2, k\}$ at $N = 10^6$, the number of uncovered integers grows rapidly with $k$. The consecutive ratios fluctuate between 1.5 and 5.8, so a precise power-law exponent cannot be determined from these few data points without a formal regression with confidence intervals:
 
 | $k$ | Exceptions | Ratio to $k-1$ |
 |-----|-----------|-----------------|

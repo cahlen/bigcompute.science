@@ -125,7 +125,7 @@ Together with our other findings, this gives a comprehensive picture:
 1. **No local obstructions** (transitivity argument for all primes — this page, not yet peer-reviewed)
 2. **Uniform spectral gap** (property ($\tau$) confirmed: $\sigma_m \geq 0.237$ for 1,214 square-free moduli — [spectral gaps](/findings/zaremba-spectral-gaps-uniform/))
 3. **Brute-force verification** (zero failures to $d = 10^{10}$, 179 seconds on 8× B200)
-4. **Cayley graph diameters** ($\text{diam}(p) \leq 2 \log p$ for all 669 primes $\leq 1021$ — [Cayley diameters](/findings/zaremba-cayley-diameters/))
+4. **Cayley graph diameters** ($\text{diam}(p) \leq 2 \log p$ for all 172 primes $\leq 1021$ — [Cayley diameters](/findings/zaremba-cayley-diameters/))
 
 The remaining gap: making the error terms in the Bourgain-Kontorovich circle method effective to obtain an explicit $Q_0$. The Cayley diameter bound $\text{diam}(p) \sim 1.45 \log p$ constrains the maximum CF length needed modulo any prime, which feeds directly into the minor arc estimates.
 

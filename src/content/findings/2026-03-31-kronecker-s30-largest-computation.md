@@ -44,7 +44,7 @@ We computed the complete Kronecker coefficient table $g(\lambda, \mu, \nu)$ for 
 | 20 | 627 | 41,081,980 | 32,672,202 (79.5%) | 6,408,361 | 3.7 sec |
 | 30 | 5,604 | 29,332,098,144 | 26,368,860,547 (89.9%) | 24,233,221,539,853 | 7.4 min |
 
-The S$_{30}$ computation is to our knowledge, the largest Kronecker coefficient table published. The previous systematic frontier was $n \approx 20$ (browser-based tools handle this in seconds). We extended it by 50% in $n$ and by a factor of $\sim 700\times$ in the number of triples.
+The S$_{30}$ computation is, to our knowledge, the largest complete Kronecker coefficient table published. The previous systematic frontier appears to be around $n \leq 25$ (Burgisser and Ikenmeyer 2008; online packages). No peer-reviewed work beyond $n = 25$ was found in zbMATH or arXiv. We extended by 20% in $n$ (from 25 to 30) and by a large factor in the number of triples.
 
 ## Why This Matters
 
@@ -70,7 +70,7 @@ The character values $\chi^\lambda(\rho)$ are computed via the **Murnaghan-Nakay
 2. A border strip of size $k$ is a contiguous subpath of length $k$ on the rim
 3. For each strip: remove cells, compute height (number of rows spanned $- 1$), recurse
 
-**Validation**: Row and column orthogonality pass for $S_5$ through $S_{12}$. Dimension sum $\sum_\lambda \dim(\lambda)^2 = n!$ confirmed.
+**Validation**: Row and column orthogonality pass for $S_5$ through $S_{12}$. Dimension sum $\sum_\lambda \dim(\lambda)^2 = n!$ confirmed for all $n$ computed ($n = 5$ through $n = 30$). Integer overflow safeguards use Python arbitrary-precision integers throughout.
 
 - S$_{20}$: 627 $\times$ 627 = 393K entries, 1.7 seconds
 - S$_{30}$: 5,604 $\times$ 5,604 = 31M entries, 220 seconds

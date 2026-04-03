@@ -10,7 +10,7 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, diophantine-approximation, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "CONFIRMED TO 10^10: A={1,2,3} has exactly 27 exceptions (all ≤ 6234), giving 99.9999997% density at d ≤ 10^{10}. Zero new exceptions between d=6234 and d=10^10. The exception set appears finite and closed. By contrast, A={1,2} gives only 72% density at 10^9. Phase transition at Hausdorff dimension δ = 1/2. This suggests Zaremba's conjecture holds with A=3, not A=5. Verified to 10^10. Running to higher ranges. Not peer-reviewed."
+summary: "CONFIRMED TO 10^10: A={1,2,3} has exactly 27 exceptions (all ≤ 6234), giving 99.9999997% density at d ≤ 10^{10}. Zero new exceptions between d=6234 and d=10^10. The exception set appears finite (not proven). By contrast, A={1,2} gives only 72% density at 10^9. Phase transition at Hausdorff dimension δ = 1/2. This suggests Zaremba's conjecture holds with A=3, not A=5. Verified to 10^10. Running to higher ranges. Not peer-reviewed."
 
 data:
   density_A123_1e10: 0.999999997
@@ -68,7 +68,7 @@ For $A = \{1, 2, 3\}$, **exactly 27 integers** in $[1, 10^{10}]$ are uncovered �
 
 $$6, 20, 28, 38, 42, 54, 96, 150, 156, 164, 216, 228, 318, 350, 384, 558, 770, 876, 1014, 1155, 1170, 1410, 1870, 2052, 2370, 5052, 6234$$
 
-**Zero new exceptions** between $d = 6{,}234$ and $d = 10^{10}$. The exception set is finite and appears to be complete. This means $A = \{1, 2, 3\}$ gives full Zaremba density with exactly 27 exceptions.
+**Zero new exceptions** between $d = 6{,}234$ and $d = 10^{10}$. The exception set *appears* finite based on computational evidence, but finiteness has not been proven analytically — additional exceptions could in principle appear beyond $10^{10}$. Subject to this caveat, the data strongly suggests $A = \{1, 2, 3\}$ gives full Zaremba density with exactly 27 exceptions.
 
 ## Why This Matters
 
@@ -93,7 +93,7 @@ Hausdorff dimension alone is **not sufficient**. Our own data demonstrates this:
 
 The zbMATH review of Bourgain-Kontorovich (2014) notes that Hensley conjectured $\delta > 1/2$ alone implies full density, but **Hensley's conjecture is false** — sets with congruence obstructions (typically those lacking digit 1) can fail to achieve full density even with $\delta$ well above $1/2$.
 
-The real mechanism: **digit 1 ensures transitivity**. The matrix $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ (corresponding to digit 1) generates a unipotent element that, combined with other generators, forces the semigroup to act transitively on $(\mathbb{Z}/p\mathbb{Z})^2$ for all primes $p$. This is confirmed by our [transitivity finding](https://bigcompute.science/findings/zaremba-transitivity-all-primes/). Without digit 1, congruence obstructions can persist even when $\delta > 1/2$.
+The real mechanism: **digit 1 facilitates transitivity**. The matrix $\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$ (corresponding to digit 1) provides a unipotent-like element that, combined with other generators, helps the semigroup act transitively on $(\mathbb{Z}/p\mathbb{Z})^2$. Transitivity of the full semigroup $\Gamma_{\{1,\ldots,5\}}$ is confirmed for all primes in our [transitivity finding](https://bigcompute.science/findings/zaremba-transitivity-all-primes/). Note: digit 1 alone does not guarantee transitivity — the full argument requires analyzing the joint action of all generators via Dickson's classification. Without digit 1, congruence obstructions can persist even when $\delta > 1/2$.
 
 Our density sweep of all 1,023 subsets of $\{1, \ldots, 10\}$ confirms this dramatically: of 366 subsets with $\geq 99.99\%$ density, **361 contain digit 1**. Only 5 achieve near-full density without digit 1, and those require $|A| \geq 8$.
 
@@ -178,7 +178,7 @@ The jump from 2 to 3 elements is the phase transition: 57.98% → 99.997%.
 
 Note $\{2,3,4\}$ (no digit 1) has only 24.6% density — the same cardinality as $\{1,2,3\}$ at 99.997%. Digit 1 accounts for a **75 percentage point** difference.
 
-**Dataset:** [density_all_subsets_n10_1e6.csv](https://huggingface.co/datasets/cahlen/zaremba-conjecture-data/blob/main/density/density_all_subsets_n10_1e6.csv) on Hugging Face (1,023 rows, CC BY 4.0).
+**Dataset:** [density_all_subsets_n10_1e6.csv](https://huggingface.co/datasets/cahlen/zaremba-conjecture-data/blob/main/density/density_all_subsets_n10_1e6.csv) on Hugging Face (1,023 rows, CC BY 4.0). Generation script and SHA-256 checksum available in the GitHub repository.
 
 ## Reproduce
 

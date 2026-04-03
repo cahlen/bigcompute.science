@@ -67,7 +67,7 @@ The proof combines three ingredients (see [paper PDF](https://github.com/cahlen/
 
 ### 1. Brute-Force Verification ($d \leq 2.1 \times 10^{11}$)
 
-GPU matrix enumeration (v6 multi-pass kernel) verifies every integer from 1 to 210 billion. Zero failures. Runtime: 116 minutes on 8× NVIDIA B200. [Verification manifest with SHA256 checksums](https://github.com/cahlen/idontknow/blob/main/paper/verification-manifest.txt).
+GPU matrix enumeration (v6 multi-pass kernel) verifies every integer from 1 to 210 billion. Zero failures. Runtime: 116 minutes on 8× NVIDIA B200 (Blackwell, 192 GB HBM3e each, CUDA 12.8). [Verification manifest with SHA256 checksums](https://github.com/cahlen/idontknow/blob/main/paper/verification-manifest.txt). Completeness of coverage is certified by the final bitset covering all integers in the range; full command lines and input parameters are documented in the manifest.
 
 ### 2. Spectral Gap Computation (11 primes, FP64)
 
@@ -166,7 +166,7 @@ For $R(d) \geq 1$: need $d^\varepsilon > C'/c_\Gamma$, giving threshold $D_0 = (
 
 **The Calderón-Magee explicit spectral gap** (JEMS 2025) applies to Schottky subgroups with $\delta > 4/5$ (our $\delta = 0.837$ qualifies), making $\varepsilon$ computable in principle.
 
-**Result:** $C_{\text{err}} \approx 536$, $\varepsilon' = 0.14$, $D_0 \approx 3.4 \times 10^{10} \leq 2.1 \times 10^{11}$. Margin: $6\times$. All load-bearing spectral data arb-certified via FLINT ball arithmetic at 256-bit precision.
+**Result:** $C_{\text{err}} \approx 536$, $\varepsilon' = 0.14$, $D_0 \approx 3.4 \times 10^{10} \leq 2.1 \times 10^{11}$. Margin: $6\times$. All load-bearing spectral data arb-certified via FLINT ball arithmetic at 256-bit precision. **Important caveat:** the original MOW paper does not supply all constants explicitly, and the Calderon-Magee result gives an explicit gap only for untwisted operators. A detailed constant-tracking appendix (Sage or arb notebook) reproducing every numeric inequality is not yet available. The $D_0$ value should therefore be understood as *estimated*, not rigorously certified, until full constant propagation is documented.
 
 ## Representation Growth
 
@@ -205,7 +205,7 @@ We computed the spectral radius $\rho(t)$ of $L_{\delta+it}$ via **exact eigende
 
 **Critical finding:** Power iteration is **unreliable** for the twisted transfer operator — at certain $t$ values, multiple eigenvalues of similar magnitude with different phases cause oscillation instead of convergence. Full eigendecomposition is required.
 
-- $\rho_\eta = \sup_{t \geq 1} \rho(t) \leq 0.771$ (arb-certified on $[1, 1000]$, MOW kernel decay for tail)
+- $\rho_\eta = \sup_{t \geq 1} \rho(t) \leq 0.771$ (arb-certified on $[1, 1000]$, MOW kernel decay for tail). Note: this bound applies to the $N = 80$ Chebyshev discretization of the transfer operator, not the full infinite-dimensional operator. A rigorous a-posteriori truncation error bound (e.g., via Keller-Liverani framework) transporting this result to the true operator has not been established.
 - At $t = 1.0$: $\|L^{256}\|^{1/256} = 0.75796126 \pm 6.5 \times 10^{-70}$ (70 certified digits)
 - For all $t \geq 2$: $\rho(t) < 0.68$ uniformly
 - $\varepsilon_{\max} = -\log(\rho_\eta)/|P'(\delta)| = 0.157$

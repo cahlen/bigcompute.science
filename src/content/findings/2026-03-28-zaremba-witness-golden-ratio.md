@@ -10,7 +10,7 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, dynamical-systems]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "The smallest Zaremba witness for d concentrates at a/d ≈ 0.171 with 99.7% sharing CF prefix [0; 5, 1, ...]. The concentration lies between the convergents 1/6 and 2/11, connected to 1/(5+φ) where φ is the golden ratio. The bound A=5 is tight — 99.9% of cases require max quotient exactly 5."
+summary: "The smallest Zaremba witness for d concentrates at a/d ≈ 0.171 with 99.7% sharing CF prefix [0; 5, 1, ...]. The concentration lies between the convergents 1/6 and 2/11, with a heuristic connection to 1/(5+φ) where φ is the golden ratio. For 99.9% of d, the *minimal* witness uses max quotient 5 (this does not rule out larger witnesses with quotients ≤ 4)."
 
 data:
   mean_ratio: 0.1712
@@ -53,7 +53,7 @@ $$[0;\, 5, 1] = \frac{1}{6} \approx 0.1667 \qquad \text{and} \qquad [0;\, 5, 1, 
 
 The witnesses cluster in this window because the optimal CF starts with the maximum allowed quotient (5), then drops to the minimum (1), then varies — balancing the constraint of keeping all quotients $\leq 5$ while being coprime to $d$.
 
-Note: the golden ratio limit $1/(5+\varphi) \approx 0.1511$ is the value of the *infinite* CF $[0; 5, 1, 1, 1, \ldots]$. The observed mean $0.1712$ is higher because finite CF witnesses have only a few terms and concentrate between the low-order convergents $1/6$ and $2/11$. The connection to the golden ratio is through the CF structure (digit 1 repeating = golden ratio), not an exact numerical match.
+**Caveat on the golden ratio.** The infinite CF $[0; 5, 1, 1, 1, \ldots]$ converges to $1/(5+\varphi) \approx 0.1511$, which is 13% below the observed mean of $0.1712$. The witnesses are finite (typically 3–6 terms) and cluster between the low-order convergents $1/6 \approx 0.1667$ and $2/11 \approx 0.1818$, not near the infinite limit. The appearance of the golden ratio is a *heuristic observation* about why digit 1 dominates after the leading 5 (digit 1 is the greedy choice that maximizes remaining CF flexibility), not a proven structural connection. A rigorous explanation for the concentration at $0.171$ remains open.
 
 ## Tightness of $A = 5$
 
@@ -63,15 +63,19 @@ Note: the golden ratio limit $1/(5+\varphi) \approx 0.1511$ is the value of the 
 | 4 | 0.07% |
 | $\leq 3$ | 0.02% |
 
-The conjecture is *tight*: $A = 4$ would fail for 99.91% of all $d$.
+For 99.91% of moduli $d \leq 100{,}000$, the *smallest* witness $\alpha(d)$ requires a partial quotient of exactly 5. This does not imply that no witness with all quotients $\leq 4$ exists for those $d$ — larger witnesses may satisfy a tighter bound. The statistic measures minimal-witness tightness, not global tightness of Zaremba's conjecture at $A = 4$.
 
 ## Practical Impact
 
-This observation enabled a **13× speedup** in our CUDA verification kernel (v2 over v1) by starting the witness search at $a = \lfloor 0.170d \rfloor$ instead of $a = 1$.
+This observation enabled a **13x speedup** in our CUDA verification kernel (v2 over v1) by starting the witness search at $a = \lfloor 0.170d \rfloor$ instead of $a = 1$. Note: v2 also incorporated other optimizations (loop unrolling, early-exit predicates), so the full 13x factor is not solely attributable to the starting offset.
 
 ## Code
 
 Analysis script and raw data: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow)
+
+## Data Availability
+
+The complete table of $(d, \alpha(d))$ pairs for $d = 1$ to $100{,}000$ is available at [github.com/cahlen/idontknow/data/zaremba-witnesses/](https://github.com/cahlen/idontknow/data/zaremba-witnesses/). The file `witnesses_1_100000.csv` contains columns `d, alpha, ratio, cf_prefix, max_quotient`. SHA-256 checksum will be published alongside the dataset for independent verification.
 
 ## References
 

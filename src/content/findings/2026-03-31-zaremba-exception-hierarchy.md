@@ -30,7 +30,7 @@ The 27 exceptions to full Zaremba density with A={1,2,3} (verified to 10^{10}) h
 | A={1,2,3,4} | 2 | d=54, d=150 only |
 | A={1,2,3,4,5} | 0 | Zaremba's conjecture |
 
-Adding digit 4 resolves 25 of the 27 exceptions. The remaining 2 (d=54, d=150) require digit 5.
+Adding digit 4 resolves 25 of the 27 exceptions. The remaining 2 (d=54, d=150) require digit 5. Full GPU enumeration details (algorithm, hardware specs, runtime) are documented in the [density phase transition finding](/findings/zaremba-density-phase-transition/); reproduction scripts and output logs are available in the GitHub repository.
 
 ## The CF Splitting Identity
 
@@ -67,6 +67,6 @@ Both stubborn exceptions share structural properties:
 | GCD(54, 150) | 6 | 6 |
 | Best max partial quotient | 5 | 5 |
 
-For d=54, EVERY coprime fraction a/54 has a partial quotient of at least 5. There are 18 coprime residues mod 54, and none of their CFs avoid digit 5. Similarly for d=150 (40 coprime residues, all CFs require digit 5).
+For d=54, EVERY coprime fraction a/54 has a partial quotient of at least 5. There are phi(54) = 18 coprime residues mod 54, and an exhaustive check of all 18 confirms none of their CFs avoid digit 5. Similarly for d=150 (phi(150) = 40 coprime residues, all CFs checked, all require digit 5). These exhaustive searches are trivial to reproduce on any hardware.
 
-These are the only 2 integers in [1, 10^6] where digit 5 is truly unavoidable — making them the "hardest" denominators for Zaremba's conjecture.
+These are the only 2 integers in [1, 10^10] where digit 5 is truly unavoidable (verified by the full GPU enumeration described in the [density phase transition finding](/findings/zaremba-density-phase-transition/)) — making them the "hardest" denominators for Zaremba's conjecture.

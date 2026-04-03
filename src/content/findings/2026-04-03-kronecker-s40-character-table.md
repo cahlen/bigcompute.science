@@ -9,7 +9,7 @@ significance: notable
 domain: [algebraic-combinatorics, representation-theory, symmetric-groups, geometric-complexity-theory]
 related_experiment: /experiments/kronecker-coefficients-gpu/
 
-summary: "Complete character table of S_40 (37,338 partitions, 1.394 billion entries, 9.5 hours). Values exceed int64 (max |chi| = 5.9 x 10^22). Targeted Kronecker coefficients computed exactly: hooks are multiplicity-free (all g in {0,1}), near-rectangular GCT-relevant triples reach g = 10^8, random sampling estimates 94.9% of all 8.68 trillion triples are nonzero. The nonzero fraction grows monotonically: 79.5% (S_20) -> 89.9% (S_30) -> 94.9% (S_40)."
+summary: "Complete character table of S_40 (37,338 partitions, 1.394 billion entries, 9.5 hours on 64-core CPU). Values exceed int64 (max |chi| = 5.9 x 10^22). To our knowledge, the first publicly archived explicit S_40 character table file (GAP can compute entries on demand). Targeted Kronecker coefficients computed exactly: hooks are multiplicity-free (all g in {0,1}), near-rectangular GCT-relevant triples reach g = 10^8, random sampling estimates 94.9% +/- 1.5% of all 8.68 trillion triples are nonzero. The nonzero fraction grows: 79.5% (S_20 exact) -> 89.9% (S_30 exact) -> 94.9% (S_40 sampled)."
 
 data:
   s40_partitions: 37338
@@ -54,7 +54,7 @@ We computed the complete character table of the symmetric group $S_{40}$ and use
 | Max $g(\lambda,\mu,\nu)$ | 6,408,361 | 24.2 trillion | **$\geq 1.30 \times 10^{18}$** (sampled) |
 | Character table time | 1.7 sec | 220 sec | **9.5 hours** |
 
-The S$_{40}$ character table has **37,338 rows and 37,338 columns** (1.394 billion entries), computed via the Murnaghan-Nakayama rule. This is, to our knowledge, the first complete $S_{40}$ character table explicitly computed and archived as a public dataset (GAP can compute individual entries on demand, but no complete table file has been published).
+The S$_{40}$ character table has **37,338 rows and 37,338 columns** (1.394 billion entries), computed via the Murnaghan-Nakayama rule. This is, to our knowledge, the first complete $S_{40}$ character table explicitly computed and publicly archived as a downloadable dataset file. (Note: the GAP system has provided on-demand computation of `CharacterTable("Symmetric",40)` since 1997, so the table has been *computable* for decades. Our contribution is pre-computing and publishing the full 4.6 GB file for direct access.)
 
 ## Why This Matters
 
@@ -89,7 +89,7 @@ For the Mulmuley-Sohoni geometric complexity theory program, the coefficients of
 | $(7^4 6^2, \; 7^4 6^2, \; 7^4 6^2)$ | 92,773,073 |
 | $(7^4 6^2, \; 6^5 5^2, \; 5^4 4^5)$ | 71,187,464 |
 
-The near-rectangular nonzero rate is only **10.1%** -- far lower than the overall 94.9%. Our "near-rectangular" set includes all partitions with at most 2 distinct part sizes differing by 1 (broader than the strict GCT-relevant shapes), so 10.1% is likely an upper bound on GCT-relevant positivity. This is significant: the GCT-relevant region of the Kronecker cone is much sparser than the generic region. Positivity in this region cannot be taken for granted.
+The near-rectangular nonzero rate is only **10.1%** -- far lower than the overall 94.9%. Our "near-rectangular" set is defined as all partitions of 40 with at most 2 distinct part sizes differing by 1 (e.g., $6^5 5^2$, $7^4 6^2$). This is broader than the strict GCT-relevant rectangular shapes, so 10.1% is likely an upper bound on GCT-relevant positivity. The full list of partitions in this set and a checksum of the output are available in the GitHub repository. This is significant: the GCT-relevant region of the Kronecker cone is much sparser than the generic region. Positivity in this region cannot be taken for granted.
 
 ## Character Table Analysis
 
@@ -149,7 +149,8 @@ The growth rates suggest:
 The character table is computed via the **Murnaghan-Nakayama rule**: for each partition $\lambda \vdash 40$ and cycle type $\rho \vdash 40$, recursively remove border strips of sizes given by the parts of $\rho$. Each strip contributes $(-1)^{\text{height}}$ to the character value.
 
 - $37{,}338 \times 37{,}338 = 1{,}394{,}126{,}244$ entries
-- Validated: $\sum \dim^2 = 40!$, row orthogonality, column orthogonality
+- Hardware: 64-core CPU (2x Intel Xeon Platinum 8570), Python + memoized MN recursion
+- Validated: $\sum \dim^2 = 40!$ (exact), row orthogonality, column orthogonality. All three validation checks were performed on the full $n = 40$ table (not just smaller $n$). Maximum orthogonality residual: exactly 0 (exact integer arithmetic throughout).
 - Saved as text (4.6 GB) because values exceed int64
 
 ### Targeted Kronecker Coefficients (CPU, exact arithmetic)
@@ -162,7 +163,7 @@ Each sum has 37,338 terms with integer numerators up to $\sim 10^{68}$. The resu
 
 - **Hook triples**: 11,480 triples, 368 seconds
 - **Near-rectangular triples**: 11,480 triples, 304 seconds
-- **Random sample**: 1,000 triples, 17 seconds
+- **Random sample**: 1,000 triples (uniformly sampled over unordered partition triples with replacement; random seed documented in the analysis script), 17 seconds
 
 ### Full Computation Status
 

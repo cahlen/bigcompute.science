@@ -397,6 +397,46 @@ const CERTIFICATIONS: Record<string, Certification> = {
       { date: "2026-04-01", model: "Claude Opus 4.6", provider: "Anthropic", model_id: "claude-opus-4-6[1m]", verdict: "ACCEPT", level: "bronze", key_finding: "Growth exponent matches theory to 0.04%. Bronze because the prediction itself comes from our own transfer operator computation — not independently derived." },
     ],
   },
+  "gpu-matrix-enumeration-175x": {
+    level: "bronze",
+    label: "Bronze — 1 review: ACCEPT",
+    arxiv_corroboration: 0, zbmath_corroboration: 0, oeis_matches: 0,
+    last_verified: "2026-04-02",
+    process: "Engineering finding. 175x speedup verified. Matrix-CF equivalence is classical (Hardy & Wright).",
+    reviews: [
+      { date: "2026-04-02", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT", level: "bronze", key_finding: "Engineering optimization, no direct literature precedent for this kernel." },
+    ],
+  },
+  "kronecker-s30-largest-computation": {
+    level: "gold",
+    label: "Gold — 1 review: ACCEPT",
+    arxiv_corroboration: 6, zbmath_corroboration: 5, oeis_matches: 3,
+    last_verified: "2026-04-02",
+    process: "zbMATH corroborates MN rule (Pak-Panova 2018, Burgisser et al. 2006). Validation thorough. Unprecedented scale.",
+    reviews: [
+      { date: "2026-04-02", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT", level: "gold", key_finding: "26.4B nonzero triples validated. Largest published complete Kronecker table." },
+    ],
+  },
+  "zaremba-exception-hierarchy": {
+    level: "bronze",
+    label: "Bronze — 1 review: ACCEPT",
+    arxiv_corroboration: 6, zbmath_corroboration: 0, oeis_matches: 0,
+    last_verified: "2026-04-02",
+    process: "Novel decomposition: 27->2->0. Deterministic computation, reproducible. CF splitting identity is classical.",
+    reviews: [
+      { date: "2026-04-02", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT", level: "bronze", key_finding: "Novel hierarchy from own data. No direct literature precedent." },
+    ],
+  },
+  "zaremba-digit-pair-hierarchy": {
+    level: "silver",
+    label: "Silver — 1 review: ACCEPT",
+    arxiv_corroboration: 6, zbmath_corroboration: 0, oeis_matches: 0,
+    last_verified: "2026-04-02",
+    process: "Gauss-Kuzmin theorem (classical, peer-reviewed) supports the theoretical explanation. 3 closed exception sets verified. {1,k} hierarchy is clean data.",
+    reviews: [
+      { date: "2026-04-02", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT", level: "silver", key_finding: "Gauss measure explains hierarchy. 3 closed sets confirmed at 10^10-10^11." },
+    ],
+  },
 };
 
 const OPEN_PROBLEMS = [
@@ -967,8 +1007,8 @@ function createServer(env: any) {
         },
         {
           priority: 2,
-          experiment: "Ramanujan Machine degree 4 range 5",
-          command: "./ramanujan_gpu 4 5 500",
+          experiment: "GPU PSLQ implementation for Ramanujan Machine",
+          command: "Requires code change: implement PSLQ in CUDA",
           estimated_gpu_hours: 2,
           impact: "HIGH — degree 4 polynomials access a fundamentally richer CF space. This is where transcendental constant formulas (new identities for pi, e, zeta(3)) are most likely to appear.",
           status: "Not started",
@@ -976,8 +1016,8 @@ function createServer(env: any) {
         },
         {
           priority: 3,
-          experiment: "Zaremba density A={1,2} at 10^10",
-          command: "./zaremba_density_gpu 10000000000 1,2",
+          experiment: "Confirm A={1,2,3} 27 exceptions at 10^12",
+          command: "./zaremba_density_gpu 1000000000000 1,2,3",
           estimated_gpu_hours: 8,
           impact: "MEDIUM — tests whether A={1,2} (delta=0.531, barely above 1/2) density continues growing. Currently 72% at 10^9.",
           status: "Not started",
@@ -1594,8 +1634,8 @@ async function handleBasicMcp(request: Request, env: any): Promise<Response> {
         }),
         suggest_experiment: async () => {
           const suggestions = [
-            { priority: 1, experiment: "Ramanujan Machine degree 4 range 5", command: "./ramanujan_gpu 4 5 500", gpu_hours: 2, impact: "HIGH — degree 4 CFs most likely to yield new pi/e/zeta(3) identities", area: "ramanujan" },
-            { priority: 2, experiment: "Zaremba density A={1,2} at 10^10", command: "./zaremba_density_gpu 10000000000 1,2", gpu_hours: 8, impact: "MEDIUM — tests convergence for delta barely above 1/2", area: "zaremba" },
+            { priority: 1, experiment: "GPU PSLQ implementation for Ramanujan Machine", command: "Requires code change: implement PSLQ in CUDA", gpu_hours: 2, impact: "HIGH — double-precision screening found zero transcendentals in 586B candidates. Need arbitrary-precision PSLQ to detect slow-converging formulas.", area: "ramanujan" },
+            { priority: 2, experiment: "Confirm A={1,2,3} 27 exceptions at 10^12", command: "./zaremba_density_gpu 1000000000000 1,2,3", gpu_hours: 8, impact: "HIGH — confirms the 27-exception set is closed at 10^12. Running now.", area: "zaremba" },
             { priority: 3, experiment: "Kronecker S_40 triple-sum", command: "./kronecker_gpu 40", gpu_hours: 48, impact: "HIGH — largest Kronecker computation ever", area: "kronecker" },
           ];
           let filtered = suggestions;

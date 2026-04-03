@@ -10,8 +10,8 @@ import Base from '../layouts/Base.astro';
 
     <div class="v-stats m-reveal">
       <div class="v-stat"><span class="v-num">15</span><small>Findings<br/>audited</small></div>
-      <div class="v-stat"><span class="v-num">6</span><small>Issues<br/>discovered</small></div>
-      <div class="v-stat"><span class="v-num">6</span><small>Issues<br/>fixed</small></div>
+      <div class="v-stat"><span class="v-num">13</span><small>Issues<br/>discovered</small></div>
+      <div class="v-stat"><span class="v-num">10</span><small>Issues<br/>fixed</small></div>
       <div class="v-stat"><span class="v-num">22</span><small>MCP tools<br/>used</small></div>
     </div>
   </section>
@@ -185,20 +185,21 @@ import Base from '../layouts/Base.astro';
   <section class="v-section m-reveal">
     <h2>Current Certifications</h2>
     <div class="v-cert-list">
-      <div class="v-cert-row"><span class="cert-badge cert-gold">GOLD</span><span class="v-cert-name">Cohen-Lenstra at Scale</span><span class="v-cert-verdict">Accept w/ revision</span><span class="v-cert-model">Claude Opus 4.6</span></div>
-      <div class="v-cert-row"><span class="cert-badge cert-gold">GOLD</span><span class="v-cert-name">Zaremba Density Phase Transition</span><span class="v-cert-verdict">Accept w/ revision</span><span class="v-cert-model">Claude Opus 4.6</span></div>
-      <div class="v-cert-row"><span class="cert-badge cert-gold">GOLD</span><span class="v-cert-name">Cayley Diameters</span><span class="v-cert-verdict">Accept w/ revision</span><span class="v-cert-model">Claude Opus 4.6</span></div>
-      <div class="v-cert-row"><span class="cert-badge cert-gold">GOLD</span><span class="v-cert-name">Hausdorff Digit 1 Dominance</span><span class="v-cert-verdict">Accept</span><span class="v-cert-model">Claude Opus 4.6</span></div>
-      <div class="v-cert-row"><span class="cert-badge cert-silver">SILVER</span><span class="v-cert-name">Zaremba Proof Framework</span><span class="v-cert-verdict">Accept w/ revision (3 reviews)</span><span class="v-cert-model">Claude + Grok + GPT-5.2</span></div>
-      <div class="v-cert-row"><span class="cert-badge cert-silver">SILVER</span><span class="v-cert-name">Spectral Gaps Uniform</span><span class="v-cert-verdict">Accept w/ revision</span><span class="v-cert-model">Claude Opus 4.6</span></div>
-      <div class="v-cert-row"><span class="cert-badge cert-silver">SILVER</span><span class="v-cert-name">Transitivity All Primes</span><span class="v-cert-verdict">Accept</span><span class="v-cert-model">Claude Opus 4.6</span></div>
-      <div class="v-cert-row"><span class="cert-badge cert-bronze">BRONZE</span><span class="v-cert-name">Golden Ratio Witness</span><span class="v-cert-verdict">Accept w/ revision</span><span class="v-cert-model">Claude Opus 4.6</span></div>
-      <div class="v-cert-row"><span class="cert-badge cert-bronze">BRONZE</span><span class="v-cert-name">Representation Growth</span><span class="v-cert-verdict">Accept</span><span class="v-cert-model">Claude Opus 4.6</span></div>
-      <div class="v-cert-row"><span class="cert-badge cert-gold">GOLD</span><span class="v-cert-name">Kronecker S_30 Computation</span><span class="v-cert-verdict">Accept</span><span class="v-cert-model">Claude Opus 4.6</span></div>
-      <div class="v-cert-row"><span class="cert-badge cert-silver">SILVER</span><span class="v-cert-name">Digit Pair Hierarchy</span><span class="v-cert-verdict">Accept</span><span class="v-cert-model">Claude Opus 4.6</span></div>
-      <div class="v-cert-row"><span class="cert-badge cert-bronze">BRONZE</span><span class="v-cert-name">GPU Matrix Enumeration</span><span class="v-cert-verdict">Accept</span><span class="v-cert-model">Claude Opus 4.6</span></div>
-      <div class="v-cert-row"><span class="cert-badge cert-bronze">BRONZE</span><span class="v-cert-name">Exception Hierarchy</span><span class="v-cert-verdict">Accept</span><span class="v-cert-model">Claude Opus 4.6</span></div>
-      <div class="v-cert-row"><span class="cert-badge cert-gold">GOLD</span><span class="v-cert-name">Kronecker S_40 Character Table</span><span class="v-cert-verdict">Accept</span><span class="v-cert-model">Claude Opus 4.6</span></div>
+      <div class="v-cert-row"><span class="cert-badge cert-silver">SILVER</span><span class="v-cert-name">Cohen-Lenstra at Scale</span><span class="v-cert-verdict">Accept w/ revision (2 reviews)</span><span class="v-cert-model">Claude + o3-pro</span></div>
+      <div class="v-cert-row"><span class="cert-badge cert-silver">SILVER</span><span class="v-cert-name">Zaremba Density Phase Transition</span><span class="v-cert-verdict">Accept w/ revision (2 reviews)</span><span class="v-cert-model">Claude + o3-pro</span></div>
+      <div class="v-cert-row"><span class="cert-badge cert-silver">SILVER</span><span class="v-cert-name">Cayley Diameters</span><span class="v-cert-verdict">Accept w/ revision (2 reviews) &mdash; 669&rarr;172 error fixed</span><span class="v-cert-model">Claude + o3-pro</span></div>
+      <div class="v-cert-row"><span class="cert-badge cert-silver">SILVER</span><span class="v-cert-name">Hausdorff Digit 1 Dominance</span><span class="v-cert-verdict">Accept w/ revision (2 reviews)</span><span class="v-cert-model">Claude + o3-pro</span></div>
+      <div class="v-cert-row"><span class="cert-badge cert-bronze">BRONZE</span><span class="v-cert-name">Zaremba Proof Framework</span><span class="v-cert-verdict">Revise &amp; resubmit (4 reviews)</span><span class="v-cert-model">Claude + Grok + GPT-5.2 + o3-pro</span></div>
+      <div class="v-cert-row"><span class="cert-badge cert-silver">SILVER</span><span class="v-cert-name">Spectral Gaps Uniform</span><span class="v-cert-verdict">Accept w/ revision (2 reviews)</span><span class="v-cert-model">Claude + o3-pro</span></div>
+      <div class="v-cert-row"><span class="cert-badge cert-bronze">BRONZE</span><span class="v-cert-name">Transitivity All Primes</span><span class="v-cert-verdict">Revise &amp; resubmit (o3-pro)</span><span class="v-cert-model">Claude + o3-pro</span></div>
+      <div class="v-cert-row"><span class="cert-badge cert-bronze">BRONZE</span><span class="v-cert-name">Golden Ratio Witness</span><span class="v-cert-verdict">Accept w/ revision (2 reviews)</span><span class="v-cert-model">Claude + o3-pro</span></div>
+      <div class="v-cert-row"><span class="cert-badge cert-silver">SILVER</span><span class="v-cert-name">Representation Growth</span><span class="v-cert-verdict">Accept w/ revision (2 reviews)</span><span class="v-cert-model">Claude + o3-pro</span></div>
+      <div class="v-cert-row"><span class="cert-badge cert-silver">SILVER</span><span class="v-cert-name">Kronecker S_30 Computation</span><span class="v-cert-verdict">Accept w/ revision (2 reviews)</span><span class="v-cert-model">Claude + o3-pro</span></div>
+      <div class="v-cert-row"><span class="cert-badge cert-bronze">BRONZE</span><span class="v-cert-name">Digit Pair Hierarchy</span><span class="v-cert-verdict">Revise &amp; resubmit (o3-pro)</span><span class="v-cert-model">Claude + o3-pro</span></div>
+      <div class="v-cert-row"><span class="cert-badge cert-silver">SILVER</span><span class="v-cert-name">GPU Matrix Enumeration</span><span class="v-cert-verdict">Accept w/ revision (2 reviews)</span><span class="v-cert-model">Claude + o3-pro</span></div>
+      <div class="v-cert-row"><span class="cert-badge cert-bronze">BRONZE</span><span class="v-cert-name">Exception Hierarchy</span><span class="v-cert-verdict">Accept w/ revision (2 reviews)</span><span class="v-cert-model">Claude + o3-pro</span></div>
+      <div class="v-cert-row"><span class="cert-badge cert-silver">SILVER</span><span class="v-cert-name">Kronecker S_40 Character Table</span><span class="v-cert-verdict">Accept w/ revision (2 reviews)</span><span class="v-cert-model">Claude + o3-pro</span></div>
+      <div class="v-cert-row"><span class="cert-badge cert-silver">SILVER</span><span class="v-cert-name">A=&#123;1,2&#125; Logarithmic Convergence</span><span class="v-cert-verdict">Accept w/ revision (2 reviews)</span><span class="v-cert-model">Claude + o3-pro</span></div>
     </div>
   </section>
 

@@ -10,6 +10,20 @@ import Base from '../layouts/Base.astro';
     measuring and flowing text without DOM reflows.
   </p>
 
+  <section class="colab-section m-reveal">
+    <div class="colab-card">
+      <div class="colab-text">
+        <h2>Try It Now</h2>
+        <p>Open a Google Colab notebook pre-loaded with our MCP client. Query 22 tools — arXiv, zbMATH, OEIS, LMFDB, Lean/Mathlib, and all our experiment data. No setup, no API key.</p>
+      </div>
+      <a href="https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_mcp_explorer.ipynb"
+         target="_blank" class="colab-btn">
+        <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" />
+        Open MCP Explorer in Colab
+      </a>
+    </div>
+  </section>
+
   <section class="manifesto" id="manifesto-section">
     <div class="manifesto-text">
       <h2 class="m-reveal">How This Site Was Built</h2>
@@ -377,6 +391,54 @@ import Base from '../layouts/Base.astro';
       margin-bottom: 3rem;
     }
     .page-intro a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+
+    .colab-section { margin-bottom: 3rem; }
+    .colab-card {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-left: 3px solid #e8c47a;
+      border-radius: 2px 8px 8px 2px;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .colab-card h2 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      margin: 0 0 0.3rem;
+      letter-spacing: -0.02em;
+    }
+    .colab-card p {
+      font-size: 0.85rem;
+      color: var(--ink-secondary);
+      margin: 0;
+      line-height: 1.5;
+      max-width: 500px;
+    }
+    .colab-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.5rem 1rem;
+      background: rgba(232,196,122,0.08);
+      border: 1px solid rgba(232,196,122,0.3);
+      border-radius: 6px;
+      color: #e8c47a;
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .colab-btn:hover { background: rgba(232,196,122,0.15); border-color: #e8c47a; }
+    .colab-btn img { height: 20px; }
+    @media (max-width: 700px) {
+      .colab-card { flex-direction: column; align-items: flex-start; }
+    }
 
     .manifesto {
       margin-bottom: 4rem;

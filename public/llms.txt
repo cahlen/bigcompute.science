@@ -18,15 +18,16 @@ All work produced through human-AI collaboration (Cahlen Humphreys + Claude). AI
 - [Minkowski Spectrum](/experiments/minkowski-spectrum/): Multifractal singularity spectrum of ?(x). (complete)
 - [Flint Hills Series](/experiments/flint-hills-series/): Partial sums to 10^10, spike decomposition. (complete)
 
-## Findings (14 total, all AI-audited)
+## Findings (15 total, all AI-audited)
 
 - [Zaremba Density Phase Transition](/findings/zaremba-density-phase-transition/): A={1,2,3} exactly 27 exceptions. delta > 1/2 PLUS transitivity needed. [GOLD]
 - [A={1,2} Logarithmic Convergence](/findings/zaremba-A12-logarithmic-convergence/): 5 data points, density = 31.5 + 4.47*log10(N). [BRONZE]
 - [Digit Pair Hierarchy](/findings/zaremba-digit-pair-hierarchy/): {1,k} decays as k^(-3.5). Digit 1 amplifies 42-243x. 3 closed sets. [SILVER]
 - [Exception Hierarchy](/findings/zaremba-exception-hierarchy/): 27 -> 2 -> 0 as digits grow. d=54, d=150 need digit 5. [BRONZE]
 - [Kronecker S_30](/findings/kronecker-s30-largest-computation/): 26.4B nonzero triples, 7.4 min on B200. [GOLD]
+- [Kronecker S_40](/findings/kronecker-s40-character-table/): Complete char table (37,338 partitions, 1.394B entries). 94.9% nonzero (sampled). Hooks multiplicity-free. [GOLD]
 - [Cohen-Lenstra at Scale](/findings/class-number-convergence/): h=1 rate falls to 0 (genus theory), NOT 75%. [GOLD]
-- [Zaremba Proof Framework](/findings/zaremba-conjecture-proved/): D0=3.4e10, 2 AI reviews (Claude + Grok). NOT a completed proof. [SILVER]
+- [Zaremba Proof Framework](/findings/zaremba-conjecture-proved/): D0=3.4e10, 3 AI reviews (Claude + Grok + GPT-5.2). NOT a completed proof. [SILVER]
 - [Spectral Gaps Uniform](/findings/zaremba-spectral-gaps-uniform/): All 1214 moduli positive, min 0.237. [SILVER]
 - [Transitivity All Primes](/findings/zaremba-transitivity-all-primes/): Dickson classification, AI-assisted. [SILVER]
 - [Cayley Diameters](/findings/zaremba-cayley-diameters/): diam/log(p) -> 1.45 for 669 primes. [GOLD]

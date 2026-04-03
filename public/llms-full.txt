@@ -10,7 +10,7 @@
 
 Open problems you could help with right now:
 - Extend Zaremba density A={1,2,3} beyond 10^10
-- Compute Kronecker coefficients for S_40 or S_50
+- Run full S_40 Kronecker triple-sum (needs int128 GPU kernel) or compute S_45/S_50 character tables
 - Run the Ramanujan Machine kernel at higher polynomial degree
 - Enumerate R(4,5) neighborhood graphs for the R(5,5) ≤ 45 attack
 - Discover connections between our datasets and your own research
@@ -66,25 +66,29 @@ We compute things that require serious hardware — 8×NVIDIA B200 (1.43 TB VRAM
 3. `/experiments/mcts-proof-search-benchmark/` — MCTS vs naive sampling for LLM theorem proving (planned)
 4. `/experiments/ramsey-r55-lower-bound/` — Ramsey R(5,5): exhaustive extension search, 656/656 K42 colorings UNSAT, strongest evidence R(5,5)=43 (complete)
 5. `/experiments/class-numbers-real-quadratic/` — Class numbers: 2.74B discriminants for d∈[10^9,10^10], h=1 rate 16.7%, GPU sieve + regulator + Euler product (in-progress)
-6. `/experiments/kronecker-coefficients-gpu/` — Kronecker coefficients to n=120 (planned)
+6. `/experiments/kronecker-coefficients-gpu/` — Kronecker coefficients: S_20, S_30 complete, S_40 char table + targeted analysis done, full S_40 triple-sum needs int128 kernel (in-progress)
 7. `/experiments/ramanujan-machine-gpu/` — GPU-accelerated discovery of continued fraction formulas for mathematical constants via polynomial enumeration + PSLQ (in-progress)
 7. `/experiments/hausdorff-dimension-spectrum/` — To our knowledge, first complete Hausdorff dimension spectrum for all 2^20 - 1 subsets of {1,...,20} (complete)
 8. `/experiments/flint-hills-series/` — Flint Hills partial sums to 10^10, spike decomposition, growth rate analysis (complete)
 9. `/experiments/lyapunov-exponent-spectrum/` — Lyapunov exponent λ(A) for all 2^20 - 1 subsets of {1,...,20}, twin dataset with Hausdorff spectrum (complete)
 10. `/experiments/minkowski-spectrum/` — To our knowledge, first numerical computation of the multifractal singularity spectrum f(α) of the Minkowski ?(x) function (complete)
 
-### Findings (11)
+### Findings (15)
 1. `/findings/kronecker-s30-largest-computation/` — Complete S_30 Kronecker table: 26.4B nonzero triples, max 24.2T, 7.4 min on B200. To our knowledge, largest computed. S_20 also complete. (notable significance)
-2. `/findings/zaremba-density-phase-transition/` — CONFIRMED: A={1,2,3} has exactly 27 exceptions to 10^10 (all ≤6234). Zero new exceptions. Phase transition at Hausdorff dim=1/2. A=3 suffices. (high significance)
-3. `/findings/class-number-convergence/` — Cohen-Lenstra h=1 convergence is non-monotone: 42% at d~10^4, 17% at d~10^10. 2.74B discriminants. (notable significance)
-3. `/findings/zaremba-conjecture-proved/` — Computer-assisted proof framework for Zaremba's Conjecture (A=5), all d ≥ 1. D₀ ≈ 3.4×10^10, margin 6× below brute-force frontier. NOT peer-reviewed. Human-AI collaborative work. (critical significance)
-4. `/findings/zaremba-spectral-gaps-uniform/` — FP64 spectral gaps for 489 primes to p=3500, all σ ≥ 0.336. 11 covering primes with σ ≥ 0.530. (high significance)
-5. `/findings/zaremba-transitivity-all-primes/` — Algebraic argument (Dickson classification) that semigroup acts transitively on (Z/pZ)² for all primes. AI-assisted, not peer-reviewed. (high significance)
-6. `/findings/zaremba-witness-golden-ratio/` — Zaremba witnesses concentrate at a/d ≈ 0.171, connected to golden ratio (medium significance)
-7. `/findings/zaremba-cayley-diameters/` — Cayley graph diameters diam(p) ≤ 2·log(p) for all 669 primes to 1021 (high significance)
-8. `/findings/gpu-matrix-enumeration-175x/` — GPU matrix enumeration kernel: 175× speedup via batched 2×2 matrix multiply (medium significance)
-9. `/findings/hausdorff-digit-one-dominance/` — Digit 1 dominance in Hausdorff dimension spectrum (medium significance)
-10. `/findings/zaremba-representation-growth/` — Representation count R(d) grows as d^0.674 (medium significance)
+2. `/findings/kronecker-s40-character-table/` — Complete S_40 character table (37,338 partitions, 1.394B entries, 9.5 hr). 94.9% nonzero (sampled). Hooks multiplicity-free. GCT region sparse (10.1%). (notable significance)
+3. `/findings/zaremba-density-phase-transition/` — CONFIRMED: A={1,2,3} has exactly 27 exceptions to 10^10 (all ≤6234). Zero new exceptions. Phase transition at Hausdorff dim=1/2. A=3 suffices. (high significance)
+4. `/findings/class-number-convergence/` — Cohen-Lenstra h=1 convergence is non-monotone: 42% at d~10^4, 17% at d~10^10. 2.74B discriminants. (notable significance)
+5. `/findings/zaremba-conjecture-proved/` — Computer-assisted proof framework for Zaremba's Conjecture (A=5), all d ≥ 1. D₀ ≈ 3.4×10^10, margin 6× below brute-force frontier. NOT peer-reviewed. Human-AI collaborative work. (critical significance)
+6. `/findings/zaremba-spectral-gaps-uniform/` — FP64 spectral gaps for 489 primes to p=3500, all σ ≥ 0.336. 11 covering primes with σ ≥ 0.530. (high significance)
+7. `/findings/zaremba-transitivity-all-primes/` — Algebraic argument (Dickson classification) that semigroup acts transitively on (Z/pZ)² for all primes. AI-assisted, not peer-reviewed. (high significance)
+8. `/findings/zaremba-witness-golden-ratio/` — Zaremba witnesses concentrate at a/d ≈ 0.171, connected to golden ratio (medium significance)
+9. `/findings/zaremba-cayley-diameters/` — Cayley graph diameters diam(p) ≤ 2·log(p) for all 669 primes to 1021 (high significance)
+10. `/findings/gpu-matrix-enumeration-175x/` — GPU matrix enumeration kernel: 175× speedup via batched 2×2 matrix multiply (medium significance)
+11. `/findings/hausdorff-digit-one-dominance/` — Digit 1 dominance in Hausdorff dimension spectrum (medium significance)
+12. `/findings/zaremba-representation-growth/` — Representation count R(d) grows as d^0.674 (medium significance)
+13. `/findings/zaremba-A12-logarithmic-convergence/` — A={1,2} density fits 31.5 + 4.47*log10(N). (notable significance)
+14. `/findings/zaremba-digit-pair-hierarchy/` — {1,k} decays as k^(-3.5). Digit 1 amplifies 42-243x. 3 closed sets. (notable significance)
+15. `/findings/zaremba-exception-hierarchy/` — 27 -> 2 -> 0 as digits grow. d=54, d=150 need digit 5. (notable significance)
 
 ## Key results (machine-readable summary)
 

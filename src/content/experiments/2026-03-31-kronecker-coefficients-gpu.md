@@ -26,10 +26,10 @@ tags:
 results:
   problem: "Kronecker coefficients of the symmetric group"
   conjecture_year: 1938
-  current_frontier: "Systematic computation to n ~ 60-80"
+  current_frontier: "Complete character table to n=40, full Kronecker to n=30"
   target: "n = 120 for GCT-relevant triples"
 
-summary: "Complete Kronecker coefficient tables for S_20 (32.7M nonzero, 3.7s) and S_30 (26.4B nonzero, 7.4 min) on NVIDIA B200."
+summary: "Complete Kronecker coefficient tables for S_20 (32.7M nonzero, 3.7s) and S_30 (26.4B nonzero, 7.4 min) on NVIDIA B200. Complete S_40 character table (37,338 partitions, 1.394B entries, 9.5 hr) with targeted Kronecker coefficients via exact arithmetic: 94.9% nonzero (sampled), max g >= 1.3 x 10^18."
 
 code: https://github.com/cahlen/idontknow
 dataset: https://huggingface.co/datasets/cahlen/kronecker-coefficients
@@ -119,26 +119,60 @@ For these structured partitions, the Murnaghan-Nakayama recursion has much small
 
 ## Results
 
+### S$_{20}$ and S$_{30}$: Full Tables (GPU)
+
+| $n$ | Partitions | Unique triples | Nonzero | Max $g$ | GPU time |
+|-----|-----------|----------------|---------|---------|----------|
+| 20 | 627 | 41.1M | 32.7M (79.5%) | 6,408,361 | 3.7 sec |
+| 30 | 5,604 | 29.3B | 26.4B (89.9%) | 24.2 trillion | 7.4 min |
+
+Computed on single NVIDIA B200 via slab-by-slab FP64 kernel. See [S$_{30}$ finding](/findings/kronecker-s30-largest-computation/) for details.
+
+### S$_{40}$: Character Table + Targeted Kronecker (CPU, Exact Arithmetic)
+
+**Character table** (37,338 × 37,338, 1.394B entries):
+- Computed via Murnaghan-Nakayama rule: 9.5 hours on CPU
+- Max $|\chi|$ = 5.9 × 10$^{22}$ (exceeds int64)
+- Validated: $\sum \dim(\lambda)^2 = 40!$, row and column orthogonality
+- 64.0% of entries nonzero, near-perfect positive/negative balance (50.1% / 49.9%)
+
+**Targeted Kronecker coefficients:**
+- **Hooks** (11,480 triples): all $g \in \{0,1\}$ — multiplicity-free, as expected
+- **Near-rectangular** (11,480 triples): max $g$ = 105,927,325, only 10.1% nonzero
+- **Random sample** (1,000 triples): 94.9% nonzero (95% CI: 93.4%–96.1%), max $g$ = 1.3 × 10$^{18}$
+
+**Full table** (8.68 trillion triples): requires int128 GPU kernel — planned.
 
 ### Validation: Known Values
 
-| Triple $(\lambda, \mu, \nu)$ | Known $g$ | Our value |
-|-----------------------------|-----------|-----------|
-
-### New Results at $n = 120$
-
-> - Number of triples computed
-> - Distribution of non-zero Kronecker coefficients
-> - Maximum $g$ value found
-> - Specific GCT-relevant values
+| Property | Expected | Observed |
+|----------|----------|----------|
+| $\sum \dim(\lambda)^2 = n!$ | $40! = 8.16 \times 10^{47}$ | Exact match |
+| Hook coefficients $g \in \{0,1\}$ | Rosas (2001) | Confirmed, all 11,480 |
+| Trivial rep $\chi^{(n)}(\rho) = 1$ | All $\rho$ | OK |
+| Sign rep $\chi^{(1^n)}(\rho) = \text{sgn}(\rho)$ | All $\rho$ | OK |
 
 ## Analysis
 
->
-> 1. Growth rate of $g(\lambda, \mu, \nu)$ for near-rectangular partitions as $n$ increases
-> 2. Positivity patterns: which triples have $g > 0$? Any new combinatorial insights?
-> 3. Comparison with the "stretched" Kronecker coefficient asymptotics
-> 4. Implications for GCT: do the computed values support or challenge Mulmuley's conjectures?
+### Nonzero Density Trend
+
+The fraction of nonzero Kronecker coefficients grows monotonically toward 1:
+
+| $n$ | Nonzero % | Method |
+|-----|-----------|--------|
+| 20 | 79.5% | Exact (all triples) |
+| 30 | 89.9% | Exact (all triples) |
+| 40 | 94.9% | Sampled (1,000 triples) |
+
+This supports the conjecture that the Kronecker cone has asymptotic density 1.
+
+### GCT-Relevant Region is Sparse
+
+Near-rectangular partitions — the ones that matter for geometric complexity theory — have only 10.1% nonzero rate, compared to 94.9% overall. The GCT-relevant region of the Kronecker cone is far sparser than the generic region. This has implications for the feasibility of the Mulmuley-Sohoni approach.
+
+### Max Coefficient Growth
+
+The maximum Kronecker coefficient grows super-exponentially: $6.4 \times 10^6 \to 2.4 \times 10^{13} \to 1.3 \times 10^{18}$ across $n = 20, 30, 40$. The sampled max at $n = 40$ is a lower bound; the true maximum over all 8.68T triples is likely larger.
 
 ## Reproducibility
 

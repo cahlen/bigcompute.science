@@ -246,6 +246,16 @@ const FINDINGS = [
     oeis_sequences: [],
     url: "https://bigcompute.science/findings/zaremba-A12-logarithmic-convergence/",
   },
+  {
+    slug: "kronecker-s40-character-table",
+    title: "Kronecker S_40: Complete Character Table and Targeted Coefficients — 94.9% Nonzero",
+    claim: "Complete S_40 character table (37,338 partitions, 1.394B entries, 9.5 hr). Max |chi| = 5.9e22 (exceeds int64). Targeted Kronecker: hooks multiplicity-free (all g in {0,1}), near-rectangular max g = 10^8, random sample 94.9% nonzero (95% CI: 93.4-96.1%). Nonzero trend: 79.5% (S_20) -> 89.9% (S_30) -> 94.9% (S_40).",
+    our_data: { s40_partitions: 37338, s40_char_entries: "1.394B", s40_max_chi: "5.9e22", s40_hook_max_g: 1, s40_near_rect_max_g: 105927325, s40_nonzero_sample: "94.9%", s40_max_g_sampled: "1.3e18", s40_char_time: "9.5 hr" },
+    search_terms: ["Kronecker coefficients symmetric group S_40", "character table S_40", "Murnaghan-Nakayama S_40", "geometric complexity theory Kronecker near-rectangular"],
+    key_references: ["Murnaghan (1938)", "Rosas (2001) 'Kronecker product hook shapes'", "Pak, Panova (2017)", "Ikenmeyer, Mulmuley, Walter (2017)"],
+    oeis_sequences: ["p(40) = 37338"],
+    url: "https://bigcompute.science/findings/kronecker-s40-character-table/",
+  },
 ];
 
 // ─── Verification Certification ─────────────────────────────────
@@ -457,11 +467,21 @@ const CERTIFICATIONS: Record<string, Certification> = {
       { date: "2026-04-01", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT_WITH_REVISION", level: "bronze", key_finding: "R(d) growth exponent and density convergence are different quantities. Log fit is real but 5 points insufficient for definitive model selection." },
     ],
   },
+  "kronecker-s40-character-table": {
+    level: "gold",
+    label: "Gold — 1 review: ACCEPT",
+    arxiv_corroboration: 6, zbmath_corroboration: 5, oeis_matches: 1,
+    last_verified: "2026-04-03",
+    process: "MN rule validated by zbMATH (Murnaghan 1938, Nakayama 1940). Hook multiplicity-freeness confirmed (Rosas 2001). p(40)=37338 matches OEIS A000041. Σ dim²=40! exact. Novel data at unprecedented scale.",
+    reviews: [
+      { date: "2026-04-03", model: "Claude Opus 4.6", provider: "Anthropic", verdict: "ACCEPT", level: "gold", key_finding: "Complete S_40 character table validated. Hook multiplicity-freeness confirms Rosas (2001). 94.9% nonzero consistent with density-1 conjecture." },
+    ],
+  },
 };
 
 const OPEN_PROBLEMS = [
   "Confirm A={1,2,3} 27 exceptions at 10^11 and 10^12 (running)",
-  "Run S_40 Kronecker triple-sum (needs int128 kernel upgrade)",
+  "Run full S_40 Kronecker triple-sum — char table done, 8.68T triples need int128 GPU kernel",
   "Run Ramanujan Machine at degree 4-6 polynomials to discover new CF formulas",
   "Enumerate R(4,5) neighborhood graphs for R(5,5) <= 45 structural attack",
   "Compute class numbers for d in [10^11, 10^12] with raw data preserved",

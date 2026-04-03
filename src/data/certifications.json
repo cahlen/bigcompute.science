@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-04-03T21:43:34Z",
+  "generated_at": "2026-04-03T23:48:49Z",
   "stats": {
     "findings_audited": 15,
     "total_reviews": 41,
-    "issues_discovered": 10,
-    "issues_fixed": 8,
+    "issues_discovered": 13,
+    "issues_fixed": 11,
     "unique_models": 4,
     "unique_providers": 3
   },
@@ -361,8 +361,8 @@
       "review_count": 3,
       "verdict_summary": "Accept w/ revision (3 reviews)",
       "models_summary": "Claude + o3-pro",
-      "issues_found": 0,
-      "issues_resolved": 0,
+      "issues_found": 3,
+      "issues_resolved": 3,
       "last_reviewed": "2026-04-03T19:48:03Z",
       "reviews": [
         {
@@ -380,7 +380,23 @@
           "level": "bronze"
         }
       ],
-      "remediations": []
+      "remediations": [
+        {
+          "description": "Soften the golden ratio connection from a claimed structural link to a heuristic observation. The 13% gap between 0.1511 and 0.1712 is too large to call a 'connection' without rigorous justification. Reframe as a structural observation about why digit 1 dominates after the leading 5.",
+          "severity": "important",
+          "status": "resolved"
+        },
+        {
+          "description": "Add data availability section with raw data reference and checksum commitment before the References section",
+          "severity": "important",
+          "status": "resolved"
+        },
+        {
+          "description": "Rephrase tightness claim: the stat is about the minimal witness, not about global non-existence of A=4 witnesses. The table shows that the *smallest* witness uses quotient 5 in 99.91% of cases, but other (larger) witnesses with max quotient \u2264 4 may exist for those d.",
+          "severity": "important",
+          "status": "resolved"
+        }
+      ]
     },
     {
       "slug": "zaremba-conjecture-proved",

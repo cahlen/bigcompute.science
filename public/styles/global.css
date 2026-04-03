@@ -578,6 +578,22 @@ details.cert-detail[open] .cert-expand-hint { transform: rotate(180deg); }
 .cert-action-btn:hover { border-color: var(--accent); color: var(--accent); }
 .cert-action-contribute { border-color: var(--accent); color: var(--accent); }
 
+/* Review ledger rows */
+.cert-review-ledger { margin: 0.5rem 0; }
+.cert-review-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  font-size: 0.72rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 15%, transparent);
+  flex-wrap: wrap;
+}
+.cert-review-date { color: var(--text-secondary); min-width: 5.5rem; font-family: var(--font-mono, monospace); font-size: 0.68rem; }
+.cert-review-model { color: #e8c47a; font-weight: 600; }
+.cert-review-provider { color: var(--text-secondary); font-size: 0.65rem; }
+.cert-review-verdict { font-size: 0.65rem; margin-left: auto; }
+
 /* ============================================================
    Experiment detail — meta panel
    ============================================================ */

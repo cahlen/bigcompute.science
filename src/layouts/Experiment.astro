@@ -1,8 +1,23 @@
 ---
 import Base from './Base.astro';
+import certData from '../data/certifications.json';
 
 const { frontmatter } = Astro.props;
 const { title, date, author, status, hardware, tags, results } = frontmatter;
+
+// Look up full review data from manifest-derived certifications
+const certEntry = certData.certifications.find((c: any) => c.slug === frontmatter.slug);
+const certLevel = certEntry?.level ?? frontmatter.certification?.level ?? 'uncertified';
+const certReviews = certEntry?.reviews ?? [];
+const certNote = frontmatter.certification?.note ?? '';
+const reviewCount = certReviews.length;
+const worstVerdict = certReviews.length > 0
+  ? certReviews.reduce((worst: string, r: any) => {
+      const order: Record<string, number> = { REJECT: 0, REVISE_AND_RESUBMIT: 1, ACCEPT_WITH_REVISION: 2, ACCEPT: 3 };
+      return (order[r.verdict] ?? 2) < (order[worst] ?? 2) ? r.verdict : worst;
+    }, certReviews[0].verdict)
+  : frontmatter.certification?.verdict ?? '';
+const modelsSummary = certEntry?.models_summary ?? frontmatter.certification?.reviewer ?? '';
 ---
 
 <Base title={title}>
@@ -12,67 +27,75 @@ const { title, date, author, status, hardware, tags, results } = frontmatter;
         <time datetime={date}>{new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
         <span class="author">by <a href={frontmatter.author_github}>{author}</a></span>
         {status && <span class={`status status-${status}`}>{status}</span>}
-        {frontmatter.certification && (
-          <span class={`cert-badge cert-${frontmatter.certification.level}`}
-                title={frontmatter.certification.note}>
-            {frontmatter.certification.level === 'gold' ? 'Gold' :
-             frontmatter.certification.level === 'silver' ? 'Silver' :
-             frontmatter.certification.level === 'bronze' ? 'Bronze' : '?'}
+        {(certEntry || frontmatter.certification) && (
+          <span class={`cert-badge cert-${certLevel}`}
+                title={certNote}>
+            {certLevel === 'gold' ? 'Gold' :
+             certLevel === 'silver' ? 'Silver' :
+             certLevel === 'bronze' ? 'Bronze' : '?'}
           </span>
         )}
       </div>
 
-      {frontmatter.certification && (
+      {(certEntry || frontmatter.certification) && (
         <details class="cert-detail">
           <summary class="cert-detail-summary">
-            <span class={`cert-badge cert-${frontmatter.certification.level}`}>
-              {frontmatter.certification.level.toUpperCase()}
+            <span class={`cert-badge cert-${certLevel}`}>
+              {certLevel.toUpperCase()}
             </span>
             <span class="cert-summary-text">
-              AI Literature Audit
-              {frontmatter.certification.reviews && ` \u00b7 ${frontmatter.certification.reviews} review${frontmatter.certification.reviews > 1 ? 's' : ''}`}
+              AI Literature Audit &middot; {reviewCount} review{reviewCount !== 1 ? 's' : ''}
             </span>
             <span class="cert-expand-hint">&darr;</span>
           </summary>
           <div class="cert-expanded">
             <table class="cert-table-inner">
               <tr>
-                <td class="cert-label">Verdict</td>
-                <td><code>{frontmatter.certification.verdict}</code></td>
+                <td class="cert-label">Consensus</td>
+                <td><code>{worstVerdict}</code></td>
               </tr>
               <tr>
-                <td class="cert-label">Reviewed by</td>
-                <td>{frontmatter.certification.reviewer}</td>
-              </tr>
-              <tr>
-                <td class="cert-label">Date</td>
-                <td>{frontmatter.certification.date}</td>
+                <td class="cert-label">Models</td>
+                <td>{modelsSummary}</td>
               </tr>
               <tr>
                 <td class="cert-label">Level</td>
                 <td>
-                  <span class={`cert-badge cert-${frontmatter.certification.level}`} style="font-size:0.65rem">
-                    {frontmatter.certification.level.toUpperCase()}
+                  <span class={`cert-badge cert-${certLevel}`} style="font-size:0.65rem">
+                    {certLevel.toUpperCase()}
                   </span>
-                  {frontmatter.certification.level === 'gold' && ' \u2014 3+ published papers corroborate methods'}
-                  {frontmatter.certification.level === 'silver' && ' \u2014 Published literature supports approach'}
-                  {frontmatter.certification.level === 'bronze' && ' \u2014 Novel observation, limited literature precedent'}
+                  {certLevel === 'gold' && ' \u2014 3+ published papers corroborate methods'}
+                  {certLevel === 'silver' && ' \u2014 Published literature supports approach'}
+                  {certLevel === 'bronze' && ' \u2014 Novel observation, limited literature precedent'}
                 </td>
               </tr>
-              {frontmatter.certification.revision_status && (
-                <tr>
-                  <td class="cert-label">Revisions</td>
-                  <td>{frontmatter.certification.revision_status}</td>
-                </tr>
-              )}
             </table>
 
-            <div class="cert-note-box">
-              <p>{frontmatter.certification.note}</p>
-            </div>
+            {certReviews.length > 0 && (
+              <div class="cert-review-ledger">
+                <h4 style="font-size:0.75rem;margin:0.8rem 0 0.4rem;color:var(--text-secondary)">Review Ledger</h4>
+                {certReviews.map((r: any) => (
+                  <div class="cert-review-row">
+                    <span class="cert-review-date">{r.date}</span>
+                    <span class="cert-review-model">{r.model}</span>
+                    <span class="cert-review-provider">({r.provider})</span>
+                    <span class={`cert-badge cert-${r.level || certLevel}`} style="font-size:0.55rem;padding:0.1rem 0.4rem">
+                      {(r.level || certLevel).toUpperCase()}
+                    </span>
+                    <code class="cert-review-verdict">{r.verdict}</code>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {certNote && (
+              <div class="cert-note-box">
+                <p>{certNote}</p>
+              </div>
+            )}
 
             <div class="cert-actions">
-              <a href={`https://github.com/cahlen/idontknow/blob/main/docs/verifications/${frontmatter.slug}_peer-review.json`} target="_blank" class="cert-action-btn">Full Review</a>
+              <a href={`https://github.com/cahlen/idontknow/tree/main/docs/verifications`} target="_blank" class="cert-action-btn">All Reviews</a>
               <a href="/verification/" class="cert-action-btn">About Auditing</a>
               <a href="https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md" target="_blank" class="cert-action-btn cert-action-contribute">Add Your Audit</a>
             </div>

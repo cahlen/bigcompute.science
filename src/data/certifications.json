@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-03T20:39:41Z",
+  "generated_at": "2026-04-03T20:56:47Z",
   "stats": {
     "findings_audited": 15,
     "total_reviews": 41,
@@ -15,18 +15,11 @@
       "level": "silver",
       "review_count": 3,
       "verdict_summary": "Accept w/ revision (3 reviews)",
-      "models_summary": "Claude + o3-pro + unknown",
+      "models_summary": "Claude + o3-pro",
       "issues_found": 0,
       "issues_resolved": 0,
       "last_reviewed": "2026-04-03T19:50:28Z",
       "reviews": [
-        {
-          "date": "2026-04-01",
-          "model": "unknown",
-          "provider": "unknown",
-          "verdict": "Helfgott (2008) and Bourgain-Gamburd (2008) establ",
-          "level": "gold"
-        },
         {
           "date": "2026-04-03",
           "model": "o3-pro",
@@ -49,31 +42,17 @@
       "level": "silver",
       "review_count": 3,
       "verdict_summary": "Accept w/ revision (3 reviews)",
-      "models_summary": "o3-pro + unknown",
+      "models_summary": "o3-pro",
       "issues_found": 0,
       "issues_resolved": 0,
       "last_reviewed": "2026-04-03T19:55:49Z",
       "reviews": [
-        {
-          "date": "2026-04-01",
-          "model": "unknown",
-          "provider": "unknown",
-          "verdict": "Cohen-Lenstra heuristics are extensively studied. ",
-          "level": "gold"
-        },
         {
           "date": "2026-04-03",
           "model": "o3-pro",
           "provider": "OpenAI",
           "verdict": "ACCEPT_WITH_REVISION",
           "level": "silver"
-        },
-        {
-          "date": "2026-04-01",
-          "model": "unknown",
-          "provider": "unknown",
-          "verdict": "",
-          "level": "gold"
         }
       ]
     },
@@ -83,18 +62,11 @@
       "level": "silver",
       "review_count": 3,
       "verdict_summary": "Accept w/ revision (3 reviews)",
-      "models_summary": "Claude + o3-pro + unknown",
+      "models_summary": "Claude + o3-pro",
       "issues_found": 0,
       "issues_resolved": 0,
       "last_reviewed": "2026-04-03T19:44:30Z",
       "reviews": [
-        {
-          "date": "2026-04-01",
-          "model": "unknown",
-          "provider": "unknown",
-          "verdict": "Property (tau) is theoretically established by BGS",
-          "level": "silver"
-        },
         {
           "date": "2026-04-03",
           "model": "o3-pro",
@@ -117,18 +89,11 @@
       "level": "silver",
       "review_count": 3,
       "verdict_summary": "Accept w/ revision (3 reviews)",
-      "models_summary": "Claude + o3-pro + unknown",
+      "models_summary": "Claude + o3-pro",
       "issues_found": 0,
       "issues_resolved": 0,
       "last_reviewed": "2026-04-03T19:49:03Z",
       "reviews": [
-        {
-          "date": "2026-04-01",
-          "model": "unknown",
-          "provider": "unknown",
-          "verdict": "Hausdorff dimension computation methods are well-e",
-          "level": "gold"
-        },
         {
           "date": "2026-04-03",
           "model": "o3-pro",
@@ -205,18 +170,11 @@
       "level": "silver",
       "review_count": 3,
       "verdict_summary": "Accept w/ revision (3 reviews)",
-      "models_summary": "Claude + o3-pro + unknown",
+      "models_summary": "Claude + o3-pro",
       "issues_found": 0,
       "issues_resolved": 0,
       "last_reviewed": "2026-04-03T20:01:13Z",
       "reviews": [
-        {
-          "date": "2026-04-01",
-          "model": "unknown",
-          "provider": "unknown",
-          "verdict": "Bourgain-Kontorovich (2014) proves density 1 for A",
-          "level": "gold"
-        },
         {
           "date": "2026-04-03",
           "model": "o3-pro",
@@ -347,18 +305,11 @@
       "level": "bronze",
       "review_count": 3,
       "verdict_summary": "Accept w/ revision (3 reviews)",
-      "models_summary": "Claude + o3-pro + unknown",
+      "models_summary": "Claude + o3-pro",
       "issues_found": 0,
       "issues_resolved": 0,
       "last_reviewed": "2026-04-03T19:54:00Z",
       "reviews": [
-        {
-          "date": "2026-04-01",
-          "model": "unknown",
-          "provider": "unknown",
-          "verdict": "Growth exponent R(d) ~ d^(2delta-1) is predicted b",
-          "level": "bronze"
-        },
         {
           "date": "2026-04-03",
           "model": "o3-pro",
@@ -381,18 +332,11 @@
       "level": "bronze",
       "review_count": 3,
       "verdict_summary": "Accept w/ revision (3 reviews)",
-      "models_summary": "Claude + o3-pro + unknown",
+      "models_summary": "Claude + o3-pro",
       "issues_found": 0,
       "issues_resolved": 0,
       "last_reviewed": "2026-04-03T19:48:03Z",
       "reviews": [
-        {
-          "date": "2026-04-01",
-          "model": "unknown",
-          "provider": "unknown",
-          "verdict": "The concentration of optimal witnesses at a/d ~ 1/",
-          "level": "bronze"
-        },
         {
           "date": "2026-04-03",
           "model": "o3-pro",
@@ -415,7 +359,7 @@
       "level": "bronze",
       "review_count": 5,
       "verdict_summary": "Revise & resubmit (5 reviews)",
-      "models_summary": "Claude + GPT-5.2 + Grok + o3-pro + unknown",
+      "models_summary": "Claude + GPT-5.2 + Grok + o3-pro",
       "issues_found": 4,
       "issues_resolved": 0,
       "last_reviewed": "2026-04-03T19:52:39Z",
@@ -432,13 +376,6 @@
           "model": "GPT-5.2",
           "provider": "OpenAI",
           "verdict": "ACCEPT_WITH_REVISION",
-          "level": "silver"
-        },
-        {
-          "date": "2026-04-01",
-          "model": "unknown",
-          "provider": "unknown",
-          "verdict": "MOW framework is established. Our proof framework ",
           "level": "silver"
         },
         {
@@ -463,18 +400,11 @@
       "level": "bronze",
       "review_count": 3,
       "verdict_summary": "Revise & resubmit (3 reviews)",
-      "models_summary": "Claude + o3-pro + unknown",
+      "models_summary": "Claude + o3-pro",
       "issues_found": 3,
       "issues_resolved": 0,
       "last_reviewed": "2026-04-03T19:46:50Z",
       "reviews": [
-        {
-          "date": "2026-04-01",
-          "model": "unknown",
-          "provider": "unknown",
-          "verdict": "Uses Dickson's classical classification (1901). AI",
-          "level": "silver"
-        },
         {
           "date": "2026-04-03",
           "model": "o3-pro",

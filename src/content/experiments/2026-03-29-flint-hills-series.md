@@ -222,6 +222,6 @@ nvcc -O3 -arch=sm_100a -o flint_hills scripts/experiments/flint-hills-series/fli
 
 ---
 
-*Computed 2026-03-29 on NVIDIA RTX 5090 (32 GB). Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+*Computed 2026-03-29 on NVIDIA RTX 5090 (32 GB). Code: [flint_hills.cu](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/flint-hills/flint_hills.cu).*
 
 *This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

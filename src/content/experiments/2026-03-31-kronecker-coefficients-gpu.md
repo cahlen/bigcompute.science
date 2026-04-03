@@ -165,6 +165,6 @@ nvcc -O3 -arch=sm_100a -o kronecker_compute scripts/experiments/kronecker-coeffi
 
 ---
 
-*Computed on NVIDIA DGX B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+*Computed on NVIDIA DGX B200. Code: [scripts/experiments/kronecker-coefficients/kronecker_gpu.cu](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/kronecker-coefficients/kronecker_gpu.cu).*
 
 *This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

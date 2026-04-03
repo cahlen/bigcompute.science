@@ -192,6 +192,6 @@ nvcc -O3 -arch=sm_100a -o transfer_op scripts/experiments/zaremba-transfer-opera
 
 ---
 
-*Computed 2026-03-28 on NVIDIA DGX B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+*Computed 2026-03-28 on NVIDIA DGX B200. Code: [transfer_operator.cu](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-transfer-operator/transfer_operator.cu).*
 
 *This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

@@ -238,6 +238,6 @@ nvcc -O3 -arch=sm_100a -o ramsey_search scripts/experiments/ramsey-r55/ramsey_se
 
 ---
 
-*Computed 2026-03-30 on NVIDIA DGX B200 (8x B200). Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+*Computed 2026-03-30 on NVIDIA DGX B200 (8x B200). Code: [scripts/experiments/ramsey-r55/ramsey_search.cu](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/ramsey-r55/ramsey_search.cu).*
 
 *This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

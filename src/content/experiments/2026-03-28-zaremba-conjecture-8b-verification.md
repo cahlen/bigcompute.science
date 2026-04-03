@@ -328,6 +328,6 @@ nvcc -O3 -arch=sm_100a -o matrix_enum \
 
 ---
 
-*Computed 2026-03-28 on NVIDIA DGX B200. Transfer operator analysis: [companion post](/experiments/zaremba-transfer-operator). Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+*Computed 2026-03-28 on NVIDIA DGX B200. Transfer operator analysis: [companion post](/experiments/zaremba-transfer-operator). Code: [scripts/zaremba_verify_v4.cu](https://github.com/cahlen/idontknow/blob/main/scripts/zaremba_verify_v4.cu).*
 
 *This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

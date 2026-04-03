@@ -158,6 +158,6 @@ python lean4-proving/prover.py \
 
 ---
 
-*Planned for NVIDIA DGX B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+*Planned for NVIDIA DGX B200. Code: [scripts/experiments/mcts-proof-search/mcts_prover.py](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/mcts-proof-search/mcts_prover.py).*
 
 *This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

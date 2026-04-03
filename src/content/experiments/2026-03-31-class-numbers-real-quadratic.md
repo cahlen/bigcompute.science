@@ -201,6 +201,6 @@ nvcc -O3 -arch=sm_100a -o class_v2 \
 
 ---
 
-*Computed on NVIDIA DGX B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+*Computed on NVIDIA DGX B200. Code: [scripts/experiments/class-numbers/class_numbers_v2.cu](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/class-numbers/class_numbers_v2.cu).*
 
 *This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

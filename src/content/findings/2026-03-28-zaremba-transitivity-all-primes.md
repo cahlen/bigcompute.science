@@ -28,7 +28,7 @@ certification:
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-01
   note: "Dickson classification sound. Not formalized."
-code: https://github.com/cahlen/idontknow
+code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/zaremba-transitivity
 ---
 
 # Zaremba's Semigroup Acts Transitively for All Primes

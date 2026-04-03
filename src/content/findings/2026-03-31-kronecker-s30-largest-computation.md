@@ -29,7 +29,7 @@ certification:
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-02
   note: "zbMATH corroborates MN rule, validated, unprecedented scale"
-code: https://github.com/cahlen/idontknow
+code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/kronecker-coefficients
 dataset: https://huggingface.co/datasets/cahlen/kronecker-coefficients
 ---
 

@@ -80,6 +80,6 @@ certification:
   note: "Engineering finding. 175x speedup verified. Matrix-CF equivalence is classical."
 ---
 
-*Computed on NVIDIA DGX B200. Code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
+*Computed on NVIDIA DGX B200. Code: [matrix_enum.cu](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/matrix_enum.cu).*
 
 *This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

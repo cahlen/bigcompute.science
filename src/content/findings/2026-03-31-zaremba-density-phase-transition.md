@@ -42,7 +42,7 @@ certification:
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-01
   note: "Delta>1/2 threshold corrected: requires transitivity too."
-code: https://github.com/cahlen/idontknow
+code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/zaremba-density
 ---
 
 # Zaremba Density Phase Transition: A={1,2,3} May Suffice

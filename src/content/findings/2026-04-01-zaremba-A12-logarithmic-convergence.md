@@ -32,7 +32,7 @@ certification:
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-01
   note: "Peer-reviewed by Claude Opus 4.6. ACCEPT WITH REVISION: R(d) growth vs density convergence distinguished, logarithmic claim weakened to 'consistent with', 10^15 prediction marked speculative."
-code: https://github.com/cahlen/idontknow
+code: https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-density/zaremba_density_gpu.cu
 ---
 
 # A={1,2} Density Grows Logarithmically, Not Power-Law

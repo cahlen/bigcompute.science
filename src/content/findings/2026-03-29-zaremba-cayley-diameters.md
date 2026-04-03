@@ -32,7 +32,7 @@ certification:
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-01
   note: "Bound corrected: diam/log(p)→1.45, not ≤2log(p)."
-code: https://github.com/cahlen/idontknow
+code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/zaremba-cayley-diameter
 ---
 
 # Cayley Graph Diameters of Zaremba's Semigroup

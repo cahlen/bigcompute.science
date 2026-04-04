@@ -21,9 +21,86 @@ const worstVerdict = certReviews.length > 0
     }, certReviews[0].verdict)
   : frontmatter.certification?.verdict ?? '';
 const modelsSummary = certEntry?.models_summary ?? frontmatter.certification?.reviewer ?? '';
+
+const canonicalURL = `https://bigcompute.science/findings/${frontmatter.slug}/`;
+const isoDate = new Date(date).toISOString().split('T')[0];
+const summary = frontmatter.summary || '';
+const codeURL = frontmatter.code || 'https://github.com/cahlen/idontknow';
+const datasetURL = frontmatter.dataset || '';
+const domains = frontmatter.domain || [];
 ---
 
-<Base title={title}>
+<Base title={title} description={summary}>
+  {/* Google Scholar: Highwire Press meta tags */}
+  <Fragment slot="head">
+    <meta name="citation_title" content={title} />
+    <meta name="citation_author" content="Cahlen Humphreys" />
+    <meta name="citation_publication_date" content={isoDate} />
+    <meta name="citation_online_date" content={isoDate} />
+    <meta name="citation_journal_title" content="bigcompute.science" />
+    <meta name="citation_abstract" content={summary} />
+    {codeURL && <meta name="citation_technical_report_institution" content="bigcompute.science" />}
+
+    {/* Dublin Core metadata */}
+    <meta name="DC.title" content={title} />
+    <meta name="DC.creator" content="Cahlen Humphreys" />
+    <meta name="DC.date" content={isoDate} />
+    <meta name="DC.description" content={summary} />
+    <meta name="DC.rights" content="CC BY 4.0" />
+    <meta name="DC.type" content="Dataset" />
+    {domains.map((d: string) => <meta name="DC.subject" content={d} />)}
+
+    {/* JSON-LD: ScholarlyArticle for Google Scholar */}
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ScholarlyArticle",
+      "headline": title,
+      "abstract": summary,
+      "datePublished": isoDate,
+      "dateModified": isoDate,
+      "author": {
+        "@type": "Person",
+        "name": "Cahlen Humphreys",
+        "url": "https://github.com/cahlen",
+        "sameAs": ["https://huggingface.co/cahlen", "https://www.linkedin.com/in/cahlenhu"]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "bigcompute.science",
+        "url": "https://bigcompute.science"
+      },
+      "url": canonicalURL,
+      "mainEntityOfPage": canonicalURL,
+      "isAccessibleForFree": true,
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "about": domains.map((d: string) => ({ "@type": "Thing", "name": d })),
+      ...(codeURL ? { "codeRepository": codeURL } : {}),
+    })} />
+
+    {/* JSON-LD: Dataset for Google Dataset Search */}
+    {datasetURL && <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      "name": title,
+      "description": summary,
+      "url": canonicalURL,
+      "creator": {
+        "@type": "Person",
+        "name": "Cahlen Humphreys",
+        "url": "https://github.com/cahlen"
+      },
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "distribution": {
+        "@type": "DataDownload",
+        "encodingFormat": "application/json",
+        "contentUrl": datasetURL
+      },
+      "sameAs": datasetURL,
+      "datePublished": isoDate,
+      "keywords": domains,
+    })} />}
+  </Fragment>
+
   <article class="experiment">
     <div class="experiment-meta">
       <div class="meta-row">

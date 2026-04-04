@@ -10,11 +10,19 @@ import Base from '../layouts/Base.astro';
     measuring and flowing text without DOM reflows.
   </p>
 
+  <section class="distributed-section m-reveal">
+    <div class="distributed-hero">
+      <h2>Distributed Mathematics Research</h2>
+      <p>Every Google Colab instance comes with a free NVIDIA T4 GPU. When you open one of these notebooks, your GPU auto-detects, the CUDA kernels compile for your hardware, and you're running experiments on open mathematical conjectures within a minute.</p>
+      <p>This is large-scale distributed computation. Each Colab session that runs an experiment extends the verified frontier &mdash; a new digit set checked, a new density computed, a new character table archived. The results are downloadable and submittable as a PR. <strong>No math PhD required. No funding required. Just a browser.</strong></p>
+    </div>
+  </section>
+
   <section class="colab-section m-reveal">
     <div class="colab-card">
       <div class="colab-text">
-        <h2>MCP Explorer</h2>
-        <p>Query 23 tools — arXiv, zbMATH, OEIS, LMFDB, Lean/Mathlib, and all our experiment data. No setup, no API key.</p>
+        <h2>MCP Explorer + GPU Compute</h2>
+        <p>Query 23 tools (arXiv, zbMATH, OEIS, LMFDB, Lean/Mathlib), explore datasets, <strong>then compile and run CUDA experiments on your free GPU</strong>. No API key needed for exploration; GPU compute is one click.</p>
       </div>
       <a href="https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_mcp_explorer.ipynb"
          target="_blank" class="colab-btn">
@@ -27,14 +35,30 @@ import Base from '../layouts/Base.astro';
   <section class="colab-section m-reveal">
     <div class="colab-card" style="border-color:rgba(232,196,122,0.3)">
       <div class="colab-text">
-        <h2>Research Agent</h2>
-        <p>Run the autonomous research agent from Colab. Monitors experiments, harvests results, runs multi-model peer reviews, fixes issues. Works with just an OpenAI <em>or</em> Anthropic API key.</p>
+        <h2>Research Agent + GPU Compute</h2>
+        <p>The full autonomous loop: <strong>compile CUDA kernels, run experiments, harvest results, AI peer review, fix issues</strong>. Auto-detects your GPU (T4/A100/L4/4090/H100). Free Gemini API key for reviews, or use OpenAI/Anthropic.</p>
       </div>
       <a href="https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_research_agent.ipynb"
          target="_blank" class="colab-btn">
         <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" />
         Open Research Agent
       </a>
+    </div>
+  </section>
+
+  <section class="gpu-compat m-reveal">
+    <div class="gpu-compat-inner">
+      <h3>Supported GPUs (auto-detected)</h3>
+      <div class="gpu-grid">
+        <div class="gpu-chip"><span class="gpu-name">T4</span><small>Colab Free</small></div>
+        <div class="gpu-chip"><span class="gpu-name">A100</span><small>Colab Pro</small></div>
+        <div class="gpu-chip"><span class="gpu-name">L4</span><small>Colab Pro</small></div>
+        <div class="gpu-chip"><span class="gpu-name">RTX 4090</span><small>Local</small></div>
+        <div class="gpu-chip"><span class="gpu-name">H100</span><small>Cloud</small></div>
+        <div class="gpu-chip"><span class="gpu-name">B200</span><small>Our cluster</small></div>
+        <div class="gpu-chip"><span class="gpu-name">RTX 5090</span><small>Local</small></div>
+      </div>
+      <small>Kernels compile automatically for your hardware via <code>nvidia-smi --query-gpu=compute_cap</code></small>
     </div>
   </section>
 
@@ -405,6 +429,82 @@ import Base from '../layouts/Base.astro';
       margin-bottom: 3rem;
     }
     .page-intro a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+
+    /* Distributed research hero */
+    .distributed-section { margin-bottom: 2rem; }
+    .distributed-hero {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+    .distributed-hero h2 {
+      font-family: var(--font-serif, 'STIX Two Text', Georgia, serif);
+      font-size: 1.6rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      color: #e8c47a;
+    }
+    .distributed-hero p {
+      font-size: 0.92rem;
+      color: var(--text-secondary, #999);
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+    }
+
+    /* GPU compatibility grid */
+    .gpu-compat { margin-bottom: 3rem; }
+    .gpu-compat-inner {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .gpu-compat-inner h3 {
+      font-size: 0.85rem;
+      color: var(--text-secondary, #999);
+      margin-bottom: 0.8rem;
+      font-weight: 400;
+    }
+    .gpu-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+    .gpu-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.4rem 0.8rem;
+      background: color-mix(in srgb, var(--surface, #1a1a1a) 80%, transparent);
+      border: 1px solid color-mix(in srgb, var(--border, #333) 40%, transparent);
+      border-radius: 6px;
+      min-width: 5rem;
+    }
+    .gpu-chip:hover { border-color: rgba(232,196,122,0.3); }
+    .gpu-name {
+      font-family: var(--font-mono, 'JetBrains Mono', monospace);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #e8c47a;
+    }
+    .gpu-chip small {
+      font-size: 0.58rem;
+      color: var(--text-secondary, #999);
+      opacity: 0.6;
+    }
+    .gpu-compat-inner > small {
+      font-size: 0.65rem;
+      color: var(--text-secondary, #999);
+      opacity: 0.5;
+    }
+    .gpu-compat-inner code {
+      font-size: 0.62rem;
+      background: rgba(232,196,122,0.08);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
 
     .colab-section { margin-bottom: 3rem; }
     .colab-card {

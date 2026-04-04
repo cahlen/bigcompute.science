@@ -1,44 +1,107 @@
 ---
 import Base from '../../layouts/Base.astro';
+import certData from '../../data/certifications.json';
 
 const findings = await Astro.glob('../../content/findings/*.md');
 const sorted = findings.sort((a, b) =>
   new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
 );
+
+const stats = certData.stats;
 ---
 
-<Base title="Findings" description="Novel observations and discoveries from heavy computation">
-  <h1 class="m-reveal">Findings</h1>
-  <p class="m-reveal" style="color: var(--muted); margin-bottom: 1.5rem; font-size: 0.9rem; font-style: italic;">
-    Each finding is AI-audited claim-by-claim against published literature. Not a substitute for formal peer review. Badges show the <a href="/verification/" style="color: var(--accent);">audit level</a>.
-  </p>
+<Base title="Findings" description={`${stats.findings_audited} computational mathematics findings, AI-audited by ${stats.unique_models} models across ${stats.unique_providers} providers. Zaremba conjecture, Ramsey R(5,5), Kronecker coefficients, class numbers, Hausdorff spectra.`}>
+  <main>
+    <header>
+      <h1 class="m-reveal">Findings</h1>
+      <p class="findings-intro m-reveal">
+        {stats.findings_audited} computational results from GPU-accelerated mathematics research.
+        Each finding is <a href="/verification/">AI-audited</a> claim-by-claim against published literature
+        ({stats.total_reviews} reviews from {stats.unique_models} models).
+        Not a substitute for formal peer review.
+        <a href="/cite/">How to cite &rarr;</a>
+      </p>
+    </header>
 
-  <div class="experiments-list">
-    {sorted.map((f) => (
-      <a href={`/findings/${f.frontmatter.slug}/`} class="experiment-card">
-        <div class="card-top-row">
-          <time datetime={f.frontmatter.date}>
-            {new Date(f.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-          </time>
-          <div class="card-badges">
-            {f.frontmatter.certification && (
-              <span class={`cert-badge cert-${f.frontmatter.certification.level}`}>
-                {f.frontmatter.certification.level.toUpperCase()}
-              </span>
-            )}
-            {f.frontmatter.conjecture_year && (
-              <span class="conjecture-age">{2026 - f.frontmatter.conjecture_year}yr open</span>
-            )}
-          </div>
-        </div>
-        <h3>{f.frontmatter.title}</h3>
-        <p class="card-summary">{f.frontmatter.summary?.slice(0, 200)}{f.frontmatter.summary?.length > 200 ? '...' : ''}</p>
-        <div class="card-tags">
-          {f.frontmatter.domain?.slice(0, 4).map((t: string) => <span class="tag tag-domain">{t}</span>)}
-        </div>
-      </a>
-    ))}
-  </div>
+    <section aria-label="Silver-certified findings">
+      <h2 class="findings-level-header m-reveal">
+        <span class="cert-badge cert-silver" style="font-size:0.6rem">SILVER</span>
+        Literature-Supported
+      </h2>
+      <div class="experiments-list">
+        {sorted.filter(f => f.frontmatter.certification?.level === 'silver').map((f) => (
+          <article>
+            <a href={`/findings/${f.frontmatter.slug}/`} class="experiment-card">
+              <div class="card-top-row">
+                <time datetime={f.frontmatter.date}>
+                  {new Date(f.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                </time>
+                <div class="card-badges">
+                  <span class="cert-badge cert-silver">SILVER</span>
+                  {f.frontmatter.conjecture_year && (
+                    <span class="conjecture-age">{2026 - f.frontmatter.conjecture_year}yr open</span>
+                  )}
+                </div>
+              </div>
+              <h3>{f.frontmatter.title}</h3>
+              <p class="card-summary">{f.frontmatter.summary?.slice(0, 200)}{f.frontmatter.summary?.length > 200 ? '...' : ''}</p>
+              <div class="card-meta">
+                {f.frontmatter.code && <span class="card-link">Code</span>}
+                {f.frontmatter.dataset && <span class="card-link">Dataset</span>}
+              </div>
+              <div class="card-tags">
+                {f.frontmatter.domain?.slice(0, 4).map((t: string) => <span class="tag tag-domain">{t}</span>)}
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section aria-label="Bronze-certified findings">
+      <h2 class="findings-level-header m-reveal">
+        <span class="cert-badge cert-bronze" style="font-size:0.6rem">BRONZE</span>
+        Novel Observations
+      </h2>
+      <div class="experiments-list">
+        {sorted.filter(f => f.frontmatter.certification?.level === 'bronze').map((f) => (
+          <article>
+            <a href={`/findings/${f.frontmatter.slug}/`} class="experiment-card">
+              <div class="card-top-row">
+                <time datetime={f.frontmatter.date}>
+                  {new Date(f.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                </time>
+                <div class="card-badges">
+                  <span class="cert-badge cert-bronze">BRONZE</span>
+                  {f.frontmatter.conjecture_year && (
+                    <span class="conjecture-age">{2026 - f.frontmatter.conjecture_year}yr open</span>
+                  )}
+                </div>
+              </div>
+              <h3>{f.frontmatter.title}</h3>
+              <p class="card-summary">{f.frontmatter.summary?.slice(0, 200)}{f.frontmatter.summary?.length > 200 ? '...' : ''}</p>
+              <div class="card-meta">
+                {f.frontmatter.code && <span class="card-link">Code</span>}
+                {f.frontmatter.dataset && <span class="card-link">Dataset</span>}
+              </div>
+              <div class="card-tags">
+                {f.frontmatter.domain?.slice(0, 4).map((t: string) => <span class="tag tag-domain">{t}</span>)}
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <nav class="findings-nav m-reveal">
+      <a href="/verification/">Audit Dashboard</a>
+      <a href="/cite/">How to Cite</a>
+      <a href="/interactive/">Run Experiments</a>
+      <a href="https://github.com/cahlen/idontknow">Source Code</a>
+      <a href="https://huggingface.co/cahlen">Datasets</a>
+    </nav>
+  </main>
+
   <script is:inline>
   (function() {
     var reveals = document.querySelectorAll('.m-reveal');
@@ -58,5 +121,55 @@ const sorted = findings.sort((a, b) =>
     .m-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .m-reveal.visible { opacity: 1; transform: translateY(0); }
     h1 { font-family: var(--font-serif); letter-spacing: -0.03em; }
+    .findings-intro {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      max-width: 700px;
+    }
+    .findings-intro a { color: var(--accent); }
+    .findings-level-header {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 1.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--rule, #2a2e35);
+      color: var(--ink-secondary, #c4c1bc);
+    }
+    .card-meta {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+    }
+    .card-link {
+      font-size: 0.6rem;
+      color: var(--accent);
+      padding: 0.1rem 0.4rem;
+      border: 1px solid rgba(94,234,212,0.2);
+      border-radius: 3px;
+    }
+    .findings-nav {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule, #2a2e35);
+    }
+    .findings-nav a {
+      font-size: 0.75rem;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--rule, #2a2e35);
+      border-radius: 4px;
+      transition: all 0.15s;
+    }
+    .findings-nav a:hover { border-color: var(--accent); }
   </style>
 </Base>

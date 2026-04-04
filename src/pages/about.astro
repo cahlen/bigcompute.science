@@ -7,26 +7,26 @@ import certData from '../data/certifications.json';
   <section class="about-page">
     <h1 class="m-reveal">About</h1>
 
-    <p class="tagline m-reveal"><strong>Big math</strong> &mdash; computational mathematics at scales requiring specialized hardware. GPU clusters, custom CUDA kernels, and serious engineering applied to open conjectures that nobody else is computing.</p>
+    <p class="tagline m-reveal"><strong>Big math</strong> &mdash; computational mathematics with specialized GPU hardware. Custom CUDA kernels and open-source tooling applied to open conjectures rarely investigated by direct computation.</p>
 
     <h2 class="m-reveal">What This Is</h2>
 
-    <p>bigcompute.science is an open computational lab notebook. We run expensive GPU experiments on open mathematical conjectures &mdash; Zaremba, Ramsey R(5,5), Kronecker coefficients, class numbers, Hausdorff spectra &mdash; and publish everything: the code, the raw data, the findings, and the full audit trail.</p>
+    <p>bigcompute.science is an open computational lab notebook. I run GPU experiments on open mathematical conjectures &mdash; Zaremba, Ramsey R(5,5), Kronecker coefficients, class numbers, Hausdorff spectra &mdash; and publish everything: the code, the raw data, the findings, and the full audit trail.</p>
 
-    <p>Every finding is AI-audited claim-by-claim against published literature by multiple models from multiple providers. Currently: <strong>{certData.stats.total_reviews} reviews</strong> from <strong>{certData.stats.unique_models} AI models</strong> across <strong>{certData.stats.unique_providers} providers</strong>. {certData.stats.issues_discovered} issues identified, {certData.stats.issues_fixed} resolved &mdash; each fix linked to its commit.</p>
+    <p>Every finding is checked claim-by-claim by multiple AI models against published literature &mdash; an informal process, not formal peer review. Currently: <strong>{certData.stats.total_reviews} reviews</strong> from <strong>{certData.stats.unique_models} AI models</strong> across <strong>{certData.stats.unique_providers} providers</strong>. {certData.stats.issues_discovered} issues identified, {certData.stats.issues_fixed} resolved &mdash; each fix linked to its commit.</p>
 
-    <p>This is not peer-reviewed mathematics. The safest way to describe our results is: <em>computed, archived, benchmarked, observed</em> &mdash; not <em>proved</em>.</p>
+    <p>This is not peer-reviewed mathematics. The safest way to describe these results is: <em>computed, archived, benchmarked, observed</em> &mdash; not <em>proved</em>.</p>
 
     <h2 class="m-reveal">How It Was Built</h2>
 
-    <p>The project evolved through sustained human&ndash;AI collaboration. The human provides mathematical direction and judgment. The AI generates code, cross-references literature, and iterates tirelessly. The result is infrastructure neither could have built alone.</p>
+    <p>The project evolved through sustained human&ndash;AI collaboration. The human provides mathematical direction and judgment. The AI helps generate code and cross-reference literature &mdash; a workflow that is more efficient than either could achieve alone.</p>
 
     <p>The timeline of how it came together:</p>
 
     <div class="timeline m-reveal">
       <div class="tl-item"><span class="tl-phase">Phase 1</span><span class="tl-desc">GPU experiments &mdash; CUDA kernels for Zaremba verification (210B denominators), Ramsey R(5,5) (4.4T extensions checked), Kronecker S<sub>30</sub> (26.4B triples), class numbers (30B discriminants), Hausdorff spectrum (1M subsets).</span></div>
       <div class="tl-item"><span class="tl-phase">Phase 2</span><span class="tl-desc">Findings &mdash; 15 computational findings extracted from experiment data. Each with structured frontmatter, reproduction commands, dataset links.</span></div>
-      <div class="tl-item"><span class="tl-phase">Phase 3</span><span class="tl-desc">AI peer review &mdash; Every finding reviewed by Claude Opus 4.6 (Anthropic), o3-pro (OpenAI), Grok (xAI), and GPT-5.2 (OpenAI). Real errors found: a prime count was wrong (669&rarr;172), a proof had circular logic, a spectral bound needed caveats.</span></div>
+      <div class="tl-item"><span class="tl-phase">Phase 3</span><span class="tl-desc">AI review &mdash; Every finding checked by Claude Opus 4.6 (Anthropic), o3-pro (OpenAI), Grok (xAI), and GPT-5.2 (OpenAI). Real errors found: a prime count was wrong (669&rarr;172), a proof had circular logic, a spectral bound needed caveats.</span></div>
       <div class="tl-item"><span class="tl-phase">Phase 4</span><span class="tl-desc">Remediation &mdash; 92 issues tracked with severity, status, and commit-linked resolutions. Proof framework rewritten. Spectral bound interval-certified with 77 digits of arb ball arithmetic.</span></div>
       <div class="tl-item"><span class="tl-phase">Phase 5</span><span class="tl-desc">Infrastructure &mdash; Review scripts, manifest system, autonomous research agent, MCP server (23 tools), Colab notebooks with GPU auto-detect. The agent runs the full cycle: monitor &rarr; harvest &rarr; analyze &rarr; review &rarr; remediate &rarr; deploy.</span></div>
       <div class="tl-item"><span class="tl-phase">Phase 6</span><span class="tl-desc">Distributed compute &mdash; Anyone with a browser can open a Colab notebook, auto-compile CUDA kernels for their free T4 GPU, and run experiments on open conjectures. Results submitted via PR.</span></div>

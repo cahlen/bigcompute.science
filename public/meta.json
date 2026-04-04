@@ -1,0 +1,60 @@
+{
+  "name": "bigcompute.science",
+  "description": "Open computational mathematics on GPUs. AI-audited, not peer-reviewed.",
+  "url": "https://bigcompute.science",
+  "author": {
+    "name": "Cahlen Humphreys",
+    "github": "https://github.com/cahlen",
+    "huggingface": "https://huggingface.co/cahlen"
+  },
+  "license": "CC-BY-4.0",
+  "structured_data": {
+    "json_ld": "Every finding page emits ScholarlyArticle + Dataset JSON-LD",
+    "meta_tags": "Highwire Press (citation_title, citation_author, citation_date, citation_abstract) + Dublin Core (DC.title, DC.creator, DC.date, DC.subject)",
+    "sitemap": "https://bigcompute.science/sitemap-index.xml",
+    "robots": "https://bigcompute.science/robots.txt",
+    "rss": {
+      "all": "https://bigcompute.science/rss.xml",
+      "experiments": "https://bigcompute.science/experiments/rss.xml",
+      "findings": "https://bigcompute.science/findings/rss.xml"
+    },
+    "llms_txt": "https://bigcompute.science/llms.txt",
+    "llms_full": "https://bigcompute.science/llms-full.txt",
+    "mcp_server": "https://mcp.bigcompute.science/mcp",
+    "citation_page": "https://bigcompute.science/cite/",
+    "indexnow_key": "https://bigcompute.science/bigcompute-science-indexnow-key.txt"
+  },
+  "key_pages": {
+    "findings": "https://bigcompute.science/findings/",
+    "experiments": "https://bigcompute.science/experiments/",
+    "verification": "https://bigcompute.science/verification/",
+    "cite": "https://bigcompute.science/cite/",
+    "about": "https://bigcompute.science/about/",
+    "interactive": "https://bigcompute.science/interactive/"
+  },
+  "repositories": {
+    "experiments": "https://github.com/cahlen/idontknow",
+    "website": "https://github.com/cahlen/bigcompute.science",
+    "agents_guide": "https://github.com/cahlen/idontknow/blob/main/AGENTS.md",
+    "review_manifest": "https://github.com/cahlen/idontknow/blob/main/docs/verifications/manifest.json",
+    "review_schema": "https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md",
+    "research_agent": "https://github.com/cahlen/idontknow/blob/main/scripts/research_agent.py",
+    "known_frontiers": "https://github.com/cahlen/idontknow/blob/main/data/known_frontiers.json"
+  },
+  "datasets": {
+    "zaremba": "https://huggingface.co/datasets/cahlen/zaremba-conjecture-data",
+    "kronecker": "https://huggingface.co/datasets/cahlen/kronecker-coefficients",
+    "spectra": "https://huggingface.co/datasets/cahlen/continued-fraction-spectra",
+    "ramanujan": "https://huggingface.co/datasets/cahlen/ramanujan-machine-results"
+  },
+  "colab_notebooks": {
+    "research_agent": "https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_research_agent.ipynb",
+    "mcp_explorer": "https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_mcp_explorer.ipynb"
+  },
+  "ai_disclosure": "All work produced through human-AI collaboration (Cahlen Humphreys + Claude Opus 4.6, o3-pro, GPT-5.2, Grok). Not independently peer-reviewed.",
+  "recommended_citation_verbs": {
+    "safe": ["computed", "archived", "benchmarked", "observed", "fit", "checked", "released"],
+    "with_caveats": ["suggests", "appears", "is consistent with", "within the tested range"],
+    "do_not_use": ["proved", "established", "confirmed"]
+  }
+}

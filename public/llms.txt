@@ -62,3 +62,10 @@ All findings are AI-audited claim-by-claim. Current: 41 reviews from 4 models (C
 - [Manifest](https://github.com/cahlen/idontknow/blob/main/docs/verifications/manifest.json): Generated aggregate of all reviews
 - [Remediations](https://github.com/cahlen/idontknow/tree/main/docs/verifications/remediations): Issue tracking with full lineage (review → issue → fix → commit)
 - To contribute: write review JSON per schema, submit PR to [cahlen/idontknow](https://github.com/cahlen/idontknow)
+
+## Machine-Readable Metadata
+
+- [/meta.json](/meta.json): Complete machine-readable index of all structured data, pages, repos, datasets, notebooks, and citation guidance
+- [/cite/](/cite/): Citation page with BibTeX/APA for every finding
+- Every finding page has: ScholarlyArticle JSON-LD, Dataset JSON-LD (when applicable), Highwire Press meta tags (citation_title, citation_author, citation_date), Dublin Core metadata
+- [Sitemap](/sitemap-index.xml) · [RSS](/rss.xml) · [robots.txt](/robots.txt)

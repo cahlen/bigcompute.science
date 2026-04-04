@@ -1,51 +1,73 @@
 ---
 import Base from '../layouts/Base.astro';
+import certData from '../data/certifications.json';
 ---
 
-<Base title="About" description="Why bigcompute.science exists and how to contribute">
+<Base title="About" description="Why bigcompute.science exists, how it was built, and how to contribute">
   <section class="about-page">
     <h1 class="m-reveal">About</h1>
 
-    <p class="tagline m-reveal"><strong>Big math</strong> — computational mathematics at scales requiring specialized hardware — GPU clusters, HPC systems, or custom accelerators — to achieve results within practical timeframes. Problems where the answer exceeds the capacity of commodity hardware.</p>
+    <p class="tagline m-reveal"><strong>Big math</strong> &mdash; computational mathematics at scales requiring specialized hardware. GPU clusters, custom CUDA kernels, and serious engineering applied to open conjectures that nobody else is computing.</p>
 
-    <p>
-      bigcompute.science is an open, collaborative effort to publish results from big math — the kind that requires custom CUDA kernels, GPU clusters, and serious engineering to execute.
-    </p>
+    <h2 class="m-reveal">What This Is</h2>
 
-    <p>
-      Large-scale GPU computation produces results that are expensive to reproduce. We publish everything — methodology, raw data, code, and structured metadata — so the work compounds rather than gets repeated.
-    </p>
+    <p>bigcompute.science is an open computational lab notebook. We run expensive GPU experiments on open mathematical conjectures &mdash; Zaremba, Ramsey R(5,5), Kronecker coefficients, class numbers, Hausdorff spectra &mdash; and publish everything: the code, the raw data, the findings, and the full audit trail.</p>
 
-    <p>
-      Every result on this site is designed to be consumed by both humans and machines. The structured YAML frontmatter in each experiment means an AI agent can find, parse, and reason about our results without scraping HTML. The <a href="/llms.txt">/llms.txt</a> endpoint describes how to consume everything programmatically.
-    </p>
+    <p>Every finding is AI-audited claim-by-claim against published literature by multiple models from multiple providers. Currently: <strong>{certData.stats.total_reviews} reviews</strong> from <strong>{certData.stats.unique_models} AI models</strong> across <strong>{certData.stats.unique_providers} providers</strong>. {certData.stats.issues_discovered} issues identified, {certData.stats.issues_fixed} resolved &mdash; each fix linked to its commit.</p>
+
+    <p>This is not peer-reviewed mathematics. The safest way to describe our results is: <em>computed, archived, benchmarked, observed</em> &mdash; not <em>proved</em>.</p>
+
+    <h2 class="m-reveal">How It Was Built</h2>
+
+    <p>A human picked the problems. An AI wrote the CUDA kernels. The human decided which results mattered. The AI managed the data pipeline, the review infrastructure, and the website. Neither could have done this alone.</p>
+
+    <p>The project evolved through a single extended AI collaboration session:</p>
+
+    <div class="timeline m-reveal">
+      <div class="tl-item"><span class="tl-phase">Phase 1</span><span class="tl-desc">GPU experiments &mdash; CUDA kernels for Zaremba verification (210B denominators), Ramsey R(5,5) (4.4T extensions checked), Kronecker S<sub>30</sub> (26.4B triples), class numbers (30B discriminants), Hausdorff spectrum (1M subsets).</span></div>
+      <div class="tl-item"><span class="tl-phase">Phase 2</span><span class="tl-desc">Findings &mdash; 15 computational findings extracted from experiment data. Each with structured frontmatter, reproduction commands, dataset links.</span></div>
+      <div class="tl-item"><span class="tl-phase">Phase 3</span><span class="tl-desc">AI peer review &mdash; Every finding reviewed by Claude Opus 4.6 (Anthropic), o3-pro (OpenAI), Grok (xAI), and GPT-5.2 (OpenAI). Real errors found: a prime count was wrong (669&rarr;172), a proof had circular logic, a spectral bound needed caveats.</span></div>
+      <div class="tl-item"><span class="tl-phase">Phase 4</span><span class="tl-desc">Remediation &mdash; 92 issues tracked with severity, status, and commit-linked resolutions. Proof framework rewritten. Spectral bound interval-certified with 77 digits of arb ball arithmetic.</span></div>
+      <div class="tl-item"><span class="tl-phase">Phase 5</span><span class="tl-desc">Infrastructure &mdash; Review scripts, manifest system, autonomous research agent, MCP server (23 tools), Colab notebooks with GPU auto-detect. The agent runs the full cycle: monitor &rarr; harvest &rarr; analyze &rarr; review &rarr; remediate &rarr; deploy.</span></div>
+      <div class="tl-item"><span class="tl-phase">Phase 6</span><span class="tl-desc">Distributed compute &mdash; Anyone with a browser can open a Colab notebook, auto-compile CUDA kernels for their free T4 GPU, and run experiments on open conjectures. Results submitted via PR.</span></div>
+    </div>
+
+    <p>The entire website &mdash; every finding, every review, every badge, every commit link &mdash; is generated from data. The verification page reads from <code>certifications.json</code>. The MCP server reads from <code>manifest.json</code>. The changelog reads from <code>git log</code>. When the research agent runs, everything updates automatically.</p>
 
     <h2 class="m-reveal">Why This Matters</h2>
 
-    <p>
-      AI models are increasingly being used for mathematical reasoning and scientific computation. But they waste cycles rediscovering things that have already been computed. If a mathematical agent needs to know whether Zaremba's conjecture holds for d up to 10 million — that answer exists here, verified, with the code to reproduce it.
-    </p>
+    <p>Heavy GPU computation produces results that are expensive to reproduce. We publish everything so the work compounds rather than gets repeated. If an AI agent needs to know whether Zaremba's conjecture holds for d up to 200 billion &mdash; that answer exists here, verified, with the code to reproduce it.</p>
 
-    <p>
-      We believe heavy compute results should be:
-    </p>
+    <p>We believe computational results should be:</p>
 
     <ul>
-      <li><strong>Open</strong> — all code, data, and methodology published</li>
-      <li><strong>Structured</strong> — machine-readable metadata for agent consumption</li>
-      <li><strong>Reproducible</strong> — exact commands to verify every result</li>
-      <li><strong>Honest</strong> — experiments marked as planned, in-progress, or complete</li>
+      <li><strong>Open</strong> &mdash; all code, data, methodology, and reviews published</li>
+      <li><strong>Structured</strong> &mdash; machine-readable for agent consumption (MCP, llms.txt, frontmatter)</li>
+      <li><strong>Reproducible</strong> &mdash; exact commands to verify every result</li>
+      <li><strong>Honest</strong> &mdash; overclaims caught and corrected publicly, with commit links</li>
+      <li><strong>Auditable</strong> &mdash; every claim reviewed by multiple AI models, every issue tracked</li>
     </ul>
 
     <h2 class="m-reveal">Contribute</h2>
 
-    <p>
-      The site is static Astro + KaTeX on Cloudflare Pages. Adding an experiment is dropping a markdown file with structured frontmatter. See the <a href="https://github.com/cahlen/bigcompute.science">GitHub repo</a> for the template.
-    </p>
+    <p>Three ways in, ordered by effort:</p>
 
-    <p>
-      Got serious hardware and interesting results? Open a PR.
-    </p>
+    <ol>
+      <li><strong>Open a Colab notebook</strong> &mdash; free T4 GPU, auto-compile, run an experiment, download results. <a href="/interactive/">Get started &rarr;</a></li>
+      <li><strong>Run the research agent</strong> &mdash; clone the repo, set one API key (Gemini free, or OpenAI, or Anthropic), run <code>./scripts/run_agent.sh</code>. <a href="https://github.com/cahlen/idontknow/blob/main/AGENTS.md">Guide &rarr;</a></li>
+      <li><strong>Submit a review or computation</strong> &mdash; write a review JSON per our <a href="https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md">schema</a>, or upload raw data to your own HF dataset and link it via PR.</li>
+    </ol>
+
+    <h2 class="m-reveal">Technical Stack</h2>
+
+    <div class="stack-grid m-reveal">
+      <div class="stack-item"><strong>Compute</strong><br/>8&times;B200 DGX (1.43 TB VRAM) + RTX 5090</div>
+      <div class="stack-item"><strong>Experiments</strong><br/>Custom CUDA kernels, Python harnesses</div>
+      <div class="stack-item"><strong>Reviews</strong><br/>{certData.stats.unique_models} AI models, {certData.stats.unique_providers} providers, manifest-driven</div>
+      <div class="stack-item"><strong>Website</strong><br/>Astro + KaTeX, Cloudflare Pages</div>
+      <div class="stack-item"><strong>MCP Server</strong><br/>23 tools, no auth, Cloudflare Worker</div>
+      <div class="stack-item"><strong>Data</strong><br/>Hugging Face datasets, GitHub, CC BY 4.0</div>
+    </div>
 
     <h2 class="m-reveal">Who</h2>
 
@@ -53,14 +75,18 @@ import Base from '../layouts/Base.astro';
       <img src="https://cdn-avatars.huggingface.co/v1/production/uploads/64495e3c958a6aca061119f2/-D9CURxArrhYAc9oFdsO6.png" alt="Cahlen Humphreys" class="profile-pic" />
       <div>
         <p>
-          <a href="https://github.com/cahlen">Cahlen Humphreys</a> — Managing Principal at <a href="https://www.enfuse.io">Enfuse.io</a>, speaker at NVIDIA GTC, and builder of things that require too many GPUs. M.S. Mathematics, Florida Atlantic University. B.S. Mathematics, Boise State University. Research interests include continued fraction neural networks (<a href="https://github.com/cahlen/cofrgenet-f">CoFrGeNet-F</a>), formal theorem proving with LLMs, and computational number theory. Runs experiments on an 8×B200 DGX cluster and an RTX 5090 locally. Based in Irvine, CA.
+          <a href="https://github.com/cahlen">Cahlen Humphreys</a> &mdash; Managing Principal at <a href="https://www.enfuse.io">Enfuse.io</a>, speaker at NVIDIA GTC, and builder of things that require too many GPUs. M.S. Mathematics, Florida Atlantic University. B.S. Mathematics, Boise State University. Research interests include continued fraction neural networks (<a href="https://github.com/cahlen/cofrgenet-f">CoFrGeNet-F</a>), formal theorem proving with LLMs, and computational number theory. Based in Irvine, CA.
         </p>
       </div>
     </div>
 
     <p>
-      <a href="https://x.com/cahlenhumphreys">X</a> · <a href="https://huggingface.co/cahlen">Hugging Face</a> · <a href="https://www.linkedin.com/in/cahlenhu">LinkedIn</a>
+      <a href="https://x.com/cahlenhumphreys">X</a> &middot; <a href="https://huggingface.co/cahlen">Hugging Face</a> &middot; <a href="https://www.linkedin.com/in/cahlenhu">LinkedIn</a>
     </p>
+
+    <div class="collab-note m-reveal">
+      <p>This project was produced through human&ndash;AI collaboration. The human provides direction, judgment, and mathematical taste. The AI provides code generation, literature cross-referencing, and tireless iteration. Every page on this site discloses this collaboration. The AI models used include Claude Opus 4.6 (Anthropic), o3-pro (OpenAI), GPT-5.2 (OpenAI), and Grok (xAI).</p>
+    </div>
   </section>
 
   <script is:inline>
@@ -81,5 +107,77 @@ import Base from '../layouts/Base.astro';
   <style>
     .m-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .m-reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .tagline { font-size: 1.1rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 1.5rem; }
+
+    .timeline {
+      margin: 1.5rem 0;
+      padding-left: 1.2rem;
+      border-left: 2px solid rgba(232,196,122,0.2);
+    }
+    .tl-item {
+      padding: 0.5rem 0 0.5rem 1rem;
+      position: relative;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -1.45rem;
+      top: 0.75rem;
+      width: 8px;
+      height: 8px;
+      background: #e8c47a;
+      border-radius: 50%;
+    }
+    .tl-phase {
+      display: inline-block;
+      font-family: var(--font-mono, 'JetBrains Mono', monospace);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #e8c47a;
+      margin-right: 0.6rem;
+      min-width: 4rem;
+    }
+    .tl-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      margin: 1.2rem 0;
+    }
+    .stack-item {
+      padding: 0.8rem;
+      background: color-mix(in srgb, var(--surface, #1a1a1a) 60%, transparent);
+      border: 1px solid color-mix(in srgb, var(--border, #333) 40%, transparent);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .stack-item strong { color: #e8c47a; display: block; margin-bottom: 0.2rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    .collab-note {
+      margin-top: 2rem;
+      padding: 1rem 1.2rem;
+      background: color-mix(in srgb, var(--surface, #1a1a1a) 50%, transparent);
+      border-left: 3px solid rgba(232,196,122,0.3);
+      border-radius: 0 6px 6px 0;
+    }
+    .collab-note p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+      font-style: italic;
+    }
+
+    @media (max-width: 600px) {
+      .stack-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </Base>

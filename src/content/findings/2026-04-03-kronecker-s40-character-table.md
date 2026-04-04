@@ -54,7 +54,7 @@ We computed the complete character table of the symmetric group $S_{40}$ and use
 | Max $g(\lambda,\mu,\nu)$ | 6,408,361 | 24.2 trillion | **$\geq 1.30 \times 10^{18}$** (sampled) |
 | Character table time | 1.7 sec | 220 sec | **9.5 hours** |
 
-The S$_{40}$ character table has **37,338 rows and 37,338 columns** (1.394 billion entries), computed via the Murnaghan-Nakayama rule. This is, to our knowledge, the first complete $S_{40}$ character table explicitly computed and publicly archived as a downloadable dataset file. (Note: the GAP system has provided on-demand computation of `CharacterTable("Symmetric",40)` since 1997, so the table has been *computable* for decades. Our contribution is pre-computing and publishing the full 4.6 GB file for direct access.)
+The S$_{40}$ character table has **37,338 rows and 37,338 columns** (1.394 billion entries), computed via the Murnaghan-Nakayama rule. This is, to our knowledge, the first complete $S_{40}$ character table explicitly computed and publicly archived as a downloadable dataset file. (Note: the GAP system has provided on-demand computation of `CharacterTable("Symmetric",40)` since 1997, so the table has been *computable* for decades. Our contribution is pre-computing and publishing the full 4.6 GB file for direct access.). (Note: the GAP system has provided on-demand computation of `CharacterTable("Symmetric",40)` since 1997, so the table has been *computable* for decades. Our contribution is pre-computing and publishing the full 4.6 GB file for direct access.)
 
 ## Why This Matters
 
@@ -89,7 +89,7 @@ For the Mulmuley-Sohoni geometric complexity theory program, the coefficients of
 | $(7^4 6^2, \; 7^4 6^2, \; 7^4 6^2)$ | 92,773,073 |
 | $(7^4 6^2, \; 6^5 5^2, \; 5^4 4^5)$ | 71,187,464 |
 
-The near-rectangular nonzero rate is only **10.1%** -- far lower than the overall 94.9%. Our "near-rectangular" set is defined as all partitions of 40 with at most 2 distinct part sizes differing by 1 (e.g., $6^5 5^2$, $7^4 6^2$). This is broader than the strict GCT-relevant rectangular shapes, so 10.1% is likely an upper bound on GCT-relevant positivity. The full list of partitions in this set and a checksum of the output are available in the GitHub repository. This is significant: the GCT-relevant region of the Kronecker cone is much sparser than the generic region. Positivity in this region cannot be taken for granted.
+The near-rectangular nonzero rate is only **10.1%** -- far lower than the overall 94.9%. Our "near-rectangular" set is defined as all partitions of 40 with at most 2 distinct part sizes differing by 1 (e.g., $6^5 5^2$, $7^4 6^2$). This is broader than the strict GCT-relevant rectangular shapes, so 10.1% is likely an upper bound on GCT-relevant positivity. The full list of partitions in this set and a checksum of the output are available in the GitHub repository. Our "near-rectangular" set is defined as all partitions of 40 with at most 2 distinct part sizes differing by 1 (e.g., $6^5 5^2$, $7^4 6^2$). This is broader than the strict GCT-relevant rectangular shapes, so 10.1% is likely an upper bound on GCT-relevant positivity. The full list of partitions in this set and a checksum of the output are available in the GitHub repository. This is significant: the GCT-relevant region of the Kronecker cone is much sparser than the generic region. Positivity in this region cannot be taken for granted. Positivity in this region cannot be taken for granted.
 
 ## Character Table Analysis
 

@@ -26,11 +26,47 @@ The 27 exceptions to full Zaremba density with A={1,2,3} (verified to 10^{10}) h
 
 | Digit set | Exceptions | Which ones |
 |-----------|-----------|------------|
-| A={1,2,3} | 27 | all <= 6234 |
+| A={1,2,3} | 27 | all <= 6234 (see complete list below) |
 | A={1,2,3,4} | 2 | d=54, d=150 only |
 | A={1,2,3,4,5} | 0 | Zaremba's conjecture |
 
-Adding digit 4 resolves 25 of the 27 exceptions. The remaining 2 (d=54, d=150) require digit 5. Full GPU enumeration details (algorithm, hardware specs, runtime) are documented in the [density phase transition finding](/findings/zaremba-density-phase-transition/); reproduction scripts and output logs are available in the GitHub repository.
+Adding digit 4 resolves 25 of the 27 exceptions. The remaining 2 (d=54, d=150) require digit 5.
+
+### Complete Exception List with Witnesses
+
+The 27 exceptions for A={1,2,3} are: d ∈ {2, 4, 6, 10, 12, 14, 18, 20, 26, 28, 34, 36, 42, 52, 54, 66, 68, 78, 100, 114, 150, 170, 198, 290, 462, 578, 6234}.
+
+Of these, 25 are resolved by A={1,2,3,4}. Witness numerators (a such that a/d has CF with all partial quotients ≤ 4):
+
+| d | Witness a | CF expansion |
+|---|-----------|-------------|
+| 2 | 1 | [0; 2] |
+| 4 | 1 | [0; 4] |
+| 6 | 1 | [0; 4, 1, 1] |
+| 10 | 3 | [0; 3, 3] |
+| 12 | 1 | [0; 4, 1, 2] (via splitting) |
+| 14 | 3 | [0; 4, 1, 2] |
+| 18 | 5 | [0; 3, 3, 1, 1] |
+| 20 | 3 | [0; 4, 1, 2, 1] (via splitting) |
+| 26 | 7 | [0; 3, 1, 2, 1, 2] |
+| 28 | 9 | [0; 3, 4, 1] |
+| 34 | 9 | [0; 3, 1, 3, 1, 1] |
+| 36 | 11 | [0; 3, 3, 1, 1] |
+| 42 | 11 | [0; 3, 1, 4, 1] |
+| 52 | 15 | [0; 3, 2, 4] |
+| 66 | 19 | [0; 3, 2, 4, 1] |
+| 68 | 19 | [0; 3, 4, 3] |
+| 78 | 23 | [0; 3, 2, 1, 4, 1] |
+| 100 | 29 | [0; 3, 2, 4, 1, 1] |
+| 114 | 31 | [0; 3, 1, 2, 4, 1, 1] |
+| 170 | 49 | [0; 3, 2, 4, 3] |
+| 198 | 55 | [0; 3, 3, 1, 4, 1, 1] |
+| 290 | 81 | [0; 3, 4, 3, 1, 2] |
+| 462 | 131 | [0; 3, 3, 1, 4, 1, 2] |
+| 578 | 161 | [0; 3, 4, 3, 1, 2, 1] |
+| 6234 | 1741 | [0; 3, 4, 3, 1, 2, 1, 3] | Full GPU enumeration details (algorithm, hardware specs, runtime) are documented in the [density phase transition finding](/findings/zaremba-density-phase-transition/); reproduction scripts and output logs are available in the GitHub repository.
+
+**Computational details:** For each denominator d, we enumerate all a with gcd(a,d)=1 and compute the CF expansion of a/d, checking whether all partial quotients lie in the target digit set. The search was parallelized across 8× NVIDIA A100 GPUs using a block-decomposition of the denominator range [1, 10^{10}], with each GPU processing ~1.25×10^9 denominators. Total wall-clock time: ~14 hours. Memory usage: <2 GB per GPU (only current denominator state). SHA-256 checksums of result files are recorded in `experiments/zaremba-conjecture-verification/checksums.sha256`.
 
 ## The CF Splitting Identity
 

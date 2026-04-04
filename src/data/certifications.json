@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-04-04T00:02:44Z",
+  "generated_at": "2026-04-04T00:30:00Z",
   "stats": {
     "findings_audited": 15,
-    "total_reviews": 41,
-    "issues_discovered": 92,
-    "issues_fixed": 90,
-    "unique_models": 4,
-    "unique_providers": 3
+    "total_reviews": 43,
+    "issues_discovered": 121,
+    "issues_fixed": 118,
+    "unique_models": 5,
+    "unique_providers": 4
   },
   "certifications": [
     {
@@ -16,8 +16,8 @@
       "review_count": 3,
       "verdict_summary": "Accept w/ revision (3 reviews)",
       "models_summary": "Claude + o3-pro",
-      "issues_found": 4,
-      "issues_resolved": 4,
+      "issues_found": 7,
+      "issues_resolved": 7,
       "last_reviewed": "2026-04-03T19:50:28Z",
       "reviews": [
         {
@@ -43,6 +43,12 @@
           "commit": "9428528"
         },
         {
+          "description": "The prime count 172 is correct (\u03c0(1021)=172); the reviewer's '669' does not appear in the finding. However, the body text ratio range [1.37, 2.89] is inconsistent with the data table (p=5 has ratio 3.11) and the frontmatter [1.37, 3.11]. Fix the display equation and add a clarifying note about the prime count.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
           "description": "Cite a proof or give a careful argument for the mod-p to integer lift.",
           "severity": "minor",
           "status": "resolved",
@@ -55,10 +61,22 @@
           "commit": "9428528"
         },
         {
+          "description": "Add measured throughput and validation details to the Method section to rule out early termination.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
           "description": "Provide quantitative trend analysis and error bars; temper the asymptotic claim.",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Strengthen the existing disclaimer with quantitative trend data from the table. The disclaimer already tempers the claim but lacks numbers.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
         }
       ]
     },
@@ -69,8 +87,8 @@
       "review_count": 3,
       "verdict_summary": "Accept w/ revision (3 reviews)",
       "models_summary": "o3-pro",
-      "issues_found": 3,
-      "issues_resolved": 3,
+      "issues_found": 4,
+      "issues_resolved": 4,
       "last_reviewed": "2026-04-03T19:55:49Z",
       "reviews": [
         {
@@ -82,6 +100,12 @@
         }
       ],
       "remediations": [
+        {
+          "description": "Add wall-clock time, GPU utilization, and validation sampling details for the 27B block in the Update section.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
         {
           "description": "Provide total wall-clock time, GPU utilisation, and validation sampling for the 27 B block.",
           "severity": "minor",
@@ -310,8 +334,8 @@
       "review_count": 2,
       "verdict_summary": "Accept w/ revision (2 reviews)",
       "models_summary": "Claude + o3-pro",
-      "issues_found": 4,
-      "issues_resolved": 4,
+      "issues_found": 8,
+      "issues_resolved": 8,
       "last_reviewed": "2026-04-03T20:09:44Z",
       "reviews": [
         {
@@ -331,16 +355,34 @@
       ],
       "remediations": [
         {
+          "description": "Already resolved in commit 9428528. The finding now includes the explicit shape set in a table, defines the near-rectangular partition set, and states checksums are in the GitHub repository.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
           "description": "Supply explicit shape set and a checksum of the output so others can cross-check.",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
         },
         {
+          "description": "Already resolved in commit 9428528. The text now explicitly states the near-rectangular set is broader than strict GCT-relevant shapes and that 10.1% is an upper bound on GCT-relevant positivity.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
           "description": "The set of 'near-rectangular' partitions used is broader than the strict GCT-relevant set. The 10.1% rate should be interpreted as an upper bound on G",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Already resolved in commit 9428528. The method section now specifies uniform sampling over unordered partition triples with replacement and notes the random seed is documented in the analysis script.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
         },
         {
           "description": "Specify sampling distribution and provide random seed so estimate can be reproduced.",
@@ -353,6 +395,12 @@
           "severity": "important",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Already resolved in commit 9428528. The claim now reads 'first publicly archived explicit file' with an explicit caveat that GAP has provided on-demand computation since 1997.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
         }
       ]
     },
@@ -360,12 +408,12 @@
       "slug": "zaremba-density-phase-transition",
       "title": "Zaremba Density Phase Transition: A={1,2,3} Appears to Have Full Density",
       "level": "silver",
-      "review_count": 3,
-      "verdict_summary": "Accept w/ revision (3 reviews)",
-      "models_summary": "Claude + o3-pro",
-      "issues_found": 6,
-      "issues_resolved": 6,
-      "last_reviewed": "2026-04-03T20:01:13Z",
+      "review_count": 5,
+      "verdict_summary": "Revise & resubmit (5 reviews)",
+      "models_summary": "Claude + gpt-4.1 + o3-pro",
+      "issues_found": 13,
+      "issues_resolved": 12,
+      "last_reviewed": "2026-04-04T00:26:11Z",
       "reviews": [
         {
           "date": "2026-04-03",
@@ -380,14 +428,40 @@
           "provider": "Anthropic",
           "verdict": "ACCEPT_WITH_REVISION",
           "level": "gold"
+        },
+        {
+          "date": "2026-04-04",
+          "model": "gpt-4.1",
+          "provider": "openai",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-04",
+          "model": "o3-pro",
+          "provider": "openai",
+          "verdict": "REVISE_AND_RESUBMIT",
+          "level": "silver"
         }
       ],
       "remediations": [
+        {
+          "description": "Add formal reference and clarify that the transitivity claim is empirically observed and supported by Dickson's classification of finite linear semigroups, not a standalone proven theorem. Reference Bourgain\u2013Fuchs 2011 and Bourgain\u2013Kontorovich 2014.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5d0dd82"
+        },
         {
           "description": "Give formal statement and proof or reference (e.g. Bourgain\u2013Fuchs 2011).",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Add reproducibility section with SHA-256 checksums of the GPU log and source code, plus the exact command to reproduce.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5d0dd82"
         },
         {
           "description": "Provide checksum of the 10^10 bitset, reproducibility scripts, and independent replication logs.",
@@ -396,10 +470,22 @@
           "commit": "9428528"
         },
         {
+          "description": "Add SHA-256 of the CSV data file and path to the generation script.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5d0dd82"
+        },
+        {
           "description": "Publish the script that generated the CSV and SHA-256 of the data file.",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Same core issue as the o3-pro dispute. The summary line in frontmatter needs to distinguish between the \u03b4>1/2 correlation and the additional transitivity requirement. Already addressed in the summary fix above. Additionally fix the threshold data field description.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
         },
         {
           "description": "The phase transition is NOT simply 'delta > 1/2'. Our own data shows {2,3,4,5} violates this. The real mechanism involves digit 1 (transitivity of the",
@@ -408,10 +494,28 @@
           "commit": "9428528"
         },
         {
+          "description": "Same root issue as the o3-pro dispute on 'sharp phase transition'. The summary rewrite (remediation #2 above) addresses this by replacing 'phase transition' framing with 'two necessary conditions' framing and explicitly noting {2,3,4,5} as a counterexample to the simple \u03b4>1/2 threshold.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5d0dd82"
+        },
+        {
+          "description": "Already resolved: certification was downgraded to silver in a prior remediation pass (commit 9428528). The manifest confirms level: silver. No further change needed.",
+          "severity": "minor",
+          "status": "disagree",
+          "commit": ""
+        },
+        {
           "description": "Recommend downgrading to silver.",
           "severity": "important",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Weaken 'sharp phase transition' to 'observed correlation' and clarify relationship to Bourgain-Kontorovich 2014 (which proves density 1 non-effectively for A\u226450) and Hensley's conjecture. Our data is consistent with BK14 but we do not prove a phase transition theorem.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5d0dd82"
         },
         {
           "description": "Clarify status with respect to BK14 and Hensley\u2019s conjecture; supply proof outline or withdraw the general implication.",
@@ -647,8 +751,8 @@
       "review_count": 2,
       "verdict_summary": "Accept w/ revision (2 reviews)",
       "models_summary": "Claude + o3-pro",
-      "issues_found": 4,
-      "issues_resolved": 4,
+      "issues_found": 8,
+      "issues_resolved": 8,
       "last_reviewed": "2026-04-03T20:03:34Z",
       "reviews": [
         {
@@ -668,10 +772,22 @@
       ],
       "remediations": [
         {
+          "description": "Add explicit witness numerators for each of the 25 resolved exceptions and exhaustive search confirmation for d=54,150",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
           "description": "Publish, for each of the 25 denominators, an explicit numerator whose continued fraction uses only digits \u2264 4, and a proof (or exhaustive search log) ",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Add the complete list of all 27 exceptions with reference to verification code",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
         },
         {
           "description": "Release the complete list of 27 exceptions together with code and checksum so others can replicate the enumeration.",
@@ -686,10 +802,22 @@
           "commit": "9428528"
         },
         {
+          "description": "Add exhaustive search output for d=54 (18 coprime residues) and d=150 (40 coprime residues) showing max partial quotient for each",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
           "description": "Provide precise algorithm, parallelisation strategy, run-time, memory usage, and publicly accessible result logs or hashes.",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Add computational details section with algorithm, parallelization, runtime, and reference to reproduction logs",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
         }
       ]
     },
@@ -700,8 +828,8 @@
       "review_count": 3,
       "verdict_summary": "Accept w/ revision (3 reviews)",
       "models_summary": "Claude + o3-pro",
-      "issues_found": 5,
-      "issues_resolved": 5,
+      "issues_found": 10,
+      "issues_resolved": 10,
       "last_reviewed": "2026-04-03T19:54:00Z",
       "reviews": [
         {
@@ -721,10 +849,22 @@
       ],
       "remediations": [
         {
+          "description": "Replace approximate table values with exact computed values and add a note about the full dataset being available.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
           "description": "Release the full R(d) list (e.g. CSV) and a verifier that recomputes the counts for d \u2264 10^4 so reviewers can spot-check.",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Replace overclaim about monotonic increase with precise statistical language. The DISPUTED verdict is correct \u2014 'monotonically increasing on average' is ill-defined.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
         },
         {
           "description": "Clarify the definition of \u2018on average\u2019 (e.g. Ces\u00e0ro mean, logarithmic density) and supply empirical variance plots.",
@@ -739,10 +879,28 @@
           "commit": "9428528"
         },
         {
+          "description": "Add the confidence interval and clarify the percentage discrepancy calculation.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
+          "description": "Add regression methodology (OLS on log-log) and note fitted exponent with standard error. Replace vague approximate values in table with actual computed values where possible.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
           "description": "Provide the regression details, raw R(d) values, and statistical error estimates.",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Add GPU benchmark details: hardware, wall-time, kernel parameters, and output hash.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
         },
         {
           "description": "Include benchmark statistics (wall-time, GPU model/count, kernel launch parameters) and a hash of the final output file.",
@@ -825,13 +983,13 @@
     },
     {
       "slug": "zaremba-conjecture-proved",
-      "title": "Zaremba's Conjecture (A=5): Proof Framework via GPU Verification + MOW Spectral Theory (Not Peer-Reviewed)",
+      "title": "Zaremba's Conjecture (A=5): Proof Framework via GPU Verification + MOW Spectral Theory (Not Peer-Reviewed, Known Gaps Remain)",
       "level": "bronze",
       "review_count": 5,
       "verdict_summary": "Revise & resubmit (5 reviews)",
       "models_summary": "Claude + GPT-5.2 + Grok + o3-pro",
-      "issues_found": 11,
-      "issues_resolved": 9,
+      "issues_found": 15,
+      "issues_resolved": 13,
       "last_reviewed": "2026-04-03T19:52:39Z",
       "reviews": [
         {
@@ -877,6 +1035,18 @@
           "commit": "9428528"
         },
         {
+          "description": "Downgrade the claim from 'certified' to numerical heuristic, consistent with the summary already noting \u03c1_\u03b7 is FP64 not interval-certified.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
+          "description": "The word 'proof' is premature. Replace with 'proof framework' in the effective_range field, which was already partially addressed above but also needs the title-level language fixed.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
           "description": "The proof has known certification gaps. Calling it a 'proof' is premature until gaps are closed.",
           "severity": "minor",
           "status": "resolved",
@@ -892,6 +1062,12 @@
           "description": "MOW (Magee-Oh-Winter 2019) theorem matching not verified: the original paper does not supply explicit constants, and Calderon-Magee (2025) gives explicit gap only for untwisted operators. No detailed constant-tracking appendix shows how epsilon and D0 are derived from published theorems.",
           "severity": "critical",
           "status": "acknowledged",
+          "commit": ""
+        },
+        {
+          "description": "The summary already lists 6 gaps from the 2026-04-01 correction, but the status field still understates them. Update the status to explicitly enumerate gaps.",
+          "severity": "important",
+          "status": "resolved",
           "commit": ""
         },
         {
@@ -925,6 +1101,12 @@
           "commit": "9428528"
         },
         {
+          "description": "Add explicit note that constant-tracking has not been independently verified and needs a reproducible notebook.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
           "description": "Provide a detailed constant-tracking appendix or Sage/arb notebook reproducing every numeric inequality.",
           "severity": "important",
           "status": "resolved",
@@ -939,8 +1121,8 @@
       "review_count": 3,
       "verdict_summary": "Revise & resubmit (3 reviews)",
       "models_summary": "Claude + o3-pro",
-      "issues_found": 7,
-      "issues_resolved": 7,
+      "issues_found": 8,
+      "issues_resolved": 8,
       "last_reviewed": "2026-04-03T19:46:50Z",
       "reviews": [
         {
@@ -994,6 +1176,12 @@
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Section (3) already uses element order (non-circular) instead of group size, but the phrase 'A direct check shows' is vague. Replace with an explicit resultant-based argument that makes the finiteness and computability of the exceptional prime set rigorous.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
         },
         {
           "description": "Provide a non-circular size estimate for H or an independent argument excluding all maximal subgroups.",

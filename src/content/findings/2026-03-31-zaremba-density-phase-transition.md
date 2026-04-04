@@ -10,7 +10,7 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, diophantine-approximation, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "CONFIRMED TO 10^10: A={1,2,3} has exactly 27 exceptions (all ≤ 6234), giving 99.9999997% density at d ≤ 10^{10}. Zero new exceptions between d=6234 and d=10^10. The exception set appears finite (not proven). By contrast, A={1,2} gives only 72% density at 10^9. Phase transition at Hausdorff dimension δ = 1/2. This suggests Zaremba's conjecture holds with A=3, not A=5. Verified to 10^10. Running to higher ranges. Not peer-reviewed."
+summary: "CONFIRMED TO 10^10: A={1,2,3} has exactly 27 exceptions (all ≤ 6234), giving 99.9999997% density at d ≤ 10^{10}. Zero new exceptions between d=6234 and d=10^10. The exception set appears finite (not proven). By contrast, A={1,2} gives only 72% density at 10^9. Density appears to require two conditions: (1) Hausdorff dimension δ(E_A) > 1/2, and (2) transitivity of the semigroup ⟨M_a : a ∈ A⟩ on (ℤ/pℤ)² for all primes p, which is empirically guaranteed when 1 ∈ A. Neither condition alone suffices: A={2,3,4,5} has δ≈0.837 but only 97.3% density (fails transitivity); A={1,2} has δ≈0.531 and only 72% density (fails dimension). This is consistent with Bourgain–Kontorovich (2014), which proves density 1 non-effectively for the larger set A≤50. Our computational evidence suggests A={1,2,3} may suffice—a much stronger claim that remains unproven. Verified to 10^10. Not peer-reviewed."
 
 data:
   density_A123_1e10: 0.999999997
@@ -23,8 +23,15 @@ data:
   uncovered_A123_list: [6, 20, 28, 38, 42, 54, 96, 150, 156, 164, 216, 228, 318, 350, 384, 558, 770, 876, 1014, 1155, 1170, 1410, 1870, 2052, 2370, 5052, 6234]
   new_exceptions_after_6234: 0
   range_verified: 10000000000
+  reproduction_script: scripts/experiments/zaremba-density/zaremba_density_gpu.cu
+  reproduction_command: "nvcc -O3 -arch=sm_90 zaremba_density_gpu.cu -o zaremba_density_gpu && ./zaremba_density_gpu 10000000000 1,2,3"
+  sha256_gpu_source: b07cd3687605900f55aa2e888ecfbc78c0e4014eb7af07d393f3ad38276b7f2c
+  sha256_A123_1e10_log: 9b0a369a8f2671983fe0e6f297d2da8131a5f6582f83434d7d7e5dd582ebd936
   density_sweep_subsets: 1023
   density_sweep_range: 1000000
+  density_sweep_script: scripts/experiments/zaremba-density/zaremba_density_gpu.cu
+  density_sweep_csv: scripts/experiments/zaremba-density/results/density_all_subsets_n10_1e6.csv
+  density_sweep_csv_sha256: 4b052ecb952ba6af1024ffecba46742c055d186cb8fd2a9ac2913e2babf0822b
   subsets_ge_9999_density: 366
   subsets_100_density: 141
   subsets_ge_9999_with_digit_1: 361
@@ -34,14 +41,15 @@ data:
   hausdorff_E123: 0.705661868065221
   hausdorff_E1234: 0.819297734508498
   hausdorff_E12345: 0.836829443681208
-  threshold: 0.5
+  hausdorff_threshold_note: "δ>0.5 is an observed necessary condition for high density, not a proven sharp threshold. See A={2,3,4,5} (δ≈0.837, density 97.3%) as counterexample to sufficiency."
+  transitivity_note: "delta>0.5 is necessary but not sufficient; transitivity of ⟨M_a⟩ on (ℤ/pℤ)² for all primes p is also required. When 1 ∈ A, the matrix M_1 = [[1,1],[0,1]] generates a unipotent subgroup that, combined with any other M_a, produces a Zariski-dense subgroup of SL₂(ℤ) (cf. Bourgain–Kontorovich, Ann. Math. 2014; Bourgain–Fuchs, J. Mod. Dyn. 2011). Transitivity for each finite prime then follows by strong approximation (Matthews–Vaserstein–Weisfeiler 1984). This argument is standard in the literature but we have not formally verified it for our specific digit sets beyond checking computationally that the semigroup acts transitively for all primes p ≤ 10^4."
 
 certification:
   level: silver
   verdict: ACCEPT_WITH_REVISION
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-01
-  note: "Delta>1/2 threshold corrected: requires transitivity too."
+  note: "Delta>1/2 threshold corrected: requires transitivity too. Digit 1 empirically ensures transitivity of the semigroup action on (Z/dZ)^2; see Bourgain–Kontorovich (2014) for the theoretical framework. Formal proof that digit 1 alone suffices for all primes is not provided here."
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/zaremba-density
 ---
 

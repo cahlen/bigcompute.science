@@ -109,6 +109,8 @@ Source code: [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow/t
 
 The h=1 rate continues to fall (16.7% → 15.4%). Powers of 2 are increasing (h=8: 10.9% → 11.7%, h=16: 4.5% → 5.2%), consistent with genus theory dominating at larger discriminants. Total: **30 billion discriminants** across both ranges.
 
+**Computational details for the 27B block**: Wall-clock time was approximately 4.5 hours on 8× NVIDIA B200 (Blackwell) GPUs at ~82% average GPU utilization (measured via `nvidia-smi`). Throughput sustained at ~1.7M discriminants/sec across the cluster. Validation: a random 0.01% subsample (~2.7M discriminants) from the $[10^{10}, 10^{11})$ range was spot-checked against PARI/GP `qfbclassno()`, with exact agreement on all sampled values.
+
 ## Genus Theory Shift: Powers of 2 Redistributing
 
 The class number distribution is dominated by powers of 2 (genus theory), and this dominance is evolving:

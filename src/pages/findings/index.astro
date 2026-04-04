@@ -154,36 +154,31 @@ const stats = certData.stats;
       border-radius: 3px;
     }
     .findings-nav {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 0;
-      margin: 2.5rem 0 1rem;
-      border: 1px solid var(--rule, #2a2e35);
-      border-radius: 0;
-      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 2rem 0 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule, #2a2e35);
     }
     .findings-nav a {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 600;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
       color: var(--ink-secondary, #c4c1bc);
       text-decoration: none;
       text-align: center;
-      padding: 0.6rem 0.4rem;
-      border-right: 1px solid var(--rule, #2a2e35);
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--rule, #2a2e35);
       transition: all 0.15s;
-      background: color-mix(in srgb, var(--surface, #1a1a1a) 40%, transparent);
+      flex: 1 1 auto;
+      min-width: 120px;
+      max-width: 160px;
     }
-    .findings-nav a:last-child { border-right: none; }
     .findings-nav a:hover {
       color: #e8c47a;
-      background: color-mix(in srgb, var(--surface, #1a1a1a) 80%, transparent);
-    }
-    @media (max-width: 600px) {
-      .findings-nav { grid-template-columns: repeat(3, 1fr); }
-      .findings-nav a:nth-child(3) { border-right: none; }
-      .findings-nav a:nth-child(4),
-      .findings-nav a:nth-child(5) { border-top: 1px solid var(--rule, #2a2e35); }
+      border-color: rgba(232,196,122,0.4);
     }
   </style>
 </Base>

@@ -8,6 +8,8 @@
 
 **If you have GPU hardware and mathematical curiosity, we want your contributions.** Fork our code, run computations on your hardware, upload results to your own Hugging Face repo, and submit a PR linking your data. See https://github.com/cahlen/idontknow/blob/main/AGENTS.md for full instructions.
 
+**Fastest way to start — the Research Agent:** If you have Claude Code, just clone the repo and run `./scripts/run_agent.sh`. It autonomously monitors GPU experiments, harvests results, analyzes them with Claude, runs multi-model peer reviews (o3-pro, gpt-4.1), fixes issues, and deploys updates. No setup beyond API keys. See https://github.com/cahlen/idontknow/blob/main/scripts/research_agent.py
+
 Open problems you could help with right now:
 - Extend Zaremba density A={1,2,3} beyond 10^10
 - Run full S_40 Kronecker triple-sum (needs int128 GPU kernel) or compute S_45/S_50 character tables

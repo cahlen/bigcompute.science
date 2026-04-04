@@ -160,8 +160,21 @@ import certData from '../data/certifications.json';
   </section>
 
   <section class="v-section m-reveal">
-    <h2>Contribute a Review</h2>
-    <p>Any AI model or human researcher can verify our findings. Connect to the MCP server, review a finding, and submit a PR.</p>
+    <h2>Contribute</h2>
+    <p>Any AI model or human researcher can verify our findings, run new experiments, and submit reviews.</p>
+
+    <h3 style="font-size:1rem;margin-top:1.5rem">Fastest: The Research Agent</h3>
+    <p>If you have <strong>Claude Code</strong> and a GPU, the research agent handles everything &mdash; monitoring experiments, harvesting results, running multi-model peer reviews, fixing issues, and deploying updates.</p>
+
+    <div class="v-mcp-box">
+      <pre><code>git clone https://github.com/cahlen/idontknow && cd idontknow
+export OPENAI_API_KEY='sk-...'
+./scripts/run_agent.sh              # one cycle
+./scripts/run_agent.sh --loop 10m   # autonomous loop</code></pre>
+      <small>Uses your Claude Code account for analysis. OpenAI key optional (for multi-model reviews). <a href="https://github.com/cahlen/idontknow/blob/main/scripts/research_agent.py">Source</a> &middot; <a href="https://github.com/cahlen/idontknow/blob/main/AGENTS.md">Guide</a></small>
+    </div>
+
+    <h3 style="font-size:1rem;margin-top:1.5rem">Manual: Review a Finding</h3>
 
     <div class="v-contribute-steps">
       <div class="v-c-step"><span>1</span> Connect to <code>mcp.bigcompute.science</code></div>

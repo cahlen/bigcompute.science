@@ -1186,6 +1186,53 @@ function createServer(env: any) {
     }
   );
 
+  // ── Tool: Get research agent setup ──
+
+  server.tool(
+    "get_research_agent",
+    "Get instructions to run the autonomous research agent. The agent monitors GPU experiments, harvests results, analyzes with Claude, runs multi-model peer reviews, fixes issues, and deploys updates. This is the fastest way to contribute to bigcompute.science — just clone, set API keys, and run.",
+    {},
+    async () => ({
+      content: [{ type: "text" as const, text: JSON.stringify({
+        name: "bigcompute.science Research Agent",
+        description: "Autonomous GPU computational mathematics research loop. Monitors experiments, harvests results, analyzes with Claude, runs multi-model peer reviews (o3-pro, gpt-4.1), fixes issues, deploys updates.",
+        quickstart: [
+          "git clone https://github.com/cahlen/idontknow && cd idontknow",
+          "export OPENAI_API_KEY='sk-...'   # for peer reviews (optional)",
+          "./scripts/run_agent.sh            # one cycle",
+          "./scripts/run_agent.sh --loop 10m # autonomous loop",
+        ],
+        requirements: {
+          required: "Claude Code account (uses 'claude -p' for analysis)",
+          optional: "OPENAI_API_KEY for multi-model peer reviews (o3-pro, gpt-4.1)",
+          optional2: "ANTHROPIC_API_KEY as fallback if Claude Code CLI not available",
+          gpu: "NVIDIA GPU with CUDA for running experiments (not needed for review-only mode)",
+        },
+        phases: [
+          "1. Monitor: nvidia-smi + ps aux → detect free GPUs and completed experiments",
+          "2. Harvest: parse experiment logs, extract key numbers, track state",
+          "3. Analyze: Claude evaluates if results are new findings (via claude -p)",
+          "4. Review: multi-model peer review (o3-pro, gpt-4.1, o3) via scripts/reviews/run_review.py",
+          "5. Remediate: Claude reads reviews, fixes text, creates remediation JSONs with commit links",
+          "6. Deploy: npm run build, git commit+push, wrangler deploy, HF upload",
+          "7. Plan: Claude picks next experiment for free GPUs, launches with proper logging",
+        ],
+        cli_options: {
+          "--once": "Run one cycle and exit",
+          "--interval 10m": "Loop every 10 minutes (default)",
+          "--phase monitor|harvest|analyze|review|remediate|deploy|plan": "Run specific phase only",
+          "--dry-run": "Report what would be done, no changes",
+          "--auto-launch": "Auto-launch experiments when GPUs free (off by default)",
+          "--models o3-pro,gpt-4.1": "Override review models",
+        },
+        source: "https://github.com/cahlen/idontknow/blob/main/scripts/research_agent.py",
+        guide: "https://github.com/cahlen/idontknow/blob/main/AGENTS.md",
+        review_scripts: "https://github.com/cahlen/idontknow/tree/main/scripts/reviews",
+        note: "The agent is conservative by default — --auto-launch is off, it only runs reviews when new results appear, and it never burns tokens on already-processed work. API keys are NEVER saved to files.",
+      }, null, 2) }]
+    })
+  );
+
   // ── Tool: List related MCP servers ──
 
   server.tool(
@@ -1244,7 +1291,7 @@ export default {
         name: "bigcompute.science MCP Server",
         description: "Open computational mathematics datasets and CUDA kernels for AI agents",
         mcp_endpoint: "/mcp",
-        tools: ["list_experiments", "get_experiment", "get_zaremba_exceptions", "list_datasets", "get_open_problems", "get_cuda_kernel", "search", "search_arxiv", "search_papers", "lookup_oeis", "lookup_lmfdb", "search_zbmath", "search_mathlib", "search_findstat", "verify_finding", "get_finding", "list_findings", "suggest_experiment", "get_certification_process", "search_boise_state", "search_fau", "list_related_servers"],
+        tools: ["list_experiments", "get_experiment", "get_zaremba_exceptions", "list_datasets", "get_open_problems", "get_cuda_kernel", "search", "search_arxiv", "search_papers", "lookup_oeis", "lookup_lmfdb", "search_zbmath", "search_mathlib", "search_findstat", "verify_finding", "get_finding", "list_findings", "suggest_experiment", "get_certification_process", "get_research_agent", "search_boise_state", "search_fau", "list_related_servers"],
         source: "https://github.com/cahlen/bigcompute.science/tree/main/workers/mcp",
         no_auth_required: true,
         license: "CC BY 4.0",

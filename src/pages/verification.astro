@@ -7,31 +7,53 @@ import certData from '../data/certifications.json';
 
   <section class="v-hero">
     <h1 class="v-title m-reveal">Audit Ledger</h1>
-    <p class="v-subtitle m-reveal">Every finding is AI-audited claim-by-claim against published literature and mathematical databases. This is not a substitute for formal peer review.<br/>The review is permanently recorded with the reviewer's identity.</p>
+    <p class="v-subtitle m-reveal">Every finding is AI-audited claim-by-claim against published literature and mathematical databases. This is not a substitute for formal peer review. The review is permanently recorded with the reviewer's identity.</p>
+
+    <div class="v-hero-rule"></div>
 
     <div class="v-stats m-reveal">
-      <div class="v-stat"><span class="v-num">{certData.stats.findings_audited}</span><small>Findings<br/>audited</small></div>
-      <div class="v-stat"><span class="v-num">{certData.stats.total_reviews}</span><small>Reviews<br/>total</small></div>
-      <div class="v-stat"><span class="v-num">{certData.stats.unique_models}</span><small>AI models<br/>used</small></div>
-      <div class="v-stat"><span class="v-num">{certData.stats.unique_providers}</span><small>Providers</small></div>
+      <div class="v-stat">
+        <span class="v-num">{certData.stats.findings_audited}</span>
+        <small>Findings audited</small>
+      </div>
+      <div class="v-stat">
+        <span class="v-num">{certData.stats.total_reviews}</span>
+        <small>Reviews total</small>
+      </div>
+      <div class="v-stat">
+        <span class="v-num">{certData.stats.issues_discovered}</span>
+        <small>Issues discovered</small>
+      </div>
+      <div class="v-stat">
+        <span class="v-num">{Math.round(100 * certData.stats.issues_fixed / certData.stats.issues_discovered)}%</span>
+        <small>Issues resolved</small>
+      </div>
     </div>
+
+    <div class="v-hero-rule"></div>
   </section>
 
   <section class="v-section m-reveal">
     <h2>What the Badges Mean</h2>
     <div class="v-badges-grid">
       <div class="v-badge-card v-badge-gold">
-        <span class="cert-badge cert-gold">Gold literature-supported</span>
+        <div class="v-badge-header">
+          <span class="cert-badge cert-gold">Gold literature-supported</span>
+        </div>
         <p>3+ published papers corroborate the methods. Validated against published benchmarks.</p>
         <span class="v-badge-example">e.g. Hausdorff digit 1 dominance &mdash; validated against Jenkinson-Pollicott, Hensley, and Falk-Nussbaum</span>
       </div>
       <div class="v-badge-card v-badge-silver">
-        <span class="cert-badge cert-silver">Silver literature-supported</span>
+        <div class="v-badge-header">
+          <span class="cert-badge cert-silver">Silver literature-supported</span>
+        </div>
         <p>1+ published paper plus arXiv coverage. Methods grounded in established literature.</p>
         <span class="v-badge-example">e.g. Spectral gaps &mdash; Bourgain-Gamburd-Sarnak property (&tau;) confirmed at unprecedented scale</span>
       </div>
       <div class="v-badge-card v-badge-bronze">
-        <span class="cert-badge cert-bronze">Bronze novel observation</span>
+        <div class="v-badge-header">
+          <span class="cert-badge cert-bronze">Bronze novel observation</span>
+        </div>
         <p>Novel observation. Related preprints exist but no direct literature precedent.</p>
         <span class="v-badge-example">e.g. Golden ratio witness &mdash; no prior report of this concentration</span>
       </div>
@@ -41,31 +63,34 @@ import certData from '../data/certifications.json';
   <section class="v-section m-reveal">
     <h2>How It Works</h2>
 
-    <div class="v-process">
-      <div class="v-step">
-        <div class="v-step-icon">1</div>
-        <div>
+    <div class="v-timeline">
+      <div class="v-timeline-step">
+        <div class="v-timeline-node">1</div>
+        <div class="v-timeline-connector"></div>
+        <div class="v-timeline-content">
           <h3>Claim Extraction</h3>
           <p>Each finding's specific numerical claims are identified &mdash; not vague descriptions, but checkable statements like <em>"A=&#123;1,2,3&#125; has exactly 27 exceptions, all &le; 6234."</em></p>
         </div>
       </div>
-      <div class="v-step">
-        <div class="v-step-icon">2</div>
-        <div>
+      <div class="v-timeline-step">
+        <div class="v-timeline-node">2</div>
+        <div class="v-timeline-connector"></div>
+        <div class="v-timeline-content">
           <h3>Literature Cross-Reference</h3>
           <p>Each claim is checked against <strong>live academic databases</strong> via our MCP server: arXiv, zbMATH, Semantic Scholar, OEIS, LMFDB, and Lean/Mathlib. Not a keyword search &mdash; an actual comparison of our numbers against published theorems and bounds.</p>
         </div>
       </div>
-      <div class="v-step">
-        <div class="v-step-icon">3</div>
-        <div>
+      <div class="v-timeline-step">
+        <div class="v-timeline-node">3</div>
+        <div class="v-timeline-connector"></div>
+        <div class="v-timeline-content">
           <h3>Claim-by-Claim Verdict</h3>
           <p>Each claim receives: <strong>VERIFIED</strong>, <strong>NEEDS CLARIFICATION</strong>, <strong>DISPUTED</strong>, or <strong>UNVERIFIABLE</strong>. The reviewer explains reasoning and cites specific papers.</p>
         </div>
       </div>
-      <div class="v-step">
-        <div class="v-step-icon">4</div>
-        <div>
+      <div class="v-timeline-step">
+        <div class="v-timeline-node">4</div>
+        <div class="v-timeline-content">
           <h3>Overall Verdict &amp; Certification</h3>
           <p><strong>ACCEPT</strong>, <strong>ACCEPT WITH REVISION</strong>, <strong>REVISE AND RESUBMIT</strong>, or <strong>REJECT</strong>. Just like traditional peer review, but fully transparent. The review is saved with the reviewer's model identity.</p>
         </div>
@@ -74,6 +99,7 @@ import certData from '../data/certifications.json';
   </section>
 
   <div class="v-pullquote m-reveal">
+    <div class="v-pullquote-glow"></div>
     <span>As AI models get smarter, findings get re-reviewed. The ledger grows. Confidence compounds.</span>
   </div>
 
@@ -82,60 +108,99 @@ import certData from '../data/certifications.json';
     <p>Findings accumulate reviews over time from different AI models and human researchers. Each review is stamped with the model that performed it.</p>
 
     <div class="v-ledger">
-      <div class="v-ledger-title">Zaremba Density Phase Transition</div>
-      <div class="v-ledger-row">
-        <span class="v-ledger-date">2026-04-01</span>
-        <span class="v-ledger-model">Claude Opus 4.6</span>
-        <span class="v-ledger-provider">Anthropic</span>
-        <span class="v-ledger-verdict">ACCEPT w/ REVISION</span>
-        <span class="cert-badge cert-gold">GOLD</span>
+      <div class="v-ledger-header">
+        <span class="v-ledger-col v-ledger-col-date">Date</span>
+        <span class="v-ledger-col v-ledger-col-model">Model</span>
+        <span class="v-ledger-col v-ledger-col-provider">Provider</span>
+        <span class="v-ledger-col v-ledger-col-verdict">Verdict</span>
+        <span class="v-ledger-col v-ledger-col-finding">Finding</span>
       </div>
+      {(() => {
+        const allReviews: any[] = [];
+        certData.certifications.forEach((c: any) => {
+          c.reviews.forEach((r: any) => {
+            allReviews.push({ ...r, title: c.title, slug: c.slug, level: r.level || c.level });
+          });
+        });
+        allReviews.sort((a: any, b: any) => b.date.localeCompare(a.date));
+        return allReviews.slice(0, 8).map((r: any) => (
+          <div class="v-ledger-row">
+            <span class="v-ledger-date">{r.date}</span>
+            <span class="v-ledger-model">{r.model}</span>
+            <span class="v-ledger-provider">{r.provider}</span>
+            <span class={`v-ledger-verdict v-verdict-${r.verdict === 'ACCEPT' ? 'accept' : r.verdict === 'ACCEPT_WITH_REVISION' ? 'revision' : 'resubmit'}`}>{r.verdict.replace(/_/g, ' ')}</span>
+            <a href={`/findings/${r.slug}/`} class="v-ledger-finding">{r.title.length > 42 ? r.title.slice(0, 39) + '...' : r.title}</a>
+          </div>
+        ));
+      })()}
     </div>
   </section>
 
   <section class="v-section m-reveal">
     <h2>Real Issues Found</h2>
-    <p>The first round found <strong>real errors</strong> in 6 of 9 findings. All were fixed.</p>
+    {(() => {
+      const totalIssues = certData.certifications.reduce((sum: number, c: any) => sum + c.issues_found, 0);
+      const totalResolved = certData.certifications.reduce((sum: number, c: any) => sum + c.issues_resolved, 0);
+      const findingsWithIssues = certData.certifications.filter((c: any) => c.issues_found > 0).length;
+      return (
+        <p>Across {certData.certifications.length} findings, reviewers discovered <strong>{totalIssues} issues</strong> in {findingsWithIssues} findings. <strong>{totalResolved} resolved</strong>, {totalIssues - totalResolved} remaining.</p>
+      );
+    })()}
+
+    <div class="v-issue-summary">
+      {(() => {
+        let critical = 0, important = 0, minor = 0;
+        certData.certifications.forEach((c: any) => {
+          c.remediations?.forEach((r: any) => {
+            if (r.severity === 'critical') critical++;
+            else if (r.severity === 'important') important++;
+            else minor++;
+          });
+        });
+        return (
+          <div class="v-issue-counts">
+            <div class="v-issue-count v-ic-critical"><span class="v-ic-num">{critical}</span><small>Critical</small></div>
+            <div class="v-issue-count v-ic-important"><span class="v-ic-num">{important}</span><small>Important</small></div>
+            <div class="v-issue-count v-ic-minor"><span class="v-ic-num">{minor}</span><small>Minor</small></div>
+          </div>
+        );
+      })()}
+    </div>
 
     <div class="v-issues">
       <div class="v-issue v-issue-critical">
         <div class="v-issue-severity">Critical</div>
         <div>
-          <strong>Class numbers:</strong> h=1 rate goes to 0, not 75%. Original claim was wrong.<br/>
-          <small>Genus theory forces 2|h as discriminants grow. The 75.4% applies to h_odd only.</small>
+          <strong>Transitivity proof:</strong> Circular dependency in Step 3 &mdash; used orbit size to bound |H|, which is what the proof tries to establish.<br/>
+          <small>Rewritten with non-circular resultant-based argument. Borel exclusion strengthened to check all bases.</small>
         </div>
       </div>
       <div class="v-issue v-issue-critical">
         <div class="v-issue-severity">Critical</div>
         <div>
-          <strong>Zaremba proof:</strong> 6 known gaps prevent calling it a "proof".<br/>
-          <small>Now correctly labeled "proof framework". rho_eta needs interval certification.</small>
+          <strong>Zaremba proof:</strong> MOW constant-tracking unverified &mdash; no explicit constants in published paper.<br/>
+          <small>Retitled "proof framework". Six known gaps enumerated. rho_eta needs interval certification.</small>
         </div>
       </div>
       <div class="v-issue v-issue-important">
         <div class="v-issue-severity">Important</div>
         <div>
           <strong>Zaremba density:</strong> &delta; &gt; 1/2 threshold contradicted by our own data.<br/>
-          <small>&#123;2,3,4,5&#125; has &delta;=0.605 but only 97%. Real mechanism is transitivity (digit 1).</small>
+          <small>&#123;2,3,4,5&#125; has &delta;=0.605 but only 97%. Reframed as two necessary conditions (digit 1 + transitivity).</small>
         </div>
       </div>
       <div class="v-issue v-issue-important">
         <div class="v-issue-severity">Important</div>
         <div>
-          <strong>Cayley diameters:</strong> Stated diam &le; 2 log(p) but ratio goes to 3.11.<br/>
-          <small>Title corrected to diam/log(p) &rarr; 1.45.</small>
+          <strong>Digit pair hierarchy:</strong> "Closed" exception sets declared without completeness certificate.<br/>
+          <small>Rephrased as conjectural. No branch-and-bound argument provided for finiteness.</small>
         </div>
       </div>
       <div class="v-issue v-issue-minor">
         <div class="v-issue-severity">Minor</div>
         <div>
-          <strong>Hausdorff:</strong> dim_H corrected from 0.826 to 0.768. Finding <em>strengthened</em>.<br/>
-        </div>
-      </div>
-      <div class="v-issue v-issue-minor">
-        <div class="v-issue-severity">Minor</div>
-        <div>
-          <strong>Golden ratio:</strong> 13% discrepancy clarified. Connection is heuristic, not exact.<br/>
+          <strong>Hausdorff:</strong> 3-decimal accuracy claimed without truncation error analysis.<br/>
+          <small>Precision hedged. Convergence study (N=15, 25, 35, ...) added to show resolution above numerical noise.</small>
         </div>
       </div>
     </div>
@@ -163,7 +228,7 @@ import certData from '../data/certifications.json';
     <h2>Contribute</h2>
     <p>Any AI model or human researcher can verify our findings, run new experiments, and submit reviews.</p>
 
-    <h3 style="font-size:1rem;margin-top:1.5rem">Fastest: The Research Agent</h3>
+    <h3 class="v-contrib-label">Fastest: The Research Agent</h3>
     <p>If you have <strong>Claude Code</strong> and a GPU, the research agent handles everything &mdash; monitoring experiments, harvesting results, running multi-model peer reviews, fixing issues, and deploying updates.</p>
 
     <div class="v-mcp-box">
@@ -174,14 +239,33 @@ export OPENAI_API_KEY='sk-...'
       <small>Uses your Claude Code account for analysis. OpenAI key optional (for multi-model reviews). <a href="https://github.com/cahlen/idontknow/blob/main/scripts/research_agent.py">Source</a> &middot; <a href="https://github.com/cahlen/idontknow/blob/main/AGENTS.md">Guide</a></small>
     </div>
 
-    <h3 style="font-size:1rem;margin-top:1.5rem">Manual: Review a Finding</h3>
+    <h3 class="v-contrib-label">Manual: Review a Finding</h3>
 
-    <div class="v-contribute-steps">
-      <div class="v-c-step"><span>1</span> Connect to <code>mcp.bigcompute.science</code></div>
-      <div class="v-c-step"><span>2</span> Call <code>get_finding("slug")</code></div>
-      <div class="v-c-step"><span>3</span> Call <code>verify_finding("slug")</code></div>
-      <div class="v-c-step"><span>4</span> Write review JSON per <a href="https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md">schema</a></div>
-      <div class="v-c-step"><span>5</span> Submit PR to <a href="https://github.com/cahlen/idontknow">github.com/cahlen/idontknow</a></div>
+    <div class="v-contribute-flow">
+      <div class="v-flow-step">
+        <span class="v-flow-num">1</span>
+        <span>Connect to <code>mcp.bigcompute.science</code></span>
+      </div>
+      <div class="v-flow-arrow"></div>
+      <div class="v-flow-step">
+        <span class="v-flow-num">2</span>
+        <span>Call <code>get_finding("slug")</code></span>
+      </div>
+      <div class="v-flow-arrow"></div>
+      <div class="v-flow-step">
+        <span class="v-flow-num">3</span>
+        <span>Call <code>verify_finding("slug")</code></span>
+      </div>
+      <div class="v-flow-arrow"></div>
+      <div class="v-flow-step">
+        <span class="v-flow-num">4</span>
+        <span>Write review per <a href="https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md">schema</a></span>
+      </div>
+      <div class="v-flow-arrow"></div>
+      <div class="v-flow-step">
+        <span class="v-flow-num">5</span>
+        <span>Submit <a href="https://github.com/cahlen/idontknow">PR</a></span>
+      </div>
     </div>
 
     <div class="v-mcp-box">
@@ -297,48 +381,62 @@ export OPENAI_API_KEY='sk-...'
   </script>
 
   <style>
-    /* Hero */
-    .v-hero { text-align: center; margin-bottom: 4rem; }
+    /* ── Hero ── */
+    .v-hero {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
     .v-title {
       font-family: var(--font-serif, 'STIX Two Text', Georgia, serif);
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       letter-spacing: -0.03em;
       margin-bottom: 1rem;
     }
     .v-subtitle {
       color: var(--text-secondary);
-      font-size: 1.05rem;
-      line-height: 1.7;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      max-width: 620px;
+      margin: 0 auto 2rem;
+    }
+    .v-hero-rule {
+      width: 100%;
       max-width: 600px;
-      margin: 0 auto 2.5rem;
+      height: 1px;
+      margin: 0 auto;
+      background: linear-gradient(90deg, transparent, rgba(232,196,122,0.3) 30%, rgba(232,196,122,0.3) 70%, transparent);
     }
     .v-stats {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      max-width: 600px;
+      gap: 1.5rem;
+      max-width: 640px;
       margin: 0 auto;
-      padding: 1.5rem 0;
-      border-top: 1px solid rgba(232,196,122,0.15);
-      border-bottom: 1px solid rgba(232,196,122,0.15);
+      padding: 2rem 0;
     }
     .v-stat { text-align: center; }
     .v-num {
       display: block;
       font-family: var(--font-mono, 'JetBrains Mono', monospace);
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       font-weight: 700;
       color: #e8c47a;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
+      text-shadow: 0 0 20px rgba(232,196,122,0.25);
+      line-height: 1;
     }
     .v-stat small {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       color: var(--text-secondary);
       line-height: 1.3;
       display: block;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      opacity: 0.7;
     }
 
-    /* Sections */
+    /* ── Sections ── */
     .v-section {
       max-width: 800px;
       margin: 0 auto 3.5rem;
@@ -358,7 +456,7 @@ export OPENAI_API_KEY='sk-...'
       margin-bottom: 1rem;
     }
 
-    /* Badge cards */
+    /* ── Badge cards ── */
     .v-badges-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -366,26 +464,78 @@ export OPENAI_API_KEY='sk-...'
       margin-top: 1.5rem;
     }
     .v-badge-card {
-      padding: 1.2rem;
-      border-radius: 8px;
+      padding: 1.3rem 1.2rem;
+      border-radius: 10px;
       border: 1px solid var(--border);
-      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, box-shadow 0.25s;
     }
-    .v-badge-gold { border-left: 3px solid rgba(251,191,36,0.5); }
-    .v-badge-silver { border-left: 3px solid rgba(148,163,184,0.5); }
-    .v-badge-bronze { border-left: 3px solid rgba(180,83,9,0.5); }
-    .v-badge-card p { font-size: 0.85rem; margin: 0.6rem 0 0.4rem; }
-    .v-badge-example { font-size: 0.75rem; color: var(--text-secondary); opacity: 0.6; font-style: italic; }
+    .v-badge-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+    }
+    .v-badge-gold {
+      background: linear-gradient(135deg, rgba(251,191,36,0.06) 0%, var(--surface, #1a1a1a) 60%);
+    }
+    .v-badge-gold::before {
+      background: linear-gradient(180deg, #fbbf24, #d4a853);
+      box-shadow: 0 0 12px rgba(251,191,36,0.3);
+    }
+    .v-badge-gold:hover {
+      border-color: rgba(251,191,36,0.3);
+      box-shadow: 0 0 24px rgba(251,191,36,0.06);
+    }
+    .v-badge-silver {
+      background: linear-gradient(135deg, rgba(148,163,184,0.05) 0%, var(--surface, #1a1a1a) 60%);
+    }
+    .v-badge-silver::before {
+      background: linear-gradient(180deg, #94a3b8, #64748b);
+      box-shadow: 0 0 12px rgba(148,163,184,0.2);
+    }
+    .v-badge-silver:hover {
+      border-color: rgba(148,163,184,0.3);
+      box-shadow: 0 0 24px rgba(148,163,184,0.06);
+    }
+    .v-badge-bronze {
+      background: linear-gradient(135deg, rgba(180,83,9,0.05) 0%, var(--surface, #1a1a1a) 60%);
+    }
+    .v-badge-bronze::before {
+      background: linear-gradient(180deg, #c97a2e, #92400e);
+      box-shadow: 0 0 12px rgba(180,83,9,0.2);
+    }
+    .v-badge-bronze:hover {
+      border-color: rgba(180,83,9,0.25);
+      box-shadow: 0 0 24px rgba(180,83,9,0.06);
+    }
+    .v-badge-header { margin-bottom: 0.5rem; }
+    .v-badge-card p { font-size: 0.84rem; margin: 0 0 0.5rem; }
+    .v-badge-example {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      opacity: 0.5;
+      font-style: italic;
+      display: block;
+      line-height: 1.4;
+    }
 
-    /* Process steps */
-    .v-process { margin-top: 1.5rem; }
-    .v-step {
-      display: flex;
-      gap: 1.2rem;
-      margin-bottom: 1.5rem;
-      align-items: flex-start;
+    /* ── Timeline (How It Works) ── */
+    .v-timeline {
+      margin-top: 1.5rem;
+      position: relative;
     }
-    .v-step-icon {
+    .v-timeline-step {
+      display: flex;
+      gap: 1.4rem;
+      align-items: flex-start;
+      position: relative;
+      padding-bottom: 0.4rem;
+    }
+    .v-timeline-node {
       flex-shrink: 0;
       width: 2.2rem;
       height: 2.2rem;
@@ -396,32 +546,64 @@ export OPENAI_API_KEY='sk-...'
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 0.9rem;
-    }
-    .v-step h3 {
-      font-size: 0.95rem;
-      margin: 0 0 0.3rem;
-    }
-    .v-step p {
       font-size: 0.85rem;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 12px rgba(232,196,122,0.2);
+    }
+    .v-timeline-connector {
+      position: absolute;
+      left: calc(1.1rem - 1px);
+      top: 2.2rem;
+      width: 2px;
+      height: calc(100% - 0.6rem);
+      background: linear-gradient(180deg, rgba(232,196,122,0.3), rgba(232,196,122,0.06));
+    }
+    .v-timeline-content {
+      flex: 1;
+      padding-bottom: 1.6rem;
+    }
+    .v-timeline-content h3 {
+      font-size: 0.95rem;
+      margin: 0.15rem 0 0.3rem;
+      color: var(--text-primary);
+    }
+    .v-timeline-content p {
+      font-size: 0.84rem;
       margin: 0;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
-    /* Pullquote */
+    /* ── Pullquote ── */
     .v-pullquote {
       text-align: center;
-      margin: 3rem auto;
+      margin: 3.5rem auto;
       max-width: 700px;
+      position: relative;
+      padding: 2rem 2.5rem;
+      background: linear-gradient(135deg, rgba(232,196,122,0.04), transparent 70%);
+      border-radius: 12px;
+      border: 1px solid rgba(232,196,122,0.08);
+    }
+    .v-pullquote-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60%;
+      height: 60%;
+      background: radial-gradient(ellipse, rgba(232,196,122,0.06) 0%, transparent 70%);
+      pointer-events: none;
     }
     .v-pullquote span {
       font-family: var(--font-serif, 'STIX Two Text', Georgia, serif);
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-style: italic;
       color: #e8c47a;
       letter-spacing: -0.01em;
       display: inline-block;
-      padding: 0.5rem 0;
+      position: relative;
+      z-index: 1;
     }
     .v-pullquote span::before,
     .v-pullquote span::after {
@@ -433,33 +615,264 @@ export OPENAI_API_KEY='sk-...'
       margin: 0.8rem auto;
     }
 
-    /* Ledger */
+    /* ── Living Ledger ── */
     .v-ledger {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem 1.2rem;
+      border-radius: 10px;
       margin-top: 1rem;
       font-family: var(--font-mono, 'JetBrains Mono', monospace);
-      font-size: 0.75rem;
+      font-size: 0.72rem;
+      overflow: hidden;
     }
-    .v-ledger-title {
-      font-weight: 700;
-      font-size: 0.85rem;
-      margin-bottom: 0.6rem;
-      color: var(--text-primary);
+    .v-ledger-header {
+      display: grid;
+      grid-template-columns: 5.5rem 8rem 4rem 9rem 1fr;
+      gap: 0.6rem;
+      padding: 0.6rem 1rem;
+      background: rgba(232,196,122,0.04);
+      border-bottom: 1px solid rgba(232,196,122,0.1);
+    }
+    .v-ledger-col {
+      font-size: 0.58rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      opacity: 0.5;
+      font-weight: 600;
     }
     .v-ledger-row {
+      display: grid;
+      grid-template-columns: 5.5rem 8rem 4rem 9rem 1fr;
+      gap: 0.6rem;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      transition: background 0.15s;
+    }
+    .v-ledger-row:last-child { border-bottom: none; }
+    .v-ledger-row:hover { background: rgba(232,196,122,0.03); }
+    .v-ledger-date { color: var(--text-secondary); opacity: 0.7; }
+    .v-ledger-model { color: #e8c47a; font-weight: 600; }
+    .v-ledger-provider { color: var(--text-secondary); opacity: 0.6; font-size: 0.65rem; }
+    .v-ledger-verdict {
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .v-verdict-accept { color: #22c55e; }
+    .v-verdict-revision { color: #e8c47a; }
+    .v-verdict-resubmit { color: #f87171; }
+    .v-ledger-finding {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.68rem;
+      opacity: 0.7;
+      transition: color 0.15s, opacity 0.15s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .v-ledger-finding:hover { color: #e8c47a; opacity: 1; }
+
+    /* ── Issues ── */
+    .v-issue-summary { margin-bottom: 1.2rem; }
+    .v-issue-counts {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1rem 0;
+    }
+    .v-issue-count {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .v-ic-num {
+      font-family: var(--font-mono, 'JetBrains Mono', monospace);
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+    .v-issue-count small {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      opacity: 0.6;
+    }
+    .v-ic-critical .v-ic-num { color: #f87171; }
+    .v-ic-important .v-ic-num { color: #fbbf24; }
+    .v-ic-minor .v-ic-num { color: #94a3b8; }
+
+    .v-issues { display: flex; flex-direction: column; gap: 0.6rem; }
+    .v-issue {
       display: flex;
       gap: 0.8rem;
-      align-items: center;
-      padding: 0.4rem 0;
-      flex-wrap: wrap;
+      align-items: flex-start;
+      padding: 0.9rem 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: border-color 0.2s;
     }
-    .v-ledger-date { color: var(--text-secondary); min-width: 6.5rem; }
-    .v-ledger-model { color: #e8c47a; font-weight: 600; }
-    .v-ledger-provider { color: var(--text-secondary); }
-    .v-ledger-verdict { margin-left: auto; color: var(--text-secondary); }
+    .v-issue:hover { border-color: rgba(255,255,255,0.08); }
+    .v-issue-severity {
+      flex-shrink: 0;
+      min-width: 4.5rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+    .v-issue-critical .v-issue-severity { background: rgba(239,68,68,0.12); color: #f87171; }
+    .v-issue-important .v-issue-severity { background: rgba(251,191,36,0.1); color: #fbbf24; }
+    .v-issue-minor .v-issue-severity { background: rgba(148,163,184,0.1); color: #94a3b8; }
+    .v-issue strong { color: var(--text-primary); font-size: 0.84rem; }
+    .v-issue div { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; }
+    .v-issue small { font-size: 0.75rem; opacity: 0.6; display: block; margin-top: 0.2rem; }
+
+    /* ── What This Is NOT ── */
+    .v-not-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .v-not-card {
+      padding: 1.2rem;
+      border-radius: 8px;
+      border: 1px solid rgba(239,68,68,0.12);
+      background: linear-gradient(135deg, rgba(239,68,68,0.03), var(--surface, #1a1a1a) 60%);
+      position: relative;
+    }
+    .v-not-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(239,68,68,0.4), rgba(239,68,68,0.1));
+      border-radius: 8px 0 0 8px;
+    }
+    .v-not-card h3 {
+      font-size: 0.9rem;
+      margin: 0 0 0.5rem;
+      color: rgba(248,113,113,0.85);
+    }
+    .v-not-card p {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    /* ── Contribute ── */
+    .v-contrib-label {
+      font-size: 1rem !important;
+      margin-top: 1.5rem;
+    }
+    .v-mcp-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .v-mcp-box pre {
+      margin: 0;
+      font-family: var(--font-mono, 'JetBrains Mono', monospace);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+    .v-mcp-box code { background: none; padding: 0; }
+    .v-mcp-box small {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      opacity: 0.6;
+    }
+    .v-mcp-box small a { color: #e8c47a; text-decoration: none; }
+    .v-mcp-box small a:hover { text-decoration: underline; }
+
+    .v-contribute-flow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 1.2rem 0;
+      flex-wrap: wrap;
+      row-gap: 0.6rem;
+    }
+    .v-flow-step {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.8rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+    .v-flow-step code {
+      font-size: 0.72rem;
+      background: rgba(232,196,122,0.08);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+      color: #e8c47a;
+    }
+    .v-flow-step a { color: #e8c47a; text-decoration: none; }
+    .v-flow-step a:hover { text-decoration: underline; }
+    .v-flow-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e8c47a, #d4a853);
+      color: var(--bg, #0f0f0f);
+      font-size: 0.65rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .v-flow-arrow {
+      width: 1.2rem;
+      height: 1px;
+      background: rgba(232,196,122,0.2);
+      position: relative;
+      flex-shrink: 0;
+    }
+    .v-flow-arrow::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -2px;
+      border: 2px solid transparent;
+      border-left: 3px solid rgba(232,196,122,0.3);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .v-badges-grid { grid-template-columns: 1fr; }
+      .v-not-grid { grid-template-columns: 1fr; }
+      .v-stats { grid-template-columns: repeat(2, 1fr); }
+      .v-ledger-header,
+      .v-ledger-row { grid-template-columns: 5rem 6rem 1fr; }
+      .v-ledger-col-provider,
+      .v-ledger-col-finding,
+      .v-ledger-provider,
+      .v-ledger-finding { display: none; }
+      .v-contribute-flow { flex-direction: column; align-items: stretch; }
+      .v-flow-arrow { width: 1px; height: 0.8rem; margin: 0 auto; }
+      .v-flow-arrow::after { display: none; }
+    }
 
     /* ── Audit Dashboard ── */
     .vd-group { margin-bottom: 2.5rem; }

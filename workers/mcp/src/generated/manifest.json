@@ -1,15 +1,16 @@
 {
-  "generated_at": "2026-04-04T00:30:00Z",
+  "generated_at": "2026-04-04T07:15:54Z",
   "generator": "scripts/reviews/aggregate.py",
   "schema_version": 3,
   "stats": {
-    "total_findings": 15,
-    "total_reviews": 43,
+    "total_findings": 16,
+    "total_reviews": 44,
     "total_remediations": 121,
     "remediations_resolved": 118,
-    "unique_models": 5,
+    "unique_models": 6,
     "unique_providers": 4,
     "models": [
+      "ChatGPT",
       "Claude Opus 4.6",
       "GPT-5.2",
       "Grok",
@@ -24,6 +25,40 @@
     ]
   },
   "findings": {
+    "_project-level": {
+      "title": "_project-level",
+      "certification": {
+        "level": "uncertified",
+        "review_count": 1,
+        "consensus_method": "most_conservative"
+      },
+      "reviews": [
+        {
+          "review_id": "chatgpt-project-review-2026-04-03",
+          "file": "project-level_review_openai-chatgpt_2026-04-03.json",
+          "reviewer": {
+            "type": "ai-model",
+            "model": "ChatGPT",
+            "provider": "OpenAI"
+          },
+          "reviewed_at": "2026-04-03T21:30:00Z",
+          "overall_verdict": "ACCEPT_WITH_REVISION",
+          "certification_recommendation": "",
+          "claims": {
+            "total": 0,
+            "verified": 0,
+            "disputed": 0,
+            "needs_clarification": 0,
+            "unverifiable": 0
+          },
+          "key_finding": "The site is worth citing for large computations, datasets, kernels, and numerical experiments. It is not yet safe to cite as authority for major new proofs or theorem-level closure, especially around "
+        }
+      ],
+      "remediations": [],
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T21:30:00Z"
+    },
     "class-number-convergence": {
       "title": "Cohen-Lenstra at Scale: h=1 Rate Falls to 15% at 10^10, Genus Theory Dominates",
       "certification": {

@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-04-04T00:30:00Z",
+  "generated_at": "2026-04-04T07:15:54Z",
   "stats": {
-    "findings_audited": 15,
-    "total_reviews": 43,
+    "findings_audited": 16,
+    "total_reviews": 44,
     "issues_discovered": 121,
     "issues_fixed": 118,
-    "unique_models": 5,
+    "unique_models": 6,
     "unique_providers": 4
   },
   "certifications": [
@@ -1190,6 +1190,27 @@
           "commit": "9428528"
         }
       ]
+    },
+    {
+      "slug": "_project-level",
+      "title": "_project-level",
+      "level": "uncertified",
+      "review_count": 1,
+      "verdict_summary": "Accept w/ revision (1 reviews)",
+      "models_summary": "ChatGPT",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-03T21:30:00Z",
+      "reviews": [
+        {
+          "date": "2026-04-03",
+          "model": "ChatGPT",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": ""
+        }
+      ],
+      "remediations": []
     }
   ]
 }

@@ -2,7 +2,7 @@
   "name": "bigcompute.science",
   "description": "Open computational mathematics on GPUs. AI-audited, not peer-reviewed.",
   "url": "https://bigcompute.science",
-  "generated_at": "2026-04-04T00:30:00Z",
+  "generated_at": "2026-04-04T07:15:54Z",
   "author": {
     "name": "Cahlen Humphreys",
     "github": "https://github.com/cahlen",
@@ -10,11 +10,12 @@
   },
   "license": "CC-BY-4.0",
   "stats": {
-    "findings": 15,
-    "reviews": 43,
+    "findings": 16,
+    "reviews": 44,
     "issues": 121,
     "issues_fixed": 118,
     "models": [
+      "ChatGPT",
       "Claude Opus 4.6",
       "GPT-5.2",
       "Grok",
@@ -43,7 +44,8 @@
     "zaremba-representation-growth": "https://bigcompute.science/findings/zaremba-representation-growth/",
     "zaremba-witness-golden-ratio": "https://bigcompute.science/findings/zaremba-witness-golden-ratio/",
     "zaremba-conjecture-proved": "https://bigcompute.science/findings/zaremba-conjecture-proved/",
-    "zaremba-transitivity-all-primes": "https://bigcompute.science/findings/zaremba-transitivity-all-primes/"
+    "zaremba-transitivity-all-primes": "https://bigcompute.science/findings/zaremba-transitivity-all-primes/",
+    "_project-level": "https://bigcompute.science/findings/_project-level/"
   },
   "structured_data": {
     "json_ld": "Every finding page emits ScholarlyArticle + Dataset JSON-LD",
@@ -79,7 +81,7 @@
     "research_agent": "https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_research_agent.ipynb",
     "mcp_explorer": "https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_mcp_explorer.ipynb"
   },
-  "ai_disclosure": "Human-AI collaborative. 5 models, 4 providers. Not peer-reviewed.",
+  "ai_disclosure": "Human-AI collaborative. 6 models, 4 providers. Not peer-reviewed.",
   "recommended_citation_verbs": {
     "safe": [
       "computed",

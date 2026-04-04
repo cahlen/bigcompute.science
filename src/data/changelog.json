@@ -1,52 +1,52 @@
 [
   {
-    "hash": "40217b2",
-    "date": "Apr 03",
-    "message": "Colab notebook: run the research agent from Google Colab"
+    "hash": "65a2edf",
+    "date": "Apr 04",
+    "message": "GPU Zoo: cards now expandable (tap to see specs + what it can compute)"
   },
   {
-    "hash": "6376a8f",
-    "date": "Apr 03",
-    "message": "research-agent: auto-update 2026-04-03 20:30"
+    "hash": "849be4d",
+    "date": "Apr 04",
+    "message": "GPU Zoo: interactive comparison with verified specs from NVIDIA"
   },
   {
-    "hash": "5d0dd82",
-    "date": "Apr 03",
-    "message": "MCP: fix get_research_agent tool routing (add to toolDefs + toolMap)"
+    "hash": "e9486bd",
+    "date": "Apr 04",
+    "message": "Update README: current architecture, key pages, machine discoverability"
   },
   {
-    "hash": "02915d7",
-    "date": "Apr 03",
-    "message": "MCP: add get_research_agent tool (23 tools total)"
+    "hash": "a71ecfe",
+    "date": "Apr 04",
+    "message": "Add LICENSE: CC BY 4.0 (attribution required)"
   },
   {
-    "hash": "0b55b10",
-    "date": "Apr 03",
-    "message": "Promote research agent on verification page + llms-full.txt"
+    "hash": "19a5f7c",
+    "date": "Apr 04",
+    "message": "Improve AI crawlability: semantic HTML + contact info"
   },
   {
-    "hash": "e60f865",
-    "date": "Apr 03",
-    "message": "Resolved badges now link to GitHub commit diffs"
+    "hash": "5da0442",
+    "date": "Apr 04",
+    "message": "Regenerate meta.json + certifications.json (now auto-generated)"
   },
   {
-    "hash": "a82e593",
-    "date": "Apr 03",
-    "message": "All 15 finding badges now show issue resolution status (86/88 fixed)"
+    "hash": "86a96e6",
+    "date": "Apr 04",
+    "message": "Add /meta.json: machine-readable index for AI crawlers"
   },
   {
-    "hash": "07d3b65",
-    "date": "Apr 03",
-    "message": "Regenerate certifications after bulk remediation (11/13 resolved)"
+    "hash": "59bc193",
+    "date": "Apr 04",
+    "message": "Add /cite/ page: ready-to-copy citations for every finding"
   },
   {
-    "hash": "9428528",
-    "date": "Apr 03",
-    "message": "Remediate all 72 review issues across 15 findings"
+    "hash": "66ee4af",
+    "date": "Apr 04",
+    "message": "Add IndexNow key verification file"
   },
   {
-    "hash": "1e5ceff",
-    "date": "Apr 03",
-    "message": "research-agent: auto-update 2026-04-03 17:43"
+    "hash": "8c02adc",
+    "date": "Apr 04",
+    "message": "Add structured data for machine discoverability on every finding page"
   }
 ]

@@ -100,7 +100,14 @@ const modelsSummary = certEntry?.models_summary ?? frontmatter.certification?.re
                   <div class={`cert-remediation-row cert-rem-${r.status}`}>
                     <span class={`cert-rem-severity cert-rem-sev-${r.severity}`}>{r.severity}</span>
                     <span class="cert-rem-desc">{r.description.length > 80 ? r.description.slice(0, 77) + '...' : r.description}</span>
-                    <span class={`cert-rem-status cert-rem-st-${r.status}`}>{r.status}</span>
+                    {r.status === 'resolved' && r.commit ? (
+                      <a href={`https://github.com/cahlen/bigcompute.science/commit/${r.commit}`}
+                         target="_blank" class={`cert-rem-status cert-rem-st-${r.status}`}>
+                        resolved
+                      </a>
+                    ) : (
+                      <span class={`cert-rem-status cert-rem-st-${r.status}`}>{r.status}</span>
+                    )}
                   </div>
                 ))}
               </div>

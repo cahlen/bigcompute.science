@@ -628,7 +628,8 @@ details.cert-detail[open] .cert-expand-hint { transform: rotate(180deg); }
   text-transform: uppercase;
   text-align: center;
 }
-.cert-rem-st-resolved { background: rgba(34,197,94,0.15); color: #22c55e; }
+.cert-rem-st-resolved { background: rgba(34,197,94,0.15); color: #22c55e; text-decoration: none; }
+a.cert-rem-st-resolved:hover { background: rgba(34,197,94,0.3); text-decoration: underline; }
 .cert-rem-st-open { background: rgba(239,68,68,0.1); color: #f87171; }
 .cert-rem-st-acknowledged { background: rgba(251,191,36,0.1); color: #fbbf24; }
 

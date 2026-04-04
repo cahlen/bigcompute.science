@@ -111,12 +111,12 @@ This is $O(\text{total CFs})$ rather than $O(N)$ per denominator — fundamental
 
 ## Update: GPU Results to $10^{10}$ (2026-03-31)
 
-**The exception set for $A = \{1,2,3\}$ is CLOSED.** Zero new exceptions between $d = 6{,}234$ and $d = 10^{10}$:
+**The exception set for $A = \{1,2,3\}$ appears stable.** Zero new exceptions between $d = 6{,}234$ and $d = 10^{10}$:
 
 | Digit set | Range | Density | Uncovered | GPU time |
 |-----------|-------|---------|-----------|----------|
 | $\{1,2,3\}$ | $10^{10}$ | **99.9999997%** | **27** (same 27 as at $10^6$ and $10^9$) | 12 hours |
-| $\{1,2,4\}$ | $10^{10}$ | **99.9999994%** | **64** (CLOSED — same 64 as $10^9$) | 3 hrs |
+| $\{1,2,4\}$ | $10^{10}$ | **99.9999994%** | **64** (stable — same 64 as $10^9$) | 3 hrs |
 | $\{1,2\}$ | $10^9$ | 72.06% | 279M | 28 sec |
 | $\{1,3,5\}$ | $10^{10}$ | **99.9992%** | 80,431 | 5 min |
 | $\{2,3,4,5\}$ | $10^9$ | 97.29% | 27M | 11 sec |
@@ -169,7 +169,7 @@ The jump from 2 to 3 elements is the phase transition: 57.98% → 99.997%.
 |-----------|---------|-----------|
 | $\{1,2,3\}$ | 99.997% | 27 |
 | $\{1,2,4\}$ | 99.994% | 64 |
-| $\{1,2,5\}$ | 99.9999963% at $10^{10}$ | 374 (was 373 at $10^6$ — nearly closed!) |
+| $\{1,2,5\}$ | 99.9999963% at $10^{10}$ | 374 (was 373 at $10^6$ — appears stable) |
 | $\{1,2,6\}$ | 99.9999817% at $10^{10}$ | 1,834 (was 1,720 at $10^6$) |
 | $\{1,2,6\}$ | 99.828% | 1,720 |
 | $\{1,2,7\}$ | 99.461% | 5,388 |

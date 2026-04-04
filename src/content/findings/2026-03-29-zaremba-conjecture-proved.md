@@ -1,5 +1,5 @@
 ---
-title: "Zaremba's Conjecture (A=5): Proof Framework via GPU Verification + MOW Spectral Theory (Not Peer-Reviewed)"
+title: "Zaremba's Conjecture (A=5): Proof Framework via GPU Verification + MOW Spectral Theory (Not Peer-Reviewed, Known Gaps Remain)"
 slug: zaremba-conjecture-proved
 date: 2026-03-29
 author: cahlen
@@ -14,7 +14,7 @@ summary: "Proof FRAMEWORK (not a completed proof) for Zaremba's Conjecture (A=5)
 
 data:
   conjecture: "Zaremba's Conjecture (1972)"
-  status: "Proof FRAMEWORK (not completed). Theorem 1: unconditional GPU verification to 2.1×10^11. Theorem 2: MOW congruence counting framework with 6 known gaps (see peer review). D₀ ≈ 3.4×10^10."
+  status: "Proof FRAMEWORK (not completed — partial verification only). Theorem 1: unconditional GPU verification to 2.1×10^11. Theorem 2: MOW congruence counting framework with 6 known gaps: (1) ρ_η FP64 not interval-certified, (2) MOW theorem matching not verified theorem-by-theorem, (3) C_η constant underestimated, (4) Galerkin-to-operator eigenvalue transport bound missing, (5) Dolgopyat bound not computer-assisted certified, (6) constant-tracking appendix not independently reproduced. D₀ ≈ 3.4×10^10."
   bound_A: 5
   brute_force_range: [1, 210000000000]
   brute_force_failures: 0
@@ -23,7 +23,7 @@ data:
   covering_primorial: 200560490130
   min_covering_gap: 0.651
   min_covering_gap_prime: 29
-  effective_range: "all d ≥ 1 (computer-assisted proof via MOW + arb interval arithmetic)"
+  effective_range: "all d ≥ 1 (computer-assisted FRAMEWORK via MOW + arb interval arithmetic — constant-tracking not independently verified; requires Sage/arb notebook for reproducibility)"
   spectral_gaps_method: "MPFR 256-bit (covering primes) + arb ball arithmetic (Dolgopyat)"
   eigenfunction_h0: 1.377561602272515
   hausdorff_dimension: 0.836829443681208
@@ -71,7 +71,7 @@ GPU matrix enumeration (v6 multi-pass kernel) verifies every integer from 1 to 2
 
 ### 2. Spectral Gap Computation (11 primes, FP64)
 
-For each prime $p \in \{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31\}$, the spectral gap $\sigma_p$ of the congruence transfer operator $L_{\delta,p}$ is computed at FP64 precision ($N = 40$ Chebyshev collocation, cuBLAS power iteration). All gaps $\geq 0.530$.
+For each prime $p \in \{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31\}$, the spectral gap $\sigma_p$ of the congruence transfer operator $L_{\delta,p}$ is computed at FP64 precision ($N = 40$ Chebyshev collocation, cuBLAS power iteration). All gaps $\geq 0.530$. Note: 256-bit MPFR arithmetic controls round-off, but a rigorous bound on the truncation error between the $N = 40$ discretization and the infinite-dimensional operator (e.g., via the Keller-Liverani perturbation framework) has not been established. The "certification" applies to the finite Galerkin matrix, not rigorously to the full operator.
 
 | $p$ | $\sigma_p$ | Error bound $(1-\sigma)/\sigma$ |
 |-----|-----------|-------------------------------|
@@ -234,7 +234,7 @@ Independently and two weeks prior, Ilya Shkredov ([arXiv:2603.14116](https://arx
 | **Computational component** | None | 8× NVIDIA B200, ~2 hours |
 | **Status** | Partial (asymptotic) | Conditional framework (computational) |
 
-The two results are independent and complementary. Shkredov's purely analytic approach validates the spectral/semigroup framework from a theoretical direction. Our computation provides the largest brute-force verification and the most explicit spectral data ever computed for this problem.
+The two results are independent and complementary. Shkredov's purely analytic approach validates the spectral/semigroup framework from a theoretical direction. Our computation provides, to our knowledge, the largest brute-force verification and the most explicit spectral data computed for this problem.
 
 ## References
 

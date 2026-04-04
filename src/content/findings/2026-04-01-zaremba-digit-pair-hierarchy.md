@@ -32,7 +32,7 @@ certification:
   verdict: ACCEPT
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-02
-  note: "Gauss-Kuzmin supports theory. 4 closed exception sets verified (27, 64, 374, 1834). {1,k} hierarchy clean data." 
+  note: "Gauss-Kuzmin supports theory. 4 stable exception sets observed (27, 64, 374, 1834). {1,k} hierarchy clean data." 
 code: https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-density/zaremba_density_gpu.cu
 ---
 

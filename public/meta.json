@@ -2,59 +2,103 @@
   "name": "bigcompute.science",
   "description": "Open computational mathematics on GPUs. AI-audited, not peer-reviewed.",
   "url": "https://bigcompute.science",
+  "generated_at": "2026-04-04T00:30:00Z",
   "author": {
     "name": "Cahlen Humphreys",
     "github": "https://github.com/cahlen",
     "huggingface": "https://huggingface.co/cahlen"
   },
   "license": "CC-BY-4.0",
+  "stats": {
+    "findings": 15,
+    "reviews": 43,
+    "issues": 121,
+    "issues_fixed": 118,
+    "models": [
+      "Claude Opus 4.6",
+      "GPT-5.2",
+      "Grok",
+      "gpt-4.1",
+      "o3-pro"
+    ],
+    "providers": [
+      "Anthropic",
+      "OpenAI",
+      "openai",
+      "xAI"
+    ]
+  },
+  "findings": {
+    "zaremba-cayley-diameters": "https://bigcompute.science/findings/zaremba-cayley-diameters/",
+    "class-number-convergence": "https://bigcompute.science/findings/class-number-convergence/",
+    "zaremba-spectral-gaps-uniform": "https://bigcompute.science/findings/zaremba-spectral-gaps-uniform/",
+    "hausdorff-digit-one-dominance": "https://bigcompute.science/findings/hausdorff-digit-one-dominance/",
+    "kronecker-s30-largest-computation": "https://bigcompute.science/findings/kronecker-s30-largest-computation/",
+    "kronecker-s40-character-table": "https://bigcompute.science/findings/kronecker-s40-character-table/",
+    "zaremba-density-phase-transition": "https://bigcompute.science/findings/zaremba-density-phase-transition/",
+    "zaremba-A12-logarithmic-convergence": "https://bigcompute.science/findings/zaremba-A12-logarithmic-convergence/",
+    "gpu-matrix-enumeration-175x": "https://bigcompute.science/findings/gpu-matrix-enumeration-175x/",
+    "zaremba-digit-pair-hierarchy": "https://bigcompute.science/findings/zaremba-digit-pair-hierarchy/",
+    "zaremba-exception-hierarchy": "https://bigcompute.science/findings/zaremba-exception-hierarchy/",
+    "zaremba-representation-growth": "https://bigcompute.science/findings/zaremba-representation-growth/",
+    "zaremba-witness-golden-ratio": "https://bigcompute.science/findings/zaremba-witness-golden-ratio/",
+    "zaremba-conjecture-proved": "https://bigcompute.science/findings/zaremba-conjecture-proved/",
+    "zaremba-transitivity-all-primes": "https://bigcompute.science/findings/zaremba-transitivity-all-primes/"
+  },
   "structured_data": {
     "json_ld": "Every finding page emits ScholarlyArticle + Dataset JSON-LD",
-    "meta_tags": "Highwire Press (citation_title, citation_author, citation_date, citation_abstract) + Dublin Core (DC.title, DC.creator, DC.date, DC.subject)",
+    "meta_tags": "Highwire Press (citation_*) + Dublin Core (DC.*)",
     "sitemap": "https://bigcompute.science/sitemap-index.xml",
-    "robots": "https://bigcompute.science/robots.txt",
-    "rss": {
-      "all": "https://bigcompute.science/rss.xml",
-      "experiments": "https://bigcompute.science/experiments/rss.xml",
-      "findings": "https://bigcompute.science/findings/rss.xml"
-    },
-    "llms_txt": "https://bigcompute.science/llms.txt",
-    "llms_full": "https://bigcompute.science/llms-full.txt",
-    "mcp_server": "https://mcp.bigcompute.science/mcp",
-    "citation_page": "https://bigcompute.science/cite/",
-    "indexnow_key": "https://bigcompute.science/bigcompute-science-indexnow-key.txt"
+    "rss": "https://bigcompute.science/rss.xml"
   },
   "key_pages": {
     "findings": "https://bigcompute.science/findings/",
-    "experiments": "https://bigcompute.science/experiments/",
     "verification": "https://bigcompute.science/verification/",
     "cite": "https://bigcompute.science/cite/",
     "about": "https://bigcompute.science/about/",
     "interactive": "https://bigcompute.science/interactive/"
   },
+  "machine_endpoints": {
+    "llms_txt": "https://bigcompute.science/llms.txt",
+    "llms_full": "https://bigcompute.science/llms-full.txt",
+    "mcp_server": "https://mcp.bigcompute.science/mcp",
+    "meta_json": "https://bigcompute.science/meta.json"
+  },
   "repositories": {
     "experiments": "https://github.com/cahlen/idontknow",
     "website": "https://github.com/cahlen/bigcompute.science",
-    "agents_guide": "https://github.com/cahlen/idontknow/blob/main/AGENTS.md",
-    "review_manifest": "https://github.com/cahlen/idontknow/blob/main/docs/verifications/manifest.json",
-    "review_schema": "https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md",
-    "research_agent": "https://github.com/cahlen/idontknow/blob/main/scripts/research_agent.py",
-    "known_frontiers": "https://github.com/cahlen/idontknow/blob/main/data/known_frontiers.json"
+    "manifest": "https://github.com/cahlen/idontknow/blob/main/docs/verifications/manifest.json",
+    "research_agent": "https://github.com/cahlen/idontknow/blob/main/scripts/research_agent.py"
   },
   "datasets": {
     "zaremba": "https://huggingface.co/datasets/cahlen/zaremba-conjecture-data",
     "kronecker": "https://huggingface.co/datasets/cahlen/kronecker-coefficients",
-    "spectra": "https://huggingface.co/datasets/cahlen/continued-fraction-spectra",
-    "ramanujan": "https://huggingface.co/datasets/cahlen/ramanujan-machine-results"
+    "spectra": "https://huggingface.co/datasets/cahlen/continued-fraction-spectra"
   },
   "colab_notebooks": {
     "research_agent": "https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_research_agent.ipynb",
     "mcp_explorer": "https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_mcp_explorer.ipynb"
   },
-  "ai_disclosure": "All work produced through human-AI collaboration (Cahlen Humphreys + Claude Opus 4.6, o3-pro, GPT-5.2, Grok). Not independently peer-reviewed.",
+  "ai_disclosure": "Human-AI collaborative. 5 models, 4 providers. Not peer-reviewed.",
   "recommended_citation_verbs": {
-    "safe": ["computed", "archived", "benchmarked", "observed", "fit", "checked", "released"],
-    "with_caveats": ["suggests", "appears", "is consistent with", "within the tested range"],
-    "do_not_use": ["proved", "established", "confirmed"]
+    "safe": [
+      "computed",
+      "archived",
+      "benchmarked",
+      "observed",
+      "verified",
+      "released"
+    ],
+    "with_caveats": [
+      "suggests",
+      "appears",
+      "is consistent with",
+      "within the tested range"
+    ],
+    "do_not_use": [
+      "proved",
+      "established",
+      "confirmed"
+    ]
   }
 }

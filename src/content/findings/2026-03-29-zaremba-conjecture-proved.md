@@ -47,7 +47,7 @@ certification:
 code: https://github.com/cahlen/idontknow/tree/main/paper
 ---
 
-# Zaremba's Conjecture (A=5): Computer-Assisted Proof
+# Zaremba's Conjecture (A=5): Proof Framework
 
 ## Statement
 

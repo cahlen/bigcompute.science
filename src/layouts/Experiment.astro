@@ -228,10 +228,16 @@ const domains = frontmatter.domain || [];
         <div class="results-summary">
           <h4>Key Results</h4>
           <dl>
-            {results.conjecture && <><dt>Conjecture</dt><dd>{results.conjecture}</dd></>}
-            {results.verified_range && <><dt>Verified Range</dt><dd>d = {results.verified_range[0].toLocaleString()} to {results.verified_range[1].toLocaleString()}</dd></>}
-            {results.failures !== undefined && <><dt>Failures</dt><dd class={results.failures === 0 ? 'result-pass' : 'result-fail'}>{results.failures}</dd></>}
-            {results.llm_proofs && <><dt>LLM Proofs</dt><dd>{results.llm_proofs}</dd></>}
+            {Object.entries(results).map(([key, val]: [string, any]) => {
+              if (val === null || val === undefined) return null;
+              const label = key.replace(/_/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+              const display = Array.isArray(val) ? val.join(', ') : String(val);
+              const isPass = (key === 'failures' && val === 0) || key.includes('validation') && String(val).includes('PASS');
+              const isFail = key === 'failures' && val > 0;
+              return (
+                <><dt>{label}</dt><dd class={isPass ? 'result-pass' : isFail ? 'result-fail' : ''}>{display}</dd></>
+              );
+            })}
           </dl>
         </div>
       )}

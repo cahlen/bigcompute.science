@@ -46,20 +46,150 @@ import Base from '../layouts/Base.astro';
     </div>
   </section>
 
-  <section class="gpu-compat m-reveal">
-    <div class="gpu-compat-inner">
-      <h3>Supported GPUs (auto-detected)</h3>
-      <div class="gpu-grid">
-        <div class="gpu-chip"><span class="gpu-name">T4</span><small>Colab Free</small></div>
-        <div class="gpu-chip"><span class="gpu-name">A100</span><small>Colab Pro</small></div>
-        <div class="gpu-chip"><span class="gpu-name">L4</span><small>Colab Pro</small></div>
-        <div class="gpu-chip"><span class="gpu-name">RTX 4090</span><small>Local</small></div>
-        <div class="gpu-chip"><span class="gpu-name">H100</span><small>Cloud</small></div>
-        <div class="gpu-chip"><span class="gpu-name">B200</span><small>Our cluster</small></div>
-        <div class="gpu-chip"><span class="gpu-name">RTX 5090</span><small>Local</small></div>
+  <section class="gpu-zoo m-reveal">
+    <h2>The GPU Zoo</h2>
+    <p class="gpu-zoo-intro">Every GPU runs our CUDA kernels — from a free Colab T4 to the 8×B200 cluster. Click any card to see what it can compute.</p>
+
+    <div class="gpu-zoo-grid" id="gpu-zoo">
+      <div class="gpu-card gpu-tier-free" data-gpu="t4">
+        <div class="gpu-card-header">
+          <span class="gpu-tier-badge gpu-tb-free">Free</span>
+          <h3>Tesla T4</h3>
+        </div>
+        <div class="gpu-card-specs">
+          <div class="gpu-spec"><span class="gpu-spec-val">16 GB</span><span class="gpu-spec-key">VRAM</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">300 GB/s</span><span class="gpu-spec-key">Bandwidth</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">8.1</span><span class="gpu-spec-key">FP32 TFLOPS</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">70W</span><span class="gpu-spec-key">Power</span></div>
+        </div>
+        <div class="gpu-card-context">
+          <p><strong>Turing</strong> architecture (2018) · 12nm · Colab free tier</p>
+          <p class="gpu-can-do">Can verify Zaremba to 10^10 (1.25 GB bitset). Kronecker S₂₀ in 4 sec. Quick wins in seconds.</p>
+          <p class="gpu-cant-do">Cannot: Zaremba 10^11+ (12.5 GB bitset), full S₄₀ Kronecker triple-sum.</p>
+        </div>
       </div>
-      <small>Kernels compile automatically for your hardware via <code>nvidia-smi --query-gpu=compute_cap</code></small>
+
+      <div class="gpu-card gpu-tier-consumer" data-gpu="rtx4060">
+        <div class="gpu-card-header">
+          <span class="gpu-tier-badge gpu-tb-consumer">Budget</span>
+          <h3>RTX 4060</h3>
+        </div>
+        <div class="gpu-card-specs">
+          <div class="gpu-spec"><span class="gpu-spec-val">8 GB</span><span class="gpu-spec-key">VRAM</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">272 GB/s</span><span class="gpu-spec-key">Bandwidth</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">15.1</span><span class="gpu-spec-key">FP32 TFLOPS</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">115W</span><span class="gpu-spec-key">Power</span></div>
+        </div>
+        <div class="gpu-card-context">
+          <p><strong>Ada Lovelace</strong> architecture (2023) · 5nm · ~$300 street price</p>
+          <p class="gpu-can-do">Quick wins instantly. Zaremba to 10^9 (0.12 GB). Kronecker S₂₀. Good starter GPU for math.</p>
+          <p class="gpu-cant-do">Cannot: Zaremba 10^10+ (1.25 GB barely fits). Limited by 8 GB VRAM.</p>
+        </div>
+      </div>
+
+      <div class="gpu-card gpu-tier-consumer" data-gpu="rtx4090">
+        <div class="gpu-card-header">
+          <span class="gpu-tier-badge gpu-tb-consumer">Enthusiast</span>
+          <h3>RTX 4090</h3>
+        </div>
+        <div class="gpu-card-specs">
+          <div class="gpu-spec"><span class="gpu-spec-val">24 GB</span><span class="gpu-spec-key">VRAM</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">1.0 TB/s</span><span class="gpu-spec-key">Bandwidth</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">82.6</span><span class="gpu-spec-key">FP32 TFLOPS</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">450W</span><span class="gpu-spec-key">Power</span></div>
+        </div>
+        <div class="gpu-card-context">
+          <p><strong>Ada Lovelace</strong> architecture (2022) · 5nm · The gamer's beast (~$1,600)</p>
+          <p class="gpu-can-do">Zaremba to 10^11 (12.5 GB fits in 24 GB). Kronecker S₃₀. Serious compute for the price.</p>
+          <p class="gpu-cant-do">Cannot: multi-GPU NVLink. No HBM (GDDR6X latency). Single card only.</p>
+        </div>
+      </div>
+
+      <div class="gpu-card gpu-tier-pro" data-gpu="a100">
+        <div class="gpu-card-header">
+          <span class="gpu-tier-badge gpu-tb-pro">Pro</span>
+          <h3>A100</h3>
+        </div>
+        <div class="gpu-card-specs">
+          <div class="gpu-spec"><span class="gpu-spec-val">40–80 GB</span><span class="gpu-spec-key">VRAM</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">2.0 TB/s</span><span class="gpu-spec-key">Bandwidth</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">19.5</span><span class="gpu-spec-key">FP32 TFLOPS</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">400W</span><span class="gpu-spec-key">Power</span></div>
+        </div>
+        <div class="gpu-card-context">
+          <p><strong>Ampere</strong> architecture (2020) · 7nm · Colab Pro or cloud</p>
+          <p class="gpu-can-do">Zaremba to 10^11 easily. Kronecker S₃₀ in minutes. Class numbers at serious scale.</p>
+          <p class="gpu-cant-do">Cannot: 8-GPU NVLink workloads (single card).</p>
+        </div>
+      </div>
+
+      <div class="gpu-card gpu-tier-consumer" data-gpu="rtx5090">
+        <div class="gpu-card-header">
+          <span class="gpu-tier-badge gpu-tb-consumer">Consumer</span>
+          <h3>RTX 5090</h3>
+        </div>
+        <div class="gpu-card-specs">
+          <div class="gpu-spec"><span class="gpu-spec-val">32 GB</span><span class="gpu-spec-key">VRAM</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">1.8 TB/s</span><span class="gpu-spec-key">Bandwidth</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">105</span><span class="gpu-spec-key">FP32 TFLOPS</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">575W</span><span class="gpu-spec-key">Power</span></div>
+        </div>
+        <div class="gpu-card-context">
+          <p><strong>Blackwell</strong> architecture (2025) · 4nm · Our local dev machine</p>
+          <p class="gpu-can-do">Hausdorff spectrum (all 2²⁰ subsets, 72 min). Faster than H100 on FP32. Zaremba to 10^10 in seconds.</p>
+          <p class="gpu-cant-do">Cannot: multi-GPU NVLink. Limited to 32 GB (no S₄₀ full triple-sum).</p>
+        </div>
+      </div>
+
+      <div class="gpu-card gpu-tier-datacenter" data-gpu="h100">
+        <div class="gpu-card-header">
+          <span class="gpu-tier-badge gpu-tb-datacenter">Datacenter</span>
+          <h3>H100 SXM</h3>
+        </div>
+        <div class="gpu-card-specs">
+          <div class="gpu-spec"><span class="gpu-spec-val">80 GB</span><span class="gpu-spec-key">VRAM</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">3.4 TB/s</span><span class="gpu-spec-key">Bandwidth</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">67</span><span class="gpu-spec-key">FP32 TFLOPS</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">700W</span><span class="gpu-spec-key">Power</span></div>
+        </div>
+        <div class="gpu-card-context">
+          <p><strong>Hopper</strong> architecture (2022) · 4nm · Cloud providers</p>
+          <p class="gpu-can-do">80 GB VRAM handles most large problems. NVLink for multi-GPU. The workhorse of AI datacenters.</p>
+          <p class="gpu-cant-do">Cannot: match B200 bandwidth (3.4 vs 8 TB/s). No FP4 tensor cores.</p>
+        </div>
+      </div>
+
+      <div class="gpu-card gpu-tier-beast" data-gpu="b200">
+        <div class="gpu-card-header">
+          <span class="gpu-tier-badge gpu-tb-beast">Our Cluster</span>
+          <h3>B200 SXM</h3>
+        </div>
+        <div class="gpu-card-specs">
+          <div class="gpu-spec"><span class="gpu-spec-val">192 GB</span><span class="gpu-spec-key">VRAM</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">8 TB/s</span><span class="gpu-spec-key">Bandwidth</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">75</span><span class="gpu-spec-key">FP32 TFLOPS</span></div>
+          <div class="gpu-spec"><span class="gpu-spec-val">1000W</span><span class="gpu-spec-key">Power</span></div>
+        </div>
+        <div class="gpu-card-context">
+          <p><strong>Blackwell</strong> architecture (2024) · 4nm · Our 8×B200 DGX cluster (1.43 TB total)</p>
+          <p class="gpu-can-do">Everything. Zaremba 10^12 (122 GB bitset). Ramsey 4.4T extensions in 130 sec. Kronecker S₃₀ in 7 min. 8 GPUs linked via NVLink 5.</p>
+          <p class="gpu-cant-do">Costs: ~$2M for the DGX system. That's what <a href="https://guerrillamathematics.com">the merch</a> funds.</p>
+        </div>
+      </div>
     </div>
+
+    <div class="gpu-scale-bar m-reveal">
+      <div class="gpu-scale-label">Relative VRAM</div>
+      <div class="gpu-scale-track">
+        <div class="gpu-scale-segment gpu-tb-free" style="width:1.04%"><span>T4</span></div>
+        <div class="gpu-scale-segment gpu-tb-pro" style="width:5.2%"><span>A100</span></div>
+        <div class="gpu-scale-segment gpu-tb-consumer" style="width:2.08%"><span>5090</span></div>
+        <div class="gpu-scale-segment gpu-tb-datacenter" style="width:5.2%"><span>H100</span></div>
+        <div class="gpu-scale-segment gpu-tb-beast" style="width:86.48%"><span>8×B200 = 1,536 GB</span></div>
+      </div>
+    </div>
+
+    <small class="m-reveal" style="display:block;text-align:center;color:var(--text-secondary,#999);font-size:0.65rem;margin-top:0.5rem;">Kernels compile automatically for your hardware via <code>nvidia-smi --query-gpu=compute_cap</code></small>
   </section>
 
   <section class="manifesto" id="manifesto-section">
@@ -504,6 +634,137 @@ import Base from '../layouts/Base.astro';
       background: rgba(232,196,122,0.08);
       padding: 0.1rem 0.3rem;
       border-radius: 3px;
+    }
+
+    /* GPU Zoo */
+    .gpu-zoo { margin-bottom: 3rem; max-width: 960px; margin-left: auto; margin-right: auto; }
+    .gpu-zoo h2 {
+      font-family: var(--font-serif, 'STIX Two Text', Georgia, serif);
+      font-size: 1.5rem;
+      text-align: center;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+    .gpu-zoo-intro {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-secondary, #999);
+      margin-bottom: 1.5rem;
+    }
+    .gpu-zoo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .gpu-card {
+      background: color-mix(in srgb, var(--surface, #1a1a1a) 60%, transparent);
+      border: 2px solid color-mix(in srgb, var(--border, #333) 40%, transparent);
+      padding: 1.2rem;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .gpu-card:hover { transform: translateY(-2px); }
+    .gpu-tier-free:hover { border-color: #22c55e; }
+    .gpu-tier-pro:hover { border-color: #3b82f6; }
+    .gpu-tier-consumer:hover { border-color: #e8c47a; }
+    .gpu-tier-datacenter:hover { border-color: #a855f7; }
+    .gpu-tier-beast:hover { border-color: #ef4444; }
+
+    .gpu-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+    .gpu-card-header h3 {
+      font-family: var(--font-mono, 'JetBrains Mono', monospace);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-primary, #e5e5e5);
+      margin: 0;
+    }
+    .gpu-tier-badge {
+      font-size: 0.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.15rem 0.4rem;
+      border-radius: 2px;
+    }
+    .gpu-tb-free { background: rgba(34,197,94,0.15); color: #22c55e; }
+    .gpu-tb-pro { background: rgba(59,130,246,0.15); color: #3b82f6; }
+    .gpu-tb-consumer { background: rgba(232,196,122,0.15); color: #e8c47a; }
+    .gpu-tb-datacenter { background: rgba(168,85,247,0.15); color: #a855f7; }
+    .gpu-tb-beast { background: rgba(239,68,68,0.15); color: #ef4444; }
+
+    .gpu-card-specs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.4rem;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--border, #333) 30%, transparent);
+    }
+    .gpu-spec { display: flex; flex-direction: column; }
+    .gpu-spec-val {
+      font-family: var(--font-mono, monospace);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-primary, #e5e5e5);
+    }
+    .gpu-spec-key {
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary, #999);
+    }
+
+    .gpu-card-context p {
+      font-size: 0.72rem;
+      color: var(--text-secondary, #999);
+      line-height: 1.4;
+      margin: 0 0 0.3rem;
+    }
+    .gpu-card-context p:first-child { color: var(--text-primary, #e5e5e5); opacity: 0.7; }
+    .gpu-can-do { color: #22c55e !important; }
+    .gpu-cant-do { color: #ef4444 !important; opacity: 0.6; }
+    .gpu-cant-do a { color: #e8c47a; }
+
+    /* Scale bar */
+    .gpu-scale-bar { margin: 1.5rem auto; max-width: 700px; }
+    .gpu-scale-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-secondary, #999);
+      margin-bottom: 0.4rem;
+      text-align: center;
+    }
+    .gpu-scale-track {
+      display: flex;
+      height: 24px;
+      background: rgba(255,255,255,0.03);
+      overflow: hidden;
+    }
+    .gpu-scale-segment {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.5rem;
+      font-weight: 700;
+      color: #0a0a0a;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .gpu-scale-segment.gpu-tb-free { background: #22c55e; }
+    .gpu-scale-segment.gpu-tb-pro { background: #3b82f6; }
+    .gpu-scale-segment.gpu-tb-consumer { background: #e8c47a; }
+    .gpu-scale-segment.gpu-tb-datacenter { background: #a855f7; }
+    .gpu-scale-segment.gpu-tb-beast { background: #ef4444; }
+    .gpu-scale-segment span { padding: 0 0.3rem; }
+
+    @media (max-width: 600px) {
+      .gpu-zoo-grid { grid-template-columns: 1fr; }
     }
 
     .colab-section { margin-bottom: 3rem; }

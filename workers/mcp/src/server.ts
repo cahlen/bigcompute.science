@@ -140,7 +140,7 @@ const FINDINGS = [
     slug: "zaremba-spectral-gaps-uniform",
     title: "Congruence Spectral Gaps Are Uniform",
     claim: "Spectral gap σ_m ≥ 0.237 across all 1,214 square-free moduli to m=1999. Property (τ) confirmed.",
-    our_data: { min_gap: 0.237, moduli_tested: 1214, max_modulus: 1999, property_tau: "confirmed" },
+    our_data: { min_gap: 0.237, moduli_tested: 1214, max_modulus: 1999, property_tau: "computationally supported (not proven)" },
     search_terms: ["property tau Schottky semigroup", "spectral gap congruence transfer operator", "Bourgain Gamburd Sarnak expander"],
     key_references: ["Bourgain, Gamburd, Sarnak (2011) 'Generalization of Selberg's 3/16 theorem'", "Magee, Oh, Winter (2019)"],
     oeis_sequences: [],

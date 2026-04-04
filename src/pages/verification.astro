@@ -207,6 +207,26 @@ import certData from '../data/certifications.json';
   </section>
 
   <section class="v-section m-reveal">
+    <h2>Community Verification</h2>
+    <p>Anyone can submit computation results via our <a href="/interactive/">Colab notebooks</a>. Every new submission is <strong>automatically re-run on our GPU cluster</strong> to confirm the numbers match. Fake or tampered results are flagged instantly.</p>
+    <div class="v-process" style="margin:1rem 0">
+      <div class="v-step">
+        <div class="v-step-icon" style="background:linear-gradient(135deg,#22c55e,#16a34a)">1</div>
+        <div><h3>Submit</h3><p>Run an experiment on Colab (free T4). Click &ldquo;Submit to GitHub&rdquo; &mdash; results are pre-filled.</p></div>
+      </div>
+      <div class="v-step">
+        <div class="v-step-icon" style="background:linear-gradient(135deg,#e8c47a,#d4a853)">2</div>
+        <div><h3>Triage</h3><p>Bot checks against known frontiers. Already computed? Auto-closed. New data? Labeled for verification.</p></div>
+      </div>
+      <div class="v-step">
+        <div class="v-step-icon" style="background:linear-gradient(135deg,#5eead4,#2dd4bf)">3</div>
+        <div><h3>Verify</h3><p>Research agent re-runs the exact same experiment on our cluster. Numbers match? Labeled <code>verified</code>.</p></div>
+      </div>
+    </div>
+    <p style="font-size:0.82rem;color:var(--text-secondary)">Submissions are free. Verification costs GPU time. That&rsquo;s what <a href="https://guerrillamathematics.com" style="color:#e8c47a">Guerrilla Mathematics&trade;</a> funds.</p>
+  </section>
+
+  <section class="v-section m-reveal">
     <h2>What This Is NOT</h2>
     <div class="v-not-grid">
       <div class="v-not-card">

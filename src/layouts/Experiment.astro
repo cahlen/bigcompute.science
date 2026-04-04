@@ -22,6 +22,32 @@ const worstVerdict = certReviews.length > 0
   : frontmatter.certification?.verdict ?? '';
 const modelsSummary = certEntry?.models_summary ?? frontmatter.certification?.reviewer ?? '';
 
+// Math rendering for result values
+function renderMath(s: string): string {
+  const sup: any = {'0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹','-':'⁻'};
+  const toSup = (n: string) => [...n].map((c: string) => sup[c] || c).join('');
+  let out = s;
+  // Large bare integers → scientific notation (1000000000 → 10⁹)
+  out = out.replace(/\b(\d{7,})\b/g, (_: string, num: string) => {
+    const n = parseFloat(num);
+    if (n === 0) return '0';
+    const exp = Math.floor(Math.log10(n));
+    const mantissa = n / Math.pow(10, exp);
+    if (Math.abs(mantissa - 1) < 0.001) return '10' + toSup(String(exp));
+    if (Math.abs(mantissa - Math.round(mantissa)) < 0.001) return Math.round(mantissa) + '×10' + toSup(String(exp));
+    return mantissa.toFixed(1) + '×10' + toSup(String(exp));
+  });
+  // Explicit caret notation: 10^10 → 10¹⁰
+  out = out.replace(/(\d+)\^(\d+)/g, (_: string, base: string, exp: string) => base + toSup(exp));
+  // Scientific notation: 4.4e12 → 4.4×10¹²
+  out = out.replace(/(\d+\.?\d*)[eE]\+?(\d+)/g, (_: string, m: string, exp: string) => m + '×10' + toSup(exp));
+  // Symbols
+  out = out.replace(/>=/g, '≥').replace(/<=/g, '≤').replace(/->/g, '→');
+  // Add commas to remaining 4-6 digit numbers
+  out = out.replace(/\b(\d{4,6})\b/g, (_: string, num: string) => parseInt(num).toLocaleString());
+  return out;
+}
+
 const canonicalURL = `https://bigcompute.science/findings/${frontmatter.slug}/`;
 const isoDate = new Date(date).toISOString().split('T')[0];
 const summary = frontmatter.summary || '';
@@ -231,11 +257,12 @@ const domains = frontmatter.domain || [];
             {Object.entries(results).map(([key, val]: [string, any]) => {
               if (val === null || val === undefined) return null;
               const label = key.replace(/_/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
-              const display = Array.isArray(val) ? val.join(', ') : String(val);
-              const isPass = (key === 'failures' && val === 0) || key.includes('validation') && String(val).includes('PASS');
+              const raw = Array.isArray(val) ? val.join(', ') : String(val);
+              const display = renderMath(raw);
+              const isPass = (key === 'failures' && val === 0) || (key.includes('validation') && String(val).includes('PASS'));
               const isFail = key === 'failures' && val > 0;
               return (
-                <><dt>{label}</dt><dd class={isPass ? 'result-pass' : isFail ? 'result-fail' : ''}>{display}</dd></>
+                <><dt>{label}</dt><dd class={isPass ? 'result-pass' : isFail ? 'result-fail' : ''} set:html={display} /></>
               );
             })}
           </dl>

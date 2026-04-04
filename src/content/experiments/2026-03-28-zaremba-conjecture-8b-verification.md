@@ -31,7 +31,7 @@ results:
   conjecture: "Zaremba's Conjecture (1972)"
   conjecture_year: 1972
   bound: 5
-  status: "210B VERIFIED (zero gaps, 116 min on 8× B200). Spectral gaps to m=2000 complete. Transitivity proved for ALL primes."
+  status: "210B VERIFIED (zero gaps, 116 min on 8× B200). Spectral gaps to m=2000 complete. Transitivity argument (AI-assisted, not peer-reviewed) for ALL primes."
   verified_range: [1, 210000000000]
   failures: 0
   verification_time: "6,962 seconds (116 min) on 8× B200"
@@ -196,7 +196,7 @@ Three bugs were discovered and fixed during the proving run:
 
 ### Exhaustive Verification: 0 Failures to $2.1 \times 10^{11}$
 
-**Verified:** The v6 multi-pass GPU matrix enumeration kernel confirmed **zero gaps for all $d \leq 2.1 \times 10^{11}$** (210 billion) in **116 minutes** on 8× NVIDIA B200. This is a complete computational proof that Zaremba's Conjecture holds for every integer up to 210 billion.
+**Verified:** The v6 multi-pass GPU matrix enumeration kernel confirmed **zero gaps for all $d \leq 2.1 \times 10^{11}$** (210 billion) in **116 minutes** on 8× NVIDIA B200. This is a complete computational verification that Zaremba's Conjecture holds for every integer up to 210 billion.
 
 The kernel performs the entire CF tree walk on GPU via batched 2×2 matrix multiplication with fused expand+mark+compact. Phase A builds the tree to depth 12 on one GPU, Phase B distributes 244M matrices across all 8 GPUs in 64 rounds, each expanding to depth 62.
 
@@ -227,10 +227,10 @@ The v5 kernel (single GPU) reformulated CF tree enumeration as batched 2×2 matr
 The spectral gap of $0.717$ is strong: the dominant eigenfunction controls the operator's behavior overwhelmingly, with the second eigenvalue less than 30% of the leading one. This matches Jenkinson-Pollicott (2001) and subsequent refinements, independently verified from scratch on GPU.
 
 **Why this matters:**
-- $2\delta > 1$ confirms the Hausdorff dimension of $E_5$ is large enough for the circle method to potentially close the gap from density-1 to all $d$
+- $2\delta > 1$ shows the Hausdorff dimension of $E_5$ is large enough for the circle method to potentially close the gap from density-1 to all $d$
 - The spectral gap quantifies mixing rates in the continued fraction dynamics
-- **Phase 2 complete:** congruence spectral gaps computed for all 1,214 square-free moduli up to $m = 1999$ — every gap positive (min $0.237$), confirming property ($\tau$) at this scale. See [findings](/findings/zaremba-spectral-gaps-uniform/)
-- **Transitivity proved:** algebraic proof that $\Gamma_{\{1,\ldots,5\}}$ generates $\text{SL}_2(\mathbb{Z}/p\mathbb{Z})$ for every prime $p$ — no local obstructions exist. See [findings](/findings/zaremba-transitivity-all-primes/)
+- **Phase 2 complete:** congruence spectral gaps computed for all 1,214 square-free moduli up to $m = 1999$ — every gap positive (min $0.237$), evidence consistent with property ($\tau$) at this scale. See [findings](/findings/zaremba-spectral-gaps-uniform/)
+- **Transitivity argument (AI-assisted, not peer-reviewed):** algebraic proof that $\Gamma_{\{1,\ldots,5\}}$ generates $\text{SL}_2(\mathbb{Z}/p\mathbb{Z})$ for every prime $p$ — no local obstructions exist. See [findings](/findings/zaremba-transitivity-all-primes/)
 
 ## Analysis: The Witness Distribution
 
@@ -278,7 +278,7 @@ The CF length of $\alpha(d)/d$ peaks at $k = 13$ and grows as $O(\log d)$:
 
 1. **Search optimization.** Any Zaremba verification algorithm should start searching at $a \approx 0.170\,d$. This reduces the search space by $\sim 6\times$ compared to starting at $a = 1$. The v4 inverse CF kernel eliminates search entirely for most cases.
 
-2. **Transfer operator confirms circle method.** The Hausdorff dimension $\delta = 0.8368$ gives $2\delta = 1.674 > 1$, confirming the circle method threshold is met with substantial margin. The spectral gap of $0.717$ provides room for the congruence analysis in Phase 2.
+2. **Transfer operator supports circle method.** The Hausdorff dimension $\delta = 0.8368$ gives $2\delta = 1.674 > 1$, consistent with the circle method threshold being met with substantial margin. The spectral gap of $0.717$ provides room for the congruence analysis in Phase 2.
 
 3. **Proof strategy.** The transfer operator's dominant eigenfunction peaks near $x \approx 0.171$, explaining why witnesses concentrate at $\alpha(d)/d \approx 0.171$. A full proof may require bounding the congruence transfer operator's spectral radius uniformly across all moduli. See the [companion transfer operator analysis](/experiments/zaremba-transfer-operator) for details.
 

@@ -42,7 +42,7 @@ results:
   phase2_mean_gap: 0.482
   phase2_time: "77 min on 8× B200"
 
-summary: "Hausdorff dimension of E_5 computed to 15 digits (0.836829443681208). Spectral gaps for 1,214 square-free moduli, all positive. Property (tau) confirmed."
+summary: "Hausdorff dimension of E_5 computed to 15 digits (0.836829443681208). Spectral gaps for 1,214 square-free moduli, all positive. Property (tau) computationally supported (not proven)."
 
 code: https://github.com/cahlen/idontknow
 dataset: https://huggingface.co/datasets/cahlen/zaremba-conjecture-data
@@ -52,7 +52,7 @@ dataset: https://huggingface.co/datasets/cahlen/zaremba-conjecture-data
 
 ## Abstract
 
-We computed the Hausdorff dimension of the set $E_5$ (reals whose continued fraction has all partial quotients $\leq 5$) to 15 digits of precision using a GPU-accelerated spectral method. The result $\delta = 0.836829443681208$ confirms $2\delta = 1.674 > 1$, meeting the circle method threshold required by Bourgain-Kontorovich's approach to Zaremba's Conjecture. The spectral gap of $0.717$ quantifies the mixing rate of the underlying continued fraction dynamics. Phase 2 (congruence gap analysis) computed spectral gaps for all 1,214 square-free moduli up to $m = 1999$ in 77 minutes — every gap positive, minimum $0.237$ at $m = 1469$, confirming property ($\tau$) at this scale.
+We computed the Hausdorff dimension of the set $E_5$ (reals whose continued fraction has all partial quotients $\leq 5$) to 15 digits of precision using a GPU-accelerated spectral method. The result $\delta = 0.836829443681208$ gives $2\delta = 1.674 > 1$, meeting the circle method threshold required by Bourgain-Kontorovich's approach to Zaremba's Conjecture. The spectral gap of $0.717$ quantifies the mixing rate of the underlying continued fraction dynamics. Phase 2 (congruence gap analysis) computed spectral gaps for all 1,214 square-free moduli up to $m = 1999$ in 77 minutes — every gap positive, minimum $0.237$ at $m = 1469$, evidence consistent with property ($\tau$) at this scale.
 
 ## Background
 
@@ -136,9 +136,9 @@ For all $A \geq 2$, $2\delta > 1$, so the circle method threshold is met. The co
 
 ## Significance
 
-### What This Confirms
+### What This Establishes Computationally
 
-1. **Circle method is applicable.** The condition $2\delta > 1$ is necessary for Bourgain-Kontorovich's approach. Our independent computation confirms this holds with substantial margin ($2\delta - 1 = 0.674$).
+1. **Circle method is applicable.** The condition $2\delta > 1$ is necessary for Bourgain-Kontorovich's approach. Our independent computation is consistent with this holding with substantial margin ($2\delta - 1 = 0.674$).
 
 2. **Strong spectral gap.** The gap of $0.717$ means the transfer operator has good spectral properties for analytic continuation and exponential sum estimates.
 
@@ -150,7 +150,7 @@ We computed the spectral gap $\sigma_m$ of the congruence transfer operator $\ma
 
 $$0.237 \leq \sigma_m \leq 0.998, \qquad \text{mean } = 0.482 \qquad \text{for all square-free } m \leq 1999$$
 
-The minimum gap of $0.237$ occurs at $m = 1469 = 13 \times 113$. There is **no decay trend** — gaps at $m = 1997$ are just as large as at $m = 2$. This confirms **property ($\tau$)** of the Zaremba semigroup at this scale.
+The minimum gap of $0.237$ occurs at $m = 1469 = 13 \times 113$. There is **no decay trend** — gaps at $m = 1997$ are just as large as at $m = 2$. This is evidence consistent with **property ($\tau$)** of the Zaremba semigroup at this scale.
 
 This is precisely the condition Bourgain-Kontorovich need: a uniform spectral gap with decay exponent $\beta \approx 0$, far below their threshold of $\beta < 2\delta - 1 \approx 0.672$.
 

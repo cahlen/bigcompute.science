@@ -1386,6 +1386,7 @@ async function handleBasicMcp(request: Request, env: any): Promise<Response> {
       { name: "get_certification_process", description: "Explains MCP Verification Certification levels and how agents can contribute", inputSchema: { type: "object", properties: {} } },
       { name: "search_boise_state", description: "Search Boise State University ScholarWorks repository", inputSchema: { type: "object", properties: { query: { type: "string" }, max_results: { type: "number" } }, required: ["query"] } },
       { name: "search_fau", description: "Search Florida Atlantic University digital library", inputSchema: { type: "object", properties: { query: { type: "string" }, max_results: { type: "number" } }, required: ["query"] } },
+      { name: "get_research_agent", description: "Get instructions to run the autonomous research agent — fastest way to contribute", inputSchema: { type: "object", properties: {} } },
       { name: "list_related_servers", description: "Discover other MCP servers for math and academic research", inputSchema: { type: "object", properties: {} } },
     ];
     return new Response(JSON.stringify({
@@ -1604,6 +1605,26 @@ async function handleBasicMcp(request: Request, env: any): Promise<Response> {
             return { content: [{ type: "text", text: JSON.stringify({ source: "FAU Digital Library", results: results.length > 0 ? results : [{ note: "No results" }] }, null, 2) }] };
           } catch (e: any) { return { content: [{ type: "text", text: `FAU error: ${e.message}` }] }; }
         },
+        get_research_agent: async () => ({
+          content: [{ type: "text", text: JSON.stringify({
+            name: "bigcompute.science Research Agent",
+            description: "Autonomous research loop: Monitor → Harvest → Analyze → Review → Remediate → Deploy → Plan",
+            quickstart: [
+              "git clone https://github.com/cahlen/idontknow && cd idontknow",
+              "export OPENAI_API_KEY='sk-...'   # for peer reviews (optional)",
+              "./scripts/run_agent.sh            # one cycle",
+              "./scripts/run_agent.sh --loop 10m # autonomous loop",
+            ],
+            requirements: {
+              required: "Claude Code account (uses 'claude -p' for analysis)",
+              optional: "OPENAI_API_KEY for multi-model peer reviews",
+              gpu: "NVIDIA GPU with CUDA for running experiments (not needed for review-only)",
+            },
+            cli: { "--once": "single tick", "--interval 10m": "loop", "--dry-run": "report only", "--auto-launch": "auto-start experiments on free GPUs", "--phase X": "run specific phase" },
+            source: "https://github.com/cahlen/idontknow/blob/main/scripts/research_agent.py",
+            guide: "https://github.com/cahlen/idontknow/blob/main/AGENTS.md",
+          }, null, 2) }]
+        }),
         list_related_servers: async () => ({
           content: [{ type: "text", text: JSON.stringify({
             note: "Third-party MCP servers for deeper capabilities. Connect to these alongside bigcompute.science.",

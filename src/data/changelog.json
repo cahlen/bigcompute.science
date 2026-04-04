@@ -1,52 +1,52 @@
 [
   {
-    "hash": "d99cb0c",
-    "date": "Apr 02",
-    "message": "Link all finding Code: references to specific files/directories"
+    "hash": "40217b2",
+    "date": "Apr 03",
+    "message": "Colab notebook: run the research agent from Google Colab"
   },
   {
-    "hash": "a81159a",
-    "date": "Apr 02",
-    "message": "Link Code: references directly to specific kernel files, not generic repo"
+    "hash": "6376a8f",
+    "date": "Apr 03",
+    "message": "research-agent: auto-update 2026-04-03 20:30"
   },
   {
-    "hash": "3a6d62c",
-    "date": "Apr 02",
-    "message": "Fix audit page: 13 findings (was 9), add 4 missing rows to cert table"
+    "hash": "5d0dd82",
+    "date": "Apr 03",
+    "message": "MCP: fix get_research_agent tool routing (add to toolDefs + toolMap)"
   },
   {
-    "hash": "99135f8",
-    "date": "Apr 02",
-    "message": "Fix Loogle cell: handle blocked cloud IPs gracefully"
+    "hash": "02915d7",
+    "date": "Apr 03",
+    "message": "MCP: add get_research_agent tool (23 tools total)"
   },
   {
-    "hash": "620d936",
-    "date": "Apr 02",
-    "message": "Add PR template generator to Colab notebook"
+    "hash": "0b55b10",
+    "date": "Apr 03",
+    "message": "Promote research agent on verification page + llms-full.txt"
   },
   {
-    "hash": "4759cd5",
-    "date": "Apr 02",
-    "message": "Rewrite Colab notebook: HF datasets, visualizations, Gemini prompts"
+    "hash": "e60f865",
+    "date": "Apr 03",
+    "message": "Resolved badges now link to GitHub commit diffs"
   },
   {
-    "hash": "5bc1f61",
-    "date": "Apr 02",
-    "message": "Notebook: add Loogle direct fallback when MCP proxy is blocked"
+    "hash": "a82e593",
+    "date": "Apr 03",
+    "message": "All 15 finding badges now show issue resolution status (86/88 fixed)"
   },
   {
-    "hash": "369a654",
-    "date": "Apr 02",
-    "message": "Fix MCP: add 4 missing certifications + update stale experiment suggestions"
+    "hash": "07d3b65",
+    "date": "Apr 03",
+    "message": "Regenerate certifications after bulk remediation (11/13 resolved)"
   },
   {
-    "hash": "0c70899",
-    "date": "Apr 02",
-    "message": "Add Colab MCP Explorer notebook + interactive page launch button"
+    "hash": "9428528",
+    "date": "Apr 03",
+    "message": "Remediate all 72 review issues across 15 findings"
   },
   {
-    "hash": "c19f5f6",
-    "date": "Apr 02",
-    "message": "Fix certification badges: all 14 findings now have audit levels visible"
+    "hash": "1e5ceff",
+    "date": "Apr 03",
+    "message": "research-agent: auto-update 2026-04-03 17:43"
   }
 ]

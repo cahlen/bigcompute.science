@@ -48,14 +48,14 @@ import Base from '../layouts/Base.astro';
 
   <section class="gpu-zoo m-reveal">
     <h2>The GPU Zoo</h2>
-    <p class="gpu-zoo-intro">Every GPU runs our CUDA kernels — from a free Colab T4 to the 8×B200 cluster. Click any card to see what it can compute.</p>
+    <p class="gpu-zoo-intro">Every GPU runs our CUDA kernels — from a free Colab T4 to the 8×B200 cluster. From a free Colab T4 to our 8×B200 cluster. Tap any card to expand.</p>
 
     <div class="gpu-zoo-grid" id="gpu-zoo">
-      <div class="gpu-card gpu-tier-free" data-gpu="t4">
-        <div class="gpu-card-header">
+      <details class="gpu-card gpu-tier-free" data-gpu="t4">
+        <summary class="gpu-card-header">
           <span class="gpu-tier-badge gpu-tb-free">Free</span>
           <h3>Tesla T4</h3>
-        </div>
+        </summary>
         <div class="gpu-card-specs">
           <div class="gpu-spec"><span class="gpu-spec-val">16 GB</span><span class="gpu-spec-key">VRAM</span></div>
           <div class="gpu-spec"><span class="gpu-spec-val">300 GB/s</span><span class="gpu-spec-key">Bandwidth</span></div>
@@ -67,13 +67,13 @@ import Base from '../layouts/Base.astro';
           <p class="gpu-can-do">Can verify Zaremba to 10^10 (1.25 GB bitset). Kronecker S₂₀ in 4 sec. Quick wins in seconds.</p>
           <p class="gpu-cant-do">Cannot: Zaremba 10^11+ (12.5 GB bitset), full S₄₀ Kronecker triple-sum.</p>
         </div>
-      </div>
+      </details>
 
-      <div class="gpu-card gpu-tier-consumer" data-gpu="rtx4060">
-        <div class="gpu-card-header">
+      <details class="gpu-card gpu-tier-consumer" data-gpu="rtx4060">
+        <summary class="gpu-card-header">
           <span class="gpu-tier-badge gpu-tb-consumer">Budget</span>
           <h3>RTX 4060</h3>
-        </div>
+        </summary>
         <div class="gpu-card-specs">
           <div class="gpu-spec"><span class="gpu-spec-val">8 GB</span><span class="gpu-spec-key">VRAM</span></div>
           <div class="gpu-spec"><span class="gpu-spec-val">272 GB/s</span><span class="gpu-spec-key">Bandwidth</span></div>
@@ -85,13 +85,13 @@ import Base from '../layouts/Base.astro';
           <p class="gpu-can-do">Quick wins instantly. Zaremba to 10^9 (0.12 GB). Kronecker S₂₀. Good starter GPU for math.</p>
           <p class="gpu-cant-do">Cannot: Zaremba 10^10+ (1.25 GB barely fits). Limited by 8 GB VRAM.</p>
         </div>
-      </div>
+      </details>
 
-      <div class="gpu-card gpu-tier-consumer" data-gpu="rtx4090">
-        <div class="gpu-card-header">
+      <details class="gpu-card gpu-tier-consumer" data-gpu="rtx4090">
+        <summary class="gpu-card-header">
           <span class="gpu-tier-badge gpu-tb-consumer">Enthusiast</span>
           <h3>RTX 4090</h3>
-        </div>
+        </summary>
         <div class="gpu-card-specs">
           <div class="gpu-spec"><span class="gpu-spec-val">24 GB</span><span class="gpu-spec-key">VRAM</span></div>
           <div class="gpu-spec"><span class="gpu-spec-val">1.0 TB/s</span><span class="gpu-spec-key">Bandwidth</span></div>
@@ -103,13 +103,13 @@ import Base from '../layouts/Base.astro';
           <p class="gpu-can-do">Zaremba to 10^11 (12.5 GB fits in 24 GB). Kronecker S₃₀. Serious compute for the price.</p>
           <p class="gpu-cant-do">Cannot: multi-GPU NVLink. No HBM (GDDR6X latency). Single card only.</p>
         </div>
-      </div>
+      </details>
 
-      <div class="gpu-card gpu-tier-pro" data-gpu="a100">
-        <div class="gpu-card-header">
+      <details class="gpu-card gpu-tier-pro" data-gpu="a100">
+        <summary class="gpu-card-header">
           <span class="gpu-tier-badge gpu-tb-pro">Pro</span>
           <h3>A100</h3>
-        </div>
+        </summary>
         <div class="gpu-card-specs">
           <div class="gpu-spec"><span class="gpu-spec-val">40–80 GB</span><span class="gpu-spec-key">VRAM</span></div>
           <div class="gpu-spec"><span class="gpu-spec-val">2.0 TB/s</span><span class="gpu-spec-key">Bandwidth</span></div>
@@ -121,13 +121,13 @@ import Base from '../layouts/Base.astro';
           <p class="gpu-can-do">Zaremba to 10^11 easily. Kronecker S₃₀ in minutes. Class numbers at serious scale.</p>
           <p class="gpu-cant-do">Cannot: 8-GPU NVLink workloads (single card).</p>
         </div>
-      </div>
+      </details>
 
-      <div class="gpu-card gpu-tier-consumer" data-gpu="rtx5090">
-        <div class="gpu-card-header">
+      <details class="gpu-card gpu-tier-consumer" data-gpu="rtx5090">
+        <summary class="gpu-card-header">
           <span class="gpu-tier-badge gpu-tb-consumer">Consumer</span>
           <h3>RTX 5090</h3>
-        </div>
+        </summary>
         <div class="gpu-card-specs">
           <div class="gpu-spec"><span class="gpu-spec-val">32 GB</span><span class="gpu-spec-key">VRAM</span></div>
           <div class="gpu-spec"><span class="gpu-spec-val">1.8 TB/s</span><span class="gpu-spec-key">Bandwidth</span></div>
@@ -139,13 +139,13 @@ import Base from '../layouts/Base.astro';
           <p class="gpu-can-do">Hausdorff spectrum (all 2²⁰ subsets, 72 min). Faster than H100 on FP32. Zaremba to 10^10 in seconds.</p>
           <p class="gpu-cant-do">Cannot: multi-GPU NVLink. Limited to 32 GB (no S₄₀ full triple-sum).</p>
         </div>
-      </div>
+      </details>
 
-      <div class="gpu-card gpu-tier-datacenter" data-gpu="h100">
-        <div class="gpu-card-header">
+      <details class="gpu-card gpu-tier-datacenter" data-gpu="h100">
+        <summary class="gpu-card-header">
           <span class="gpu-tier-badge gpu-tb-datacenter">Datacenter</span>
           <h3>H100 SXM</h3>
-        </div>
+        </summary>
         <div class="gpu-card-specs">
           <div class="gpu-spec"><span class="gpu-spec-val">80 GB</span><span class="gpu-spec-key">VRAM</span></div>
           <div class="gpu-spec"><span class="gpu-spec-val">3.4 TB/s</span><span class="gpu-spec-key">Bandwidth</span></div>
@@ -157,13 +157,13 @@ import Base from '../layouts/Base.astro';
           <p class="gpu-can-do">80 GB VRAM handles most large problems. NVLink for multi-GPU. The workhorse of AI datacenters.</p>
           <p class="gpu-cant-do">Cannot: match B200 bandwidth (3.4 vs 8 TB/s). No FP4 tensor cores.</p>
         </div>
-      </div>
+      </details>
 
-      <div class="gpu-card gpu-tier-beast" data-gpu="b200">
-        <div class="gpu-card-header">
+      <details class="gpu-card gpu-tier-beast" data-gpu="b200">
+        <summary class="gpu-card-header">
           <span class="gpu-tier-badge gpu-tb-beast">Our Cluster</span>
           <h3>B200 SXM</h3>
-        </div>
+        </summary>
         <div class="gpu-card-specs">
           <div class="gpu-spec"><span class="gpu-spec-val">192 GB</span><span class="gpu-spec-key">VRAM</span></div>
           <div class="gpu-spec"><span class="gpu-spec-val">8 TB/s</span><span class="gpu-spec-key">Bandwidth</span></div>
@@ -175,7 +175,7 @@ import Base from '../layouts/Base.astro';
           <p class="gpu-can-do">Everything. Zaremba 10^12 (122 GB bitset). Ramsey 4.4T extensions in 130 sec. Kronecker S₃₀ in 7 min. 8 GPUs linked via NVLink 5.</p>
           <p class="gpu-cant-do">Costs: ~$2M for the DGX system. That's what <a href="https://guerrillamathematics.com">the merch</a> funds.</p>
         </div>
-      </div>
+      </details>
     </div>
 
     <div class="gpu-scale-bar m-reveal">
@@ -663,7 +663,14 @@ import Base from '../layouts/Base.astro';
       transition: border-color 0.2s, transform 0.2s;
       cursor: default;
     }
-    .gpu-card:hover { transform: translateY(-2px); }
+    .gpu-card:hover { transform: translateY(-2px); cursor: pointer; }
+    .gpu-card summary { list-style: none; cursor: pointer; }
+    .gpu-card summary::-webkit-details-marker { display: none; }
+    .gpu-card summary::marker { display: none; content: ""; }
+    .gpu-card .gpu-card-specs,
+    .gpu-card .gpu-card-context { display: none; }
+    .gpu-card[open] .gpu-card-specs { display: grid; }
+    .gpu-card[open] .gpu-card-context { display: block; }
     .gpu-tier-free:hover { border-color: #22c55e; }
     .gpu-tier-pro:hover { border-color: #3b82f6; }
     .gpu-tier-consumer:hover { border-color: #e8c47a; }

@@ -1,0 +1,212 @@
+---
+import Base from '../layouts/Base.astro';
+import certData from '../data/certifications.json';
+
+const findings = certData.certifications;
+const year = '2026';
+---
+
+<Base title="How to Cite" description="Citation formats for bigcompute.science results">
+  <section class="cite-page">
+    <h1 class="m-reveal">How to Cite These Results</h1>
+
+    <p class="cite-intro m-reveal">
+      All results on this site should be cited as <strong>computational evidence</strong>,
+      not as peer-reviewed theorems. The recommended verbs are:
+      <em>computed, archived, benchmarked, observed, verified</em>.
+    </p>
+
+    <h2 class="m-reveal">Cite the Project</h2>
+
+    <div class="cite-block m-reveal">
+      <div class="cite-label">BibTeX</div>
+      <pre><code>@misc{'{'}humphreys2026bigcompute,
+  author = {'{'}Humphreys, Cahlen{'}'},
+  title = {'{'}bigcompute.science: GPU-Accelerated Computational Mathematics{'}'},
+  year = {'{'}{year}{'}'},
+  url = {'{'}https://bigcompute.science{'}'},
+  note = {'{'}Human--AI collaborative. AI-audited, not peer-reviewed. CC BY 4.0{'}'}
+{'}'}</code></pre>
+    </div>
+
+    <div class="cite-block m-reveal">
+      <div class="cite-label">APA</div>
+      <pre><code>Humphreys, C. ({year}). bigcompute.science: GPU-accelerated computational
+  mathematics. https://bigcompute.science. Human–AI collaborative.
+  AI-audited, not peer-reviewed.</code></pre>
+    </div>
+
+    <h2 class="m-reveal">Cite Individual Findings</h2>
+
+    <p class="m-reveal" style="color:var(--text-secondary);font-size:0.85rem;margin-bottom:1.5rem;">
+      Click any finding to expand its citation. Each URL is the canonical reference.
+    </p>
+
+    {findings.map((f: any) => (
+      <details class="cite-finding m-reveal">
+        <summary>
+          <span class={`cert-badge cert-${f.level}`} style="font-size:0.55rem;padding:0.1rem 0.4rem;margin-right:0.5rem;">{f.level.toUpperCase()}</span>
+          {f.title.length > 70 ? f.title.slice(0, 67) + '...' : f.title}
+        </summary>
+        <div class="cite-finding-body">
+          <div class="cite-block">
+            <div class="cite-label">BibTeX</div>
+            <pre><code>@misc{'{'}{f.slug.replace(/-/g, '')},
+  author = {'{'}Humphreys, Cahlen{'}'},
+  title = {'{'}{f.title}{'}'},
+  year = {'{'}{year}{'}'},
+  url = {'{'}https://bigcompute.science/findings/{f.slug}/{'}'},
+  note = {'{'}AI-audited ({f.review_count} reviews). {f.level} certification. Not peer-reviewed.{'}'}
+{'}'}</code></pre>
+          </div>
+          <div class="cite-block">
+            <div class="cite-label">APA</div>
+            <pre><code>Humphreys, C. ({year}). {f.title}. bigcompute.science.
+  https://bigcompute.science/findings/{f.slug}/</code></pre>
+          </div>
+          <div class="cite-block">
+            <div class="cite-label">Plain text</div>
+            <pre><code>Cahlen Humphreys, "{f.title}," bigcompute.science, {year}.
+URL: https://bigcompute.science/findings/{f.slug}/</code></pre>
+          </div>
+        </div>
+      </details>
+    ))}
+
+    <h2 class="m-reveal">Cite the Data</h2>
+
+    <div class="cite-block m-reveal">
+      <div class="cite-label">Hugging Face Datasets</div>
+      <pre><code>Humphreys, C. ({year}). Zaremba Conjecture Data. Hugging Face.
+  https://huggingface.co/datasets/cahlen/zaremba-conjecture-data
+
+Humphreys, C. ({year}). Kronecker Coefficients (S_20, S_30, S_40). Hugging Face.
+  https://huggingface.co/datasets/cahlen/kronecker-coefficients
+
+Humphreys, C. ({year}). Continued Fraction Spectra. Hugging Face.
+  https://huggingface.co/datasets/cahlen/continued-fraction-spectra</code></pre>
+    </div>
+
+    <h2 class="m-reveal">Guidance</h2>
+
+    <div class="cite-guidance m-reveal">
+      <div class="cite-guidance-item">
+        <strong>Safe verbs:</strong> computed, archived, benchmarked, observed, fit, checked, verified, released
+      </div>
+      <div class="cite-guidance-item">
+        <strong>With caveats:</strong> suggests, appears, is consistent with, within the tested range, preliminary numerical evidence
+      </div>
+      <div class="cite-guidance-item">
+        <strong>Do not use:</strong> proved, established, confirmed (unless referring to bounded computation, not theorems)
+      </div>
+    </div>
+
+    <p class="m-reveal" style="font-size:0.78rem;color:var(--text-secondary);margin-top:2rem;">
+      All content CC BY 4.0. Human–AI collaborative work (Cahlen Humphreys + Claude, o3-pro, GPT-5.2, Grok).
+      Not independently peer-reviewed.
+    </p>
+  </section>
+
+  <script is:inline>
+  (function() {
+    var reveals = document.querySelectorAll('.m-reveal');
+    function onScroll() {
+      var vh = window.innerHeight;
+      for (var i = 0; i < reveals.length; i++) {
+        var el = reveals[i];
+        if (el.getBoundingClientRect().top < vh * 0.85) el.classList.add('visible');
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+  </script>
+
+  <style>
+    .m-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .m-reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .cite-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+    .cite-page h1 {
+      font-family: var(--font-serif, 'STIX Two Text', Georgia, serif);
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .cite-page h2 {
+      font-family: var(--font-serif, 'STIX Two Text', Georgia, serif);
+      font-size: 1.2rem;
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border, #333);
+    }
+    .cite-intro {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .cite-intro em { color: #e8c47a; font-style: normal; font-weight: 600; }
+
+    .cite-block {
+      background: color-mix(in srgb, var(--surface, #1a1a1a) 60%, transparent);
+      border: 1px solid color-mix(in srgb, var(--border, #333) 40%, transparent);
+      border-radius: 6px;
+      margin: 0.8rem 0;
+      overflow: hidden;
+    }
+    .cite-label {
+      font-family: var(--font-mono, 'JetBrains Mono', monospace);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #e8c47a;
+      padding: 0.4rem 0.8rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--border, #333) 30%, transparent);
+      font-weight: 700;
+    }
+    .cite-block pre {
+      margin: 0;
+      padding: 0.8rem;
+      overflow-x: auto;
+    }
+    .cite-block code {
+      font-family: var(--font-mono, 'JetBrains Mono', monospace);
+      font-size: 0.72rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    .cite-finding {
+      margin: 0.5rem 0;
+      border: 1px solid color-mix(in srgb, var(--border, #333) 40%, transparent);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .cite-finding summary {
+      cursor: pointer;
+      padding: 0.6rem 1rem;
+      font-size: 0.82rem;
+      color: var(--text-primary);
+      list-style: none;
+    }
+    .cite-finding summary::-webkit-details-marker { display: none; }
+    .cite-finding summary::marker { display: none; content: ""; }
+    .cite-finding[open] { border-color: rgba(232,196,122,0.3); }
+    .cite-finding-body { padding: 0 1rem 0.8rem; }
+
+    .cite-guidance {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .cite-guidance-item {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--border, #333) 20%, transparent);
+    }
+    .cite-guidance-item strong { color: var(--text-primary); }
+  </style>
+</Base>

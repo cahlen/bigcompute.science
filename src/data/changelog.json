@@ -1,52 +1,52 @@
 [
   {
-    "hash": "65a2edf",
-    "date": "Apr 04",
-    "message": "GPU Zoo: cards now expandable (tap to see specs + what it can compute)"
+    "hash": "c4b5fc1",
+    "date": "Apr 05",
+    "message": "Zaremba density: add 10^11 results + fifth closed exception set {1,2,7}=7178"
   },
   {
-    "hash": "849be4d",
+    "hash": "5e8a56f",
     "date": "Apr 04",
-    "message": "GPU Zoo: interactive comparison with verified specs from NVIDIA"
+    "message": "Fix findings nav: centered flex, mobile-first, aligned with cards"
   },
   {
-    "hash": "e9486bd",
+    "hash": "5308fab",
     "date": "Apr 04",
-    "message": "Update README: current architecture, key pages, machine discoverability"
+    "message": "Fix findings nav: aligned grid instead of messy flex buttons"
   },
   {
-    "hash": "a71ecfe",
+    "hash": "a0668d9",
     "date": "Apr 04",
-    "message": "Add LICENSE: CC BY 4.0 (attribution required)"
+    "message": "Tone audit: fix overclaiming across About, Interactive, Verification"
   },
   {
-    "hash": "19a5f7c",
+    "hash": "30d82f1",
     "date": "Apr 04",
-    "message": "Improve AI crawlability: semantic HTML + contact info"
+    "message": "Tone down 'For Students' section: less grandiose, more genuine"
   },
   {
-    "hash": "5da0442",
+    "hash": "add73b4",
     "date": "Apr 04",
-    "message": "Regenerate meta.json + certifications.json (now auto-generated)"
+    "message": "About: add 'For Students and Researchers' section"
   },
   {
-    "hash": "86a96e6",
+    "hash": "1f764c3",
     "date": "Apr 04",
-    "message": "Add /meta.json: machine-readable index for AI crawlers"
+    "message": "Fix overclaiming language in all experiment pages"
   },
   {
-    "hash": "59bc193",
+    "hash": "424e5f8",
     "date": "Apr 04",
-    "message": "Add /cite/ page: ready-to-copy citations for every finding"
+    "message": "Render math in experiment results: superscripts, scientific notation, symbols"
   },
   {
-    "hash": "66ee4af",
+    "hash": "ad071b4",
     "date": "Apr 04",
-    "message": "Add IndexNow key verification file"
+    "message": "Fix: render ALL experiment result keys dynamically, not just 4 hardcoded"
   },
   {
-    "hash": "8c02adc",
+    "hash": "4bd599a",
     "date": "Apr 04",
-    "message": "Add structured data for machine discoverability on every finding page"
+    "message": "Refresh: changelog, certifications, meta.json, manifest (full sync)"
   }
 ]

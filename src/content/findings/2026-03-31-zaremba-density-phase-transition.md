@@ -199,7 +199,7 @@ Overnight 8xB200 GPU batch pushed all {1,2,k} pairs to $10^{11}$, revealing a **
 | $\{1,2,3\}$ | **27** | 6,234 | $10^9$ (10^{11} running) | Closed |
 | $\{1,2,4\}$ | **64** | ? | $10^{10}$ (10^{11} running) | Closed |
 | $\{1,2,5\}$ | **374** | ? | $10^{10}$ (10^{11} running) | Closed |
-| $\{1,2,6\}$ | **1,834** | ? | $10^{10}$ (10^{11} running) | Closed |
+| $\{1,2,6\}$ | **1,834** | ? | $10^{11}$ | Closed |
 | $\{1,2,7\}$ | **7,178** | ? | $10^{11}$ | **NEW — Closed** |
 
 The **{1,2,7} exception set is exactly 7,178 at both $10^{10}$ and $10^{11}$** — zero new exceptions across 90 billion additional integers tested. This is the fifth digit set confirmed to have a finite, closed exception set.

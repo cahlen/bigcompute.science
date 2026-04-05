@@ -1,5 +1,10 @@
 [
   {
+    "hash": "5d9a440",
+    "date": "Apr 05",
+    "message": "Update recent updates changelog from git log"
+  },
+  {
     "hash": "c4b5fc1",
     "date": "Apr 05",
     "message": "Zaremba density: add 10^11 results + fifth closed exception set {1,2,7}=7178"
@@ -43,10 +48,5 @@
     "hash": "ad071b4",
     "date": "Apr 04",
     "message": "Fix: render ALL experiment result keys dynamically, not just 4 hardcoded"
-  },
-  {
-    "hash": "4bd599a",
-    "date": "Apr 04",
-    "message": "Refresh: changelog, certifications, meta.json, manifest (full sync)"
   }
 ]

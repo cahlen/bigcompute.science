@@ -58,7 +58,7 @@ For each $k = 2, 3, \ldots, 10$, we computed the Zaremba density of the pair $A 
 
 ### The critical jump is at $k = 2$
 
-The jump from $k = 3$ (11%) to $k = 2$ (77%) is the largest in the entire hierarchy — a factor of **6.9x** in observed density. This ratio measures the density gap between consecutive pairs at a fixed search range ($10^{10}$), not an intrinsic "value" of a digit. The large jump reflects both $\{1,2\}$ crossing the Hausdorff dimension threshold ($\delta > 1/2$) and the Gauss measure weight $1/k^2$ dropping by a factor of $4/9 \approx 0.44$ from $k=2$ to $k=3$.
+At $N = 10^{10}$, the density ratio $\rho(\{1,2\}) / \rho(\{1,3\}) = 76.55 / 11.06 \approx 6.9$. This is the largest consecutive ratio in the hierarchy. It measures the density gap between two specific digit pairs at a fixed search range, not an intrinsic "value" of digit 2 vs. digit 3; at different $N$ the ratio may shift (though we expect it to stabilize as $N \to \infty$ because both sets have positive Hausdorff dimension). The large jump reflects both $\{1,2\}$ crossing the Hausdorff dimension threshold ($\delta > 1/2$) and the Gauss measure weight $1/k^2$ dropping by a factor of $4/9 \approx 0.44$ from $k=2$ to $k=3$.
 
 ### Gauss measure predicts the hierarchy
 
@@ -97,22 +97,36 @@ For comparison, we computed all $\{2, k\}$ pairs at $10^{10}$:
 | 9 | 0.030% | 0.0006% | **47x** |
 | 10 | 0.020% | 0.0005% | **42x** |
 
-**Digit 1 amplifies density by 42-243x** over the equivalent pair with digit 2. The amplification is strongest for small $k$ (where digit 1's presence lifts the Hausdorff dimension above the critical threshold) and weakest for large $k$ (where both sets have such low dimension that density is near zero regardless).
+**Digit 1 amplifies density by 42--243x** over the equivalent pair with digit 2 (ratios computed from the same GPU kernel at $N = 10^{10}$; see `results/gpu_A1k_1e10.log` and `results/gpu_A2k_1e10.log` for raw counts). The amplification is strongest for small $k$ (where digit 1's presence lifts the Hausdorff dimension above the critical threshold) and weakest for large $k$ (where both sets have such low dimension that density is near zero regardless).
 
 Without digit 1, no pair achieves even 0.1% density. This is the strongest quantitative evidence for the digit 1 dominance phenomenon.
 
 ## Closed Exception Sets
 
-Four $\{1, 2, k\}$ triples have computationally observed exception sets that appear *stable* — no new exceptions appear when extending the search range by a factor of 10. Note: stability across one decade of extension is strong computational evidence but does not constitute a proof of finiteness; additional exceptions could in principle appear at larger ranges.
+Four $\{1, 2, k\}$ triples have computationally observed exception sets that appear *stable* — no new exceptions appear when extending the search range by a factor of 10. **This is observational stability, not a proof of finiteness.** No branch-and-bound or analytic argument rules out further exceptions beyond our search range. The search is exhaustive within the stated range (every integer $1 \leq d \leq N$ is checked via the bitset).
 
-| Digit set | Exceptions | Verified to | Status |
-|-----------|-----------|------------|--------|
-| $\{1,2,3\}$ | **27** | $10^{10}$ (pending $10^{11}$) | no growth from $10^9$ to $10^{10}$ |
-| $\{1,2,4\}$ | **64** | $10^{10}$ (pending $10^{11}$) | no growth from $10^9$ to $10^{10}$ |
-| $\{1,2,5\}$ | **374** | $10^{11}$ | no growth from $10^{10}$ to $10^{11}$ |
-| $\{1,2,6\}$ | **1,834** | $10^{11}$ | no growth from $10^{10}$ to $10^{11}$ |
+| Digit set | Exceptions | Exhaustive to | Stability window | Status |
+|-----------|-----------|--------------|-----------------|--------|
+| $\{1,2,3\}$ | **27** | $10^{10}$ | $10^9 \to 10^{10}$: no growth | $10^{11}$ in progress |
+| $\{1,2,4\}$ | **64** | $10^{10}$ | $10^9 \to 10^{10}$: no growth | $10^{11}$ in progress |
+| $\{1,2,5\}$ | **374** | $10^{11}$ | $10^{10} \to 10^{11}$: no growth | Closed |
+| $\{1,2,6\}$ | **1,834** | $10^{11}$ | $10^{10} \to 10^{11}$: no growth | Closed |
+| $\{1,2,7\}$ | **7,178** | $10^{11}$ | $10^{10} \to 10^{11}$: no growth | **NEW — Closed** |
 
-The sequence 27, 64, 374, 1,834 grows rapidly with $k$. We cannot rigorously prove these sets are finite — additional exceptions could in principle appear beyond our search range. However, the stability across a full decade of extension is strong computational evidence. The computation A=$\{1,2,7\}$ at $10^{10}$ found 7,178 uncovered; the $10^{11}$ run is underway to test stability.
+The largest exception for $\{1,2,4\}$ is $d = 51{,}270$ (full list of all 64 values available in `results/gpu_A124_1e10.log`).
+
+The sequence 27, 64, 374, 1,834, 7,178 grows rapidly with $k$. We cannot rigorously prove these sets are finite — additional exceptions could in principle appear beyond our search range. However, the stability across a full decade of extension is strong computational evidence.
+
+**Update (2026-04-05):** $A=\{1,2,7\}$ at $10^{11}$ confirms exactly 7,178 exceptions — unchanged from $10^{10}$, making this the fifth closed exception set. Meanwhile $\{1,2,8\}$ has 23,590 at $10^{11}$ (growing), suggesting a sharp closed/open threshold at $k=7$.
+
+### Open Exception Sets at $10^{11}$
+
+| Digit set | Exceptions | Growth from $10^{10}$ | Status |
+|-----------|-----------|----------------------|--------|
+| $\{1,2,8\}$ | 23,590 | growing | Open |
+| $\{1,2,9\}$ | 77,109 | growing | Open |
+| $\{1,2,10\}$ | 228,514 | growing | Open |
+| $\{1,3,5\}$ | 80,945 | +514 from 80,431 | Slowly growing |
 
 ## Reproduce
 
@@ -123,7 +137,23 @@ for k in 2 3 4 5 6 7 8 9 10; do
 done
 ```
 
-Each pair takes 10-15 seconds on a B200 (Blackwell, 192 GB HBM3e, CUDA 12.8). The kernel uses an inverse CF construction (enumerating all CFs with digits in $A$ and marking their denominators in a bitset), not per-denominator modular inversion. Full algorithmic details and timing logs are available in the GitHub repository.
+**Algorithm.** The kernel enumerates all continued fractions $[a_1, a_2, \ldots]$ with $a_i \in A$ by DFS over the CF tree. Each node corresponds to a convergent $p_n/q_n$; children are formed via $q_{n+1} = a \cdot q_n + q_{n-1}$ for each $a \in A$, pruning when $q > N$. Reachable denominators are marked in a global bitset (1.25 GB for $N = 10^{10}$, one bit per integer). The CPU generates prefixes to depth 4--12 (depending on $|A|$ and $N$), then launches one GPU thread per prefix for the remaining DFS. Bit-marking uses `atomicOr` for thread safety. After GPU completion, the CPU counts marked bits.
+
+**Timing per pair** (NVIDIA B200, CUDA 12.8, `nvcc -O3 -arch=sm_100a`):
+
+| Pair | GPU enum (s) | Total (s) | Prefixes |
+|------|-------------|-----------|----------|
+| {1,2} | 79.8 | 88.4 | 4096 |
+| {1,3} | 9.3 | 18.0 | 4096 |
+| {1,4} | 2.4 | 11.1 | 4096 |
+| {1,5} | 1.8 | 10.4 | 4096 |
+| {1,6} | 1.9 | 10.6 | 4096 |
+| {1,7} | 1.7 | 10.3 | 4095 |
+| {1,8} | 1.6 | 10.3 | 4083 |
+| {1,9} | 1.5 | 10.3 | 4083 |
+| {1,10} | 1.4 | 10.1 | 4017 |
+
+The large tree for $\{1,2\}$ (Hausdorff dimension 0.531) takes 88 s; all other pairs complete in 10--18 s. Full output logs are in `scripts/experiments/zaremba-density/results/`.
 
 ---
 

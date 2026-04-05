@@ -1,5 +1,10 @@
 [
   {
+    "hash": "159fbb2",
+    "date": "Apr 05",
+    "message": "Zaremba findings: fifth closed set {1,2,7}, open sets at 10^11, {1,2,6} confirmed"
+  },
+  {
     "hash": "5d9a440",
     "date": "Apr 05",
     "message": "Update recent updates changelog from git log"
@@ -43,10 +48,5 @@
     "hash": "424e5f8",
     "date": "Apr 04",
     "message": "Render math in experiment results: superscripts, scientific notation, symbols"
-  },
-  {
-    "hash": "ad071b4",
-    "date": "Apr 04",
-    "message": "Fix: render ALL experiment result keys dynamically, not just 4 hardcoded"
   }
 ]

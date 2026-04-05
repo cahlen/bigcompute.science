@@ -40,19 +40,21 @@ code: https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-
 
 ## The Finding
 
-For each $k = 2, 3, \ldots, 10$, we computed the Zaremba density of the pair $A = \{1, k\}$ at $N = 10^{10}$. The density drops **exponentially** with $k$:
+For each $k = 2, 3, \ldots, 10$, we computed the Zaremba density of the pair $A = \{1, k\}$ at $N = 10^{10}$ and $10^{11}$. The density drops **exponentially** with $k$:
 
-| $k$ | Density at $10^{10}$ | $\dim_H(E_{\{1,k\}})$ | Above $1/2$? | Ratio to $k-1$ |
-|-----|---------------------|----------------------|-------------|-----------------|
-| 2 | **76.5487%** | 0.531 | **Yes** | — |
-| 3 | 11.0568% | 0.454 | No | 6.9x drop |
-| 4 | 1.6096% | 0.397 | No | 6.9x drop |
-| 5 | 0.4398% | 0.349 | No | 3.7x drop |
-| 6 | 0.1721% | 0.309 | No | 2.6x drop |
-| 7 | 0.0840% | 0.275 | No | 2.0x drop |
-| 8 | 0.0475% | 0.246 | No | 1.8x drop |
-| 9 | 0.0297% | 0.221 | No | 1.6x drop |
-| 10 | 0.0201% | 0.199 | No | 1.5x drop |
+| $k$ | Density at $10^{10}$ | Density at $10^{11}$ | $\dim_H(E_{\{1,k\}})$ | Above $1/2$? |
+|-----|---------------------|---------------------|----------------------|-------------|
+| 2 | **76.5487%** | **80.7543%** | 0.531 | **Yes** |
+| 3 | 11.0568% | 9.1109% | 0.454 | No |
+| 4 | 1.6096% | 1.0735% | 0.397 | No |
+| 5 | 0.4398% | 0.2564% | 0.349 | No |
+| 6 | 0.1721% | 0.0876% | 0.309 | No |
+| 7 | 0.0840% | 0.0387% | 0.275 | No |
+| 8 | 0.0475% | 0.0202% | 0.246 | No |
+| 9 | 0.0297% | 0.0117% | 0.221 | No |
+| 10 | 0.0201% | 0.0074% | 0.199 | No |
+
+Note: $\{1,2\}$ density **increases** with $N$ (converging toward 100%), while all other pairs **decrease** (converging toward 0%). This is the critical distinction: only $\{1,2\}$ has $\delta > 1/2$.
 
 ## Why This Matters
 

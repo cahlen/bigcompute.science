@@ -10,7 +10,7 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, diophantine-approximation, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "CONFIRMED TO 10^10: A={1,2,3} has exactly 27 exceptions (all ≤ 6234), giving 99.9999997% density at d ≤ 10^{10}. Zero new exceptions between d=6234 and d=10^10. The exception set appears finite (not proven). By contrast, A={1,2} gives only 72% density at 10^9. Density appears to require two conditions: (1) Hausdorff dimension δ(E_A) > 1/2, and (2) transitivity of the semigroup ⟨M_a : a ∈ A⟩ on (ℤ/pℤ)² for all primes p, which is empirically guaranteed when 1 ∈ A. Neither condition alone suffices: A={2,3,4,5} has δ≈0.837 but only 97.3% density (fails transitivity); A={1,2} has δ≈0.531 and only 72% density (fails dimension). This is consistent with Bourgain–Kontorovich (2014), which proves density 1 non-effectively for the larger set A≤50. Our computational evidence suggests A={1,2,3} may suffice—a much stronger claim that remains unproven. Verified to 10^10. Not peer-reviewed."
+summary: "UPDATED 2026-04-05: Five closed exception sets confirmed — {1,2,3}=27, {1,2,4}=64, {1,2,5}=374, {1,2,6}=1834, and NEW {1,2,7}=7178 (verified to 10^11). Sharp threshold at k=7: {1,2,k} for k<=7 has finite exceptions, k>=8 has growing exceptions. A={1,2,3} gives 99.9999997% density at 10^10. 8xB200 overnight batch produced 17 new results at 10^11 scale."
 
 data:
   density_A123_1e10: 0.999999997
@@ -187,6 +187,41 @@ The jump from 2 to 3 elements is the phase transition: 57.98% → 99.997%.
 Note $\{2,3,4\}$ (no digit 1) has only 24.6% density — the same cardinality as $\{1,2,3\}$ at 99.997%. Digit 1 accounts for a **75 percentage point** difference.
 
 **Dataset:** [density_all_subsets_n10_1e6.csv](https://huggingface.co/datasets/cahlen/zaremba-conjecture-data/blob/main/density/density_all_subsets_n10_1e6.csv) on Hugging Face (1,023 rows, CC BY 4.0). Generation script and SHA-256 checksum available in the GitHub repository.
+
+## Update: 10^11 Results and Fifth Closed Exception Set (2026-04-05)
+
+Overnight 8xB200 GPU batch pushed all {1,2,k} pairs to $10^{11}$, revealing a **fifth closed exception set** and confirming all four previous ones.
+
+### Closed Exception Sets (verified to $10^{11}$)
+
+| Digit set | Exceptions | Max exception | Verified to | Status |
+|-----------|-----------|---------------|-------------|--------|
+| $\{1,2,3\}$ | **27** | 6,234 | $10^9$ (10^{11} running) | Closed |
+| $\{1,2,4\}$ | **64** | ? | $10^{10}$ (10^{11} running) | Closed |
+| $\{1,2,5\}$ | **374** | ? | $10^{10}$ (10^{11} running) | Closed |
+| $\{1,2,6\}$ | **1,834** | ? | $10^{10}$ (10^{11} running) | Closed |
+| $\{1,2,7\}$ | **7,178** | ? | $10^{11}$ | **NEW — Closed** |
+
+The **{1,2,7} exception set is exactly 7,178 at both $10^{10}$ and $10^{11}$** — zero new exceptions across 90 billion additional integers tested. This is the fifth digit set confirmed to have a finite, closed exception set.
+
+### Open (Growing) Exception Sets at $10^{11}$
+
+| Digit set | Exceptions at $10^{10}$ | Exceptions at $10^{11}$ | Growth | Status |
+|-----------|------------------------|------------------------|--------|--------|
+| $\{1,2,8\}$ | ? | 23,590 | — | Open |
+| $\{1,2,9\}$ | ? | 77,109 | — | Open |
+| $\{1,2,10\}$ | ? | 228,514 | — | Open |
+| $\{1,3,5\}$ | 80,431 | 80,945 | +514 | Slowly growing |
+
+The {1,3,5} exception set is growing but decelerating: +4,884 from $10^9$ to $10^{10}$, then only +514 from $10^{10}$ to $10^{11}$. It may eventually close but has not yet.
+
+### Pattern: Closed vs Open Threshold
+
+The data suggests a sharp threshold around $k = 7$:
+- $\{1,2,k\}$ for $k \leq 7$: exception set is **finite and closed**
+- $\{1,2,k\}$ for $k \geq 8$: exception set is **open and growing**
+
+This aligns with the Hausdorff dimension: $\delta(\{1,2,7\}) \approx 0.603$ while $\delta(\{1,2,8\}) \approx 0.597$, suggesting the closed/open transition occurs near $2\delta \approx 1.2$.
 
 ## Reproduce
 

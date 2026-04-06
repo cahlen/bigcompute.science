@@ -25,7 +25,7 @@ data:
     k8: 0.0221
     k9: 0.0132
     k10: 0.0085
-  scaling: "approximately k^(-3 to -4), precise exponent uncertain"
+  scaling: "k^(-5.83), R²=0.994 (log-log regression over k=2..10)"
 
 certification:
   level: bronze
@@ -88,18 +88,23 @@ The densities fit approximately:
 
 $$\text{density}(\{1,k\}) \approx C \cdot k^{-\alpha} \qquad \text{for } k \geq 3$$
 
-with $\alpha$ in the range 3--4 (a formal log-log regression with confidence intervals has not been performed; the exponent estimate is approximate given the small number of data points). The rough magnitude is consistent with twice the Gauss measure exponent $-2$ (from $1/k^2$), which is expected since density depends on the *product* of the two digits' contributions.
+Log-log regression over all 9 pairs ($k = 2$ through $10$) at $10^{11}$ gives:
+
+$$\text{density}(\{1,k\}) \approx 4090 \cdot k^{-5.83} \qquad R^2 = 0.994$$
+
+The exponent $-5.83$ is steeper than the naive $-2$ from the Gauss measure weight $1/k^2$ alone. The discrepancy reflects the nonlinear dependence of Hausdorff dimension on the digit set: as $k$ grows, $\dim_H(E_{\{1,k\}})$ drops below $1/2$, causing the density to decay as an additional power of $N$. The product of these effects gives the steeper effective exponent.
 
 ## Without Digit 1: The {2,k} and {3,k} Hierarchies
 
 Removing digit 1 collapses density by orders of magnitude. We now have $\{2,k\}$ data at $10^{10}$ and select pairs at $10^{11}$:
 
-| $k$ | $\{1,k\}$ at $10^{11}$ | $\{2,k\}$ at $10^{10}$ | $\{2,k\}$ at $10^{11}$ | Digit 1 multiplier ($10^{11}$) |
-|-----|----------------------|----------------------|----------------------|-------------------------------|
-| 4 | 1.0735% | 0.0106% | 0.00431% | **249x** |
-| 5 | 0.2564% | 0.0041% | 0.00162% | **158x** |
+| $k$ | $\{1,k\}$ at $10^{11}$ | $\{2,k\}$ at $10^{11}$ | Digit 1 multiplier | Growth from $10^{10}$ |
+|-----|----------------------|----------------------|-------------------|-----------------------|
+| 3 | 9.1093% | 0.02148% | **424x** | 1.74x (was 243x) |
+| 4 | 1.0735% | 0.00431% | **249x** | 1.64x (was 152x) |
+| 5 | 0.2564% | 0.00162% | **158x** | 1.48x (was 107x) |
 
-**Digit 1 amplifies density by 158--249x** at $10^{11}$ (up from 107--152x at $10^{10}$). The amplification *increases* with scale because $\{1,k\}$ pairs have higher Hausdorff dimension than $\{2,k\}$ pairs, so their density decays more slowly.
+**Digit 1 amplifies density by 158--424x** at $10^{11}$, and the amplification is *growing* with scale: the multiplier increased by 1.5--1.7x from $10^{10}$ to $10^{11}$. This growth is explained by the Hausdorff dimension gap: $\{1,k\}$ pairs have higher dimension than $\{2,k\}$ pairs, so their density decays more slowly, making the ratio diverge.
 
 ### Dropping further: {3,k} pairs at $10^{11}$
 

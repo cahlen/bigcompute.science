@@ -1,5 +1,10 @@
 [
   {
+    "hash": "05bc33d",
+    "date": "Apr 06",
+    "message": "New finding: inverse-square amplification law for digit 1 in Zaremba density"
+  },
+  {
     "hash": "d4f51a6",
     "date": "Apr 06",
     "message": "Update findings: digit-pair hierarchy at 10^11, S30 Kronecker recomputation"
@@ -43,10 +48,5 @@
     "hash": "a0668d9",
     "date": "Apr 04",
     "message": "Tone audit: fix overclaiming across About, Interactive, Verification"
-  },
-  {
-    "hash": "30d82f1",
-    "date": "Apr 04",
-    "message": "Tone down 'For Students' section: less grandiose, more genuine"
   }
 ]

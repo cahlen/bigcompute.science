@@ -2,7 +2,7 @@
   "name": "bigcompute.science",
   "description": "Open computational mathematics on GPUs. AI-audited, not peer-reviewed.",
   "url": "https://bigcompute.science",
-  "generated_at": "2026-04-04T07:15:54Z",
+  "generated_at": "2026-04-06T17:38:57Z",
   "author": {
     "name": "Cahlen Humphreys",
     "github": "https://github.com/cahlen",
@@ -10,10 +10,10 @@
   },
   "license": "CC-BY-4.0",
   "stats": {
-    "findings": 16,
-    "reviews": 44,
-    "issues": 121,
-    "issues_fixed": 118,
+    "findings": 18,
+    "reviews": 47,
+    "issues": 164,
+    "issues_fixed": 150,
     "models": [
       "ChatGPT",
       "Claude Opus 4.6",
@@ -43,8 +43,10 @@
     "zaremba-exception-hierarchy": "https://bigcompute.science/findings/zaremba-exception-hierarchy/",
     "zaremba-representation-growth": "https://bigcompute.science/findings/zaremba-representation-growth/",
     "zaremba-witness-golden-ratio": "https://bigcompute.science/findings/zaremba-witness-golden-ratio/",
-    "zaremba-conjecture-proved": "https://bigcompute.science/findings/zaremba-conjecture-proved/",
     "zaremba-transitivity-all-primes": "https://bigcompute.science/findings/zaremba-transitivity-all-primes/",
+    "zaremba-conjecture-proved": "https://bigcompute.science/findings/zaremba-conjecture-proved/",
+    "zaremba-inverse-square-amplification": "https://bigcompute.science/findings/zaremba-inverse-square-amplification/",
+    "zaremba-conjecture-framework": "https://bigcompute.science/findings/zaremba-conjecture-framework/",
     "_project-level": "https://bigcompute.science/findings/_project-level/"
   },
   "structured_data": {

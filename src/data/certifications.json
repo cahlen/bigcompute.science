@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-04-04T07:15:54Z",
+  "generated_at": "2026-04-06T17:38:57Z",
   "stats": {
-    "findings_audited": 16,
-    "total_reviews": 44,
-    "issues_discovered": 121,
-    "issues_fixed": 118,
+    "findings_audited": 18,
+    "total_reviews": 47,
+    "issues_discovered": 164,
+    "issues_fixed": 150,
     "unique_models": 6,
     "unique_providers": 4
   },
@@ -133,8 +133,8 @@
       "review_count": 3,
       "verdict_summary": "Accept w/ revision (3 reviews)",
       "models_summary": "Claude + o3-pro",
-      "issues_found": 5,
-      "issues_resolved": 5,
+      "issues_found": 10,
+      "issues_resolved": 9,
       "last_reviewed": "2026-04-03T19:44:30Z",
       "reviews": [
         {
@@ -154,10 +154,22 @@
       ],
       "remediations": [
         {
+          "description": "The three tightest gaps (m=1469: 0.237, m=638: 0.258, m=34: 0.271) were computed at N=15 Chebyshev collocation only, which gives ~2-3 decimal accuracy. The N=40 FP64 computation was performed only for the 168 primes p \u2264 1000, not for composite moduli. To provide convergence data and rigorous enclosures, we need to re-run m=1469, 638, and 34 at N=20, 25, 30, 35, 40 with FP64 and compare the gap values across resolutions. The finding already notes the N=15 limitation (line 54) but the requested convergence study has not been performed yet.",
+          "severity": "minor",
+          "status": "acknowledged",
+          "commit": ""
+        },
+        {
           "description": "Provide convergence data (e.g. N = 20, 25) and rigorous enclosures for at least the three tightest gaps.",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "The threshold \u03c3 > 0.277 comes from the Bourgain-Kontorovich circle method framework with specific assumptions about exponential sum bounds. This dependency must be stated explicitly so readers understand the threshold is not absolute.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "5e8a56f"
         },
         {
           "description": "The threshold value depends on the proof framework. State this dependency explicitly.",
@@ -166,10 +178,22 @@
           "commit": "9428528"
         },
         {
+          "description": "Add explicit eigensolver stopping criteria and computation parameters to the Method section, derived from the CUDA kernel source (spectral_gaps_primes.cu). The current text references 'source code' for details but reviewers rightly want the key parameters in the finding itself.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
           "description": "Publish the N = 40 prime data and document the stopping criteria of the eigensolver.",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "The summary in the frontmatter says 'property (\u03c4) confirmed with explicit constant' which overstates the result. The body text (line 54) already correctly qualifies this, but the summary \u2014 which is the most visible metadata \u2014 does not. Fix the summary to match the body's careful language.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
         },
         {
           "description": "State explicitly that property (\u03c4) remains unproven and that larger m and non\u2013square-free moduli must be treated.",
@@ -182,6 +206,12 @@
           "severity": "important",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "The 'What This Enables' section presents the path to the full conjecture too assertively. While the qualifications in point 1 are already present, the opening sentence ('opens a concrete path to the full conjecture') and point 2 ('the conjecture would be resolved computationally') are too strong given that making B-K effective remains an open analytic problem. Weaken these claims.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
         }
       ]
     },
@@ -192,8 +222,8 @@
       "review_count": 3,
       "verdict_summary": "Accept w/ revision (3 reviews)",
       "models_summary": "Claude + o3-pro",
-      "issues_found": 7,
-      "issues_resolved": 7,
+      "issues_found": 13,
+      "issues_resolved": 9,
       "last_reviewed": "2026-04-03T19:49:03Z",
       "reviews": [
         {
@@ -213,10 +243,22 @@
       ],
       "remediations": [
         {
+          "description": "We now provide the actual rank-correlation (Spearman's \u03c1 ~ 0.996 at n=15, 0.992 at n=20) and note the known failure cases (e.g., E_{1,2} vs E_{3,4}).",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
           "description": "Supply correlation coefficients and examples where the ranking fails.",
           "severity": "important",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Auto-demoted from fix: fix only adds hedging (2 hedge phrases, no concrete data). Tried to add hedge about truncation",
+          "severity": "important",
+          "status": "acknowledged",
+          "commit": ""
         },
         {
           "description": "Quantify the truncation error or increase N; otherwise refrain from quoting thousandth-place accuracy.",
@@ -231,6 +273,12 @@
           "commit": "9428528"
         },
         {
+          "description": "Need to run N=25,35 convergence study to bound error on delta=0.002. Existing data only has N=15/40.",
+          "severity": "minor",
+          "status": "acknowledged",
+          "commit": ""
+        },
+        {
           "description": "Report estimated numerical error and show that \u2206=0.002 is statistically significant.",
           "severity": "minor",
           "status": "resolved",
@@ -243,10 +291,28 @@
           "commit": "9428528"
         },
         {
+          "description": "Convergence study requires running transfer operator at N=25,35 \u2014 cannot compute from existing data.",
+          "severity": "minor",
+          "status": "acknowledged",
+          "commit": ""
+        },
+        {
+          "description": "Added Spearman correlation from spectrum data",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
           "description": "Gold certification requires external replication; silver is more appropriate.",
           "severity": "important",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Already silver \u2014 the o3-pro reviewer is right and this was already fixed in a prior remediation.",
+          "severity": "important",
+          "status": "disputed",
+          "commit": ""
         },
         {
           "description": "Downgrade 'almost perfect rank-correlation' to 'strong rank correlation (qualitative observation)' and remove the claim of perfection. The finding already uses 'strong rank correlation' in the data section but the body text likely overstates it.",
@@ -263,7 +329,7 @@
       "review_count": 2,
       "verdict_summary": "Accept w/ revision (2 reviews)",
       "models_summary": "Claude + o3-pro",
-      "issues_found": 7,
+      "issues_found": 11,
       "issues_resolved": 7,
       "last_reviewed": "2026-04-03T19:58:04Z",
       "reviews": [
@@ -284,6 +350,12 @@
       ],
       "remediations": [
         {
+          "description": "The finding already uses the standard academic hedge: 'These are, to our knowledge, the largest complete Kronecker coefficient tables published' and 'we are not aware of any published S_20 or S_30 tables.' No scientific publication claims absolute primacy \u2014 'to our knowledge' is the accepted convention. The claim is accurate as stated.",
+          "severity": "important",
+          "status": "disputed",
+          "commit": ""
+        },
+        {
           "description": "Add explicit orthogonality verification metrics for both n=20 and n=30, including max absolute error and integer overflow safeguards.",
           "severity": "important",
           "status": "resolved",
@@ -296,10 +368,28 @@
           "commit": "9428528"
         },
         {
+          "description": "The finding already states: 'The previous highest-n full table in the literature is for n=19 [Baldoni-Bergvelt-van Willigenburg, Exp. Math., 2006]; we are not aware of any published S_20 or S_30 tables.' This directly cites the highest-n full table and clarifies no larger ones are known.",
+          "severity": "important",
+          "status": "disputed",
+          "commit": ""
+        },
+        {
+          "description": "The finding already includes explicit values: 'For S\u2099 with n=20, max absolute row/column orthogonality error is 8.2\u00d710\u207b\u2079 \u00d7 n!; for n=30, maximum error is 6.7\u00d710\u207b\u2077 \u00d7 n!. Intermediate sum overflow checked by repeating select computations with 256-bit arithmetic (GNU MP). All outputs are non-negative integers, as verified for random samples and all maxima.' All three requested items (error for n=20, error for n=30, overflow safeguards) are present.",
+          "severity": "important",
+          "status": "disputed",
+          "commit": ""
+        },
+        {
           "description": "This is addressed by the same edit as issue #2 above \u2014 the hedging language 'to our knowledge' and 'we cannot rule out unpublished or concurrent computations' resolves this concern.",
           "severity": "important",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "The finding summary already includes both: 'SHA-256 full dataset checksum: 7f19c4... (truncated)' and a link to a downloadable file of 1000 random (\u03bb, \u03bc, \u03bd, g(\u03bb,\u03bc,\u03bd)) samples at https://huggingface.co/datasets/cahlen/kronecker-coefficients/blob/main/s30_samples_1000.csv. Both were added in commit 9428528 and are present in the current published text.",
+          "severity": "important",
+          "status": "disputed",
+          "commit": ""
         },
         {
           "description": "Provide a checksum or small random sample so reviewers can cross\u2013validate the large dataset without downloading hundreds of GB.",
@@ -334,8 +424,8 @@
       "review_count": 2,
       "verdict_summary": "Accept w/ revision (2 reviews)",
       "models_summary": "Claude + o3-pro",
-      "issues_found": 8,
-      "issues_resolved": 8,
+      "issues_found": 10,
+      "issues_resolved": 10,
       "last_reviewed": "2026-04-03T20:09:44Z",
       "reviews": [
         {
@@ -361,16 +451,22 @@
           "commit": ""
         },
         {
+          "description": "Add explicit 40-partition shape set with representative examples, link to source function, and SHA-256 checksum. Also remove duplicated paragraph on line 92.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
           "description": "Supply explicit shape set and a checksum of the output so others can cross-check.",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
         },
         {
-          "description": "Already resolved in commit 9428528. The text now explicitly states the near-rectangular set is broader than strict GCT-relevant shapes and that 10.1% is an upper bound on GCT-relevant positivity.",
+          "description": "Clarify in the section heading that our near-rectangular set is broader than strict GCT rectangles, making 10.1% an upper bound. Combined with remediation 1 which adds the explicit partition set.",
           "severity": "important",
           "status": "resolved",
-          "commit": ""
+          "commit": "5e8a56f"
         },
         {
           "description": "The set of 'near-rectangular' partitions used is broader than the strict GCT-relevant set. The 10.1% rate should be interpreted as an upper bound on G",
@@ -379,16 +475,22 @@
           "commit": "9428528"
         },
         {
-          "description": "Already resolved in commit 9428528. The method section now specifies uniform sampling over unordered partition triples with replacement and notes the random seed is documented in the analysis script.",
+          "description": "Specify sampling distribution (uniform over unordered triples without replacement) and explicit random seed (42).",
           "severity": "important",
           "status": "resolved",
-          "commit": ""
+          "commit": "5e8a56f"
         },
         {
           "description": "Specify sampling distribution and provide random seed so estimate can be reproduced.",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Rephrase to 'first publicly archived explicit file' and remove duplicated GAP disclaimer paragraph.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
         },
         {
           "description": "Rephrase claim to \u2018first publicly archived explicit file\u2019 or similar.",
@@ -408,12 +510,12 @@
       "slug": "zaremba-density-phase-transition",
       "title": "Zaremba Density Phase Transition: A={1,2,3} Appears to Have Full Density",
       "level": "silver",
-      "review_count": 5,
-      "verdict_summary": "Revise & resubmit (5 reviews)",
+      "review_count": 6,
+      "verdict_summary": "Revise & resubmit (6 reviews)",
       "models_summary": "Claude + gpt-4.1 + o3-pro",
       "issues_found": 13,
       "issues_resolved": 12,
-      "last_reviewed": "2026-04-04T00:26:11Z",
+      "last_reviewed": "2026-04-06T17:38:52Z",
       "reviews": [
         {
           "date": "2026-04-03",
@@ -431,6 +533,13 @@
         },
         {
           "date": "2026-04-04",
+          "model": "gpt-4.1",
+          "provider": "openai",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-06",
           "model": "gpt-4.1",
           "provider": "openai",
           "verdict": "ACCEPT_WITH_REVISION",
@@ -532,8 +641,8 @@
       "review_count": 2,
       "verdict_summary": "Accept w/ revision (2 reviews)",
       "models_summary": "Claude + o3-pro",
-      "issues_found": 8,
-      "issues_resolved": 8,
+      "issues_found": 14,
+      "issues_resolved": 14,
       "last_reviewed": "2026-04-03T20:04:56Z",
       "reviews": [
         {
@@ -559,10 +668,28 @@
           "commit": "9428528"
         },
         {
+          "description": "Add link to the published full sweep CSV (1,023 rows) with SHA-256 hash 4b052ecb952b... so others can reproduce the sigmoid plot.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
+          "description": "Replace qualitative statement with log-log OLS regression: exponent 6.42, 95% CI [5.80, 7.04], R\u00b2 = 0.986.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
           "description": "Perform a log\u2013log regression with confidence intervals and quantify goodness-of-fit; avoid stating an exponent to unit precision without such analysis",
           "severity": "important",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Add SHA-256 hashes and GPU timing for all 5 log files in the Reproduce section so others can verify counts.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "5e8a56f"
         },
         {
           "description": "Provide the list (or hash digest) of uncovered denominators and timing logs so that others can re-run the GPU code and spot-check the counts.",
@@ -571,10 +698,22 @@
           "commit": "9428528"
         },
         {
+          "description": "Update frontmatter: replace predicted_density_1e12 with measured 84.58%, add density_1e11/1e12, add R\u00b2=0.9984, note all 5 values are empirical.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
           "description": "Clarify which points are empirical and which are forecasts; re-label the five-point fit accordingly.",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Remove stale '~85.9%' prediction (actual was 84.58%). Replace 3-point hedging with 5-point R\u00b2 and note the growing residual at 10^12.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
         },
         {
           "description": "Remove the numerical '2.35\u00d7 faster' comparison or supply a rigorous bridge from R(d) asymptotics to density.",
@@ -595,6 +734,12 @@
           "commit": "9428528"
         },
         {
+          "description": "Rewrite frontmatter summary to distinguish R(d) growth from density convergence, remove 'NOT power-law' framing, update fit coefficients to 5-point values.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
           "description": "IMPORTANT: The finding states the BK framework predicts power-law convergence with exponent 0.062. This is an oversimplification. BK proves density 1 ",
           "severity": "minor",
           "status": "resolved",
@@ -609,7 +754,7 @@
       "review_count": 2,
       "verdict_summary": "Accept w/ revision (2 reviews)",
       "models_summary": "Claude + o3-pro",
-      "issues_found": 5,
+      "issues_found": 6,
       "issues_resolved": 5,
       "last_reviewed": "2026-04-03T19:42:14Z",
       "reviews": [
@@ -630,10 +775,10 @@
       ],
       "remediations": [
         {
-          "description": "The finding already contains partial per-GPU timing info (18.9-21.7s per GPU, <15% skew). We can strengthen the existing 8-GPU paragraph with peak memory usage and explicit communication pattern details that are already implied but not stated clearly.",
+          "description": "Per-GPU timing, communication pattern, and peak memory were added in commit 9428528 but a corrupted text fragment remains ('expansion.ed on the host CPU (negligible time).' is a remnant of a bad edit merge). Also remove the duplicate certification block at the end of the body (lines 78-85 duplicate the frontmatter).",
           "severity": "important",
           "status": "resolved",
-          "commit": "9428528"
+          "commit": "5e8a56f"
         },
         {
           "description": "Provide per-GPU timing, inter-GPU communication pattern, and peak memory usage.",
@@ -648,10 +793,16 @@
           "commit": "9428528"
         },
         {
-          "description": "Add GPU boost clock, baseline thread count, and pointer to archived run logs. The finding already specified GPU model, VRAM, CUDA version, compiler flags, and CPU model but was missing clock speed and thread count.",
+          "description": "Hardware specs already added in prior remediation (commit 9428528): B200 2.1 GHz boost, CUDA 12.8, nvcc -O3 -arch=sm_100a, baseline 2\u00d7 Xeon 8570 112c/224t. No text change needed beyond the corruption fix below.",
           "severity": "important",
           "status": "resolved",
-          "commit": "9428528"
+          "commit": "5e8a56f"
+        },
+        {
+          "description": "Kernel source is linked (matrix_enum.cu). Finding already states 'The speedup includes contributions from both the GPU migration and kernel-level optimizations (fusion, early-exit predicates), which have not been isolated via ablation.' A proper ablation requires re-implementing an unfused baseline, which is out of scope for now. Occupancy data would require re-running with nvprof/ncu on the B200 cluster.",
+          "severity": "minor",
+          "status": "acknowledge",
+          "commit": ""
         },
         {
           "description": "Include kernel listing, occupancy, and an ablation study separating fusion from other changes.",
@@ -665,12 +816,12 @@
       "slug": "zaremba-digit-pair-hierarchy",
       "title": "The {1,k} Density Hierarchy: Digit 2 Is Worth 7x More Than Digit 3",
       "level": "bronze",
-      "review_count": 2,
-      "verdict_summary": "Revise & resubmit (2 reviews)",
-      "models_summary": "Claude + o3-pro",
-      "issues_found": 9,
-      "issues_resolved": 9,
-      "last_reviewed": "2026-04-03T20:06:40Z",
+      "review_count": 3,
+      "verdict_summary": "Revise & resubmit (3 reviews)",
+      "models_summary": "Claude + gpt-4.1 + o3-pro",
+      "issues_found": 15,
+      "issues_resolved": 15,
+      "last_reviewed": "2026-04-06T17:36:30Z",
       "reviews": [
         {
           "date": "2026-04-03",
@@ -685,6 +836,13 @@
           "provider": "Anthropic",
           "verdict": "ACCEPT",
           "level": "silver"
+        },
+        {
+          "date": "2026-04-06",
+          "model": "gpt-4.1",
+          "provider": "openai",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
         }
       ],
       "remediations": [
@@ -693,6 +851,12 @@
           "severity": "critical",
           "status": "resolved",
           "commit": "5e89f99"
+        },
+        {
+          "description": "The claimed exponent 3-4 is wrong. OLS log-log regression on k=3..10 gives alpha=5.18, 95% CI [4.65, 5.71], R\u00b2=0.99. Fix body text and frontmatter scaling field.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
         },
         {
           "description": "Include a log-log regression with confidence interval and discuss sensitivity to the chosen cut-off N.",
@@ -707,10 +871,22 @@
           "commit": "9428528"
         },
         {
+          "description": "Add explicit log file references so the {1,k} vs {2,k} comparison is independently checkable. The amplification numbers are correct per the logs.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
           "description": "Clarify definition of \u2018value\u2019 and base claim on independently checkable data.",
           "severity": "important",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Replace loose 'value' language with precise density-ratio definition. The 6.9x number is correct (76.55/11.06=6.92) but 'value' is undefined.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
         },
         {
           "description": "The 'digit 2 is 6.9x more valuable than digit 3' metric is ad hoc (ratio of first two densities) and hinges entirely on unverified raw densities. No formal definition of 'value' is provided.",
@@ -719,10 +895,22 @@
           "commit": "5e89f99"
         },
         {
+          "description": "The 10-15s claim is wrong for {1,2} (88.4s) and {1,3} (18.0s). Only k>=4 fits 10-11s. The per-pair timing table in issue 1's fix replaces this claim. Also fix frontmatter scaling field from 'k^(-3 to -4)' to the correct regression.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
           "description": "Provide benchmark script, kernel occupancy report and total instruction count.",
           "severity": "important",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Add full algorithmic description, memory layout, per-pair timing table, and log file references to the Reproduce section. The densities themselves are correct per the GPU logs.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
         },
         {
           "description": "Provide precise algorithmic description, FLOP counts, memory layout and full output logs.",
@@ -737,6 +925,12 @@
           "commit": "9428528"
         },
         {
+          "description": "Strengthen disclaimers: no proof of finiteness exists. Add upper bounds searched, clarify exhaustiveness of the bitset search within [1,N], note that {1,2,3} and {1,2,4} at 10^11 are still running. Add pointer to full exception list for {1,2,4}.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
           "description": "Claimed 10-15s per {1,k} pair at 10^10 on a single B200 is inconsistent with hardware capabilities. Even idealized kernel performing one modular inversion per 3 GPU cycles would need >10 minutes for 10^10 inputs. Published benchmarks (Berkel & Fassler 2023) show 10^9 checks in 30s on 8xA100.",
           "severity": "critical",
           "status": "resolved",
@@ -748,12 +942,12 @@
       "slug": "zaremba-exception-hierarchy",
       "title": "Zaremba Exception Hierarchy: 27 \u2192 2 \u2192 0 as Digits Grow",
       "level": "bronze",
-      "review_count": 2,
-      "verdict_summary": "Accept w/ revision (2 reviews)",
-      "models_summary": "Claude + o3-pro",
-      "issues_found": 8,
-      "issues_resolved": 8,
-      "last_reviewed": "2026-04-03T20:03:34Z",
+      "review_count": 3,
+      "verdict_summary": "Accept w/ revision (3 reviews)",
+      "models_summary": "Claude + gpt-4.1 + o3-pro",
+      "issues_found": 11,
+      "issues_resolved": 11,
+      "last_reviewed": "2026-04-06T17:37:39Z",
       "reviews": [
         {
           "date": "2026-04-03",
@@ -768,14 +962,21 @@
           "provider": "Anthropic",
           "verdict": "ACCEPT",
           "level": "bronze"
+        },
+        {
+          "date": "2026-04-06",
+          "model": "gpt-4.1",
+          "provider": "openai",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
         }
       ],
       "remediations": [
         {
-          "description": "Add explicit witness numerators for each of the 25 resolved exceptions and exhaustive search confirmation for d=54,150",
-          "severity": "important",
+          "description": "Replace truncated witness table with complete table for all 25 resolved denominators, including CF expansions and which use the splitting identity.",
+          "severity": "minor",
           "status": "resolved",
-          "commit": ""
+          "commit": "5e8a56f"
         },
         {
           "description": "Publish, for each of the 25 denominators, an explicit numerator whose continued fraction uses only digits \u2264 4, and a proof (or exhaustive search log) ",
@@ -790,10 +991,22 @@
           "commit": ""
         },
         {
+          "description": "Add code path, SHA-256 checksum of exception list, and reproduction command for independent verification.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
           "description": "Release the complete list of 27 exceptions together with code and checksum so others can replicate the enumeration.",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Add exhaustive search results for both denominators showing all coprime residues checked, minimum achievable max PQ, and digit-5 witnesses.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "5e8a56f"
         },
         {
           "description": "Include the exhaustive search output for the 18 and 40 residues, or a short mathematical argument, to substantiate the assertion.",
@@ -806,6 +1019,12 @@
           "severity": "important",
           "status": "resolved",
           "commit": ""
+        },
+        {
+          "description": "Add precise algorithm description with parallelization strategy, runtime, memory, and log paths from actual GPU kernel (zaremba_density_gpu.cu).",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "5e8a56f"
         },
         {
           "description": "Provide precise algorithm, parallelisation strategy, run-time, memory usage, and publicly accessible result logs or hashes.",
@@ -917,8 +1136,8 @@
       "review_count": 3,
       "verdict_summary": "Accept w/ revision (3 reviews)",
       "models_summary": "Claude + o3-pro",
-      "issues_found": 7,
-      "issues_resolved": 7,
+      "issues_found": 11,
+      "issues_resolved": 11,
       "last_reviewed": "2026-04-03T19:48:03Z",
       "reviews": [
         {
@@ -944,10 +1163,22 @@
           "commit": "9428528"
         },
         {
+          "description": "Reframe golden ratio connection as heuristic, explicitly acknowledge the 13% discrepancy, and explain that the finite convergents 1/6 and 2/11 better bracket the observed mean",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
           "description": "The claimed value 0.1514 vs observed 0.171 is a 13% discrepancy. The connection is interesting but needs more rigorous justification or the discrepanc",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Add data availability section with checksum commitment and raw (d,\u03b1) pair reference, replacing vague 'Raw Data' section",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
         },
         {
           "description": "Provide the raw list of (d,\u03b1) pairs or a checksum so that external auditors can recompute the ratios and prefixes.",
@@ -962,10 +1193,22 @@
           "commit": "9428528"
         },
         {
+          "description": "Hedge the speedup claim: note no controlled ablation has been performed, and the factor ~6 is a naive search-range reduction, not a measured kernel speedup",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
           "description": "Include an ablation study measuring the effect of the starting offset independently of other code changes.",
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
+        },
+        {
+          "description": "Clarify that the 99.91% statistic refers only to the minimal witness, not global non-existence of A=4 witnesses",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
         },
         {
           "description": "Clarify that the statistic refers only to the minimal witness; rephrase or withdraw the claim of global tightness.",
@@ -975,139 +1218,6 @@
         },
         {
           "description": "Rephrase tightness claim: the stat is about the minimal witness, not about global non-existence of A=4 witnesses. The table shows that the *smallest* witness uses quotient 5 in 99.91% of cases, but other (larger) witnesses with max quotient \u2264 4 may exist for those d.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "9428528"
-        }
-      ]
-    },
-    {
-      "slug": "zaremba-conjecture-proved",
-      "title": "Zaremba's Conjecture (A=5): Proof Framework via GPU Verification + MOW Spectral Theory (Not Peer-Reviewed, Known Gaps Remain)",
-      "level": "bronze",
-      "review_count": 5,
-      "verdict_summary": "Revise & resubmit (5 reviews)",
-      "models_summary": "Claude + GPT-5.2 + Grok + o3-pro",
-      "issues_found": 15,
-      "issues_resolved": 13,
-      "last_reviewed": "2026-04-03T19:52:39Z",
-      "reviews": [
-        {
-          "date": "2026-04-01",
-          "model": "Grok",
-          "provider": "xAI",
-          "verdict": "ACCEPT_WITH_REVISION",
-          "level": "silver"
-        },
-        {
-          "date": "2026-04-02",
-          "model": "GPT-5.2",
-          "provider": "OpenAI",
-          "verdict": "ACCEPT_WITH_REVISION",
-          "level": "silver"
-        },
-        {
-          "date": "2026-04-03",
-          "model": "o3-pro",
-          "provider": "OpenAI",
-          "verdict": "REVISE_AND_RESUBMIT",
-          "level": "bronze"
-        },
-        {
-          "date": "2026-04-01",
-          "model": "Claude Opus 4.6",
-          "provider": "Anthropic",
-          "verdict": "REVISE_AND_RESUBMIT",
-          "level": "silver"
-        }
-      ],
-      "remediations": [
-        {
-          "description": "Provide the exact command line, input parameters, final checksum/bit-set of covered denominators, and an external log proving that every integer 1\u20262.1",
-          "severity": "minor",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "Either supply a computer-assisted Dolgopyat proof \u00e0 la Buzzi-Tsujii or downgrade the claim to a numerical heuristic.",
-          "severity": "minor",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "Downgrade the claim from 'certified' to numerical heuristic, consistent with the summary already noting \u03c1_\u03b7 is FP64 not interval-certified.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": ""
-        },
-        {
-          "description": "The word 'proof' is premature. Replace with 'proof framework' in the effective_range field, which was already partially addressed above but also needs the title-level language fixed.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": ""
-        },
-        {
-          "description": "The proof has known certification gaps. Calling it a 'proof' is premature until gaps are closed.",
-          "severity": "minor",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "Add a mathematically sound bound transporting eigenvalues from the finite Galerkin model to the full operator or explicitly cite a published method th",
-          "severity": "minor",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "MOW (Magee-Oh-Winter 2019) theorem matching not verified: the original paper does not supply explicit constants, and Calderon-Magee (2025) gives explicit gap only for untwisted operators. No detailed constant-tracking appendix shows how epsilon and D0 are derived from published theorems.",
-          "severity": "critical",
-          "status": "acknowledged",
-          "commit": ""
-        },
-        {
-          "description": "The summary already lists 6 gaps from the 2026-04-01 correction, but the status field still understates them. Update the status to explicitly enumerate gaps.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": ""
-        },
-        {
-          "description": "Clarify the full list of open gaps and downgrade the status to \u2018partial verification\u2019 until they are closed.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "Submit as 'proof framework' or 'conditional proof' until gaps are closed.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "Title says 'proof' but multiple gaps remain (not just one). Should be retitled 'proof framework' or 'conditional proof' until gaps are closed. o3-pro identified multiple unresolved issues beyond the claimed 'one specialist gap'.",
-          "severity": "critical",
-          "status": "resolved",
-          "commit": "5e89f99"
-        },
-        {
-          "description": "Layer 4 invokes Bourgain-Gamburd property (tau) with an unspecified uniform constant c and gives no quantitative lower bound on d required for the sieve error term to be overpowered. The statement is non-effective and cannot be checked.",
-          "severity": "critical",
-          "status": "acknowledged",
-          "commit": ""
-        },
-        {
-          "description": "rho_eta <= 0.771 computed in FP64/mpmath, not interval-certified with arb/MPFR. The entire D0 bound depends on this value. All four reviewers flagged this as the most critical gap.",
-          "severity": "critical",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "Add explicit note that constant-tracking has not been independently verified and needs a reproducible notebook.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": ""
-        },
-        {
-          "description": "Provide a detailed constant-tracking appendix or Sage/arb notebook reproducing every numeric inequality.",
           "severity": "important",
           "status": "resolved",
           "commit": "9428528"
@@ -1190,6 +1300,201 @@
           "commit": "9428528"
         }
       ]
+    },
+    {
+      "slug": "zaremba-conjecture-proved",
+      "title": "zaremba-conjecture-proved",
+      "level": "bronze",
+      "review_count": 5,
+      "verdict_summary": "Revise & resubmit (5 reviews)",
+      "models_summary": "Claude + GPT-5.2 + Grok + o3-pro",
+      "issues_found": 21,
+      "issues_resolved": 18,
+      "last_reviewed": "2026-04-03T19:52:39Z",
+      "reviews": [
+        {
+          "date": "2026-04-01",
+          "model": "Grok",
+          "provider": "xAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-02",
+          "model": "GPT-5.2",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "REVISE_AND_RESUBMIT",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-01",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "REVISE_AND_RESUBMIT",
+          "level": "silver"
+        }
+      ],
+      "remediations": [
+        {
+          "description": "Provide the exact command line, input parameters, final checksum/bit-set of covered denominators, and an external log proving that every integer 1\u20262.1",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "Add explicit command line, input parameters, and checksum reference directly in the brute-force section rather than relying solely on the manifest link.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
+          "description": "Either supply a computer-assisted Dolgopyat proof \u00e0 la Buzzi-Tsujii or downgrade the claim to a numerical heuristic.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "Downgrade the claim from 'certified' to numerical heuristic, consistent with the summary already noting \u03c1_\u03b7 is FP64 not interval-certified.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
+          "description": "Downgrade the Dolgopyat claim from 'arb-certified' to 'numerical bound on finite discretization' and explicitly label it as not a computer-assisted proof.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
+          "description": "The word 'proof' is premature. Replace with 'proof framework' in the effective_range field, which was already partially addressed above but also needs the title-level language fixed.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
+          "description": "The slug 'zaremba-conjecture-proved' implies a completed proof. Rename to 'zaremba-conjecture-framework' to match the actual status.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
+          "description": "The proof has known certification gaps. Calling it a 'proof' is premature until gaps are closed.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "The finding already explicitly acknowledges this gap in the spectral gap section (line 74): 'a rigorous bound on the truncation error between the N=40 discretization and the infinite-dimensional operator (e.g., via the Keller-Liverani perturbation framework) has not been established.' Establishing this bound requires a full Keller-Liverani perturbation analysis or equivalent, which is non-trivial mathematical work. Cannot fix in a text edit.",
+          "severity": "minor",
+          "status": "acknowledge",
+          "commit": ""
+        },
+        {
+          "description": "Add a mathematically sound bound transporting eigenvalues from the finite Galerkin model to the full operator or explicitly cite a published method th",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "MOW (Magee-Oh-Winter 2019) theorem matching not verified: the original paper does not supply explicit constants, and Calderon-Magee (2025) gives explicit gap only for untwisted operators. No detailed constant-tracking appendix shows how epsilon and D0 are derived from published theorems.",
+          "severity": "critical",
+          "status": "acknowledged",
+          "commit": ""
+        },
+        {
+          "description": "The summary already lists 6 gaps from the 2026-04-01 correction, but the status field still understates them. Update the status to explicitly enumerate gaps.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
+          "description": "The effective_range field still starts with 'all d \u2265 1' which is misleading for a framework with 6 known gaps. Downgrade to make the partial/conditional status unambiguous.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
+          "description": "Clarify the full list of open gaps and downgrade the status to \u2018partial verification\u2019 until they are closed.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "Submit as 'proof framework' or 'conditional proof' until gaps are closed.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "Title says 'proof' but multiple gaps remain (not just one). Should be retitled 'proof framework' or 'conditional proof' until gaps are closed. o3-pro identified multiple unresolved issues beyond the claimed 'one specialist gap'.",
+          "severity": "critical",
+          "status": "resolved",
+          "commit": "5e89f99"
+        },
+        {
+          "description": "Layer 4 invokes Bourgain-Gamburd property (tau) with an unspecified uniform constant c and gives no quantitative lower bound on d required for the sieve error term to be overpowered. The statement is non-effective and cannot be checked.",
+          "severity": "critical",
+          "status": "acknowledged",
+          "commit": ""
+        },
+        {
+          "description": "rho_eta <= 0.771 computed in FP64/mpmath, not interval-certified with arb/MPFR. The entire D0 bound depends on this value. All four reviewers flagged this as the most critical gap.",
+          "severity": "critical",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "Add explicit note that constant-tracking has not been independently verified and needs a reproducible notebook.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
+          "description": "Provide a detailed constant-tracking appendix or Sage/arb notebook reproducing every numeric inequality.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "Strengthen the caveat on the D\u2080 estimate to make clear this is not rigorous until a full constant-tracking notebook is available.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        }
+      ]
+    },
+    {
+      "slug": "zaremba-inverse-square-amplification",
+      "title": "Inverse-Square Amplification: Digit 1 Boosts Zaremba Density by 1600/k\u00b2",
+      "level": "uncertified",
+      "review_count": 0,
+      "verdict_summary": "Accept w/ revision (0 reviews)",
+      "models_summary": "",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "",
+      "reviews": [],
+      "remediations": []
+    },
+    {
+      "slug": "zaremba-conjecture-framework",
+      "title": "Zaremba's Conjecture (A=5): Proof Framework via GPU Verification + MOW Spectral Theory (Not Peer-Reviewed, Known Gaps Remain)",
+      "level": "uncertified",
+      "review_count": 0,
+      "verdict_summary": "Accept w/ revision (0 reviews)",
+      "models_summary": "",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "",
+      "reviews": [],
+      "remediations": []
     },
     {
       "slug": "_project-level",

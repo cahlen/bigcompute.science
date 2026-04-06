@@ -1,5 +1,10 @@
 [
   {
+    "hash": "888a410",
+    "date": "Apr 05",
+    "message": "Highlight density divergence: {1,2} grows while all other pairs shrink"
+  },
+  {
     "hash": "2a7b4d2",
     "date": "Apr 05",
     "message": "Digit pair hierarchy: add 10^11 column for all {1,k} pairs"
@@ -43,10 +48,5 @@
     "hash": "add73b4",
     "date": "Apr 04",
     "message": "About: add 'For Students and Researchers' section"
-  },
-  {
-    "hash": "1f764c3",
-    "date": "Apr 04",
-    "message": "Fix overclaiming language in all experiment pages"
   }
 ]

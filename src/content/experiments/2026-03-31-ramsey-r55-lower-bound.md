@@ -4,7 +4,7 @@ slug: ramsey-r55-lower-bound
 date: 2026-03-31
 author: cahlen
 author_github: https://github.com/cahlen
-status: in-progress
+status: complete
 
 hardware:
   name: NVIDIA DGX B200

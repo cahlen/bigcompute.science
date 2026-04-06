@@ -31,8 +31,8 @@ results:
     - "Distribution of barely-solvable primes (f(p) = 1)"
     - "Are there primes > 10^8 with unusually low f(p)?"
     - "Connection between f(p) and p mod 4, p mod 24 residue classes"
-  data: "Not yet uploaded — experiment in progress"
-  code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/erdos-straus
+
+code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/erdos-straus
 ---
 
 # Erdos-Straus Conjecture: GPU Solution Counting

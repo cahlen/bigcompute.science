@@ -1,5 +1,10 @@
 [
   {
+    "hash": "b5c3e1e",
+    "date": "Apr 06",
+    "message": "HF data button: brand yellow (#FFD21E) + HuggingFace icon SVG"
+  },
+  {
     "hash": "cd4dcbf",
     "date": "Apr 06",
     "message": "Add visible data/code links to all experiment pages"
@@ -43,10 +48,5 @@
     "hash": "9215cf2",
     "date": "Apr 06",
     "message": "Fix experiment page: Key Results text overflow, status badge, hardware block styling"
-  },
-  {
-    "hash": "b34b70d",
-    "date": "Apr 06",
-    "message": "Update llms.txt: 7 HF datasets, 16 findings, 47 reviews, 5 closed exception sets"
   }
 ]

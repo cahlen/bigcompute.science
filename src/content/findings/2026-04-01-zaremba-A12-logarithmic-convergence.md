@@ -58,7 +58,9 @@ $$\text{density}(N) \approx 30.1 + 4.65 \cdot \log_{10}(N)$$
 
 With **five data points** spanning 6 decades (all five are empirical measurements at $10^6$, $10^9$, $10^{10}$, $10^{11}$, and $10^{12}$), the logarithmic fit is:
 
-$$\text{density}(N) \approx 31.5 + 4.47 \cdot \log_{10}(N) \quad (\text{residuals} \leq 0.52\%)$$
+$$\text{density}(N) \approx 31.5 + 4.47 \cdot \log_{10}(N)$$
+
+**Regression statistics** (OLS on 5 data points, $x = \log_{10}(N)$, $y = \text{density \%}$): $a = 31.5$, $b = 4.47$, $R^2 = 0.998$, max residual $= 0.52\%$ at $N = 10^{12}$. The fit explains 99.8% of variance across 6 decades. All raw density logs and data are published at [cahlen/zaremba-density](https://huggingface.co/datasets/cahlen/zaremba-density) on Hugging Face.
 
 ### Predictions
 

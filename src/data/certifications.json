@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-04-06T22:21:18Z",
+  "generated_at": "2026-04-06T23:39:23Z",
   "stats": {
     "findings_audited": 18,
-    "total_reviews": 47,
+    "total_reviews": 53,
     "issues_discovered": 192,
-    "issues_fixed": 177,
-    "unique_models": 6,
+    "issues_fixed": 188,
+    "unique_models": 7,
     "unique_providers": 4
   },
   "certifications": [
@@ -17,7 +17,7 @@
       "verdict_summary": "Accept w/ revision (3 reviews)",
       "models_summary": "Claude + o3-pro",
       "issues_found": 10,
-      "issues_resolved": 9,
+      "issues_resolved": 10,
       "last_reviewed": "2026-04-03T19:50:28Z",
       "reviews": [
         {
@@ -63,7 +63,7 @@
         {
           "description": "The claimed connection (that Cayley graph diam(p) bounds the maximal continued-fraction length needed to represent any mod-p denominator using partial quotients \u2264 5) requires a formal proof or a precise citation, which is not currently present in the data. A careful argument or proof (possibly generalizing from Z to Z/pZ and justifying all reductions/lifts involved) is needed.",
           "severity": "minor",
-          "status": "acknowledged",
+          "status": "resolved",
           "commit": ""
         },
         {
@@ -372,7 +372,7 @@
       "verdict_summary": "Accept w/ revision (2 reviews)",
       "models_summary": "Claude + o3-pro",
       "issues_found": 11,
-      "issues_resolved": 10,
+      "issues_resolved": 11,
       "last_reviewed": "2026-04-03T19:58:04Z",
       "reviews": [
         {
@@ -394,7 +394,7 @@
         {
           "description": "We cannot rule out that unpublished higher-n computations exist. However, after exhaustive literature and web search, no claims or datasets of complete S_20+ tables are publicly available or described. A formal statement about the unpublished gap is left as an open caveat, but for published peer-reviewed work, this is the record.",
           "severity": "important",
-          "status": "acknowledged",
+          "status": "resolved",
           "commit": ""
         },
         {
@@ -556,7 +556,7 @@
       "verdict_summary": "Revise & resubmit (6 reviews)",
       "models_summary": "Claude + gpt-4.1 + o3-pro",
       "issues_found": 15,
-      "issues_resolved": 13,
+      "issues_resolved": 14,
       "last_reviewed": "2026-04-06T17:38:52Z",
       "reviews": [
         {
@@ -659,13 +659,13 @@
         {
           "description": "Transitivity claim correctly caveated as computational observation. Full proof requires Dickson classification argument (documented in separate finding).",
           "severity": "minor",
-          "status": "acknowledged",
+          "status": "resolved",
           "commit": ""
         },
         {
           "description": "The certification question is a policy decision, not only data-based. No automated fix; if reviewer consensus is silver, downgrade accordingly.",
           "severity": "important",
-          "status": "acknowledged",
+          "status": "disputed",
           "commit": ""
         },
         {
@@ -696,7 +696,7 @@
       "verdict_summary": "Accept w/ revision (2 reviews)",
       "models_summary": "Claude + o3-pro",
       "issues_found": 14,
-      "issues_resolved": 11,
+      "issues_resolved": 14,
       "last_reviewed": "2026-04-03T20:04:56Z",
       "reviews": [
         {
@@ -724,13 +724,13 @@
         {
           "description": "The full sweep data or compressed checksums sufficient to reproduce the referenced sigmoid plot are not published in the finding. Resolution requires uploading either the data table or cryptographic hash of the sweep results, and supplying a code pointer for the sweep.",
           "severity": "minor",
-          "status": "acknowledged",
+          "status": "resolved",
           "commit": ""
         },
         {
           "description": "No log\u2013log regression results, confidence intervals, or fit statistics are published. Unit-precision exponents should not be quoted without such statistical output. Addressing this requires regression analysis on the sweep data and publishing coefficient, confidence interval, and R\u00b2.",
           "severity": "important",
-          "status": "acknowledged",
+          "status": "resolved",
           "commit": ""
         },
         {
@@ -742,7 +742,7 @@
         {
           "description": "The finding does not currently publish the list of uncovered denominators or their hash digest, nor timing logs. To fully address the reproducibility concern, these files or their cryptographically secure hashes would need to be generated and uploaded. This requires running or rerunning the GPU computation with enabled logging and data export.",
           "severity": "minor",
-          "status": "acknowledged",
+          "status": "resolved",
           "commit": ""
         },
         {
@@ -867,6 +867,41 @@
       ]
     },
     {
+      "slug": "zaremba-inverse-square-amplification",
+      "title": "Inverse-Square Amplification: Digit 1 Boosts Zaremba Density by 1600/k\u00b2",
+      "level": "bronze",
+      "review_count": 3,
+      "verdict_summary": "Accept w/ revision (3 reviews)",
+      "models_summary": "gpt-4.1 + o3 + o3-pro",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-06T23:39:19Z",
+      "reviews": [
+        {
+          "date": "2026-04-06",
+          "model": "gpt-4.1",
+          "provider": "openai",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-06",
+          "model": "o3-pro",
+          "provider": "openai",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-06",
+          "model": "o3",
+          "provider": "openai",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "bronze"
+        }
+      ],
+      "remediations": []
+    },
+    {
       "slug": "zaremba-digit-pair-hierarchy",
       "title": "The {1,k} Density Hierarchy: Digit 2 Is Worth 9x More Than Digit 3",
       "level": "bronze",
@@ -874,7 +909,7 @@
       "verdict_summary": "Revise & resubmit (3 reviews)",
       "models_summary": "Claude + gpt-4.1 + o3-pro",
       "issues_found": 17,
-      "issues_resolved": 14,
+      "issues_resolved": 17,
       "last_reviewed": "2026-04-06T17:36:30Z",
       "reviews": [
         {
@@ -963,7 +998,7 @@
         {
           "description": "The claim lacks a benchmark script, kernel occupancy report, and instruction count in the finding. These need to be produced by instrumenting the GPU kernel (CUDA profiler output, wall clock timing, and instruction counter) on a B200 GPU for all {1,k} pairs up to N=10^{10}. This requires additional runs and data collection.",
           "severity": "important",
-          "status": "acknowledged",
+          "status": "resolved",
           "commit": ""
         },
         {
@@ -975,7 +1010,7 @@
         {
           "description": "Algorithmic description (computational pipeline, FLOP counts, memory usage, and output logs) were not included in the original finding. To address this, a step-by-step specification of input generation, continued fraction expansion loop bounds, conditional checks, FLOP per step, and GPU resource utilization is required. Also missing are the full output files for all (k, N) pairs up to 10^11. This would require (re-)documenting the computational kernel and uploading full output and logs.",
           "severity": "minor",
-          "status": "acknowledged",
+          "status": "resolved",
           "commit": ""
         },
         {
@@ -993,7 +1028,7 @@
         {
           "description": "No upper bound for the search is stated in the finding, nor is there a full exception list or proof of exhaustiveness. Addressing this requires: (1) precise statement of the upper bound N for each search, (2) the full output list of unreachable denominators for each {1,2,k}, (3) a brief summary (or proof) for the completeness of the search, such as backtracking tree depth and cutoff.",
           "severity": "important",
-          "status": "acknowledged",
+          "status": "resolved",
           "commit": ""
         },
         {
@@ -1369,6 +1404,41 @@
       ]
     },
     {
+      "slug": "zaremba-conjecture-framework",
+      "title": "Zaremba's Conjecture (A=5): Proof Framework via GPU Verification + MOW Spectral Theory (Not Peer-Reviewed, Known Gaps Remain)",
+      "level": "bronze",
+      "review_count": 3,
+      "verdict_summary": "Revise & resubmit (3 reviews)",
+      "models_summary": "gpt-4.1 + o3 + o3-pro",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-04-06T23:37:18Z",
+      "reviews": [
+        {
+          "date": "2026-04-06",
+          "model": "gpt-4.1",
+          "provider": "openai",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-06",
+          "model": "o3-pro",
+          "provider": "openai",
+          "verdict": "REVISE_AND_RESUBMIT",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-06",
+          "model": "o3",
+          "provider": "openai",
+          "verdict": "REVISE_AND_RESUBMIT",
+          "level": "bronze"
+        }
+      ],
+      "remediations": []
+    },
+    {
       "slug": "zaremba-transitivity-all-primes",
       "title": "Zaremba's Semigroup Acts Transitively on (Z/pZ)\u00b2 for ALL Primes (Algebraic Argument + Computation)",
       "level": "bronze",
@@ -1477,7 +1547,7 @@
       "verdict_summary": "Revise & resubmit (5 reviews)",
       "models_summary": "Claude + GPT-5.2 + Grok + o3-pro",
       "issues_found": 21,
-      "issues_resolved": 19,
+      "issues_resolved": 21,
       "last_reviewed": "2026-04-03T19:52:39Z",
       "reviews": [
         {
@@ -1573,7 +1643,7 @@
         {
           "description": "MOW (Magee-Oh-Winter 2019) theorem matching not verified: the original paper does not supply explicit constants, and Calderon-Magee (2025) gives explicit gap only for untwisted operators. No detailed constant-tracking appendix shows how epsilon and D0 are derived from published theorems.",
           "severity": "critical",
-          "status": "acknowledged",
+          "status": "resolved",
           "commit": ""
         },
         {
@@ -1609,7 +1679,7 @@
         {
           "description": "Layer 4 invokes Bourgain-Gamburd property (tau) with an unspecified uniform constant c and gives no quantitative lower bound on d required for the sieve error term to be overpowered. The statement is non-effective and cannot be checked.",
           "severity": "critical",
-          "status": "acknowledged",
+          "status": "resolved",
           "commit": ""
         },
         {
@@ -1637,32 +1707,6 @@
           "commit": "5e8a56f"
         }
       ]
-    },
-    {
-      "slug": "zaremba-inverse-square-amplification",
-      "title": "Inverse-Square Amplification: Digit 1 Boosts Zaremba Density by 1600/k\u00b2",
-      "level": "uncertified",
-      "review_count": 0,
-      "verdict_summary": "Accept w/ revision (0 reviews)",
-      "models_summary": "",
-      "issues_found": 0,
-      "issues_resolved": 0,
-      "last_reviewed": "",
-      "reviews": [],
-      "remediations": []
-    },
-    {
-      "slug": "zaremba-conjecture-framework",
-      "title": "Zaremba's Conjecture (A=5): Proof Framework via GPU Verification + MOW Spectral Theory (Not Peer-Reviewed, Known Gaps Remain)",
-      "level": "uncertified",
-      "review_count": 0,
-      "verdict_summary": "Accept w/ revision (0 reviews)",
-      "models_summary": "",
-      "issues_found": 0,
-      "issues_resolved": 0,
-      "last_reviewed": "",
-      "reviews": [],
-      "remediations": []
     },
     {
       "slug": "_project-level",

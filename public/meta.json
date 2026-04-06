@@ -2,7 +2,7 @@
   "name": "bigcompute.science",
   "description": "Open computational mathematics on GPUs. AI-audited, not peer-reviewed.",
   "url": "https://bigcompute.science",
-  "generated_at": "2026-04-06T22:21:18Z",
+  "generated_at": "2026-04-06T23:39:23Z",
   "author": {
     "name": "Cahlen Humphreys",
     "github": "https://github.com/cahlen",
@@ -11,15 +11,16 @@
   "license": "CC-BY-4.0",
   "stats": {
     "findings": 18,
-    "reviews": 47,
+    "reviews": 53,
     "issues": 192,
-    "issues_fixed": 177,
+    "issues_fixed": 188,
     "models": [
       "ChatGPT",
       "Claude Opus 4.6",
       "GPT-5.2",
       "Grok",
       "gpt-4.1",
+      "o3",
       "o3-pro"
     ],
     "providers": [
@@ -39,14 +40,14 @@
     "zaremba-density-phase-transition": "https://bigcompute.science/findings/zaremba-density-phase-transition/",
     "zaremba-A12-logarithmic-convergence": "https://bigcompute.science/findings/zaremba-A12-logarithmic-convergence/",
     "gpu-matrix-enumeration-175x": "https://bigcompute.science/findings/gpu-matrix-enumeration-175x/",
+    "zaremba-inverse-square-amplification": "https://bigcompute.science/findings/zaremba-inverse-square-amplification/",
     "zaremba-digit-pair-hierarchy": "https://bigcompute.science/findings/zaremba-digit-pair-hierarchy/",
     "zaremba-exception-hierarchy": "https://bigcompute.science/findings/zaremba-exception-hierarchy/",
     "zaremba-representation-growth": "https://bigcompute.science/findings/zaremba-representation-growth/",
     "zaremba-witness-golden-ratio": "https://bigcompute.science/findings/zaremba-witness-golden-ratio/",
+    "zaremba-conjecture-framework": "https://bigcompute.science/findings/zaremba-conjecture-framework/",
     "zaremba-transitivity-all-primes": "https://bigcompute.science/findings/zaremba-transitivity-all-primes/",
     "zaremba-conjecture-proved": "https://bigcompute.science/findings/zaremba-conjecture-proved/",
-    "zaremba-inverse-square-amplification": "https://bigcompute.science/findings/zaremba-inverse-square-amplification/",
-    "zaremba-conjecture-framework": "https://bigcompute.science/findings/zaremba-conjecture-framework/",
     "_project-level": "https://bigcompute.science/findings/_project-level/"
   },
   "structured_data": {
@@ -83,7 +84,7 @@
     "research_agent": "https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_research_agent.ipynb",
     "mcp_explorer": "https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_mcp_explorer.ipynb"
   },
-  "ai_disclosure": "Human-AI collaborative. 6 models, 4 providers. Not peer-reviewed.",
+  "ai_disclosure": "Human-AI collaborative. 7 models, 4 providers. Not peer-reviewed.",
   "recommended_citation_verbs": {
     "safe": [
       "computed",

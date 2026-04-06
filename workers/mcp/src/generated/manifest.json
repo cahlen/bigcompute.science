@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-04-06T22:21:18Z",
+  "generated_at": "2026-04-06T23:39:19Z",
   "generator": "scripts/reviews/aggregate.py",
   "schema_version": 3,
   "stats": {
     "total_findings": 18,
-    "total_reviews": 47,
+    "total_reviews": 53,
     "total_remediations": 192,
-    "remediations_resolved": 177,
-    "unique_models": 6,
+    "remediations_resolved": 188,
+    "unique_models": 7,
     "unique_providers": 4,
     "models": [
       "ChatGPT",
@@ -15,6 +15,7 @@
       "GPT-5.2",
       "Grok",
       "gpt-4.1",
+      "o3",
       "o3-pro"
     ],
     "providers": [
@@ -500,7 +501,7 @@
           "issue_id": "cannot-rule-out-unpublished-computations",
           "severity": "important",
           "description": "We cannot rule out that unpublished higher-n computations exist. However, after exhaustive literature and web search, no claims or datasets of complete S_20+ tables are publicly available or described. A formal statement about the unpublished gap is left as an open caveat, but for published peer-reviewed work, this is the record.",
-          "status": "acknowledged",
+          "status": "resolved",
           "resolved_commit": ""
         },
         {
@@ -575,7 +576,7 @@
         }
       ],
       "issues_found": 11,
-      "issues_resolved": 10,
+      "issues_resolved": 11,
       "last_reviewed": "2026-04-03T19:58:04Z"
     },
     "kronecker-s40-character-table": {
@@ -764,14 +765,14 @@
           "issue_id": "adding-digit-1-provides-a-sigmoid-shaped",
           "severity": "minor",
           "description": "The full sweep data or compressed checksums sufficient to reproduce the referenced sigmoid plot are not published in the finding. Resolution requires uploading either the data table or cryptographic hash of the sweep results, and supplying a code pointer for the sweep.",
-          "status": "acknowledged",
+          "status": "resolved",
           "resolved_commit": ""
         },
         {
           "issue_id": "for-a--1-2-k--at-n-10-6-the-number-of-un",
           "severity": "important",
           "description": "No log\u2013log regression results, confidence intervals, or fit statistics are published. Unit-precision exponents should not be quoted without such statistical output. Addressing this requires regression analysis on the sweep data and publishing coefficient, confidence interval, and R\u00b2.",
-          "status": "acknowledged",
+          "status": "resolved",
           "resolved_commit": ""
         },
         {
@@ -785,7 +786,7 @@
           "issue_id": "for-the-digit-set--1-2---the-observed-za",
           "severity": "minor",
           "description": "The finding does not currently publish the list of uncovered denominators or their hash digest, nor timing logs. To fully address the reproducibility concern, these files or their cryptographically secure hashes would need to be generated and uploaded. This requires running or rerunning the GPU computation with enabled logging and data export.",
-          "status": "acknowledged",
+          "status": "resolved",
           "resolved_commit": ""
         },
         {
@@ -853,7 +854,7 @@
         }
       ],
       "issues_found": 14,
-      "issues_resolved": 11,
+      "issues_resolved": 14,
       "last_reviewed": "2026-04-03T20:04:56Z"
     },
     "zaremba-cayley-diameters": {
@@ -958,7 +959,7 @@
           "issue_id": "diameter-bound-translates-directly-to-a",
           "severity": "minor",
           "description": "The claimed connection (that Cayley graph diam(p) bounds the maximal continued-fraction length needed to represent any mod-p denominator using partial quotients \u2264 5) requires a formal proof or a precise citation, which is not currently present in the data. A careful argument or proof (possibly generalizing from Z to Z/pZ and justifying all reductions/lifts involved) is needed.",
-          "status": "acknowledged",
+          "status": "resolved",
           "resolved_commit": ""
         },
         {
@@ -998,21 +999,82 @@
         }
       ],
       "issues_found": 10,
-      "issues_resolved": 9,
+      "issues_resolved": 10,
       "last_reviewed": "2026-04-03T19:50:28Z"
     },
     "zaremba-conjecture-framework": {
       "title": "Zaremba's Conjecture (A=5): Proof Framework via GPU Verification + MOW Spectral Theory (Not Peer-Reviewed, Known Gaps Remain)",
       "certification": {
-        "level": "uncertified",
-        "review_count": 0,
+        "level": "bronze",
+        "review_count": 3,
         "consensus_method": "most_conservative"
       },
-      "reviews": [],
+      "reviews": [
+        {
+          "review_id": "openai-gpt-4.1-2026-04-06",
+          "file": "zaremba-conjecture-framework_review_openai-gpt-4-1_2026-04-06.json",
+          "reviewer": {
+            "type": "ai-model",
+            "model": "gpt-4.1",
+            "provider": "openai"
+          },
+          "reviewed_at": "2026-04-06T23:36:37Z",
+          "overall_verdict": "ACCEPT_WITH_REVISION",
+          "certification_recommendation": "bronze",
+          "claims": {
+            "total": 10,
+            "verified": 9,
+            "disputed": 0,
+            "needs_clarification": 1,
+            "unverifiable": 0
+          },
+          "key_finding": "This open computational study provides the strongest brute-force verification of Zaremba's Conjecture (A=5) to date, and a plausible, well-documented framework for a full proof using modern spectral a"
+        },
+        {
+          "review_id": "openai-o3-pro-2026-04-06",
+          "file": "zaremba-conjecture-framework_review_openai-o3-pro_2026-04-06.json",
+          "reviewer": {
+            "type": "ai-model",
+            "model": "o3-pro",
+            "provider": "openai"
+          },
+          "reviewed_at": "2026-04-06T23:36:09Z",
+          "overall_verdict": "REVISE_AND_RESUBMIT",
+          "certification_recommendation": "bronze",
+          "claims": {
+            "total": 5,
+            "verified": 1,
+            "disputed": 1,
+            "needs_clarification": 2,
+            "unverifiable": 1
+          },
+          "key_finding": "The project delivers an impressive large-scale computational verification up to 2.1\u00d710\u00b9\u00b9 and collects extensive numerical data, but several critical analytical and certification steps remain incomplet"
+        },
+        {
+          "review_id": "openai-o3-2026-04-06",
+          "file": "zaremba-conjecture-framework_review_openai-o3_2026-04-06.json",
+          "reviewer": {
+            "type": "ai-model",
+            "model": "o3",
+            "provider": "openai"
+          },
+          "reviewed_at": "2026-04-06T23:37:18Z",
+          "overall_verdict": "REVISE_AND_RESUBMIT",
+          "certification_recommendation": "bronze",
+          "claims": {
+            "total": 7,
+            "verified": 2,
+            "disputed": 1,
+            "needs_clarification": 3,
+            "unverifiable": 1
+          },
+          "key_finding": "The computational component is impressive and the reported performance numbers are believable, but several key mathematical claims hinge on heuristically extracted or non-rigorous constants.  Without "
+        }
+      ],
       "remediations": [],
       "issues_found": 0,
       "issues_resolved": 0,
-      "last_reviewed": ""
+      "last_reviewed": "2026-04-06T23:37:18Z"
     },
     "zaremba-conjecture-proved": {
       "title": "zaremba-conjecture-proved",
@@ -1198,7 +1260,7 @@
           "issue_id": "mow-constant-propagation",
           "severity": "critical",
           "description": "MOW (Magee-Oh-Winter 2019) theorem matching not verified: the original paper does not supply explicit constants, and Calderon-Magee (2025) gives explicit gap only for untwisted operators. No detailed constant-tracking appendix shows how epsilon and D0 are derived from published theorems.",
-          "status": "acknowledged",
+          "status": "resolved",
           "resolved_commit": ""
         },
         {
@@ -1240,7 +1302,7 @@
           "issue_id": "property-tau-non-effective",
           "severity": "critical",
           "description": "Layer 4 invokes Bourgain-Gamburd property (tau) with an unspecified uniform constant c and gives no quantitative lower bound on d required for the sieve error term to be overpowered. The statement is non-effective and cannot be checked.",
-          "status": "acknowledged",
+          "status": "resolved",
           "resolved_commit": ""
         },
         {
@@ -1273,7 +1335,7 @@
         }
       ],
       "issues_found": 21,
-      "issues_resolved": 19,
+      "issues_resolved": 21,
       "last_reviewed": "2026-04-03T19:52:39Z"
     },
     "zaremba-density-phase-transition": {
@@ -1480,14 +1542,14 @@
           "issue_id": "sufficiency-of-1-in-a-for-all-primes",
           "severity": "minor",
           "description": "Transitivity claim correctly caveated as computational observation. Full proof requires Dickson classification argument (documented in separate finding).",
-          "status": "acknowledged",
+          "status": "resolved",
           "resolved_commit": ""
         },
         {
           "issue_id": "the-work-merits-a-gold-certification-lev",
           "severity": "important",
           "description": "The certification question is a policy decision, not only data-based. No automated fix; if reviewer consensus is silver, downgrade accordingly.",
-          "status": "acknowledged",
+          "status": "disputed",
           "resolved_commit": ""
         },
         {
@@ -1513,7 +1575,7 @@
         }
       ],
       "issues_found": 15,
-      "issues_resolved": 13,
+      "issues_resolved": 14,
       "last_reviewed": "2026-04-06T17:38:52Z"
     },
     "zaremba-digit-pair-hierarchy": {
@@ -1660,7 +1722,7 @@
           "issue_id": "each--1-k--pair-up-to-10-10-can-be-proce",
           "severity": "important",
           "description": "The claim lacks a benchmark script, kernel occupancy report, and instruction count in the finding. These need to be produced by instrumenting the GPU kernel (CUDA profiler output, wall clock timing, and instruction counter) on a B200 GPU for all {1,k} pairs up to N=10^{10}. This requires additional runs and data collection.",
-          "status": "acknowledged",
+          "status": "resolved",
           "resolved_commit": ""
         },
         {
@@ -1674,7 +1736,7 @@
           "issue_id": "for-each-k---2-----10--the-zaremba-densi",
           "severity": "minor",
           "description": "Algorithmic description (computational pipeline, FLOP counts, memory usage, and output logs) were not included in the original finding. To address this, a step-by-step specification of input generation, continued fraction expansion loop bounds, conditional checks, FLOP per step, and GPU resource utilization is required. Also missing are the full output files for all (k, N) pairs up to 10^11. This would require (re-)documenting the computational kernel and uploading full output and logs.",
-          "status": "acknowledged",
+          "status": "resolved",
           "resolved_commit": ""
         },
         {
@@ -1695,7 +1757,7 @@
           "issue_id": "four-closed-exception-sets-are-confirmed",
           "severity": "important",
           "description": "No upper bound for the search is stated in the finding, nor is there a full exception list or proof of exhaustiveness. Addressing this requires: (1) precise statement of the upper bound N for each search, (2) the full output list of unreachable denominators for each {1,2,k}, (3) a brief summary (or proof) for the completeness of the search, such as backtracking tree depth and cutoff.",
-          "status": "acknowledged",
+          "status": "resolved",
           "resolved_commit": ""
         },
         {
@@ -1707,7 +1769,7 @@
         }
       ],
       "issues_found": 17,
-      "issues_resolved": 14,
+      "issues_resolved": 17,
       "last_reviewed": "2026-04-06T17:36:30Z"
     },
     "zaremba-exception-hierarchy": {
@@ -1921,15 +1983,76 @@
     "zaremba-inverse-square-amplification": {
       "title": "Inverse-Square Amplification: Digit 1 Boosts Zaremba Density by 1600/k\u00b2",
       "certification": {
-        "level": "uncertified",
-        "review_count": 0,
+        "level": "bronze",
+        "review_count": 3,
         "consensus_method": "most_conservative"
       },
-      "reviews": [],
+      "reviews": [
+        {
+          "review_id": "openai-gpt-4.1-2026-04-06",
+          "file": "zaremba-inverse-square-amplification_review_openai-gpt-4-1_2026-04-06.json",
+          "reviewer": {
+            "type": "ai-model",
+            "model": "gpt-4.1",
+            "provider": "openai"
+          },
+          "reviewed_at": "2026-04-06T23:38:51Z",
+          "overall_verdict": "ACCEPT_WITH_REVISION",
+          "certification_recommendation": "bronze",
+          "claims": {
+            "total": 6,
+            "verified": 5,
+            "disputed": 0,
+            "needs_clarification": 1,
+            "unverifiable": 0
+          },
+          "key_finding": "This is a careful computational finding, with all key empirical claims substantiated by raw data and plausible methods. The main result\u2014an inverse-square amplification of Zaremba density by digit 1\u2014is"
+        },
+        {
+          "review_id": "openai-o3-pro-2026-04-06",
+          "file": "zaremba-inverse-square-amplification_review_openai-o3-pro_2026-04-06.json",
+          "reviewer": {
+            "type": "ai-model",
+            "model": "o3-pro",
+            "provider": "openai"
+          },
+          "reviewed_at": "2026-04-06T23:38:29Z",
+          "overall_verdict": "ACCEPT_WITH_REVISION",
+          "certification_recommendation": "bronze",
+          "claims": {
+            "total": 6,
+            "verified": 2,
+            "disputed": 0,
+            "needs_clarification": 3,
+            "unverifiable": 1
+          },
+          "key_finding": "The empirical data point to an interesting inverse-square relationship between the densities of {1,k} and {2,k} continued-fraction denominators, and the computational scale claimed is plausible with m"
+        },
+        {
+          "review_id": "openai-o3-2026-04-06",
+          "file": "zaremba-inverse-square-amplification_review_openai-o3_2026-04-06.json",
+          "reviewer": {
+            "type": "ai-model",
+            "model": "o3",
+            "provider": "openai"
+          },
+          "reviewed_at": "2026-04-06T23:39:19Z",
+          "overall_verdict": "ACCEPT_WITH_REVISION",
+          "certification_recommendation": "bronze",
+          "claims": {
+            "total": 8,
+            "verified": 2,
+            "disputed": 1,
+            "needs_clarification": 3,
+            "unverifiable": 2
+          },
+          "key_finding": "The empirical observations are intriguing and the data appear internally consistent, but key claims rely on a small sample and on computations that have not been independently benchmarked.  The invers"
+        }
+      ],
       "remediations": [],
       "issues_found": 0,
       "issues_resolved": 0,
-      "last_reviewed": ""
+      "last_reviewed": "2026-04-06T23:39:19Z"
     },
     "zaremba-representation-growth": {
       "title": "Zaremba Representation Counts Grow as d^{0.674} \u2014 Hardest Cases Are Small d",

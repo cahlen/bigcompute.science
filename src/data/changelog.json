@@ -1,5 +1,10 @@
 [
   {
+    "hash": "d4f51a6",
+    "date": "Apr 06",
+    "message": "Update findings: digit-pair hierarchy at 10^11, S30 Kronecker recomputation"
+  },
+  {
     "hash": "888a410",
     "date": "Apr 05",
     "message": "Highlight density divergence: {1,2} grows while all other pairs shrink"
@@ -43,10 +48,5 @@
     "hash": "30d82f1",
     "date": "Apr 04",
     "message": "Tone down 'For Students' section: less grandiose, more genuine"
-  },
-  {
-    "hash": "add73b4",
-    "date": "Apr 04",
-    "message": "About: add 'For Students and Researchers' section"
   }
 ]

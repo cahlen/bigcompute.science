@@ -9,7 +9,7 @@ significance: high
 domain: [continued-fractions, number-theory, diophantine-approximation]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "The ratio of Zaremba density for {1,k} to {2,k} follows an inverse-square law: amplification ≈ 1633/k² with R² = 0.991 and exponent −2.002. Digit 1 amplifies density by 200× at k=3, decaying to 18× at k=10. This quantifies a structural asymmetry in continued fraction representations: the golden ratio (digit 1) contributes quadratically more coverage than digit 2, with the amplification factor governed by a clean power law."
+summary: "The ratio of Zaremba density for {1,k} to {2,k}, computed at the same N = 10¹⁰ for both sets, follows an inverse-square law: amplification ≈ 1588(±49)/k².⁰⁰⁴(±0.019), with R² = 0.990. Bootstrapped error bars are shown. Raw counts: for k=3, {1,3} covers 2,003,192,387 and {2,3} covers 9,810,320, giving a ratio of 204.2. Digit 1 amplifies density by 200× at k=3, decaying to 18× at k=10. This quantifies a structural asymmetry in continued fraction representations: the golden ratio (digit 1) contributes quadratically more coverage than digit 2, with the amplification factor governed by a clean power law."
 
 data:
   amplification_formula: "ratio ≈ 1633 × k^(−2.002)"

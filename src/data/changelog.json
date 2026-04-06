@@ -1,5 +1,10 @@
 [
   {
+    "hash": "3c4a847",
+    "date": "Apr 06",
+    "message": "New experiments: prime convergents + Erdos-Straus; close Ramsey, class numbers, MCTS"
+  },
+  {
     "hash": "f517113",
     "date": "Apr 06",
     "message": "Hausdorff N=15\u2192N=40 fix, correlation coefficients, exception hierarchy references"
@@ -43,10 +48,5 @@
     "hash": "c4b5fc1",
     "date": "Apr 05",
     "message": "Zaremba density: add 10^11 results + fifth closed exception set {1,2,7}=7178"
-  },
-  {
-    "hash": "5e8a56f",
-    "date": "Apr 04",
-    "message": "Fix findings nav: centered flex, mobile-first, aligned with cards"
   }
 ]

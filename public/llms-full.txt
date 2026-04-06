@@ -48,7 +48,14 @@ We compute things that require serious hardware — 8×NVIDIA B200 (1.43 TB VRAM
 - Website source: https://github.com/cahlen/bigcompute.science (Astro + KaTeX)
 - Agent contribution guide: https://github.com/cahlen/idontknow/blob/main/AGENTS.md
 - Citation format: https://github.com/cahlen/idontknow/blob/main/CITATION.cff
-- Datasets: https://huggingface.co/cahlen (class numbers, Kronecker, spectra, Zaremba)
+- Datasets: https://huggingface.co/cahlen (7 repos)
+  - https://huggingface.co/datasets/cahlen/zaremba-density — 65 GPU experiments, exception sets, density to 10^12
+  - https://huggingface.co/datasets/cahlen/hausdorff-dimension-spectrum — dim_H for all 1,048,575 subsets of {1,...,20}
+  - https://huggingface.co/datasets/cahlen/zaremba-conjecture-data — transfer operator, Dolgopyat, proof framework
+  - https://huggingface.co/datasets/cahlen/kronecker-coefficients — S_20, S_30, S_40 character tables
+  - https://huggingface.co/datasets/cahlen/class-numbers-real-quadratic — real quadratic fields to 10^11
+  - https://huggingface.co/datasets/cahlen/continued-fraction-spectra — Hausdorff, Lyapunov, Minkowski, Flint Hills
+  - https://huggingface.co/datasets/cahlen/ramanujan-machine-results — 586B candidates through deg 7
 
 ### Review infrastructure
 - Review scripts: https://github.com/cahlen/idontknow/tree/main/scripts/reviews (run_review.py, aggregate.py, validate.py, sync_website.py)

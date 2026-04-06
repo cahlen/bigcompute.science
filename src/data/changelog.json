@@ -1,5 +1,10 @@
 [
   {
+    "hash": "4d8aa2c",
+    "date": "Apr 06",
+    "message": "Add Zaremba density experiment page: 65 runs, 5 closed exception sets, 5 findings"
+  },
+  {
     "hash": "3c4a847",
     "date": "Apr 06",
     "message": "New experiments: prime convergents + Erdos-Straus; close Ramsey, class numbers, MCTS"
@@ -43,10 +48,5 @@
     "hash": "5d9a440",
     "date": "Apr 05",
     "message": "Update recent updates changelog from git log"
-  },
-  {
-    "hash": "c4b5fc1",
-    "date": "Apr 05",
-    "message": "Zaremba density: add 10^11 results + fifth closed exception set {1,2,7}=7178"
   }
 ]

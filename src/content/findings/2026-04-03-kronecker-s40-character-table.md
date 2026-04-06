@@ -54,7 +54,7 @@ We computed the complete character table of the symmetric group $S_{40}$ and use
 | Max $g(\lambda,\mu,\nu)$ | 6,408,361 | 24.2 trillion | **$\geq 1.30 \times 10^{18}$** (sampled) |
 | Character table time | 1.7 sec | 220 sec | **9.5 hours** |
 
-The S$_{40}$ character table has **37,338 rows and 37,338 columns** (1.394 billion entries), computed via the Murnaghan-Nakayama rule. This is, to our knowledge, the first complete $S_{40}$ character table explicitly computed and publicly archived as a downloadable dataset file. (Note: the GAP system has provided on-demand computation of `CharacterTable("Symmetric",40)` since 1997, so the table has been *computable* for decades. Our contribution is pre-computing and publishing the full 4.6 GB file for direct access.). (Note: the GAP system has provided on-demand computation of `CharacterTable("Symmetric",40)` since 1997, so the table has been *computable* for decades. Our contribution is pre-computing and publishing the full 4.6 GB file for direct access.)
+The S$_{40}$ character table has **37,338 rows and 37,338 columns** (1.394 billion entries), computed via the Murnaghan-Nakayama rule. To our knowledge, this is the first publicly archived explicit $S_{40}$ character table file available as a downloadable dataset. (Note: the GAP system has provided on-demand computation of `CharacterTable("Symmetric",40)` since 1997, so the table has been *computable* for decades. Our contribution is pre-computing and publishing the full 4.6 GB file for direct access.)
 
 ## Why This Matters
 
@@ -79,7 +79,7 @@ All 11,480 hook $\times$ hook $\times$ hook Kronecker triples have $g \in \{0, 1
 
 ### GCT-Relevant Near-Rectangular Coefficients
 
-For the Mulmuley-Sohoni geometric complexity theory program, the coefficients of near-rectangular partitions are most important. We computed all 11,480 triples of near-rectangular partitions of 40:
+For the Mulmuley-Sohoni geometric complexity theory program, the coefficients of near-rectangular partitions are most relevant. We computed all 11,480 triples from our set of 40 near-rectangular partitions of 40 (defined as partitions with at most 2 distinct part sizes differing by 1):
 
 | Triple | $g$ |
 |--------|-----|
@@ -89,7 +89,7 @@ For the Mulmuley-Sohoni geometric complexity theory program, the coefficients of
 | $(7^4 6^2, \; 7^4 6^2, \; 7^4 6^2)$ | 92,773,073 |
 | $(7^4 6^2, \; 6^5 5^2, \; 5^4 4^5)$ | 71,187,464 |
 
-The near-rectangular nonzero rate is only **10.1%** -- far lower than the overall 94.9%. Our "near-rectangular" set is defined as all partitions of 40 with at most 2 distinct part sizes differing by 1 (e.g., $6^5 5^2$, $7^4 6^2$). This is broader than the strict GCT-relevant rectangular shapes, so 10.1% is likely an upper bound on GCT-relevant positivity. The full list of partitions in this set and a checksum of the output are available in the GitHub repository. Our "near-rectangular" set is defined as all partitions of 40 with at most 2 distinct part sizes differing by 1 (e.g., $6^5 5^2$, $7^4 6^2$). This is broader than the strict GCT-relevant rectangular shapes, so 10.1% is likely an upper bound on GCT-relevant positivity. The full list of partitions in this set and a checksum of the output are available in the GitHub repository. This is significant: the GCT-relevant region of the Kronecker cone is much sparser than the generic region. Positivity in this region cannot be taken for granted. Positivity in this region cannot be taken for granted.
+The near-rectangular nonzero rate is only **10.1%** -- far lower than the overall 94.9%. Our "near-rectangular" set consists of all 40 partitions of 40 with at most 2 distinct part sizes differing by 1 -- this includes exact rectangles like $(8^5)$, $(5^8)$, $(4^{10})$, $(2^{20})$, $(20^2)$, $(40)$, $(1^{40})$ and near-rectangles like $(6^5 5^2)$, $(7^4 6^2)$, $(5^4 4^5)$, $(4^7 3^4)$, $(3^{10} 2^5)$, etc. (full list: `identify_near_rectangles()` in [`analyze_n40.py`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/kronecker-coefficients/analyze_n40.py)). This is broader than the strict GCT-relevant rectangular shapes, so 10.1% is likely an upper bound on GCT-relevant positivity. **Checksum**: SHA-256 of the `near_rectangular_kronecker` JSON object in `analysis_n40.json` is `5e9806f9...df8a1a8a`. This is significant: the GCT-relevant region of the Kronecker cone is much sparser than the generic region. Positivity in this region cannot be taken for granted.
 
 ## Character Table Analysis
 
@@ -163,7 +163,7 @@ Each sum has 37,338 terms with integer numerators up to $\sim 10^{68}$. The resu
 
 - **Hook triples**: 11,480 triples, 368 seconds
 - **Near-rectangular triples**: 11,480 triples, 304 seconds
-- **Random sample**: 1,000 triples (uniformly sampled over unordered partition triples with replacement; random seed documented in the analysis script), 17 seconds
+- **Random sample**: 1,000 triples (uniform over unordered triples $i \leq j \leq k$ drawn without replacement via `random.seed(42)` then `sorted(random.sample(range(37338), 3))`; see [`analyze_n40.py`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/kronecker-coefficients/analyze_n40.py) lines 343--353), 17 seconds
 
 ### Full Computation Status
 

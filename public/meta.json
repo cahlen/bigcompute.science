@@ -2,7 +2,7 @@
   "name": "bigcompute.science",
   "description": "Open computational mathematics on GPUs. AI-audited, not peer-reviewed.",
   "url": "https://bigcompute.science",
-  "generated_at": "2026-04-06T17:38:57Z",
+  "generated_at": "2026-04-06T17:51:54Z",
   "author": {
     "name": "Cahlen Humphreys",
     "github": "https://github.com/cahlen",
@@ -12,8 +12,8 @@
   "stats": {
     "findings": 18,
     "reviews": 47,
-    "issues": 164,
-    "issues_fixed": 150,
+    "issues": 167,
+    "issues_fixed": 163,
     "models": [
       "ChatGPT",
       "Claude Opus 4.6",

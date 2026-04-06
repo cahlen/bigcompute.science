@@ -1,5 +1,10 @@
 [
   {
+    "hash": "5202f1d",
+    "date": "Apr 06",
+    "message": "Update pair hierarchy: k^{-5.83} power law, amplification growth, {2,k} at 1e11"
+  },
+  {
     "hash": "05bc33d",
     "date": "Apr 06",
     "message": "New finding: inverse-square amplification law for digit 1 in Zaremba density"
@@ -43,10 +48,5 @@
     "hash": "5308fab",
     "date": "Apr 04",
     "message": "Fix findings nav: aligned grid instead of messy flex buttons"
-  },
-  {
-    "hash": "a0668d9",
-    "date": "Apr 04",
-    "message": "Tone audit: fix overclaiming across About, Interactive, Verification"
   }
 ]

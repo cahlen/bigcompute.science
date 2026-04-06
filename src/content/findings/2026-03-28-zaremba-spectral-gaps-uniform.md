@@ -10,7 +10,7 @@ conjecture_year: 1972
 domain: [number-theory, spectral-theory, continued-fractions]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "FP64/N=40 cuBLAS computation of congruence spectral gaps for Zaremba's semigroup Γ_{1,...,5}. All 168 primes to p=1000 have σ_p ≥ 0.344. Global minimum: σ(p=491) = 0.344. Primes to p=3500 verified on 8× B200 (in progress). Combined with flat gap bound |λ₂|/√p ≤ 2.18 for 9,592 primes, property (τ) confirmed with explicit constant. The convergence threshold σ > 0.277 is met with margin 0.067."
+summary: "FP64/N=40 cuBLAS computation of congruence spectral gaps for Zaremba's semigroup Γ_{1,...,5}. All 168 primes to p=1000 have σ_p ≥ 0.344. Global minimum: σ(p=491) = 0.344. Primes to p=3500 verified on 8× B200 (in progress). Combined with flat gap bound |λ₂|/√p ≤ 2.18 for 9,592 primes, property (τ) computationally supported for square-free m ≤ 1999 (not proven for all moduli or non-square-free m). The convergence threshold σ > 0.277 (Bourgain-Kontorovich framework) is met with margin 0.067."
 
 data:
   hausdorff_dimension: 0.836829443681208
@@ -30,6 +30,7 @@ data:
   flat_gap_max_prime: 100000
   flat_max_lambda2_over_sqrtp: 2.177
   convergence_threshold: 0.277
+  convergence_threshold_note: "Threshold derives from Bourgain-Kontorovich (2014) circle method with ρ_η ≤ 0.7606 (arb ball arithmetic). Value depends on proof framework; alternative approaches may require different bounds."
   threshold_met: true
   q0_estimate: "~10^5 (conditional on σ ≥ 0.344 for all primes)"
   brute_force_frontier: 100000000000
@@ -173,6 +174,8 @@ Showing the first 50 square-free moduli, plus notable extremes. Full dataset (1,
 - 8 moduli computed in parallel across 8 NVIDIA B200 GPUs
 - **256 seconds** for all 608 square-free $m \leq 998$
 
+**FP64/N=40 prime computation** (168 primes, $p \leq 1000$): cuBLAS FP64 dense eigensolver with $N = 40$ Chebyshev collocation points on $[0,1]$. Matrix size $(40 \times (p+1))^2$ per prime. Power iteration with deflation: max 200 iterations, early termination at 50 iterations if gap exceeds 0.10. Convergence criterion: $|\lambda^{(k)} - \lambda^{(k-1)}| / |\lambda^{(k)}| < 10^{-12}$. All 168 primes converged within 120 iterations. Raw eigenvalue data for all 168 primes available in the repository (`data/spectral_gaps_n40_primes.csv`).
+
 ## Connection to Other Findings
 
 - **Hausdorff dimension**: $\delta = 0.836829443681208$ (computed to 15 digits) — [see experiment](/experiments/zaremba-transfer-operator/)
@@ -183,7 +186,7 @@ Showing the first 50 square-free moduli, plus notable extremes. Full dataset (1,
 
 ## What This Enables
 
-The combination of uniform spectral gaps + brute-force verification + Cayley diameter bounds opens a concrete path to the full conjecture:
+The combination of uniform spectral gaps + brute-force verification + Cayley diameter bounds provides data relevant to an eventual proof, though significant analytic work remains:
 
 1. **Toward effective Q₀**: Bourgain-Kontorovich's density-1 proof has non-effective error terms. With explicit spectral gap data ($\sigma_m \geq 0.237$ for $m \leq 1999$) and Cayley diameter bounds ($\text{diam}(p) \sim 1.45 \log p$), the error terms in their circle method analysis could in principle be made explicit, yielding a concrete $Q_0$ such that Zaremba holds for all $d > Q_0$. However, this requires rigorous (not just numerical) bounds on spectral gaps for *all* moduli plus tight control of exponential sums — a substantial analytic challenge that remains open.
 

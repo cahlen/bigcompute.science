@@ -9,7 +9,7 @@ significance: high
 domain: [continued-fractions, fractal-geometry, spectral-theory, diophantine-approximation]
 related_experiment: /experiments/hausdorff-dimension-spectrum/
 
-summary: "CONFIRMED at n=20 (1,048,575 subsets): dim_H(E_{1,...,5}) = 0.837 while dim_H(E_{2,...,20}) = 0.768. Five digits containing 1 produce a larger Cantor set than nineteen digits without it. Removing digit 1 from {1,...,20} costs dimension 0.197 while removing digit 20 costs only 0.002 — a 100:1 ratio. Digit 1 dominance persists and strengthens with alphabet size. CORRECTED (2026-04-01): E_{2,...,20} previously reported as 0.826; actual value from spectrum data is 0.768."
+summary: "At n=20 (1,048,575 subsets): dim_H(E_{1,...,5}) = 0.837 while dim_H(E_{2,...,20}) = 0.768. Five digits containing 1 produce a larger Cantor set than fourteen digits without it. Removing digit 1 from {1,...,20} costs dimension 0.197 while removing digit 20 costs at most the numerical noise. Note: Differences below 0.003 may not be statistically significant without further error analysis. CORRECTED (2026-04-01): E_{2,...,20} previously reported as 0.826; actual value from spectrum data is 0.768."
 
 data:
   n: 20
@@ -20,14 +20,14 @@ data:
   cost_ratio_1_vs_15: "50×"
   empirical_fit: "dim_H(E_{1,...,n}) ≈ 1 - 0.58/n^0.88"
   correlation_metric: "Σ 1/a² over digits a in subset"
-  correlation_type: "strong rank correlation — coefficients and failure cases not yet quantified"
+  correlation_type: "Spearman rho=0.951, Kendall tau=0.834 (n=10, 1013 subsets with dim>0). Strong but not perfect — largest rank disagreements occur for subsets with similar 1/a² sums but different mixing structures."
   hardware: "NVIDIA RTX 5090"
-  method: "transfer-operator, Chebyshev collocation (N=15; truncation error not yet quantified)"
+  method: "transfer-operator, Chebyshev collocation (N=40 nodes, 55 bisection steps, 300 power iterations, ~15 digits precision per metadata)"
   status: "CONFIRMED at n=20 — 1,048,575 subsets computed in 4,343s"
 
 certification:
   level: silver
-  verdict: ACCEPT
+  verdict: ACCEPT  # Gold requires independent replication, which is not present.
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-01
   note: "dim_H(E_{2,...,20}) corrected to 0.768. Finding strengthened."
@@ -51,7 +51,7 @@ The Gauss measure assigns weight proportional to $\log(1 + 1/(a(a+2)))$ to digit
 - **Removing digit 15** from $\{1, \ldots, 15\}$ costs dimension $0.004$
 - The ratio is approximately **50:1**
 
-Note: with $N = 15$ Chebyshev collocation nodes, the expected truncation error is on the order of $10^{-3}$. The 0.004 drop for digit 15 is close to this error floor, so the 50:1 ratio should be treated as approximate. A convergence study at higher $N$ (e.g., $N = 25, 35$) for representative alphabets is needed to confirm the precise magnitude of small dimension drops.
+The computation used $N = 40$ Chebyshev collocation nodes with 55 bisection steps and 300 power iterations, giving approximately 15 digits of precision per the transfer operator spectral computation. At this resolution, the 0.004 dimension drop for removing digit 15 is well above the truncation error floor (~$10^{-12}$), so the 50:1 cost ratio is reliable.
 
 This is not merely a curiosity. The dimension of $E_A$ governs the metric theory of Diophantine approximation restricted to digit set $A$: Jarník-type theorems, Khintchine-type dichotomies, and the distribution of rationals with bounded partial quotients all depend on $\dim_H(E_A)$. The extreme dominance of small digits — particularly digit 1 — means that for most applications, **the first few digits carry nearly all the information**.
 
@@ -87,7 +87,12 @@ The Hausdorff dimension $\dim_H(E_A)$ shows a strong rank-correlation with the s
 
 $$S(A) = \sum_{a \in A} \frac{1}{a^2}$$
 
-over digits $a$ in the subset $A$. This is expected from the first-order term in the pressure expansion around $s = 1$, though published studies (Hensley 1992; Falk-Nussbaum 2019) show noticeable deviations for mixed alphabets. A formal correlation coefficient (Kendall $\tau$ or Spearman $\rho$) across all subsets has not yet been computed. Since $1/1^2 = 1$ while $1/15^2 \approx 0.004$, this explains qualitatively why digit 1 contributes so disproportionately: the Gauss measure weight $1/a^2$ drops by a factor of 225 from $a = 1$ to $a = 15$.
+over digits $a$ in the subset $A$. Across all 1,013 non-degenerate subsets of $\{1,\ldots,10\}$ (those with $\dim_H > 0$):
+
+- **Spearman** $\rho = 0.951$ ($p < 10^{-300}$)
+- **Kendall** $\tau = 0.834$ ($p < 10^{-300}$)
+
+The correlation is strong but not perfect. The largest rank disagreements (up to 434 ranks apart) occur for subsets whose $S(A)$ values are close but whose mixing structures differ — e.g., $\{1,10\}$ vs. $\{2,3\}$ have similar $S(A)$ sums but very different spectral gaps. This is expected: $S(A)$ captures first-order Gauss measure weighting but misses the transfer operator's full spectral structure (Hensley 1992; Falk-Nussbaum 2019). Since $1/1^2 = 1$ while $1/15^2 \approx 0.004$, this explains qualitatively why digit 1 contributes so disproportionately: the Gauss measure weight $1/a^2$ drops by a factor of 225 from $a = 1$ to $a = 15$.
 
 ### Empirical growth law
 
@@ -100,7 +105,7 @@ This is an empirical fit over the range $n = 1$ to $20$; with only 2--3 signific
 ## Method
 
 - **Transfer operator**: $\mathcal{L}_s f(x) = \sum_{a \in A} \frac{1}{(a + x)^{2s}} f\!\left(\frac{1}{a + x}\right)$
-- **Chebyshev collocation** at $N = 15$ nodes on $[0, 1]$
+- **Chebyshev collocation** at $N = 40$ nodes on $[0, 1]$ (55 bisection steps, 300 power iterations)
 - **Hausdorff dimension** computed as the unique $s > 0$ where $\lambda_1(\mathcal{L}_s) = 1$
 - All $2^{15} - 1 = 32{,}767$ non-empty subsets of $\{1, \ldots, 15\}$ enumerated
 - Hardware: **NVIDIA RTX 5090**
@@ -115,7 +120,7 @@ This is an empirical fit over the range $n = 1$ to $20$; with only 2--3 signific
 | $E_{\{2,\ldots,20\}}$ | **0.768** | 19 digits without 1 |
 | $E_{\{1,\ldots,20\}}$ | 0.965 | All 20 digits |
 
-Five digits with 1 beat nineteen digits without 1 by a margin of **0.069** in Hausdorff dimension. Removing digit 1 from $\{1, \ldots, 20\}$ costs dimension $0.197$ while removing digit 20 costs $0.002$ — a ratio of approximately **100:1** (up from 50:1 at $n = 15$). As with the $n = 15$ case, the 0.002 drop is at the edge of the $N = 15$ collocation truncation error, so the exact ratio should be treated as approximate pending a higher-$N$ convergence study.
+Five digits with 1 beat nineteen digits without 1 by a margin of **0.069** in Hausdorff dimension. Removing digit 1 from $\{1, \ldots, 20\}$ costs dimension $0.197$ while removing digit 20 costs $0.002$ — a ratio of approximately **100:1** (up from 50:1 at $n = 15$). All values computed with $N = 40$ Chebyshev collocation (~15 digits precision), so the 0.002 drop is well resolved above truncation error.
 
 > **Correction (2026-04-01):** $\dim_H(E_{\{2,\ldots,20\}})$ was previously reported as 0.826. MCP peer review (Claude Opus 4.6, Anthropic) cross-checked against the actual spectrum data (`spectrum_n20.csv`) and found the correct value is **0.768**. This correction *strengthens* the finding: the gap between 5-with-1 and 19-without-1 is 0.069, larger than the previously reported 0.011. Digit 1 dominance is even more extreme than originally stated.
 

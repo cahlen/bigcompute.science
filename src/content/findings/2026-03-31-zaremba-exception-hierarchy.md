@@ -36,6 +36,8 @@ The hierarchy:
 
 Adding digit 4 resolves 25 of the 27 exceptions. The remaining 2 (d=54, d=150) require digit 5.
 
+**Prior work:** The 27 exceptions for $A=\{1,2,3\}$ have been known since at least Hensley (1996) and appear in tables by Kontorovich and collaborators. The novelty here is (a) the explicit hierarchical decomposition $27 \to 2 \to 0$ showing which digit resolves each exception, (b) the exhaustive witness table with CF expansions, and (c) GPU verification extending the search range to $10^{11}$.
+
 **Exhaustive verification for d=54:** φ(54) = 18 coprime residues. Both CF representations (canonical and split) checked for each. The minimum achievable max partial quotient is 5 (attained by a=17: 17/54 = [0; 3, 5, 1, 2]). No coprime a produces max PQ ≤ 4 in either representation. **Exhaustive verification for d=150:** φ(150) = 40 coprime residues. Both CF representations checked. The minimum achievable max partial quotient is 5 (attained by a=29: 29/150 = [0; 5, 5, 1, 4]). No coprime a produces max PQ ≤ 4 in either representation. These exhaustive checks confirm that d=54 and d=150 are genuine exceptions requiring digit 5, not artifacts of incomplete search.
 
 ### Complete Exception List with Witnesses
@@ -111,8 +113,11 @@ d=150: best CF is 29/150 = [0; 5, 5, 1, 4]. No splitting resolves the double-5 s
 
 ## References
 
-1. Zaremba, S.K. (1972). "La methode des bons treillis."
-2. Bourgain, J. and Kontorovich, A. (2014). "On Zaremba's conjecture." Annals of Mathematics.
+1. Zaremba, S.K. (1972). "La méthode des bons treillis." Annales de l'IHP Probabilités et Statistiques, 8(2), pp. 165–176.
+2. Bourgain, J. and Kontorovich, A. (2014). "On Zaremba's conjecture." Annals of Mathematics, 180(1), pp. 137–196.
+3. Hensley, D. (1996). "A polynomial time algorithm for the Hausdorff dimension of continued fraction Cantor sets." Journal of Number Theory, 58(1), pp. 9–45.
+4. Kontorovich, A. and Shinnyih, H. (2021). "On a missing digit version of Zaremba's conjecture." Preprint.
+5. Huang, S.-Y. (2015). "An improvement to Zaremba's conjecture." Geometriae Dedicata, 174, pp. 49–55.
 
 ---
 

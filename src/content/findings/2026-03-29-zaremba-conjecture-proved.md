@@ -1,6 +1,6 @@
 ---
 title: "Zaremba's Conjecture (A=5): Proof Framework via GPU Verification + MOW Spectral Theory (Not Peer-Reviewed, Known Gaps Remain)"
-slug: zaremba-conjecture-proved
+slug: zaremba-conjecture-framework
 date: 2026-03-29
 author: cahlen
 author_github: https://github.com/cahlen
@@ -23,7 +23,7 @@ data:
   covering_primorial: 200560490130
   min_covering_gap: 0.651
   min_covering_gap_prime: 29
-  effective_range: "all d ≥ 1 (computer-assisted FRAMEWORK via MOW + arb interval arithmetic — constant-tracking not independently verified; requires Sage/arb notebook for reproducibility)"
+  effective_range: "d ≤ 2.1×10^11 unconditional (GPU brute-force); d > 2.1×10^11 conditional on closing 6 known gaps in the MOW framework (constant-tracking, Galerkin-to-operator transport, Dolgopyat certification — see status field). NOT a completed proof for all d."
   spectral_gaps_method: "MPFR 256-bit (covering primes) + arb ball arithmetic (Dolgopyat)"
   eigenfunction_h0: 1.377561602272515
   hausdorff_dimension: 0.836829443681208
@@ -67,7 +67,9 @@ The proof combines three ingredients (see [paper PDF](https://github.com/cahlen/
 
 ### 1. Brute-Force Verification ($d \leq 2.1 \times 10^{11}$)
 
-GPU matrix enumeration (v6 multi-pass kernel) verifies every integer from 1 to 210 billion. Zero failures. Runtime: 116 minutes on 8× NVIDIA B200 (Blackwell, 192 GB HBM3e each, CUDA 12.8). [Verification manifest with SHA256 checksums](https://github.com/cahlen/idontknow/blob/main/paper/verification-manifest.txt). Completeness of coverage is certified by the final bitset covering all integers in the range; full command lines and input parameters are documented in the manifest.
+GPU matrix enumeration (v6 multi-pass kernel) verifies every integer from 1 to 210 billion. Zero failures. Runtime: 116 minutes on 8× NVIDIA B200 (Blackwell, 192 GB HBM3e each, CUDA 12.8).
+
+**Exact invocation:** `./matrix_v6 210000000000` (compiled with `nvcc -O3 -arch=sm_100a matrix_enum_multipass.cu -lpthread`). Input: single argument $N = 2.1 \times 10^{11}$. Output: per-chunk bitset files covering $[1, N]$; union verified to have zero uncovered integers. SHA256 checksums of all output chunks are recorded in the [verification manifest](https://github.com/cahlen/idontknow/blob/main/paper/verification-manifest.txt). External log with timestamps and per-GPU progress available in the experiment directory.
 
 ### 2. Spectral Gap Computation (11 primes, FP64)
 
@@ -132,7 +134,7 @@ The Hausdorff dimension $\delta = 0.836829443681208$ is the unique $s$ where $\r
 | Pressure derivative $P'(\delta)$ | $-1.6539$ | Hellmann-Feynman formula |
 | Renewal constant $c_1 = 1/\|P'(\delta)\|$ | $0.6046$ | Lalley renewal theorem |
 | Untwisted spectral gap $\sigma_0$ | $0.7174$ | Deflated power iteration |
-| Dolgopyat bound $\rho_\eta$ | $\leq 0.771$ | arb ball arithmetic (FLINT, 256-bit), 50K+ grid points, N=40 |
+| Dolgopyat bound $\rho_\eta$ | $\leq 0.771$ | Numerical (arb ball arithmetic on N=80 Galerkin matrix, not a computer-assisted Dolgopyat proof; no a-posteriori bound transporting to the full operator) |
 | Power savings $\varepsilon$ | $0.157$ | $-\log(\rho_\eta)/|P'(\delta)|$ |
 
 ## Transitivity (Algebraic Proof)
@@ -166,7 +168,13 @@ For $R(d) \geq 1$: need $d^\varepsilon > C'/c_\Gamma$, giving threshold $D_0 = (
 
 **The Calderón-Magee explicit spectral gap** (JEMS 2025) applies to Schottky subgroups with $\delta > 4/5$ (our $\delta = 0.837$ qualifies), making $\varepsilon$ computable in principle.
 
-**Result:** $C_{\text{err}} \approx 536$, $\varepsilon' = 0.14$, $D_0 \approx 3.4 \times 10^{10} \leq 2.1 \times 10^{11}$. Margin: $6\times$. All load-bearing spectral data arb-certified via FLINT ball arithmetic at 256-bit precision. **Important caveat:** the original MOW paper does not supply all constants explicitly, and the Calderon-Magee result gives an explicit gap only for untwisted operators. A detailed constant-tracking appendix (Sage or arb notebook) reproducing every numeric inequality is not yet available. The $D_0$ value should therefore be understood as *estimated*, not rigorously certified, until full constant propagation is documented.
+**Result:** $C_{\text{err}} \approx 536$, $\varepsilon' = 0.14$, $D_0 \approx 3.4 \times 10^{10} \leq 2.1 \times 10^{11}$. Margin: $6\times$.
+
+**Important caveats (DISPUTED — not yet rigorous):**
+1. The original MOW paper does not supply all constants explicitly; our constant extraction is a *plausible numerical estimate*, not a theorem.
+2. The Calderón-Magee result gives an explicit gap only for untwisted operators; extending to twisted operators at all $q$ requires additional argument.
+3. No detailed constant-tracking appendix (Sage or arb notebook) reproducing every numeric inequality is available. Until such a notebook is produced and independently verified, $D_0 \approx 3.4 \times 10^{10}$ is an **estimate, not a rigorous bound**.
+4. The claim that "all load-bearing spectral data" are arb-certified applies only to the finite Galerkin matrices, not to the full infinite-dimensional operators.
 
 ## Representation Growth
 

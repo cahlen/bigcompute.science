@@ -38,7 +38,7 @@ results:
 
 summary: "Class numbers h(d) for 30 billion real quadratic fields across [10^9, 10^11]. h=1 rate falls monotonically: 42% → 17% → 15.4%. Goes to 0, not 75% (genus theory). Odd-part convergence to Cohen-Lenstra extremely slow."
 
-code: https://github.com/cahlen/idontknow
+code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/class-numbers
 data: /data/class-numbers/
 dataset: https://huggingface.co/datasets/cahlen/class-numbers-real-quadratic
 ---

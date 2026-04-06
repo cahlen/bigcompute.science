@@ -39,7 +39,7 @@ results:
     - "What is the asymptotic density of doubly-prime convergents as depth grows?"
     - "Does e have exactly 3 doubly-prime convergents, or are there more beyond n=42?"
   data: "Not yet uploaded — experiment in progress"
-  code: https://github.com/cahlen/idontknow/blob/main/scripts/experiments/prime-convergents/prime_convergents.cu
+  code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/prime-convergents
 ---
 
 # Prime Convergents of Continued Fractions

@@ -274,10 +274,13 @@ const domains = frontmatter.domain || [];
       <slot />
     </div>
 
-    {frontmatter.code && (
-      <div class="experiment-footer">
+    <div class="experiment-footer">
+      {datasetURL && (
+        <a href={datasetURL} class="data-link" target="_blank">Download Data on Hugging Face</a>
+      )}
+      {frontmatter.code && (
         <a href={frontmatter.code} class="code-link" target="_blank">View Code on GitHub</a>
-      </div>
-    )}
+      )}
+    </div>
   </article>
 </Base>

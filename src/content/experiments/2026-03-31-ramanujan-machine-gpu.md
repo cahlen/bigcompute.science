@@ -35,7 +35,8 @@ results:
 
 summary: "586 billion polynomial CFs evaluated through degree 7 on B200 GPU — zero confirmed transcendental formulas. All matches algebraic (sqrt(2), sqrt(5), phi). 30 compound false positives at deg 7. Need GPU PSLQ for high-precision verification."
 
-code: https://github.com/cahlen/idontknow
+dataset: https://huggingface.co/datasets/cahlen/ramanujan-machine-results
+code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/ramanujan-machine
 ---
 
 # Ramanujan Machine: GPU-Accelerated Formula Discovery

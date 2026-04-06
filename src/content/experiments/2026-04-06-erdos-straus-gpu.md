@@ -32,7 +32,7 @@ results:
     - "Are there primes > 10^8 with unusually low f(p)?"
     - "Connection between f(p) and p mod 4, p mod 24 residue classes"
   data: "Not yet uploaded — experiment in progress"
-  code: https://github.com/cahlen/idontknow/blob/main/scripts/experiments/erdos-straus/erdos_straus.cu
+  code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/erdos-straus
 ---
 
 # Erdos-Straus Conjecture: GPU Solution Counting

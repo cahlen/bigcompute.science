@@ -41,7 +41,7 @@ results:
 
 summary: "GPU verification of Zaremba's Conjecture for all d up to 210 billion (zero failures), plus spectral gap analysis, transitivity proof, and LLM theorem proving in Lean 4."
 
-code: https://github.com/cahlen/idontknow
+code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/zaremba-effective-bound
 dataset: https://huggingface.co/datasets/cahlen/zaremba-conjecture-data
 data: /data/zaremba-8b/
 ---

@@ -35,7 +35,7 @@ results:
 
 summary: "Lyapunov exponents for all 1,048,575 non-empty subsets of {1,...,20}, computed in 305 seconds on RTX 5090. Twin dataset with the Hausdorff dimension spectrum."
 
-code: https://github.com/cahlen/idontknow
+code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/lyapunov-spectrum
 data: /data/lyapunov-spectrum/
 dataset: https://huggingface.co/datasets/cahlen/continued-fraction-spectra
 ---

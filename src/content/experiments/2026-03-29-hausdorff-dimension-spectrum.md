@@ -41,7 +41,7 @@ results:
 
 summary: "Hausdorff dimension computed for every non-empty subset of {1,...,20} — 1,048,575 subsets in 4,343 seconds on RTX 5090. Validated against Jenkinson-Pollicott."
 
-code: https://github.com/cahlen/idontknow
+code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/hausdorff-spectrum
 data: /data/hausdorff-spectrum/
 dataset: https://huggingface.co/datasets/cahlen/hausdorff-dimension-spectrum
 ---

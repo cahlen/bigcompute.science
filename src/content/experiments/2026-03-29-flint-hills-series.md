@@ -41,7 +41,7 @@ results:
 
 summary: "Partial sums of the Flint Hills series computed to 10 billion terms with quad-double precision. Spike decomposition reveals 91% of the sum comes from 19 convergent spikes."
 
-code: https://github.com/cahlen/idontknow
+code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/flint-hills
 dataset: https://huggingface.co/datasets/cahlen/continued-fraction-spectra
 ---
 

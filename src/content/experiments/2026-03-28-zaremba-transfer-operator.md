@@ -44,7 +44,7 @@ results:
 
 summary: "Hausdorff dimension of E_5 computed to 15 digits (0.836829443681208). Spectral gaps for 1,214 square-free moduli, all positive. Property (tau) computationally supported (not proven)."
 
-code: https://github.com/cahlen/idontknow
+code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/zaremba-transfer-operator
 dataset: https://huggingface.co/datasets/cahlen/zaremba-conjecture-data
 ---
 

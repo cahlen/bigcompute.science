@@ -31,7 +31,7 @@ results:
 
 summary: "Complete Kronecker coefficient tables for S_20 (32.7M nonzero, 3.7s) and S_30 (26.4B nonzero, 7.4 min) on NVIDIA B200. Complete S_40 character table (37,338 partitions, 1.394B entries, 9.5 hr) with targeted Kronecker coefficients via exact arithmetic: 94.9% nonzero (sampled), max g >= 1.3 x 10^18."
 
-code: https://github.com/cahlen/idontknow
+code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/kronecker-coefficients
 dataset: https://huggingface.co/datasets/cahlen/kronecker-coefficients
 data: /data/kronecker/
 ---

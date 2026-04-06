@@ -1515,3 +1515,38 @@ footer .copyright a { color: var(--muted); border-bottom: 1px dotted var(--muted
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 3px;
 }
+
+/* ── Experiment page: footer links ───────────────────────── */
+.experiment-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 2rem 0 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.experiment-footer a {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.experiment-footer .data-link {
+  background: rgba(255,193,7,0.12);
+  color: #ffc107;
+  border: 1px solid rgba(255,193,7,0.25);
+}
+.experiment-footer .data-link:hover {
+  background: rgba(255,193,7,0.22);
+}
+.experiment-footer .code-link {
+  background: rgba(122,181,106,0.12);
+  color: #7ab56a;
+  border: 1px solid rgba(122,181,106,0.25);
+}
+.experiment-footer .code-link:hover {
+  background: rgba(122,181,106,0.22);
+}

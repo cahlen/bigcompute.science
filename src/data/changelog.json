@@ -1,5 +1,10 @@
 [
   {
+    "hash": "734c43c",
+    "date": "Apr 06",
+    "message": "Update certifications: 53 reviews, 188/192 resolved, 2 new findings reviewed"
+  },
+  {
     "hash": "bb8439b",
     "date": "Apr 06",
     "message": "Resolve 8 finding issues: regression stats, method docs, caveats verified"
@@ -43,10 +48,5 @@
     "hash": "4d8aa2c",
     "date": "Apr 06",
     "message": "Add Zaremba density experiment page: 65 runs, 5 closed exception sets, 5 findings"
-  },
-  {
-    "hash": "3c4a847",
-    "date": "Apr 06",
-    "message": "New experiments: prime convergents + Erdos-Straus; close Ramsey, class numbers, MCTS"
   }
 ]

@@ -1,5 +1,10 @@
 [
   {
+    "hash": "b34b70d",
+    "date": "Apr 06",
+    "message": "Update llms.txt: 7 HF datasets, 16 findings, 47 reviews, 5 closed exception sets"
+  },
+  {
     "hash": "4d8aa2c",
     "date": "Apr 06",
     "message": "Add Zaremba density experiment page: 65 runs, 5 closed exception sets, 5 findings"
@@ -43,10 +48,5 @@
     "hash": "159fbb2",
     "date": "Apr 05",
     "message": "Zaremba findings: fifth closed set {1,2,7}, open sets at 10^11, {1,2,6} confirmed"
-  },
-  {
-    "hash": "5d9a440",
-    "date": "Apr 05",
-    "message": "Update recent updates changelog from git log"
   }
 ]

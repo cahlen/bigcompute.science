@@ -4,7 +4,7 @@ slug: erdos-straus-gpu
 date: 2026-04-06
 author: cahlen
 author_github: https://github.com/cahlen
-status: in-progress
+status: stalled
 
 hardware:
   name: NVIDIA DGX B200
@@ -25,7 +25,7 @@ tags:
 
 results:
   problem: "Verify the Erdos-Straus conjecture (4/n = 1/x + 1/y + 1/z) and count solutions f(p) for all primes p up to N"
-  status: "Kernel compiled, first run in progress"
+  status: "Kernel compiled but hangs on cudaDeviceSynchronize — needs batched progress reporting"
   open_questions:
     - "Growth rate of f(p): does mean f(p) grow as c*log(p)?"
     - "Distribution of barely-solvable primes (f(p) = 1)"

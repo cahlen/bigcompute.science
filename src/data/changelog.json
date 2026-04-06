@@ -1,5 +1,10 @@
 [
   {
+    "hash": "6f186c2",
+    "date": "Apr 06",
+    "message": "Update experiment statuses: Kronecker complete, Prime convergents complete, Density stalled"
+  },
+  {
     "hash": "95db7f2",
     "date": "Apr 06",
     "message": "Fix wrong HF dataset links across 3 experiments"
@@ -43,10 +48,5 @@
     "hash": "5202f1d",
     "date": "Apr 06",
     "message": "Update pair hierarchy: k^{-5.83} power law, amplification growth, {2,k} at 1e11"
-  },
-  {
-    "hash": "05bc33d",
-    "date": "Apr 06",
-    "message": "New finding: inverse-square amplification law for digit 1 in Zaremba density"
   }
 ]

@@ -1,5 +1,10 @@
 [
   {
+    "hash": "103b2f1",
+    "date": "Apr 06",
+    "message": "Fix YAML: move code/dataset out of results block so buttons render"
+  },
+  {
     "hash": "b5c3e1e",
     "date": "Apr 06",
     "message": "HF data button: brand yellow (#FFD21E) + HuggingFace icon SVG"
@@ -43,10 +48,5 @@
     "hash": "1952c9a",
     "date": "Apr 06",
     "message": "Trigger Cloudflare Pages rebuild"
-  },
-  {
-    "hash": "9215cf2",
-    "date": "Apr 06",
-    "message": "Fix experiment page: Key Results text overflow, status badge, hardware block styling"
   }
 ]

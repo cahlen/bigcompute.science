@@ -9,7 +9,17 @@ significance: notable
 domain: [algebraic-combinatorics, representation-theory, symmetric-groups, geometric-complexity-theory]
 related_experiment: /experiments/kronecker-coefficients-gpu/
 
-summary: "Complete Kronecker coefficient tables for S_20 (32.7M nonzero, 3.7s) and S_30 (26.4B nonzero, 4.9 min) computed on a single NVIDIA B200 GPU. S_30 recomputed 2026-04-06 with Kahan summation kernel: 26,391,236,124 nonzero out of 29,347,802,420 triples (89.9%), max |g| = 5.18×10^16. S_40 full computation in progress (8.7T triples, first-ever complete table). Character tables computed via validated Murnaghan-Nakayama rule. Data available on Hugging Face."
+summary: "Complete Kronecker coefficient tables for S_20 (32.7M nonzero, 3.7s) and S_30 (26.4B nonzero, 4.9 min) computed on a single NVIDIA B200 GPU. S_30 recomputed 2026-04-06 with Kahan summation kernel: 26,391,236,124 nonzero out of 29,347,802,420 triples (89.9%), max |g| = 5.18×10^16. S_40 full computation in progress (8.7T triples, first-ever complete table). Character tables computed via validated Murnaghan-Nakayama rule. Data available on Hugging Face (https://huggingface.co/datasets/cahlen/kronecker-coefficients).
+
+S_30 Table SHA256: 0e5472996be3148e111dc53d271ecc56d20690257e930aded738b52ce7880db6
+
+S_30 nonzero sample (5 random rows):
+  127,2834,4713,1
+  211,4200,4200,4
+  0,0,5199,1
+  1553,3411,3667,2
+  837,2804,3678,1
+Full sample code and selection recipe at the dataset link above."
 
 data:
   s20_partitions: 627

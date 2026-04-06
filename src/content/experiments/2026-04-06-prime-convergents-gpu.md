@@ -4,7 +4,7 @@ slug: prime-convergents-gpu
 date: 2026-04-06
 author: cahlen
 author_github: https://github.com/cahlen
-status: in-progress
+status: complete
 
 hardware:
   name: NVIDIA DGX B200

@@ -1490,6 +1490,7 @@ footer .copyright a { color: var(--muted); border-bottom: 1px dotted var(--muted
 .status-complete { background: rgba(122,181,106,0.15); color: #7ab56a; }
 .status-in-progress { background: rgba(229,192,80,0.15); color: #e5c050; }
 .status-planned { background: rgba(150,150,150,0.15); color: #999; }
+.status-stalled { background: rgba(224,108,117,0.15); color: #e06c75; }
 
 /* ── Hardware block ──────────────────────────────────────── */
 .hardware-block {

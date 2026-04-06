@@ -1,10 +1,10 @@
 ---
-title: "Kronecker Coefficients: Pushing the Frontier to n=120 on 8× B200"
+title: "Kronecker Coefficients: S20, S30, S40 on 8× B200"
 slug: kronecker-coefficients-gpu
 date: 2026-03-31
 author: cahlen
 author_github: https://github.com/cahlen
-status: in-progress
+status: complete
 
 hardware:
   name: NVIDIA DGX B200
@@ -27,7 +27,7 @@ results:
   problem: "Kronecker coefficients of the symmetric group"
   conjecture_year: 1938
   current_frontier: "Complete character table to n=40, full Kronecker to n=30"
-  target: "n = 120 for GCT-relevant triples"
+  target: "S45+ requires targeted triple computation — full char table infeasible (63 TB)"
 
 summary: "Complete Kronecker coefficient tables for S_20 (32.7M nonzero, 3.7s) and S_30 (26.4B nonzero, 7.4 min) on NVIDIA B200. Complete S_40 character table (37,338 partitions, 1.394B entries, 9.5 hr) with targeted Kronecker coefficients via exact arithmetic: 94.9% nonzero (sampled), max g >= 1.3 x 10^18."
 

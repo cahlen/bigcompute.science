@@ -10,7 +10,7 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, diophantine-approximation, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "UPDATED 2026-04-05: Five closed exception sets confirmed — {1,2,3}=27, {1,2,4}=64, {1,2,5}=374, {1,2,6}=1834, and NEW {1,2,7}=7178 (verified to 10^11). Sharp threshold at k=7: {1,2,k} for k<=7 has finite exceptions, k>=8 has growing exceptions. A={1,2,3} gives 99.9999997% density at 10^10. 8xB200 overnight batch produced 17 new results at 10^11 scale."
+summary: "UPDATED 2026-04-05: Five closed exception sets confirmed — {1,2,3}=27, {1,2,4}=64, {1,2,5}=374, {1,2,6}=1834, and NEW {1,2,7}=7178 (verified to 10^11). A sharp density threshold is observed for sets of the form {1,2,k}: for k <= 7 finite exceptions, for k >= 8 the number of exceptions grows. However, the phase transition does NOT occur simply at Hausdorff dimension δ = 1/2, as shown by computational data (e.g., density_A2345_1e9 = 0.972937480 for A = {2,3,4,5}, which has δ > 1/2 but less than full density). The presence of digit 1 appears necessary for full density, consistent with the semigroup transitivity criterion described by Bourgain and Fuchs (2011) and other references (BK14). A={1,2,3} gives 99.9999997% density at 10^10. 8xB200 overnight batch produced 17 new results at 10^11 scale."
 
 data:
   density_A123_1e10: 0.999999997

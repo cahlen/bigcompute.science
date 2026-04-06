@@ -1,5 +1,5 @@
 ---
-title: "The {1,k} Density Hierarchy: Digit 2 Is Worth 7x More Than Digit 3"
+title: "The {1,k} Density Hierarchy: Digit 2 Is Worth 9x More Than Digit 3"
 slug: zaremba-digit-pair-hierarchy
 date: 2026-04-01
 author: cahlen
@@ -92,6 +92,8 @@ Log-log regression over all 9 pairs ($k = 2$ through $10$) at $10^{11}$ gives:
 
 $$\text{density}(\{1,k\}) \approx 4090 \cdot k^{-5.83} \qquad R^2 = 0.994$$
 
+The 95% confidence interval on the exponent is $[-6.22, -5.43]$ (OLS on 9 points, $t_7$ critical value 2.365). **N-sensitivity:** the same regression at $10^{10}$ gives exponent $-5.26$ (95% CI $[-5.61, -4.91]$, $R^2 = 0.994$). The exponent steepens by $-0.57$ per decade of $N$, because $\{1,2\}$ density grows ($\delta > 1/2$) while all other pairs decay, stretching the log-log slope. The CIs at the two scales do not overlap, confirming that the power law is not scale-invariant — it is an effective fit at each $N$, not a universal exponent.
+
 The exponent $-5.83$ is steeper than the naive $-2$ from the Gauss measure weight $1/k^2$ alone. The discrepancy reflects the nonlinear dependence of Hausdorff dimension on the digit set: as $k$ grows, $\dim_H(E_{\{1,k\}})$ drops below $1/2$, causing the density to decay as an additional power of $N$. The product of these effects gives the steeper effective exponent.
 
 ## Without Digit 1: The {2,k} and {3,k} Hierarchies
@@ -104,7 +106,7 @@ Removing digit 1 collapses density by orders of magnitude. We now have $\{2,k\}$
 | 4 | 1.0735% | 0.00431% | **249x** | 1.64x (was 152x) |
 | 5 | 0.2564% | 0.00162% | **158x** | 1.48x (was 107x) |
 
-**Digit 1 amplifies density by 158--424x** at $10^{11}$, and the amplification is *growing* with scale: the multiplier increased by 1.5--1.7x from $10^{10}$ to $10^{11}$. This growth is explained by the Hausdorff dimension gap: $\{1,k\}$ pairs have higher dimension than $\{2,k\}$ pairs, so their density decays more slowly, making the ratio diverge.
+**Digit 1 amplifies density by 158--424x** at $10^{11}$, and the amplification is *growing* with scale: the multiplier increased by 1.5--1.7x from $10^{10}$ to $10^{11}$. All $\{2,k\}$ and $\{3,k\}$ densities were computed using the same kernel and algorithm described in the Reproduce section below; the identical bitset enumeration applies with $A = \{2,k\}$ or $\{3,k\}$ instead of $\{1,k\}$. This growth is explained by the Hausdorff dimension gap: $\{1,k\}$ pairs have higher dimension than $\{2,k\}$ pairs, so their density decays more slowly, making the ratio diverge.
 
 ### Dropping further: {3,k} pairs at $10^{11}$
 
@@ -151,7 +153,7 @@ for k in 2 3 4 5 6 7 8 9 10; do
 done
 ```
 
-**Algorithm.** The kernel enumerates all continued fractions $[a_1, a_2, \ldots]$ with $a_i \in A$ by DFS over the CF tree. Each node corresponds to a convergent $p_n/q_n$; children are formed via $q_{n+1} = a \cdot q_n + q_{n-1}$ for each $a \in A$, pruning when $q > N$. Reachable denominators are marked in a global bitset (1.25 GB for $N = 10^{10}$, one bit per integer). The CPU generates prefixes to depth 4--12 (depending on $|A|$ and $N$), then launches one GPU thread per prefix for the remaining DFS. Bit-marking uses `atomicOr` for thread safety. After GPU completion, the CPU counts marked bits.
+**Algorithm.** The kernel enumerates all continued fractions $[a_1, a_2, \ldots]$ with $a_i \in A$ by DFS over the CF tree. Each node corresponds to a convergent $p_n/q_n$; children are formed via $q_{n+1} = a \cdot q_n + q_{n-1}$ for each $a \in A$, pruning when $q > N$. Reachable denominators are marked in a global bitset (one bit per integer: 1.25 GB for $N = 10^{10}$, 12.5 GB for $10^{11}$). FLOP counts are not reported because the DFS tree depth varies per prefix (typical max depth 40–180); wall-clock timing per pair is the meaningful performance metric. The CPU generates prefixes to depth 4--12 (depending on $|A|$ and $N$), then launches one GPU thread per prefix for the remaining DFS. Bit-marking uses `atomicOr` for thread safety. After GPU completion, the CPU counts marked bits.
 
 **Timing per pair** (NVIDIA B200, CUDA 12.8, `nvcc -O3 -arch=sm_100a`):
 

@@ -1,5 +1,10 @@
 [
   {
+    "hash": "95db7f2",
+    "date": "Apr 06",
+    "message": "Fix wrong HF dataset links across 3 experiments"
+  },
+  {
     "hash": "cb5c54e",
     "date": "Apr 06",
     "message": "Fix Erdos-Straus: remove wrong HF dataset link (was pointing to Zaremba repo)"
@@ -43,10 +48,5 @@
     "hash": "05bc33d",
     "date": "Apr 06",
     "message": "New finding: inverse-square amplification law for digit 1 in Zaremba density"
-  },
-  {
-    "hash": "d4f51a6",
-    "date": "Apr 06",
-    "message": "Update findings: digit-pair hierarchy at 10^11, S30 Kronecker recomputation"
   }
 ]

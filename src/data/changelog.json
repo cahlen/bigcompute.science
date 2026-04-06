@@ -1,5 +1,10 @@
 [
   {
+    "hash": "1952c9a",
+    "date": "Apr 06",
+    "message": "Trigger Cloudflare Pages rebuild"
+  },
+  {
     "hash": "9215cf2",
     "date": "Apr 06",
     "message": "Fix experiment page: Key Results text overflow, status badge, hardware block styling"
@@ -43,10 +48,5 @@
     "hash": "888a410",
     "date": "Apr 05",
     "message": "Highlight density divergence: {1,2} grows while all other pairs shrink"
-  },
-  {
-    "hash": "2a7b4d2",
-    "date": "Apr 05",
-    "message": "Digit pair hierarchy: add 10^11 column for all {1,k} pairs"
   }
 ]

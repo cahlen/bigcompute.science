@@ -1,5 +1,10 @@
 [
   {
+    "hash": "cb5c54e",
+    "date": "Apr 06",
+    "message": "Fix Erdos-Straus: remove wrong HF dataset link (was pointing to Zaremba repo)"
+  },
+  {
     "hash": "1952c9a",
     "date": "Apr 06",
     "message": "Trigger Cloudflare Pages rebuild"
@@ -43,10 +48,5 @@
     "hash": "d4f51a6",
     "date": "Apr 06",
     "message": "Update findings: digit-pair hierarchy at 10^11, S30 Kronecker recomputation"
-  },
-  {
-    "hash": "888a410",
-    "date": "Apr 05",
-    "message": "Highlight density divergence: {1,2} grows while all other pairs shrink"
   }
 ]

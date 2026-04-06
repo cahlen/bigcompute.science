@@ -38,7 +38,7 @@ results:
     - "Is the number of doubly-prime convergents always finite for algebraic irrationals?"
     - "What is the asymptotic density of doubly-prime convergents as depth grows?"
     - "Does e have exactly 3 doubly-prime convergents, or are there more beyond n=42?"
-  data: https://huggingface.co/datasets/cahlen/zaremba-conjecture-data
+  data: "Not yet uploaded — experiment in progress"
   code: https://github.com/cahlen/idontknow/blob/main/scripts/experiments/prime-convergents/prime_convergents.cu
 ---
 

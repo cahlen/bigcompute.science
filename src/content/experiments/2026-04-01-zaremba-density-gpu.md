@@ -29,7 +29,7 @@ results:
   range_max: "10^12"
   closed_exception_sets: 5
   findings_produced: 5
-  data: https://huggingface.co/datasets/cahlen/zaremba-conjecture-data
+  data: https://huggingface.co/datasets/cahlen/zaremba-density
   code: https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-density/zaremba_density_gpu.cu
 ---
 

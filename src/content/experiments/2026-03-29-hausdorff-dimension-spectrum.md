@@ -43,7 +43,7 @@ summary: "Hausdorff dimension computed for every non-empty subset of {1,...,20} 
 
 code: https://github.com/cahlen/idontknow
 data: /data/hausdorff-spectrum/
-dataset: https://huggingface.co/datasets/cahlen/continued-fraction-spectra
+dataset: https://huggingface.co/datasets/cahlen/hausdorff-dimension-spectrum
 ---
 
 # Hausdorff Dimension Spectrum: All Subsets of {1,...,20}

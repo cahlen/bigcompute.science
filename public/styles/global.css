@@ -1535,12 +1535,12 @@ footer .copyright a { color: var(--muted); border-bottom: 1px dotted var(--muted
   transition: background 0.15s;
 }
 .experiment-footer .data-link {
-  background: rgba(255,193,7,0.12);
-  color: #ffc107;
-  border: 1px solid rgba(255,193,7,0.25);
+  background: rgba(255,210,30,0.10);
+  color: #FFD21E;
+  border: 1px solid rgba(255,210,30,0.30);
 }
 .experiment-footer .data-link:hover {
-  background: rgba(255,193,7,0.22);
+  background: rgba(255,210,30,0.22);
 }
 .experiment-footer .code-link {
   background: rgba(122,181,106,0.12);

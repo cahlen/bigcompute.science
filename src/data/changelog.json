@@ -1,5 +1,10 @@
 [
   {
+    "hash": "cd4dcbf",
+    "date": "Apr 06",
+    "message": "Add visible data/code links to all experiment pages"
+  },
+  {
     "hash": "734c43c",
     "date": "Apr 06",
     "message": "Update certifications: 53 reviews, 188/192 resolved, 2 new findings reviewed"
@@ -43,10 +48,5 @@
     "hash": "b34b70d",
     "date": "Apr 06",
     "message": "Update llms.txt: 7 HF datasets, 16 findings, 47 reviews, 5 closed exception sets"
-  },
-  {
-    "hash": "4d8aa2c",
-    "date": "Apr 06",
-    "message": "Add Zaremba density experiment page: 65 runs, 5 closed exception sets, 5 findings"
   }
 ]

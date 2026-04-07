@@ -17,8 +17,8 @@ Open computational mathematics. Custom CUDA kernels. GPU clusters. AI-audited, n
 
 | Page | Purpose |
 |------|---------|
-| [/findings/](https://bigcompute.science/findings/) | 15 findings, grouped by cert level |
-| [/verification/](https://bigcompute.science/verification/) | Audit dashboard — 43 reviews, 5 models, 4 providers |
+| [/findings/](https://bigcompute.science/findings/) | 18 findings, grouped by cert level |
+| [/verification/](https://bigcompute.science/verification/) | Audit dashboard — 53 reviews, 7 models, 3 providers |
 | [/cite/](https://bigcompute.science/cite/) | BibTeX/APA citations for every finding |
 | [/interactive/](https://bigcompute.science/interactive/) | Colab notebooks — free GPU compute |
 | [/about/](https://bigcompute.science/about/) | Project history and how it was built |

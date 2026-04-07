@@ -1,5 +1,10 @@
 [
   {
+    "hash": "2a8407c",
+    "date": "Apr 07",
+    "message": "MCP server: fetch manifest from GitHub instead of bundling a copy"
+  },
+  {
     "hash": "4e70a5a",
     "date": "Apr 07",
     "message": "Update MCP server manifest: 207/210 issues resolved"
@@ -43,10 +48,5 @@
     "hash": "103b2f1",
     "date": "Apr 06",
     "message": "Fix YAML: move code/dataset out of results block so buttons render"
-  },
-  {
-    "hash": "b5c3e1e",
-    "date": "Apr 06",
-    "message": "HF data button: brand yellow (#FFD21E) + HuggingFace icon SVG"
   }
 ]

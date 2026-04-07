@@ -59,7 +59,7 @@ All work produced through human-AI collaboration (Cahlen Humphreys + Claude). AI
 
 ## Review Infrastructure
 
-All findings are AI-audited claim-by-claim. Current: 47 reviews from 6 models (Claude Opus 4.6, o3-pro, GPT-4.1, GPT-5.2, Grok, ChatGPT) across 4 providers (Anthropic, OpenAI, xAI, Google). 167 issues discovered, 163 fixed. Certification uses most-conservative-wins consensus.
+All findings are AI-audited claim-by-claim. Current: 53 reviews from 7 models (Claude Opus 4.6, o3-pro, o3, GPT-4.1, GPT-5.2, Grok, ChatGPT) across 3 providers (Anthropic, OpenAI, xAI). 210 issues discovered, 191 fixed. Certification uses most-conservative-wins consensus.
 
 - [Review scripts](https://github.com/cahlen/idontknow/tree/main/scripts/reviews): `run_review.py` (any OpenAI-compatible API), `aggregate.py`, `validate.py`, `sync_website.py`
 - [Review schema](https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md): JSON format for reviews

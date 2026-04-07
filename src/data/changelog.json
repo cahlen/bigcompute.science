@@ -1,5 +1,10 @@
 [
   {
+    "hash": "ca1b5d4",
+    "date": "Apr 06",
+    "message": "Update findings: Kronecker S40 complete, S45 infeasible, Zaremba density paused"
+  },
+  {
     "hash": "f70c6ae",
     "date": "Apr 06",
     "message": "Add missing summaries to 3 newest experiments + fix corrupted byte in Kronecker finding"
@@ -43,10 +48,5 @@
     "hash": "bb8439b",
     "date": "Apr 06",
     "message": "Resolve 8 finding issues: regression stats, method docs, caveats verified"
-  },
-  {
-    "hash": "3598cc8",
-    "date": "Apr 06",
-    "message": "Erdos-Straus: in-progress -> stalled (kernel hangs, needs batched progress)"
   }
 ]

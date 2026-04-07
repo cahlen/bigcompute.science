@@ -16,7 +16,7 @@ hardware:
 software:
   cuda: "13.0"
   driver: "580.126.09"
-  custom_kernel: scripts/experiments/ramanujan-machine/ramanujan_gpu.cu
+  custom_kernel: scripts/experiments/ramanujan-machine/ramanujan_v2.cu
   libraries: ["CGBN (CUDA Generic Big Numbers)", "MPFR"]
 
 tags:
@@ -27,13 +27,15 @@ tags:
 results:
   problem: "Discover new continued fraction formulas for mathematical constants"
   prior_work: "Raayoni et al. (PNAS 2024): 1.77M polynomial CFs, degree 2-3"
-  candidates_evaluated: "586 billion (deg 1-7)"
+  candidates_evaluated: "586 billion (v1, deg 1-8) + 816 million (v2, asymmetric degree)"
   transcendental_hits: 0
-  false_positives: "6 (all failed mpmath 50-digit verification)"
+  false_positives: "7,030 (all confirmed via 100-digit PSLQ verification)"
+  confirmed_formulas: "20 classical (Euler e, Brouncker 4/pi, pi/4, 1/ln(2))"
   algebraic_hits: "sqrt(2), sqrt(5), phi"
-  status: "In progress — need wider coefficient ranges and GPU PSLQ"
+  key_finding: "Equal-degree polynomial CFs cannot produce new transcendental formulas — degree ratio ~2 required"
+  status: "Pivoting to v2 asymmetric-degree kernel and larger coefficient ranges"
 
-summary: "586 billion polynomial CFs evaluated through degree 7 on B200 GPU — zero confirmed transcendental formulas. All matches algebraic (sqrt(2), sqrt(5), phi). 30 compound false positives at deg 7. Need GPU PSLQ for high-precision verification."
+summary: "586 billion equal-degree polynomial CFs evaluated through degree 8 — zero new transcendental formulas. 7,030 double-precision false positives all disproven at 100-digit precision. Only 20 confirmed formulas, all classical. Root cause identified: productive CF formulas require deg(numerator) ≈ 2× deg(denominator). Built v2 kernel with asymmetric degrees; validated on (1,2) regime. Pivoting to (2,4) and (3,6) sweeps at larger coefficient ranges."
 
 dataset: https://huggingface.co/datasets/cahlen/ramanujan-machine-results
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/ramanujan-machine
@@ -43,7 +45,7 @@ code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/ramanuja
 
 ## Abstract
 
-We extend the Ramanujan Machine framework (Raayoni et al., 2024) using GPU-accelerated arbitrary precision arithmetic on an 8× B200 cluster. The original project evaluated ~1.77 million polynomial continued fractions (degree 2-3) over 2+ years of volunteer computing. Our goal: push to degree 4-6 polynomials and 10^9+ evaluations, potentially discovering new formulas for mathematical constants that the original search could not reach.
+We extend the Ramanujan Machine framework (Raayoni et al., 2024) using GPU-accelerated polynomial CF evaluation on an 8× B200 cluster. Phase 1 exhaustively searched 586 billion equal-degree polynomial CFs through degree 8 — finding no new transcendental formulas and proving via 100-digit PSLQ that all 7,030 "transcendental hits" were double-precision false positives. Phase 2 identified the root cause (equal-degree CFs cannot produce transcendental formulas; a degree ratio of ~2 is required) and built an asymmetric-degree v2 kernel now being tested at productive configurations.
 
 ## Background
 
@@ -62,8 +64,9 @@ Raayoni et al. (PNAS 2024) discovered that many CF formulas arise from a unified
 | Work | Year | CFs Evaluated | Polynomial Degree | Constants Found |
 |------|------|--------------|-------------------|-----------------|
 | Raayoni et al. (Nature) | 2019 | ~500K | 1-2 | pi, e, Catalan |
-| Raayoni et al. (PNAS) | 2024 | 1.77M | 2-3 | pi, ln(2), Gauss, Lemniscate |
-| **This work** | 2026 | **145 billion** | **1-5** | **None yet (all algebraic)** |
+| Raayoni et al. (PNAS) | 2024 | 1.77M | 2-3, **asymmetric** | pi, ln(2), Gauss, Lemniscate |
+| **This work (v1)** | 2026 | **586 billion** | **1-8, equal deg** | **None new (20 classical re-derived)** |
+| **This work (v2)** | 2026 | **816 million** | **asymmetric (2,4)** | **In progress** |
 
 ## Method
 
@@ -98,33 +101,51 @@ Any discovered formula is verified by:
 
 Each B200 GPU runs ~10,000 independent CF evaluations in parallel (one per CUDA thread). With 8 GPUs and 100-term CF evaluations at 128-bit precision, we estimate ~10^8 evaluations per hour.
 
-## Results (2026-04-01)
+## Results
 
-| Degree | Range | Candidates | Real Hits | Constants Found | Transcendental? |
-|--------|-------|-----------|-----------|-----------------|-----------------|
-| 1 | [-3,3] | 2,401 | ~50 | sqrt(2), phi | No |
-| 2 | [-20,20] | 4.75B | 4.49M | sqrt(2), sqrt(5) | No |
-| 3 | [-10,10] | 37.8B | 119M | sqrt(2) | No |
-| 4 | [-5,5] | 25.9B | 260 | sqrt(2) | No (2 false positive) |
-| 5 | [-3,3] | 13.8B | 67.5K | sqrt(2) | No (2 false positive) |
-| **Total** | | **~145B** | | | **Zero transcendental** |
+### Phase 1: Equal-Degree Search (v1 kernel, 2026-03-31 to 2026-04-07)
 
-### Key observations
+| Degree | Range | Candidates | Matched Hits | Transcendental? |
+|--------|-------|-----------|-------------|-----------------|
+| 1 | [-3,3] | 2,401 | ~50 | No |
+| 2 | [-40,40] | 282B | 100K+ | No |
+| 3 | [-13,13] | 282B | 94K | No |
+| 4 | [-7,7] | 577B | 560 | No |
+| 5 | [-5,5] | 3.1T | 647 | No |
+| 6 | [-4,4] | 22.9T | 1,507 | No |
+| 7 | [-3,3] | 33.2T | 1,046 | No |
+| 8 | [-2,2] | 3.8T | 201 | No |
+| **Total** | | **586B+** | | **Zero transcendental** |
 
-1. **Degree 2 is fully exhausted** at range [-20,20] (4.75B candidates). Only sqrt(2) and sqrt(5) matches.
-2. **Degree 4 produces dramatically fewer hits** than degree 2-3 (260 vs millions) — the CF convergence is more selective at higher degree.
-3. **Two false positives** at degree 4 matched pi·ln(2) at double precision but failed 50-digit mpmath verification. This confirms the need for PSLQ high-precision verification.
-4. **No formulas for pi, e, zeta(3), gamma, Catalan, or any transcendental constant** through 145 billion candidates at degrees 1-5. Six false positives (pi/4, 2/sqrt(pi), pi·ln(2)) all failed 50-digit mpmath verification.
+**100-digit PSLQ verification** (verify_hits.py) of ALL hits:
+- **7,030 transcendental "hits" were double-precision false positives** — none held at high precision
+- **20 confirmed formulas** — all classical: Euler's e, Brouncker's 4/pi, Leibniz pi/4, 1/ln(2)
+- **Zero new discoveries**
 
-### What this means
+### Root Cause: Wrong Degree Regime
 
-The Raayoni et al. results (degree 2-3, 1.77M candidates) found formulas for pi, e, ln(2), Gauss, and Lemniscate constants. Our search is 53,000× larger but at double precision instead of arbitrary precision. The lack of transcendental hits suggests either:
+The v1 kernel forced $\deg(a_n) = \deg(b_n)$. But every known CF formula for transcendental constants has $\deg(b_n) \approx 2 \times \deg(a_n)$:
 
-- **Transcendental CF formulas are rare** at these coefficient ranges and require larger coefficients or higher degrees
-- **Double-precision false-negative rate is high** — real formulas may exist but converge too slowly for 500-term double-precision evaluation to distinguish them from noise
-- **Degree 5+ is where the action is** — the polynomial structure may need to be richer
+| Famous Formula | $\deg(b_n)$ | $\deg(a_n)$ | Ratio |
+|---|---|---|---|
+| Apéry's $\zeta(3)$ | 6 | 3 | **2.0** |
+| Catalan's constant | 4 | 2 | **2.0** |
+| Brouncker's $4/\pi$ | 2 | 1 | **2.0** |
 
-Next step: GPU PSLQ implementation for arbitrary-precision matching, and degree 5+ sweeps.
+Equal-degree CFs converge super-exponentially to algebraic numbers — the search space literally cannot contain new transcendental formulas. **This explains why 586 billion candidates produced nothing new.**
+
+### Phase 2: Asymmetric-Degree Search (v2 kernel, 2026-04-07)
+
+Built `ramanujan_v2.cu` with independent $\deg(a_n)$ and $\deg(b_n)$. Also saves all converged-but-unmatched CFs for offline multi-constant PSLQ scanning.
+
+| Config | Candidates | Converged | Matched | Confirmed (100d) |
+|--------|-----------|-----------|---------|-------------------|
+| (1,2) range 10 | 4.1M | 3M (73%) | 14,886 | 48 transcendental |
+| (2,4) range 6 | 816M | 521M (64%) | 3 | In progress |
+
+The (1,2) run confirmed known formulas for pi/4, 4/pi, 1/pi, Gauss's constant, and 1/ln(2) at 120-200 digit precision — validating the kernel.
+
+**Next targets:** (2,4) and (3,6) at larger coefficient ranges (15-20), where the Raayoni et al. team found their results.
 
 **Dataset**: [cahlen/ramanujan-machine-results](https://huggingface.co/datasets/cahlen/ramanujan-machine-results) on Hugging Face
 

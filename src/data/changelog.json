@@ -1,5 +1,10 @@
 [
   {
+    "hash": "9bc2ffb",
+    "date": "Apr 07",
+    "message": "Update README: 18 findings, 53 reviews, 7 models, 3 providers"
+  },
+  {
     "hash": "2a8407c",
     "date": "Apr 07",
     "message": "MCP server: fetch manifest from GitHub instead of bundling a copy"
@@ -43,10 +48,5 @@
     "hash": "9ec2557",
     "date": "Apr 06",
     "message": "Prime convergents: upload 14 files to HF, add dataset button"
-  },
-  {
-    "hash": "103b2f1",
-    "date": "Apr 06",
-    "message": "Fix YAML: move code/dataset out of results block so buttons render"
   }
 ]

@@ -32,6 +32,8 @@ results:
     - "Are there primes > 10^8 with unusually low f(p)?"
     - "Connection between f(p) and p mod 4, p mod 24 residue classes"
 
+summary: "Count solutions f(p) to 4/p = 1/x + 1/y + 1/z for all primes p up to 10^8. Conjecture verified to 10^14 (Swett/Elsholtz-Tao), but solution counts f(p) and their distribution are unexplored at GPU scale. Stalled: kernel needs batched execution with progress reporting."
+
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/erdos-straus
 ---
 

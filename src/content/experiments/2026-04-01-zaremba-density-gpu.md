@@ -30,6 +30,8 @@ results:
   closed_exception_sets: 5
   findings_produced: 5
 
+summary: "65 GPU density computations across digit sets and ranges to 10^12. Five closed exception sets confirmed ({1,2,3}=27, {1,2,4}=64, {1,2,5}=374, {1,2,6}=1834, {1,2,7}=7178). Sharp phase transition: digit sets with k<=7 have finite exceptions, k>=8 grow. Power law k^{-5.83} for {1,k} pair hierarchy. Stalled: kernel hangs on digit-1 deep subtrees at 10^11+."
+
 dataset: https://huggingface.co/datasets/cahlen/zaremba-density
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/zaremba-density
 ---

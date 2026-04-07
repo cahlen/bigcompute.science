@@ -39,6 +39,8 @@ results:
     - "What is the asymptotic density of doubly-prime convergents as depth grows?"
     - "Does e have exactly 3 doubly-prime convergents, or are there more beyond n=42?"
 
+summary: "GPU verification of the Erdos-Mahler bound on greatest prime factors of CF convergents. 10M random CFs verified: bound holds 100%, worst-case ratio 4.87, constant 50 is very conservative (~7 suffices). Avg 4.92 prime numerators per CF. Extends Humphreys (2013, Boise State) with GPU-scale computation."
+
 dataset: https://huggingface.co/datasets/cahlen/continued-fraction-spectra
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/prime-convergents
 ---

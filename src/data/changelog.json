@@ -1,5 +1,10 @@
 [
   {
+    "hash": "bd2103b",
+    "date": "Apr 07",
+    "message": "Update stats: 207/210 issues resolved (98.6%), up from 191 (91%)"
+  },
+  {
     "hash": "062e429",
     "date": "Apr 07",
     "message": "Fix stale review counts in llms.txt, llms-full.txt, meta.json, certifications.json"
@@ -43,10 +48,5 @@
     "hash": "cd4dcbf",
     "date": "Apr 06",
     "message": "Add visible data/code links to all experiment pages"
-  },
-  {
-    "hash": "734c43c",
-    "date": "Apr 06",
-    "message": "Update certifications: 53 reviews, 188/192 resolved, 2 new findings reviewed"
   }
 ]

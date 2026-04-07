@@ -60,7 +60,7 @@ The S$_{40}$ character table has **37,338 rows and 37,338 columns** (1.394 billi
 
 ### The int64 Barrier
 
-At $n = 40$, character values first exceed the 64-bit integer range. The maximum absolute value $|\chi^\lambda(\rho)|$ is $5.90 \times 10^{22}$, compared to the int64 limit of $9.22 \times 10^{18}$. This makes the Kronecker triple-sum $g(\lambda,\mu,\nu) = \sum_\rho \frac{1}{z_\rho} \chi^\lambda(\rho) \chi^\mu(\rho) \chi^\nu(\rho)$ impossible with standard FP64 arithmetic on GPU. The full computation of all 8.68 trillion unique triples will require int128 or multi-precision GPU arithmetic -- a significant engineering challenge.
+At $n = 40$, character values first exceed the 64-bit integer range. The maximum absolute value $|\chi^\lambda(\rho)|$ is $5.90 \times 10^{22}$, compared to the int64 limit of $9.22 \times 10^{18}$. This makes the Kronecker triple-sum $g(\lambda,\mu,\nu) = \sum_\rho \frac{1}{z_\rho} \chi^\lambda(\rho) \chi^\mu(\rho) \chi^\nu(\rho)$ impossible with standard FP64 arithmetic on GPU. The full computation of all 8.68 trillion unique triples requires int128 or multi-precision GPU arithmetic. S$_{45}$ is infeasible: 89,134 partitions produce a 63+ TB character table exceeding all available memory; future work requires on-demand MN evaluation for targeted triples rather than full tables.
 
 ### Nonzero Fraction Approaching 1
 
@@ -165,9 +165,20 @@ Each sum has 37,338 terms with integer numerators up to $\sim 10^{68}$. The resu
 - **Near-rectangular triples**: 11,480 triples, 304 seconds
 - **Random sample**: 1,000 triples (uniform over unordered triples $i \leq j \leq k$ drawn without replacement via `random.seed(42)` then `sorted(random.sample(range(37338), 3))`; see [`analyze_n40.py`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/kronecker-coefficients/analyze_n40.py) lines 343--353), 17 seconds
 
-### Full Computation Status
+### Full S$_{40}$ Kronecker Table
 
-The full Kronecker table (8.68 trillion triples) requires a new GPU kernel with int128 arithmetic. The slab-by-slab approach from S$_{30}$ cannot be directly reused. This is planned for the 8$\times$B200 cluster with an estimated runtime of several days.
+The full Kronecker table (8.68 trillion triples) requires a new GPU kernel with int128 arithmetic because character values exceed int64 ($\max|\chi| = 5.9 \times 10^{22}$). The slab-by-slab approach from S$_{30}$ cannot be directly reused. This remains an open engineering challenge for the 8$\times$B200 cluster.
+
+### S$_{45}$: Infeasible
+
+We investigated extending to $S_{45}$ and determined it is **computationally infeasible** with current hardware:
+
+- $S_{45}$ has **89,134 partitions** (vs. 37,338 for $S_{40}$)
+- The character table alone would be $89{,}134 \times 89{,}134 = 7.94$ billion entries
+- At 8 bytes per entry (and values will exceed int64, requiring 16+ bytes), the table is **63--127 TB** — exceeding available memory on even the 8$\times$B200 cluster (~1.4 TB aggregate VRAM)
+- Attempts to compute the $S_{45}$ character table segfaulted due to memory exhaustion
+
+Beyond $S_{40}$, future work requires **targeted triple computation** for specific GCT-relevant partitions rather than full tables. The character table need not be stored in full — individual $\chi^\lambda(\rho)$ values can be computed on demand via the Murnaghan-Nakayama rule, and the Kronecker sum evaluated partition-by-partition.
 
 ## Reproduce
 

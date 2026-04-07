@@ -82,7 +82,7 @@ $$6, 20, 28, 38, 42, 54, 96, 150, 156, 164, 216, 228, 318, 350, 384, 558, 770, 8
 
 ### A Strengthened Zaremba Conjecture
 
-Zaremba originally conjectured $A = 5$. Bourgain-Kontorovich (2014) proved density 1 for $A = 50$ (non-effectively). Our data suggests the truth may be much stronger: $A = 3$ appears to suffice with exactly 27 exceptions, all $\leq 6{,}234$. This is a dramatic strengthening — the bound on partial quotients drops from 5 to 3, and the exception set is finite (verified to $10^9$, running to $10^{10}$).
+Zaremba originally conjectured $A = 5$. Bourgain-Kontorovich (2014) proved density 1 for $A = 50$ (non-effectively). Our data suggests the truth may be much stronger: $A = 3$ appears to suffice with exactly 27 exceptions, all $\leq 6{,}234$. This is a dramatic strengthening — the bound on partial quotients drops from 5 to 3, and the exception set is finite (verified to $10^9$; $10^{11}$ verification paused pending kernel optimization).
 
 ### Hausdorff Dimension and Transitivity
 
@@ -196,9 +196,9 @@ Overnight 8xB200 GPU batch pushed all {1,2,k} pairs to $10^{11}$, revealing a **
 
 | Digit set | Exceptions | Max exception | Verified to | Status |
 |-----------|-----------|---------------|-------------|--------|
-| $\{1,2,3\}$ | **27** | 6,234 | $10^9$ (10^{11} running) | Closed |
-| $\{1,2,4\}$ | **64** | ? | $10^{10}$ (10^{11} running) | Closed |
-| $\{1,2,5\}$ | **374** | ? | $10^{10}$ (10^{11} running) | Closed |
+| $\{1,2,3\}$ | **27** | 6,234 | $10^9$ | Closed |
+| $\{1,2,4\}$ | **64** | ? | $10^{10}$ | Closed |
+| $\{1,2,5\}$ | **374** | ? | $10^{10}$ | Closed |
 | $\{1,2,6\}$ | **1,834** | ? | $10^{11}$ | Closed |
 | $\{1,2,7\}$ | **7,178** | ? | $10^{11}$ | **NEW — Closed** |
 

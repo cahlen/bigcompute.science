@@ -1,5 +1,10 @@
 [
   {
+    "hash": "f70c6ae",
+    "date": "Apr 06",
+    "message": "Add missing summaries to 3 newest experiments + fix corrupted byte in Kronecker finding"
+  },
+  {
     "hash": "e37fcff",
     "date": "Apr 06",
     "message": "Remove cancelled MCTS experiment, add Ramsey GitHub data link"
@@ -43,10 +48,5 @@
     "hash": "3598cc8",
     "date": "Apr 06",
     "message": "Erdos-Straus: in-progress -> stalled (kernel hangs, needs batched progress)"
-  },
-  {
-    "hash": "6f186c2",
-    "date": "Apr 06",
-    "message": "Update experiment statuses: Kronecker complete, Prime convergents complete, Density stalled"
   }
 ]

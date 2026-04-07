@@ -123,8 +123,8 @@ Four $\{1, 2, k\}$ triples have computationally observed exception sets that app
 
 | Digit set | Exceptions | Exhaustive to | Stability window | Status |
 |-----------|-----------|--------------|-----------------|--------|
-| $\{1,2,3\}$ | **27** | $10^{10}$ | $10^9 \to 10^{10}$: no growth | $10^{11}$ in progress |
-| $\{1,2,4\}$ | **64** | $10^{10}$ | $10^9 \to 10^{10}$: no growth | $10^{11}$ in progress |
+| $\{1,2,3\}$ | **27** | $10^{10}$ | $10^9 \to 10^{10}$: no growth | $10^{11}$ paused (kernel fix) |
+| $\{1,2,4\}$ | **64** | $10^{10}$ | $10^9 \to 10^{10}$: no growth | $10^{11}$ paused (kernel fix) |
 | $\{1,2,5\}$ | **374** | $10^{11}$ | $10^{10} \to 10^{11}$: no growth | Closed |
 | $\{1,2,6\}$ | **1,834** | $10^{11}$ | $10^{10} \to 10^{11}$: no growth | Closed |
 | $\{1,2,7\}$ | **7,178** | $10^{11}$ | $10^{10} \to 10^{11}$: no growth | **NEW — Closed** |

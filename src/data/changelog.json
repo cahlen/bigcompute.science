@@ -1,5 +1,10 @@
 [
   {
+    "hash": "9ec2557",
+    "date": "Apr 06",
+    "message": "Prime convergents: upload 14 files to HF, add dataset button"
+  },
+  {
     "hash": "103b2f1",
     "date": "Apr 06",
     "message": "Fix YAML: move code/dataset out of results block so buttons render"
@@ -43,10 +48,5 @@
     "hash": "cb5c54e",
     "date": "Apr 06",
     "message": "Fix Erdos-Straus: remove wrong HF dataset link (was pointing to Zaremba repo)"
-  },
-  {
-    "hash": "1952c9a",
-    "date": "Apr 06",
-    "message": "Trigger Cloudflare Pages rebuild"
   }
 ]

@@ -41,8 +41,6 @@ results:
 summary: "Strongest computational evidence that R(5,5) = 43. All 656 known K42 colorings UNSAT. Structural attack toward R(5,5) <= 45 in progress."
 
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/ramsey-r55
-# dataset: none published yet
-data: /data/ramsey-r55/
 ---
 
 # Ramsey $R(5,5)$: Exhaustive Extension Search on 8x B200

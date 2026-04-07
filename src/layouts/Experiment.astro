@@ -275,8 +275,11 @@ const domains = frontmatter.domain || [];
     </div>
 
     <div class="experiment-footer">
-      {datasetURL && (
+      {datasetURL && datasetURL.includes('huggingface.co') && (
         <a href={datasetURL} class="data-link" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 120 120" style="vertical-align:-2px;margin-right:6px"><path d="M37.5 55c-4.7 0-8.5 3.8-8.5 8.5v16c0 4.7 3.8 8.5 8.5 8.5s8.5-3.8 8.5-8.5v-16c0-4.7-3.8-8.5-8.5-8.5zm45 0c-4.7 0-8.5 3.8-8.5 8.5v16c0 4.7 3.8 8.5 8.5 8.5s8.5-3.8 8.5-8.5v-16c0-4.7-3.8-8.5-8.5-8.5zM60 0C26.9 0 0 26.9 0 60s26.9 60 60 60 60-26.9 60-60S93.1 0 60 0zm0 103c-23.7 0-43-19.3-43-43S36.3 17 60 17s43 19.3 43 43-19.3 43-43 43z" fill="#FFD21E"/></svg>Download Data on Hugging Face</a>
+      )}
+      {datasetURL && datasetURL.includes('github.com') && (
+        <a href={datasetURL} class="data-link data-link-gh" target="_blank">Browse Results on GitHub</a>
       )}
       {frontmatter.code && (
         <a href={frontmatter.code} class="code-link" target="_blank">View Code on GitHub</a>

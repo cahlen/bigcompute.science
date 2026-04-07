@@ -1,5 +1,10 @@
 [
   {
+    "hash": "5dab5c4",
+    "date": "Apr 06",
+    "message": "Clean up Ramsey data link, final experiment audit passes"
+  },
+  {
     "hash": "9ec2557",
     "date": "Apr 06",
     "message": "Prime convergents: upload 14 files to HF, add dataset button"
@@ -43,10 +48,5 @@
     "hash": "95db7f2",
     "date": "Apr 06",
     "message": "Fix wrong HF dataset links across 3 experiments"
-  },
-  {
-    "hash": "cb5c54e",
-    "date": "Apr 06",
-    "message": "Fix Erdos-Straus: remove wrong HF dataset link (was pointing to Zaremba repo)"
   }
 ]

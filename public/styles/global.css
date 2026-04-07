@@ -1542,6 +1542,14 @@ footer .copyright a { color: var(--muted); border-bottom: 1px dotted var(--muted
 .experiment-footer .data-link:hover {
   background: rgba(255,210,30,0.22);
 }
+.experiment-footer .data-link-gh {
+  background: rgba(122,181,106,0.12);
+  color: #7ab56a;
+  border: 1px solid rgba(122,181,106,0.25);
+}
+.experiment-footer .data-link-gh:hover {
+  background: rgba(122,181,106,0.22);
+}
 .experiment-footer .code-link {
   background: rgba(122,181,106,0.12);
   color: #7ab56a;

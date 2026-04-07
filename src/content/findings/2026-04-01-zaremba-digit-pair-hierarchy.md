@@ -60,13 +60,13 @@ For each $k = 2, 3, \ldots, 10$, we computed the Zaremba density of the pair $A 
 
 The 10^11 data reveals something you cannot see at a single scale: $\{1,2\}$ density **increases** from 76.5% to 80.8% as $N$ grows from $10^{10}$ to $10^{11}$, while **every other pair's density decreases**. The set $\{1,3\}$ drops from 11.1% to 9.1%. The set $\{1,10\}$ drops from 0.020% to 0.0085%.
 
-This is the Hausdorff dimension threshold at work. The dimension $\delta$ of the underlying Cantor set controls the long-term behavior: when $2\delta > 1$ (equivalently $\delta > 1/2$), the set of representable denominators is dense enough that its density converges toward 100%. When $2\delta < 1$, the set is too thin and density converges to 0%.
+This is the Hausdorff dimension threshold at work. The dimension $\delta$ of the underlying Cantor set controls the long-term behavior: when $2\delta > 1$ (equivalently $\delta > 1/2$), the set of representable denominators is theoretically predicted to be dense enough that its density converges toward 100%. When $2\delta < 1$, the set is too thin and density is predicted to converge to 0%.
 
 Only $\{1,2\}$ has $\delta = 0.531 > 1/2$. Every other pair has $\delta < 1/2$. So the 10^11 data is the first scale where we see the density trajectories clearly diverging — one pair headed toward full coverage, the rest headed toward nothing.
 
 ### The critical jump is at $k = 2$
 
-At $N = 10^{11}$, the density ratio $\rho(\{1,2\}) / \rho(\{1,3\}) = 80.75 / 9.11 \approx 8.9$. This is the largest consecutive ratio in the hierarchy, and it has *widened* from 6.9 at $10^{10}$ — confirming that $\{1,2\}$ is diverging upward while $\{1,3\}$ is converging to zero. The ratio will continue to grow since $\{1,2\}$ has $\delta > 1/2$ (density $\to 1$) while $\{1,3\}$ has $\delta < 1/2$ (density $\to 0$). The large jump reflects both $\{1,2\}$ crossing the Hausdorff dimension threshold and the Gauss measure weight $1/k^2$ dropping by a factor of $4/9 \approx 0.44$ from $k=2$ to $k=3$.
+At $N = 10^{11}$, the density ratio $\rho(\{1,2\}) / \rho(\{1,3\}) = 80.75 / 9.11 \approx 8.9$. This is the largest consecutive ratio in the hierarchy, and it has *widened* from 6.9 at $10^{10}$ — confirming that $\{1,2\}$ is diverging upward while $\{1,3\}$ is converging to zero. Based on the Hausdorff dimension threshold, the ratio is expected to continue growing since $\{1,2\}$ has $\delta > 1/2$ (density predicted $\to 1$) while $\{1,3\}$ has $\delta < 1/2$ (density predicted $\to 0$). The large jump reflects both $\{1,2\}$ crossing the Hausdorff dimension threshold and the Gauss measure weight $1/k^2$ dropping by a factor of $4/9 \approx 0.44$ from $k=2$ to $k=3$.
 
 ### Gauss measure predicts the hierarchy
 

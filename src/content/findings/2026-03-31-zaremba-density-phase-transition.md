@@ -76,13 +76,13 @@ For $A = \{1, 2, 3\}$, **exactly 27 integers** in $[1, 10^{10}]$ are uncovered �
 
 $$6, 20, 28, 38, 42, 54, 96, 150, 156, 164, 216, 228, 318, 350, 384, 558, 770, 876, 1014, 1155, 1170, 1410, 1870, 2052, 2370, 5052, 6234$$
 
-**Zero new exceptions** between $d = 6{,}234$ and $d = 10^{10}$. The exception set *appears* finite based on computational evidence, but finiteness has not been proven analytically — additional exceptions could in principle appear beyond $10^{10}$. Subject to this caveat, the data strongly suggests $A = \{1, 2, 3\}$ gives full Zaremba density with exactly 27 exceptions.
+**Zero new exceptions** between $d = 6{,}234$ and $d = 10^{10}$. Computationally within this range, the exception set appears finite — but finiteness has not been proven analytically, and additional exceptions could in principle appear beyond $10^{10}$. Subject to this caveat, the data strongly suggests $A = \{1, 2, 3\}$ achieves 99.9999997% density with exactly 27 exceptions (all $\leq 6{,}234$) within the tested range.
 
 ## Why This Matters
 
 ### A Strengthened Zaremba Conjecture
 
-Zaremba originally conjectured $A = 5$. Bourgain-Kontorovich (2014) proved density 1 for $A = 50$ (non-effectively). Our data suggests the truth may be much stronger: $A = 3$ appears to suffice with exactly 27 exceptions, all $\leq 6{,}234$. This is a dramatic strengthening — the bound on partial quotients drops from 5 to 3, and the exception set is finite (verified to $10^9$; $10^{11}$ verification paused pending kernel optimization).
+Zaremba originally conjectured $A = 5$. Bourgain-Kontorovich (2014) proved density 1 for $A = 50$ (non-effectively). Our data suggests the truth may be much stronger: within our verification to $10^{10}$, $A = 3$ appears to suffice with exactly 27 exceptions, all $\leq 6{,}234$. If this holds at all scales, it would be a dramatic strengthening — the bound on partial quotients drops from 5 to 3, and the exception set is finite. ($10^{11}$ verification in progress.)
 
 ### Hausdorff Dimension and Transitivity
 
@@ -97,7 +97,7 @@ Hausdorff dimension alone is **not sufficient**. Our own data demonstrates this:
 |-----------|----------|---------|-------------|---------------|
 | $\{1, 2\}$ | 0.531 | 72% | Yes | $\delta$ barely above $1/2$ — representations grow too slowly |
 | $\{2, 3, 4, 5\}$ | 0.605 | 97.3% | **No** | Congruence obstructions — semigroup not transitive mod some primes |
-| $\{1, 2, 3\}$ | 0.706 | 99.9999997% | Yes | $\delta \gg 1/2$ AND transitive — full density with 27 exceptions |
+| $\{1, 2, 3\}$ | 0.706 | 99.9999997% | Yes | $\delta \gg 1/2$ AND transitive — 27 exceptions to $10^{10}$, none growing |
 
 The zbMATH review of Bourgain-Kontorovich (2014) notes that Hensley conjectured $\delta > 1/2$ alone implies full density, but **Hensley's conjecture is false** — sets with congruence obstructions (typically those lacking digit 1) can fail to achieve full density even with $\delta$ well above $1/2$.
 

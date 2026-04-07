@@ -9,7 +9,7 @@ significance: high
 domain: [continued-fractions, number-theory, diophantine-approximation]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "The ratio of Zaremba density for {1,k} to {2,k}, computed at matched N = 10¹⁰ for both sets, follows an inverse-square law: amplification ≈ 1633(±51)/k².⁰⁰²(±0.017), with R² = 0.991. Bootstrapped error bars from 1000 replicates are included. Raw counts for each k: for k=3, |{1,3}| = 2,003,192,387 and |{2,3}| = 9,810,320 (ratio ≈ 204.2); for k=4, |{1,4}| = 1,321,347,612 and |{2,4}| = 17,880,541 (ratio ≈ 73.9); ... for k=10, |{1,10}| = 432,950,651 and |{2,10}| = 23,822,035 (ratio ≈ 18.2). This quantitatively demonstrates a quadratic (inverse-square) amplification by digit 1 in Zaremba density. Data, bootstrapping code, and raw tables are public. (See Supplementary Table 1 for full data.)"
+summary: "The ratio of Zaremba density for {1,k} to {2,k}, computed at matched N = 10¹⁰ for both sets, fits an inverse-square relationship: amplification ≈ 1633(±51)/k².⁰⁰²(±0.017), with R² = 0.991. Bootstrapped error bars from 1000 replicates are included. Raw counts for each k: for k=3, |{1,3}| = 2,003,192,387 and |{2,3}| = 9,810,320 (ratio ≈ 204.2); for k=4, |{1,4}| = 1,321,347,612 and |{2,4}| = 17,880,541 (ratio ≈ 73.9); ... for k=10, |{1,10}| = 432,950,651 and |{2,10}| = 23,822,035 (ratio ≈ 18.2). This is an empirical observation of a quadratic (inverse-square) relationship for digit 1 amplification in Zaremba density at $N = 10^{10}$; it is not a proven theorem. Data, bootstrapping code, and raw tables are public. (See Supplementary Table 1 for full data.)"
 
 data:
   amplification_formula: "ratio ≈ 1633 × k^(−2.002)"
@@ -37,7 +37,7 @@ certification:
 
 ## The Finding
 
-For Zaremba density — the fraction of integers $d \leq N$ representable as a continued fraction denominator using only digits from a set $A$ — replacing digit 2 with digit 1 amplifies density by a factor that follows a precise **inverse-square law** in the second digit $k$:
+For Zaremba density — the fraction of integers $d \leq N$ representable as a continued fraction denominator using only digits from a set $A$ — replacing digit 2 with digit 1 amplifies density by a factor that empirically fits an **inverse-square relationship** in the second digit $k$:
 
 $$\frac{\text{density}(\{1,k\})}{\text{density}(\{2,k\})} \approx \frac{1633}{k^2}$$
 

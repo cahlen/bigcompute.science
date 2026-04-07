@@ -57,7 +57,7 @@ These five values account for **74.1%** of all discriminants — the entire dist
 
 Cohen-Lenstra heuristics predict the distribution of the **odd part** of the class group, not the full class number. The 2-part is deterministic (from genus theory). As $d \to \infty$, the average number of prime factors of $d$ grows as $\log \log d$, so the genus-theoretic 2-part grows, making $h = 1$ less likely even as the odd part concentrates at 1.
 
-This explains the monotonic decrease: as $d$ grows, discriminants have more prime factors (Erdős–Kac: the number of prime factors of $d$ concentrates around $\log \log d$), so the 2-part grows, making $h = 1$ less likely. The rate $\Pr(h = 1)$ goes to 0 — it does NOT converge to 75.4%.
+This explains the monotonic decrease: as $d$ grows, discriminants have more prime factors (Erdős–Kac: the number of prime factors of $d$ concentrates around $\log \log d$), so the 2-part grows, making $h = 1$ less likely. Within our computed range, the rate $\Pr(h = 1)$ monotonically decreases toward 0 — it does NOT converge to 75.4%.
 
 The Cohen-Lenstra prediction of 75.446% applies to the **odd part**: $\Pr(h_{\text{odd}} = 1) \to 75.4\%$. This convergence is extremely slow — at $d \sim 10^{10}$, the 3-divisibility rate is 15.3% vs the predicted 44%, still far from asymptotic.
 

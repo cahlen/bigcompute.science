@@ -307,32 +307,61 @@ HOW TO CONTRIBUTE A REVIEW:
 Verification data: https://github.com/cahlen/idontknow/tree/main/docs/verifications
 `;
 
-// ─── Certifications: generated from manifest.json ──────────────
-// To update: run aggregate.py + copy manifest.json to src/generated/
-import manifestData from './generated/manifest.json';
+// ─── Certifications: fetched live from GitHub (single source of truth) ───
+const MANIFEST_URL = "https://raw.githubusercontent.com/cahlen/idontknow/main/docs/verifications/manifest.json";
+const MANIFEST_CACHE_MS = 5 * 60 * 1000; // 5 minutes
 
-const CERTIFICATIONS: Record<string, Certification> = Object.fromEntries(
-  Object.entries(manifestData.findings).map(([slug, finding]: [string, any]) => [
-    slug,
-    {
-      level: finding.certification.level as CertLevel,
-      label: `${finding.certification.level.toUpperCase()} — ${finding.certification.review_count} review(s)`,
-      arxiv_corroboration: 0,
-      zbmath_corroboration: 0,
-      oeis_matches: 0,
-      last_verified: finding.last_reviewed?.slice(0, 10) ?? "",
-      process: finding.reviews.map((r: any) => r.key_finding).filter(Boolean).join(". "),
-      reviews: finding.reviews.map((r: any) => ({
-        date: r.reviewed_at?.slice(0, 10) ?? "",
-        model: r.reviewer?.model ?? "unknown",
-        provider: r.reviewer?.provider ?? "unknown",
-        verdict: r.overall_verdict ?? "",
-        level: r.certification_recommendation ?? "",
-        key_finding: r.key_finding ?? "",
-      })),
-    } as Certification,
-  ])
-);
+let _certCache: Record<string, Certification> | null = null;
+let _certCacheTime = 0;
+
+function parseCertifications(manifestData: any): Record<string, Certification> {
+  return Object.fromEntries(
+    Object.entries(manifestData.findings).map(([slug, finding]: [string, any]) => [
+      slug,
+      {
+        level: finding.certification.level as CertLevel,
+        label: `${finding.certification.level.toUpperCase()} — ${finding.certification.review_count} review(s)`,
+        arxiv_corroboration: 0,
+        zbmath_corroboration: 0,
+        oeis_matches: 0,
+        last_verified: finding.last_reviewed?.slice(0, 10) ?? "",
+        process: finding.reviews.map((r: any) => r.key_finding).filter(Boolean).join(". "),
+        reviews: finding.reviews.map((r: any) => ({
+          date: r.reviewed_at?.slice(0, 10) ?? "",
+          model: r.reviewer?.model ?? "unknown",
+          provider: r.reviewer?.provider ?? "unknown",
+          verdict: r.overall_verdict ?? "",
+          level: r.certification_recommendation ?? "",
+          key_finding: r.key_finding ?? "",
+        })),
+      } as Certification,
+    ])
+  );
+}
+
+async function getCertifications(): Promise<Record<string, Certification>> {
+  const now = Date.now();
+  if (_certCache && (now - _certCacheTime) < MANIFEST_CACHE_MS) {
+    return _certCache;
+  }
+  try {
+    const resp = await fetch(MANIFEST_URL);
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const data = await resp.json();
+    _certCache = parseCertifications(data);
+    _certCacheTime = now;
+  } catch (e) {
+    // If fetch fails and we have a stale cache, use it
+    if (_certCache) return _certCache;
+    // Otherwise return empty
+    _certCache = {};
+    _certCacheTime = now;
+  }
+  return _certCache;
+}
+
+// Synchronous fallback for initialization (empty until first fetch)
+let CERTIFICATIONS: Record<string, Certification> = {};
 
 
 const OPEN_PROBLEMS = [
@@ -1297,6 +1326,9 @@ export default {
         license: "CC BY 4.0",
       }), { headers: { "Content-Type": "application/json" } });
     }
+
+    // Refresh certifications from GitHub before handling MCP requests
+    CERTIFICATIONS = await getCertifications();
 
     // Import dynamically to avoid issues if agents package isn't available
     try {

@@ -1,5 +1,10 @@
 [
   {
+    "hash": "2a7afae",
+    "date": "Apr 08",
+    "message": "Add Convergent-7B model showcase to front page"
+  },
+  {
     "hash": "dba4738",
     "date": "Apr 07",
     "message": "Tighten language: empirical observations are not laws or theorems"
@@ -43,10 +48,5 @@
     "hash": "f70c6ae",
     "date": "Apr 06",
     "message": "Add missing summaries to 3 newest experiments + fix corrupted byte in Kronecker finding"
-  },
-  {
-    "hash": "e37fcff",
-    "date": "Apr 06",
-    "message": "Remove cancelled MCTS experiment, add Ramsey GitHub data link"
   }
 ]

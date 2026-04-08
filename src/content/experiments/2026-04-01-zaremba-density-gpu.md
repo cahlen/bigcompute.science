@@ -4,7 +4,7 @@ slug: zaremba-density-gpu
 date: 2026-04-01
 author: cahlen
 author_github: https://github.com/cahlen
-status: stalled
+status: complete
 
 hardware:
   name: NVIDIA DGX B200

@@ -1,5 +1,10 @@
 [
   {
+    "hash": "dba4738",
+    "date": "Apr 07",
+    "message": "Tighten language: empirical observations are not laws or theorems"
+  },
+  {
     "hash": "28af52a",
     "date": "Apr 07",
     "message": "Update Ramanujan Machine: v1 exhausted (7K false positives), v2 kernel built"
@@ -43,10 +48,5 @@
     "hash": "e37fcff",
     "date": "Apr 06",
     "message": "Remove cancelled MCTS experiment, add Ramsey GitHub data link"
-  },
-  {
-    "hash": "5dab5c4",
-    "date": "Apr 06",
-    "message": "Clean up Ramsey data link, final experiment audit passes"
   }
 ]

@@ -110,6 +110,48 @@ const sorted = experiments.sort((a, b) =>
     </div>
   </section>
 
+  <section class="model-showcase m-reveal">
+    <h2>Research Companion Model</h2>
+    <a href="https://huggingface.co/cahlen/Convergent-7B" class="model-banner-link" target="_blank">
+      <img src="/images/convergent-banner.jpg" alt="Convergent-7B — research companion model for computational number theory" class="model-banner" loading="lazy" />
+    </a>
+    <h3 class="model-name">Convergent-7B</h3>
+    <p class="model-desc">
+      A QLoRA fine-tuned research companion for computational number theory. Trained on 5,729 examples from this project's experiments, CUDA kernels, and synthetic mathematical reasoning. Built on Qwen2.5-7B-Instruct, trained on an RTX 5090.
+    </p>
+
+    <div class="model-stats">
+      <div class="model-stat">
+        <span class="stat-number">74%</span>
+        <span class="stat-label">benchmark accuracy</span>
+      </div>
+      <div class="model-stat">
+        <span class="stat-number">5,729</span>
+        <span class="stat-label">training examples</span>
+      </div>
+      <div class="model-stat">
+        <span class="stat-number">23</span>
+        <span class="stat-label">MCP tools callable</span>
+      </div>
+    </div>
+
+    <ul class="model-capabilities">
+      <li>Number theory reasoning — Zaremba, Ramsey, Kronecker, Cohen-Lenstra, Hausdorff dimensions</li>
+      <li>CUDA kernel generation and optimization (sm_86 → sm_120)</li>
+      <li>Agentic tool calling via the bigcompute.science MCP server</li>
+    </ul>
+
+    <div class="model-links">
+      <a href="https://huggingface.co/cahlen/Convergent-7B" class="connect-btn" target="_blank">Model Weights</a>
+      <a href="https://huggingface.co/datasets/cahlen/Convergent-7B-data" class="connect-btn" target="_blank">Training Data</a>
+      <a href="https://github.com/cahlen/convergent" class="connect-btn" target="_blank">Training Code</a>
+    </div>
+
+    <pre class="model-quickstart"><code>git clone https://github.com/cahlen/convergent && cd convergent
+pip install -r requirements.txt
+./convergent agent -q "What are the Zaremba exceptions for {1,2,3}?"</code></pre>
+  </section>
+
   <section class="about m-reveal">
     <h2>What is this?</h2>
     <p>
@@ -141,6 +183,31 @@ const sorted = experiments.sort((a, b) =>
     .m-reveal:nth-child(2) { transition-delay: 0.05s; }
     .m-reveal:nth-child(3) { transition-delay: 0.1s; }
     .m-reveal:nth-child(4) { transition-delay: 0.15s; }
+    /* ── Model Showcase ── */
+    .model-showcase { margin: 4rem auto 0; max-width: var(--wide-width); padding: 0 24px; }
+    .model-showcase h2 { font-family: var(--font-serif); font-size: 1.3rem; letter-spacing: -0.02em; margin-bottom: 1.2rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
+    .model-banner-link { display: block; border-radius: 8px; overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--rule); transition: border-color 0.3s ease; }
+    .model-banner-link:hover { border-color: var(--accent); }
+    .model-banner { width: 100%; height: auto; display: block; }
+    .model-name { font-family: var(--font-mono); font-size: 1.4rem; color: var(--accent); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+    .model-desc { color: var(--ink-secondary); line-height: 1.8; margin-bottom: 1.5rem; max-width: 640px; }
+    .model-stats { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .model-stat { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 0.75rem 1.25rem; text-align: center; min-width: 120px; flex: 1; }
+    .stat-number { display: block; font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--accent-gold); line-height: 1.2; }
+    .stat-label { display: block; font-family: var(--font-sans); font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem; }
+    .model-capabilities { list-style: none; margin-bottom: 1.5rem; padding: 0; }
+    .model-capabilities li { color: var(--ink-secondary); line-height: 1.7; padding-left: 1.2em; position: relative; }
+    .model-capabilities li::before { content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 600; }
+    .model-links { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .model-quickstart { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.25rem; overflow-x: auto; font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.6; color: var(--ink-secondary); }
+    .model-quickstart code { font-family: inherit; color: inherit; }
+    @media (max-width: 600px) {
+      .model-stats { flex-direction: column; }
+      .model-stat { min-width: unset; }
+      .model-links { flex-direction: column; }
+      .model-links .connect-btn { text-align: center; }
+    }
+
     .about h2 { font-family: var(--font-serif); font-size: 1.3rem; letter-spacing: -0.02em; margin-bottom: 0.8rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
     .about p { color: var(--ink-secondary); line-height: 1.8; margin-bottom: 1rem; }
     .about a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted color-mix(in srgb, var(--accent) 50%, transparent); }

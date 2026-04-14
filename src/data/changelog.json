@@ -1,5 +1,10 @@
 [
   {
+    "hash": "ddd9f12",
+    "date": "Apr 08",
+    "message": "Mark Zaremba density experiment as complete"
+  },
+  {
     "hash": "2a7afae",
     "date": "Apr 08",
     "message": "Add Convergent-7B model showcase to front page"
@@ -43,10 +48,5 @@
     "hash": "ca1b5d4",
     "date": "Apr 06",
     "message": "Update findings: Kronecker S40 complete, S45 infeasible, Zaremba density paused"
-  },
-  {
-    "hash": "f70c6ae",
-    "date": "Apr 06",
-    "message": "Add missing summaries to 3 newest experiments + fix corrupted byte in Kronecker finding"
   }
 ]

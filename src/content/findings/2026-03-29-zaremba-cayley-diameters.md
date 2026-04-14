@@ -21,10 +21,12 @@ data:
   max_diameter: 10
   max_diameter_first_at: 211
   ratio_range: [1.37, 3.11]  # includes small primes
-  ratio_trend: "decreasing — converges toward ~1.45"
-  conjectured_bound: "diam(p) ≤ 2·log(p)"
-  asymptotic_ratio: "~1.45"
-  computation_time: "40 seconds across 8× NVIDIA B200"
+  ratio_trend: "decreasing — linear regression for p ≥ 67 (n=154): ratio = 2.634 − 0.179·log(p), R² = 0.75"
+  conjectured_bound: "diam(p) ≤ 2·log(p) for p ≥ 11 (violated only at p=2 and p=7)"
+  asymptotic_ratio: "last 50 primes (p ≥ 677): mean 1.472 ± 0.037; at p=1021: 1.443"
+  computation_time: "36.3 seconds on single NVIDIA B200 (192 GB HBM3e, 19200 CUDA cores) for all 172 primes"
+  peak_throughput: "1.33 billion elements/sec at p=1021 (|SL₂|=1,064,331,240 in 0.8s)"
+  validation: "BFS completeness — total_visited == |SL₂(p)| for each prime; frontier exhausted to empty at termination"
 
 certification:
   level: silver

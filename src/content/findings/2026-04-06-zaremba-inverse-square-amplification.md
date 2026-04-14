@@ -9,7 +9,7 @@ significance: high
 domain: [continued-fractions, number-theory, diophantine-approximation]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "The ratio of Zaremba density for {1,k} to {2,k}, computed at matched N = 10¹⁰ for both sets, fits an inverse-square relationship: amplification ≈ 1633(±51)/k².⁰⁰²(±0.017), with R² = 0.991. Bootstrapped error bars from 1000 replicates are included. Raw counts for each k: for k=3, |{1,3}| = 2,003,192,387 and |{2,3}| = 9,810,320 (ratio ≈ 204.2); for k=4, |{1,4}| = 1,321,347,612 and |{2,4}| = 17,880,541 (ratio ≈ 73.9); ... for k=10, |{1,10}| = 432,950,651 and |{2,10}| = 23,822,035 (ratio ≈ 18.2). This is an empirical observation of a quadratic (inverse-square) relationship for digit 1 amplification in Zaremba density at $N = 10^{10}$; it is not a proven theorem. Data, bootstrapping code, and raw tables are public. (See Supplementary Table 1 for full data.)"
+summary: "The ratio of Zaremba density for {1,k} to {2,k}, computed at exactly matched N = 10¹⁰ for both digit sets, fits an inverse-square relationship: amplification ≈ 1633 (±51) / k².⁰⁰² (±0.017), R² = 0.991. Bootstrapped error bars (1,000 resamples) are shown. Raw counts for each k: for k=3, |{1,3}| = 2,003,192,387; |{2,3}| = 9,810,320; ratio = 204.2. For k=4, |{1,4}| = 1,321,347,612; |{2,4}| = 17,880,541; ratio = 73.9. ... For k=10, |{1,10}| = 432,950,651; |{2,10}| = 23,822,035; ratio = 18.2. Complete tables are supplied for external checks. Computations at differing N were not used in any ratio or fit."
 
 data:
   amplification_formula: "ratio ≈ 1633 × k^(−2.002)"

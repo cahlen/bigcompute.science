@@ -10,7 +10,7 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, diophantine-approximation, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "The Zaremba density for A={1,2} fits density = 31.5 + 4.47·log₁₀(N) (R² = 0.9984, 5 empirical points from 10^6 to 10^12). The BK framework's exponent 2δ−1 = 0.062 describes growth in representation counts R(d), not the convergence rate of unique denominator coverage/density itself; thus, no claim of specific quantitative density speedup ('2.35× faster') is made, as no rigorous bridge from R(d) asymptotics to density is established in these measurements. Extrapolation suggests 100% density near 10^15.3, but the largest residual (−0.53% at 10^12) may signal sub-logarithmic curvature. This is the slowest-converging digit set measured (δ = 0.531, barely above 1/2)."
+summary: "The Zaremba density for A={1,2} fits density = 31.5 + 4.47·log₁₀(N) (R² = 0.9984, 5 empirical measurements at N = 10^6, 10^9, 10^10, 10^11, 10^12; forecasted values such as for N > 10^12 are extrapolations). The BK framework's exponent 2δ−1 = 0.062 describes growth in representation counts R(d), not the convergence rate of unique denominator coverage/density itself; thus, no claim of specific quantitative density speedup relative to the predicted R(d) asymptotics is made, as no rigorous bridge from R(d) asymptotics to density is established in these measurements. Extrapolation suggests 100% density near 10^15.3, but the largest residual (−0.53% at 10^12) may signal sub-logarithmic curvature. This is the slowest-converging digit set measured (δ = 0.531, barely above 1/2)."
 
 data:
   digit_set: "{1,2}"

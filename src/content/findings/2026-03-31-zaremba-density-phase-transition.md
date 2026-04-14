@@ -82,7 +82,7 @@ $$6, 20, 28, 38, 42, 54, 96, 150, 156, 164, 216, 228, 318, 350, 384, 558, 770, 8
 
 ### A Strengthened Zaremba Conjecture
 
-Zaremba originally conjectured $A = 5$. Bourgain-Kontorovich (2014) proved density 1 for $A = 50$ (non-effectively). Our data suggests the truth may be much stronger: within our verification to $10^{10}$, $A = 3$ appears to suffice with exactly 27 exceptions, all $\leq 6{,}234$. If this holds at all scales, it would be a dramatic strengthening — the bound on partial quotients drops from 5 to 3, and the exception set is finite. ($10^{11}$ verification in progress.)
+Zaremba originally conjectured $A = 5$. Bourgain-Kontorovich (2014) proved density 1 for $A = 50$ (non-effectively). Our data suggests the truth may be much stronger: within our verification to $10^{10}$, $A = 3$ appears to suffice with exactly 27 exceptions, all $\leq 6{,}234$. If this holds at all scales, it would be a dramatic strengthening — the bound on partial quotients drops from 5 to 3, and the exception set is finite. (Verified stable through $10^{11}$.)
 
 ### Hausdorff Dimension and Transitivity
 

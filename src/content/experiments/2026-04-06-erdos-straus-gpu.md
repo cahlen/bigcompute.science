@@ -4,7 +4,7 @@ slug: erdos-straus-gpu
 date: 2026-04-06
 author: cahlen
 author_github: https://github.com/cahlen
-status: stalled
+status: complete
 
 hardware:
   name: NVIDIA DGX B200

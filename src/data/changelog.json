@@ -1,5 +1,10 @@
 [
   {
+    "hash": "9856891",
+    "date": "Apr 14",
+    "message": "Update certifications and finding metadata from review cycle"
+  },
+  {
     "hash": "ddd9f12",
     "date": "Apr 08",
     "message": "Mark Zaremba density experiment as complete"
@@ -43,10 +48,5 @@
     "hash": "062e429",
     "date": "Apr 07",
     "message": "Fix stale review counts in llms.txt, llms-full.txt, meta.json, certifications.json"
-  },
-  {
-    "hash": "ca1b5d4",
-    "date": "Apr 06",
-    "message": "Update findings: Kronecker S40 complete, S45 infeasible, Zaremba density paused"
   }
 ]

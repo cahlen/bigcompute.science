@@ -185,18 +185,33 @@ The v6 kernel extended an earlier single-GPU v5 kernel with multi-pass chunking 
 
 More importantly, v6.1 probe measurements at the **exact 210B chunk size** (119,210 seeds per chunk, matching `num_rounds = 256` × 8 GPUs) show:
 
-| max_d | `h_out` peak observed | Overflow events | Interpretation |
-|-------|----------------------|-----------------|----------------|
-| $10^8$ | $1.91 \times 10^9$ | 0 | True unclipped peak; 95.5% of the B200 $2 \times 10^9$ buffer |
-| $10^9$ | $2.00 \times 10^9$ (saturated at $5 \times$ local BUF_SLOTS) | $17.5 \times 10^{12}$ | True peak > $4 \times 10^8$ but exact value not recoverable from a clipped probe |
-| $10^{10}$ | (probe in progress) | (in progress) | — |
-| $2.1 \times 10^{11}$ | requires v6.1 on $\geq 1.5$ TB of GPU memory | — | — |
+| max_d | `h_out` peak observed | Overflow events | Wall time | Interpretation |
+|-------|----------------------|-----------------|-----------|----------------|
+| $10^8$ | $1.91 \times 10^9$ | 0 | 1,407 s | **True unclipped peak;** 95.5% of the B200 $2 \times 10^9$ buffer |
+| $10^9$ | $2.00 \times 10^9$ (saturated at $5 \times$ local BUF_SLOTS) | $17.5 \times 10^{12}$ | 6,987 s | True peak > $4 \times 10^8$ but exact value not recoverable from a clipped probe |
+| $10^{10}$ | $4.29 \times 10^9$ (saturated at a higher level) | $25.2 \times 10^{12}$ | 7,491 s | Saturation level *grows* with $\max_d$ — confirms peak is monotone in $\max_d$ |
+| $2.1 \times 10^{11}$ | requires v6.1 on $\geq 1.5$ TB of GPU memory | — | — | — |
 
-**Reading this correctly.** The $\max_d = 10^8$ row is a *direct measurement* of the true unclipped frontier — no overflow was recorded, so the atomic counter was not saturating. The $\max_d = 10^9$ row's $2 \times 10^9$ peak, on the other hand, is a structural saturation artifact: once one level of our local kernel clips to $\texttt{BUF\_SLOTS} = 4 \times 10^8$, each thread emits at most 5 children, so the *next* level's counter can't exceed $5 \times 4 \times 10^8 = 2 \times 10^9$ by construction. The 17.5 trillion overflow events do confirm that the true unclipped per-level frontier at $\max_d = 10^9$ exceeds $4 \times 10^8$ repeatedly; we cannot pin down by how much without a larger buffer.
+**Reading this correctly.** The $\max_d = 10^8$ row is a *direct measurement* of the true unclipped frontier — no overflow was recorded, so the atomic counter was not saturating. The $\max_d \geq 10^9$ rows' peak values are structural saturation artifacts: once a level of our local kernel clips to $\texttt{BUF\_SLOTS} = 4 \times 10^8$, the next level's atomic counter is bounded above by a small multiple of BUF_SLOTS. The *overflow-event* columns are the informative parts of those rows: 17.5 trillion and 25.2 trillion overflow events respectively confirm that the true unclipped per-level frontier exceeds $4 \times 10^8$ by a very large margin at $\max_d \geq 10^9$.
 
-**What can be concluded:** per-chunk peak frontier is non-decreasing in $\max_d$ at fixed chunk size, so the true peak at $\max_d = 2.1 \times 10^{11}$ is *at least* $1.91 \times 10^9$, and very likely larger. Whether the excess stays under the B200's $2 \times 10^9$ or overflows it cannot be determined from our local probes — that is what the v6.1 re-run on $\geq 1.5$ TB of GPU memory is for. The 210B run therefore currently stands as **strong computational evidence, not a certified computational result**: the v6 kernel emits no machine-checkable no-overflow certificate, and "Uncovered = 0" is conditional on an un-verified no-overflow hypothesis.
+**What can be concluded:** per-chunk peak frontier is non-decreasing in $\max_d$ at fixed chunk size, so the true peak at $\max_d = 2.1 \times 10^{11}$ is *at least* $1.91 \times 10^9$, and very likely significantly larger (since the probe at $\max_d = 10^{10}$ was already well past a $5 \times 4\times 10^8$ saturation). Whether the excess stays under the B200's $2 \times 10^9$ or overflows it cannot be determined from our local probes alone — that is what the v6.1 re-run on $\geq 1.5$ TB of GPU memory is for. The 210B run therefore currently stands as **strong computational evidence, not a certified computational result**: the v6 kernel emits no machine-checkable no-overflow certificate, and "Uncovered = 0" is conditional on an un-verified no-overflow hypothesis.
 
-**Important non-conclusion.** Clipping, if it happened, does *not* directly invalidate $\texttt{Uncovered} = 0$. In `expand_mark_compact_safe`, the bitset `atomicOr` mark fires *before* the buffer-availability check, so a clipped matrix still marks its denominator; what is lost is its descendants. Because the 244M Phase A seeds produce massively redundant CF coverage, denominators whose CF paths were clipped are usually marked by other unclipped paths. The issue is that the v6 kernel does not *prove* this, and the v6.1 re-run is what upgrades the status from "very likely correct" to "machine-checked".
+**First certified sub-range.** A CERTIFY run (no probe mode, hard abort on overflow) at $\max_d = 10^6$, 2,048 rounds, completed in 226.4 s on the RTX 5090 and produced the project's first machine-checkable no-overflow log:
+
+```
+--- NO-OVERFLOW CERTIFICATE ---
+BUF_SLOTS                 : 400000000
+Phase A peak frontier     : 216330790  (0.5408 of BUF_SLOTS)
+Phase A overflow events   : 0
+Phase B peak frontier     : 262804169  (0.6570 of BUF_SLOTS)
+Phase B overflow events   : 0
+All peaks < BUF_SLOTS     : YES
+No-overflow abort fired   : NO
+```
+
+So the sub-range $d \in [1, 10^6]$ is now *certified* in the machine-checkable sense, not merely computationally-evident. The full log is archived on the Hugging Face dataset as `certification/v6_1_CERTIFY_d1000000_r2048_NO_OVERFLOW.log`. CERTIFY runs at $\max_d \geq 10^7$ hard-aborted at Phase B round 1 on the RTX 5090 (because the local $4 \times 10^8$ buffer is five times smaller than the B200's), directly corroborating the probe-mode conclusion that per-chunk Phase B peaks routinely exceed $10^9$.
+
+**Important non-conclusion.** Clipping, if it happened in the 210B run, does *not* directly invalidate $\texttt{Uncovered} = 0$. In `expand_mark_compact_safe`, the bitset `atomicOr` mark fires *before* the buffer-availability check, so a clipped matrix still marks its denominator; what is lost is its descendants. Because the 244M Phase A seeds produce massively redundant CF coverage, denominators whose CF paths were clipped are usually marked by other unclipped paths. The issue is that the v6 kernel does not *prove* this, and the v6.1 re-run is what upgrades the status from "very likely correct" to "machine-checked".
 
 ### Transfer Operator: Hausdorff Dimension to 15 Digits
 

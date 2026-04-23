@@ -9,132 +9,97 @@ significance: notable
 domain: [number-theory, continued-fractions, diophantine-approximation]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "The 27 exceptions to Zaremba density with A={1,2,3} decompose hierarchically: 25 are resolved by adding digit 4, leaving only d=54 and d=150 (which need digit 5). The hierarchy 27 -> 2 -> 0 reveals a precise structure in the exception set. The CF identity [0;...,a] = [0;...,a-1,1] allows some exceptions to be resolved by splitting the last quotient."
+summary: "Corrected 2026-04-23 audit: the 27 uncovered denominators for A={1,2,3} through the completed 10^10 run are 6,20,28,38,42,54,96,150,156,164,216,228,318,350,384,558,770,876,1014,1155,1170,1410,1870,2052,2370,5052,6234. Adding digit 4 covers 25 of these, leaving only d=54 and d=150; adding digit 5 covers those two. The hierarchy 27→2→0 is a finite-range computational decomposition, not an analytic proof that no further {1,2,3} exceptions occur beyond the completed search range."
 certification:
   level: bronze
-  verdict: ACCEPT
-  reviewer: "Claude Opus 4.6 (Anthropic)"
-  date: 2026-04-02
-  note: "Novel hierarchy decomposition. 27-2-0 structure verified computationally."
+  verdict: ACCEPT_WITH_REVISION
+  reviewer: "GPT-5.2 audit (OpenAI)"
+  date: 2026-04-23
+  note: "Page rewritten after audit found a stale/corrupted exception list and obsolete hardware/method claims."
 ---
 
 # Zaremba Exception Hierarchy: 27 → 2 → 0
 
 ## The Finding
 
-The 27 exceptions to full Zaremba density with A={1,2,3} (verified to 10^{11}) have a precise hierarchical structure.
+For the digit set $A=\{1,2,3\}$, the completed CPU/GPU logs in this repository show exactly 27 uncovered denominators through $10^{10}$, all at most $6{,}234$:
 
-**Computational methodology:** To verify the Zaremba property for all denominators d ≤ 10^{10}, we implemented a custom CUDA kernel (`zaremba_density_gpu.cu`). The algorithm builds the space of continued fractions [0; a₁, a₂, ...] with aᵢ ∈ A={1,2,3}, via a compact prefix tree pruned on denominator overrun or duplicate visitation (Each node stores [numerator, denominator]). CPU-side, we partitioned the search with 8–12-digit CF prefixes depending on subtree size, yielding 9,443,332 subtrees (A={1,2,3}), each mapped to a separate GPU thread. Per-thread iterative DFS used an explicit stack of depth 200, writing to a 1.25 GB global bitset in GPU shared memory using `atomicOr`. Hardware: NVIDIA RTX 5090 (32GB). Jobs launched with 256 threads/block, total occupancy 531,441 threads per batch. Runtime for complete sweep to d = 10^{10}: 22.6 hours wall time, mean GPU utilization 97%. Memory overhead: 1.25 GB/device, no reallocation. Bitsets checkpointed every 6.2 million denominators; total output log size per run: ~100 MB (plain text). All raw logs and verification scripts released: [SHA256: d1f3ad6b9b... (full hashes and logs at https://github.com/cahlen/zaremba-density-data)]. at 10^6: A={1,2,3} → 27 uncovered (density 99.9973%), A={1,2,3,4} → 2 uncovered (density 99.9998%), A={1,2,3,4,5} → 0 uncovered (density 100%).
+$$6, 20, 28, 38, 42, 54, 96, 150, 156, 164, 216, 228, 318, 350, 384, 558, 770, 876, 1014, 1155, 1170, 1410, 1870, 2052, 2370, 5052, 6234.$$
 
-The hierarchy:
+Adding digit 4 resolves 25 of the 27. The only two remaining uncovered denominators for $A=\{1,2,3,4\}$ are:
 
-| Digit set | Exceptions | Which ones |
-|-----------|-----------|------------|
-| A={1,2,3} | 27 | all <= 6234 (see complete list below) |
-| A={1,2,3,4} | 2 | d=54, d=150 only |
-| A={1,2,3,4,5} | 0 | Zaremba's conjecture |
+$$54,\quad 150.$$
 
-Adding digit 4 resolves 25 of the 27 exceptions. The remaining 2 (d=54, d=150) require digit 5.
+Adding digit 5 covers both, so the finite-range hierarchy is:
 
-**Prior work:** The 27 exceptions for $A=\{1,2,3\}$ have been known since at least Hensley (1996) and appear in tables by Kontorovich and collaborators. The novelty here is (a) the explicit hierarchical decomposition $27 \to 2 \to 0$ showing which digit resolves each exception, (b) the exhaustive witness table with CF expansions, and (c) GPU verification extending the search range to $10^{11}$.
+| Digit set | Uncovered among the 27 | Interpretation |
+|-----------|-------------------------|----------------|
+| $\{1,2,3\}$ | 27 | Not covered through the completed $10^{10}$ run |
+| $\{1,2,3,4\}$ | 2 | Only $54$ and $150$ remain |
+| $\{1,2,3,4,5\}$ | 0 | All 27 are covered |
 
-**Exhaustive verification for d=54:** φ(54) = 18 coprime residues. Both CF representations (canonical and split) checked for each. The minimum achievable max partial quotient is 5 (attained by a=17: 17/54 = [0; 3, 5, 1, 2]). No coprime a produces max PQ ≤ 4 in either representation. **Exhaustive verification for d=150:** φ(150) = 40 coprime residues. Both CF representations checked. The minimum achievable max partial quotient is 5 (attained by a=29: 29/150 = [0; 5, 5, 1, 4]). No coprime a produces max PQ ≤ 4 in either representation. These exhaustive checks confirm that d=54 and d=150 are genuine exceptions requiring digit 5, not artifacts of incomplete search.
+This is a computational decomposition of a finite list. It does **not** prove that $A=\{1,2,3\}$ has no further exceptions beyond the completed search range.
 
-### Complete Exception List with Witnesses
+## Verification
 
-The 27 exceptions for A={1,2,3} are: d ∈ {2, 4, 6, 10, 12, 14, 18, 20, 26, 28, 34, 36, 42, 52, 54, 66, 68, 78, 100, 114, 150, 170, 198, 290, 462, 578, 6234}.
+The local CPU reference implementation reproduces the 27 exceptions at $10^6$:
 
-**Checksum:** SHA-256 of the comma-separated list `2,4,6,...,6234` = `1b79a21cc7a3964ebca521a285dc5ab9b116d15302725146cd53ec121c9362d6`. **Reproduction:** compile `zaremba_density.c` (`gcc -O3 -o zaremba_density zaremba_density.c -lm`) and run `./zaremba_density 1000000 1,2,3` — output shows `uncovered: 27`. GPU version (`nvcc -O3 -arch=sm_100a -o zaremba_density_gpu zaremba_density_gpu.cu`) confirms the same 27 at 10^{10} with zero additional exceptions. Source code: [`scripts/experiments/zaremba-density/`](https://github.com/cahlen/idontknow/tree/main/scripts/experiments/zaremba-density).
+```bash
+gcc -O3 -o zaremba_density scripts/experiments/zaremba-density/zaremba_density.c -lm
+./zaremba_density 1000000 1,2,3
+```
 
-Of these, 25 are resolved by A={1,2,3,4}. Witness numerators (a such that a/d has CF with all partial quotients ≤ 4):
+The committed GPU log `scripts/experiments/zaremba-density/results/gpu_A123_1e9.log` records the same 27 exceptions at $10^9`, and the density phase-transition finding records the completed $10^{10}$ run.
 
-| d | Witness a | CF expansion | Notes |
-|---|-----------|-------------|-------|
-| 2 | 1 | [0; 2] | |
-| 4 | 1 | [0; 4] | |
-| 6 | 5 | [0; 1, 4, 1] | via splitting: 5/6 = [0; 1, 5] = [0; 1, 4, 1] |
-| 10 | 3 | [0; 3, 3] | |
-| 12 | 5 | [0; 2, 2, 2] | |
-| 14 | 3 | [0; 4, 1, 2] | |
-| 18 | 5 | [0; 3, 1, 1, 2] | |
-| 20 | 9 | [0; 2, 4, 2] | |
-| 26 | 7 | [0; 3, 1, 2, 2] | |
-| 28 | 11 | [0; 2, 1, 1, 4, 1] | via splitting: 11/28 = [0; 2, 1, 1, 5] = [0; 2, 1, 1, 4, 1] |
-| 34 | 9 | [0; 3, 1, 3, 2] | |
-| 36 | 11 | [0; 3, 3, 1, 2] | |
-| 42 | 11 | [0; 3, 1, 4, 2] | |
-| 52 | 11 | [0; 4, 1, 2, 1, 2] | |
-| 66 | 25 | [0; 2, 1, 1, 1, 3, 2] | |
-| 68 | 19 | [0; 3, 1, 1, 2, 1, 2] | |
-| 78 | 17 | [0; 4, 1, 1, 2, 3] | |
-| 100 | 21 | [0; 4, 1, 3, 4, 1] | via splitting: 21/100 = [0; 4, 1, 3, 5] = [0; 4, 1, 3, 4, 1] |
-| 114 | 25 | [0; 4, 1, 1, 3, 1, 2] | |
-| 170 | 39 | [0; 4, 2, 1, 3, 1, 2] | |
-| 198 | 47 | [0; 4, 4, 1, 2, 3] | |
-| 290 | 77 | [0; 3, 1, 3, 3, 1, 1, 2] | |
-| 462 | 97 | [0; 4, 1, 3, 4, 1, 1, 2] | |
-| 578 | 127 | [0; 4, 1, 1, 4, 2, 1, 1, 2] | |
-| 6234 | 1309 | [0; 4, 1, 3, 4, 1, 3, 1, 1, 1, 4] | |
+## Witnesses After Adding Digit 4
 
-Three of the 25 witnesses (d=6, 28, 100) rely on the CF splitting identity [0;...,a] = [0;...,a−1,1] to bring the maximum partial quotient from 5 down to 4. All witnesses verified by direct computation: gcd(a,d)=1 and the convergent p/q of the stated CF satisfies q=d.plitting) |
-| 26 | 7 | [0; 3, 1, 2, 1, 2] |
-| 28 | 9 | [0; 3, 4, 1] |
-| 34 | 9 | [0; 3, 1, 3, 1, 1] |
-| 36 | 11 | [0; 3, 3, 1, 1] |
-| 42 | 11 | [0; 3, 1, 4, 1] |
-| 52 | 15 | [0; 3, 2, 4] |
-| 66 | 19 | [0; 3, 2, 4, 1] |
-| 68 | 19 | [0; 3, 4, 3] |
-| 78 | 23 | [0; 3, 2, 1, 4, 1] |
-| 100 | 29 | [0; 3, 2, 4, 1, 1] |
-| 114 | 31 | [0; 3, 1, 2, 4, 1, 1] |
-| 170 | 49 | [0; 3, 2, 4, 3] |
-| 198 | 55 | [0; 3, 3, 1, 4, 1, 1] |
-| 290 | 81 | [0; 3, 4, 3, 1, 2] |
-| 462 | 131 | [0; 3, 3, 1, 4, 1, 2] |
-| 578 | 161 | [0; 3, 4, 3, 1, 2, 1] |
-| 6234 | 1741 | [0; 3, 4, 3, 1, 2, 1, 3] | Full GPU enumeration details (algorithm, hardware specs, runtime) are documented in the [density phase transition finding](/findings/zaremba-density-phase-transition/); reproduction scripts and output logs are available in the GitHub repository.
+One witness numerator for each resolved denominator is listed below. Each row means $a/d = [0; a_1,\ldots,a_k]$ with every partial quotient in $\{1,2,3,4\}$.
 
-**Computational details:** For each denominator d, we enumerate all a with gcd(a,d)=1 and compute the CF expansion of a/d, checking whether all partial quotients lie in the target digit set. The search was parallelized across 8× NVIDIA A100 GPUs using a block-decomposition of the denominator range [1, 10^{10}], with each GPU processing ~1.25×10^9 denominators. Total wall-clock time: ~14 hours. Memory usage: <2 GB per GPU (only current denominator state). SHA-256 checksums of result files are recorded in `experiments/zaremba-conjecture-verification/checksums.sha256`.
-
-## The CF Splitting Identity
-
-An important subtlety: d=6 appears in the 27 exceptions for A={1,2,3} because its canonical CF representation 5/6 = [0; 1, 5] uses digit 5. However, the non-canonical form [0; 1, 4, 1] = 5/6 uses only digits {1, 4}. The continued fraction identity
-
-[0; a_1, ..., a_k] = [0; a_1, ..., a_k - 1, 1]
-
-allows the last quotient to be split, potentially reducing the maximum digit by 1 at the cost of one extra term. This is why d=6 is covered by A={1,2,3,4} even though the standard CF of 5/6 needs digit 5.
+| $d$ | $a$ | Continued fraction |
+|---:|---:|---|
+| 6 | 5 | $[0;1,4,1]$ |
+| 20 | 11 | $[0;1,1,4,1,1]$ |
+| 28 | 17 | $[0;1,1,1,1,4,1]$ |
+| 38 | 21 | $[0;1,1,4,3,1]$ |
+| 42 | 23 | $[0;1,1,4,1,2,1]$ |
+| 96 | 53 | $[0;1,1,4,3,2,1]$ |
+| 156 | 97 | $[0;1,1,1,1,1,4,3,1]$ |
+| 164 | 103 | $[0;1,1,1,2,4,1,2,1]$ |
+| 216 | 137 | $[0;1,1,1,2,1,3,4,1]$ |
+| 228 | 139 | $[0;1,1,1,1,3,1,1,4,1]$ |
+| 318 | 197 | $[0;1,1,1,1,1,2,4,1,1,1]$ |
+| 350 | 207 | $[0;1,1,2,4,3,1,2,1]$ |
+| 384 | 235 | $[0;1,1,1,1,2,1,2,1,4,1]$ |
+| 558 | 347 | $[0;1,1,1,1,1,4,2,1,3,1]$ |
+| 770 | 479 | $[0;1,1,1,1,1,4,1,2,1,1,1,1]$ |
+| 876 | 559 | $[0;1,1,1,3,4,2,2,2,1]$ |
+| 1014 | 629 | $[0;1,1,1,1,1,2,1,2,2,4,1]$ |
+| 1155 | 713 | $[0;1,1,1,1,1,1,2,2,4,2,1]$ |
+| 1170 | 751 | $[0;1,1,1,3,1,4,2,3,1,1]$ |
+| 1410 | 877 | $[0;1,1,1,1,1,4,1,1,3,1,2,1]$ |
+| 1870 | 1159 | $[0;1,1,1,1,1,2,2,1,2,4,1,1]$ |
+| 2052 | 1265 | $[0;1,1,1,1,1,1,4,1,4,1,3,1]$ |
+| 2370 | 1441 | $[0;1,1,1,1,4,2,1,1,3,4,1]$ |
+| 5052 | 3115 | $[0;1,1,1,1,1,1,4,3,3,2,2,1]$ |
+| 6234 | 3845 | $[0;1,1,1,1,1,1,3,1,1,1,2,4,2,1]$ |
 
 ## The Two Stubborn Exceptions
 
-d=54: every coprime fraction a/54 has a partial quotient of at least 5 in its continued fraction expansion. No representation — canonical or non-canonical — avoids digit 5.
+For $d=54$ and $d=150$, exhaustive search over coprime numerators shows no representation with all partial quotients in $\{1,2,3,4\}$. Allowing digit 5 gives representations, for example:
 
-d=150: best CF is 29/150 = [0; 5, 5, 1, 4]. No splitting resolves the double-5 structure.
+| $d$ | $a$ | Continued fraction |
+|---:|---:|---|
+| 54 | 35 | $[0;1,1,1,5,2,1]$ |
+| 150 | 91 | $[0;1,1,1,1,5,2,1,1]$ |
+
+These two denominators are therefore the hardest elements of the observed 27-exception list.
 
 ## References
 
-1. Zaremba, S.K. (1972). "La méthode des bons treillis." Annales de l'IHP Probabilités et Statistiques, 8(2), pp. 165–176.
-2. Bourgain, J. and Kontorovich, A. (2014). "On Zaremba's conjecture." Annals of Mathematics, 180(1), pp. 137–196.
-3. Hensley, D. (1996). "A polynomial time algorithm for the Hausdorff dimension of continued fraction Cantor sets." Journal of Number Theory, 58(1), pp. 9–45.
-4. Kontorovich, A. and Shinnyih, H. (2021). "On a missing digit version of Zaremba's conjecture." Preprint.
-5. Huang, S.-Y. (2015). "An improvement to Zaremba's conjecture." Geometriae Dedicata, 174, pp. 49–55.
+1. Zaremba, S.K. (1972). "La méthode des bons treillis." *Applications of Number Theory to Numerical Analysis*, pp. 39–119.
+2. Bourgain, J. and Kontorovich, A. (2014). "On Zaremba's conjecture." *Annals of Mathematics*, 180(1), pp. 137–196.
+3. Hensley, D. (1996). "A polynomial time algorithm for the Hausdorff dimension of continued fraction Cantor sets." *Journal of Number Theory*, 58(1), pp. 9–45.
 
 ---
 
-*This work was produced through human-AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*
-
-## Why d=54 and d=150 Are Special
-
-Both stubborn exceptions share structural properties:
-
-| | d=54 | d=150 |
-|---|---|---|
-| Factorization | 2 x 3^3 | 2 x 3 x 5^2 |
-| Divisible by 6 | yes | yes |
-| Prime power factor | 3^3 | 5^2 |
-| GCD(54, 150) | 6 | 6 |
-| Best max partial quotient | 5 | 5 |
-
-For d=54, EVERY coprime fraction a/54 has a partial quotient of at least 5. There are phi(54) = 18 coprime residues mod 54, and an exhaustive check of all 18 confirms none of their CFs avoid digit 5. Similarly for d=150 (phi(150) = 40 coprime residues, all CFs checked, all require digit 5). These exhaustive searches are trivial to reproduce on any hardware.
-
-These are the only 2 integers in [1, 10^10] where digit 5 is truly unavoidable (verified by the full GPU enumeration described in the [density phase transition finding](/findings/zaremba-density-phase-transition/)) — making them the "hardest" denominators for Zaremba's conjecture.
+*This work was produced through human-AI collaboration. Not independently peer-reviewed. All code and data are open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

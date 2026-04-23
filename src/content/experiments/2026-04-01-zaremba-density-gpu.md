@@ -27,10 +27,11 @@ results:
   problem: "For digit sets A, compute the density of integers d <= N with a coprime a whose CF partial quotients all lie in A"
   total_runs: 65
   range_max: "10^12"
-  closed_exception_sets: 5
+  stable_candidate_exception_sets: 5
+  completed_1e11_stable_sets: 2
   findings_produced: 5
 
-summary: "65 GPU density computations across digit sets and ranges to 10^12. Five closed exception sets confirmed ({1,2,3}=27, {1,2,4}=64, {1,2,5}=374, {1,2,6}=1834, {1,2,7}=7178). Sharp phase transition: digit sets with k<=7 have finite exceptions, k>=8 grow. Power law k^{-5.83} for {1,k} pair hierarchy. Stalled: kernel hangs on digit-1 deep subtrees at 10^11+."
+summary: "65 GPU density computations across digit sets and ranges to 10^12. Audit revision: the data support stable candidate exception sets, not proved finite/closed sets. Completed 10^11 RESULTS blocks in this repo currently verify {1,2,6}=1834 and {1,2,7}=7178; the {1,2,3}, {1,2,4}, and {1,2,5} 10^11 logs are partial. The {1,k} pair hierarchy at 10^11 remains strong; the old sharp phase-transition language is too strong."
 
 dataset: https://huggingface.co/datasets/cahlen/zaremba-density
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/zaremba-density
@@ -64,17 +65,17 @@ Power-law fit: $\text{density}(\{1,k\}) \approx 4090 \cdot k^{-5.83}$ ($R^2 = 0.
 
 Only $\{1,2\}$ has Hausdorff dimension above $1/2$, so only $\{1,2\}$ density grows with $N$; all others converge to zero.
 
-### Closed Exception Sets (verified to 10^11)
+### Stable Candidate Exception Sets
 
 | Digit set | Exceptions | Stable across |
 |-----------|-----------|---------------|
 | $\{1,2,3\}$ | **27** | $10^9 \to 10^{10}$ |
 | $\{1,2,4\}$ | **64** | $10^9 \to 10^{10}$ |
-| $\{1,2,5\}$ | **374** | $10^{10} \to 10^{11}$ |
+| $\{1,2,5\}$ | **374** | $10^{10}$ completed; $10^{11}$ log partial |
 | $\{1,2,6\}$ | **1,834** | $10^{10} \to 10^{11}$ |
 | $\{1,2,7\}$ | **7,178** | $10^{10} \to 10^{11}$ |
 
-"Closed" means the exception count did not change across a full decade of extension. This is observational stability, not a proof of finiteness.
+For $\{1,2,6\}$ and $\{1,2,7\}$, the completed $10^{11}$ logs contain RESULTS blocks. For $\{1,2,3\}$, $\{1,2,4\}$, and $\{1,2,5\}$, the repository currently has partial $10^{11}$ logs without RESULTS blocks, so those sets should be cited only through their completed ranges. None of these observations proves finiteness.
 
 ### Open Exception Sets at 10^11
 
@@ -119,7 +120,7 @@ done
 
 ## Status
 
-65 completed GPU runs across ranges $10^6$ to $10^{12}$. Five closed exception sets confirmed. Runs in progress at $10^{11}$ for $\{1,2,3\}$, $\{1,2,4\}$, $\{1,2,3,4\}$, $\{1,2,3,4,5\}$. The $10^{12}$ runs for $\{1,2,3\}$ through $\{1,2,7\}$ are queued.
+65 GPU runs are archived across ranges $10^6$ to $10^{12}$, but audit status depends on each log having a completed RESULTS block. Stable candidate exception sets are observations, not proofs of finiteness. Completed $10^{11}$ stability is presently supported for $\{1,2,6\}$ and $\{1,2,7\}$; $\{1,2,3\}$, $\{1,2,4\}$, and $\{1,2,5\}$ need completed $10^{11}$ reruns before being cited at that range.
 
 ---
 

@@ -2,7 +2,7 @@
   "name": "bigcompute.science",
   "description": "Open computational mathematics on GPUs. AI-audited, not peer-reviewed.",
   "url": "https://bigcompute.science",
-  "generated_at": "2026-04-08T00:36:53Z",
+  "generated_at": "2026-04-23T21:56:10Z",
   "author": {
     "name": "Cahlen Humphreys",
     "github": "https://github.com/cahlen",
@@ -10,7 +10,7 @@
   },
   "license": "CC-BY-4.0",
   "stats": {
-    "findings": 18,
+    "findings": 17,
     "reviews": 53,
     "issues": 217,
     "issues_fixed": 200,
@@ -30,23 +30,22 @@
     ]
   },
   "findings": {
-    "zaremba-cayley-diameters": "https://bigcompute.science/findings/zaremba-cayley-diameters/",
     "class-number-convergence": "https://bigcompute.science/findings/class-number-convergence/",
     "zaremba-spectral-gaps-uniform": "https://bigcompute.science/findings/zaremba-spectral-gaps-uniform/",
     "hausdorff-digit-one-dominance": "https://bigcompute.science/findings/hausdorff-digit-one-dominance/",
+    "zaremba-cayley-diameters": "https://bigcompute.science/findings/zaremba-cayley-diameters/",
     "kronecker-s30-largest-computation": "https://bigcompute.science/findings/kronecker-s30-largest-computation/",
     "kronecker-s40-character-table": "https://bigcompute.science/findings/kronecker-s40-character-table/",
     "zaremba-density-phase-transition": "https://bigcompute.science/findings/zaremba-density-phase-transition/",
     "zaremba-A12-logarithmic-convergence": "https://bigcompute.science/findings/zaremba-A12-logarithmic-convergence/",
-    "gpu-matrix-enumeration-175x": "https://bigcompute.science/findings/gpu-matrix-enumeration-175x/",
     "zaremba-inverse-square-amplification": "https://bigcompute.science/findings/zaremba-inverse-square-amplification/",
+    "gpu-matrix-enumeration-175x": "https://bigcompute.science/findings/gpu-matrix-enumeration-175x/",
     "zaremba-digit-pair-hierarchy": "https://bigcompute.science/findings/zaremba-digit-pair-hierarchy/",
     "zaremba-exception-hierarchy": "https://bigcompute.science/findings/zaremba-exception-hierarchy/",
     "zaremba-representation-growth": "https://bigcompute.science/findings/zaremba-representation-growth/",
+    "zaremba-transitivity-all-primes": "https://bigcompute.science/findings/zaremba-transitivity-all-primes/",
     "zaremba-witness-golden-ratio": "https://bigcompute.science/findings/zaremba-witness-golden-ratio/",
     "zaremba-conjecture-framework": "https://bigcompute.science/findings/zaremba-conjecture-framework/",
-    "zaremba-transitivity-all-primes": "https://bigcompute.science/findings/zaremba-transitivity-all-primes/",
-    "zaremba-conjecture-proved": "https://bigcompute.science/findings/zaremba-conjecture-proved/",
     "_project-level": "https://bigcompute.science/findings/_project-level/"
   },
   "structured_data": {

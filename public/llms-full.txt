@@ -78,7 +78,7 @@ We compute things that require serious hardware — 8×NVIDIA B200 (1.43 TB VRAM
 ## Current content
 
 ### Experiments (10, 7 complete)
-1. `/experiments/zaremba-conjecture-verification/` — Zaremba's Conjecture: 210B verified, conditional framework to 10^1500 (complete)
+1. `/experiments/zaremba-conjecture-verification/` — Zaremba's Conjecture: v6 run reported zero uncovered denominators to 210B, but certification requires a v6.1 no-overflow rerun; current v6.1 certified sub-range is d≤10^6. (complete evidence; certification pending)
 2. `/experiments/zaremba-transfer-operator/` — Transfer operator spectral analysis for Zaremba (complete)
 3. `/experiments/mcts-proof-search-benchmark/` — MCTS vs naive sampling for LLM theorem proving (planned)
 4. `/experiments/ramsey-r55-lower-bound/` — Ramsey R(5,5): exhaustive extension search, 656/656 K42 colorings UNSAT, strongest evidence R(5,5)=43 (complete)
@@ -95,7 +95,7 @@ We compute things that require serious hardware — 8×NVIDIA B200 (1.43 TB VRAM
 2. `/findings/kronecker-s40-character-table/` — Complete S_40 character table (37,338 partitions, 1.394B entries, 9.5 hr). 94.9% nonzero (sampled). Hooks multiplicity-free. GCT region sparse (10.1%). (notable significance)
 3. `/findings/zaremba-density-phase-transition/` — CONFIRMED: A={1,2,3} has exactly 27 exceptions to 10^10 (all ≤6234). Zero new exceptions. Phase transition at Hausdorff dim=1/2. A=3 suffices. (high significance)
 4. `/findings/class-number-convergence/` — Cohen-Lenstra h=1 convergence is non-monotone: 42% at d~10^4, 17% at d~10^10. 2.74B discriminants. (notable significance)
-5. `/findings/zaremba-conjecture-proved/` — Computer-assisted proof framework for Zaremba's Conjecture (A=5), all d ≥ 1. D₀ ≈ 3.4×10^10, margin 6× below brute-force frontier. NOT peer-reviewed. Human-AI collaborative work. (critical significance)
+5. `/findings/zaremba-conjecture-framework/` — Proof framework for Zaremba's Conjecture (A=5), not a completed proof. Original v6 evidence reports zero uncovered denominators to 2.1×10^11 but is not no-overflow certified; v6.1 currently certifies d≤10^6. D₀ ≈ 3.4×10^10 is conditional on unresolved analytic and operator-certification gaps. NOT peer-reviewed. Human-AI collaborative work. (critical significance)
 6. `/findings/zaremba-spectral-gaps-uniform/` — FP64 spectral gaps for 489 primes to p=3500, all σ ≥ 0.336. 11 covering primes with σ ≥ 0.530. (high significance)
 7. `/findings/zaremba-transitivity-all-primes/` — Algebraic argument (Dickson classification) that semigroup acts transitively on (Z/pZ)² for all primes. AI-assisted, not peer-reviewed. (high significance)
 8. `/findings/zaremba-witness-golden-ratio/` — Zaremba witnesses concentrate at a/d ≈ 0.171, connected to golden ratio (medium significance)
@@ -104,7 +104,7 @@ We compute things that require serious hardware — 8×NVIDIA B200 (1.43 TB VRAM
 11. `/findings/hausdorff-digit-one-dominance/` — Digit 1 dominance in Hausdorff dimension spectrum (medium significance)
 12. `/findings/zaremba-representation-growth/` — Representation count R(d) grows as d^0.674 (medium significance)
 13. `/findings/zaremba-A12-logarithmic-convergence/` — A={1,2} density fits 31.5 + 4.47*log10(N). (notable significance)
-14. `/findings/zaremba-digit-pair-hierarchy/` — {1,k} decays as k^(-3.5). Digit 1 amplifies 42-243x. 4 closed sets (27, 64, 374, 1834). (notable significance)
+14. `/findings/zaremba-digit-pair-hierarchy/` — {1,k} density hierarchy at 10^11; digit 1 amplifies density strongly. Stable candidate exception sets are observational, not proved finite. (notable significance)
 15. `/findings/zaremba-exception-hierarchy/` — 27 -> 2 -> 0 as digits grow. d=54, d=150 need digit 5. (notable significance)
 
 ## Key results (machine-readable summary)

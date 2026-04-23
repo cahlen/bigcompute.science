@@ -10,11 +10,11 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, spectral-theory, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "Proof FRAMEWORK (not a completed proof) for Zaremba's Conjecture (A=5). Theorem 1: GPU brute force to 2.1×10^11 — strong computational evidence, not certified (original v6 kernel did not emit a no-overflow certificate; local v6.1 probes on a single RTX 5090 suggest the B200 run clipped silently). Theorem 2: MOW congruence counting framework — D₀ ≈ 3.4×10^10, margin 6× below brute-force frontier. KNOWN GAPS: ρ_η certified only for finite Galerkin discretization; MOW theorem matching not verified theorem-by-theorem; C_η constant underestimated; software-audit no-overflow certificate for 210B not yet produced. Paper: 15 pages, requires gap closure before arXiv submission. Not peer-reviewed. CORRECTED (2026-04-22): local v6.1 self-audit probe data added (see CERTIFICATE.md)."
+summary: "Proof FRAMEWORK (not a completed proof) for Zaremba's Conjecture (A=5). Computational evidence: original v6 GPU brute-force run reported zero uncovered denominators to 2.1×10^11, but it is not certified because the kernel did not emit a no-overflow certificate; local v6.1 probes on a single RTX 5090 suggest the 210B B200 configuration may have clipped Phase B frontiers. Certified sub-range: v6.1 no-overflow certificate for d ≤ 10^6. Conditional analytic framework: MOW congruence counting with estimated D₀ ≈ 3.4×10^10, but Galerkin-to-operator transport, theorem-by-theorem constant propagation, and independent verification remain open. Not peer-reviewed. CORRECTED (2026-04-22): local v6.1 self-audit probe data added (see CERTIFICATE.md)."
 
 data:
   conjecture: "Zaremba's Conjecture (1972)"
-  status: "Proof FRAMEWORK (not completed — partial verification only). Theorem 1: GPU verification to 2.1×10^11 is strong computational evidence, not certified (original v6 kernel silently clips Phase B frontier at BUF_SLOTS; no no-overflow certificate was emitted; local v6.1 probes on a single RTX 5090 at the 210B chunk size show peak frontier already reaches 2×10^9 at max_d=10^9, meaning the B200 run almost certainly clipped). Theorem 2: MOW congruence counting framework with 6 known gaps: (1) ρ_η certified only for finite Galerkin discretization, (2) MOW theorem matching not verified theorem-by-theorem, (3) C_η constant underestimated, (4) Galerkin-to-operator eigenvalue transport bound missing, (5) Dolgopyat bound not computer-assisted certified, (6) constant-tracking appendix not independently reproduced. D₀ ≈ 3.4×10^10."
+  status: "Proof FRAMEWORK (not completed — partial verification only). Computational evidence to 2.1×10^11 is not certified because the original v6 kernel could silently clip Phase B frontiers and emitted no no-overflow certificate. The only currently machine-checkable v6.1 no-overflow certificate covers d ≤ 10^6 on local RTX 5090 hardware. The MOW congruence-counting framework has 6 known gaps: (1) ρ_η certified only for finite Galerkin discretization, (2) MOW theorem matching not independently verified theorem-by-theorem, (3) C_η constant propagation not independently reproduced, (4) Galerkin-to-operator eigenvalue transport bound missing, (5) Dolgopyat bound not certified as a full operator theorem, (6) full constant-tracking appendix absent. D₀ ≈ 3.4×10^10 is an estimate, not a rigorous theorem."
   bound_A: 5
   brute_force_range: [1, 210000000000]
   brute_force_failures: 0
@@ -23,7 +23,7 @@ data:
   covering_primorial: 200560490130
   min_covering_gap: 0.651
   min_covering_gap_prime: 29
-  effective_range: "d ≤ 2.1×10^11: strong computational evidence (v6 brute-force reports Uncovered=0 but did not emit a no-overflow certificate; v6.1 re-run pending for certification). d > 2.1×10^11 conditional on closing 6 known gaps in the MOW framework (constant-tracking, Galerkin-to-operator transport, Dolgopyat certification — see status field). NOT a completed proof for all d."
+  effective_range: "d ≤ 10^6: certified by a v6.1 no-overflow log on local RTX 5090 hardware. d ≤ 2.1×10^11: strong computational evidence only (v6 brute-force reports Uncovered=0 but did not emit a no-overflow certificate; v6.1 re-run pending for certification). d > 2.1×10^11 conditional on closing known gaps in the MOW framework. NOT a completed proof for all d."
   spectral_gaps_method: "MPFR 256-bit (covering primes) + arb ball arithmetic (Dolgopyat)"
   eigenfunction_h0: 1.377561602272515
   hausdorff_dimension: 0.836829443681208
@@ -55,21 +55,22 @@ code: https://github.com/cahlen/idontknow/tree/main/paper
 
 ## Status
 
-- **Theorem 1 (unconditional):** $R(d) \geq 1$ for all $d \leq 2.1 \times 10^{11}$. GPU brute-force verification, deterministic, reproducible.
-- **Theorem 2 (computer-assisted proof for all $d$):** Zaremba holds for all $d \geq 1$, via the Magee-Oh-Winter uniform congruence counting theorem (Crelle 2019) + arb-certified Dolgopyat bound ($\rho_\eta \leq 0.771$, 70 digits via FLINT ball arithmetic) + Tauberian extraction. Threshold $D_0 \approx 3.4 \times 10^{10}$, margin $6\times$ below brute-force frontier.
-- **Rigor level:** 7 of 8 load-bearing constants interval-certified (arb/MPFR); $C_1$ bounded by mpmath with 10% margin. **Remaining gaps:** (a) no rigorous truncation error bound for N=40 Chebyshev discretization of the infinite-dimensional transfer operator, (b) explicit constant propagation through MOW/Calderón-Magee Tauberian step not shown, (c) Layer 4 property ($\tau$) invocation is non-effective (no explicit constant), (d) MOW theorem-matching precision needs independent verification. Paper is a proof framework, not a complete proof.
+- **Certified computation:** $R(d) \geq 1$ for all $d \leq 10^6$ from the hardened v6.1 kernel with an explicit no-overflow certificate.
+- **Large-scale evidence:** the original v6 B200 run reports $R(d) \geq 1$ for all $d \leq 2.1 \times 10^{11}$, but this is strong computational evidence, not a certified result, because the kernel could silently clip frontiers.
+- **Conditional analytic framework:** the Magee-Oh-Winter congruence-counting route suggests a threshold $D_0 \approx 3.4 \times 10^{10}$, but this depends on unresolved operator truncation, theorem-matching, and constant-propagation gaps.
+- **Rigor level:** finite-matrix arithmetic is partially certified with arb/MPFR, but the transport from finite Galerkin matrices to the infinite-dimensional transfer operators is not yet proved. Paper is a proof framework, not a complete proof.
 
 Full paper: [PDF](https://github.com/cahlen/idontknow/blob/main/paper/zaremba-proof.pdf) · [LaTeX source](https://github.com/cahlen/idontknow/blob/main/paper/zaremba-proof.tex) · [Verification manifest](https://github.com/cahlen/idontknow/blob/main/paper/verification-manifest.txt)
 
 ## Proof Architecture
 
-The proof combines three ingredients (see [paper PDF](https://github.com/cahlen/idontknow/blob/main/paper/zaremba-proof.pdf) for full details):
+The framework combines three ingredients (see [paper PDF](https://github.com/cahlen/idontknow/blob/main/paper/zaremba-proof.pdf) for full details):
 
 ### 1. Brute-Force Verification ($d \leq 2.1 \times 10^{11}$)
 
 GPU matrix enumeration (v6 multi-pass kernel) reports every integer from 1 to 210 billion as marked. Zero uncovered. Runtime: 6,962.2 seconds (116 minutes) on 8× NVIDIA B200 (Blackwell, 183 GB each, CUDA 13.0, driver 580.126.09). Chunk configuration: 256 rounds × 8 GPUs, 119,210 seeds per chunk.
 
-**Exact invocation:** `./matrix_v6 210000000000` (compiled with `nvcc -O3 -arch=sm_100a scripts/experiments/zaremba-effective-bound/matrix_enum_multipass.cu -lpthread`). Input: single argument $N = 2.1 \times 10^{11}$. Output: per-chunk bitset files covering $[1, N]$; union reports zero uncovered integers. SHA256 checksums of all output chunks are recorded in the [verification manifest](https://github.com/cahlen/idontknow/blob/main/paper/verification-manifest.txt). External log with timestamps and per-GPU progress available in the experiment directory.
+**Exact invocation:** `./matrix_v6 210000000000` (compiled with `nvcc -O3 -arch=sm_100a scripts/experiments/zaremba-effective-bound/matrix_enum_multipass.cu -lpthread`). Input: single argument $N = 2.1 \times 10^{11}$. Output: log reports zero uncovered integers. SHA256 checksums of the source and log are recorded in the [verification manifest](https://github.com/cahlen/idontknow/blob/main/paper/verification-manifest.txt). The original run did not produce a per-level no-overflow certificate.
 
 **Certification status.** The original v6 kernel increments `out_count` for every expansion but only writes the matrix if `pos < max_out`, then clips the next frontier to `min(h_out, BUF_SLOTS)` rather than aborting on overflow. The manifest records `Uncovered: 0`, but the kernel did not emit a machine-checkable no-overflow certificate.
 
@@ -195,7 +196,7 @@ From our GPU computation (5.3 seconds, one B200):
 
 $$R(d) \sim d^{0.654} \quad \text{(empirical, } d \leq 10^6\text{)}$$
 
-Theoretical prediction: $R(d) \sim d^{2\delta - 1} = d^{0.674}$. The slight undercount (0.654 vs 0.674) is expected from finite-depth effects. Minimum $R(d) = 6$ at $d = 1$. **Zero exceptions** in $[1, 10^6]$. Full dataset: [1M rows CSV](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-conjecture-verification/representation_counts_1000000.csv).
+Theoretical prediction: $R(d) \sim d^{2\delta - 1} = d^{0.674}$. The slight undercount (0.654 vs 0.674) is expected from finite-depth effects. Minimum $R(d) = 6$ at $d = 1$. **Zero exceptions** in $[1, 10^6]$. Full dataset: [1M rows CSV](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/representation_counts_1000000.csv).
 
 ## Reproduction
 

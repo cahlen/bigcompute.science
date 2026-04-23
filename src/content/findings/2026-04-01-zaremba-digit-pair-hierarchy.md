@@ -10,7 +10,7 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, diophantine-approximation, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "Complete density computation for all {1,k} pairs at 10^11. Density drops exponentially: {1,2}=80.75%, {1,3}=9.11%, {1,4}=1.07%, ..., {1,10}=0.0085%. Only {1,2} has Hausdorff dimension above 1/2. Updated 2026-04-06 with {2,k} and {3,k} pairs at 10^11: digit 1 amplifies density by 249x for k=4, and {3,k} pairs are 9x sparser than {2,k}. Five closed exception sets confirmed."
+summary: "Complete density computation for all {1,k} pairs at 10^11. Density drops exponentially: {1,2}=80.75%, {1,3}=9.11%, {1,4}=1.07%, ..., {1,10}=0.0085%. Only {1,2} has Hausdorff dimension above 1/2. Updated 2026-04-06 with {2,k} and {3,k} pairs at 10^11: digit 1 amplifies density by 249x for k=4, and {3,k} pairs are 9x sparser than {2,k}. Several {1,2,k} exception counts are stable within completed search ranges; this is not an analytic proof of closure."
 
 data:
   pairs_computed: 9
@@ -32,7 +32,7 @@ certification:
   verdict: ACCEPT
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-02
-  note: "Gauss-Kuzmin supports theory. 4 stable exception sets observed (27, 64, 374, 1834). {1,k} hierarchy clean data." 
+  note: "Gauss-Kuzmin supports the hierarchy qualitatively. Stable exception sets are observational, not proved finite."
 code: https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-density/zaremba_density_gpu.cu
 ---
 
@@ -117,23 +117,23 @@ Removing digit 1 collapses density by orders of magnitude. We now have $\{2,k\}$
 
 Each step down in the smallest digit costs roughly an order of magnitude. Without digit 1, no pair achieves even 0.01% density at $10^{11}$. Without digits 1 or 2, density drops below 0.001%. This is the strongest quantitative evidence for the digit 1 dominance phenomenon.
 
-## Closed Exception Sets
+## Stable Candidate Exception Sets
 
-Four $\{1, 2, k\}$ triples have computationally observed exception sets that appear *stable* — no new exceptions appear when extending the search range by a factor of 10. **This is observational stability, not a proof of finiteness.** No branch-and-bound or analytic argument rules out further exceptions beyond our search range. The search is exhaustive within the stated range (every integer $1 \leq d \leq N$ is checked via the bitset).
+Several $\{1, 2, k\}$ triples have computationally observed exception sets that appear *stable* — no new exceptions appear when extending the search range by a factor of 10 where completed logs exist. **This is observational stability, not a proof of finiteness.** No branch-and-bound or analytic argument rules out further exceptions beyond our search range. The search is exhaustive within the stated range (every integer $1 \leq d \leq N$ is checked via the bitset).
 
 | Digit set | Exceptions | Exhaustive to | Stability window | Status |
 |-----------|-----------|--------------|-----------------|--------|
 | $\{1,2,3\}$ | **27** | $10^{10}$ | $10^9 \to 10^{10}$: no growth | $10^{11}$ paused (kernel fix) |
 | $\{1,2,4\}$ | **64** | $10^{10}$ | $10^9 \to 10^{10}$: no growth | $10^{11}$ paused (kernel fix) |
-| $\{1,2,5\}$ | **374** | $10^{11}$ | $10^{10} \to 10^{11}$: no growth | Closed |
-| $\{1,2,6\}$ | **1,834** | $10^{11}$ | $10^{10} \to 10^{11}$: no growth | Closed |
-| $\{1,2,7\}$ | **7,178** | $10^{11}$ | $10^{10} \to 10^{11}$: no growth | **NEW — Closed** |
+| $\{1,2,5\}$ | **374** | $10^{10}$ | $10^6 \to 10^{10}$: limited growth then stable | Stable candidate; 10^11 repo log is partial |
+| $\{1,2,6\}$ | **1,834** | $10^{11}$ | $10^{10} \to 10^{11}$: no growth | Stable candidate |
+| $\{1,2,7\}$ | **7,178** | $10^{11}$ | $10^{10} \to 10^{11}$: no growth | Stable candidate |
 
 The largest exception for $\{1,2,4\}$ is $d = 51{,}270$ (full list of all 64 values available in `results/gpu_A124_1e10.log`).
 
 The sequence 27, 64, 374, 1,834, 7,178 grows rapidly with $k$. We cannot rigorously prove these sets are finite — additional exceptions could in principle appear beyond our search range. However, the stability across a full decade of extension is strong computational evidence.
 
-**Update (2026-04-05):** $A=\{1,2,7\}$ at $10^{11}$ confirms exactly 7,178 exceptions — unchanged from $10^{10}$, making this the fifth closed exception set. Meanwhile $\{1,2,8\}$ has 23,590 at $10^{11}$ (growing), suggesting a sharp closed/open threshold at $k=7$.
+**Update (2026-04-23 audit):** $A=\{1,2,7\}$ at $10^{11}$ gives exactly 7,178 exceptions — unchanged from $10^{10}$. This is evidence for stability, not proof of a finite exception set. Meanwhile $\{1,2,8\}$ has 23,590 at $10^{11}$ (growing), suggesting a possible stable/growing threshold near $k=7$.
 
 ### Open Exception Sets at $10^{11}$
 

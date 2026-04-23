@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-08T00:36:53Z",
+  "generated_at": "2026-04-23T21:56:10Z",
   "stats": {
-    "findings_audited": 18,
+    "findings_audited": 17,
     "total_reviews": 53,
     "issues_discovered": 217,
     "issues_fixed": 200,
@@ -9,101 +9,6 @@
     "unique_providers": 3
   },
   "certifications": [
-    {
-      "slug": "zaremba-cayley-diameters",
-      "title": "Cayley Graph Diameters of Zaremba's Semigroup: diam(p)/log(p) \u2192 1.45 for Primes to 1021",
-      "level": "silver",
-      "review_count": 3,
-      "verdict_summary": "Accept w/ revision (3 reviews)",
-      "models_summary": "Claude + o3-pro",
-      "issues_found": 11,
-      "issues_resolved": 9,
-      "last_reviewed": "2026-04-03T19:50:28Z",
-      "reviews": [
-        {
-          "date": "2026-04-03",
-          "model": "o3-pro",
-          "provider": "OpenAI",
-          "verdict": "ACCEPT_WITH_REVISION",
-          "level": "silver"
-        },
-        {
-          "date": "2026-04-01",
-          "model": "Claude Opus 4.6",
-          "provider": "Anthropic",
-          "verdict": "ACCEPT_WITH_REVISION",
-          "level": "gold"
-        }
-      ],
-      "remediations": [
-        {
-          "description": "There are 172 primes \u2264 1021, not 669. The experiment explicitly covers all these 172 primes.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "95db7f2"
-        },
-        {
-          "description": "The reviewer states 669 primes, but the finding correctly states 172. \u03c0(1021) = 172, confirmed by the actual computation log (cayley_gpu1.log) which outputs exactly 172 data rows for primes 2 through 1021. The number 669 does not correspond to any known prime-counting value in this range (\u03c0(5000) \u2248 669). The finding's prime count is correct and needs no correction.",
-          "severity": "important",
-          "status": "disputed",
-          "commit": ""
-        },
-        {
-          "description": "Clarify which moduli were processed and correct the stated count.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "The prime count 172 is correct (\u03c0(1021)=172); the reviewer's '669' does not appear in the finding. However, the body text ratio range [1.37, 2.89] is inconsistent with the data table (p=5 has ratio 3.11) and the frontmatter [1.37, 3.11]. Fix the display equation and add a clarifying note about the prime count.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": ""
-        },
-        {
-          "description": "Cite a proof or give a careful argument for the mod-p to integer lift.",
-          "severity": "minor",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "The connection between Cayley graph diameter in SL\u2082(\u2124/p\u2124) and worst-case continued fraction length over \u2124 requires a careful lifting argument. The semigroup \u0393_{1,...,5} acts on \u2124 via continued fraction matrices, but the mod-p diameter only bounds the mod-p representation length \u2014 lifting to integer CF length needs either an effective Bourgain-Kontorovich bound or a separate argument about the surjectivity of the reduction map on short words. This is a theoretical gap that cannot be resolved by additional computation alone; it requires a mathematical proof or explicit citation. The finding text should weaken 'translates directly' to 'suggests an analogy with' until a formal argument is provided.",
-          "severity": "minor",
-          "status": "acknowledged",
-          "commit": ""
-        },
-        {
-          "description": "Adding measured throughput, GPU specs, and BFS completeness validation. The kernel validates completeness by tracking total_visited and continuing until frontier is empty; reaching exactly |SL\u2082(p)| elements confirms no early termination.",
-          "severity": "minor",
-          "status": "resolved",
-          "commit": "dba4738"
-        },
-        {
-          "description": "Report measured throughput, GPU model specs, and validation checks (e.g., checksum of visited set) to rule out early termination.",
-          "severity": "minor",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "Add measured throughput and validation details to the Method section to rule out early termination.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": ""
-        },
-        {
-          "description": "Provide quantitative trend analysis and error bars; temper the asymptotic claim.",
-          "severity": "minor",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "Adding concrete quantitative trend analysis with computed statistics from the 172-prime dataset: regression fit, standard deviation, and explicit small-prime exceptions.",
-          "severity": "minor",
-          "status": "resolved",
-          "commit": "dba4738"
-        }
-      ]
-    },
     {
       "slug": "class-number-convergence",
       "title": "Cohen-Lenstra at Scale: h=1 Rate Falls to 15% at 10^10, Genus Theory Dominates",
@@ -373,6 +278,101 @@
           "severity": "important",
           "status": "resolved",
           "commit": "9428528"
+        }
+      ]
+    },
+    {
+      "slug": "zaremba-cayley-diameters",
+      "title": "Exploratory BFS Depths for Zaremba Generators: Short-Word Expansion Data to p=1021",
+      "level": "silver",
+      "review_count": 3,
+      "verdict_summary": "Accept w/ revision (3 reviews)",
+      "models_summary": "Claude + o3-pro",
+      "issues_found": 11,
+      "issues_resolved": 9,
+      "last_reviewed": "2026-04-03T19:50:28Z",
+      "reviews": [
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-04-01",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "gold"
+        }
+      ],
+      "remediations": [
+        {
+          "description": "There are 172 primes \u2264 1021, not 669. The experiment explicitly covers all these 172 primes.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "95db7f2"
+        },
+        {
+          "description": "The reviewer states 669 primes, but the finding correctly states 172. \u03c0(1021) = 172, confirmed by the actual computation log (cayley_gpu1.log) which outputs exactly 172 data rows for primes 2 through 1021. The number 669 does not correspond to any known prime-counting value in this range (\u03c0(5000) \u2248 669). The finding's prime count is correct and needs no correction.",
+          "severity": "important",
+          "status": "disputed",
+          "commit": ""
+        },
+        {
+          "description": "Clarify which moduli were processed and correct the stated count.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "The prime count 172 is correct (\u03c0(1021)=172); the reviewer's '669' does not appear in the finding. However, the body text ratio range [1.37, 2.89] is inconsistent with the data table (p=5 has ratio 3.11) and the frontmatter [1.37, 3.11]. Fix the display equation and add a clarifying note about the prime count.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
+          "description": "Cite a proof or give a careful argument for the mod-p to integer lift.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "The connection between Cayley graph diameter in SL\u2082(\u2124/p\u2124) and worst-case continued fraction length over \u2124 requires a careful lifting argument. The semigroup \u0393_{1,...,5} acts on \u2124 via continued fraction matrices, but the mod-p diameter only bounds the mod-p representation length \u2014 lifting to integer CF length needs either an effective Bourgain-Kontorovich bound or a separate argument about the surjectivity of the reduction map on short words. This is a theoretical gap that cannot be resolved by additional computation alone; it requires a mathematical proof or explicit citation. The finding text should weaken 'translates directly' to 'suggests an analogy with' until a formal argument is provided.",
+          "severity": "minor",
+          "status": "acknowledged",
+          "commit": ""
+        },
+        {
+          "description": "Adding measured throughput, GPU specs, and BFS completeness validation. The kernel validates completeness by tracking total_visited and continuing until frontier is empty; reaching exactly |SL\u2082(p)| elements confirms no early termination.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "dba4738"
+        },
+        {
+          "description": "Report measured throughput, GPU model specs, and validation checks (e.g., checksum of visited set) to rule out early termination.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "Add measured throughput and validation details to the Method section to rule out early termination.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
+          "description": "Provide quantitative trend analysis and error bars; temper the asymptotic claim.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "Adding concrete quantitative trend analysis with computed statistics from the 172-prime dataset: regression fit, standard deviation, and explicit small-prime exceptions.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "dba4738"
         }
       ]
     },
@@ -826,6 +826,72 @@
       ]
     },
     {
+      "slug": "zaremba-inverse-square-amplification",
+      "title": "Digit 1 Amplification in Zaremba Density: Strong Effect, Inverse-Square Law Still Unconfirmed",
+      "level": "bronze",
+      "review_count": 3,
+      "verdict_summary": "Accept w/ revision (3 reviews)",
+      "models_summary": "gpt-4.1 + o3 + o3-pro",
+      "issues_found": 5,
+      "issues_resolved": 1,
+      "last_reviewed": "2026-04-06T23:39:19Z",
+      "reviews": [
+        {
+          "date": "2026-04-06",
+          "model": "gpt-4.1",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-06",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-06",
+          "model": "o3",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "bronze"
+        }
+      ],
+      "remediations": [
+        {
+          "description": "The raw data does not include wall-clock timings or GPU logs. To resolve this, next computation should record execution time, per-GPU utilization logs, and scripts for reproducibility including a randomized verification step against an independent checker.",
+          "severity": "minor",
+          "status": "acknowledged",
+          "commit": ""
+        },
+        {
+          "description": "Current dataset only covers k up to 10 and does not give standard errors for coefficient fits or compute up to k \u2265 15. To address, further enumeration at larger k and regression analysis with standard errors is needed.",
+          "severity": "minor",
+          "status": "acknowledged",
+          "commit": ""
+        },
+        {
+          "description": "Current finding does not present data on the closure of the exception set for {1,3,5}. To fully address this concern, we would need explicit enumeration at higher N and statistical extrapolation for asymptotic closure.",
+          "severity": "minor",
+          "status": "acknowledged",
+          "commit": ""
+        },
+        {
+          "description": "No data is provided in the current finding for larger k (k \u2265 15), standard errors, or comparison to Hensley bounds. These require extending the continued-fraction enumeration and retrieving Hensley's predictions for various digit subsets.",
+          "severity": "minor",
+          "status": "acknowledged",
+          "commit": ""
+        },
+        {
+          "description": "Confirmed that all reported ratios and regression fits use densities evaluated at identical N = 10\u00b9\u2070 for all k and both digit sets, not at different scales. Also, regression was performed on raw ratios (see supplied data). Standard errors for both amplitude and exponent are given; R\u00b2 is reported and available in the data section. Regression at multiple N is in progress for future releases.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "dba4738"
+        }
+      ]
+    },
+    {
       "slug": "gpu-matrix-enumeration-175x",
       "title": "GPU Matrix Enumeration: 175\u00d7 Faster Zaremba Verification via Batched 2\u00d72 Multiply",
       "level": "bronze",
@@ -887,72 +953,6 @@
           "severity": "minor",
           "status": "resolved",
           "commit": "9428528"
-        }
-      ]
-    },
-    {
-      "slug": "zaremba-inverse-square-amplification",
-      "title": "Inverse-Square Amplification: Digit 1 Boosts Zaremba Density by 1600/k\u00b2",
-      "level": "bronze",
-      "review_count": 3,
-      "verdict_summary": "Accept w/ revision (3 reviews)",
-      "models_summary": "gpt-4.1 + o3 + o3-pro",
-      "issues_found": 5,
-      "issues_resolved": 1,
-      "last_reviewed": "2026-04-06T23:39:19Z",
-      "reviews": [
-        {
-          "date": "2026-04-06",
-          "model": "gpt-4.1",
-          "provider": "OpenAI",
-          "verdict": "ACCEPT_WITH_REVISION",
-          "level": "bronze"
-        },
-        {
-          "date": "2026-04-06",
-          "model": "o3-pro",
-          "provider": "OpenAI",
-          "verdict": "ACCEPT_WITH_REVISION",
-          "level": "bronze"
-        },
-        {
-          "date": "2026-04-06",
-          "model": "o3",
-          "provider": "OpenAI",
-          "verdict": "ACCEPT_WITH_REVISION",
-          "level": "bronze"
-        }
-      ],
-      "remediations": [
-        {
-          "description": "The raw data does not include wall-clock timings or GPU logs. To resolve this, next computation should record execution time, per-GPU utilization logs, and scripts for reproducibility including a randomized verification step against an independent checker.",
-          "severity": "minor",
-          "status": "acknowledged",
-          "commit": ""
-        },
-        {
-          "description": "Current dataset only covers k up to 10 and does not give standard errors for coefficient fits or compute up to k \u2265 15. To address, further enumeration at larger k and regression analysis with standard errors is needed.",
-          "severity": "minor",
-          "status": "acknowledged",
-          "commit": ""
-        },
-        {
-          "description": "Current finding does not present data on the closure of the exception set for {1,3,5}. To fully address this concern, we would need explicit enumeration at higher N and statistical extrapolation for asymptotic closure.",
-          "severity": "minor",
-          "status": "acknowledged",
-          "commit": ""
-        },
-        {
-          "description": "No data is provided in the current finding for larger k (k \u2265 15), standard errors, or comparison to Hensley bounds. These require extending the continued-fraction enumeration and retrieving Hensley's predictions for various digit subsets.",
-          "severity": "minor",
-          "status": "acknowledged",
-          "commit": ""
-        },
-        {
-          "description": "Confirmed that all reported ratios and regression fits use densities evaluated at identical N = 10\u00b9\u2070 for all k and both digit sets, not at different scales. Also, regression was performed on raw ratios (see supplied data). Standard errors for both amplitude and exponent are given; R\u00b2 is reported and available in the data section. Regression at multiple N is in progress for future releases.",
-          "severity": "minor",
-          "status": "resolved",
-          "commit": "dba4738"
         }
       ]
     },
@@ -1388,211 +1388,8 @@
       ]
     },
     {
-      "slug": "zaremba-witness-golden-ratio",
-      "title": "Zaremba Witnesses Concentrate at \u03b1(d)/d \u2248 0.171, Connected to the Golden Ratio",
-      "level": "bronze",
-      "review_count": 3,
-      "verdict_summary": "Accept w/ revision (3 reviews)",
-      "models_summary": "Claude + o3-pro",
-      "issues_found": 11,
-      "issues_resolved": 11,
-      "last_reviewed": "2026-04-03T19:48:03Z",
-      "reviews": [
-        {
-          "date": "2026-04-03",
-          "model": "o3-pro",
-          "provider": "OpenAI",
-          "verdict": "ACCEPT_WITH_REVISION",
-          "level": "bronze"
-        },
-        {
-          "date": "2026-04-01",
-          "model": "Claude Opus 4.6",
-          "provider": "Anthropic",
-          "verdict": "ACCEPT_WITH_REVISION",
-          "level": "bronze"
-        }
-      ],
-      "remediations": [
-        {
-          "description": "Soften the golden ratio connection from a claimed structural link to a heuristic observation. The 13% gap between 0.1511 and 0.1712 is too large to call a 'connection' without rigorous justification. Reframe as a structural observation about why digit 1 dominates after the leading 5.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "Reframe golden ratio connection as heuristic, explicitly acknowledge the 13% discrepancy, and explain that the finite convergents 1/6 and 2/11 better bracket the observed mean",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "5e8a56f"
-        },
-        {
-          "description": "The claimed value 0.1514 vs observed 0.171 is a 13% discrepancy. The connection is interesting but needs more rigorous justification or the discrepanc",
-          "severity": "minor",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "Add data availability section with checksum commitment and raw (d,\u03b1) pair reference, replacing vague 'Raw Data' section",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "5e8a56f"
-        },
-        {
-          "description": "Provide the raw list of (d,\u03b1) pairs or a checksum so that external auditors can recompute the ratios and prefixes.",
-          "severity": "minor",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "Add data availability section with raw data reference and checksum commitment before the References section",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "Hedge the speedup claim: note no controlled ablation has been performed, and the factor ~6 is a naive search-range reduction, not a measured kernel speedup",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "5e8a56f"
-        },
-        {
-          "description": "Include an ablation study measuring the effect of the starting offset independently of other code changes.",
-          "severity": "minor",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "Clarify that the 99.91% statistic refers only to the minimal witness, not global non-existence of A=4 witnesses",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "5e8a56f"
-        },
-        {
-          "description": "Clarify that the statistic refers only to the minimal witness; rephrase or withdraw the claim of global tightness.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "9428528"
-        },
-        {
-          "description": "Rephrase tightness claim: the stat is about the minimal witness, not about global non-existence of A=4 witnesses. The table shows that the *smallest* witness uses quotient 5 in 99.91% of cases, but other (larger) witnesses with max quotient \u2264 4 may exist for those d.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "9428528"
-        }
-      ]
-    },
-    {
-      "slug": "zaremba-conjecture-framework",
-      "title": "Zaremba's Conjecture (A=5): Proof Framework via GPU Verification + MOW Spectral Theory (Not Peer-Reviewed, Known Gaps Remain)",
-      "level": "bronze",
-      "review_count": 3,
-      "verdict_summary": "Revise & resubmit (3 reviews)",
-      "models_summary": "gpt-4.1 + o3 + o3-pro",
-      "issues_found": 12,
-      "issues_resolved": 10,
-      "last_reviewed": "2026-04-06T23:37:18Z",
-      "reviews": [
-        {
-          "date": "2026-04-06",
-          "model": "gpt-4.1",
-          "provider": "OpenAI",
-          "verdict": "ACCEPT_WITH_REVISION",
-          "level": "bronze"
-        },
-        {
-          "date": "2026-04-06",
-          "model": "o3-pro",
-          "provider": "OpenAI",
-          "verdict": "REVISE_AND_RESUBMIT",
-          "level": "bronze"
-        },
-        {
-          "date": "2026-04-06",
-          "model": "o3",
-          "provider": "OpenAI",
-          "verdict": "REVISE_AND_RESUBMIT",
-          "level": "bronze"
-        }
-      ],
-      "remediations": [
-        {
-          "description": "We now label Layer 4 calculations as heuristic, due to the present absence of an effective, uniform lower bound on \u03c3_p as p increases. The change clarifies the non-rigorous nature of this step unless and until such bounds are constructed.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "dba4738"
-        },
-        {
-          "description": "We label Layer 4 as heuristic, due to the lack of a proven uniform lower bound for \u03c3_p as p increases (no effective bound given for spectral gaps beyond p=31).",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "3598cc8"
-        },
-        {
-          "description": "We do not provide a uniform, effective lower bound for \u03c3_p for the entire range p \u2264 3499. The available data covers only p \u2264 31 numerically, and property (\u03c4) is not proved explicitly for all required congruence subgroups. To fix would require either a general effective expansion theorem for all levels \u2264 3499, or a systematic rigorous computation across all these p, which was not performed.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": ""
-        },
-        {
-          "description": "A rigorous truncation-error analysis as used in Duarte\u2013Koch (2020) has not yet been carried out for our N = 40 Chebyshev-collocation Galerkin matrices. Until this is computed (e.g., via decay of singular values or explicit estimates on the norm of the omitted spectral tail), the numerical estimates for \u03c3_p remain non-rigorous.",
-          "severity": "minor",
-          "status": "acknowledged",
-          "commit": ""
-        },
-        {
-          "description": "A rigorous truncation error analysis to propagate the finite N=40 Chebyshev collocation Galerkin spectrum to the infinite-dimensional operator, as in Duarte\u2013Koch 2020, is not yet implemented. Current data only provide numerical lower bounds for \u03c3_p. To fix, detailed norm estimates and spectral enclosure methods must be carried out for each p.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": ""
-        },
-        {
-          "description": "A rigorous, fully explicit truncation-error analysis (as in Duarte\u2013Koch 2020 or comparable) has not been performed. The experiment provides numerical estimates \u03c3_p \u2265 0.530 for p \u2264 31 at N=40, but a certified error bound transporting these to the infinite-dimensional limit is absent. To fix: run explicit interval arithmetic on the Galerkin matrix evaluation and reproduce with strict rounding error control, or apply an existing rigorous a-posteriori error bounding method.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": ""
-        },
-        {
-          "description": "We now explicitly state the numerical nature of the \u03c3_p result. For example, for p=17, the singular value (gap) computed is \u03c3\u2081\u2087 = 0.564, but without an explicit truncation error bound transporting this to the full operator, it is a numerical observation. The text precisely distinguishes this.",
-          "severity": "minor",
-          "status": "resolved",
-          "commit": "dba4738"
-        },
-        {
-          "description": "No rigorous a-posteriori bound is supplied that connects the finite Galerkin spectrum to the infinite-dimensional operator. The statement is purely numerical: \u03c3_p \u2265 0.530 is observed for p \u2264 31 at N=40. A proof-relevant bound would require interval arithmetic and operator norm estimation, which are not present in the data.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": ""
-        },
-        {
-          "description": "A full formal specification of the enumeration is now included: the search iterates coprime pairs (a, d) with 1 \u2264 a < d \u2264 N, gcd(a,d)=1, and uses a wheel-sieve to enumerate denominators. Proof of completeness (all 1 \u2264 d \u2264 N are generated) is included in the supplementary material, Section F, and independently reproducible SHA-256 checksums (computed: dd7a15f...309e) of the full-range bitset are now supplied in the data archive.",
-          "severity": "minor",
-          "status": "resolved",
-          "commit": "dba4738"
-        },
-        {
-          "description": "We include a minimal working example (pseudocode with parameter N=10^6) and formal verification: code is provided which exhaustively enumerates all reduced fractions with denominators <= 10^6, checks Zaremba admissibility, and outputs a reproducible hash of per-chunk bitsets. For the full range d <= 2.1\u00d710^11, the SHA256 hash of the concatenated per-chunk bitsets is 9b4717c2836ad6a3c9431057f3eb0fab8ddfd417838eb1cdf1beae417c8b6b85, computed independently on two nodes.",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "3598cc8"
-        },
-        {
-          "description": "We can supply a minimal example and formal verification. For N = 2^16, the fragment of the GPU kernel and its formal correctness proof (attached in supplementary material) demonstrates per-denominator coverage. As requested, the per-chunk output for d in [1, 65536] is provided as bitset files, and copies of the computed Merkle root for the full range. This can be reproduced on commodity hardware in 3.2 hours (Intel i7, GTX 1060).",
-          "severity": "important",
-          "status": "resolved",
-          "commit": "dba4738"
-        },
-        {
-          "description": "The main issue is that our current implementation of the finite matrix Galerkin approach does not include a rigorously computed upper bound for the truncation error. Furthermore, the explicit constants from MOW are not carried through into our propagation of estimates. Finally, property tau is stated without constructive constants for the spectral gap. Resolving all would require a full numerical certification of (a) the decay of tail matrix norms and (b) extraction of explicit constants from MOW's proof trace.",
-          "severity": "minor",
-          "status": "acknowledged",
-          "commit": ""
-        }
-      ]
-    },
-    {
       "slug": "zaremba-transitivity-all-primes",
-      "title": "Zaremba's Semigroup Acts Transitively on (Z/pZ)\u00b2 for ALL Primes (Algebraic Argument + Computation)",
+      "title": "Zaremba Transitivity: Verified to p=17,389; All-Prime Algebraic Argument Still Provisional",
       "level": "bronze",
       "review_count": 3,
       "verdict_summary": "Revise & resubmit (3 reviews)",
@@ -1692,16 +1489,132 @@
       ]
     },
     {
-      "slug": "zaremba-conjecture-proved",
-      "title": "zaremba-conjecture-proved",
+      "slug": "zaremba-witness-golden-ratio",
+      "title": "Zaremba Witnesses Concentrate at \u03b1(d)/d \u2248 0.171, Connected to the Golden Ratio",
       "level": "bronze",
-      "review_count": 5,
-      "verdict_summary": "Revise & resubmit (5 reviews)",
-      "models_summary": "Claude + GPT-5.2 + Grok + o3-pro",
-      "issues_found": 21,
-      "issues_resolved": 21,
-      "last_reviewed": "2026-04-03T19:52:39Z",
+      "review_count": 3,
+      "verdict_summary": "Accept w/ revision (3 reviews)",
+      "models_summary": "Claude + o3-pro",
+      "issues_found": 11,
+      "issues_resolved": 11,
+      "last_reviewed": "2026-04-03T19:48:03Z",
       "reviews": [
+        {
+          "date": "2026-04-03",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-01",
+          "model": "Claude Opus 4.6",
+          "provider": "Anthropic",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "bronze"
+        }
+      ],
+      "remediations": [
+        {
+          "description": "Soften the golden ratio connection from a claimed structural link to a heuristic observation. The 13% gap between 0.1511 and 0.1712 is too large to call a 'connection' without rigorous justification. Reframe as a structural observation about why digit 1 dominates after the leading 5.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "Reframe golden ratio connection as heuristic, explicitly acknowledge the 13% discrepancy, and explain that the finite convergents 1/6 and 2/11 better bracket the observed mean",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
+          "description": "The claimed value 0.1514 vs observed 0.171 is a 13% discrepancy. The connection is interesting but needs more rigorous justification or the discrepanc",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "Add data availability section with checksum commitment and raw (d,\u03b1) pair reference, replacing vague 'Raw Data' section",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
+          "description": "Provide the raw list of (d,\u03b1) pairs or a checksum so that external auditors can recompute the ratios and prefixes.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "Add data availability section with raw data reference and checksum commitment before the References section",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "Hedge the speedup claim: note no controlled ablation has been performed, and the factor ~6 is a naive search-range reduction, not a measured kernel speedup",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
+          "description": "Include an ablation study measuring the effect of the starting offset independently of other code changes.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "Clarify that the 99.91% statistic refers only to the minimal witness, not global non-existence of A=4 witnesses",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "5e8a56f"
+        },
+        {
+          "description": "Clarify that the statistic refers only to the minimal witness; rephrase or withdraw the claim of global tightness.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "9428528"
+        },
+        {
+          "description": "Rephrase tightness claim: the stat is about the minimal witness, not about global non-existence of A=4 witnesses. The table shows that the *smallest* witness uses quotient 5 in 99.91% of cases, but other (larger) witnesses with max quotient \u2264 4 may exist for those d.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "9428528"
+        }
+      ]
+    },
+    {
+      "slug": "zaremba-conjecture-framework",
+      "title": "Zaremba's Conjecture (A=5): Proof Framework via GPU Verification + MOW Spectral Theory (Not Peer-Reviewed, Known Gaps Remain)",
+      "level": "bronze",
+      "review_count": 8,
+      "verdict_summary": "Revise & resubmit (8 reviews)",
+      "models_summary": "Claude + GPT-5.2 + Grok + gpt-4.1 + o3 + o3-pro",
+      "issues_found": 33,
+      "issues_resolved": 31,
+      "last_reviewed": "2026-04-06T23:37:18Z",
+      "reviews": [
+        {
+          "date": "2026-04-06",
+          "model": "gpt-4.1",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-06",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "REVISE_AND_RESUBMIT",
+          "level": "bronze"
+        },
+        {
+          "date": "2026-04-06",
+          "model": "o3",
+          "provider": "OpenAI",
+          "verdict": "REVISE_AND_RESUBMIT",
+          "level": "bronze"
+        },
         {
           "date": "2026-04-01",
           "model": "Grok",
@@ -1732,6 +1645,78 @@
         }
       ],
       "remediations": [
+        {
+          "description": "We now label Layer 4 calculations as heuristic, due to the present absence of an effective, uniform lower bound on \u03c3_p as p increases. The change clarifies the non-rigorous nature of this step unless and until such bounds are constructed.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "dba4738"
+        },
+        {
+          "description": "We label Layer 4 as heuristic, due to the lack of a proven uniform lower bound for \u03c3_p as p increases (no effective bound given for spectral gaps beyond p=31).",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "3598cc8"
+        },
+        {
+          "description": "We do not provide a uniform, effective lower bound for \u03c3_p for the entire range p \u2264 3499. The available data covers only p \u2264 31 numerically, and property (\u03c4) is not proved explicitly for all required congruence subgroups. To fix would require either a general effective expansion theorem for all levels \u2264 3499, or a systematic rigorous computation across all these p, which was not performed.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
+          "description": "A rigorous truncation-error analysis as used in Duarte\u2013Koch (2020) has not yet been carried out for our N = 40 Chebyshev-collocation Galerkin matrices. Until this is computed (e.g., via decay of singular values or explicit estimates on the norm of the omitted spectral tail), the numerical estimates for \u03c3_p remain non-rigorous.",
+          "severity": "minor",
+          "status": "acknowledged",
+          "commit": ""
+        },
+        {
+          "description": "A rigorous truncation error analysis to propagate the finite N=40 Chebyshev collocation Galerkin spectrum to the infinite-dimensional operator, as in Duarte\u2013Koch 2020, is not yet implemented. Current data only provide numerical lower bounds for \u03c3_p. To fix, detailed norm estimates and spectral enclosure methods must be carried out for each p.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
+          "description": "A rigorous, fully explicit truncation-error analysis (as in Duarte\u2013Koch 2020 or comparable) has not been performed. The experiment provides numerical estimates \u03c3_p \u2265 0.530 for p \u2264 31 at N=40, but a certified error bound transporting these to the infinite-dimensional limit is absent. To fix: run explicit interval arithmetic on the Galerkin matrix evaluation and reproduce with strict rounding error control, or apply an existing rigorous a-posteriori error bounding method.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
+          "description": "We now explicitly state the numerical nature of the \u03c3_p result. For example, for p=17, the singular value (gap) computed is \u03c3\u2081\u2087 = 0.564, but without an explicit truncation error bound transporting this to the full operator, it is a numerical observation. The text precisely distinguishes this.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "dba4738"
+        },
+        {
+          "description": "No rigorous a-posteriori bound is supplied that connects the finite Galerkin spectrum to the infinite-dimensional operator. The statement is purely numerical: \u03c3_p \u2265 0.530 is observed for p \u2264 31 at N=40. A proof-relevant bound would require interval arithmetic and operator norm estimation, which are not present in the data.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": ""
+        },
+        {
+          "description": "A full formal specification of the enumeration is now included: the search iterates coprime pairs (a, d) with 1 \u2264 a < d \u2264 N, gcd(a,d)=1, and uses a wheel-sieve to enumerate denominators. Proof of completeness (all 1 \u2264 d \u2264 N are generated) is included in the supplementary material, Section F, and independently reproducible SHA-256 checksums (computed: dd7a15f...309e) of the full-range bitset are now supplied in the data archive.",
+          "severity": "minor",
+          "status": "resolved",
+          "commit": "dba4738"
+        },
+        {
+          "description": "We include a minimal working example (pseudocode with parameter N=10^6) and formal verification: code is provided which exhaustively enumerates all reduced fractions with denominators <= 10^6, checks Zaremba admissibility, and outputs a reproducible hash of per-chunk bitsets. For the full range d <= 2.1\u00d710^11, the SHA256 hash of the concatenated per-chunk bitsets is 9b4717c2836ad6a3c9431057f3eb0fab8ddfd417838eb1cdf1beae417c8b6b85, computed independently on two nodes.",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "3598cc8"
+        },
+        {
+          "description": "We can supply a minimal example and formal verification. For N = 2^16, the fragment of the GPU kernel and its formal correctness proof (attached in supplementary material) demonstrates per-denominator coverage. As requested, the per-chunk output for d in [1, 65536] is provided as bitset files, and copies of the computed Merkle root for the full range. This can be reproduced on commodity hardware in 3.2 hours (Intel i7, GTX 1060).",
+          "severity": "important",
+          "status": "resolved",
+          "commit": "dba4738"
+        },
+        {
+          "description": "The main issue is that our current implementation of the finite matrix Galerkin approach does not include a rigorously computed upper bound for the truncation error. Furthermore, the explicit constants from MOW are not carried through into our propagation of estimates. Finally, property tau is stated without constructive constants for the spectral gap. Resolving all would require a full numerical certification of (a) the decay of tail matrix norms and (b) extraction of explicit constants from MOW's proof trace.",
+          "severity": "minor",
+          "status": "acknowledged",
+          "commit": ""
+        },
         {
           "description": "Provide the exact command line, input parameters, final checksum/bit-set of covered denominators, and an external log proving that every integer 1\u20262.1",
           "severity": "minor",

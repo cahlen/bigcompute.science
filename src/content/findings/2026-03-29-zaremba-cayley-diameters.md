@@ -1,5 +1,5 @@
 ---
-title: "Cayley Graph Diameters of Zaremba's Semigroup: diam(p)/log(p) → 1.45 for Primes to 1021"
+title: "Exploratory BFS Depths for Zaremba Generators: Short-Word Expansion Data to p=1021"
 slug: zaremba-cayley-diameters
 date: 2026-03-29
 author: cahlen
@@ -10,10 +10,10 @@ conjecture_year: 1972
 domain: [number-theory, group-theory, continued-fractions, combinatorics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "GPU BFS on the Cayley graph of Γ_{1,...,5} in SL₂(Z/pZ) for all 172 primes p ≤ 1021. The diameter ratio diam(p)/log(p) decreases from ~3.1 at small primes to ~1.45 at p~1000, suggesting diam(p) ≤ 2·log(p) for sufficiently large p. Note: small primes (p=2,5) violate the 2·log(p) bound. The asymptotic constant appears to be ~1.45."
+summary: "Exploratory GPU BFS data for Zaremba generator diameters for all 172 primes p ≤ 1021. Audit caveat: the current kernel uses determinant -1 generators and stops when total_visited reaches |SL₂(p)|, so the published numbers should be treated as finite computational evidence for short-word expansion, not as certified Cayley graph diameters of SL₂(F_p). A corrected certificate should run in a precisely stated ambient group (GL₂/PGL₂ or even-word SL₂), count unique visited group elements, prove no frontier clipping, and validate total_visited by bitset popcount."
 
 data:
-  semigroup: "Γ_{1,...,5} ⊂ SL_2(Z)"
+  semigroup: "Zaremba generators; ambient group requires correction because g_a has determinant -1"
   generators: "g_a = (a,1;1,0) for a = 1,...,5 and their inverses"
   num_generators: 10
   primes_computed: 172
@@ -26,22 +26,22 @@ data:
   asymptotic_ratio: "last 50 primes (p ≥ 677): mean 1.472 ± 0.037; at p=1021: 1.443"
   computation_time: "36.3 seconds on single NVIDIA B200 (192 GB HBM3e, 19200 CUDA cores) for all 172 primes"
   peak_throughput: "1.33 billion elements/sec at p=1021 (|SL₂|=1,064,331,240 in 0.8s)"
-  validation: "BFS completeness — total_visited == |SL₂(p)| for each prime; frontier exhausted to empty at termination"
+  validation: "Audit caveat: current kernel does not popcount the visited bitset and can stop once total_visited reaches |SL₂(p)|; corrected validation still needed."
 
 certification:
   level: silver
   verdict: ACCEPT_WITH_REVISION
   reviewer: "Claude Opus 4.6 (Anthropic)"
   date: 2026-04-01
-  note: "Bound corrected: diam/log(p)→1.45, not ≤2log(p)."
+  note: "Bound corrected and audit caveat added: current kernel is exploratory, not a certified Cayley diameter computation."
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/zaremba-cayley-diameter
 ---
 
-# Cayley Graph Diameters of Zaremba's Semigroup
+# Exploratory BFS Depths for Zaremba Generators
 
 ## The Finding
 
-For each prime $p$, the **Cayley graph** of $\Gamma_{\{1,\ldots,5\}}$ in $\text{SL}_2(\mathbb{Z}/p\mathbb{Z})$ — where vertices are group elements and edges connect elements differing by one generator — has a diameter satisfying:
+For each prime $p \leq 1021$, we computed exploratory BFS depths for the Zaremba generators. The original writeup described these as **Cayley graph diameters** of $\Gamma_{\{1,\ldots,5\}}$ in $\text{SL}_2(\mathbb{Z}/p\mathbb{Z})$, but the audit found that this is not yet a certified statement: the implemented generators have determinant $-1$, while $\text{SL}_2$ contains determinant $1$ matrices only.
 
 $$\frac{\text{diam}(p)}{\log p} \in [1.37, \, 3.11] \qquad \text{for all } 172 \text{ primes } p \leq 1021$$
 
@@ -51,7 +51,7 @@ The ratio is **decreasing** and appears to converge to approximately $1.45$, sug
 
 $$\text{diam}(p) \leq 2 \log p \qquad \text{for all sufficiently large } p$$
 
-This asymptotic claim is based on the empirical trend over two orders of magnitude in $p$ and should be treated as a conjecture, not a proven bound. Quantitatively: over the range $p \in [101, 1021]$ (108 primes), the maximum ratio drops from 1.73 to 1.44 and the minimum from 1.51 to 1.37. The ratio at $p = 1021$ is 1.44. A formal statistical analysis (regression with confidence intervals) has not been performed; the sample is too small for reliable extrapolation, and the apparent convergence could slow or reverse beyond $p = 1021$.
+This asymptotic claim is based on the empirical trend over two orders of magnitude in $p$ and should be treated as a conjecture, not a proven bound. Quantitatively: over the range $p \in [101, 1021]$ (108 primes), the reported ratio drops toward 1.44 at $p=1021$. A corrected computation must first certify the ambient group, unique visited count, and no frontier clipping before these values can be cited as Cayley graph diameters.
 
 The maximum diameter observed is **10**, first achieved at $p = 211$.
 
@@ -73,7 +73,7 @@ The connection between spectral gap and diameter is classical: for a $k$-regular
 
 ### Comparison with Known Results
 
-Helfgott's growth theorem ([Helfgott, 2008](#references)) implies that generating sets of $\text{SL}_2(\mathbb{F}_p)$ produce Cayley graphs with diameter $O(\log p)$, but without explicit constants. Bourgain-Gamburd ([Bourgain-Gamburd, 2008](#references)) proved that random generators give spectral gaps bounded away from zero, yielding $O(\log p)$ diameter. Our computation provides, to our knowledge, the first **explicit numerical data** for the Zaremba generators specifically, with the constant approaching $C \approx 1.45$.
+Helfgott's growth theorem ([Helfgott, 2008](#references)) implies that generating sets of $\text{SL}_2(\mathbb{F}_p)$ produce Cayley graphs with diameter $O(\log p)$, but without explicit constants. Bourgain-Gamburd ([Bourgain-Gamburd, 2008](#references)) proved that random generators give spectral gaps bounded away from zero, yielding $O(\log p)$ diameter. Because the current Zaremba-generator kernel mixes determinant $-1$ generators with an $\text{SL}_2$ group-size target, these runs should be treated as exploratory numerical data for the generator dynamics, not certified $\text{SL}_2$ Cayley diameters.
 
 ## Data
 
@@ -107,7 +107,7 @@ For each prime $p$:
 4. Visited set: bitset of size $p^4/8$ bytes with `atomicOr` for lock-free marking
 5. Frontier double-buffered: current → next, swap each level
 6. Diameter = number of BFS levels until frontier is empty
-7. **Validation**: after BFS completes, count set bits in the visited bitset and verify it equals the known group order $|\text{SL}_2(\mathbb{Z}/p\mathbb{Z})| = p(p^2 - 1)$. Any mismatch (from early termination, hash collisions, or encoding errors) would be flagged. All 172 primes passed this check.
+7. **Required validation for certification**: after BFS completes, count set bits in the visited bitset and verify it equals the order of the intended ambient group; separately assert that the frontier buffer never clipped. The current kernel does not yet provide this full certificate.
 
 Measured throughput for $p = 1021$: $\sim\!1.06 \times 10^9$ nodes visited in $\sim\!5$ seconds on 8× B200 GPUs, yielding $\sim\!2.1 \times 10^8$ BFS node expansions per second per GPU. Total wall time across all 172 primes was 40 seconds.
 
@@ -126,13 +126,13 @@ The group $\text{SL}_2(\mathbb{Z}/p\mathbb{Z})$ has order $p(p^2 - 1)$. For $p =
 
 ```bash
 # Compile (requires CUDA)
-nvcc -O3 -arch=sm_100a -o cayley_gpu scripts/experiments/zaremba-transfer-operator/cayley_gpu.cu
+nvcc -O3 -arch=sm_100a -o cayley_gpu scripts/experiments/zaremba-cayley-diameter/cayley_gpu.cu
 
 # Run for all primes up to 1021
 ./cayley_gpu 1021
 ```
 
-Source: [`scripts/experiments/zaremba-transfer-operator/cayley_gpu.cu`](https://github.com/cahlen/idontknow)
+Source: [`scripts/experiments/zaremba-cayley-diameter/cayley_gpu.cu`](https://github.com/cahlen/idontknow/tree/main/scripts/experiments/zaremba-cayley-diameter)
 
 ---
 

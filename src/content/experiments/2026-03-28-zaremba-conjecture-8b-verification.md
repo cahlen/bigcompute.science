@@ -66,7 +66,7 @@ This conjecture has been open for over 50 years. The current partial-result land
 - **Huang (2015):** tightened the density-1 subset to $A = 5$.
 - **Shkredov (March 2026, arXiv:2603.14116):** Zaremba-type result for all sufficiently large *prime* denominators, with an effective but large threshold.
 
-None of these closes the classical conjecture ("all $d$ with $A = 5$"). The gap between "almost all" (or "all large primes") and "all $d$" is one of the fundamental difficulties in analytic number theory, analogous to the gap between density results for Goldbach's conjecture and the conjecture itself. The work described below is a **computational verification** over an initial range plus a proof *framework*; it is not a complete proof (see [findings/zaremba-conjecture-proved](/findings/zaremba-conjecture-proved/) for the explicit list of unresolved analytic gaps).
+None of these closes the classical conjecture ("all $d$ with $A = 5$"). The gap between "almost all" (or "all large primes") and "all $d$" is one of the fundamental difficulties in analytic number theory, analogous to the gap between density results for Goldbach's conjecture and the conjecture itself. The work described below is a **computational verification** over an initial range plus a proof *framework*; it is not a complete proof (see [findings/zaremba-conjecture-framework](/findings/zaremba-conjecture-framework/) for the explicit list of unresolved analytic gaps).
 
 ## Hardware
 

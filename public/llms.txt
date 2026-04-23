@@ -6,9 +6,9 @@ All work produced through human-AI collaboration (Cahlen Humphreys + Claude). AI
 
 ## Experiments
 
-- [Zaremba 210B Verification](/experiments/zaremba-conjecture-verification/): 210B denominators verified, zero failures. Proof framework (not completed proof). (complete)
+- [Zaremba 210B Verification](/experiments/zaremba-conjecture-verification/): v6 run reported zero uncovered denominators to 210B; not certified pending v6.1 no-overflow rerun. (complete evidence; certification pending)
 - [Zaremba Transfer Operator](/experiments/zaremba-transfer-operator/): Hausdorff dimension, spectral gaps, property (tau). (complete)
-- [Zaremba Density](/experiments/zaremba-density-phase-transition/): Phase transition, 5 closed exception sets, {1,k} hierarchy, 65 experiments to 10^12. (in-progress)
+- [Zaremba Density](/experiments/zaremba-density-gpu/): stable candidate exception sets, {1,k} hierarchy, completed logs through 10^11/10^12 depending on digit set. (in-progress)
 - [Ramsey R(5,5)](/experiments/ramsey-r55-lower-bound/): 656/656 K42 colorings UNSAT. (in-progress)
 - [Class Numbers](/experiments/class-numbers-real-quadratic/): 30B discriminants. h=1 rate falls to 0 (genus theory). (in-progress)
 - [Kronecker Coefficients](/experiments/kronecker-coefficients-gpu/): S_20, S_30 (26.4B nonzero), S_40 char table done. (in-progress)
@@ -22,13 +22,13 @@ All work produced through human-AI collaboration (Cahlen Humphreys + Claude). AI
 
 - [Zaremba Density Phase Transition](/findings/zaremba-density-phase-transition/): A={1,2,3} exactly 27 exceptions. delta > 1/2 PLUS transitivity needed. [GOLD]
 - [A={1,2} Logarithmic Convergence](/findings/zaremba-A12-logarithmic-convergence/): 5 data points, density = 31.5 + 4.47*log10(N). [BRONZE]
-- [Digit Pair Hierarchy](/findings/zaremba-digit-pair-hierarchy/): {1,k} decays as k^(-5.83). 5 closed exception sets (27, 64, 374, 1834, 7178). [SILVER]
+- [Digit Pair Hierarchy](/findings/zaremba-digit-pair-hierarchy/): {1,k} decays sharply at 10^11; stable candidate exception sets are observational, not proved finite. [BRONZE]
 - [Inverse-Square Amplification](/findings/zaremba-inverse-square-amplification/): {1,k}/{2,k} ratio grows 1.5-1.7x per decade. [UNCERTIFIED]
 - [Exception Hierarchy](/findings/zaremba-exception-hierarchy/): 27 -> 2 -> 0 as digits grow. d=54, d=150 need digit 5. [BRONZE]
 - [Kronecker S_30](/findings/kronecker-s30-largest-computation/): 26.4B nonzero triples, 7.4 min on B200. [GOLD]
 - [Kronecker S_40](/findings/kronecker-s40-character-table/): Complete char table (37,338 partitions, 1.394B entries). 94.9% nonzero (sampled). Hooks multiplicity-free. [GOLD]
 - [Cohen-Lenstra at Scale](/findings/class-number-convergence/): h=1 rate falls to 0 (genus theory), NOT 75%. [GOLD]
-- [Zaremba Proof Framework](/findings/zaremba-conjecture-proved/): D0=3.4e10, 3 AI reviews (Claude + Grok + GPT-5.2). NOT a completed proof. [SILVER]
+- [Zaremba Proof Framework](/findings/zaremba-conjecture-framework/): D0≈3.4e10 is conditional; v6 evidence to 2.1e11 is not certified, v6.1 certificate covers d≤1e6. NOT a completed proof. [BRONZE]
 - [Spectral Gaps Uniform](/findings/zaremba-spectral-gaps-uniform/): All 1214 moduli positive, min 0.237. [SILVER]
 - [Transitivity All Primes](/findings/zaremba-transitivity-all-primes/): Dickson classification, AI-assisted. [SILVER]
 - [Cayley Diameters](/findings/zaremba-cayley-diameters/): diam/log(p) -> 1.45 for 172 primes. [GOLD]

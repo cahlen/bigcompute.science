@@ -93,11 +93,11 @@ Our density data fits a logarithmic model (R² = 0.9984 across 5 points), but th
 
 3. **Logarithmic corrections**: Some number-theoretic counting functions have $\log(N)$ corrections. If $R(d) \sim d^{2\delta-1} \cdot (\log d)^c$ for some $c > 0$, this could produce the observed logarithmic density growth.
 
-### Testable prediction
+### Tested prediction
 
-The model makes a sharp prediction: **density at $10^{12}$ should be ~85.9%**. If the observed density at $10^{12}$ is significantly different (e.g., 82% or 89%), it would distinguish between logarithmic and power-law convergence.
+The model made a sharp prediction for $10^{12}$. The run is now complete: the five-point log model predicts $85.10\%$, while the observed value is $84.58\%$ (residual $-0.52\%$). This is not a refutation, but it is the largest residual so far and should be treated as evidence that curvature may be appearing.
 
-Computing $A = \{1,2\}$ at $10^{12}$ requires ~100× more work than $10^{10}$ (about 10 hours on B200). This is a feasible next experiment.
+The next useful tests are $10^{13}$ and beyond, but the current bitset implementation requires 1.25 TB for $10^{13}$ and the committed $10^{13}$/$10^{14}$ logs currently show out-of-memory failures, not completed runs.
 
 ## The Digit 1 Advantage: A Sigmoid
 
@@ -168,4 +168,4 @@ Full hashes: `sha256sum scripts/experiments/zaremba-density/results/gpu_A12_*.lo
 
 *Computed 2026-04-01 on 8× NVIDIA B200. This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification.*
 
-**Caveat**: Three data points make a fit, not a proof. The logarithmic model needs confirmation at $10^{12}$ and beyond. The prediction of 100% at $10^{15}$ is speculative until more data points are collected.
+**Caveat**: Five data points make a fit, not a proof. The logarithmic model has now been tested through $10^{12}$, and the largest residual occurs at the newest point. The prediction of 100% near $10^{15}$ is speculative until more data points are collected.

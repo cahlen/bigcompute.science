@@ -20,9 +20,9 @@ const EXPERIMENTS = [
     status: "complete",
     summary: "210 billion denominators verified, zero failures. Computer-assisted proof framework for all d.",
     key_results: { verified: "2.1e11", failures: 0, delta: 0.836829443681208, D0: "3.4e10" },
-    cuda_kernel: "scripts/zaremba_verify_v4.c",
-    compile: "gcc -O3 -o zaremba_v4 scripts/zaremba_verify_v4.c -lm",
-    run: "./zaremba_v4 1000000000",
+    cuda_kernel: "scripts/experiments/zaremba-effective-bound/matrix_enum_multipass_v6_1.cu",
+    compile: "nvcc -O3 -arch=sm_100a -o matrix_v6_1 scripts/experiments/zaremba-effective-bound/matrix_enum_multipass_v6_1.cu -lpthread",
+    run: "./matrix_v6_1 210000000000",
     dataset: "cahlen/zaremba-conjecture-data",
   },
   {

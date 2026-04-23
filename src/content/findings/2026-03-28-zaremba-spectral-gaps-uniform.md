@@ -203,8 +203,8 @@ The combination of uniform spectral gaps + brute-force verification + Cayley dia
 
 ## Code
 
-- Transfer operator: [`scripts/experiments/zaremba-transfer-operator/transfer_operator.cu`](https://github.com/cahlen/idontknow)
-- CUDA kernels: [`scripts/zaremba_verify_v4.cu`](https://github.com/cahlen/idontknow)
+- Transfer operator: [`scripts/experiments/zaremba-transfer-operator/transfer_operator.cu`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-transfer-operator/transfer_operator.cu)
+- Brute-force kernel (canonical): [`scripts/experiments/zaremba-effective-bound/matrix_enum_multipass.cu`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/matrix_enum_multipass.cu) (hardened replacement `matrix_enum_multipass_v6_1.cu` in the same directory)
 
 Full reproduction data (raw eigenvalue files, N=40 prime data, and flat-gap computation for primes to 100,000) are available in the GitHub repository. The N=40 run for 168 primes to $p = 1000$ and the flat-gap bound $|\lambda_2|/\sqrt{p} \leq 2.18$ for 9,592 primes use cuBLAS FP64 dense eigensolver; algorithmic details and stopping criteria are documented in the source code.
 

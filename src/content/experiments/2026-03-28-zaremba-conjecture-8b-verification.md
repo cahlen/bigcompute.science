@@ -20,7 +20,7 @@ software:
   lean: "4.29.0-rc8"
   vllm: "0.18.0"
   python: "3.12"
-  custom_kernel: scripts/zaremba_verify_v4.cu
+  custom_kernel: scripts/experiments/zaremba-effective-bound/matrix_enum_multipass.cu
 
 tags:
   domain: [number-theory, continued-fractions, open-conjectures]
@@ -31,11 +31,11 @@ results:
   conjecture: "Zaremba's Conjecture (1972)"
   conjecture_year: 1972
   bound: 5
-  status: "210B VERIFIED (zero gaps, 116 min on 8× B200). Spectral gaps to m=2000 complete. Transitivity argument (AI-assisted, not peer-reviewed) for ALL primes."
+  status: "210B strong computational evidence (zero gaps, 116 min on 8× B200, original v6 kernel). Certification via hardened v6.1 kernel pending re-run. Spectral gaps to m=2000 complete. Transitivity argument (AI-assisted, not peer-reviewed) for ALL primes."
   verified_range: [1, 210000000000]
   failures: 0
-  verification_time: "6,962 seconds (116 min) on 8× B200"
-  verification_kernel: "v6 multi-pass GPU matrix enumeration (64 rounds)"
+  verification_time: "6,962.2 seconds (116 min) on 8× B200"
+  verification_kernel: "v6 multi-pass GPU matrix enumeration (256 rounds × 8 GPUs, 119,210 seeds per chunk)"
   llm_proofs: 19/20
   models_used: [Goedel-Prover-V2-32B, Kimina-Prover-72B]
 
@@ -60,9 +60,13 @@ $$\frac{a}{d} = [0;\, a_1, a_2, \ldots, a_k]$$
 
 has all partial quotients $a_i \leq 5$.
 
-This conjecture has been open for over 50 years. The strongest partial result is due to Huang (2015), who proved it holds for a density-1 subset of positive integers — meaning almost all $d$ satisfy the conjecture, but infinitely many exceptions could theoretically remain.
+This conjecture has been open for over 50 years. The current partial-result landscape includes:
 
-The gap between "almost all" and "all" is one of the fundamental difficulties in analytic number theory, analogous to the gap between the known density results for Goldbach's conjecture and the conjecture itself.
+- **Bourgain–Kontorovich (2014):** density-1 subset of positive integers satisfies the conjecture with $A = 50$.
+- **Huang (2015):** tightened the density-1 subset to $A = 5$.
+- **Shkredov (March 2026, arXiv:2603.14116):** Zaremba-type result for all sufficiently large *prime* denominators, with an effective but large threshold.
+
+None of these closes the classical conjecture ("all $d$ with $A = 5$"). The gap between "almost all" (or "all large primes") and "all $d$" is one of the fundamental difficulties in analytic number theory, analogous to the gap between density results for Goldbach's conjecture and the conjecture itself. The work described below is a **computational verification** over an initial range plus a proof *framework*; it is not a complete proof (see [findings/zaremba-conjecture-proved](/findings/zaremba-conjecture-proved/) for the explicit list of unresolved analytic gaps).
 
 ## Hardware
 
@@ -108,50 +112,16 @@ exact ⟨WITNESS, by decide, by decide, by native_decide, by native_decide⟩
 
 where `WITNESS` is a concrete integer and `native_decide` compiles the verification to native code.
 
-### Part 2: CUDA-Accelerated Exhaustive Verification
+### Part 2: CUDA-Accelerated Exhaustive Verification (v6 kernel)
 
-We wrote a custom CUDA kernel (`zaremba_verify_v2.cu`) where each CUDA thread handles one value of $d$. The kernel went through two iterations:
+The verification is performed by a single GPU kernel, `matrix_enum_multipass.cu` ("v6"), which reformulates continued fraction enumeration as batched $2 \times 2$ matrix multiplication on GPU. The search is *generative*: rather than looping over each $d \in [1, D]$ and searching for a witness $a$, the kernel enumerates all CF paths $[0; a_1, a_2, \ldots, a_K]$ with partial quotients $a_i \in \{1, 2, 3, 4, 5\}$, computes the corresponding denominator $q_K$ via the matrix product $g_{a_1} \cdots g_{a_K}$ where $g_a = \begin{pmatrix} 0 & 1 \\ 1 & a \end{pmatrix}$, and marks $q_K$ in a shared bitset via `atomicOr`. Any $d \leq D$ not marked at the end is a counterexample.
 
-**v1** searched $[d/7, d/3]$ linearly — this worked for small $d$ but hit a scaling wall at $d > 10^9$ (199 d/sec at $d = 3 \times 10^9$, projected weeks for the full range).
+The computation proceeds in two phases:
 
-**v2** uses our witness distribution discovery ($\alpha(d)/d \approx 0.170$) to dramatically narrow the search:
+- **Phase A** (single GPU, serial): build the CF tree to **depth 12**, producing $5^{12} \approx 2.44 \times 10^8$ depth-12 seed matrices. These are pruned by $q \leq D$ at every level to keep the working set bounded.
+- **Phase B** (8 GPUs in parallel): the depth-12 seeds are divided into 256 rounds of 119,210 seeds per chunk per GPU. Each chunk is expanded from depth 12 up to depth 62 (sufficient for $q \leq 2.1 \times 10^{11}$). Within each expansion, a fused *expand+mark+compact* kernel (a) multiplies every live matrix by each $g_1, \ldots, g_5$, (b) atomically sets the bit for any $q \leq D$, and (c) retains only children with $q \leq D/5$ for the next level (since further expansion can only multiply $q$ by factors $\geq 5$, after further refinements that bound the growth per level).
 
-```c
-__device__ uint64_t find_witness_v2(uint64_t d) {
-    // Phase 1: Spiral outward from 0.170*d in [0.165d, 0.185d]
-    uint64_t center = (uint64_t)(0.170 * (double)d);
-    for (uint64_t offset = 0; offset <= band_width; offset++) {
-        uint64_t a = center + offset;  // also try center - offset
-        if (!quick_coprime(a, d)) continue;  // skip obvious non-coprimes
-        if (dev_gcd(a, d) != 1) continue;
-        if (cf_bounded(a, d)) return a;
-    }
-    // Phase 2-3: wider search, then full search (rarely needed)
-    ...
-}
-```
-
-Key optimizations in v2:
-1. **Targeted search:** Start at $a = \lfloor 0.170d \rfloor$ and spiral outward — hits the witness in a band of width $\sim 0.4\%$ of $d$ for 99% of cases
-2. **Coprimality sieve:** Skip candidates sharing small factors (2, 3, 5, 7, 11, 13) with $d$ before computing the full gcd
-3. **CF prefix filter:** Check if $\lfloor d/a \rfloor \leq 5$ before running the full CF expansion
-
-**Benchmark (100K values at $d \approx 3 \times 10^9$, single GPU):**
-
-| Kernel | Rate | Time |
-|--------|------|------|
-| v1 | 199 d/sec | 503s |
-| v2 | 2,612 d/sec | 38s |
-| **Speedup** | **13×** | |
-
-We launched 8 parallel instances, one per GPU:
-
-| GPU | Range | Values |
-|-----|-------|--------|
-| 0 | $d = 1$ to $10^9$ | $10^9$ |
-| 1 | $d = 10^9 + 1$ to $2 \times 10^9$ | $10^9$ |
-| ... | ... | ... |
-| 7 | $d = 7 \times 10^9 + 1$ to $8 \times 10^9$ | $10^9$ |
+An important software-audit note: the original v6 kernel counts every expansion via `atomicAdd(out_count, 1ULL)` but only writes the matrix if `pos < max_out`, then clips the next frontier to `min(h_out, BUF_SLOTS)`. This was intended to be provably unnecessary under the chosen chunk size, but the original kernel did not emit a certificate proving that clipping never occurred. A hardened replacement, `matrix_enum_multipass_v6_1.cu` (in the same directory), closes this gap by (i) aborting with a fatal error on any overflow (unless the diagnostic flag `ZAREMBA_PROBE=1` is set) and (ii) printing a final **no-overflow certificate** reporting peak frontier vs `BUF_SLOTS` for both phases. Upgrading the 210B claim from *strong computational evidence* to *certified computational result* requires a re-run of v6.1 on equivalent hardware and checking the certificate block.
 
 ### Part 3: Transfer Operator Spectral Analysis
 
@@ -196,22 +166,33 @@ Three bugs were discovered and fixed during the proving run:
 
 ### Exhaustive Verification: 0 Failures to $2.1 \times 10^{11}$
 
-**Verified:** The v6 multi-pass GPU matrix enumeration kernel confirmed **zero gaps for all $d \leq 2.1 \times 10^{11}$** (210 billion) in **116 minutes** on 8× NVIDIA B200. This is a complete computational verification that Zaremba's Conjecture holds for every integer up to 210 billion.
+**Verified:** The v6 multi-pass GPU matrix enumeration kernel reported **zero gaps for all $d \leq 2.1 \times 10^{11}$** (210 billion) in **6,962.2 s (116 min)** on 8× NVIDIA B200. Under the caveat that the original kernel did not emit a no-overflow certificate (see "Part 2: CUDA-Accelerated Exhaustive Verification" above), this result is treated here as **strong computational evidence**; certification via the hardened v6.1 kernel on equivalent hardware is the pending next step.
 
-The kernel performs the entire CF tree walk on GPU via batched 2×2 matrix multiplication with fused expand+mark+compact. Phase A builds the tree to depth 12 on one GPU, Phase B distributes 244M matrices across all 8 GPUs in 64 rounds, each expanding to depth 62.
+The kernel performs the entire CF tree walk on GPU via batched 2×2 matrix multiplication with fused expand+mark+compact. Phase A builds the tree to depth 12 on one GPU (2.44 × 10⁸ live seeds after pruning), Phase B distributes these across all 8 GPUs in 256 rounds of 119,210 seeds per chunk, each expanding to depth 62.
 
-| Method | Hardware | Range | Time | Rate |
-|--------|----------|-------|------|------|
-| Python (multiprocessing) | 112 CPU cores | $d = 1$ to $10^6$ | 751.7 s | 1,330 d/s |
-| v5 kernel | 1× B200 | $d = 1$ to $10^8$ | 7.5 s | 13.3M d/s |
-| v6 multi-pass | 8× B200 | $d = 1$ to $10^9$ | 21.8 s | 45.9M d/s |
-| v6 multi-pass | 8× B200 | $d = 1$ to $10^{10}$ | 179 s | 55.9M d/s |
-| v6 multi-pass | 8× B200 | $d = 1$ to $10^{11}$ | 1,746 s | 57.3M d/s |
-| **v6 multi-pass** | **8× B200** | **$d = 1$ to $2.1 \times 10^{11}$** | **6,962 s** | **30.2M d/s** |
+Scaling of the v6 kernel on 8× B200 (all using the same `matrix_enum_multipass.cu` source, with `num_rounds` tuned per target):
 
-Speedup from Python baseline: **~43,000× on 8 GPUs.**
+| Range | num_rounds | Time | Rate | Notes |
+|-------|-----------|------|------|-------|
+| $d \leq 10^9$ | 1 | 21.8 s | 45.9M d/s | per-chunk seeds = 30.5M ≫ 119,210; unverified as certified |
+| $d \leq 10^{10}$ | 32 | 179 s | 55.9M d/s | per-chunk seeds ≈ 954K ≫ 119,210; unverified as certified |
+| $d \leq 10^{11}$ | 128 | 1,746 s | 57.3M d/s | per-chunk seeds ≈ 238K ≫ 119,210; unverified as certified |
+| **$d \leq 2.1 \times 10^{11}$** | **256** | **6,962.2 s** | **30.2M d/s** | **per-chunk seeds = 119,210; 210B headline run** |
 
-The v5 kernel (single GPU) reformulated CF tree enumeration as batched 2×2 matrix multiplication — a 175× speedup over v4. The v6 kernel extended this with multi-pass chunking to eliminate buffer overflow at scale, enabling verification beyond $10^{10}$.
+The v6 kernel extended an earlier single-GPU v5 kernel with multi-pass chunking to keep Phase B's buffer working set small. Earlier kernel iterations (v1 through v5, including a targeted-search heuristic around $a \approx 0.170 d$ used in v2) have been archived and are not used in the 210B claim; see the repository history for details.
+
+**Important caveat on all rows above.** At `num_rounds = 1` (the $d \leq 10^9$ row), each GPU processed 30.5M seeds in a single chunk — orders of magnitude above the 210B chunk size. Local v6.1 probes on a single RTX 5090 (see [`paper/CERTIFICATE.md`](https://github.com/cahlen/idontknow/blob/main/paper/CERTIFICATE.md)) confirm that such large chunk sizes produce peak Phase B frontiers far in excess of the 2 × 10⁹ `BUF_SLOTS` of the original v6 kernel, so those smaller runs almost certainly clipped silently.
+
+More importantly, v6.1 probe measurements at the **exact 210B chunk size** (119,210 seeds per chunk, matching `num_rounds = 256` × 8 GPUs) show:
+
+| max_d | Observed per-chunk peak frontier | vs `BUF_SLOTS = 2 × 10⁹` |
+|-------|----------------------------------|--------------------------|
+| $10^8$ | $1.91 \times 10^9$ | under, by 4.5% margin |
+| $10^9$ | $\geq 2.00 \times 10^9$ | **at or above the buffer wall** |
+| $10^{10}$ | (probe in progress) | expected higher still |
+| $2.1 \times 10^{11}$ | (extrapolation) | expected substantially higher |
+
+Because the Phase B peak frontier grows monotonically in `max_d` under the same chunk size (more matrices survive the $q \leq \max_d$ cut at every level), and because the peak already reaches `BUF_SLOTS` at `max_d = 10^9`, **the original 210B headline run almost certainly clipped**. This does not prove the 210B claim is wrong — it is still plausible that the missed denominators happened to be covered by *other* CF paths that were not clipped — but it does mean the original v6 kernel did not produce a machine-checkable computational certificate. Upgrading the claim from "strong computational evidence" to "certified computational result" requires a v6.1 re-run on 8× B200 (or equivalent) that prints `All peaks < BUF_SLOTS: YES` in its final certificate block.
 
 ### Transfer Operator: Hausdorff Dimension to 15 Digits
 
@@ -293,41 +274,49 @@ The CF length of $\alpha(d)/d$ peaks at $k = 13$ and grows as $O(\log d)$:
 git clone https://github.com/cahlen/idontknow
 cd idontknow
 
-# Compile v6 multi-pass kernel
+# Canonical v6 kernel (original 210B headline run)
 nvcc -O3 -arch=sm_100a -o matrix_v6 \
-    scripts/experiments/zaremba-conjecture-verification/matrix_enum_multipass.cu -lpthread
+    scripts/experiments/zaremba-effective-bound/matrix_enum_multipass.cu -lpthread
 
-# Verify d=1 to 1B (any multi-GPU NVIDIA system)
-./matrix_v6 1000000000
+# Hardened v6.1 kernel (recommended): adds hard overflow abort + no-overflow
+# certificate block to the final output.
+nvcc -O3 -arch=sm_100a -o matrix_v6_1 \
+    scripts/experiments/zaremba-effective-bound/matrix_enum_multipass_v6_1.cu -lpthread
 
-# Verify d=1 to 210B (requires 8× B200 or similar, ~116 min)
-./matrix_v6 210000000000
+# Verify d=1 to 210B (requires 8× B200 or similar; ~116 min with v6 original).
+# The v6.1 binary prints a "NO-OVERFLOW CERTIFICATE" section at the end.
+./matrix_v6_1 210000000000
+
+# Optional: diagnostic probe mode (disables hard abort, reports peak frontiers
+# without halting). Use this on smaller hardware to measure true peak frontier
+# and detect whether the original run configuration would have clipped.
+ZAREMBA_PROBE=1 ZAREMBA_ROUNDS=2048 ./matrix_v6_1 1000000000
+
+# Override num_rounds via environment (v6.1 only):
+ZAREMBA_ROUNDS=256 ./matrix_v6_1 210000000000
 ```
 
-**Single-GPU quick check (v5 kernel):**
-```bash
-nvcc -O3 -arch=sm_100a -o matrix_enum \
-    scripts/experiments/zaremba-conjecture-verification/matrix_enum.cu
-./matrix_enum 100000000  # 100M in ~7.5s on one B200
-```
+**Build-flag knobs (v6.1):** compile with `-DBUF_SLOTS=400000000ULL` to run on smaller GPUs (e.g. a single RTX 5090 at 32 GB) — the default of 2 billion slots targets B200-class memory. A smaller `BUF_SLOTS` will make the hard-abort trigger earlier, which is the correct behavior for exposing unsafe chunk sizes.
 
 ## Raw Data
 
-- v6 verification log (210B): [`run_210B.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-conjecture-verification/run_210B.log)
-- v6 verification log (100B): [`run_100B_v2.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-conjecture-verification/run_100B_v2.log)
-- v6 verification log (10B): [`run_10B_v3.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-conjecture-verification/run_10B_v3.log)
+- v6 verification log (210B headline run): [`run_210B.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/run_210B.log)
+- v6 verification log (100B): [`run_100B_v2.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/run_100B_v2.log)
+- v6 verification log (10B): [`run_10B_v3.log`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/run_10B_v3.log)
+- Verification manifest (SHA256 checksums, exact invocation, environment): [`paper/verification-manifest.txt`](https://github.com/cahlen/idontknow/blob/main/paper/verification-manifest.txt)
 - Spectral gap data (1,214 moduli): [`/data/spectral-gaps.json`](/data/spectral-gaps.json)
 
 ## References
 
-- Zaremba, S.K. (1972). "La methode des 'bons treillis' pour le calcul des integrales multiples." *Applications of Number Theory to Numerical Analysis*, pp. 39--119.
-- Bourgain, J. and Kontorovich, A. (2014). "On Zaremba's conjecture." *Annals of Mathematics*, 180(1), pp. 137--196.
-- Huang, S. (2015). "An improvement to Zaremba's conjecture." *Geometric and Functional Analysis*, 25(3), pp. 860--914.
+- Zaremba, S.K. (1972). "La méthode des 'bons treillis' pour le calcul des intégrales multiples." *Applications of Number Theory to Numerical Analysis*, pp. 39–119.
+- Bourgain, J. and Kontorovich, A. (2014). "On Zaremba's conjecture." *Annals of Mathematics*, 180(1), pp. 137–196.
+- Huang, S. (2015). "An improvement to Zaremba's conjecture." *Geometric and Functional Analysis*, 25(3), pp. 860–914.
+- Shkredov, I.D. (2026). "On Zaremba's conjecture for prime denominators." arXiv:2603.14116 (preprint, March 2026).
 - Dickson, L.E. (1901). *Linear Groups with an Exposition of the Galois Field Theory*. B.G. Teubner, Leipzig.
-- Jenkinson, O. and Pollicott, M. (2001). "Computing the dimension of dynamically defined sets." *Ergodic Theory and Dynamical Systems*, 21(5), pp. 1429--1445.
+- Jenkinson, O. and Pollicott, M. (2001). "Computing the dimension of dynamically defined sets." *Ergodic Theory and Dynamical Systems*, 21(5), pp. 1429–1445.
 
 ---
 
-*Computed 2026-03-28 on NVIDIA DGX B200. Transfer operator analysis: [companion post](/experiments/zaremba-transfer-operator). Code: [scripts/zaremba_verify_v4.cu](https://github.com/cahlen/idontknow/blob/main/scripts/zaremba_verify_v4.cu).*
+*Computed 2026-03-28 on NVIDIA DGX B200. Transfer operator analysis: [companion post](/experiments/zaremba-transfer-operator). Canonical kernel: [`scripts/experiments/zaremba-effective-bound/matrix_enum_multipass.cu`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/matrix_enum_multipass.cu). Hardened replacement with no-overflow certificate: [`matrix_enum_multipass_v6_1.cu`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/matrix_enum_multipass_v6_1.cu) in the same directory.*
 
 *This work was produced through human–AI collaboration (Cahlen Humphreys + Claude). Not independently peer-reviewed. All code and data open for verification at [github.com/cahlen/idontknow](https://github.com/cahlen/idontknow).*

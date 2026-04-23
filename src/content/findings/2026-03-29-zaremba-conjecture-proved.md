@@ -10,11 +10,11 @@ conjecture_year: 1972
 domain: [number-theory, continued-fractions, spectral-theory, computational-mathematics]
 related_experiment: /experiments/zaremba-conjecture-verification/
 
-summary: "Proof FRAMEWORK (not a completed proof) for Zaremba's Conjecture (A=5). Theorem 1: GPU brute force to 2.1×10^11 (unconditional). Theorem 2: MOW congruence counting framework — D₀ ≈ 3.4×10^10, margin 6× below brute-force frontier. KNOWN GAPS: ρ_η is FP64 not interval-certified; MOW theorem matching not verified theorem-by-theorem; C_η constant underestimated. Paper: 15 pages, requires gap closure before arXiv submission. Not peer-reviewed. CORRECTED (2026-04-01): MCP peer review identified 6 gaps preventing characterization as a completed proof."
+summary: "Proof FRAMEWORK (not a completed proof) for Zaremba's Conjecture (A=5). Theorem 1: GPU brute force to 2.1×10^11 — strong computational evidence, not certified (original v6 kernel did not emit a no-overflow certificate; local v6.1 probes on a single RTX 5090 suggest the B200 run clipped silently). Theorem 2: MOW congruence counting framework — D₀ ≈ 3.4×10^10, margin 6× below brute-force frontier. KNOWN GAPS: ρ_η certified only for finite Galerkin discretization; MOW theorem matching not verified theorem-by-theorem; C_η constant underestimated; software-audit no-overflow certificate for 210B not yet produced. Paper: 15 pages, requires gap closure before arXiv submission. Not peer-reviewed. CORRECTED (2026-04-22): local v6.1 self-audit probe data added (see CERTIFICATE.md)."
 
 data:
   conjecture: "Zaremba's Conjecture (1972)"
-  status: "Proof FRAMEWORK (not completed — partial verification only). Theorem 1: unconditional GPU verification to 2.1×10^11. Theorem 2: MOW congruence counting framework with 6 known gaps: (1) ρ_η FP64 not interval-certified, (2) MOW theorem matching not verified theorem-by-theorem, (3) C_η constant underestimated, (4) Galerkin-to-operator eigenvalue transport bound missing, (5) Dolgopyat bound not computer-assisted certified, (6) constant-tracking appendix not independently reproduced. D₀ ≈ 3.4×10^10."
+  status: "Proof FRAMEWORK (not completed — partial verification only). Theorem 1: GPU verification to 2.1×10^11 is strong computational evidence, not certified (original v6 kernel silently clips Phase B frontier at BUF_SLOTS; no no-overflow certificate was emitted; local v6.1 probes on a single RTX 5090 at the 210B chunk size show peak frontier already reaches 2×10^9 at max_d=10^9, meaning the B200 run almost certainly clipped). Theorem 2: MOW congruence counting framework with 6 known gaps: (1) ρ_η certified only for finite Galerkin discretization, (2) MOW theorem matching not verified theorem-by-theorem, (3) C_η constant underestimated, (4) Galerkin-to-operator eigenvalue transport bound missing, (5) Dolgopyat bound not computer-assisted certified, (6) constant-tracking appendix not independently reproduced. D₀ ≈ 3.4×10^10."
   bound_A: 5
   brute_force_range: [1, 210000000000]
   brute_force_failures: 0
@@ -23,7 +23,7 @@ data:
   covering_primorial: 200560490130
   min_covering_gap: 0.651
   min_covering_gap_prime: 29
-  effective_range: "d ≤ 2.1×10^11 unconditional (GPU brute-force); d > 2.1×10^11 conditional on closing 6 known gaps in the MOW framework (constant-tracking, Galerkin-to-operator transport, Dolgopyat certification — see status field). NOT a completed proof for all d."
+  effective_range: "d ≤ 2.1×10^11: strong computational evidence (v6 brute-force reports Uncovered=0 but did not emit a no-overflow certificate; v6.1 re-run pending for certification). d > 2.1×10^11 conditional on closing 6 known gaps in the MOW framework (constant-tracking, Galerkin-to-operator transport, Dolgopyat certification — see status field). NOT a completed proof for all d."
   spectral_gaps_method: "MPFR 256-bit (covering primes) + arb ball arithmetic (Dolgopyat)"
   eigenfunction_h0: 1.377561602272515
   hausdorff_dimension: 0.836829443681208
@@ -67,9 +67,20 @@ The proof combines three ingredients (see [paper PDF](https://github.com/cahlen/
 
 ### 1. Brute-Force Verification ($d \leq 2.1 \times 10^{11}$)
 
-GPU matrix enumeration (v6 multi-pass kernel) verifies every integer from 1 to 210 billion. Zero failures. Runtime: 116 minutes on 8× NVIDIA B200 (Blackwell, 192 GB HBM3e each, CUDA 12.8).
+GPU matrix enumeration (v6 multi-pass kernel) reports every integer from 1 to 210 billion as marked. Zero uncovered. Runtime: 6,962.2 seconds (116 minutes) on 8× NVIDIA B200 (Blackwell, 183 GB each, CUDA 13.0, driver 580.126.09). Chunk configuration: 256 rounds × 8 GPUs, 119,210 seeds per chunk.
 
-**Exact invocation:** `./matrix_v6 210000000000` (compiled with `nvcc -O3 -arch=sm_100a matrix_enum_multipass.cu -lpthread`). Input: single argument $N = 2.1 \times 10^{11}$. Output: per-chunk bitset files covering $[1, N]$; union verified to have zero uncovered integers. SHA256 checksums of all output chunks are recorded in the [verification manifest](https://github.com/cahlen/idontknow/blob/main/paper/verification-manifest.txt). External log with timestamps and per-GPU progress available in the experiment directory.
+**Exact invocation:** `./matrix_v6 210000000000` (compiled with `nvcc -O3 -arch=sm_100a scripts/experiments/zaremba-effective-bound/matrix_enum_multipass.cu -lpthread`). Input: single argument $N = 2.1 \times 10^{11}$. Output: per-chunk bitset files covering $[1, N]$; union reports zero uncovered integers. SHA256 checksums of all output chunks are recorded in the [verification manifest](https://github.com/cahlen/idontknow/blob/main/paper/verification-manifest.txt). External log with timestamps and per-GPU progress available in the experiment directory.
+
+**Certification status.** The original v6 kernel increments `out_count` for every expansion but only writes the matrix if `pos < max_out`, then clips the next frontier to `min(h_out, BUF_SLOTS)` rather than aborting on overflow. The manifest records `Uncovered: 0`, but the kernel did not emit a machine-checkable no-overflow certificate.
+
+**Empirical update (2026-04-22).** Local v6.1 probe runs on a single RTX 5090 at the exact 210B chunk size (119,210 seeds per chunk) measure the true, unclipped per-chunk Phase B peak frontier at:
+
+- `max_d = 10⁸`: peak $= 1.91 \times 10^9$ (under $2 \times 10^9$ `BUF_SLOTS` by 4.5%)
+- `max_d = 10⁹`: peak $\geq 2.00 \times 10^9$ (at or above the buffer wall)
+
+Because the peak grows monotonically in `max_d` under fixed chunk size, **the original 210B headline run almost certainly clipped silently**. The 210B claim therefore must be treated as **strong computational evidence**, not a certified computational result, until a hardened re-run confirms no overflow. See [`paper/CERTIFICATE.md`](https://github.com/cahlen/idontknow/blob/main/paper/CERTIFICATE.md) for the full probe log and the exact v6.1 re-run procedure required for certification.
+
+A hardened replacement, [`matrix_enum_multipass_v6_1.cu`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/matrix_enum_multipass_v6_1.cu), adds a hard overflow abort and a final no-overflow certificate block; re-running the 210B configuration with v6.1 on 8× B200 (or equivalent ≥ 1.5 TB aggregate GPU memory) and checking that the certificate reports `All peaks < BUF_SLOTS: YES` and `No-overflow abort fired: NO` upgrades the claim to certified status. If that run aborts with `No-overflow abort fired: YES`, the correct response is to increase `num_rounds` (e.g. to 512 or 1024) to reduce per-chunk seeds until the chunk size is safe, and record the new configuration as canonical.
 
 ### 2. Spectral Gap Computation (11 primes, FP64)
 
@@ -190,14 +201,15 @@ Theoretical prediction: $R(d) \sim d^{2\delta - 1} = d^{0.674}$. The slight unde
 git clone https://github.com/cahlen/idontknow
 cd idontknow
 
-# Step 1: Brute force (requires 8× NVIDIA B200 or similar)
-nvcc -O3 -arch=sm_100a -o matrix_v6 \
-    scripts/experiments/zaremba-conjecture-verification/matrix_enum_multipass.cu -lpthread
-./matrix_v6 210000000000
+# Step 1: Brute force (requires 8× NVIDIA B200 or similar for 210B).
+# Use v6.1 to get a no-overflow certificate in the final output.
+nvcc -O3 -arch=sm_100a -o matrix_v6_1 \
+    scripts/experiments/zaremba-effective-bound/matrix_enum_multipass_v6_1.cu -lpthread
+./matrix_v6_1 210000000000
 
 # Step 2: Spectral gaps (requires cuBLAS)
 nvcc -O3 -arch=sm_100a -o extract_ef \
-    scripts/experiments/zaremba-conjecture-verification/extract_eigenfunction.cu -lcublas -lm
+    scripts/experiments/zaremba-effective-bound/extract_eigenfunction.cu -lcublas -lm
 ./extract_ef  # outputs h(0) and gaps for primes ≤ 97
 ```
 

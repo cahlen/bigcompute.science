@@ -1,5 +1,15 @@
 [
   {
+    "hash": "22b080f",
+    "date": "May 31",
+    "message": "Fix cross-publication inconsistencies flagged in external review."
+  },
+  {
+    "hash": "63ad274",
+    "date": "May 31",
+    "message": "Publish Phase 5a Kerr IC BKM sweep results on the site."
+  },
+  {
     "hash": "7ad1441",
     "date": "May 31",
     "message": "Auto-generate Recent Updates changelog from git log on build."
@@ -38,15 +48,5 @@
     "hash": "90f1419",
     "date": "May 30",
     "message": "Fix finding frontmatter duplicate data keys and NS BKM cuda link."
-  },
-  {
-    "hash": "32736a9",
-    "date": "May 30",
-    "message": "Publish CFD Phase 2/3 experiments and silver BKM finding."
-  },
-  {
-    "hash": "401154d",
-    "date": "May 30",
-    "message": "Link CFD finding to Hugging Face dataset and validation data."
   }
 ]

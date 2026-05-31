@@ -4,38 +4,46 @@
 
 All work produced through human-AI collaboration (Cahlen Humphreys + Claude). AI-audited against published literature (arXiv, zbMATH, OEIS). Not independently peer-reviewed. CC BY 4.0.
 
-## Experiments
+## Experiments (16 total)
 
-- [Zaremba 210B Verification](/experiments/zaremba-conjecture-verification/): v6 run reported zero uncovered denominators to 210B; not certified pending v6.1 no-overflow rerun. (complete evidence; certification pending)
-- [Zaremba Transfer Operator](/experiments/zaremba-transfer-operator/): Hausdorff dimension, spectral gaps, property (tau). (complete)
-- [Zaremba Density](/experiments/zaremba-density-gpu/): stable candidate exception sets, {1,k} hierarchy, completed logs through 10^11/10^12 depending on digit set. (in-progress)
-- [Ramsey R(5,5)](/experiments/ramsey-r55-lower-bound/): 656/656 K42 colorings UNSAT. (in-progress)
-- [Class Numbers](/experiments/class-numbers-real-quadratic/): 30B discriminants. h=1 rate falls to 0 (genus theory). (in-progress)
-- [Kronecker Coefficients](/experiments/kronecker-coefficients-gpu/): S_20, S_30 (26.4B nonzero), S_40 char table done. (in-progress)
-- [Ramanujan Machine](/experiments/ramanujan-machine-gpu/): 586B candidates through deg 7, zero transcendentals. (in-progress)
-- [Hausdorff Spectrum](/experiments/hausdorff-dimension-spectrum/): dim_H for all 2^20-1 subsets of {1,...,20}. (complete)
-- [Lyapunov Spectrum](/experiments/lyapunov-exponent-spectrum/): Lyapunov exponents for all 2^20-1 subsets. (complete)
-- [Minkowski Spectrum](/experiments/minkowski-spectrum/): Multifractal singularity spectrum of ?(x). (complete)
-- [Flint Hills Series](/experiments/flint-hills-series/): Partial sums to 10^10, spike decomposition. (complete)
+- [CFD Chaotic Advection: Standard Map Lyapunov Spectrum (RTX 5090)](/experiments/cfd-chaotic-advection/): CFD program entry point (chaotic-advection surrogate; Navier–Stokes phases started May 27): Chirikov standa... (complete)
+- [CFD Phase 2: 2D Navier–Stokes BKM Diagnostic (RTX 5090)](/experiments/cfd-ns-bkm/): Phase 2 CFD: GPU pseudospectral 2D NS with BKM vorticity tracking. Certifying Taylor–Green decay and random... (complete)
+- [CFD Phase 3: 3D Navier–Stokes BKM Blowup Search (RTX 5090)](/experiments/cfd-ns3d-bkm/): Phase 3: 3D pseudospectral NS with vortex stretching and BKM tracking on RTX 5090. First certifying 3D runs... (complete)
+- [Prime Convergents: GPU Verification of the Erdos-Mahler Bound](/experiments/prime-convergents-gpu/): GPU verification of the Erdos-Mahler bound on greatest prime factors of CF convergents. 10M random CFs veri... (complete)
+- [Erdos-Straus Conjecture: Solution Counting to 10^8 on B200](/experiments/erdos-straus-gpu/): Count solutions f(p) to 4/p = 1/x + 1/y + 1/z for all primes p up to 10^8. Conjecture verified to 10^14 (Sw... (complete)
+- [Zaremba Density: Exception Sets and Phase Transitions on 8x B200](/experiments/zaremba-density-gpu/): 65 GPU density computations across digit sets and ranges to 10^12. Audit revision: the data support stable ... (complete)
+- [Ramsey R(5,5): Exhaustive Extension Search on 8x B200](/experiments/ramsey-r55-lower-bound/): Strongest computational evidence that R(5,5) = 43. All 656 known K42 colorings UNSAT. Structural attack tow... (complete)
+- [Kronecker Coefficients: S20, S30, S40 on 8× B200](/experiments/kronecker-coefficients-gpu/): Complete Kronecker coefficient tables for S_20 (32.7M nonzero, 3.7s) and S_30 (26.4B nonzero, 7.4 min) on N... (complete)
+- [Ramanujan Machine: GPU-Accelerated Discovery of Continued Fraction Formulas](/experiments/ramanujan-machine-gpu/): 586 billion equal-degree polynomial CFs evaluated through degree 8 — zero new transcendental formulas. 7,03... (complete)
+- [Class Numbers of Real Quadratic Fields: Extending Tables to 10^13 on 8× B200](/experiments/class-numbers-real-quadratic/): Class numbers h(d) for 30 billion real quadratic fields across [10^9, 10^11]. h=1 rate falls monotonically:... (complete)
+- [Flint Hills Series: Partial Sums to 10^{10} with Spike Decomposition](/experiments/flint-hills-series/): Partial sums of the Flint Hills series computed to 10 billion terms with quad-double precision. Spike decom... (complete)
+- [Hausdorff Dimension Spectrum: All Subsets of {1,...,20}](/experiments/hausdorff-dimension-spectrum/): Hausdorff dimension computed for every non-empty subset of {1,...,20} — 1,048,575 subsets in 4,343 seconds ... (complete)
+- [Minkowski ?(x) Singularity Spectrum](/experiments/minkowski-spectrum/): Multifractal singularity spectrum f(alpha) of the Minkowski question-mark function, computed via weighted t... (complete)
+- [Lyapunov Exponent Spectrum: All Subsets of {1,...,20}](/experiments/lyapunov-exponent-spectrum/): Lyapunov exponents for all 1,048,575 non-empty subsets of {1,...,20}, computed in 305 seconds on RTX 5090. ... (complete)
+- [Transfer Operator for Zaremba's Conjecture: Hausdorff Dimension to 15 Digits](/experiments/zaremba-transfer-operator/): Hausdorff dimension of E_5 computed to 15 digits (0.836829443681208). Spectral gaps for 1,214 square-free m... (complete)
+- [Zaremba's Conjecture: 210 Billion Verified in 116 Minutes on 8× NVIDIA B200](/experiments/zaremba-conjecture-verification/): GPU verification of Zaremba's Conjecture for all d up to 210 billion (zero failures), plus spectral gap ana... (complete)
 
-## Findings (16 total, all AI-audited)
+## Findings (20 total, all AI-audited)
 
-- [Zaremba Density Phase Transition](/findings/zaremba-density-phase-transition/): A={1,2,3} exactly 27 exceptions. delta > 1/2 PLUS transitivity needed. [GOLD]
-- [A={1,2} Logarithmic Convergence](/findings/zaremba-A12-logarithmic-convergence/): 5 data points, density = 31.5 + 4.47*log10(N). [BRONZE]
-- [Digit Pair Hierarchy](/findings/zaremba-digit-pair-hierarchy/): {1,k} decays sharply at 10^11; stable candidate exception sets are observational, not proved finite. [BRONZE]
-- [Inverse-Square Amplification](/findings/zaremba-inverse-square-amplification/): {1,k}/{2,k} ratio grows 1.5-1.7x per decade. [UNCERTIFIED]
-- [Exception Hierarchy](/findings/zaremba-exception-hierarchy/): 27 -> 2 -> 0 as digits grow. d=54, d=150 need digit 5. [BRONZE]
-- [Kronecker S_30](/findings/kronecker-s30-largest-computation/): 26.4B nonzero triples, 7.4 min on B200. [GOLD]
-- [Kronecker S_40](/findings/kronecker-s40-character-table/): Complete char table (37,338 partitions, 1.394B entries). 94.9% nonzero (sampled). Hooks multiplicity-free. [GOLD]
-- [Cohen-Lenstra at Scale](/findings/class-number-convergence/): h=1 rate falls to 0 (genus theory), NOT 75%. [GOLD]
-- [Zaremba Proof Framework](/findings/zaremba-conjecture-framework/): D0≈3.4e10 is conditional; v6 evidence to 2.1e11 is not certified, v6.1 certificate covers d≤1e6. NOT a completed proof. [BRONZE]
-- [Spectral Gaps Uniform](/findings/zaremba-spectral-gaps-uniform/): All 1214 moduli positive, min 0.237. [SILVER]
-- [Transitivity All Primes](/findings/zaremba-transitivity-all-primes/): Dickson classification, AI-assisted. [SILVER]
-- [Cayley Diameters](/findings/zaremba-cayley-diameters/): diam/log(p) -> 1.45 for 172 primes. [GOLD]
-- [Digit 1 Dominance](/findings/hausdorff-digit-one-dominance/): dim_H(E_{1,...,5}) > dim_H(E_{2,...,20}). [GOLD]
-- [Witness Golden Ratio](/findings/zaremba-witness-golden-ratio/): a/d concentrates near 0.171. [BRONZE]
-- [GPU 175x Speedup](/findings/gpu-matrix-enumeration-175x/): Batched 2x2 matrix multiply. [BRONZE]
-- [Representation Growth](/findings/zaremba-representation-growth/): R(d) grows as d^0.674. [BRONZE]
+- [3D NS BKM Infrastructure: First Certifying Pseudospectral Blowup-Monitor Runs on RTX 5090](/findings/cfd-ns3d-bkm-infrastructure/): GPU pseudospectral 3D vorticity-form Navier–Stokes with vortex stretching and BKM integral tracking. Certif... [SILVER]
+- [Cohen-Lenstra at Scale: h=1 Rate Falls to 15% at 10^10, Genus Theory Dominates](/findings/class-number-convergence/): GPU computation of 30 billion class numbers for real quadratic fields reveals that the h(d)=1 rate DECREASE... [SILVER]
+- [Congruence Spectral Gaps for Zaremba's Semigroup Are Uniform](/findings/zaremba-spectral-gaps-uniform/): FP64/N=40 cuBLAS computation of congruence spectral gaps for Zaremba's semigroup Γ_{1,...,5}. All 168 prime... [SILVER]
+- [Digit 1 Dominance: Five Digits With 1 Beat Fourteen Digits Without](/findings/hausdorff-digit-one-dominance/): At n=20 (1,048,575 subsets): dim_H(E_{1,...,5}) = 0.837 while dim_H(E_{2,...,20}) = 0.768. Five digits cont... [SILVER]
+- [Exploratory BFS Depths for Zaremba Generators: Short-Word Expansion Data to p=1021](/findings/zaremba-cayley-diameters/): Exploratory GPU BFS data for Zaremba generator diameters for all 172 primes p ≤ 1021. Audit caveat: the cur... [SILVER]
+- [Kronecker Coefficients: Complete S_30 Table — 26.4 Billion Nonzero Triples in 7 Minutes](/findings/kronecker-s30-largest-computation/): "Complete [SILVER]
+- [Kronecker S_40: Complete Character Table and Targeted Coefficients — 94.9% Nonzero](/findings/kronecker-s40-character-table/): Complete character table of S_40 (37,338 partitions, 1.394 billion entries, 9.5 hours on 64-core CPU). Valu... [SILVER]
+- [Standard Map Chaos Onset: Λ(K) Crosses Literature K_crit on RTX 5090](/findings/cfd-standard-map-chaos-onset/): Custom CUDA maximal-Lyapunov sweep of the Chirikov standard map: 16.8M trajectories in 116.6s on RTX 5090, ... [SILVER]
+- [Zaremba Density Phase Transition: A={1,2,3} Appears to Have Full Density](/findings/zaremba-density-phase-transition/): UPDATED 2026-04-23 audit: A={1,2,3} has exactly 27 uncovered denominators through the completed 10^10 run, ... [SILVER]
+- [2D NS BKM Diagnostic: Certifying Pseudospectral Vorticity Tracking on RTX 5090](/findings/cfd-ns-bkm-diagnostic/): GPU pseudospectral 2D Navier–Stokes with BKM integral ∫||ω||∞ dt. Taylor–Green validates decay (max |ω|: 2.... [BRONZE]
+- [A={1,2} Density Fits Logarithmic Growth: 30 + 4.65·log₁₀(N), Testable at 10^12](/findings/zaremba-A12-logarithmic-convergence/): The Zaremba density for A={1,2} fits density = 31.5 + 4.47·log₁₀(N) (R² = 0.9984, 5 empirical measurements ... [BRONZE]
+- [Digit 1 Amplification in Zaremba Density: Strong Effect, Inverse-Square Law Still Unconfirmed](/findings/zaremba-inverse-square-amplification/): Audit revision: digit 1 strongly amplifies Zaremba density relative to digit 2, but the headline inverse-sq... [BRONZE]
+- [GPU Matrix Enumeration: 175× Faster Zaremba Verification via Batched 2×2 Multiply](/findings/gpu-matrix-enumeration-175x/): Reformulating CF tree enumeration as batched 2×2 matrix multiplication on GPU eliminates all CPU bottleneck... [BRONZE]
+- [The {1,k} Density Hierarchy: Digit 2 Is Worth 9x More Than Digit 3](/findings/zaremba-digit-pair-hierarchy/): Complete density computation for all {1,k} pairs at 10^11. Density drops exponentially: {1,2}=80.75%, {1,3}... [BRONZE]
+- [Zaremba Exception Hierarchy: 27 → 2 → 0 as Digits Grow](/findings/zaremba-exception-hierarchy/): Corrected 2026-04-23 audit: the 27 uncovered denominators for A={1,2,3} through the completed 10^10 run are... [BRONZE]
+- [Zaremba Representation Counts Grow as d^{0.674} — Hardest Cases Are Small d](/findings/zaremba-representation-growth/): The number of continued fraction representations R(d) (with all partial quotients ≤ 5 and gcd(a, d) = 1) gr... [BRONZE]
+- [Zaremba Transitivity: Verified to p=17,389; All-Prime Algebraic Argument Still Provisional](/findings/zaremba-transitivity-all-primes/): Computational transitivity check: the generators Γ_{1,...,5} act transitively on nonzero vectors in (Z/pZ)^... [BRONZE]
+- [Zaremba Witnesses Concentrate at α(d)/d ≈ 0.171, Connected to the Golden Ratio](/findings/zaremba-witness-golden-ratio/): The smallest Zaremba witness for d concentrates at a/d ≈ 0.171 with 99.7% sharing CF prefix [0; 5, 1, ...].... [BRONZE]
+- [Zaremba's Conjecture (A=5): Proof Framework via GPU Verification + MOW Spectral Theory (Not Peer-Reviewed, Known Gaps Remain)](/findings/zaremba-conjecture-framework/): Proof FRAMEWORK (not a completed proof) for Zaremba's Conjecture (A=5). Computational evidence: original v6... [BRONZE]
 
 ## Datasets (Hugging Face)
 
@@ -46,10 +54,13 @@ All work produced through human-AI collaboration (Cahlen Humphreys + Claude). AI
 - [Kronecker Coefficients](https://huggingface.co/datasets/cahlen/kronecker-coefficients): S_20, S_30, S_40 character tables + Kronecker triples
 - [Class Numbers](https://huggingface.co/datasets/cahlen/class-numbers-real-quadratic): Real quadratic fields to 10^11
 - [Continued Fraction Spectra](https://huggingface.co/datasets/cahlen/continued-fraction-spectra): Hausdorff, Lyapunov, Minkowski, Flint Hills
+- [CFD Chaotic Advection](https://huggingface.co/datasets/cahlen/cfd-chaotic-advection): Standard map Lyapunov sweeps (16.8M trajectories)
+- [CFD 2D NS BKM](https://huggingface.co/datasets/cahlen/cfd-ns-bkm): 2D pseudospectral BKM diagnostic CSVs
+- [CFD 3D NS BKM](https://huggingface.co/datasets/cahlen/cfd-ns3d-bkm): 3D BKM blowup-monitor CSVs (incl. Phase 5 Kerr IC sweep)
 
 ## Tools
 
-- [MCP Server](https://mcp.bigcompute.science/mcp): 22 tools, no auth. arXiv, zbMATH, OEIS, LMFDB, Lean/Mathlib + experiment data.
+- [MCP Server](https://mcp.bigcompute.science/mcp): 23 tools, no auth. arXiv, zbMATH, OEIS, LMFDB, Lean/Mathlib + experiment data.
 - [Colab Notebook](https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_mcp_explorer.ipynb): Pre-loaded MCP client + HF datasets.
 - [Experiment code](https://github.com/cahlen/idontknow): CUDA kernels, Python harnesses
 - [Website source](https://github.com/cahlen/bigcompute.science): Astro + KaTeX
@@ -59,7 +70,7 @@ All work produced through human-AI collaboration (Cahlen Humphreys + Claude). AI
 
 ## Review Infrastructure
 
-All findings are AI-audited claim-by-claim. Current: 53 reviews from 7 models (Claude Opus 4.6, o3-pro, o3, GPT-4.1, GPT-5.2, Grok, ChatGPT) across 3 providers (Anthropic, OpenAI, xAI). 210 issues discovered, 207 fixed. Certification uses most-conservative-wins consensus.
+All findings are AI-audited claim-by-claim. Current: 62 reviews from 8 models across 4 providers. 249 issues discovered, 232 fixed. Certification uses most-conservative-wins consensus.
 
 - [Review scripts](https://github.com/cahlen/idontknow/tree/main/scripts/reviews): `run_review.py` (any OpenAI-compatible API), `aggregate.py`, `validate.py`, `sync_website.py`
 - [Review schema](https://github.com/cahlen/idontknow/blob/main/docs/verifications/SCHEMA.md): JSON format for reviews

@@ -80,8 +80,12 @@
   },
   "datasets": {
     "zaremba": "https://huggingface.co/datasets/cahlen/zaremba-conjecture-data",
+    "zaremba_density": "https://huggingface.co/datasets/cahlen/zaremba-density",
     "kronecker": "https://huggingface.co/datasets/cahlen/kronecker-coefficients",
-    "spectra": "https://huggingface.co/datasets/cahlen/continued-fraction-spectra"
+    "spectra": "https://huggingface.co/datasets/cahlen/continued-fraction-spectra",
+    "cfd_chaotic_advection": "https://huggingface.co/datasets/cahlen/cfd-chaotic-advection",
+    "cfd_ns_bkm": "https://huggingface.co/datasets/cahlen/cfd-ns-bkm",
+    "cfd_ns3d_bkm": "https://huggingface.co/datasets/cahlen/cfd-ns3d-bkm"
   },
   "colab_notebooks": {
     "research_agent": "https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_research_agent.ipynb",

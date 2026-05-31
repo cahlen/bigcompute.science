@@ -31,6 +31,10 @@ certification:
   verdict: ACCEPT
   note: "3-model review (2026-05-31); revisions applied; gpt-4.1 re-review ACCEPT"
   reviews: https://github.com/cahlen/idontknow/tree/main/docs/verifications
+
+code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/cfd-chaotic-advection
+dataset: https://huggingface.co/datasets/cahlen/cfd-chaotic-advection
+data: /data/cfd-chaotic-advection/
 ---
 
 # Standard Map Chaos Onset: Λ(K) Crosses Literature K_crit on RTX 5090
@@ -96,6 +100,8 @@ We do **not** claim: world-record computation size, a refined $K_{\mathrm{crit}}
 python3 scripts/experiments/cfd-chaotic-advection/validate_claims.py
 ```
 
+**Data:** [Hugging Face dataset](https://huggingface.co/datasets/cahlen/cfd-chaotic-advection) (`deep_sweep`, `validation` configs) · [Experiment](/experiments/cfd-chaotic-advection/)
+
 ## Important nuance (read before interpreting the curve)
 
 **Finite-time sensitivity is not global chaos.** Our Benettin estimate uses 50,000 iterations per initial condition. At small $K$, some individual ICs can show slightly **negative** finite-time $\Lambda$ (regular islands, slow convergence) even while the **mean** over 8192 ICs is positive. The heuristic “onset” where $\bar{\Lambda} > 0.01$ appears near $K \approx 0.75$ is therefore **not** the literature chaos threshold $K_{\mathrm{crit}} \approx 0.972$ — it marks where finite-time tangent growth becomes detectable in our sampling, not where the phase space is globally chaotic.
@@ -144,6 +150,8 @@ python3 scripts/experiments/cfd-chaotic-advection/plot_lyapunov.py \
   scripts/experiments/cfd-chaotic-advection/results/lyapunov_k2048_ic8192_iter50000.csv \
   -o lyapunov_spectrum.svg
 ```
+
+**Dataset:** [cahlen/cfd-chaotic-advection](https://huggingface.co/datasets/cahlen/cfd-chaotic-advection) — Lyapunov sweeps, certifying logs, and validation artifacts.
 
 ## Limitations (to our knowledge)
 

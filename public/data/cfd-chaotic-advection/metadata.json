@@ -1,5 +1,8 @@
 {
   "experiment": "cfd-chaotic-advection",
+  "finding": "cfd-standard-map-chaos-onset",
+  "experiment_url": "https://bigcompute.science/experiments/cfd-chaotic-advection/",
+  "finding_url": "https://bigcompute.science/findings/cfd-standard-map-chaos-onset/",
   "date": "2026-05-31",
   "hardware": "NVIDIA GeForce RTX 5090 (32 GB)",
   "cuda": "13.0",
@@ -19,6 +22,8 @@
   "validation": {
     "lambda_at_k0": 0.0,
     "mean_lambda_at_k_crit": 0.0445638827,
-    "k_crit_literature": 0.971635406
+    "k_crit_literature": 0.971635406,
+    "convergence_k5_gpu": "validation/convergence_k5_gpu.json",
+    "validate_script": "validate_claims.py"
   }
 }

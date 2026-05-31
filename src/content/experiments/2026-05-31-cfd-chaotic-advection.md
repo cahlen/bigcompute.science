@@ -78,10 +78,12 @@ cd idontknow
 
 Requires CUDA 13+, RTX 5090 (`-arch=sm_120`) or adjust architecture flag.
 
+**Dataset:** [cahlen/cfd-chaotic-advection](https://huggingface.co/datasets/cahlen/cfd-chaotic-advection) on Hugging Face — Lyapunov sweeps, certifying logs, and claim-validation artifacts. **Finding:** [Standard Map Chaos Onset](/findings/cfd-standard-map-chaos-onset/).
+
 ## Next steps
 
 - ~~Compare empirical chaos onset against literature $K_{\mathrm{crit}}$~~ → [finding](/findings/cfd-standard-map-chaos-onset/)
 - Extend to **linked twist maps** and **sinewave flow** models for laminar chaotic mixing
-- Phase 2: 2D pseudospectral Navier–Stokes blowup search (Beale–Kato–Majda)
+- Phase 2: 2D pseudospectral Navier–Stokes blowup search (Beale–Kato–Majda) → [experiment](/experiments/cfd-ns-bkm/)
 
 *Human–AI collaboration. Not peer-reviewed. All code open for verification.*

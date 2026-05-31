@@ -1,0 +1,10 @@
+{
+  "experiment": "cfd-ns-bkm",
+  "grid": 512,
+  "nu": 0.0001,
+  "steps": 5000,
+  "final_max_vorticity": 0.0258904113,
+  "final_enstrophy": 0.0001427653,
+  "final_bkm": 1.7713991102,
+  "dataset": "https://huggingface.co/datasets/cahlen/cfd-ns-bkm"
+}

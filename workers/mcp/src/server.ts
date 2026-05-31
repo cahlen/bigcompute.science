@@ -112,6 +112,40 @@ const EXPERIMENTS = [
     run: "./standard_map_lyapunov 2048 8192 50000 5.0",
     dataset: "cahlen/cfd-chaotic-advection",
   },
+  {
+    slug: "cfd-ns-bkm",
+    title: "CFD Phase 2: 2D Navier–Stokes BKM Diagnostic",
+    status: "complete",
+    summary: "Pseudospectral 2D NS on RTX 5090: Taylor–Green validation + random-IC BKM sweep, zero NaN/Inf.",
+    key_results: {
+      grid_smoke: "256²",
+      grid_standard: "512²",
+      bkm_taylor_green: 12.8,
+      bkm_random: 1.77,
+      throughput_512: "532 steps/s",
+    },
+    cuda_kernel: "scripts/experiments/cfd-ns-bkm/ns2d_bkm.cu",
+    compile: "nvcc -O3 -arch=sm_120 -o ns2d_bkm scripts/experiments/cfd-ns-bkm/ns2d_bkm.cu -lcufft -lm",
+    run: "./ns2d_bkm 512 0.0001 5000 0.005 random",
+    dataset: "cahlen/cfd-ns-bkm",
+  },
+  {
+    slug: "cfd-ns3d-bkm",
+    title: "CFD Phase 3: 3D Navier–Stokes BKM Blowup Search",
+    status: "complete",
+    summary: "3D vorticity-form NS with vortex stretching on RTX 5090: 128³ random IC, zero NaN/Inf.",
+    key_results: {
+      grid_smoke: "64³",
+      grid_standard: "128³",
+      bkm_smoke: 1.63,
+      bkm_standard: 1.24,
+      throughput_128: "23 steps/s",
+    },
+    cuda_kernel: "scripts/experiments/cfd-ns3d-bkm/ns3d_bkm.cu",
+    compile: "nvcc -O3 -arch=sm_120 -o ns3d_bkm scripts/experiments/cfd-ns3d-bkm/ns3d_bkm.cu -lcufft -lm",
+    run: "./ns3d_bkm 128 0.001 1000 0.002 random",
+    dataset: "cahlen/cfd-ns3d-bkm",
+  },
 ];
 
 const DATASETS = [
@@ -120,6 +154,8 @@ const DATASETS = [
   { id: "cahlen/continued-fraction-spectra", description: "Hausdorff dimensions, Lyapunov exponents, Minkowski spectrum, Flint Hills", size: "140 MB" },
   { id: "cahlen/zaremba-conjecture-data", description: "Dolgopyat profile, representation counts", size: "13 MB" },
   { id: "cahlen/cfd-chaotic-advection", description: "Chirikov standard map Lyapunov spectrum (3 sweep configs)", size: "210 KB" },
+  { id: "cahlen/cfd-ns-bkm", description: "2D NS BKM diagnostic CSVs (Taylor–Green + random IC)", size: "500 KB" },
+  { id: "cahlen/cfd-ns3d-bkm", description: "3D NS BKM blowup-search CSVs", size: "200 KB" },
 ];
 
 // ─── Findings with academic context ──────────────────────────────

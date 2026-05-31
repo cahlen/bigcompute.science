@@ -1,0 +1,8 @@
+{
+  "experiment": "cfd-ns3d-bkm",
+  "grid": 128,
+  "nu": 0.001,
+  "steps": 1000,
+  "final_bkm": 1.2437208914,
+  "dataset": "https://huggingface.co/datasets/cahlen/cfd-ns3d-bkm"
+}

@@ -32,7 +32,7 @@ results:
   validation_k0: "Λ(0) = 0 (integrable limit)"
   throughput: "143,901 trajectories/s (deep sweep)"
 
-summary: "First CFD experiment on bigcompute: Chirikov standard map Lyapunov spectrum on RTX 5090. Deep certifying sweep (16.8M trajectories, 116.6s). Finding published: Λ(K) at literature K_crit."
+summary: "CFD program entry point (chaotic-advection surrogate; Navier–Stokes phases started May 27): Chirikov standard map Lyapunov spectrum on RTX 5090. Deep certifying sweep (16.8M trajectories, 116.6s). Finding published: Λ(K) at literature K_crit."
 
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/cfd-chaotic-advection
 data: /data/cfd-chaotic-advection/

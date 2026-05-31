@@ -5,8 +5,9 @@ import certData from '../data/certifications.json';
 const { frontmatter } = Astro.props;
 const { title, date, author, status, hardware, tags, results } = frontmatter;
 
-// Look up full review data from manifest-derived certifications
-const certEntry = certData.certifications.find((c: any) => c.slug === frontmatter.slug);
+// Look up certification by finding slug (experiment slug often differs, e.g. cfd-chaotic-advection → cfd-standard-map-chaos-onset)
+const findingSlug = (frontmatter.finding || '').match(/\/findings\/([^/]+)/)?.[1] ?? frontmatter.slug;
+const certEntry = certData.certifications.find((c: any) => c.slug === findingSlug);
 const certLevel = certEntry?.level ?? frontmatter.certification?.level ?? 'uncertified';
 const certReviews = certEntry?.reviews ?? [];
 const certNote = frontmatter.certification?.note ?? '';
@@ -43,8 +44,8 @@ function renderMath(s: string): string {
   out = out.replace(/(\d+\.?\d*)[eE]\+?(\d+)/g, (_: string, m: string, exp: string) => m + '×10' + toSup(exp));
   // Symbols
   out = out.replace(/>=/g, '≥').replace(/<=/g, '≤').replace(/->/g, '→');
-  // Add commas to remaining 4-6 digit numbers
-  out = out.replace(/\b(\d{4,6})\b/g, (_: string, num: string) => parseInt(num).toLocaleString());
+  // Add commas to standalone 4-6 digit integers (skip fractional digits after a decimal point)
+  out = out.replace(/(?<!\.\d*)\b(\d{4,6})\b(?!\.\d)/g, (_: string, num: string) => parseInt(num).toLocaleString());
   return out;
 }
 

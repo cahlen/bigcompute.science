@@ -58,6 +58,8 @@ on a single **NVIDIA RTX 5090** using a custom **CUDA + cuFFT** pseudospectral k
 | Blowup search (long) | 256³ | 1e-4 | 0.001 | Random blob | 2000 | BKM ≈ **1.76**; max $\|\omega\| \approx 0.887$ at $t=2.0$; **880 s** |
 | Blowup search (5000) | 256³ | 1e-4 | 0.001 | Random blob | 5000 | BKM ≈ **4.45**; max $\|\omega\| \approx 0.903$ at $t=5.0$; **2190 s** |
 | Taylor–Green | 256³ | 1e-3 | 0.001 | Taylor–Green | 1000 | BKM ≈ **4.23**; max $\|\omega\| \approx 4.44$ at $t=1.0$ |
+| Kerr (ν sweep) | 256³ | 1e-4 | 0.001 | Kerr tubes | 2000 | BKM ≈ **9.99**; max $\|\omega\| \approx 5.0$; **5.7×** random BKM |
+| Kerr (ν sweep) | 256³ | 1e-3 | 0.001 | Kerr tubes | 1000 | BKM ≈ **4.99** vs random **0.88** at $t=1.0$ |
 
 Both runs: **zero NaN/Inf** (exit certificate). **No finite-time blowup signal** at these resolutions and Reynolds numbers.
 
@@ -97,6 +99,22 @@ Velocity from Fourier space: $\hat{\mathbf{u}} = i(\mathbf{k}\times\hat{\boldsym
 - Sufficient resolution to resolve inertial-range turbulence or blowup-scale structures
 - Comparison to published 3D benchmark DNS at identical Re
 
+## Phase 5: Kerr-type IC and viscosity sweep
+
+We added a **Kerr-class antiparallel vortex-tube** initializer (z-aligned Gaussian filaments at $x = \pi \pm 0.55$, Crow-type 3D perturbation) and ran a **256³** viscosity sweep:
+
+| IC | $\nu$ | $T$ | BKM | max $\|\omega\|_\infty$ |
+|----|-------|-----|-----|------------------------|
+| Kerr | $10^{-3}$ | 1.0 | **4.99** | 5.0 |
+| Random | $10^{-3}$ | 1.0 | 0.88 | 0.88 |
+| Kerr | $10^{-4}$ | 2.0 | **9.99** | 5.0 |
+| Random | $10^{-4}$ | 2.0 | 1.76 | 0.89 |
+| Kerr | $10^{-5}$ | 1.0 | **4.99** | 5.0 |
+
+Structured Kerr IC drives **~5–6× higher BKM** than random blob at matched $(N, \nu, T)$ — better aligned with blowup-search literature (Kerr 1993). Still **zero NaN/Inf**; vorticity bounded at tested resolution. HF configs `kerr_nu1e-03`, `kerr_nu1e-04`, `kerr_nu1e-05`.
+
+![Kerr vs random BKM at ν=10⁻⁴](/data/cfd-ns3d-bkm/kerr_vs_random_nu1e-04.svg)
+
 ## Phase 4: targeted blowup search
 
 We ran **256³** random-IC sweeps at $\nu = 10^{-4}$, $\Delta t = 0.001$: 500-, 2000-, and **5000-step** certifying runs (BKM **≈ 4.45** by $t=5.0$). A **256³ Taylor–Green** benchmark at $\nu = 10^{-3}$ reached BKM **≈ 4.23** by $t=1.0$. Vorticity remains bounded in all runs — **zero NaN/Inf**. **512³** exceeds 32 GB VRAM on RTX 5090. Data in Hugging Face configs `blowup_search`, `blowup_search_long`, `blowup_search_5000`, and `taylor_green_256`.
@@ -114,6 +132,9 @@ cd idontknow
 ./scripts/experiments/cfd-ns3d-bkm/run.sh 256 0.0001 2000 0.001 random
 ./scripts/experiments/cfd-ns3d-bkm/run.sh 256 0.0001 5000 0.001 random
 ./scripts/experiments/cfd-ns3d-bkm/run.sh 256 0.001 1000 0.001 taylor-green
+./scripts/experiments/cfd-ns3d-bkm/run.sh 256 0.001 1000 0.001 kerr
+./scripts/experiments/cfd-ns3d-bkm/run.sh 256 0.0001 2000 0.001 kerr
+./scripts/experiments/cfd-ns3d-bkm/run_phase5_kerr_sweep.sh   # full ν sweep
 ```
 
 *Human–AI collaboration. Silver-certified (2026-05-31). All code open for verification.*

@@ -1,5 +1,10 @@
 [
   {
+    "hash": "7ad1441",
+    "date": "May 31",
+    "message": "Auto-generate Recent Updates changelog from git log on build."
+  },
+  {
     "hash": "10cdcac",
     "date": "May 31",
     "message": "Sync audit ledger with CFD remediation issue counts."
@@ -43,10 +48,5 @@
     "hash": "401154d",
     "date": "May 30",
     "message": "Link CFD finding to Hugging Face dataset and validation data."
-  },
-  {
-    "hash": "71e94b4",
-    "date": "May 30",
-    "message": "Add claim validation section for maximal Lyapunov exponent wording."
   }
 ]

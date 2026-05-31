@@ -26,6 +26,16 @@
       "final_max_vorticity": 0.8777309366,
       "throughput_steps_per_s": 2.3,
       "elapsed_s": 220.83
+    },
+    "blowup_search_long": {
+      "grid": 256,
+      "nu": 0.0001,
+      "dt": 0.001,
+      "steps": 2000,
+      "final_bkm": 1.7619040326,
+      "final_max_vorticity": 0.8872910731,
+      "throughput_steps_per_s": 2.3,
+      "elapsed_s": 880.04
     }
   }
 }

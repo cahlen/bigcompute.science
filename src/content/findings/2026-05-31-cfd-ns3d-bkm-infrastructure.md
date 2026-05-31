@@ -55,6 +55,7 @@ on a single **NVIDIA RTX 5090** using a custom **CUDA + cuFFT** pseudospectral k
 | Smoke | 64³ | 0.01 | 0.002 | Taylor–Green | 200 | BKM ≈ **1.63**; max $\|\omega\| \approx 4.17$ at $t=0.4$ |
 | Standard | 128³ | 1e-3 | 0.002 | Random blob | 1000 | BKM ≈ **1.24**; max $\|\omega\| \approx 0.614$ at $t=2.0$ |
 | Blowup search | 256³ | 1e-4 | 0.001 | Random blob | 500 | BKM ≈ **0.44**; max $\|\omega\| \approx 0.878$ at $t=0.5$; **2.3 steps/s** |
+| Blowup search (long) | 256³ | 1e-4 | 0.001 | Random blob | 2000 | BKM ≈ **1.76**; max $\|\omega\| \approx 0.887$ at $t=2.0$; **880 s** |
 
 Both runs: **zero NaN/Inf** (exit certificate). **No finite-time blowup signal** at these resolutions and Reynolds numbers.
 
@@ -96,7 +97,7 @@ Velocity from Fourier space: $\hat{\mathbf{u}} = i(\mathbf{k}\times\hat{\boldsym
 
 ## Next: targeted blowup search
 
-We ran a **256³** random-IC sweep at $\nu = 10^{-4}$, $\Delta t = 0.001$, 500 steps (220 s wall time, **2.3 steps/s**). BKM integral **≈ 0.44** by $t=0.5$; vorticity remains bounded — **zero NaN/Inf**. Data in Hugging Face config `blowup_search`.
+We ran **256³** random-IC sweeps at $\nu = 10^{-4}$, $\Delta t = 0.001$: a 500-step certifying run (BKM **≈ 0.44** by $t=0.5$) and an extended **2000-step** run (BKM **≈ 1.76** by $t=2.0$). Vorticity remains bounded — **zero NaN/Inf**. Data in Hugging Face configs `blowup_search` and `blowup_search_long`.
 
 **Data:** [Hugging Face cahlen/cfd-ns3d-bkm](https://huggingface.co/datasets/cahlen/cfd-ns3d-bkm) · [Experiment](/experiments/cfd-ns3d-bkm/) · [Phase 2 finding](/findings/cfd-ns-bkm-diagnostic/)
 
@@ -108,6 +109,7 @@ cd idontknow
 ./scripts/experiments/cfd-ns3d-bkm/run.sh 64 0.01 200 0.002 taylor-green
 ./scripts/experiments/cfd-ns3d-bkm/run.sh 128 0.001 1000 0.002 random
 ./scripts/experiments/cfd-ns3d-bkm/run.sh 256 0.0001 500 0.001 random
+./scripts/experiments/cfd-ns3d-bkm/run.sh 256 0.0001 2000 0.001 random
 ```
 
 *Human–AI collaboration. Silver-certified (2026-05-31). All code open for verification.*

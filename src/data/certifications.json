@@ -1,14 +1,49 @@
 {
-  "generated_at": "2026-05-31T05:55:49Z",
+  "generated_at": "2026-05-31T07:13:14Z",
   "stats": {
-    "findings_audited": 18,
-    "total_reviews": 56,
+    "findings_audited": 20,
+    "total_reviews": 62,
     "issues_discovered": 217,
     "issues_fixed": 200,
     "unique_models": 8,
     "unique_providers": 4
   },
   "certifications": [
+    {
+      "slug": "cfd-ns3d-bkm-infrastructure",
+      "title": "3D NS BKM Infrastructure: First Certifying Pseudospectral Blowup-Monitor Runs on RTX 5090",
+      "level": "silver",
+      "review_count": 3,
+      "verdict_summary": "Accept w/ revision (3 reviews)",
+      "models_summary": "gemini-2.5-pro + gpt-4.1 + o3-pro",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-05-31T07:15:00Z",
+      "reviews": [
+        {
+          "date": "2026-05-31",
+          "model": "gemini-2.5-pro",
+          "provider": "Google",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-05-31",
+          "model": "gpt-4.1",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-05-31",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        }
+      ],
+      "remediations": []
+    },
     {
       "slug": "cfd-standard-map-chaos-onset",
       "title": "Standard Map Chaos Onset: \u039b(K) Crosses Literature K_crit on RTX 5090",
@@ -746,6 +781,41 @@
           "commit": "e37fcff"
         }
       ]
+    },
+    {
+      "slug": "cfd-ns-bkm-diagnostic",
+      "title": "2D NS BKM Diagnostic: Certifying Pseudospectral Vorticity Tracking on RTX 5090",
+      "level": "bronze",
+      "review_count": 3,
+      "verdict_summary": "Accept w/ revision (3 reviews)",
+      "models_summary": "gemini-2.5-pro + gpt-4.1 + o3-pro",
+      "issues_found": 0,
+      "issues_resolved": 0,
+      "last_reviewed": "2026-05-31T06:10:53Z",
+      "reviews": [
+        {
+          "date": "2026-05-31",
+          "model": "gemini-2.5-pro",
+          "provider": "Google",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-05-31",
+          "model": "gpt-4.1",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-05-31",
+          "model": "o3-pro",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "bronze"
+        }
+      ],
+      "remediations": []
     },
     {
       "slug": "gpu-matrix-enumeration-175x",

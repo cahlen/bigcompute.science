@@ -107,7 +107,7 @@ $$\omega_t + \mathbf{u}\cdot\nabla\omega = \nu\nabla^2\omega, \quad \omega = -\n
 - Resolution-independent convergence study (future work)
 - Comparison to published 2D NS benchmarks at identical Re (grid differs)
 
-**Data:** [Hugging Face cahlen/cfd-ns-bkm](https://huggingface.co/datasets/cahlen/cfd-ns-bkm) · [Experiment](/experiments/cfd-ns-bkm/) · [Phase 3 3D extension](/experiments/cfd-ns3d-bkm/)
+**Data:** [Hugging Face cahlen/cfd-ns-bkm](https://huggingface.co/datasets/cahlen/cfd-ns-bkm) · [Experiment](/experiments/cfd-ns-bkm/) · [Phase 3 finding](/findings/cfd-ns3d-bkm-infrastructure/)
 
 ## Reproduction
 

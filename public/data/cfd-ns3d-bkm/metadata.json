@@ -1,8 +1,31 @@
 {
   "experiment": "cfd-ns3d-bkm",
-  "grid": 128,
-  "nu": 0.001,
-  "steps": 1000,
-  "final_bkm": 1.2437208914,
-  "dataset": "https://huggingface.co/datasets/cahlen/cfd-ns3d-bkm"
+  "finding": "https://bigcompute.science/findings/cfd-ns3d-bkm-infrastructure/",
+  "dataset": "https://huggingface.co/datasets/cahlen/cfd-ns3d-bkm",
+  "runs": {
+    "smoke_taylor_green": {
+      "grid": 64,
+      "nu": 0.01,
+      "steps": 200,
+      "final_bkm": 1.63
+    },
+    "standard_random": {
+      "grid": 128,
+      "nu": 0.001,
+      "steps": 1000,
+      "final_bkm": 1.2437208914,
+      "final_max_vorticity": 0.614,
+      "throughput_steps_per_s": 22.9
+    },
+    "blowup_search": {
+      "grid": 256,
+      "nu": 0.0001,
+      "dt": 0.001,
+      "steps": 500,
+      "final_bkm": 0.4380181085,
+      "final_max_vorticity": 0.8777309366,
+      "throughput_steps_per_s": 2.3,
+      "elapsed_s": 220.83
+    }
+  }
 }

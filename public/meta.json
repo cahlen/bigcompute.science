@@ -2,7 +2,7 @@
   "name": "bigcompute.science",
   "description": "Open computational mathematics on GPUs. AI-audited, not peer-reviewed.",
   "url": "https://bigcompute.science",
-  "generated_at": "2026-05-31T05:41:42Z",
+  "generated_at": "2026-05-31T05:47:22Z",
   "author": {
     "name": "Cahlen Humphreys",
     "github": "https://github.com/cahlen",
@@ -11,7 +11,7 @@
   "license": "CC-BY-4.0",
   "stats": {
     "findings": 18,
-    "reviews": 54,
+    "reviews": 56,
     "issues": 217,
     "issues_fixed": 200,
     "models": [
@@ -19,12 +19,14 @@
       "Claude Opus 4.6",
       "GPT-5.2",
       "Grok",
+      "gemini-2.5-pro",
       "gpt-4.1",
       "o3",
       "o3-pro"
     ],
     "providers": [
       "Anthropic",
+      "Google",
       "OpenAI",
       "xAI"
     ]
@@ -83,7 +85,7 @@
     "research_agent": "https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_research_agent.ipynb",
     "mcp_explorer": "https://colab.research.google.com/github/cahlen/bigcompute.science/blob/main/public/notebooks/bigcompute_mcp_explorer.ipynb"
   },
-  "ai_disclosure": "Human-AI collaborative. 7 models, 3 providers. Not peer-reviewed.",
+  "ai_disclosure": "Human-AI collaborative. 8 models, 4 providers. Not peer-reviewed.",
   "recommended_citation_verbs": {
     "safe": [
       "computed",

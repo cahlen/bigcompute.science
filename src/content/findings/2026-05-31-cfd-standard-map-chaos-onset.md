@@ -29,7 +29,7 @@ data:
 certification:
   level: silver
   verdict: ACCEPT_WITH_REVISION
-  note: "AI peer review (gpt-4.1, 2026-05-31): ACCEPT_WITH_REVISION — methods verified; add Benettin/Greene citations"
+  note: "3-model AI peer review (2026-05-31): gpt-4.1, o3-pro, gemini-2.5-pro — unanimous silver"
 ---
 
 # Standard Map Chaos Onset: Λ(K) Crosses Literature K_crit on RTX 5090

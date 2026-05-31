@@ -1,28 +1,42 @@
 {
-  "generated_at": "2026-05-31T05:41:42Z",
+  "generated_at": "2026-05-31T05:47:22Z",
   "stats": {
     "findings_audited": 18,
-    "total_reviews": 54,
+    "total_reviews": 56,
     "issues_discovered": 217,
     "issues_fixed": 200,
-    "unique_models": 7,
-    "unique_providers": 3
+    "unique_models": 8,
+    "unique_providers": 4
   },
   "certifications": [
     {
       "slug": "cfd-standard-map-chaos-onset",
       "title": "Standard Map Chaos Onset: \u039b(K) Crosses Literature K_crit on RTX 5090",
       "level": "silver",
-      "review_count": 1,
-      "verdict_summary": "Accept w/ revision (1 reviews)",
-      "models_summary": "gpt-4.1",
+      "review_count": 3,
+      "verdict_summary": "Accept w/ revision (3 reviews)",
+      "models_summary": "gemini-2.5-pro + gpt-4.1 + o3-pro",
       "issues_found": 0,
       "issues_resolved": 0,
-      "last_reviewed": "2026-05-31T05:41:30Z",
+      "last_reviewed": "2026-05-31T05:47:19Z",
       "reviews": [
         {
           "date": "2026-05-31",
+          "model": "gemini-2.5-pro",
+          "provider": "Google",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-05-31",
           "model": "gpt-4.1",
+          "provider": "OpenAI",
+          "verdict": "ACCEPT_WITH_REVISION",
+          "level": "silver"
+        },
+        {
+          "date": "2026-05-31",
+          "model": "o3-pro",
           "provider": "OpenAI",
           "verdict": "ACCEPT_WITH_REVISION",
           "level": "silver"

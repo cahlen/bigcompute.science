@@ -4,7 +4,7 @@ slug: cfd-chaotic-advection
 date: 2026-05-31
 author: cahlen
 author_github: https://github.com/cahlen
-status: running
+status: complete
 
 hardware:
   name: NVIDIA GeForce RTX 5090
@@ -26,10 +26,12 @@ tags:
 results:
   problem: "Map K → largest Lyapunov exponent Λ(K) for the Chirikov standard map on T²"
   conjecture_class: "Integrability-to-chaos transition in area-preserving advection (K_crit ≈ 0.972)"
-  status: "RUNNING — initial kernel + smoke test on RTX 5090"
-  default_sweep: "512 K × 4096 ICs × 20000 iterations, K ∈ [0, 5]"
+  status: "COMPLETE — 2,097,152 trajectories in 5.93s on RTX 5090, zero NaN/Inf"
+  sweep: "512 K × 4096 ICs × 20000 iterations, K ∈ [0, 5]"
+  validation_k0: "Λ(0) = 0 (integrable limit)"
+  throughput: "353,541 trajectories/s"
 
-summary: "First CFD experiment on bigcompute: custom CUDA kernel sweeps Lyapunov exponents of the standard map — canonical model for chaotic advection in 2D incompressible flows. Sized for single RTX 5090."
+summary: "First CFD experiment on bigcompute: custom CUDA kernel sweeps Lyapunov exponents of the standard map on RTX 5090. 2.1M trajectories, certifying CSV + log, zero numerical failures."
 
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/cfd-chaotic-advection
 related: https://github.com/enfuse/cfd-ai-poc

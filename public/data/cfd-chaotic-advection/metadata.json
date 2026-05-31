@@ -1,0 +1,22 @@
+{
+  "experiment": "cfd-chaotic-advection",
+  "date": "2026-05-31",
+  "hardware": "NVIDIA GeForce RTX 5090 (32 GB)",
+  "cuda": "13.0",
+  "kernel": "scripts/experiments/cfd-chaotic-advection/standard_map_lyapunov.cu",
+  "deep_sweep": {
+    "n_k": 2048,
+    "n_ic": 8192,
+    "n_iters": 50000,
+    "k_max": 5.0,
+    "trajectories": 16777216,
+    "elapsed_s": 116.59,
+    "nan_inf": 0,
+    "csv": "lyapunov_k2048_ic8192_iter50000.csv"
+  },
+  "validation": {
+    "lambda_at_k0": 0.0,
+    "mean_lambda_at_k_crit": 0.0445638827,
+    "k_crit_literature": 0.971635406
+  }
+}

@@ -26,15 +26,17 @@ tags:
 results:
   problem: "Map K → largest Lyapunov exponent Λ(K) for the Chirikov standard map on T²"
   conjecture_class: "Integrability-to-chaos transition in area-preserving advection (K_crit ≈ 0.972)"
-  status: "COMPLETE — 2,097,152 trajectories in 5.93s on RTX 5090, zero NaN/Inf"
-  sweep: "512 K × 4096 ICs × 20000 iterations, K ∈ [0, 5]"
+  status: "COMPLETE — 16,777,216 trajectories in 116.6s (deep certifying sweep), zero NaN/Inf"
+  sweep: "2048 K × 8192 ICs × 50000 iterations, K ∈ [0, 5]"
+  mean_lambda_at_k_crit: 0.0446
   validation_k0: "Λ(0) = 0 (integrable limit)"
-  throughput: "353,541 trajectories/s"
+  throughput: "143,901 trajectories/s (deep sweep)"
 
-summary: "First CFD experiment on bigcompute: custom CUDA kernel sweeps Lyapunov exponents of the standard map on RTX 5090. 2.1M trajectories, certifying CSV + log, zero numerical failures."
+summary: "First CFD experiment on bigcompute: Chirikov standard map Lyapunov spectrum on RTX 5090. Deep certifying sweep (16.8M trajectories, 116.6s). Finding published: Λ(K) at literature K_crit."
 
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/cfd-chaotic-advection
 related: https://github.com/enfuse/cfd-ai-poc
+finding: /findings/cfd-standard-map-chaos-onset/
 ---
 
 # CFD Chaotic Advection: Standard Map Lyapunov Spectrum
@@ -76,7 +78,7 @@ Requires CUDA 13+, RTX 5090 (`-arch=sm_120`) or adjust architecture flag.
 
 ## Next steps
 
-- Compare empirical chaos onset against literature $K_{\mathrm{crit}}$
+- ~~Compare empirical chaos onset against literature $K_{\mathrm{crit}}$~~ → [finding](/findings/cfd-standard-map-chaos-onset/)
 - Extend to **linked twist maps** and **sinewave flow** models tied to `cfd` wing-case mixing
 - Phase 2: 2D pseudospectral Navier–Stokes blowup search (Beale–Kato–Majda)
 

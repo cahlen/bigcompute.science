@@ -36,6 +36,17 @@
       "final_max_vorticity": 0.8872910731,
       "throughput_steps_per_s": 2.3,
       "elapsed_s": 880.04
-    }
+    },
+    "taylor_green_256": {
+      "grid": 256,
+      "nu": 0.001,
+      "dt": 0.001,
+      "steps": 1000,
+      "final_bkm": 4.2285954205,
+      "final_max_vorticity": 4.4376970995,
+      "throughput_steps_per_s": 2.3,
+      "elapsed_s": 439.29
+    },
+    "vram_note": "512^3 OOM on RTX 5090 32GB; grid N must be power of 2"
   }
 }

@@ -27,9 +27,9 @@ data:
   status: "CONFIRMED — certifying run, zero numerical failures"
 
 certification:
-  level: bronze
-  verdict: PENDING_REVIEW
-  note: "First CFD finding on bigcompute; awaiting AI peer review"
+  level: silver
+  verdict: ACCEPT_WITH_REVISION
+  note: "AI peer review (gpt-4.1, 2026-05-31): ACCEPT_WITH_REVISION — methods verified; add Benettin/Greene citations"
 ---
 
 # Standard Map Chaos Onset: Λ(K) Crosses Literature K_crit on RTX 5090
@@ -56,6 +56,14 @@ $$\bar{\Lambda}(K_{\mathrm{crit}}) \approx 0.0446, \qquad \text{fraction}(\Lambd
 At $K = 5$: $\bar{\Lambda} \approx 0.956$ (fully developed chaos in our sampling).
 
 ![Lyapunov spectrum](/data/cfd-chaotic-advection/lyapunov_spectrum.svg)
+
+## Important nuance (read before interpreting the curve)
+
+**Finite-time sensitivity is not global chaos.** Our Benettin estimate uses 50,000 iterations per initial condition. At small $K$, some individual ICs can show slightly **negative** finite-time $\Lambda$ (regular islands, slow convergence) even while the **mean** over 8192 ICs is positive. The heuristic “onset” where $\bar{\Lambda} > 0.01$ appears near $K \approx 0.75$ is therefore **not** the literature chaos threshold $K_{\mathrm{crit}} \approx 0.972$ — it marks where finite-time tangent growth becomes detectable in our sampling, not where the phase space is globally chaotic.
+
+**Mean $\bar{\Lambda}(K)$ is not strictly monotonic.** The deep sweep shows tiny non-monotonic wiggles in $\bar{\Lambda}(K)$ at the grid level (IC sampling noise at fixed iteration count). The overall trend is increasing; we do not claim a theorem of monotonicity.
+
+**What we do claim:** at the established $K_{\mathrm{crit}}$, our certifying sweep finds $\bar{\Lambda} \approx 0.045$ with $>99.9\%$ of ICs positive — consistent with the known integrability-to-chaos transition, not a new threshold estimate.
 
 ## Why This Matters for CFD
 
@@ -85,7 +93,7 @@ $\bar{\Lambda}(0) = 0$ exactly (within floating point), as expected for $K=0$ (p
 | 2.0 | 0.332 | 100% |
 | 5.0 | 0.956 | 100% |
 
-$\bar{\Lambda}(K)$ increases monotonically in our grid. The transition is **gradual**, not a sharp step — consistent with a progressive invasion of chaotic orbits near $K_{\mathrm{crit}}$ rather than an instantaneous flip.
+$\bar{\Lambda}(K)$ **generally increases** with $K$ on our grid; small non-monotonic wiggles appear from finite IC sampling (see nuance above). The transition is **gradual**, not a sharp step — consistent with a progressive invasion of chaotic orbits near $K_{\mathrm{crit}}$ rather than an instantaneous flip.
 
 ### Reproducibility
 
@@ -101,12 +109,15 @@ python3 scripts/experiments/cfd-chaotic-advection/plot_lyapunov.py \
 ## Limitations (to our knowledge)
 
 - We estimate **one** Lyapunov exponent via Benettin averaging, not the full Lyapunov spectrum.
-- 50,000 iterations may not saturate for near-integrable orbits at small $K$; the early “onset” heuristic ($\bar{\Lambda} > 0.01$ at $K \approx 0.75$) is **not** the same as $K_{\mathrm{crit}}$ — it reflects finite-time sensitivity, not global chaos.
+- 50,000 iterations may not saturate Lyapunov estimates for near-integrable orbits at small $K$; per-IC negative finite-time $\Lambda$ values can occur while ensemble means are positive.
+- We do **not** refine $K_{\mathrm{crit}}$; we compare against the literature value at our grid resolution.
 - Not peer-reviewed. AI audit pending.
 
 ## References
 
+- Benettin, G., Galgani, L., Giorgilli, A., Strelcyn, J.-M. (1980). *Meccanica* — Lyapunov characteristic exponents (Benettin method)
 - Chirikov, B. V. (1979). *Phys. Rep.* — standard map
+- Greene, J. M. (1979). *J. Math. Phys.* — stochastic threshold for the standard map
 - Aref, H. (1984). *J. Fluid Mech.* — chaotic advection
 - Ottino, J. M. (1989). *The Kinematics of Mixing*
 

@@ -4,6 +4,8 @@
   "hardware": "NVIDIA GeForce RTX 5090 (32 GB)",
   "cuda": "13.0",
   "kernel": "scripts/experiments/cfd-chaotic-advection/standard_map_lyapunov.cu",
+  "dataset": "https://huggingface.co/datasets/cahlen/cfd-chaotic-advection",
+  "cuda_kernels": "https://huggingface.co/cahlen/bigcompute-cuda-kernels/tree/main/cfd-chaotic-advection",
   "deep_sweep": {
     "n_k": 2048,
     "n_ic": 8192,

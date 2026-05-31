@@ -93,6 +93,25 @@ const EXPERIMENTS = [
     compile: "nvcc -O3 -arch=sm_90 -o ramanujan_gpu scripts/experiments/ramanujan-machine/ramanujan_gpu.cu -lm",
     run: "./ramanujan_gpu 2 10 500",
   },
+  {
+    slug: "cfd-chaotic-advection",
+    title: "CFD Chaotic Advection: Standard Map Lyapunov Spectrum",
+    status: "complete",
+    summary: "Chirikov standard map Λ(K) on RTX 5090: 16.8M trajectories in 116.6s, zero NaN/Inf. At K_crit ≈ 0.972, mean Λ ≈ 0.045.",
+    key_results: {
+      trajectories: "16.8M",
+      k_grid: 2048,
+      ic_per_k: 8192,
+      iterations: 50000,
+      mean_lambda_at_k_crit: 0.0446,
+      validation_k0: 0.0,
+      elapsed_s: 116.6,
+    },
+    cuda_kernel: "scripts/experiments/cfd-chaotic-advection/standard_map_lyapunov.cu",
+    compile: "nvcc -O3 -arch=sm_120 -o standard_map_lyapunov scripts/experiments/cfd-chaotic-advection/standard_map_lyapunov.cu -lm",
+    run: "./standard_map_lyapunov 2048 8192 50000 5.0",
+    dataset: "cahlen/cfd-chaotic-advection",
+  },
 ];
 
 const DATASETS = [
@@ -100,6 +119,7 @@ const DATASETS = [
   { id: "cahlen/kronecker-coefficients", description: "S_20 full tensor + S_30 nonzero triples + character tables", size: "370 GB" },
   { id: "cahlen/continued-fraction-spectra", description: "Hausdorff dimensions, Lyapunov exponents, Minkowski spectrum, Flint Hills", size: "140 MB" },
   { id: "cahlen/zaremba-conjecture-data", description: "Dolgopyat profile, representation counts", size: "13 MB" },
+  { id: "cahlen/cfd-chaotic-advection", description: "Chirikov standard map Lyapunov spectrum (3 sweep configs)", size: "210 KB" },
 ];
 
 // ─── Findings with academic context ──────────────────────────────

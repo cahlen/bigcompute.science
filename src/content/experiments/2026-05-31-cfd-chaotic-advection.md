@@ -35,6 +35,9 @@ results:
 summary: "First CFD experiment on bigcompute: Chirikov standard map Lyapunov spectrum on RTX 5090. Deep certifying sweep (16.8M trajectories, 116.6s). Finding published: Λ(K) at literature K_crit."
 
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/cfd-chaotic-advection
+data: /data/cfd-chaotic-advection/
+dataset: https://huggingface.co/datasets/cahlen/cfd-chaotic-advection
+cuda_kernels: https://huggingface.co/cahlen/bigcompute-cuda-kernels/tree/main/cfd-chaotic-advection
 related: https://github.com/enfuse/cfd-ai-poc
 finding: /findings/cfd-standard-map-chaos-onset/
 ---

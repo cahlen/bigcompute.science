@@ -38,7 +38,6 @@ code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/cfd-chao
 data: /data/cfd-chaotic-advection/
 dataset: https://huggingface.co/datasets/cahlen/cfd-chaotic-advection
 cuda_kernels: https://huggingface.co/cahlen/bigcompute-cuda-kernels/tree/main/cfd-chaotic-advection
-related: https://github.com/enfuse/cfd-ai-poc
 finding: /findings/cfd-standard-map-chaos-onset/
 ---
 
@@ -82,7 +81,7 @@ Requires CUDA 13+, RTX 5090 (`-arch=sm_120`) or adjust architecture flag.
 ## Next steps
 
 - ~~Compare empirical chaos onset against literature $K_{\mathrm{crit}}$~~ → [finding](/findings/cfd-standard-map-chaos-onset/)
-- Extend to **linked twist maps** and **sinewave flow** models tied to `cfd` wing-case mixing
+- Extend to **linked twist maps** and **sinewave flow** models for laminar chaotic mixing
 - Phase 2: 2D pseudospectral Navier–Stokes blowup search (Beale–Kato–Majda)
 
 *Human–AI collaboration. Not peer-reviewed. All code open for verification.*

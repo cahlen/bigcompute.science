@@ -73,7 +73,7 @@ $$p' = p + K\sin\theta, \qquad \theta' = \theta + p' \pmod{2\pi}$$
 
 is area-preserving on $\mathbb{T}^2$. The same structure appears in **Stokes flow with periodic forcing**: passive tracers can mix chaotically even when the velocity field is laminar (Aref 1984; Ottino 1989).
 
-Our [cfd](https://github.com/enfuse/cfd-ai-poc) project studies wing aerodynamics with SU2 RANS and neural surrogates, but has **no custom CUDA conjecture program** yet. This experiment is the first **bigcompute-style CFD kernel**: reduce a fluid-mixing question to a parallel GPU primitive, certify the run, publish immediately.
+This experiment is the first **bigcompute-style CFD kernel**: reduce a fluid-mixing question to a parallel GPU primitive, certify the run, publish immediately.
 
 The map connects to our **transfer-operator / Hausdorff** work: both study ergodic properties of composition operators; here the “digits” are replaced by a physical coupling parameter $K$.
 
@@ -121,4 +121,4 @@ python3 scripts/experiments/cfd-chaotic-advection/plot_lyapunov.py \
 - Aref, H. (1984). *J. Fluid Mech.* — chaotic advection
 - Ottino, J. M. (1989). *The Kinematics of Mixing*
 
-*Human–AI collaboration. Code: [idontknow/cfd-chaotic-advection](https://github.com/cahlen/idontknow/tree/main/scripts/experiments/cfd-chaotic-advection). Related aerospace CFD: [enfuse/cfd-ai-poc](https://github.com/enfuse/cfd-ai-poc).*
+*Human–AI collaboration. Code: [idontknow/cfd-chaotic-advection](https://github.com/cahlen/idontknow/tree/main/scripts/experiments/cfd-chaotic-advection).*

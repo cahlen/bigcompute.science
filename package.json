@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check-links": "python3 scripts/check_links.py"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.0",

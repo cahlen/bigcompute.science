@@ -186,7 +186,7 @@ The jump from 2 to 3 elements is the phase transition: 57.98% → 99.997%.
 
 Note $\{2,3,4\}$ (no digit 1) has only 24.6% density — the same cardinality as $\{1,2,3\}$ at 99.997%. Digit 1 accounts for a **75 percentage point** difference.
 
-**Dataset:** [density_all_subsets_n10_1e6.csv](https://huggingface.co/datasets/cahlen/zaremba-conjecture-data/blob/main/density/density_all_subsets_n10_1e6.csv) on Hugging Face (1,023 rows, CC BY 4.0). Generation script and SHA-256 checksum available in the GitHub repository.
+**Dataset:** [`density_all_subsets_n10_1e6.csv`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-density/results/density_all_subsets_n10_1e6.csv) on GitHub (1,023 rows, CC BY 4.0). Generation script and SHA-256 checksum available in the repository.
 
 ## Update: 10^11 Stable Candidate Exception Sets (2026-04-23 Audit)
 

@@ -41,7 +41,6 @@ results:
 summary: "Multifractal singularity spectrum f(alpha) of the Minkowski question-mark function, computed via weighted transfer operator in 4.9 seconds on RTX 5090."
 
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/minkowski-spectrum
-data: /data/minkowski-spectrum/
 dataset: https://huggingface.co/datasets/cahlen/continued-fraction-spectra
 ---
 

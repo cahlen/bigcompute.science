@@ -49,7 +49,7 @@ matching the prediction from the transfer operator analysis (2(0.836829) - 1 = 0
 | 10000 | 6,842 | |
 | 100000 | 163,511 | |
 
-The complete $R(d)$ dataset for $d \le 10^6$ is available at [cahlen/zaremba-representations on Hugging Face](https://huggingface.co/datasets/cahlen/zaremba-representations). A standalone Python verifier that recomputes $R(d)$ for $d \le 10^4$ using CPU-based continued fraction enumeration is included in the dataset repository.
+The complete $R(d)$ dataset for $d \le 10^6$ is in [`representation_counts_1000000.csv`](https://github.com/cahlen/idontknow/blob/main/scripts/experiments/zaremba-effective-bound/representation_counts_1000000.csv) in the idontknow repository. A standalone Python verifier that recomputes $R(d)$ for $d \le 10^4$ using CPU-based continued fraction enumeration is included there.
 
 ## Computation Details
 

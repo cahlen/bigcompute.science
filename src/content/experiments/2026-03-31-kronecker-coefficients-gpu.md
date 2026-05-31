@@ -33,7 +33,6 @@ summary: "Complete Kronecker coefficient tables for S_20 (32.7M nonzero, 3.7s) a
 
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/kronecker-coefficients
 dataset: https://huggingface.co/datasets/cahlen/kronecker-coefficients
-data: /data/kronecker/
 ---
 
 # Kronecker Coefficients: Pushing the Frontier to $n = 120$

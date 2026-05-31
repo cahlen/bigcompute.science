@@ -1,5 +1,10 @@
 [
   {
+    "hash": "817275c",
+    "date": "May 31",
+    "message": "Regenerate llms.txt and meta.json for agent discovery."
+  },
+  {
     "hash": "22b080f",
     "date": "May 31",
     "message": "Fix cross-publication inconsistencies flagged in external review."
@@ -43,10 +48,5 @@
     "hash": "ccac623",
     "date": "May 31",
     "message": "Publish 3D NS BKM infrastructure finding and Phase 4 blowup-search data."
-  },
-  {
-    "hash": "90f1419",
-    "date": "May 30",
-    "message": "Fix finding frontmatter duplicate data keys and NS BKM cuda link."
   }
 ]

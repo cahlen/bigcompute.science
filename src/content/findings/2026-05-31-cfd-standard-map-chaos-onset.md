@@ -9,7 +9,7 @@ significance: high
 domain: [fluid-dynamics, chaotic-advection, dynamical-systems, ergodic-theory]
 related_experiment: /experiments/cfd-chaotic-advection/
 
-summary: "Custom CUDA Lyapunov sweep of the Chirikov standard map: 16.8M trajectories in 116.6s on RTX 5090, zero NaN/Inf. At literature K_crit ≈ 0.972, mean Λ ≈ 0.045 with >99.9% of ICs positive — consistent with chaotic advection onset in area-preserving mixing."
+summary: "Custom CUDA maximal-Lyapunov sweep of the Chirikov standard map: 16.8M trajectories in 116.6s on RTX 5090, zero NaN/Inf. At literature K_crit ≈ 0.972, mean Λ ≈ 0.045 with 99.91% of ICs positive — reproduces published ranges; does not claim world-record scale or new K_crit."
 
 data:
   trajectories: 16777216
@@ -37,7 +37,7 @@ certification:
 
 ## The Finding
 
-We computed the **largest Lyapunov exponent** $\Lambda(K)$ of the **Chirikov standard map** — the canonical phase-space model for **chaotic advection** in 2D incompressible flows — using a custom CUDA kernel on a single **RTX 5090**.
+We computed the **maximal Lyapunov exponent** (largest Lyapunov characteristic exponent; standard terminology, not a claim of world-record numerical values) $\Lambda(K)$ of the **Chirikov standard map** — the canonical phase-space model for **chaotic advection** in 2D incompressible flows — using a custom CUDA kernel on a single **RTX 5090**.
 
 Deep certifying sweep:
 
@@ -62,7 +62,7 @@ At $K = 5$: $\bar{\Lambda} \approx 0.957$, compared below to the large-$K$ estim
 
 **Initial conditions.** For each $K$ on a uniform grid of 2048 points in $[0, K_{\max}]$, we draw **8192 independent uniform random** pairs $(\theta_0, p_0) \in [0, 2\pi)^2$ using a per-thread **SplitMix64** PRNG seeded by `(global_seed, k_index, ic_index)` (`standard_map_lyapunov.cu`).
 
-**Lyapunov estimate.** We apply the **Benettin** tangent-vector algorithm (Benettin et al. 1980): at each of 50,000 map steps we multiply a unit tangent vector by the Jacobian, **renormalize every iteration**, and accumulate $\frac{1}{N}\sum \log\|J v\|$. This yields one finite-time largest Lyapunov exponent per IC; we report the ensemble mean, standard deviation, min/max, and fraction with $\Lambda > 0$.
+**Lyapunov estimate.** We apply the **Benettin** tangent-vector algorithm (Benettin et al. 1980): at each of 50,000 map steps we multiply a unit tangent vector by the Jacobian, **renormalize every iteration**, and accumulate $\frac{1}{N}\sum \log\|J v\|$. This yields one finite-time **maximal** Lyapunov exponent per IC; we report the ensemble **mean**, standard deviation, per-$K$ **min/max over ICs** (spread of finite-time estimates, not global records), and fraction with $\Lambda > 0$.
 
 **Hardware.** NVIDIA GeForce RTX 5090 (32 GB, Blackwell architecture, compute capability **12.0**). We compile with `-arch=sm_120` under CUDA 13.0 (NVIDIA's flag for CC 12.0 devices). One CUDA thread per $(K, \mathrm{IC})$ pair; all arithmetic is **fp64** in the Benettin loop. The kernel exits with code **2** on any NaN/Inf in tangent norms (certifying run reported zero failures).
 
@@ -78,7 +78,23 @@ At $K = 5$: $\bar{\Lambda} \approx 0.957$, compared below to the large-$K$ estim
 | $\bar{\Lambda}(5)$ | $\ln(5/2) \approx 0.916$ (Chirikov 1979; Cary et al. 1986) | $0.957$ (+4.4%) |
 | Deep vs standard sweep | Qualitative agreement | 512-run and 2048-run curves match at shared $K$ |
 
-The $K=5$ value sits within **5%** of the asymptotic $\ln(K/2)$ formula; the small excess is consistent with finite-$K$ corrections documented by Manos & Robnik (2013).
+The $K=5$ value sits within **5%** of the asymptotic $\ln(K/2)$ formula; the small excess is consistent with finite-$K$ corrections documented by Manos & Robnik (2013). A dedicated convergence study (`validate_claims.py`) shows the $K=5$ ensemble mean is stable to $\sim 10^{-4}$ between 5,000 and 100,000 iterations (65,536 ICs, GPU).
+
+## Claim validation (what “largest” does and does not mean)
+
+| Claim | Status | Evidence |
+|-------|--------|----------|
+| **Maximal LCE** via Benettin | Valid standard method | Benettin et al. 1980; Sprott/Wolf numerical guides; symplectic pairing $\lambda_1+\lambda_2 \approx 0$ verified to $10^{-15}$ (CPU, 200 ICs) |
+| **Numerical values** at $K_{\mathrm{crit}}$, $K=5$ | Reproduce literature **ranges** | Mean $0.0446$ in Greene/Lichtenberg band $0.03$–$0.06$; $K=5$ mean $0.957$ vs $\ln(2.5)=0.916$ (+4.4%) |
+| **16.8M trajectories** | Large single-GPU **parameter sweep** | **Not** the largest standard-map study ever (Chirikov & Shepelyansky 1984; StdMap at dynamical-systems.org; GPU packages Chaoticus 2025, Julia ChaosTools) |
+| **`max_lyapunov` CSV column** | Per-$K$ max over 8192 ICs | e.g. $0.998$ at $K=5$ is ensemble spread of finite-time estimates, not a published record |
+| **50,000 iterations sufficient** | **Yes at large $K$**; **marginal at $K_{\mathrm{crit}}$** | GPU: $K=5$ mean stable 5k–100k iters; CPU: $K_{\mathrm{crit}}$ mean drops $\sim 2.5\%$ from 50k to 100k iters (sticky/near-integrable orbits) |
+
+We do **not** claim: world-record computation size, a refined $K_{\mathrm{crit}}$, or fully saturated Lyapunov exponents for every IC at every $K$.
+
+```bash
+python3 scripts/experiments/cfd-chaotic-advection/validate_claims.py
+```
 
 ## Important nuance (read before interpreting the curve)
 
@@ -131,9 +147,10 @@ python3 scripts/experiments/cfd-chaotic-advection/plot_lyapunov.py \
 
 ## Limitations (to our knowledge)
 
-- We report the **largest** Lyapunov exponent only. For this 2D area-preserving (symplectic) map the second exponent is **$- \Lambda$** (paired by Liouville's theorem); computing the full spectrum would require a second tangent vector but adds no information beyond the largest.
-- 50,000 iterations may not saturate Lyapunov estimates for near-integrable orbits at small $K$; per-IC negative finite-time $\Lambda$ values can occur (e.g. min $\Lambda = -4.1 \times 10^{-5}$ at $K_{\mathrm{crit}}$) while ensemble means are positive.
+- We report the **maximal** (largest) Lyapunov exponent only — standard for 2D maps. For this area-preserving symplectic map the second exponent is **$- \Lambda$** (Liouville; validated numerically to machine precision in `validate_claims.py`).
+- 50,000 iterations appear **saturated at large $K$** but may **underestimate** the ensemble mean slightly near $K_{\mathrm{crit}}$ where sticky orbits converge slowly; per-IC negative finite-time $\Lambda$ values can occur (e.g. min $\Lambda = -4.1 \times 10^{-5}$ at $K_{\mathrm{crit}}$) while ensemble means are positive.
 - We do **not** refine $K_{\mathrm{crit}}$; we compare against Greene's value $K_{\mathrm{crit}} \approx 0.971635406$ at our grid resolution ($K = 0.9722$ nearest grid point).
+- We do **not** claim the largest standard-map computation in the literature — only an open, certifying single-GPU sweep at this $(K, \mathrm{IC}, \mathrm{iter})$ resolution.
 - AI peer-reviewed (not journal peer-reviewed). See [verifications](https://github.com/cahlen/idontknow/tree/main/docs/verifications).
 
 ## References

@@ -24,7 +24,7 @@ tags:
   method: [cuda-kernel, lyapunov-exponent, parameter-sweep]
 
 results:
-  problem: "Map K → largest Lyapunov exponent Λ(K) for the Chirikov standard map on T²"
+  problem: "Map K → maximal Lyapunov exponent Λ(K) for the Chirikov standard map on T²"
   conjecture_class: "Integrability-to-chaos transition in area-preserving advection (K_crit ≈ 0.972)"
   status: "COMPLETE — 16,777,216 trajectories in 116.6s (deep certifying sweep), zero NaN/Inf"
   sweep: "2048 K × 8192 ICs × 50000 iterations, K ∈ [0, 5]"
@@ -47,7 +47,7 @@ finding: /findings/cfd-standard-map-chaos-onset/
 
 We begin a **computational fluid dynamics conjecture program** on bigcompute.science using the same custom-CUDA methodology as our number-theory experiments. The first target is the **Chirikov standard map** on the 2-torus — an area-preserving map that models **chaotic advection** in periodically driven 2D flows.
 
-For each coupling parameter $K$, we estimate the largest Lyapunov exponent $\Lambda(K)$ by averaging Benettin tangent-vector growth over thousands of random initial conditions on a single **RTX 5090**.
+For each coupling parameter $K$, we estimate the **maximal** Lyapunov exponent $\Lambda(K)$ (largest LCE — standard dynamical-systems terminology) by averaging Benettin tangent-vector growth over thousands of random initial conditions on a single **RTX 5090**. See the [finding claim-validation table](/findings/cfd-standard-map-chaos-onset/#claim-validation-what-largest-does-and-does-not-mean) for what we do and do not assert about scale.
 
 ## Why this map?
 

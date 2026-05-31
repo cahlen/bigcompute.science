@@ -25,6 +25,7 @@ data:
   hardware: "NVIDIA RTX 5090"
   method: "Benettin tangent-vector Lyapunov, custom CUDA (sm_120)"
   status: "CONFIRMED — certifying run, zero numerical failures"
+  dir: /data/cfd-chaotic-advection/
 
 certification:
   level: silver
@@ -34,7 +35,6 @@ certification:
 
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/cfd-chaotic-advection
 dataset: https://huggingface.co/datasets/cahlen/cfd-chaotic-advection
-data: /data/cfd-chaotic-advection/
 ---
 
 # Standard Map Chaos Onset: Λ(K) Crosses Literature K_crit on RTX 5090

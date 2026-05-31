@@ -28,6 +28,7 @@ data:
   hardware: "NVIDIA RTX 5090"
   method: "Pseudospectral vorticity-form NS, cuFFT C2C, RK4, 2/3 dealiasing"
   status: "CONFIRMED — certifying runs, zero numerical failures"
+  dir: /data/cfd-ns-bkm/
 
 certification:
   level: silver
@@ -37,7 +38,6 @@ certification:
 
 code: https://github.com/cahlen/idontknow/tree/main/scripts/experiments/cfd-ns-bkm
 dataset: https://huggingface.co/datasets/cahlen/cfd-ns-bkm
-data: /data/cfd-ns-bkm/
 ---
 
 # 2D NS BKM Diagnostic: Certifying Pseudospectral Vorticity Tracking

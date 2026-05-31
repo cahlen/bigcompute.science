@@ -1,52 +1,52 @@
 [
   {
-    "hash": "9856891",
-    "date": "Apr 14",
-    "message": "Update certifications and finding metadata from review cycle"
+    "hash": "10cdcac",
+    "date": "May 31",
+    "message": "Sync audit ledger with CFD remediation issue counts."
   },
   {
-    "hash": "ddd9f12",
-    "date": "Apr 08",
-    "message": "Mark Zaremba density experiment as complete"
+    "hash": "1ddc43b",
+    "date": "May 31",
+    "message": "Publish 5000-step Phase 4 BKM monitor (BKM \u2248 4.45 at t=5)."
   },
   {
-    "hash": "2a7afae",
-    "date": "Apr 08",
-    "message": "Add Convergent-7B model showcase to front page"
+    "hash": "5100541",
+    "date": "May 31",
+    "message": "Add automated link checker and fix broken published URLs."
   },
   {
-    "hash": "dba4738",
-    "date": "Apr 07",
-    "message": "Tighten language: empirical observations are not laws or theorems"
+    "hash": "f5835c4",
+    "date": "May 31",
+    "message": "Document Phase 4 Taylor-Green benchmark and 512\u00b3 VRAM ceiling."
   },
   {
-    "hash": "28af52a",
-    "date": "Apr 07",
-    "message": "Update Ramanujan Machine: v1 exhausted (7K false positives), v2 kernel built"
+    "hash": "a152321",
+    "date": "May 31",
+    "message": "Add Phase 4 extended 256\u00b3 BKM run results to 3D finding."
   },
   {
-    "hash": "9bc2ffb",
-    "date": "Apr 07",
-    "message": "Update README: 18 findings, 53 reviews, 7 models, 3 providers"
+    "hash": "ccac623",
+    "date": "May 31",
+    "message": "Publish 3D NS BKM infrastructure finding and Phase 4 blowup-search data."
   },
   {
-    "hash": "2a8407c",
-    "date": "Apr 07",
-    "message": "MCP server: fetch manifest from GitHub instead of bundling a copy"
+    "hash": "90f1419",
+    "date": "May 30",
+    "message": "Fix finding frontmatter duplicate data keys and NS BKM cuda link."
   },
   {
-    "hash": "4e70a5a",
-    "date": "Apr 07",
-    "message": "Update MCP server manifest: 207/210 issues resolved"
+    "hash": "32736a9",
+    "date": "May 30",
+    "message": "Publish CFD Phase 2/3 experiments and silver BKM finding."
   },
   {
-    "hash": "bd2103b",
-    "date": "Apr 07",
-    "message": "Update stats: 207/210 issues resolved (98.6%), up from 191 (91%)"
+    "hash": "401154d",
+    "date": "May 30",
+    "message": "Link CFD finding to Hugging Face dataset and validation data."
   },
   {
-    "hash": "062e429",
-    "date": "Apr 07",
-    "message": "Fix stale review counts in llms.txt, llms-full.txt, meta.json, certifications.json"
+    "hash": "71e94b4",
+    "date": "May 30",
+    "message": "Add claim validation section for maximal Lyapunov exponent wording."
   }
 ]

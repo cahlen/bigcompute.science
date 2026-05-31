@@ -3,7 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "npm run sync-changelog && astro dev",
+    "sync-changelog": "python3 scripts/generate_changelog.py",
+    "prebuild": "python3 scripts/generate_changelog.py",
     "build": "astro build",
     "preview": "astro preview",
     "check-links": "python3 scripts/check_links.py"

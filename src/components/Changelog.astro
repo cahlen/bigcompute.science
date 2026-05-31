@@ -1,12 +1,12 @@
 ---
-// Read changelog from static JSON (generated pre-commit, checked into repo)
+// Read changelog from src/data/changelog.json (regenerated from git log on build)
 import changelogData from '../data/changelog.json';
 
 const entries = (changelogData as { hash: string; date: string; message: string }[]).slice(0, 10);
 
 function getTag(msg: string): { label: string; cls: string } {
   const m = msg.toLowerCase();
-  if (m.includes('finding') || m.includes('density') || m.includes('exception') || m.includes('convergence'))
+  if (m.includes('finding') || m.includes('density') || m.includes('exception') || m.includes('convergence') || m.includes('cfd') || m.includes('bkm'))
     return { label: 'finding', cls: 'cl-finding' };
   if (m.includes('ramanujan') || m.includes('kronecker') || m.includes('class num') || m.includes('hausdorff'))
     return { label: 'experiment', cls: 'cl-experiment' };
